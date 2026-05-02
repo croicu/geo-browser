@@ -1,0 +1,20 @@
+import type { Logger } from "./protocols";
+
+export const services = {
+    setLogger,
+    getLogger,
+};
+
+let logger: Logger | undefined;
+
+export function setLogger(value: Logger): void {
+    logger = value;
+}
+
+export function getLogger(): Logger {
+    if (!logger) {
+        throw new Error("Logger not initialized");
+    }
+
+    return logger;
+}
