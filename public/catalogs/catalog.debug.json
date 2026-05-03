@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "createdAt": "2026-05-03T00:00:00Z",
+  "areas": [
+    {
+      "id": "napoli",
+      "name": "Napoli",
+      "center": [40.8518, 14.2681],
+      "radiusMeters": 12000,
+
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+
+      "manifestUrl": "/areas/napoli/manifest.json",
+
+      "images": [
+        {
+          "sizePx": 64,
+          "url": "/areas/napoli/intro/happy_r_64.png"
+        },
+        {
+          "sizePx": 256,
+          "url": "/areas/napoli/intro/happy_r_256.png"
+        },
+        {
+          "sizePx": 1024,
+          "url": "/areas/napoli/intro/happy_r_1024.png"
+        }
+      ]
+    }
+  ]
+}

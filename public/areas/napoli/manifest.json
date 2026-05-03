@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "layers": [
+    {
+      "id": "debug-heat",
+      "name": "Debug Heat",
+      "type": "heatmap",
+      "url": "/areas/napoli/layers/debug-heat.geojson",
+      "visible": true
+    }
+  ]
+}
