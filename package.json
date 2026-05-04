@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.21",
+    "happy-dom": "^20.9.0",
     "typescript": "~6.0.2",
     "vite": "^8.0.10",
     "vitest": "^4.1.5"

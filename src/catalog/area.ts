@@ -2,12 +2,12 @@ import type { AreaDetail, AreaSummary } from "../protocols";
 import { GeoLayer } from "./layer";
 
 export class GeoArea {
-    private readonly summary: AreaSummary;
+    private readonly _summary: AreaSummary;
     private _detail: AreaDetail | undefined;
     private _layers: GeoLayer[] | undefined;
 
     constructor(summary: AreaSummary) {
-        this.summary = summary;
+        this._summary = summary;
     }
 
     async load(): Promise<void> {
@@ -40,19 +40,23 @@ export class GeoArea {
         return this._layers !== undefined;
     }
 
+    get summary(): AreaSummary {
+        return this._summary;
+    }
+
     get id(): string {
-        return this.summary.id;
+        return this._summary.id;
     }
 
     get name(): string {
-        return this.summary.name;
+        return this._summary.name;
     }
 
     get center(): [number, number] {
-        return this.summary.center;
+        return this._summary.center;
     }
     get radiusMeters(): number {
-        return this.summary.radiusMeters;
+        return this._summary.radiusMeters;
     }
 
     get detail(): AreaDetail | undefined

@@ -43,6 +43,22 @@ export interface Layer {
     name?: string;
 }
 
+export type LatLng = [number, number];
+
+export interface SummaryViewStateData {
+    center: LatLng;
+    zoom: number;
+    selectedAreaId?: string;
+    hoveredAreaId?: string;
+}
+
+export interface DetailViewStateData {
+    areaId: string;
+    center?: LatLng;
+    zoom?: number;
+    visibleLayers?: Record<string, boolean>;
+}
+
 export type LogLevel =
     | "diagnostic"
     | "info"
