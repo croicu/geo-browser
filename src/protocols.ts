@@ -31,16 +31,20 @@ export interface AreaDetail {
 
     layers: Layer[];
 }
+export interface LayerStyle {
+    color?: string;
+    opacity?: number;
+    radiusScale?: number;
+}
 
 export interface Layer {
     id: string;
-
     type: string;
     url: string;
-
     visible: boolean;
 
     name?: string;
+    style?: LayerStyle;
 }
 
 export type LatLng = [number, number];

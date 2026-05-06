@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
 import { resolveCatalogUrl } from "../../src/catalog/loader";
 import { setLogger } from "../../src/services";
-import type { Logger } from "../../src/protocols";
+import type { Logger } from "../../src/contracts";
 
 function createMockLogger(): Logger {
   return {

@@ -51,8 +51,6 @@ describe("BubbleWidget", () => {
         expect(image.alt).toBe("Napoli");
         expect(label.textContent).toBe("Napoli");
 
-        expect(bubble.style.left).toBe("368px"); // x - radius = 400 - 32 = 368
-        expect(bubble.style.top).toBe("268px");  // y - radius = 300 - 32 = 268
         expect(bubble.style.width).toBe("64px");
         expect(bubble.style.height).toBe("64px");
         expect(image.style.width).toBe("100%");

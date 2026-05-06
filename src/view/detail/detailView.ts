@@ -1,25 +1,8 @@
-import L from "leaflet";
-
 import type { GeoArea } from "../../catalog/area";
 import type { ControllerActions, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
-
-export interface LeafletMapFactory {
-    createMap(root: HTMLElement, center: [number, number], zoom: number): L.Map;
-}
-
-export class DefaultLeafletMapFactory implements LeafletMapFactory {
-    createMap(root: HTMLElement, center: [number, number], zoom: number): L.Map {
-        const map = L.map(root).setView(center, zoom);
-
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            maxZoom: 19,
-            attribution: "&copy; OpenStreetMap contributors",
-        }).addTo(map);
-
-        return map;
-    }
-}
+import { LayerView } from "./layerView";
+import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, type LeafletMapFactory } from "./leafletLayerFactory";
 
 export class DetailView implements View {
     private readonly _root: HTMLElement;
@@ -27,6 +10,7 @@ export class DetailView implements View {
     private readonly _area: GeoArea;
     private readonly _state: DetailViewState;
     private readonly _mapFactory: LeafletMapFactory;
+    private _layerViews: LayerView[] = [];
 
     private _element?: HTMLElement;
     private _mapRoot?: HTMLElement;
@@ -67,14 +51,34 @@ export class DetailView implements View {
         if (!this._map) {
             this.createMap();
         }
+
+        this.destroyLayerViews();
+
+        for (const layer of this._area.layers) {
+            if (!layer.isVisible()) {
+                continue;
+            }
+
+            const layerView = new LayerView(this._map, layer, new DefaultLeafletLayerFactory());
+            this._layerViews.push(layerView);
+
+            void layerView.render();
+        }
     }
 
     destroy(): void {
-        this._map?.remove();
-        this._map = undefined;
+        this.destroyLayerViews();
 
-        this._element?.remove();
-        this._element = undefined;
+        if (this._map) {
+            this._map.remove();
+            this._map = undefined;
+        }
+
+        if (this._element) {
+            this._element.remove();
+            this._element = undefined;
+        }
+
         this._mapRoot = undefined;
     }
 
@@ -95,5 +99,13 @@ export class DetailView implements View {
         }
 
         this._map = this._mapFactory.createMap(this._mapRoot, center, zoom);
+    }
+
+    private destroyLayerViews(): void {
+        for (const layerView of this._layerViews) {
+            layerView.destroy();
+        }
+
+        this._layerViews = [];
     }
 }

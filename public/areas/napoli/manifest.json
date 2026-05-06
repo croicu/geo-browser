@@ -2,11 +2,28 @@
   "version": 1,
   "layers": [
     {
-      "id": "debug-heat",
-      "name": "Debug Heat",
+      "id": "flickr",
+      "name": "Flickr",
       "type": "heatmap",
-      "url": "/areas/napoli/layers/debug-heat.geojson",
-      "visible": true
+      "url": "/areas/napoli/layers/flickr.geojson",
+      "visible": true,
+      "style": {
+        "color": "#ff0000",
+        "opacity": 0.7,
+        "radiusScale": 1.0
+      }
+    },
+    {
+      "id": "insta",
+      "name": "Instagram",
+      "type": "heatmap",
+      "url": "/areas/napoli/layers/instagram.geojson",
+      "visible": true,
+      "style": {
+        "color": "#0000ff",
+        "opacity": 0.7,
+        "radiusScale": 1.0
+      }
     }
   ]
 }

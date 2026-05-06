@@ -50,3 +50,23 @@ export interface ControllerState {
     get minZoom(): number;
     get maxZoom(): number;
 }
+
+export interface MapLayerHandle {
+    addTo(map: unknown): void;
+    remove(): void;
+}
+
+export interface CircleMarkerOptions {
+    radius: number;
+    color?: string;
+    opacity: number;
+    fillOpacity: number;
+}
+
+export interface LeafletLayerFactory {
+    createLayerGroup(): MapLayerHandle;
+    createCircleMarker(
+        latLng: [number, number],
+        options: CircleMarkerOptions
+    ): MapLayerHandle;
+}
