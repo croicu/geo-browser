@@ -1,4 +1,4 @@
-import type { Logger } from "./protocols";
+import type { Logger } from "./contracts";
 
 export const services = {
     setLogger,

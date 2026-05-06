@@ -1,20 +1,24 @@
 import { getLogger } from "../services";
 import { GeoCatalog } from "../catalog/catalog";
+import type { ControllerActions, ControllerState, View } from "../contracts";
 
 import { SummaryViewState } from "../state/summaryViewState";
 import { SummaryView } from "../view/summary/summaryView";
-import { BubbleView } from "../view/summary/bubbleView";
+import { DetailView } from "../view/detail/detailView";
+import type { DetailViewState } from "../state/detailViewState";
 
 export interface ControllerOptions {
     catalog: GeoCatalog;
     summaryViewState?: SummaryViewState;
 }
 
-export class Controller {
+export class Controller implements ControllerActions, ControllerState {
     private readonly _catalog: GeoCatalog;
     private readonly _summaryViewState: SummaryViewState;
-    private _summaryView?: SummaryView;
-    private _bubbleViews: BubbleView[] = [];
+    private readonly _detailViewState: DetailViewState;
+    private _app: HTMLElement;
+    private _view?: View;
+    private _zoomLevel: number = 3;
 
     constructor(options: ControllerOptions) {
         this._catalog = options.catalog;
@@ -30,8 +34,8 @@ export class Controller {
             zoom: this._summaryViewState.zoom,
         });
 
-        const app = document.querySelector<HTMLDivElement>("#app");
-        if (!app) {
+        this._app = document.querySelector<HTMLDivElement>("#app");
+        if (!this._app) {
             throw new Error("Missing #app element.");
         }
 
@@ -41,30 +45,75 @@ export class Controller {
             areaCount: this._catalog.areas.length,
         });
 
-        this._summaryView = new SummaryView(app, this._summaryViewState);
-        this._summaryView.render(this._catalog);
-
-        this._bubbleViews = [];
-
-        for (const area of this._catalog.areas) {
-            const bubbleView = new BubbleView(
-                this._summaryView.bubblesRoot,
-                area.summary
-            );
-
-            this._bubbleViews.push(bubbleView);
-
-            bubbleView.render({
-                x: 400,
-                y: 300,
-                radius: area.summary.minRadiusPx,
-                imageUrl: area.summary.images[0]?.url ?? "",
-            });
-        }
+        this._view = new SummaryView(this._app, this, this._catalog, this._summaryViewState);
+        this._view.render();
     }
 
     get catalog(): GeoCatalog | undefined {
         return this._catalog;
     }
+
+    // ControlerActions
+    async openSummary(): Promise<void> {
+    }
+
+    async openDetail(areaId: string): Promise<void> {
+        const logger = getLogger();
+
+        logger.info("open detail", { areaId });
+
+        const area = this._catalog.getArea(areaId);
+        await area.load();
+
+        const nextView: View = new DetailView(
+            this._app,
+            this,
+            area,
+            this._detailViewState
+        );
+
+        this.switchView(nextView);
+    }
+
+    zoomIn(): void {
+        this.setZoom(this._zoomLevel + 1);
+    }
+
+    zoomOut(): void {
+        this.setZoom(this._zoomLevel - 1);
+    }
+
+    setZoom(zoomLevel: number): void {
+        const clamped = Math.max(this.minZoom, Math.min(this.maxZoom, zoomLevel));
+
+        if (clamped === this._zoomLevel) {
+            return;
+        }
+
+        this._zoomLevel = clamped;
+    }
+
+    // ControllerState
+    get zoom(): number {
+        return this._zoomLevel;
+    }
+
+    get minZoom(): number {
+        return 3;
+    }
+
+    get maxZoom(): number {
+        return 18;
+    }
+
+    // Private methods
+    private switchView(nextView: View): void {
+        const previousView = this._view;
+
+        this._view = nextView;
+        this._view.render();
+
+        previousView?.destroy();
+    }    
 }
  

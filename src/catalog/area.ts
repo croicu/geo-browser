@@ -1,4 +1,4 @@
-import type { AreaDetail, AreaSummary } from "../protocols";
+import type { AreaDetail, AreaImage, AreaSummary } from "../protocols";
 import { GeoLayer } from "./layer";
 
 export class GeoArea {
@@ -55,10 +55,24 @@ export class GeoArea {
     get center(): [number, number] {
         return this._summary.center;
     }
+
     get radiusMeters(): number {
         return this._summary.radiusMeters;
     }
 
+    get minRadiusPx(): number {
+        return this._summary.minRadiusPx;
+    }
+
+    get maxRadiusPx(): number {
+        return this._summary.maxRadiusPx;
+    }
+
+    get images(): AreaImage[]
+    {
+        return this._summary.images;
+    }
+    
     get detail(): AreaDetail | undefined
     {
         return this._detail;

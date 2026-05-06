@@ -67,7 +67,7 @@ describe("Controller", () => {
         expect(document.querySelector(".world-map")).not.toBeNull();
         expect(document.querySelector(".bubbles-layer")).not.toBeNull();
 
-        const bubble = document.querySelector(".bubble-view") as HTMLElement;
+        const bubble = document.querySelector(".bubble-widget") as HTMLElement;
         const image = document.querySelector(".bubble-image") as HTMLImageElement;
         const label = document.querySelector(".bubble-label") as HTMLElement;
 

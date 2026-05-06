@@ -3,7 +3,7 @@ import type {
     Logger,
     TelemetryRecord,
     TelemetrySink,
-} from "./protocols";
+} from "./contracts";
 
 export class ConsoleTelemetrySink implements TelemetrySink {
     write(record: TelemetryRecord): void {
