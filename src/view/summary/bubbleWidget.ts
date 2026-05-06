@@ -30,7 +30,7 @@ export class BubbleWidget implements Widget {
         const imageUrl = this.getImageUrl(diameter);
 
         // Temporary layout until summary geo projection is added.
-        const x = 400;
+        const x = 850;
         const y = 300;
 
         this._element.style.position = "absolute";

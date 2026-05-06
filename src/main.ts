@@ -1,4 +1,5 @@
 import "./style.css";
+import "leaflet/dist/leaflet.css";
 
 import { ConsoleTelemetrySink, DefaultLogger } from "./logging";
 import { setLogger } from "./services";

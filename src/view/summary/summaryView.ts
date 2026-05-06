@@ -1,6 +1,6 @@
 // view/summary/SummaryView.ts
 
-import type { ControllerActions, ControllerState, View } from "../../contracts"
+import type { ControllerActions, View } from "../../contracts"
 import { BubbleWidget } from "./bubbleWidget";
 import { SummaryViewState } from "../../state/summaryViewState";
 import type { GeoCatalog } from "../../catalog/catalog";
