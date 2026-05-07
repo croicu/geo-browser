@@ -45,8 +45,7 @@ export class Controller implements ControllerActions, ControllerState {
             areaCount: this._catalog.areas.length,
         });
 
-        this._view = new SummaryView(this._app, this, this._catalog, this._summaryViewState);
-        this._view.render();
+        this.openSummary();
     }
 
     get catalog(): GeoCatalog | undefined {
@@ -55,7 +54,19 @@ export class Controller implements ControllerActions, ControllerState {
 
     // ControlerActions
     async openSummary(): Promise<void> {
-    }
+        const logger = getLogger();
+
+        logger.info("open summary");
+
+        const summaryView: View = new SummaryView(
+            this._app, 
+            this, 
+            this._catalog, 
+            this._summaryViewState
+        );
+
+        this.switchView(summaryView);
+     }
 
     async openDetail(areaId: string): Promise<void> {
         const logger = getLogger();
@@ -65,14 +76,14 @@ export class Controller implements ControllerActions, ControllerState {
         const area = this._catalog.getArea(areaId);
         await area.load();
 
-        const nextView: View = new DetailView(
+        const detailView: View = new DetailView(
             this._app,
             this,
             area,
             this._detailViewState
         );
 
-        this.switchView(nextView);
+        this.switchView(detailView);
     }
 
     zoomIn(): void {

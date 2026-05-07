@@ -51,8 +51,16 @@ export interface ControllerState {
     get maxZoom(): number;
 }
 
+export interface MapHandle {
+    remove(): void;
+}
+
+export interface MapFactory {
+    createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle;
+}
+
 export interface MapLayerHandle {
-    addTo(map: unknown): void;
+    addTo(map: MapHandle): void;
     remove(): void;
 }
 
@@ -63,10 +71,22 @@ export interface CircleMarkerOptions {
     fillOpacity: number;
 }
 
-export interface LeafletLayerFactory {
+export interface LayerFactory {
     createLayerGroup(): MapLayerHandle;
     createCircleMarker(
         latLng: [number, number],
         options: CircleMarkerOptions
     ): MapLayerHandle;
+}
+
+export interface WidgetHandle {
+    addTo(map: MapHandle): void;
+    remove(): void;
+}
+
+export interface WidgetFactory {
+    createSummaryWidget(
+        label: string,
+        onClick: () => void
+    ): WidgetHandle;
 }

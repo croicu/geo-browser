@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { DetailView, LeafletMapFactory } from "../../../src/view/detail/detailView";
-import type { ControllerActions } from "../../../src/contracts";
+import { DetailView, DetailViewServices } from "../../../src/view/detail/detailView";
+import type { ControllerActions, MapFactory, MapHandle } from "../../../src/contracts";
+import { StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories"
 
 class FakeActions implements ControllerActions {
     openSummary(): void {}
@@ -32,21 +33,6 @@ const fakeState = {
     zoom: 13,
 };
 
-class FakeMap {
-    remove(): void {
-    }
-}
-
-class FakeMapFactory implements LeafletMapFactory {
-    public created = false;
-
-    createMap(): any {
-        this.created = true;
-
-        return new FakeMap();
-    }
-}
-
 describe("DetailView", () => {
     it("renders detail map root", () => {
         const root = document.createElement("div");
@@ -56,7 +42,10 @@ describe("DetailView", () => {
             new FakeActions(),
             fakeArea as any,
             fakeState as any,
-            new FakeMapFactory()
+            {
+                mapFactory: new StubMapFactory(),
+                widgetFactory: new StubWidgetFactory()
+            }
         );
 
         view.render();
@@ -73,7 +62,10 @@ describe("DetailView", () => {
             new FakeActions(),
             fakeArea as any,
             fakeState as any,
-            new FakeMapFactory()
+            {
+                mapFactory: new StubMapFactory(),
+                widgetFactory: new StubWidgetFactory()
+            }
         );
 
         view.render();
@@ -90,7 +82,10 @@ describe("DetailView", () => {
             new FakeActions(),
             fakeArea as any,
             fakeState as any,
-            new FakeMapFactory()
+            {
+                mapFactory: new StubMapFactory(),
+                widgetFactory: new StubWidgetFactory()
+            }
         );
 
         view.render();

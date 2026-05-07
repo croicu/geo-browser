@@ -1,33 +1,42 @@
 import type { GeoArea } from "../../catalog/area";
-import type { ControllerActions, View } from "../../contracts";
+import type { ControllerActions, MapFactory, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
 import { LayerView } from "./layerView";
-import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, type LeafletMapFactory } from "./leafletLayerFactory";
+import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
+import { SummaryWidget } from "./summaryWidget";
+
+export interface DetailViewServices {
+    mapFactory?: MapFactory;
+    widgetFactory?: WidgetFactory;
+}
 
 export class DetailView implements View {
     private readonly _root: HTMLElement;
     private readonly _actions: ControllerActions;
     private readonly _area: GeoArea;
     private readonly _state: DetailViewState;
-    private readonly _mapFactory: LeafletMapFactory;
+    private readonly _mapFactory: MapFactory;
+    private readonly _widgetFactory: WidgetFactory;
     private _layerViews: LayerView[] = [];
 
     private _element?: HTMLElement;
     private _mapRoot?: HTMLElement;
-    private _map?: L.Map;
+    private _map?: MapHandle;
+    private _summaryWidget?: WidgetHandle;
 
     constructor(
         root: HTMLElement,
         actions: ControllerActions,
         area: GeoArea,
         state: DetailViewState,
-        mapFactory: LeafletMapFactory = new DefaultLeafletMapFactory()
+        services: DetailViewServices = {}
     ) {
         this._root = root;
         this._actions = actions;
         this._area = area;
         this._state = state;
-        this._mapFactory = mapFactory;
+        this._mapFactory = services.mapFactory?? new DefaultLeafletMapFactory();
+        this._widgetFactory = services.widgetFactory?? new DefaultLeafletWidgetFactory();
 
         void this._actions;
     }
@@ -50,6 +59,14 @@ export class DetailView implements View {
 
         if (!this._map) {
             this.createMap();
+            const summaryWidget = new SummaryWidget(
+                this._map,
+                this._actions,
+                this._widgetFactory
+            );
+            summaryWidget.render();
+
+            this._summaryWidget = summaryWidget;
         }
 
         this.destroyLayerViews();
@@ -72,6 +89,9 @@ export class DetailView implements View {
         if (this._map) {
             this._map.remove();
             this._map = undefined;
+
+            this._summaryWidget.remove();
+            this._summaryWidget = undefined;
         }
 
         if (this._element) {

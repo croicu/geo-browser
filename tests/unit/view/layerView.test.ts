@@ -3,21 +3,23 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import type {
     CircleMarkerOptions,
     LeafletLayerFactory,
+    MapHandle,
     MapLayerHandle,
 } from "../../../src/contracts";
 import { GeoLayer } from "../../../src/catalog/layer";
 import { LayerView } from "../../../src/view/detail/layerView";
 import { stubFetch } from "../../fakes/fakeFetch";
 
-class FakeMap {
-
+class FakeMap implements MapHandle{
+    remove(): void {
+    }
 }
 
 class FakeLayerHandle implements MapLayerHandle {
-    public addedTo?: unknown;
+    public addedTo?: MapHandle;
     public removed = false;
 
-    addTo(target: unknown): void {
+    addTo(target: MapHandle): void {
         this.addedTo = target;
     }
 

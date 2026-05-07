@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Back to summary">
+  <path
+    d="
+      M 32 8
+      L 8 30
+      L 32 52
+      L 32 40
+      C 44 40 52 48 54 58
+      C 56 42 47 28 32 26
+      Z
+    "
+    fill="#7a7a7a"
+  />
+  <path
+    d="
+      M 30 16
+      L 16 30
+      L 30 44
+      L 30 34
+      C 43 34 50 40 54 50
+      C 53 36 45 25 30 22
+      Z
+    "
+    fill="#ffffff"
+    opacity="0.35"
+  />
+</svg>
