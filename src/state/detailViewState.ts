@@ -46,7 +46,7 @@ export class DetailViewState {
         this._visibleLayers[layerId] = visible;
     }
 
-    isLayerVisible(layerId: string, defaultVisible: boolean): boolean {
+    isLayerVisible(layerId: string, defaultVisible: boolean = false): boolean {
         return this._visibleLayers[layerId] ?? defaultVisible;
     }
 

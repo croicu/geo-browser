@@ -7,6 +7,7 @@ import type {
     WidgetFactory,
     MapHandle,
     WidgetHandle,
+    LayerSelectionWidgetItem,
 } from "../../../src/contracts";
 
 // --- stubs ---
@@ -31,7 +32,9 @@ class StubWidgetHandle implements WidgetHandle {
 
 class StubWidgetFactory implements WidgetFactory {
     public createdLabel?: string;
+    public createdLayers?: LayerSelectionWidgetItem[];
     public createdOnClick?: () => void;
+    public createdOnToggle?: (layerId: string, visible: boolean) => void;
 
     private readonly _handle = new StubWidgetHandle();
 
@@ -42,6 +45,20 @@ class StubWidgetFactory implements WidgetFactory {
 
         this.createdLabel = label;
         this.createdOnClick = onClick;
+
+        return this._handle;
+    }
+
+    createLayerSelectionWidget(
+        layers: LayerSelectionWidgetItem[], 
+        onToggle: (
+            layerId: string, 
+            visible: boolean
+        ) => void
+    ): WidgetHandle 
+    {
+        this.createdLayers = layers;
+        this.createdOnToggle = onToggle;
 
         return this._handle;
     }
@@ -59,6 +76,9 @@ class StubActions implements ControllerActions {
     }
 
     openDetail(): void {
+    }
+
+    setLayerVisible(areaId: string, layerId: string, visible: boolean): void {
     }
 
     zoomIn(): void {

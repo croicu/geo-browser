@@ -5,7 +5,8 @@ import type { ControllerActions, ControllerState, View } from "../contracts";
 import { SummaryViewState } from "../state/summaryViewState";
 import { SummaryView } from "../view/summary/summaryView";
 import { DetailView } from "../view/detail/detailView";
-import type { DetailViewState } from "../state/detailViewState";
+import { DetailViewState } from "../state/detailViewState";
+import { fail } from "../errors";
 
 export interface ControllerOptions {
     catalog: GeoCatalog;
@@ -15,10 +16,10 @@ export interface ControllerOptions {
 export class Controller implements ControllerActions, ControllerState {
     private readonly _catalog: GeoCatalog;
     private readonly _summaryViewState: SummaryViewState;
-    private readonly _detailViewState: DetailViewState;
+    private _detailViewState: DetailViewState;
     private _app: HTMLElement;
     private _view?: View;
-    private _zoomLevel: number = 3;
+    private _zoomLevel: number = 12;
 
     constructor(options: ControllerOptions) {
         this._catalog = options.catalog;
@@ -74,7 +75,20 @@ export class Controller implements ControllerActions, ControllerState {
         logger.info("open detail", { areaId });
 
         const area = this._catalog.getArea(areaId);
+        const visibleLayers: Record<string, boolean> = {};
+
         await area.load();
+
+        for (const layer of area.layers) {
+            visibleLayers[layer.id] = layer.isVisible();
+        }
+
+        this._detailViewState = new DetailViewState({
+            areaId: area.id,
+            center: area.summary.center,
+            zoom: this._zoomLevel,
+            visibleLayers,
+        });
 
         const detailView: View = new DetailView(
             this._app,
@@ -86,6 +100,25 @@ export class Controller implements ControllerActions, ControllerState {
         this.switchView(detailView);
     }
 
+    setLayerVisible(
+        areaId: string,
+        layerId: string,
+        visible: boolean
+    ): void {
+        const area = this._catalog.getArea(areaId);
+
+        if (!this._detailViewState) {
+            fail("detail_state.missing", "DetailViewState is not available.");
+        }
+
+        this._detailViewState.setLayerVisible(
+            layerId,
+            visible
+        );
+
+        this._view?.render();
+    }
+    
     zoomIn(): void {
         this.setZoom(this._zoomLevel + 1);
     }

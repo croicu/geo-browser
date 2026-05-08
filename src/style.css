@@ -64,3 +64,47 @@ body,
 
     display: block;
 }
+
+.layer-control {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 2.5px;
+}
+
+.layer-control-button {
+    width: 24px;
+    height: 24px;
+
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.12s ease,
+        opacity 0.12s ease;
+}
+
+.layer-control-button:hover {
+    transform: scale(1.08);
+}
+
+.layer-control-button:active {
+    transform: scale(0.96);
+}
+
+.layer-control-button.inactive {
+    opacity: 0.45;
+}

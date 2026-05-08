@@ -1,4 +1,4 @@
-import { LayerFactory, MapFactory, MapHandle, MapLayerHandle, WidgetFactory, WidgetHandle } from "../../src/contracts"
+import { LayerFactory, LayerSelectionWidgetItem, MapFactory, MapHandle, MapLayerHandle, WidgetFactory, WidgetHandle } from "../../src/contracts"
 
 
 export class StubMap implements MapHandle {
@@ -52,9 +52,25 @@ export class StubWidget implements WidgetHandle {
 }
 
 export class StubWidgetFactory implements WidgetFactory {
-    createSummaryWidget(label: string, onClick: () => void): WidgetHandle {
+    createSummaryWidget(
+        label: string, 
+        onClick: () => void
+    ): WidgetHandle {
         const widget = new StubWidget();
 
+        return widget;
+    }
+
+    createLayerSelectionWidget(
+        layers: LayerSelectionWidgetItem[], 
+        onToggle: (
+            layerId: string, 
+            visible: boolean
+        ) => void
+    ): WidgetHandle {
+        const widget = new StubWidget();
+
+        void onToggle;
         return widget;
     }
 }

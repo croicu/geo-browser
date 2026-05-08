@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { fail, AppError } from "../../src/errors";
 import { setLogger } from "../../src/services";
-import type { Logger } from "../../src/protocols";
+import type { Logger } from "../../src/contracts";
 
 describe("errors", () => {
   let mockLogger: Logger;

@@ -1,18 +1,18 @@
 import { fail } from "../../errors";
 import { GeoLayer } from "../../catalog/layer";
-import type { LeafletLayerFactory, MapHandle, MapLayerHandle } from "../../contracts";
+import type { LayerFactory, MapHandle, MapLayerHandle } from "../../contracts";
 
 export class LayerView {
     private readonly _map: MapHandle;
     private readonly _layer: GeoLayer;
-    private readonly _layerFactory: LeafletLayerFactory;
+    private readonly _layerFactory: LayerFactory;
 
     private _group?: MapLayerHandle;
 
     constructor(
         map: MapHandle, 
         layer: GeoLayer,
-        layerFactory: LeafletLayerFactory
+        layerFactory: LayerFactory
     ) {
         this._map = map;
         this._layer = layer;

@@ -6,6 +6,7 @@ import { StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactor
 class FakeActions implements ControllerActions {
     openSummary(): void {}
     openDetail(_areaId: string): void {}
+    setLayerVisible(areaId: string, layerId: string, visible: boolean): void {}
     zoomIn(): void {}
     zoomOut(): void {}
     setZoom(_zoomLevel: number): void {}

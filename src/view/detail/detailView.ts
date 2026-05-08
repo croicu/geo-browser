@@ -1,6 +1,7 @@
 import type { GeoArea } from "../../catalog/area";
 import type { ControllerActions, MapFactory, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
+import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
 import { SummaryWidget } from "./summaryWidget";
@@ -17,12 +18,13 @@ export class DetailView implements View {
     private readonly _state: DetailViewState;
     private readonly _mapFactory: MapFactory;
     private readonly _widgetFactory: WidgetFactory;
-    private _layerViews: LayerView[] = [];
+    private readonly _layerViews = new Map<string, LayerView>();
 
     private _element?: HTMLElement;
     private _mapRoot?: HTMLElement;
     private _map?: MapHandle;
     private _summaryWidget?: WidgetHandle;
+    private _layersWidget?: LayerSelectionWidget;
 
     constructor(
         root: HTMLElement,
@@ -59,28 +61,28 @@ export class DetailView implements View {
 
         if (!this._map) {
             this.createMap();
+
             const summaryWidget = new SummaryWidget(
                 this._map,
                 this._actions,
                 this._widgetFactory
             );
+            const layersWidget = new LayerSelectionWidget(
+                this._map,
+                this._actions,
+                this._widgetFactory,
+                this._area.id,
+                this._area.layers
+            );
+
             summaryWidget.render();
+            layersWidget.render();
 
             this._summaryWidget = summaryWidget;
+            this._layersWidget = layersWidget;
         }
 
-        this.destroyLayerViews();
-
-        for (const layer of this._area.layers) {
-            if (!layer.isVisible()) {
-                continue;
-            }
-
-            const layerView = new LayerView(this._map, layer, new DefaultLeafletLayerFactory());
-            this._layerViews.push(layerView);
-
-            void layerView.render();
-        }
+        this.renderLayerViews();
     }
 
     destroy(): void {
@@ -90,8 +92,11 @@ export class DetailView implements View {
             this._map.remove();
             this._map = undefined;
 
-            this._summaryWidget.remove();
+            this._summaryWidget?.remove();
+            this._layersWidget?.remove();
+
             this._summaryWidget = undefined;
+            this._layersWidget = undefined;
         }
 
         if (this._element) {
@@ -119,13 +124,44 @@ export class DetailView implements View {
         }
 
         this._map = this._mapFactory.createMap(this._mapRoot, center, zoom);
+
+    }
+
+    private renderLayerViews(): void {
+        if (!this._map) {
+            return;
+        }
+
+        for (const layer of this._area.layers) {
+            const existing = this._layerViews.get(layer.id);
+            const visible = this._state.isLayerVisible(layer.id);
+
+            if (visible && !existing) {
+                const layerView = new LayerView(
+                    this._map,
+                    layer,
+                    new DefaultLeafletLayerFactory()
+                );
+
+                this._layerViews.set(layer.id, layerView);
+
+                void layerView.render();
+
+                continue;
+            }
+
+            if (!visible && existing) {
+                existing.destroy();
+                this._layerViews.delete(layer.id);
+            }
+        }
     }
 
     private destroyLayerViews(): void {
-        for (const layerView of this._layerViews) {
+        for (const layerView of this._layerViews.values()) {
             layerView.destroy();
         }
 
-        this._layerViews = [];
+        this._layerViews.clear();
     }
 }

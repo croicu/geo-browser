@@ -33,7 +33,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
-      "args": ["run", "--pool", "forks"],
+      "args": ["run", "--testTimeout", "0", "--pool", "forks"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"

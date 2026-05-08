@@ -39,6 +39,7 @@ export interface Widget {
 export interface ControllerActions {
     openSummary(): void;
     openDetail(areaId: string): void;
+    setLayerVisible(areaId: string, layerId: string, visible: boolean): void;
 
     zoomIn(): void;
     zoomOut(): void;
@@ -84,9 +85,22 @@ export interface WidgetHandle {
     remove(): void;
 }
 
+export interface LayerSelectionWidgetItem {
+    id: string;
+    name: string;
+    color: string;
+    visible: boolean;
+};
+
 export interface WidgetFactory {
     createSummaryWidget(
         label: string,
         onClick: () => void
     ): WidgetHandle;
+
+    createLayerSelectionWidget(
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void
+    ): WidgetHandle;
+
 }

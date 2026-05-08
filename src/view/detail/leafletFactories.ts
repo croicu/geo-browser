@@ -9,6 +9,7 @@ import type {
     MapHandle,
     MapLayerHandle,
     WidgetHandle,
+    LayerSelectionWidgetItem,
 } from "../../contracts";
 
 export class DefaultLeafletLayerFactory implements LayerFactory {
@@ -58,14 +59,16 @@ class LeafletWidgetHandle implements WidgetHandle {
 }
 
 class SummaryControl extends L.Control {
-    // private readonly _label: string;
+    private readonly _label: string;
     private readonly _onClick: () => void;
 
     constructor(label: string, onClick: () => void) {
         super({ position: "topleft" });
 
-    //    this._label = label;
+        this._label = label;
         this._onClick = onClick;
+
+        void this._label;
     }
 
     onAdd(): HTMLElement {
@@ -93,8 +96,58 @@ class SummaryControl extends L.Control {
     }
 }
 
-export class DefaultLeafletWidgetFactory
-implements WidgetFactory {
+class LayerControl extends L.Control {
+    private readonly _layers: LayerSelectionWidgetItem[];
+    private readonly _onToggle: (layerId: string, visible: boolean) => void;
+
+    constructor(
+        layers: LayerSelectionWidgetItem[], 
+        onToggle: (layerId: string, visible: boolean) => void
+    ) {
+        super({ position: "topleft" });
+
+        this._layers = layers;
+        this._onToggle = onToggle;
+    }
+
+    onAdd(): HTMLElement {
+        const root = L.DomUtil.create("div", "layer-control");
+
+        for (const layer of this._layers) {
+            const button = L.DomUtil.create("button", "layer-control-button", root);
+
+            button.type = "button";
+            button.title = layer.name;
+            button.style.backgroundColor = layer.color;
+            button.textContent = layer.visible ? "✓" : "×";
+
+            if (!layer.visible) {
+                button.classList.add("inactive");
+            }
+
+            L.DomEvent.disableClickPropagation(button);
+
+            button.addEventListener("click", () => this.onClick(button, layer));
+        }
+
+        return root;
+    }
+
+    private onClick(
+        button: HTMLElement,
+        layer: LayerSelectionWidgetItem
+    )
+    {
+        layer.visible = !layer.visible;
+
+        button.textContent = layer.visible ? "✓" : "×";
+        button.classList.toggle("inactive", !layer.visible);
+
+        this._onToggle(layer.id, layer.visible);
+    }
+}
+
+export class DefaultLeafletWidgetFactory implements WidgetFactory{
 
     createSummaryWidget(
         label: string,
@@ -104,4 +157,13 @@ implements WidgetFactory {
         return new LeafletWidgetHandle(
             new SummaryControl(label, onClick));
     }
+
+    createLayerSelectionWidget(
+        layers: LayerSelectionWidgetItem[], 
+        onToggle: (layerId: string, visible: boolean) => void): WidgetHandle
+    {
+        return new LeafletWidgetHandle(
+            new LayerControl(layers, onToggle));
+    }
+
 }
