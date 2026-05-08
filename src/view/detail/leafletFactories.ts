@@ -68,22 +68,6 @@ class SummaryControl extends L.Control {
         this._onClick = onClick;
     }
 
-    // onAdd(): HTMLElement {
-    //     const button = document.createElement("button");
-
-    //     button.className = "leaflet-summary-widget";
-    //     button.type = "button";
-    //     button.textContent = this._label;
-
-    //     button.addEventListener("click", (e) => {
-    //         e.preventDefault();
-    //         e.stopPropagation();
-
-    //         this._onClick();
-    //     });
-
-    //     return button;
-    // }
     onAdd(): HTMLElement {
         const button = document.createElement("button");
 

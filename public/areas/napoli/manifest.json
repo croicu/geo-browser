@@ -14,13 +14,25 @@
       }
     },
     {
-      "id": "insta",
-      "name": "Instagram",
+      "id": "overpass",
+      "name": "Overpass",
       "type": "heatmap",
-      "url": "/areas/napoli/layers/instagram.geojson",
+      "url": "/areas/napoli/layers/overpass.geojson",
       "visible": true,
       "style": {
         "color": "#0000ff",
+        "opacity": 0.7,
+        "radiusScale": 1.0
+      }
+    },
+    {
+      "id": "mapillary",
+      "name": "Mapillary",
+      "type": "heatmap",
+      "url": "/areas/napoli/layers/mapillary.geojson",
+      "visible": true,
+      "style": {
+        "color": "#00ff00",
         "opacity": 0.7,
         "radiusScale": 1.0
       }
