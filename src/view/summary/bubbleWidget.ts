@@ -1,94 +1,79 @@
-import type { GeoArea } from "../../catalog/area";
-import type { ControllerActions, Widget } from "../../contracts";
+// view/summary/bubbleWidget.ts
 
-export class BubbleWidget implements Widget {
-    private readonly _root: HTMLElement;
+import type {
+    ControllerActions,
+    LayerFactory,
+    MapHandle,
+    MapLayerHandle,
+    CircleMarkerOptions,
+    ClickableMapLayerHandle,
+} from "../../contracts";
+import { GeoArea } from "../../catalog/area";
+
+export interface BubbleWidgetOptions {
+    map: MapHandle;
+    layerFactory: LayerFactory;
+}
+
+export class BubbleWidget {
     private readonly _area: GeoArea;
     private readonly _actions: ControllerActions;
+    private readonly _map: MapHandle;
+    private readonly _layerFactory: LayerFactory;
 
-    private _element?: HTMLElement;
-    private _image?: HTMLImageElement;
-    private _label?: HTMLSpanElement;
+    private _marker?: ClickableMapLayerHandle;
 
-    public constructor(
-        root: HTMLElement,
+    constructor(
         area: GeoArea,
-        actions: ControllerActions
+        actions: ControllerActions,
+        options: BubbleWidgetOptions
     ) {
-        this._root = root;
         this._area = area;
         this._actions = actions;
+        this._map = options.map;
+        this._layerFactory = options.layerFactory;
     }
 
-    public render(): void {
-        if (!this._image) {
-            this.create();
+    render(): void {
+        if (!this._marker) {
+            this.createMarker();
         }
-
-        const radius = this._area.minRadiusPx;
-        const diameter = radius * 2;
-        const imageUrl = this.getImageUrl(diameter);
-
-        // Temporary layout until summary geo projection is added.
-        const x = 850;
-        const y = 300;
-
-        this._element.style.position = "absolute";
-        this._element.style.left = `${x - radius}px`;
-        this._element.style.top = `${y - radius}px`;
-        this._element.style.width = `${diameter}px`;
-        this._element.style.height = `${diameter}px`;
-
-        this._image.style.width = `100%`;
-        this._image.style.height = `100%`;
-
-        this._image.src = imageUrl;
     }
 
-    public destroy(): void {
-        this._element?.remove();
-
-        this._element = undefined;
-        this._image = undefined;
-        this._label = undefined;
+    destroy(): void {
+        this._marker?.remove();
+        this._marker = undefined;
     }
 
-    private create(): void {
-        if (this._image) {
-            return;
-        }
-
-        this._element = document.createElement("div");
-        this._element.className = "bubble-widget";
-        this._element.title = this._area.name;
-        this._element.dataset.areaId = this._area.id;
-
-        this._image = document.createElement("img");
-        this._image.className = "bubble-image";
-        this._image.alt = this._area.name;
-        this._image.draggable = false;
-
-        this._label = document.createElement("span");
-        this._label.className = "bubble-label";
-        this._label.textContent = this._area.name;
-
-        this._element.appendChild(this._image);
-        this._element.appendChild(this._label);
-
-        this._element.addEventListener("click", () => this.onClick());
-
-        this._root.appendChild(this._element);
-    }
-
-    private onClick(): void {
-        this._actions.openDetail(this._area.id);
-    }
-
-    private getImageUrl(targetPx: number): string {
+    private createMarker(): void {
         const summary = this._area.summary;
-        const sorted = [...summary.images].sort((a, b) => a.sizePx - b.sizePx);
-        const match = sorted.find((image) => image.sizePx >= targetPx);
- 
-        return match?.url ?? sorted[sorted.length - 1]?.url ?? "";
+        const style = this.getCircleMarkerOptions();
+
+        this._marker = this._layerFactory.createCircleMarker(
+            summary.center,
+            style
+        );
+
+        this._marker.addTo(this._map);
+        this._marker.onClick(this.handleClick);
+    }
+
+    private handleClick = (): void => {
+        this._actions.openDetail(this._area.id);
+    };
+
+    private summaryRadius(area: GeoArea["summary"]): number {
+        return area.minRadiusPx;
+    }
+
+    private getCircleMarkerOptions(): CircleMarkerOptions {
+        return {
+            radius: this.summaryRadius(this._area.summary),
+            color: "#3388ff",
+            fillColor: "#3388ff",
+            opacity: 0.5,
+            weight: 2,
+            title: this._area.summary.name,
+        };
     }
 }

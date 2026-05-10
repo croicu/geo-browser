@@ -60,14 +60,14 @@ export class Controller implements ControllerActions, ControllerState {
         logger.info("open summary");
 
         const summaryView: View = new SummaryView(
-            this._app, 
-            this, 
-            this._catalog, 
-            this._summaryViewState
+            this._app,
+            this,
+            this._catalog,
+            this._summaryViewState,
         );
 
         this.switchView(summaryView);
-     }
+    }
 
     async openDetail(areaId: string): Promise<void> {
         const logger = getLogger();

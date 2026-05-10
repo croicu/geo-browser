@@ -63,18 +63,8 @@ describe("Controller", () => {
 
         expect(catalog.load).toHaveBeenCalledTimes(1);
 
+        expect(document.querySelector(".summary-view")).not.toBeNull();
         expect(document.querySelector(".summary-map")).not.toBeNull();
-        expect(document.querySelector(".world-map")).not.toBeNull();
-        expect(document.querySelector(".bubbles-layer")).not.toBeNull();
-
-        const bubble = document.querySelector(".bubble-widget") as HTMLElement;
-        const image = document.querySelector(".bubble-image") as HTMLImageElement;
-        const label = document.querySelector(".bubble-label") as HTMLElement;
-
-        expect(bubble).not.toBeNull();
-        expect(bubble.dataset.areaId).toBe("napoli");
-        expect(image.src).toContain("/areas/napoli/intro/happy_r_64.png");
-        expect(label.textContent).toBe("Napoli");
     });
 
     it("throws if #app is missing", async () => {

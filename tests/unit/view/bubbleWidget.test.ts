@@ -1,85 +1,174 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
+import type {
+    ClickableMapLayerHandle,
+    ControllerActions,
+    HeatLayerOptions,
+    LayerFactory,
+    MapHandle,
+    MapLayerHandle,
+} from "../../../src/contracts";
 import { GeoArea } from "../../../src/catalog/area";
 import { BubbleWidget } from "../../../src/view/summary/bubbleWidget";
+import { HeatPoint } from "../../../src/protocols";
 
-import type { ControllerActions } from "../../../src/contracts";
-import type { AreaSummary } from "../../../src/protocols";
+class StubMap implements MapHandle {
+    remove(): void {
+    }
+}
 
-class FakeActions implements ControllerActions {
-    public openedDetailAreaId: string | undefined;
+class StubMarker implements ClickableMapLayerHandle {
+    public addToMap?: MapHandle;
+    public removeCalled = false;
+    public clickHandler?: () => void;
 
-    openSummary(): void {}
+    addTo(map: MapHandle): void {
+        this.addToMap = map;
+    }
+
+    remove(): void {
+        this.removeCalled = true;
+    }
+
+    onClick(handler: () => void): void {
+        this.clickHandler = handler;
+    }
+}
+
+class StubLayerGroup implements MapLayerHandle {
+    addTo(): void {
+    }
+
+    remove(): void {
+    }
+}
+
+class StubLayerFactory implements LayerFactory {
+    public markers: StubMarker[] = [];
+
+    createLayerGroup(): MapLayerHandle {
+        return new StubLayerGroup();
+    }
+
+    createCircleMarker(): ClickableMapLayerHandle {
+        const marker = new StubMarker();
+        this.markers.push(marker);
+
+        return marker;
+    }
+
+    createHeatLayer(
+        points: HeatPoint[], 
+        options: HeatLayerOptions
+    ): MapLayerHandle {
+        return new StubLayerGroup();
+    }
+}
+
+class StubActions implements ControllerActions {
+    public openedDetailAreaId?: string;
+
+    openSummary(): void {
+    }
 
     openDetail(areaId: string): void {
         this.openedDetailAreaId = areaId;
     }
 
-    zoomIn(): void {}
-    zoomOut(): void {}
-    setZoom(_zoomLevel: number): void {}
+    zoomIn(): void {
+    }
+
+    zoomOut(): void {
+    }
+
+    setZoom(): void {
+    }
+
+    setLayerVisible(): void {
+    }
 }
 
-const areaSummary: AreaSummary = {
-    id: "napoli",
-    name: "Napoli",
-    center: [40.8518, 14.2681],
-    radiusMeters: 12000,
-    minRadiusPx: 32,
-    maxRadiusPx: 512,
-    liveMapRadiusPx: 640,
-    manifestUrl: "/areas/napoli/manifest.json",
-    images: [
-        { sizePx: 64, url: "/areas/napoli/intro/happy_r_64.png" },
-    ],
-};
-
 describe("BubbleWidget", () => {
-    it("renders image and label", () => {
-        const root = document.createElement("div");
-        const area = new GeoArea(areaSummary);
-        const actions = new FakeActions();
-        const widget = new BubbleWidget(root, area, actions);
+    let map: StubMap;
+    let actions: StubActions;
+    let layerFactory: StubLayerFactory;
 
-        widget.render();
-
-        const bubble = root.querySelector(".bubble-widget") as HTMLElement;
-        const image = root.querySelector(".bubble-image") as HTMLImageElement;
-        const label = root.querySelector(".bubble-label") as HTMLElement;
-
-        expect(bubble.dataset.areaId).toBe("napoli");
-        expect(image.src).toContain("/areas/napoli/intro/happy_r_64.png");
-        expect(image.alt).toBe("Napoli");
-        expect(label.textContent).toBe("Napoli");
-
-        expect(bubble.style.width).toBe("64px");
-        expect(bubble.style.height).toBe("64px");
-        expect(image.style.width).toBe("100%");
-        expect(image.style.height).toBe("100%");
+    beforeEach(() => {
+        map = new StubMap();
+        actions = new StubActions();
+        layerFactory = new StubLayerFactory();
     });
 
-    it("opens detail on click", () => {
-        const root = document.createElement("div");
-        const area = new GeoArea(areaSummary);
-        const actions = new FakeActions();
-        const widget = new BubbleWidget(root, area, actions);
+    it("creates a circle marker for the area", () => {
+        const area = createArea();
+        const widget = new BubbleWidget(area, actions, {
+            map,
+            layerFactory,
+        });
 
         widget.render();
 
-        const bubble = root.querySelector(".bubble-image") as HTMLElement;
-        bubble.click();
+        expect(layerFactory.markers.length).toBe(1);
+        expect(layerFactory.markers[0].addToMap).toBe(map);
+    });
+
+    it("opens detail when marker is clicked", () => {
+        const area = createArea();
+        const widget = new BubbleWidget(area, actions, {
+            map,
+            layerFactory,
+        });
+
+        widget.render();
+
+        const marker = layerFactory.markers[0];
+
+        expect(marker.clickHandler).toBeDefined();
+
+        marker.clickHandler?.();
 
         expect(actions.openedDetailAreaId).toBe("napoli");
     });
 
-    it("destroys itself", () => {
-        const root = document.createElement("div");
-        const area = new GeoArea(areaSummary);
-        const actions = new FakeActions();
-        const widget = new BubbleWidget(root, area, actions);
+    it("does not create duplicate markers when rendered multiple times", () => {
+        const area = createArea();
+        const widget = new BubbleWidget(area, actions, {
+            map,
+            layerFactory,
+        });
 
         widget.render();
+        widget.render();
+
+        expect(layerFactory.markers.length).toBe(1);
+    });
+
+    it("removes marker on destroy", () => {
+        const area = createArea();
+        const widget = new BubbleWidget(area, actions, {
+            map,
+            layerFactory,
+        });
+
+        widget.render();
+
+        const marker = layerFactory.markers[0];
+
         widget.destroy();
 
-        expect(root.children.length).toBe(0);
+        expect(marker.removeCalled).toBe(true);
     });
 });
+
+function createArea(): GeoArea {
+    return new GeoArea({
+        id: "napoli",
+        name: "Napoli",
+        center: [40.8518, 14.2681],
+        radiusMeters: 12000,
+        minRadiusPx: 16,
+        maxRadiusPx: 64,
+        liveMapRadiusPx: 256,
+        manifestUrl: "/areas/napoli/manifest.json",
+        images: [],
+    });
+}

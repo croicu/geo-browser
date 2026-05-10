@@ -1,86 +1,112 @@
-// view/summary/SummaryView.ts
+// view/summary/summaryView.ts
 
-import type { ControllerActions, View } from "../../contracts"
-import { BubbleWidget } from "./bubbleWidget";
+import type {
+    ControllerActions,
+    LayerFactory,
+    MapFactory,
+    MapHandle,
+    View,
+} from "../../contracts";
+import { GeoCatalog } from "../../catalog/catalog";
 import { SummaryViewState } from "../../state/summaryViewState";
-import type { GeoCatalog } from "../../catalog/catalog";
+import { BubbleWidget } from "./bubbleWidget";
+import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory } from "../detail/leafletFactories";
+
+export interface SummaryViewServices {
+    mapFactory?: MapFactory;
+    layerFactory?: LayerFactory;
+}
 
 export class SummaryView implements View {
     private readonly _root: HTMLElement;
     private readonly _actions: ControllerActions;
     private readonly _catalog: GeoCatalog;
     private readonly _state: SummaryViewState;
-    private _main: HTMLElement;
-    private _bubblesRoot?: HTMLElement;
-    private _bubbleWidgets: BubbleWidget[] = [];
+    private readonly _mapFactory: MapFactory;
+    private readonly _layerFactory: LayerFactory;
+
+    private _main?: HTMLElement;
+    private _mapRoot?: HTMLElement;
+    private _map?: MapHandle;
+    private readonly _bubbleWidgets: BubbleWidget[] = [];
 
     constructor(
-        root: HTMLElement, 
-        actions: ControllerActions, 
-        catalog: GeoCatalog, 
-        state: SummaryViewState
+        root: HTMLElement,
+        actions: ControllerActions,
+        catalog: GeoCatalog,
+        state: SummaryViewState,
+        services: SummaryViewServices = {}
     ) {
         this._root = root;
         this._actions = actions;
         this._catalog = catalog;
         this._state = state;
-
-        void this._state;
+        this._mapFactory = services.mapFactory ?? new DefaultLeafletMapFactory();
+        this._layerFactory = services.layerFactory ?? new DefaultLeafletLayerFactory();
     }
 
-    destroy(): void {
-        this._main?.remove();
-
-        this._main = undefined;
-        this._main = undefined;
-    }
-
-    get bubblesRoot(): HTMLElement {
-        if (!this._bubblesRoot) {
-            throw new Error("SummaryView has not been rendered.");
+    create(): void {
+        if (this._main) {
+            return;
         }
 
-        return this._bubblesRoot;
+        this._main = document.createElement("main");
+        this._main.className = "summary-view";
+
+        this._mapRoot = document.createElement("div");
+        this._mapRoot.className = "summary-map";
+
+        this._main.appendChild(this._mapRoot);
+        this._root.appendChild(this._main);
+
+        this._map = this._mapFactory.createMap(
+            this._mapRoot,
+            this._state.center,
+            this._state.zoom
+        );
+
+        this.createBubbleWidgets();
     }
 
     render(): void {
-        if (!this._main)
+        if (!this._main) {
             this.create();
+        }
 
         for (const bubbleWidget of this._bubbleWidgets) {
             bubbleWidget.render();
         }
     }
 
-    private create(): void {
-        this._main = document.createElement("main");
-        this._main.className = "summary-map";
+    destroy(): void {
+        for (const bubbleWidget of this._bubbleWidgets) {
+            bubbleWidget.destroy();
+        }
 
-        const worldMap = document.createElement("img");
-        worldMap.className = "world-map";
-        worldMap.src = "/world.svg";
-        worldMap.alt = "World map";
+        this._bubbleWidgets.length = 0;
 
-        const bubblesLayer = document.createElement("div");
-        bubblesLayer.className = "bubbles-layer";
+        this._map?.remove();
+        this._map = undefined;
 
-        this._main.appendChild(worldMap);
-        this._main.appendChild(bubblesLayer);
-
-        this._root.appendChild(this._main);
-        this._bubblesRoot = bubblesLayer;
-
-        this._bubbleWidgets = [];
-
-        for (const area of this._catalog.areas) {
-            const bubbleView = new BubbleWidget(
-                this.bubblesRoot,
-                area,
-                this._actions
-            );
-
-            this._bubbleWidgets.push(bubbleView);
-       }
+        this._main?.remove();
+        this._main = undefined;
+        this._mapRoot = undefined;
     }
 
+    private createBubbleWidgets(): void {
+        this._bubbleWidgets.length = 0;
+
+        for (const area of this._catalog.areas) {
+            const bubbleWidget = new BubbleWidget(
+                area,
+                this._actions,
+                {
+                    map: this._map,
+                    layerFactory: this._layerFactory,
+                }
+            );
+
+            this._bubbleWidgets.push(bubbleWidget);
+        }
+    }
 }

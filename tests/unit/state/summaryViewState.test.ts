@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach } from "vitest";
-import { SummaryViewState } from "../../../src/state/summaryViewState";
+import { DEFAULT_CENTER, DEFAULT_ZOOM, SummaryViewState } from "../../../src/state/summaryViewState";
 
 describe("SummaryViewState", () => {
     beforeEach(() => {
@@ -9,8 +9,8 @@ describe("SummaryViewState", () => {
     it("uses defaults", () => {
         const state = new SummaryViewState();
 
-        expect(state.center).toEqual([0, 0]);
-        expect(state.zoom).toBe(2);
+        expect(state.center).toEqual(DEFAULT_CENTER);
+        expect(state.zoom).toBe(DEFAULT_ZOOM);
     });
 
     it("loads saved state", () => {
@@ -32,8 +32,8 @@ describe("SummaryViewState", () => {
 
         const state = SummaryViewState.load();
 
-        expect(state.center).toEqual([0, 0]);
-        expect(state.zoom).toBe(2);
+        expect(state.center).toEqual(DEFAULT_CENTER);
+        expect(state.zoom).toBe(DEFAULT_ZOOM);
     });
 
     it("saves state", () => {

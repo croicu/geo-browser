@@ -2,8 +2,8 @@
 import type { SummaryViewStateData, LatLng } from "../protocols";
 import { isLatLng, isNumber, isString } from "../validate"
 
-const DEFAULT_CENTER: LatLng = [0, 0];
-const DEFAULT_ZOOM = 2;
+export const DEFAULT_CENTER: LatLng = [20, 20];
+export const DEFAULT_ZOOM = 3;
 const STORAGE_KEY = "geo-browser.summaryViewState";
 
 export class SummaryViewState {

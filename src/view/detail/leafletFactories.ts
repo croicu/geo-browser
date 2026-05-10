@@ -36,6 +36,7 @@ import type {
     WidgetHandle,
     LayerSelectionWidgetItem,
     HeatLayerOptions,
+    ClickableMapLayerHandle,
 } from "../../contracts";
 
 import type { HeatPoint } from "../../protocols";
@@ -56,6 +57,22 @@ class LeafletMapLayerHandle implements MapLayerHandle {
     }
 }
 
+class LeafletClickableMapLayerHandle
+    extends LeafletMapLayerHandle
+    implements ClickableMapLayerHandle {
+
+    private readonly _evented: L.Evented;
+
+    constructor(layer: L.Layer & L.Evented) {
+        super(layer);
+        this._evented = layer;
+    }
+
+    onClick(handler: () => void): void {
+        this._evented.on("click", handler);
+    }
+}
+
 export class DefaultLeafletLayerFactory implements LayerFactory {
     createLayerGroup(): MapLayerHandle {
         return L.layerGroup();
@@ -64,8 +81,10 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
     createCircleMarker(
         latLng: [number, number],
         options: CircleMarkerOptions
-    ): MapLayerHandle {
-        return L.circleMarker(latLng, options);
+    ): ClickableMapLayerHandle {
+        const marker = L.circleMarker(latLng, options);
+
+        return new LeafletClickableMapLayerHandle(marker);
     }
 
     createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {

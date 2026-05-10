@@ -28,6 +28,16 @@ body,
   inset: 0;
 }
 
+.summary-view {
+    width: 100%;
+    height: 100%;
+}
+
+.summary-map {
+    width: 100%;
+    height: 100%;
+}
+
 .detail-view {
     width: 100%;
     height: 100%;

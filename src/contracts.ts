@@ -66,11 +66,17 @@ export interface MapLayerHandle {
     remove(): void;
 }
 
+export interface ClickableMapLayerHandle extends MapLayerHandle {
+    onClick: (handler: () => void) => void;
+}
+
 export interface CircleMarkerOptions {
+    title?: string,
     radius: number;
     color?: string;
+    weight?: number;
+    fillColor?: string,
     opacity: number;
-    fillOpacity: number;
 }
 
 export interface HeatLayerOptions {
@@ -85,7 +91,7 @@ export interface LayerFactory {
     createCircleMarker(
         latLng: [number, number],
         options: CircleMarkerOptions
-    ): MapLayerHandle;
+    ): ClickableMapLayerHandle;
 
     createHeatLayer(
         points: HeatPoint[],
