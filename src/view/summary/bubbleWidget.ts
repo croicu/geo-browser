@@ -4,7 +4,6 @@ import type {
     ControllerActions,
     LayerFactory,
     MapHandle,
-    MapLayerHandle,
     CircleMarkerOptions,
     ClickableMapLayerHandle,
 } from "../../contracts";
@@ -74,6 +73,7 @@ export class BubbleWidget {
             opacity: 0.5,
             weight: 2,
             title: this._area.summary.name,
+            label: this._area.summary.name,
         };
     }
 }

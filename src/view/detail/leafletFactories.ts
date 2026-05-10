@@ -84,6 +84,15 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
     ): ClickableMapLayerHandle {
         const marker = L.circleMarker(latLng, options);
 
+        if (options.label) {
+            marker.bindTooltip(options.label, {
+                permanent: true,
+                direction: "top",
+                offset: [12, 0],
+                className: "bubble-label",
+            });
+        }
+
         return new LeafletClickableMapLayerHandle(marker);
     }
 

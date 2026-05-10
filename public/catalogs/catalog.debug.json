@@ -8,8 +8,8 @@
       "center": [40.8518, 14.2681],
       "radiusMeters": 12000,
 
-      "minRadiusPx": 32,
-      "maxRadiusPx": 512,
+      "minRadiusPx": 16,
+      "maxRadiusPx": 64,
       "liveMapRadiusPx": 640,
 
       "manifestUrl": "/areas/napoli/manifest.json",
