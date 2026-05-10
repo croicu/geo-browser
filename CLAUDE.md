@@ -1,10 +1,28 @@
-# CLAUDE.md — geo-browser
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project
 
 `geo-browser` is a static, browser-based geographic renderer and UI shell.
 
 It renders catalog-driven geographic experiences from static JSON/GeoJSON assets and can also run in a future design mode hosted by `geo-builder` through a WebView bridge.
+
+## Commands
+
+```bash
+npm run dev       # Vite dev server at http://localhost:5173
+npm run build     # tsc + vite build → dist/
+npm run preview   # Preview dist/ locally
+npm test          # Vitest watch mode
+npm run test:run  # Vitest single run (CI)
+```
+
+Run a single test file:
+
+```bash
+npx vitest run tests/unit/catalog.test.ts
+```
 
 ## Current Product Shape
 
@@ -27,6 +45,17 @@ HEAD
                 → Leaflet primitives / leaflet.heat
 ```
 
+### Data Loading Indirection
+
+Startup resolves the catalog URL via a two-step fetch:
+
+1. Fetch `/catalog.head.json` (`{ version, catalogUrl }`) — bypasses cache.
+2. If that fails, fall back to `/catalogs/catalog.json`.
+
+Debug mode (`?debug`) uses `/catalog.head.debug.json` → fallback `/catalogs/catalog.debug.json`.
+
+Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches its own GeoJSON URL — all on demand, cache bypassed.
+
 ## Hard Architecture Rules
 
 - `protocols.ts` contains serializable data contracts only.
@@ -39,7 +68,7 @@ HEAD
 - Views and widgets emit intent only.
 - Controller owns behavior.
 - Unit tests must not import Leaflet or hit the network.
-- Only `view/detail/leafletFactories.ts` imports Leaflet and Leaflet plugins.
+- Only `view/detail/leafletFactories.ts` imports Leaflet and Leaflet plugins. Both `SummaryView` and `DetailView` import from this file — the cross-folder import is intentional to keep Leaflet confined to one file.
 
 ## Naming Rules
 
@@ -133,9 +162,22 @@ Project readability rule:
 If a lambda is more than one logical statement, promote it to a named method.
 ```
 
+### Error Handling
+
+Use `fail()` from `src/errors.ts` for non-recoverable internal errors. It logs, throws an `AppError`, and never returns:
+
+```ts
+import { fail } from "../errors";
+fail("detail_state.missing", "DetailViewState is not available.");
+```
+
+### Global Logger Singleton
+
+`src/services.ts` holds a module-level `Logger` instance. `Context` initializes it via `setLogger()` in its constructor. Always access it via `getLogger()` — it throws if called before `Context` is constructed.
+
 ## Testing Rules
 
-Use Vitest.
+Use Vitest with `happy-dom` (configured in `vitest.config.ts`).
 
 ```json
 {
@@ -161,11 +203,11 @@ Terminology:
 
 Rules:
 
-- Unit tests run offline.
+- Unit tests run offline. `tests/setup.ts` stubs `fetch` globally to throw on any network call.
 - Do not import Leaflet in unit tests.
 - Stub our contracts, not third-party libraries.
 - Use DI instead of module mocks.
-- Reset global singletons between tests.
+- Reset global singletons between tests. `tests/setup.ts` calls `Context.reset()` in `afterEach`.
 - Prefer behavior/wiring assertions over pixel-perfect layout assertions.
 
 ## Current Important Branch Decisions
@@ -195,7 +237,7 @@ Rules:
 - otherwise browse mode.
 - `?debug=<value>` enables debug.
 - empty values are ignored.
-- `Context.resetForTest()` exists for tests.
+- `Context.reset()` exists for tests (resets the singleton).
 
 Context is external-world boundary, not application state. Do not put selected area, visible layers, loaded catalog, or current view into Context.
 
