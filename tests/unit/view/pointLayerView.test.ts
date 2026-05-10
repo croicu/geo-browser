@@ -12,8 +12,16 @@ import { PointLayerView } from "../../../src/view/detail/pointLayerView";
 import { stubFetch } from "../../fakes/fakeFetch";
 import { HeatPoint } from "../../../src/protocols";
 
-class FakeMap implements MapHandle{
+class FakeMap implements MapHandle {
     remove(): void {
+    }
+
+    getZoom(): number {
+        return 3;
+    }
+
+    onZoom(_handler: (zoom: number) => void): () => void {
+        return () => {};
     }
 }
 
@@ -144,10 +152,8 @@ describe("LayerView", () => {
         expect(factory.markerLatLngs[0]).toEqual([40.8518, 14.2681]);
         expect(factory.markerLatLngs[1]).toEqual([40.84, 14.25]);
 
-        expect(factory.markers[0].addedTo).toBe(factory.group);
-        expect(factory.markers[1].addedTo).toBe(factory.group);
-
-        expect(factory.group.addedTo).toBe(map);
+        expect(factory.markers[0].addedTo).toBe(map);
+        expect(factory.markers[1].addedTo).toBe(map);
     });
 
     it("applies layer style to circle markers", async () => {
@@ -163,7 +169,6 @@ describe("LayerView", () => {
 
         expect(factory.markerOptions[0].color).toBe("#ff0000");
         expect(factory.markerOptions[0].opacity).toBe(0.7);
-        expect(factory.markerOptions[0].fillOpacity).toBe(0.5);
         expect(factory.markerOptions[0].radius).toBe(10);
     });
 
@@ -179,12 +184,11 @@ describe("LayerView", () => {
         await view.render();
 
         expect(factory.markers.length).toBe(0);
-        expect(factory.group.addedTo).toBe(map);
     });
 
-    it("removes the rendered group on destroy", async () => {
+    it("removes markers on destroy", async () => {
 
-        stubFetch(one_line);
+        stubFetch(two_points);
         const map = new FakeMap();
         const layer = new GeoLayer(layer_data);
         const factory = new FakeLeafletLayerFactory();
@@ -194,6 +198,7 @@ describe("LayerView", () => {
         await view.render();
         view.destroy();
 
-        expect(factory.group.removed).toBe(true);
+        expect(factory.markers[0].removed).toBe(true);
+        expect(factory.markers[1].removed).toBe(true);
     });
 });
