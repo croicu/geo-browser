@@ -1,3 +1,4 @@
+import { AppError } from "../errors";
 import { getLogger } from "../services";
 
 type CatalogHead = {
@@ -23,13 +24,13 @@ export async function resolveCatalogUrl(
     const response = await fetch(headUrl, { cache: "no-store" });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch catalog head: ${response.status}`);
+      throw new AppError("catalog_head.fetch_failed", `Failed to fetch catalog head: ${response.status}`);
     }
 
     const json = (await response.json()) as unknown;
 
     if (!isCatalogHead(json)) {
-      throw new Error("Invalid catalog head payload");
+      throw new AppError("catalog_head.invalid_payload", "Invalid catalog head payload");
     }
 
     return json.catalogUrl;

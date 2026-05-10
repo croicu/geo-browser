@@ -16,8 +16,8 @@ export interface ControllerOptions {
 export class Controller implements ControllerActions, ControllerState {
     private readonly _catalog: GeoCatalog;
     private readonly _summaryViewState: SummaryViewState;
-    private _detailViewState: DetailViewState;
-    private _app: HTMLElement;
+    private _detailViewState?: DetailViewState;
+    private _app!: HTMLElement;
     private _view?: View;
     private _zoomLevel: number = 12;
 
@@ -35,10 +35,11 @@ export class Controller implements ControllerActions, ControllerState {
             zoom: this._summaryViewState.zoom,
         });
 
-        this._app = document.querySelector<HTMLDivElement>("#app");
-        if (!this._app) {
-            throw new Error("Missing #app element.");
+        const app = document.querySelector<HTMLDivElement>("#app");
+        if (!app) {
+            fail("app.missing_root", "Missing #app element.");
         }
+        this._app = app;
 
         await this._catalog.load();
 
@@ -105,7 +106,7 @@ export class Controller implements ControllerActions, ControllerState {
         layerId: string,
         visible: boolean
     ): void {
-        const area = this._catalog.getArea(areaId);
+        this._catalog.getArea(areaId);
 
         if (!this._detailViewState) {
             fail("detail_state.missing", "DetailViewState is not available.");

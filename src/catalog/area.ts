@@ -1,3 +1,4 @@
+import { fail } from "../errors";
 import type { AreaDetail, AreaImage, AreaSummary } from "../protocols";
 import { GeoLayer } from "./layer";
 
@@ -20,7 +21,7 @@ export class GeoArea {
         });
 
         if (!response.ok) {
-            throw new Error(`Failed to load area: ${this.summary.manifestUrl}`);
+            fail("area.load_failed", `Failed to load area: ${this.summary.manifestUrl}`);
         }
 
         const detail = (await response.json()) as AreaDetail;
@@ -31,7 +32,7 @@ export class GeoArea {
 
     get layers(): readonly GeoLayer[] {
         if (!this._layers) {
-            throw new Error("Area not loaded");
+            fail("area.not_loaded", "Area not loaded");
         }
         return this._layers;
     }

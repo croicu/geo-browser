@@ -1,3 +1,4 @@
+import { fail } from "../errors";
 import type { Layer, LayerStyle } from "../protocols";
 
 export class GeoLayer {
@@ -30,7 +31,7 @@ export class GeoLayer {
     
     get payload(): unknown {
         if (!this._payload) {
-            throw new Error(`Layer has not been loaded: ${this.id}`);
+            fail("layer.not_loaded", `Layer has not been loaded: ${this.id}`, undefined, { layerId: this.id });
         }
 
         return this._payload;
@@ -58,7 +59,7 @@ export class GeoLayer {
         });
 
         if (!response.ok) {
-            throw new Error(`Failed to load layer: ${this._data.url}`);
+            fail("layer.load_failed", `Failed to load layer: ${this._data.url}`, undefined, { layerId: this.id });
         }
 
         this._payload = await response.json();

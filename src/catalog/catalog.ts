@@ -1,3 +1,4 @@
+import { fail } from "../errors";
 import type { AreaSummary, Catalog } from "../protocols";
 import { GeoArea } from "./area";
 
@@ -19,7 +20,7 @@ export class GeoCatalog {
         const response = await fetch(this.catalogUrl, { cache: "no-store" });
 
         if (!response.ok) {
-            throw new Error(`Failed to load catalog: ${this.catalogUrl}`);
+            fail("catalog.load_failed", `Failed to load catalog: ${this.catalogUrl}`);
         }
 
         const catalog = (await response.json()) as Catalog;
@@ -41,7 +42,7 @@ export class GeoCatalog {
     
     get areas(): readonly GeoArea[] {
         if (!this._areas) {
-            throw new Error("Catalog not loaded");
+            fail("catalog.not_loaded", "Catalog not loaded");
         }
 
         return this._areas;
@@ -49,13 +50,13 @@ export class GeoCatalog {
 
     getArea(areaId: string): GeoArea {
         if (!this._areas) {
-            throw new Error("Catalog not loaded");
+            fail("catalog.not_loaded", "Catalog not loaded");
         }
 
         const area = this._areas.find((area) => area.id === areaId);
 
         if (!area) {
-            throw new Error(`Area not found: ${areaId}`);
+            fail("catalog.area_not_found", `Area not found: ${areaId}`, undefined, { areaId });
         }
 
         return area;

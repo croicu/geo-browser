@@ -1,3 +1,4 @@
+import { AppError } from "./errors";
 import type { Logger } from "./contracts";
 
 export const services = {
@@ -13,7 +14,7 @@ export function setLogger(value: Logger): void {
 
 export function getLogger(): Logger {
     if (!logger) {
-        throw new Error("Logger not initialized");
+        throw new AppError("logger.not_initialized", "Logger not initialized");
     }
 
     return logger;
