@@ -1,5 +1,30 @@
 // view/detail/leafletFactories.ts
 import L from "leaflet";
+import "leaflet.heat"
+
+declare module "leaflet" {
+    export type HeatLatLngTuple = [number, number, number];
+
+    export interface HeatLayerOptions {
+        radius?: number;
+        blur?: number;
+        max?: number;
+        maxZoom?: number;
+        minOpacity?: number;
+        gradient?: Record<number, string>;
+    }
+
+    export interface HeatLayer extends Layer {
+        setLatLngs(latlngs: HeatLatLngTuple[]): this;
+        addLatLng(latlng: HeatLatLngTuple): this;
+        setOptions(options: HeatLayerOptions): this;
+    }
+
+    export function heatLayer(
+        latlngs: HeatLatLngTuple[],
+        options?: HeatLayerOptions
+    ): HeatLayer;
+}
 
 import type {
     CircleMarkerOptions,
@@ -10,7 +35,26 @@ import type {
     MapLayerHandle,
     WidgetHandle,
     LayerSelectionWidgetItem,
+    HeatLayerOptions,
 } from "../../contracts";
+
+import type { HeatPoint } from "../../protocols";
+
+class LeafletMapLayerHandle implements MapLayerHandle {
+    private readonly _layer: L.Layer;
+
+    constructor(layer: L.Layer) {
+        this._layer = layer;
+    }
+
+    addTo(map: MapHandle): void {
+        this._layer.addTo(map as L.Map);
+    }
+
+    remove(): void {
+        this._layer.remove();
+    }
+}
 
 export class DefaultLeafletLayerFactory implements LayerFactory {
     createLayerGroup(): MapLayerHandle {
@@ -22,6 +66,30 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
         options: CircleMarkerOptions
     ): MapLayerHandle {
         return L.circleMarker(latLng, options);
+    }
+
+    createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {
+        const heatPoints: L.HeatLatLngTuple[] = [];
+
+        for (const point of points) {
+            heatPoints.push([
+                point.latLng[0],
+                point.latLng[1],
+                point.weight,
+            ]);
+        }
+        const layer = L.heatLayer(heatPoints, {
+            radius: options.radius,
+            blur: options.blur,
+            max: 1.0,
+            gradient: {
+                0.0: "rgba(0,0,0,0)",
+                0.4: options.color ?? "#ff0000",
+                1.0: options.color ?? "#ff0000",
+            },
+        });
+
+        return new LeafletMapLayerHandle(layer);
     }
 }
 

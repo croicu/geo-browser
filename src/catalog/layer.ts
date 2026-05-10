@@ -16,6 +16,10 @@ export class GeoLayer {
         return this._data.name;
     }
 
+    get type(): string | undefined {
+        return this._data.type;
+    }
+
     get url(): string {
         return this._data.url;
     }

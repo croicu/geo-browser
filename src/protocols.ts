@@ -34,6 +34,8 @@ export interface AreaDetail {
 export interface LayerStyle {
     color?: string;
     opacity?: number;
+    radius?: number;
+    blur?: number;
     radiusScale?: number;
 }
 
@@ -48,6 +50,11 @@ export interface Layer {
 }
 
 export type LatLng = [number, number];
+
+export interface HeatPoint {
+    latLng: [number, number];
+    weight: number;
+}
 
 export interface SummaryViewStateData {
     center: LatLng;

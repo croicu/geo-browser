@@ -1,3 +1,4 @@
+import type { HeatPoint } from "./protocols";
 
 export type LogLevel =
     | "diagnostic"
@@ -72,11 +73,23 @@ export interface CircleMarkerOptions {
     fillOpacity: number;
 }
 
+export interface HeatLayerOptions {
+    radius: number;
+    blur: number;
+    opacity: number;
+    color?: string;
+}
+
 export interface LayerFactory {
     createLayerGroup(): MapLayerHandle;
     createCircleMarker(
         latLng: [number, number],
         options: CircleMarkerOptions
+    ): MapLayerHandle;
+
+    createHeatLayer(
+        points: HeatPoint[],
+        options: HeatLayerOptions
     ): MapLayerHandle;
 }
 
@@ -90,7 +103,7 @@ export interface LayerSelectionWidgetItem {
     name: string;
     color: string;
     visible: boolean;
-};
+}
 
 export interface WidgetFactory {
     createSummaryWidget(

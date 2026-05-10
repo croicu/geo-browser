@@ -1,0 +1,4821 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2496583336,
+        "name": "Bar Clarean",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2693483,
+          40.8531004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2496583338,
+        "name": "Il Caffettucio",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2700069,
+          40.8531567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2528638380,
+        "name": "Mexico",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2709528,
+          40.8532648
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2528638386,
+        "name": "SfogliateLAB",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2713978,
+          40.8533339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2528638396,
+        "name": "Aladin",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2701598,
+          40.8531719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3056337706,
+        "name": "Vesi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2573416,
+          40.8490189
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3056337707,
+        "name": "Zambardino",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2597498,
+          40.8477057
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3062007794,
+        "name": "Antico Caffe Moro",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2696815,
+          40.8515923
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3062007797,
+        "name": "Caffeteria La Glaciale",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2705341,
+          40.8516889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3062007799,
+        "name": "I Sapori di Parthenope",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2708081,
+          40.8517051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3062007803,
+        "name": "La Cantina dei Mille",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2692269,
+          40.8515517
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3062066765,
+        "name": "VyTA",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2724138,
+          40.8517422
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3071702235,
+        "name": "A'dd\u00f2 figlio 'e Michele",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2683508,
+          40.8697271
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3075770420,
+        "name": "Rescigno",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2577199,
+          40.8559748
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3106292752,
+        "name": "Antica Trattoria da Carmine",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2570224,
+          40.8508372
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3106295729,
+        "name": "Pizzeria Trianon",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2637046,
+          40.8501193
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3106300368,
+        "name": "Antica Pizzeria Di Matteo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2580195,
+          40.8512861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3123151652,
+        "name": "L'Antica Pizzeria da Michele",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.263352,
+          40.8497493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3254401868,
+        "name": "Pizzeria Le Sorelle Bandiera",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2571182,
+          40.8515917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3362140417,
+        "name": "Masardona",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2734771,
+          40.8485121
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3384643807,
+        "name": "Pizzeria del popolo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2665785,
+          40.846756
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3501305400,
+        "name": "Dal Presidente",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2590841,
+          40.851642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3705065907,
+        "name": "Trattoria da Mammarella",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2610153,
+          40.8519957
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4060204111,
+        "name": "Pizzeria da Gaetano",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2669954,
+          40.8548506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4078578796,
+        "name": "Mimi alla Ferrovia",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.267262,
+          40.853415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4078578797,
+        "name": "Trattoria Avellinese",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2693066,
+          40.850793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4258222396,
+        "name": "Da Pellone",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2741366,
+          40.8561712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4318293745,
+        "name": "Da Corrado",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2613849,
+          40.8601847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4318377813,
+        "name": "Pizzeria de' Figliole",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2634191,
+          40.8512419
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4318664361,
+        "name": "Tripperia O'Russ",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2615928,
+          40.8592442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4417670992,
+        "name": "Trattoria da Fortuna",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2584723,
+          40.8513371
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4465988994,
+        "name": "A'Lucianella",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2574657,
+          40.8512317
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4799859522,
+        "name": "'a Figlia d'o Marenaro",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2622323,
+          40.8593641
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4812119728,
+        "name": "Pizzeria Lombardi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2565355,
+          40.8554034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4812119730,
+        "name": "Caff\u00e8 Ciorfito",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2591602,
+          40.8496285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4964232121,
+        "name": "Antica Osteria Pisano",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2604986,
+          40.8502856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5022951505,
+        "name": "Pizzeria Cacialli Nunzio",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2631984,
+          40.8544184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5024993424,
+        "name": "Antica Trattoria e Pizzeria Da Donato",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2693802,
+          40.8505751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5024993426,
+        "name": "Caffe Spaccanapoli",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2584148,
+          40.8538961
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5041920531,
+        "name": "Capasso Pizzeria",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2586667,
+          40.8494808
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5042724459,
+        "name": "Pizzeria Osteria Sant'Eligio",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.263103,
+          40.8467624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5097631622,
+        "name": "Joes cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2585171,
+          40.849425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5098367423,
+        "name": "natoo",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2833279,
+          40.8781537
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5098497924,
+        "name": "comfortfoodcafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2823512,
+          40.8783365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5182480721,
+        "name": "Ristorante Della The Queen Srl",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2634064,
+          40.85745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5210555623,
+        "name": "Casa Balbi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2581906,
+          40.8531677
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5257884021,
+        "name": "Ristorante da Leonardo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2682709,
+          40.8490807
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5257951721,
+        "name": "Air Caf\u00e9",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2808875,
+          40.8736191
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5325643621,
+        "name": "Enotrattoria Casetta Rossa",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2632771,
+          40.8452318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5406148021,
+        "name": "Pizzeria D'Angeli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2637241,
+          40.8496366
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5456982725,
+        "name": "Portanova",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2590527,
+          40.8468245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5469960622,
+        "name": "Boss di capuccino",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2589707,
+          40.8515083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5469967822,
+        "name": "da Mario",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2595491,
+          40.8499472
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5475377421,
+        "name": "Pizza etc",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.263038,
+          40.8529274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5485135422,
+        "name": "Bar Vigilante",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2652001,
+          40.8502839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5542547625,
+        "name": "hostaria dalle sorelle",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.270332,
+          40.8598381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5555063798,
+        "name": "Caffetteria Viva Napoli",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2692243,
+          40.8533089
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5555063799,
+        "name": "Pizzeria Fortuna",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2672089,
+          40.8522401
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5557713821,
+        "name": "Giardino di Napoli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2634457,
+          40.8498309
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5557713822,
+        "name": "I Gradini",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2634209,
+          40.8507352
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5578281123,
+        "name": "Pizzeria Costa",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2655939,
+          40.8533912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5583171029,
+        "name": "Bar Schlemmer",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2610615,
+          40.8521705
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5688590121,
+        "name": "Pizzeria",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2853537,
+          40.8744075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5954809604,
+        "name": "E Pronto o Magnia",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2658476,
+          40.8550263
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6318941785,
+        "name": "Cuore Nero",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2844412,
+          40.8700242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6318941885,
+        "name": "La Loggetta",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2843017,
+          40.8691658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6336470786,
+        "name": "Ieri, Oggi, Domani",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2740791,
+          40.8548797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6449456088,
+        "name": "Caseificio Marigliano",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2710407,
+          40.8516689
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6484301086,
+        "name": "Napoli - Amore e sapore",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.261006,
+          40.8473737
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6562155887,
+        "name": "A figlia d\u2019o Luciano",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2652231,
+          40.8548534
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6580292185,
+        "name": "Del Leone",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2669666,
+          40.8684796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6612724793,
+        "name": "Caffetteria Ippolito",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2571956,
+          40.8508699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6681188686,
+        "name": "Hostaria Mediterraneo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.275072,
+          40.8547373
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6783851685,
+        "name": "Da Fof\u00f2",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2702206,
+          40.8531786
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6879579147,
+        "name": "Binario Calmo",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2736828,
+          40.8542975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6908554529,
+        "name": "Mim\u00ec Gi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2785655,
+          40.8562824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6908554530,
+        "name": "Amabile",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2782907,
+          40.8562619
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6908554533,
+        "name": "Regin\u00e8",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2846512,
+          40.8575867
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6945964897,
+        "name": "Pizzeria e trattoria Corallo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2645495,
+          40.8662882
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6982408056,
+        "name": "Time Caf\u00e9",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2727329,
+          40.8524237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7015766885,
+        "name": "Pizzeria i Decumani",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2568505,
+          40.850915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7015787785,
+        "name": "Napoli Tutino dal 1935",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2681905,
+          40.8490928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7018003786,
+        "name": "Pizzeria Donna Sofia",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.257792,
+          40.8512195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7099888736,
+        "name": "Coffee Moon",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2587508,
+          40.8495028
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7099901399,
+        "name": "Il Figlio del Presidente",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.259663,
+          40.8514584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7115374482,
+        "name": "Ippolito Caff\u00e8",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2570742,
+          40.8508482
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7142669606,
+        "name": "Made In Sud",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2573129,
+          40.8562256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7147507109,
+        "name": "Cala la Pasta",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2617619,
+          40.8525275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7147507124,
+        "name": "San Gennaro",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2595374,
+          40.8516785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7147507127,
+        "name": "San Francesco",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2633806,
+          40.8527875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7150696666,
+        "name": "Chalet Ciro 1952",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2727673,
+          40.8522008
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7153150585,
+        "name": "Nayman Caf\u00e9",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2654703,
+          40.8502747
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648807,
+        "name": "Napolitan",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2671754,
+          40.8513919
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648815,
+        "name": "Roma",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2686013,
+          40.8506762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648828,
+        "name": "Torraldo",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2621448,
+          40.8476007
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648830,
+        "name": "Bar Louis",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2674913,
+          40.8511283
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648848,
+        "name": "Kimbo",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2667172,
+          40.8506506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648854,
+        "name": "Maraucci",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2683897,
+          40.8501605
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648860,
+        "name": "Centrale Del Caff\u00e8",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2687475,
+          40.8515048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648864,
+        "name": "Tutino",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2693823,
+          40.8470999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648872,
+        "name": "Il Caff\u00e8 Di Nappli",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2662782,
+          40.8503987
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648875,
+        "name": "Peppe Cioffi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2634495,
+          40.8482208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648880,
+        "name": "Gusto E Passione",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2685621,
+          40.8489549
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7158648881,
+        "name": "Tarantino",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2589112,
+          40.8456556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7160771383,
+        "name": "Casa Capasso",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2583031,
+          40.8512813
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169838775,
+        "name": "Toraldo",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.259309,
+          40.8445439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169838779,
+        "name": "O\u2018 Ver",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2600774,
+          40.8450497
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169838781,
+        "name": "Dolci Momenti",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2685399,
+          40.8471876
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169838783,
+        "name": "Antico Borgo",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2607278,
+          40.8453557
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169838784,
+        "name": "La Torre",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2635746,
+          40.846057
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169855291,
+        "name": "Zambardino",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2627799,
+          40.8459087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169855292,
+        "name": "Open Bar",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.263708,
+          40.8460871
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169855297,
+        "name": "Bar Angela",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2604555,
+          40.8457703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169855298,
+        "name": "EspoBar",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2663998,
+          40.846718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169855301,
+        "name": "Bro.",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2669683,
+          40.8472396
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7169855306,
+        "name": "Vigilante",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2681776,
+          40.8495136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7175504361,
+        "name": "Zambardino",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2598887,
+          40.8466323
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7175504363,
+        "name": "Dolce Amaro",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2613925,
+          40.8479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7175504364,
+        "name": "Bar Zambardino",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.259493,
+          40.8463838
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7825736485,
+        "name": "my Way cafe Toraldo",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2669923,
+          40.8622693
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8109461914,
+        "name": "Lucignolo Bellapizza",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2731723,
+          40.8575909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8860915002,
+        "name": "Bar Franco",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2797185,
+          40.8571047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8917502332,
+        "name": "Il Miracolo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2606787,
+          40.8501443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8918917617,
+        "name": "Masaniello",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2578007,
+          40.851039
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8920072117,
+        "name": "Osteria Ippolito",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2571337,
+          40.8508706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8923124017,
+        "name": "Caffe Angelo",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2711842,
+          40.8573185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8923291017,
+        "name": "Mammal\u00f9 Caff\u00e8",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.260849,
+          40.8465553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8933387818,
+        "name": "Tonino Tico",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2602043,
+          40.8500877
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8933411617,
+        "name": "Caffetteria San Giorgio",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2607839,
+          40.8502116
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8933411717,
+        "name": "Zambardino",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2603398,
+          40.8502419
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8933550717,
+        "name": "Sfogliate e Sfogliatelle",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2581096,
+          40.8499204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8979511190,
+        "name": "Spuzzuliamm",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2635254,
+          40.8509972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9006590680,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2840272,
+          40.8771691
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9104770062,
+        "name": "Roadhouse",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2722239,
+          40.8533422
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9119918817,
+        "name": "La Figlia del Presidente",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2594599,
+          40.8487881
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9160223094,
+        "name": "Al caffettuccio 2.0",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2840563,
+          40.8579521
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9160227982,
+        "name": "'Nata storia",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2806095,
+          40.8578593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9160231199,
+        "name": "Napule \u00e8",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2841352,
+          40.8579625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9160247633,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2834006,
+          40.857899
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9171446349,
+        "name": "Sfizi & Delizie",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2801911,
+          40.856154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9171528922,
+        "name": "Aldente",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2721334,
+          40.8534572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9171534736,
+        "name": "Il vero bar del Professore",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2720124,
+          40.8534296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9171535642,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2722719,
+          40.8535336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9182217494,
+        "name": "Bottega Prosecco Bar e Caff\u00e8",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2721838,
+          40.8534101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9182217495,
+        "name": "Nonna Titti",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2720394,
+          40.8535191
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9182217497,
+        "name": "Fresco",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2722768,
+          40.8534732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9193843528,
+        "name": "Bar DLF",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2730694,
+          40.8541396
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9193849348,
+        "name": "Bella 'Mbriana",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2807873,
+          40.8562037
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9193849349,
+        "name": null,
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2833337,
+          40.8581553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9193855651,
+        "name": "Antille Caf\u00e8",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2782899,
+          40.8562029
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9193856544,
+        "name": "Espresso Napoletano",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2784063,
+          40.8569703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9193860357,
+        "name": "El Caf\u00e8",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2826811,
+          40.8561058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9339227130,
+        "name": "Bruale",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.28592,
+          40.8608111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9343998048,
+        "name": "Strike a Poke",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2747048,
+          40.8582773
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9392366948,
+        "name": null,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3012188,
+          40.843621
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9392366949,
+        "name": "Vela",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3013861,
+          40.8437159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9392451286,
+        "name": null,
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3014643,
+          40.8412615
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9392595998,
+        "name": "La Caffetteria",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3020746,
+          40.8383434
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9392596012,
+        "name": "Crema & Cioccolato",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3020775,
+          40.8394473
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9392908478,
+        "name": "Il Cucinino",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3024985,
+          40.8372423
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9392908479,
+        "name": "Dolce Caff\u00e8...",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3025097,
+          40.83719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9392908480,
+        "name": "Da Anna",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3025203,
+          40.8371225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9393166920,
+        "name": null,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3120396,
+          40.8381059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9393233825,
+        "name": "Pizzeria e Girarrosto",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3263683,
+          40.8495735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9395813622,
+        "name": null,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3114005,
+          40.8420047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9395813627,
+        "name": "Addu Sabbina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3116342,
+          40.8420379
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9395813632,
+        "name": "Figurelle",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3118827,
+          40.8421085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9408611296,
+        "name": "Trotta",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3008652,
+          40.8376073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9408662366,
+        "name": "Toraldo",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2954253,
+          40.8395664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9408662367,
+        "name": "Vigliena",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.29358,
+          40.8401731
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9664449163,
+        "name": "Mammina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2603069,
+          40.8502846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9666970039,
+        "name": "Re Carlo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2653419,
+          40.8615855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9695741805,
+        "name": "Donnarosa",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2784546,
+          40.8558495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9695741806,
+        "name": "Nonna Tittina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2787515,
+          40.8558779
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9695741807,
+        "name": "Le Gemme",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2786021,
+          40.8558642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9726083147,
+        "name": "Caff\u00e8 Mauro",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2594735,
+          40.8517823
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9739310209,
+        "name": "Antille",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2816978,
+          40.8559716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9748814517,
+        "name": "Caffetteria Garibaldi",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2673679,
+          40.8524296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9751428217,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2675184,
+          40.8528859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9882950825,
+        "name": "Sfogliatelle Attanasio",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2689331,
+          40.853221
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9882960518,
+        "name": "Pizzeria Carmnella",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2785308,
+          40.8493916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9944957917,
+        "name": "Valery's Food Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3236715,
+          40.8613258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9981593117,
+        "name": "Madaleo Cucina Tipica Napoletana",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2890108,
+          40.8503846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9993575217,
+        "name": "Pizzeria Mia Napoli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2658879,
+          40.8548296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9999040931,
+        "name": "Chalet del Sole",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2660569,
+          40.8532175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10059111218,
+        "name": "Bar Italia",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2627093,
+          40.8449512
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10059111617,
+        "name": "Piccolo Ristoro",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2620052,
+          40.8441376
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10222160452,
+        "name": "Mal\u00ec",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2841017,
+          40.857958
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10222228619,
+        "name": "Nu Poke",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2776777,
+          40.8551154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10266053725,
+        "name": "HOOP",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2783121,
+          40.8560201
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10266060815,
+        "name": "Ste",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2745669,
+          40.8546943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10276563060,
+        "name": "Gran Caff\u00e8 Valentino",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2748419,
+          40.8547216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10277912113,
+        "name": "Pizzeria Vesuvio",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2811879,
+          40.8574297
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10278696241,
+        "name": "Carioca",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2731724,
+          40.8545579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10278696242,
+        "name": "I Servino",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2743664,
+          40.8548232
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10536654109,
+        "name": "Bruno's caf\u00e9 and drinks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2598904,
+          40.8517974
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10589904282,
+        "name": "Golen Bowl",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2862229,
+          40.8496229
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10589904284,
+        "name": "Vizi e Sfizi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2873643,
+          40.8497447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10591365571,
+        "name": "Un posto al sole",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2880479,
+          40.8558359
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10712279139,
+        "name": "Bar Iavarone",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2775752,
+          40.8691358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10712316260,
+        "name": "Chiara Caff\u00e9",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2704004,
+          40.8620944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10712323433,
+        "name": "Donna Carmela",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2697403,
+          40.8629436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10718894079,
+        "name": "'A figlia d'o Lociano",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2640589,
+          40.8540917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10780583705,
+        "name": "Bar Delle Torri",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2658012,
+          40.8547134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10787022905,
+        "name": "Attanasio",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2703879,
+          40.8516484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10790765767,
+        "name": "Lara Bistrot",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2638332,
+          40.8493724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10895686943,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2638668,
+          40.8605519
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10895731017,
+        "name": "Caff\u00e8 Carlo III",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2657048,
+          40.8619602
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10905669051,
+        "name": "Cafferreria Caraf\u00e9",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2679423,
+          40.8504251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10907484941,
+        "name": "Cuori di Sfogliatella",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2710126,
+          40.8517281
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10907484942,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2709618,
+          40.8517308
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10911984824,
+        "name": "GranBar D'Ago",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2726025,
+          40.8512771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10911984825,
+        "name": "La Meridiana",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2727684,
+          40.8514833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10921296838,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2752457,
+          40.8509862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10945155013,
+        "name": "'A Puteca d' 'a Pizza",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.257652,
+          40.851151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10948799668,
+        "name": "Januarius",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.25895,
+          40.852143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10984688746,
+        "name": "Pizzeria da Mammarella",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2607251,
+          40.8520731
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10992594273,
+        "name": "\u00c8 Pront \u00f2 mangi\u00e0",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2647396,
+          40.8554672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11002801290,
+        "name": "Eccellenze della Costiera",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2692067,
+          40.8517646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11002804757,
+        "name": "12oz",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2703198,
+          40.8519593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11020819038,
+        "name": "Mr Q",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2885601,
+          40.8530686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11021578517,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2884892,
+          40.8558499
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11021578538,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2846546,
+          40.8520138
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11021578553,
+        "name": "Ristorante Internazionale",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2854639,
+          40.8497568
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11074710697,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2729687,
+          40.8507511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11074773106,
+        "name": "Caffetteria Ferraris",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2757969,
+          40.850373
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11190245503,
+        "name": "Bowl",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2596922,
+          40.8466867
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11193968038,
+        "name": "Tripperia O'Russ",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2674624,
+          40.8650805
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11193971137,
+        "name": "Oliva",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2669048,
+          40.8611633
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11194145837,
+        "name": "A' Cucina 'e Mamm\u00e0 Napoli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2593329,
+          40.8574515
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11238514499,
+        "name": "Da Pasqualino",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2734626,
+          40.8493225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11238514509,
+        "name": "Antica Trattoria Pp2",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2627331,
+          40.845982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11238514510,
+        "name": "Bar Gilda",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2626803,
+          40.8460711
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11238514512,
+        "name": null,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2630119,
+          40.8459254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11238514528,
+        "name": "Fortuna",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2694362,
+          40.8465253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11238514536,
+        "name": "Vigilante",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.272868,
+          40.8473059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11238532043,
+        "name": "La Dea Della Fortuna",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2732642,
+          40.8484705
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11241105014,
+        "name": "Pit Stop Caff\u00e8",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2815158,
+          40.8472723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11241105028,
+        "name": "Antica Macelleria Testa",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2841824,
+          40.8450206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11470934215,
+        "name": "Carafa della Spina",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2582203,
+          40.8531318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11470940033,
+        "name": "Casa Balbi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2583195,
+          40.8531627
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11473280759,
+        "name": "Fedele",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2623737,
+          40.8487621
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11473300111,
+        "name": "Pizza & Caff\u00e8",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2750403,
+          40.8513106
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11473300112,
+        "name": "Bar D'Ago",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2759949,
+          40.8514071
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11473323885,
+        "name": "Fedele Pizzeria",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2622835,
+          40.8487384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11476625874,
+        "name": "Pizzeria dal Pescatore",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2595981,
+          40.8518152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11478456868,
+        "name": "Eat Drink and be Happy",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.26367,
+          40.8498742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11795114954,
+        "name": "Senti Profumo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.271265,
+          40.8541255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11795138771,
+        "name": "Bar Fico",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2861359,
+          40.8496112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11795138780,
+        "name": "Add'e figl e Patanella",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2815732,
+          40.8473161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11795138783,
+        "name": "Le Petit",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2746726,
+          40.8504053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11795138785,
+        "name": "QQTea",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2884614,
+          40.8478021
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12017327353,
+        "name": null,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2890687,
+          40.8488639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12017342328,
+        "name": "Chayue",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2881286,
+          40.8472535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12017342329,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2882346,
+          40.8474564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12020153403,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2884596,
+          40.8561092
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12020153404,
+        "name": "Leone",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2879706,
+          40.8562973
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12020153405,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2912783,
+          40.8563839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12022520362,
+        "name": "Valenti",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2568904,
+          40.850807
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12025449198,
+        "name": "BRINdiamo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2829571,
+          40.8481671
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12036063904,
+        "name": "Bar Grassia",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2757517,
+          40.8559538
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12066355948,
+        "name": "Fratelli la Bufala",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2811243,
+          40.8775381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12100652845,
+        "name": "Goliu Duomo Napoli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2610507,
+          40.8485571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12121072978,
+        "name": "Parthenope",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2709571,
+          40.8517504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12121072979,
+        "name": "La Cantina dei Mille",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2701817,
+          40.8516817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12121080914,
+        "name": "Attanasio",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2706471,
+          40.851713
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12178212085,
+        "name": null,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2805206,
+          40.8560723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12178212086,
+        "name": "Hanny Coffee",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2832632,
+          40.8574542
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12241164297,
+        "name": "Bar Vittoria",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2584991,
+          40.8564312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12241164299,
+        "name": "Fortuna Madre",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.258633,
+          40.8565296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12269389815,
+        "name": "Seggio del Popolo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2597559,
+          40.8483192
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12269389816,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2599226,
+          40.8485321
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270517294,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2730049,
+          40.8556687
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270530655,
+        "name": "Le R\u00eave",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2759369,
+          40.8609125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270563252,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2755223,
+          40.8572525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270563255,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2742149,
+          40.855791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270665242,
+        "name": "Fil",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2778046,
+          40.8572776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270669623,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2779031,
+          40.8575114
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270669624,
+        "name": null,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2781203,
+          40.8573155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270673476,
+        "name": "Super Pizza",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2826185,
+          40.8580327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12270674242,
+        "name": "Vinarium II",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2811036,
+          40.8579346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12384714489,
+        "name": "Sushi Daily",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2722088,
+          40.8533975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12498361620,
+        "name": "Franco Gallifuoco",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2721487,
+          40.850943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12521177601,
+        "name": "Oro Bianco",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2742566,
+          40.8589394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12616024678,
+        "name": "Gradn Caff\u00e8 Brasil",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2685195,
+          40.85385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12741844015,
+        "name": "Restauran Caravaggio",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2600195,
+          40.8521926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12865028227,
+        "name": "Pizzeria Trattoria Spaccanapoli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2597357,
+          40.8498394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12895056694,
+        "name": "'O vico",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2630952,
+          40.8500525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12895501048,
+        "name": "WorkEat",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2814503,
+          40.8779279
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12949786602,
+        "name": "Trattoria e pizzeria spaccanapoli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2597738,
+          40.8498574
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12959519401,
+        "name": "Pull O'V\u00e8r",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.269349,
+          40.8500527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13059373601,
+        "name": "Il Dolce Mattino",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2674615,
+          40.8569429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13270928999,
+        "name": "Fedele 2.0",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2693931,
+          40.8515796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13325796049,
+        "name": "La tavernetta",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2600754,
+          40.8454796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13326380875,
+        "name": "Gran caff\u00e8 La vecchia scuola",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2603384,
+          40.845601
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13333429833,
+        "name": "Bar Briganti",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2774563,
+          40.8748378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13378302012,
+        "name": "Caffetteria Rosticceria Leone",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2669966,
+          40.8542642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13566196515,
+        "name": "Epoque Caf\u00e8 165",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2593697,
+          40.8519681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13593615338,
+        "name": "Loong Xii Xii",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2786848,
+          40.8502772
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13650184301,
+        "name": "Vitami",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2600116,
+          40.8503703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13666431401,
+        "name": "Caffee Zambardino",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2619699,
+          40.8469443
+        ]
+      }
+    }
+  ]
+}

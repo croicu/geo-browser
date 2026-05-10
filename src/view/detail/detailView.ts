@@ -1,9 +1,11 @@
 import type { GeoArea } from "../../catalog/area";
 import type { ControllerActions, MapFactory, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
+import { HeatLayerView } from "./heatLayerView";
 import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
+import { PointLayerView } from "./pointLayerView";
 import { SummaryWidget } from "./summaryWidget";
 
 export interface DetailViewServices {
@@ -137,12 +139,21 @@ export class DetailView implements View {
             const visible = this._state.isLayerVisible(layer.id);
 
             if (visible && !existing) {
-                const layerView = new LayerView(
-                    this._map,
-                    layer,
-                    new DefaultLeafletLayerFactory()
-                );
+                let layerView: LayerView;
 
+                if (layer.type === "heatmap") {
+                    layerView = new HeatLayerView(
+                        this._map,
+                        layer,
+                        new DefaultLeafletLayerFactory()
+                    );
+                } else {
+                    layerView = new PointLayerView(
+                        this._map,
+                        layer,
+                        new DefaultLeafletLayerFactory()
+                    );
+                }
                 this._layerViews.set(layer.id, layerView);
 
                 void layerView.render();

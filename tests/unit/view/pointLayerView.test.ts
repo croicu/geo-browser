@@ -2,13 +2,15 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import type {
     CircleMarkerOptions,
-    LeafletLayerFactory,
+    HeatLayerOptions,
+    LayerFactory,
     MapHandle,
     MapLayerHandle,
 } from "../../../src/contracts";
 import { GeoLayer } from "../../../src/catalog/layer";
-import { LayerView } from "../../../src/view/detail/layerView";
+import { PointLayerView } from "../../../src/view/detail/pointLayerView";
 import { stubFetch } from "../../fakes/fakeFetch";
+import { HeatPoint } from "../../../src/protocols";
 
 class FakeMap implements MapHandle{
     remove(): void {
@@ -28,15 +30,14 @@ class FakeLayerHandle implements MapLayerHandle {
     }
 }
 
-class FakeLeafletLayerFactory implements LeafletLayerFactory {
+class FakeLeafletLayerFactory implements LayerFactory {
+    createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {
+        throw new Error("Method not implemented.");
+    }
     public readonly group = new FakeLayerHandle();
     public readonly markers: FakeLayerHandle[] = [];
     public readonly markerLatLngs: [number, number][] = [];
     public readonly markerOptions: CircleMarkerOptions[] = [];
-
-    createLayerGroup(): MapLayerHandle {
-        return this.group;
-    }
 
     createCircleMarker(
         latLng: [number, number],
@@ -49,6 +50,10 @@ class FakeLeafletLayerFactory implements LeafletLayerFactory {
         this.markerOptions.push(options);
 
         return marker;
+    }
+
+    createLayerGroup(): MapLayerHandle {
+        return this.group;
     }
 }
 
@@ -130,7 +135,7 @@ describe("LayerView", () => {
         const map = new FakeMap();
         const factory = new FakeLeafletLayerFactory();
 
-        const view = new LayerView(map, layer, factory);
+        const view = new PointLayerView(map, layer, factory);
 
         await view.render();
 
@@ -152,7 +157,7 @@ describe("LayerView", () => {
         const layer = new GeoLayer(layer_data);
         const factory = new FakeLeafletLayerFactory();
 
-        const view = new LayerView(map, layer, factory);
+        const view = new PointLayerView(map, layer, factory);
 
         await view.render();
 
@@ -169,7 +174,7 @@ describe("LayerView", () => {
         const layer = new GeoLayer(layer_data);
         const factory = new FakeLeafletLayerFactory();
 
-        const view = new LayerView(map, layer, factory);
+        const view = new PointLayerView(map, layer, factory);
 
         await view.render();
 
@@ -184,7 +189,7 @@ describe("LayerView", () => {
         const layer = new GeoLayer(layer_data);
         const factory = new FakeLeafletLayerFactory();
 
-        const view = new LayerView(map, layer, factory);
+        const view = new PointLayerView(map, layer, factory);
 
         await view.render();
         view.destroy();
