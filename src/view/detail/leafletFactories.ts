@@ -41,6 +41,39 @@ import type {
 
 import type { HeatPoint } from "../../protocols";
 
+class LeafletMapHandle implements MapHandle {
+    private readonly _map: L.Map;
+
+    constructor(map: L.Map) {
+        this._map = map;
+    }
+
+    remove(): void {
+        this._map.remove();
+    }
+
+    getZoom(): number {
+        return this._map.getZoom();
+    }
+
+    onZoom(handler: (zoom: number) => void): () => void {
+        const listener = () => handler(this._map.getZoom());
+        this._map.on("zoomend", listener);
+        return () => this._map.off("zoomend", listener);
+    }
+
+    unwrap(): L.Map {
+        return this._map;
+    }
+}
+
+function unwrapMap(handle: MapHandle): L.Map {
+    if (handle instanceof LeafletMapHandle) {
+        return handle.unwrap();
+    }
+    return handle as unknown as L.Map;
+}
+
 class LeafletMapLayerHandle implements MapLayerHandle {
     private readonly _layer: L.Layer;
 
@@ -49,7 +82,7 @@ class LeafletMapLayerHandle implements MapLayerHandle {
     }
 
     addTo(map: MapHandle): void {
-        this._layer.addTo(map as L.Map);
+        this._layer.addTo(unwrapMap(map));
     }
 
     remove(): void {
@@ -61,21 +94,25 @@ class LeafletClickableMapLayerHandle
     extends LeafletMapLayerHandle
     implements ClickableMapLayerHandle {
 
-    private readonly _evented: L.Evented;
+    private readonly _marker: L.CircleMarker;
 
-    constructor(layer: L.Layer & L.Evented) {
-        super(layer);
-        this._evented = layer;
+    constructor(marker: L.CircleMarker) {
+        super(marker);
+        this._marker = marker;
     }
 
     onClick(handler: () => void): void {
-        this._evented.on("click", handler);
+        this._marker.on("click", handler);
+    }
+
+    setRadius(r: number): void {
+        this._marker.setRadius(r);
     }
 }
 
 export class DefaultLeafletLayerFactory implements LayerFactory {
     createLayerGroup(): MapLayerHandle {
-        return L.layerGroup();
+        return new LeafletMapLayerHandle(L.layerGroup());
     }
 
     createCircleMarker(
@@ -123,7 +160,7 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
 
 
 export class DefaultLeafletMapFactory implements MapFactory {
-    createMap(root: HTMLElement, center: [number, number], zoom: number): L.Map {
+    createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle {
         const map = L.map(root).setView(center, zoom);
 
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -131,7 +168,7 @@ export class DefaultLeafletMapFactory implements MapFactory {
             attribution: "&copy; OpenStreetMap contributors",
         }).addTo(map);
 
-        return map;
+        return new LeafletMapHandle(map);
     }
 }
 
@@ -143,7 +180,7 @@ class LeafletWidgetHandle implements WidgetHandle {
     }
 
     addTo(map: MapHandle): void {
-        this._control.addTo(map as L.Map);
+        this._control.addTo(unwrapMap(map));
     }
 
     remove(): void {

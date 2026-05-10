@@ -19,6 +19,14 @@ class StubMap implements MapHandle {
     remove(): void {
         this.removeCalled = true;
     }
+
+    getZoom(): number {
+        return 3;
+    }
+
+    onZoom(_handler: (zoom: number) => void): () => void {
+        return () => {};
+    }
 }
 
 class StubMapFactory implements MapFactory {
@@ -55,6 +63,9 @@ class StubMarker implements ClickableMapLayerHandle {
 
     onClick(handler: () => void): void {
         this.clickHandler = handler;
+    }
+
+    setRadius(_r: number): void {
     }
 }
 

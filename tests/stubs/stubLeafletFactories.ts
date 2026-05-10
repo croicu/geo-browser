@@ -4,6 +4,14 @@ import { LayerFactory, LayerSelectionWidgetItem, MapFactory, MapHandle, MapLayer
 export class StubMap implements MapHandle {
     remove(): void {
     }
+
+    getZoom(): number {
+        return 3;
+    }
+
+    onZoom(_handler: (zoom: number) => void): () => void {
+        return () => {};
+    }
 }
 
 export class StubMapFactory implements MapFactory {

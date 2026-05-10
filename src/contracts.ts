@@ -55,6 +55,8 @@ export interface ControllerState {
 
 export interface MapHandle {
     remove(): void;
+    getZoom(): number;
+    onZoom(handler: (zoom: number) => void): () => void;
 }
 
 export interface GeoDataService {
@@ -102,6 +104,7 @@ export interface MapLayerHandle {
 
 export interface ClickableMapLayerHandle extends MapLayerHandle {
     onClick: (handler: () => void) => void;
+    setRadius(r: number): void;
 }
 
 export interface CircleMarkerOptions {

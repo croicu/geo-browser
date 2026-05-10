@@ -1,18 +1,18 @@
 import type { GeoLayer } from "../../catalog/layer";
-import type { LayerFactory, MapHandle } from "../../contracts";
+import type { LayerFactory, MapHandle, MapLayerHandle } from "../../contracts";
 import { fail } from "../../errors";
 import { LayerView } from "./layerView";
 
 export class PointLayerView extends LayerView {
+    private _markers: MapLayerHandle[] = [];
 
     constructor(
-        map: MapHandle, 
+        map: MapHandle,
         layer: GeoLayer,
         layerFactory: LayerFactory
     ) {
         super(map, layer, layerFactory);
     }
-
 
     async render(): Promise<void> {
         await this._layer.load();
@@ -25,7 +25,9 @@ export class PointLayerView extends LayerView {
             });
         }
 
-        const group = this._layerFactory.createLayerGroup();
+        this.destroy();
+
+        const style = this._layer.style;
 
         for (const feature of payload.features) {
             if (!this.isPointFeature(feature)) {
@@ -35,19 +37,23 @@ export class PointLayerView extends LayerView {
             const coordinates = feature.geometry.coordinates;
             const latLng = this.geoJsonPointToLatLng(coordinates);
             const weight = this.getWeight(feature);
-            const style = this._layer.style;
 
-            this._layerFactory.createCircleMarker(latLng, {
+            const marker = this._layerFactory.createCircleMarker(latLng, {
                 radius: this.weightToRadius(weight),
                 color: style?.color,
                 opacity: style?.opacity ?? 0.8,
-                fillOpacity: 0.5,
-            }).addTo(group);
+            });
+
+            marker.addTo(this._map);
+            this._markers.push(marker);
         }
+    }
 
-        this.destroy();
-
-        this._group = group;
-        this._group.addTo(this._map);
+    override destroy(): void {
+        super.destroy();
+        for (const marker of this._markers) {
+            marker.remove();
+        }
+        this._markers = [];
     }
 }

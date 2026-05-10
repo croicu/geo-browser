@@ -14,12 +14,21 @@ import { HeatPoint } from "../../../src/protocols";
 class StubMap implements MapHandle {
     remove(): void {
     }
+
+    getZoom(): number {
+        return 3;
+    }
+
+    onZoom(_handler: (zoom: number) => void): () => void {
+        return () => {};
+    }
 }
 
 class StubMarker implements ClickableMapLayerHandle {
     public addToMap?: MapHandle;
     public removeCalled = false;
     public clickHandler?: () => void;
+    public radius?: number;
 
     addTo(map: MapHandle): void {
         this.addToMap = map;
@@ -31,6 +40,10 @@ class StubMarker implements ClickableMapLayerHandle {
 
     onClick(handler: () => void): void {
         this.clickHandler = handler;
+    }
+
+    setRadius(r: number): void {
+        this.radius = r;
     }
 }
 

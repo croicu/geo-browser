@@ -21,6 +21,7 @@ export class BubbleWidget {
     private readonly _layerFactory: LayerFactory;
 
     private _marker?: ClickableMapLayerHandle;
+    private _zoomCleanup?: () => void;
 
     constructor(
         area: GeoArea,
@@ -40,6 +41,8 @@ export class BubbleWidget {
     }
 
     destroy(): void {
+        this._zoomCleanup?.();
+        this._zoomCleanup = undefined;
         this._marker?.remove();
         this._marker = undefined;
     }
@@ -55,19 +58,29 @@ export class BubbleWidget {
 
         this._marker.addTo(this._map);
         this._marker.onClick(this.handleClick);
+
+        this._zoomCleanup = this._map.onZoom(zoom => this.updateRadius(zoom));
     }
 
     private handleClick = (): void => {
         this._actions.openDetail(this._area.id);
     };
 
-    private summaryRadius(area: GeoArea["summary"]): number {
-        return area.minRadiusPx;
+    private updateRadius(zoom: number): void {
+        this._marker?.setRadius(this.computeRadius(zoom));
+    }
+
+    private computeRadius(zoom: number): number {
+        const lat = this._area.summary.center[0];
+        const metersPerPixel =
+            40075016.686 * Math.abs(Math.cos(lat * Math.PI / 180)) / Math.pow(2, zoom + 8);
+        const radiusPx = this._area.summary.radiusMeters / metersPerPixel;
+        return Math.max(this._area.summary.minRadiusPx, radiusPx);
     }
 
     private getCircleMarkerOptions(): CircleMarkerOptions {
         return {
-            radius: this.summaryRadius(this._area.summary),
+            radius: this.computeRadius(this._map.getZoom()),
             color: "#3388ff",
             fillColor: "#3388ff",
             opacity: 0.5,
