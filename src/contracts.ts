@@ -57,6 +57,40 @@ export interface MapHandle {
     remove(): void;
 }
 
+export interface GeoDataService {
+    getCatalog(): Promise<unknown>;
+
+    getAreaDetail(
+        areaId: string
+    ): Promise<unknown>;
+
+    getLayerPayload(
+        areaId: string,
+        layerId: string
+    ): Promise<unknown>;
+}
+
+export interface StorageService {
+    getItem(
+        key: string
+    ): string | null;
+
+    setItem(
+        key: string,
+        value: string
+    ): void;
+
+    removeItem(
+        key: string
+    ): void;
+}
+
+export interface HostService {
+    getCapability(
+        name: string
+    ): unknown;
+}
+
 export interface MapFactory {
     createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle;
 }
