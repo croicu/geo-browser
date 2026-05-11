@@ -25,7 +25,7 @@ export class GeoLayer {
         return this._data.url;
     }
 
-    get style(): LayerStyle {
+    get style(): LayerStyle | undefined {
         return this._data.style;
     }
     

@@ -94,6 +94,12 @@ export class SummaryView implements View {
     }
 
     private createBubbleWidgets(): void {
+        const map = this._map;
+
+        if (!map) {
+            return;
+        }
+
         this._bubbleWidgets.length = 0;
 
         for (const area of this._catalog.areas) {
@@ -101,7 +107,7 @@ export class SummaryView implements View {
                 area,
                 this._actions,
                 {
-                    map: this._map,
+                    map,
                     layerFactory: this._layerFactory,
                 }
             );
