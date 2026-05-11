@@ -1,10 +1,8 @@
-// tests/unit/app/controller.test.ts
-
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Controller } from "../../../src/app/controller";
 import { setLogger } from "../../../src/services";
-import { SummaryViewState } from "../../../src/state/summaryViewState";
+import { StubStorage } from "../../stubs/stubStorage";
 
 import type { AreaSummary } from "../../../src/protocols";
 
@@ -37,7 +35,6 @@ describe("Controller", () => {
 
         setLogger(logger as any);
         document.body.innerHTML = `<div id="app"></div>`;
-        localStorage.clear();
     });
 
     it("loads catalog and renders summary UI", async () => {
@@ -52,11 +49,9 @@ describe("Controller", () => {
             ],
         };
 
-        const state = new SummaryViewState();
-
         const controller = new Controller({
             catalog: catalog as any,
-            summaryViewState: state,
+            storage: new StubStorage(),
         });
 
         await controller.start();
@@ -77,7 +72,7 @@ describe("Controller", () => {
 
         const controller = new Controller({
             catalog: catalog as any,
-            summaryViewState: new SummaryViewState(),
+            storage: new StubStorage(),
         });
 
         await expect(controller.start()).rejects.toThrow("Missing #app element.");
@@ -100,7 +95,7 @@ describe("Controller", () => {
 
         const controller = new Controller({
             catalog: catalog as any,
-            summaryViewState: new SummaryViewState(),
+            storage: new StubStorage(),
         });
 
         await controller.start();

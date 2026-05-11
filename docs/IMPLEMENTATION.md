@@ -261,6 +261,18 @@ but render() from controller/state must always converge it.
 
 This is the only file allowed to import Leaflet and Leaflet plugins.
 
+## Accessor vs. Backing Field
+
+Always use the public accessor (`this.foo`) rather than the backing field (`this._foo`), even inside the same class. Accessors are the stable API surface; backing fields are an implementation detail that may change.
+
+```ts
+// Bad
+if (this._debug || this._mode === "design") { ... }
+
+// Good
+if (this.debug || this.mode === "design") { ... }
+```
+
 ## Services and Options Objects
 
 When constructor DI grows, use options objects:

@@ -29,6 +29,7 @@ export class DetailView implements View {
     private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
     private _clickCleanup?: () => void;
+    private _moveEndCleanup?: () => void;
 
     constructor(
         root: HTMLElement,
@@ -98,8 +99,13 @@ export class DetailView implements View {
         this.destroyLayerViews();
 
         if (this._map) {
+            this.saveViewport();
+
             this._clickCleanup?.();
             this._clickCleanup = undefined;
+
+            this._moveEndCleanup?.();
+            this._moveEndCleanup = undefined;
 
             this._map.remove();
             this._map = undefined;
@@ -136,7 +142,7 @@ export class DetailView implements View {
         }
 
         this._map = this._mapFactory.createMap(this._mapRoot, center, zoom);
-
+        this._moveEndCleanup = this._map.onMoveEnd(() => this.saveViewport());
     }
 
     private renderLayerViews(): void {
@@ -184,6 +190,13 @@ export class DetailView implements View {
         }
 
         this._layerViews.clear();
+    }
+
+    private saveViewport(): void {
+        if (!this._map) {
+            return;
+        }
+        this._actions.saveDetailViewport(this._area.id, this._map.getCenter(), this._map.getZoom());
     }
 
     private onMapClick(latLng: [number, number]): void {

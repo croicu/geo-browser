@@ -52,6 +52,11 @@ class LeafletMapHandle implements MapHandle {
         this._map.remove();
     }
 
+    getCenter(): [number, number] {
+        const c = this._map.getCenter();
+        return [c.lat, c.lng];
+    }
+
     getZoom(): number {
         return this._map.getZoom();
     }
@@ -60,6 +65,11 @@ class LeafletMapHandle implements MapHandle {
         const listener = () => handler(this._map.getZoom());
         this._map.on("zoomend", listener);
         return () => this._map.off("zoomend", listener);
+    }
+
+    onMoveEnd(handler: () => void): () => void {
+        this._map.on("moveend", handler);
+        return () => this._map.off("moveend", handler);
     }
 
     onClick(handler: (latLng: [number, number]) => void): () => void {

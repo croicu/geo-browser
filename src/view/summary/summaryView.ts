@@ -30,6 +30,7 @@ export class SummaryView implements View {
     private _mapRoot?: HTMLElement;
     private _map?: MapHandle;
     private _clickCleanup?: () => void;
+    private _moveEndCleanup?: () => void;
     private readonly _bubbleWidgets: BubbleWidget[] = [];
 
     constructor(
@@ -69,6 +70,7 @@ export class SummaryView implements View {
 
         this._map = map;
         this._clickCleanup = map.onClick(latLng => this.onMapClick(latLng));
+        this._moveEndCleanup = map.onMoveEnd(() => this.saveViewport());
 
         this.createBubbleWidgets();
     }
@@ -84,6 +86,8 @@ export class SummaryView implements View {
     }
 
     destroy(): void {
+        this.saveViewport();
+
         for (const bubbleWidget of this._bubbleWidgets) {
             bubbleWidget.destroy();
         }
@@ -92,6 +96,8 @@ export class SummaryView implements View {
 
         this._clickCleanup?.();
         this._clickCleanup = undefined;
+        this._moveEndCleanup?.();
+        this._moveEndCleanup = undefined;
 
         this._map?.remove();
         this._map = undefined;
@@ -99,6 +105,13 @@ export class SummaryView implements View {
         this._main?.remove();
         this._main = undefined;
         this._mapRoot = undefined;
+    }
+
+    private saveViewport(): void {
+        if (!this._map) {
+            return;
+        }
+        this._actions.saveSummaryViewport(this._map.getCenter(), this._map.getZoom());
     }
 
     private onMapClick(latLng: [number, number]): void {

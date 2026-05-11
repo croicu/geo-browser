@@ -1,7 +1,9 @@
 import { getLogger } from "../services";
 import { GeoCatalog } from "../catalog/catalog";
-import type { ControllerActions, ControllerState, View } from "../contracts";
+import type { ControllerActions, ControllerState, StorageService, View } from "../contracts";
+import type { GeoState } from "../state/geoState";
 
+import { GeoStateStore } from "../state/geoStateStore";
 import { SummaryViewState } from "../state/summaryViewState";
 import { SummaryView } from "../view/summary/summaryView";
 import { DetailView } from "../view/detail/detailView";
@@ -10,11 +12,12 @@ import { fail } from "../errors";
 
 export interface ControllerOptions {
     catalog: GeoCatalog;
-    summaryViewState?: SummaryViewState;
+    storage: StorageService;
 }
 
-export class Controller implements ControllerActions, ControllerState {
+export class Controller implements ControllerActions, ControllerState, GeoState {
     private readonly _catalog: GeoCatalog;
+    private readonly _geoStateStore: GeoStateStore;
     private readonly _summaryViewState: SummaryViewState;
     private _detailViewState?: DetailViewState;
     private _app!: HTMLElement;
@@ -23,8 +26,8 @@ export class Controller implements ControllerActions, ControllerState {
 
     constructor(options: ControllerOptions) {
         this._catalog = options.catalog;
-        this._summaryViewState =
-            options.summaryViewState ?? SummaryViewState.load();
+        this._geoStateStore = new GeoStateStore(options.storage);
+        this._summaryViewState = this._geoStateStore.loadSummaryViewState();
     }
 
     async start(): Promise<void> {
@@ -54,11 +57,10 @@ export class Controller implements ControllerActions, ControllerState {
         return this._catalog;
     }
 
-    // ControlerActions
-    async openSummary(): Promise<void> {
-        const logger = getLogger();
+    // ControllerActions
 
-        logger.info("open summary");
+    async openSummary(): Promise<void> {
+        getLogger().info("open summary");
 
         const summaryView: View = new SummaryView(
             this._app,
@@ -71,23 +73,25 @@ export class Controller implements ControllerActions, ControllerState {
     }
 
     async openDetail(areaId: string): Promise<void> {
-        const logger = getLogger();
-
-        logger.info("open detail", { areaId });
+        getLogger().info("open detail", { areaId });
 
         const area = this._catalog.getArea(areaId);
-        const visibleLayers: Record<string, boolean> = {};
 
         await area.load();
 
+        const saved = this.loadDetailViewState(areaId);
+
+        const visibleLayers: Record<string, boolean> = {};
         for (const layer of area.layers) {
-            visibleLayers[layer.id] = layer.isVisible();
+            visibleLayers[layer.id] = saved
+                ? saved.isLayerVisible(layer.id, layer.isVisible())
+                : layer.isVisible();
         }
 
         this._detailViewState = new DetailViewState({
             areaId: area.id,
-            center: area.summary.center,
-            zoom: this._zoomLevel,
+            center: saved?.center ?? area.summary.center,
+            zoom: saved?.zoom ?? this._zoomLevel,
             visibleLayers,
         });
 
@@ -112,14 +116,27 @@ export class Controller implements ControllerActions, ControllerState {
             fail("detail_state.missing", "DetailViewState is not available.");
         }
 
-        this._detailViewState.setLayerVisible(
-            layerId,
-            visible
-        );
+        this._detailViewState.setLayerVisible(layerId, visible);
+        this.saveDetailViewState(this._detailViewState);
 
         this._view?.render();
     }
-    
+
+    saveSummaryViewport(center: [number, number], zoom: number): void {
+        this._summaryViewState.center = center;
+        this._summaryViewState.zoom = zoom;
+        this.saveSummaryViewState(this._summaryViewState);
+    }
+
+    saveDetailViewport(areaId: string, center: [number, number], zoom: number): void {
+        if (!this._detailViewState || this._detailViewState.areaId !== areaId) {
+            return;
+        }
+        this._detailViewState.center = center;
+        this._detailViewState.zoom = zoom;
+        this.saveDetailViewState(this._detailViewState);
+    }
+
     zoomIn(): void {
         this.setZoom(this._zoomLevel + 1);
     }
@@ -139,6 +156,7 @@ export class Controller implements ControllerActions, ControllerState {
     }
 
     // ControllerState
+
     get zoom(): number {
         return this._zoomLevel;
     }
@@ -151,7 +169,26 @@ export class Controller implements ControllerActions, ControllerState {
         return 18;
     }
 
-    // Private methods
+    // GeoState
+
+    loadSummaryViewState(): SummaryViewState {
+        return this._geoStateStore.loadSummaryViewState();
+    }
+
+    saveSummaryViewState(state: SummaryViewState): void {
+        this._geoStateStore.saveSummaryViewState(state);
+    }
+
+    loadDetailViewState(areaId: string): DetailViewState | undefined {
+        return this._geoStateStore.loadDetailViewState(areaId);
+    }
+
+    saveDetailViewState(state: DetailViewState): void {
+        this._geoStateStore.saveDetailViewState(state);
+    }
+
+    // Private
+
     private switchView(nextView: View): void {
         const previousView = this._view;
 
@@ -159,6 +196,5 @@ export class Controller implements ControllerActions, ControllerState {
         this._view.render();
 
         previousView?.destroy();
-    }    
+    }
 }
- 

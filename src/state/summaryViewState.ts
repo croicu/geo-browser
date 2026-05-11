@@ -1,10 +1,8 @@
-// state/SummaryViewState.ts
 import type { SummaryViewStateData, LatLng } from "../protocols";
-import { isLatLng, isNumber, isString } from "../validate"
+import { isLatLng, isNumber, isString } from "../validate";
 
 export const DEFAULT_CENTER: LatLng = [20, 20];
 export const DEFAULT_ZOOM = 3;
-const STORAGE_KEY = "geo-browser.summaryViewState";
 
 export class SummaryViewState {
     private _center: LatLng;
@@ -33,7 +31,6 @@ export class SummaryViewState {
             : undefined;
     }
 
-    // --- center ---
     get center(): LatLng {
         return this._center;
     }
@@ -42,7 +39,6 @@ export class SummaryViewState {
         this._center = value;
     }
 
-    // --- zoom ---
     get zoom(): number {
         return this._zoom;
     }
@@ -51,7 +47,6 @@ export class SummaryViewState {
         this._zoom = value;
     }
 
-    // --- selectedAreaId ---
     get selectedAreaId(): string | undefined {
         return this._selectedAreaId;
     }
@@ -60,7 +55,6 @@ export class SummaryViewState {
         this._selectedAreaId = value;
     }
 
-    // --- hoveredAreaId ---
     get hoveredAreaId(): string | undefined {
         return this._hoveredAreaId;
     }
@@ -69,25 +63,6 @@ export class SummaryViewState {
         this._hoveredAreaId = value;
     }
 
-    save(): void {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toJSON()));
-    }
-
-    static load(): SummaryViewState {
-        const value = localStorage.getItem(STORAGE_KEY);
-
-        if (!value) {
-            return new SummaryViewState();
-        }
-
-        try {
-            return SummaryViewState.fromJSON(JSON.parse(value));
-        } catch {
-            return new SummaryViewState();
-        }
-    }
-
-    // --- serialization ---
     toJSON(): SummaryViewStateData {
         return {
             center: this._center,

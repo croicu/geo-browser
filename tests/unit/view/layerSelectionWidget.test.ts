@@ -42,6 +42,8 @@ class FakeActions implements ControllerActions {
 
     openSummary(): void {}
     openDetail(_areaId: string): void {}
+    saveSummaryViewport(_center: [number, number], _zoom: number): void {}
+    saveDetailViewport(_areaId: string, _center: [number, number], _zoom: number): void {}
     zoomIn(): void {}
     zoomOut(): void {}
     setZoom(_zoomLevel: number): void {}

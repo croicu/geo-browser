@@ -60,4 +60,5 @@ describe("Context", () => {
 
 function setSearch(search: string): void {
     window.history.replaceState({}, "", search || "/");
+    Context.reset();
 }
