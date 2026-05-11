@@ -4,17 +4,33 @@ import type {
     ControllerActions,
     HeatLayerOptions,
     LayerFactory,
+    Logger,
     MapFactory,
     MapHandle,
     MapLayerHandle,
 } from "../../../src/contracts";
+import { setLogger } from "../../../src/services";
 import { GeoCatalog } from "../../../src/catalog/catalog";
 import { SummaryView } from "../../../src/view/summary/summaryView";
 import { SummaryViewState } from "../../../src/state/summaryViewState";
 import { HeatPoint } from "../../../src/protocols";
 
+class StubLogger implements Logger {
+    public readonly calls: Array<{ message: string; props?: Record<string, unknown> }> = [];
+
+    diagnostic(message: string, props?: Record<string, unknown>): void {
+        this.calls.push({ message, props });
+    }
+
+    info(): void {}
+    warning(): void {}
+    error(): void {}
+    fatal(): void {}
+}
+
 class StubMap implements MapHandle {
     public removeCalled = false;
+    private _clickHandler?: (latLng: [number, number]) => void;
 
     remove(): void {
         this.removeCalled = true;
@@ -26,6 +42,15 @@ class StubMap implements MapHandle {
 
     onZoom(_handler: (zoom: number) => void): () => void {
         return () => {};
+    }
+
+    onClick(handler: (latLng: [number, number]) => void): () => void {
+        this._clickHandler = handler;
+        return () => { this._clickHandler = undefined; };
+    }
+
+    simulateClick(latLng: [number, number]): void {
+        this._clickHandler?.(latLng);
     }
 }
 
@@ -84,7 +109,7 @@ class StubLayerFactory implements LayerFactory {
         return marker;
     }
 
-    createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {
+    createHeatLayer(_points: HeatPoint[], _options: HeatLayerOptions): MapLayerHandle {
         throw new Error("Method not implemented.");
     }
 }
@@ -130,6 +155,7 @@ describe("SummaryView", () => {
         actions = new StubActions();
         mapFactory = new StubMapFactory();
         layerFactory = new StubLayerFactory();
+        setLogger(new StubLogger());
     });
 
     it("creates a leaflet-backed summary map", async () => {
@@ -219,6 +245,29 @@ describe("SummaryView", () => {
         }
 
         expect(root.querySelector(".summary-view")).toBeNull();
+    });
+
+    it("logs GPS coordinates on map click", async () => {
+        const catalog = await createCatalog();
+        const state = new SummaryViewState({
+            center: [0, 0],
+            zoom: 2,
+        });
+        const logger = new StubLogger();
+
+        setLogger(logger);
+
+        const view = new SummaryView(root, actions, catalog, state, {
+            mapFactory,
+            layerFactory,
+        });
+
+        view.render();
+        mapFactory.map.simulateClick([40.8518, 14.2681]);
+
+        expect(logger.calls).toHaveLength(1);
+        expect(logger.calls[0].message).toBe("map.click");
+        expect(logger.calls[0].props).toEqual({ lat: 40.8518, lng: 14.2681 });
     });
 });
 

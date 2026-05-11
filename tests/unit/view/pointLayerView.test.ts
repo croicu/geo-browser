@@ -23,6 +23,10 @@ class FakeMap implements MapHandle {
     onZoom(_handler: (zoom: number) => void): () => void {
         return () => {};
     }
+
+    onClick(_handler: (latLng: [number, number]) => void): () => void {
+        return () => {};
+    }
 }
 
 class FakeLayerHandle implements MapLayerHandle {

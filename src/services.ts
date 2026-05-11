@@ -12,6 +12,10 @@ export function setLogger(value: Logger): void {
     logger = value;
 }
 
+export function resetLogger(): void {
+    logger = undefined;
+}
+
 export function getLogger(): Logger {
     if (!logger) {
         throw new AppError("logger.not_initialized", "Logger not initialized");

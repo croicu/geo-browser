@@ -1,7 +1,46 @@
-import { describe, expect, it } from "vitest";
-import { DetailView, DetailViewServices } from "../../../src/view/detail/detailView";
-import type { ControllerActions, MapFactory, MapHandle } from "../../../src/contracts";
-import { StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories"
+import { beforeEach, describe, expect, it } from "vitest";
+import { DetailView } from "../../../src/view/detail/detailView";
+import type { ControllerActions, Logger, MapFactory, MapHandle } from "../../../src/contracts";
+import { StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories";
+import { setLogger } from "../../../src/services";
+
+class FakeMap implements MapHandle {
+    private _clickHandler?: (latLng: [number, number]) => void;
+
+    remove(): void {}
+    getZoom(): number { return 13; }
+    onZoom(_handler: (zoom: number) => void): () => void { return () => {}; }
+
+    onClick(handler: (latLng: [number, number]) => void): () => void {
+        this._clickHandler = handler;
+        return () => { this._clickHandler = undefined; };
+    }
+
+    simulateClick(latLng: [number, number]): void {
+        this._clickHandler?.(latLng);
+    }
+}
+
+class FakeMapFactory implements MapFactory {
+    public readonly map = new FakeMap();
+
+    createMap(): MapHandle {
+        return this.map;
+    }
+}
+
+class StubLogger implements Logger {
+    public readonly calls: Array<{ message: string; props?: Record<string, unknown> }> = [];
+
+    diagnostic(message: string, props?: Record<string, unknown>): void {
+        this.calls.push({ message, props });
+    }
+
+    info(): void {}
+    warning(): void {}
+    error(): void {}
+    fatal(): void {}
+}
 
 class FakeActions implements ControllerActions {
     openSummary(): void {}
@@ -35,6 +74,10 @@ const fakeState = {
 };
 
 describe("DetailView", () => {
+    beforeEach(() => {
+        setLogger(new StubLogger());
+    });
+
     it("renders detail map root", () => {
         const root = document.createElement("div");
 
@@ -94,5 +137,31 @@ describe("DetailView", () => {
 
         expect(root.querySelectorAll(".detail-view").length).toBe(1);
         expect(root.querySelectorAll(".detail-map").length).toBe(1);
+    });
+
+    it("logs GPS coordinates on map click", () => {
+        const root = document.createElement("div");
+        const mapFactory = new FakeMapFactory();
+        const logger = new StubLogger();
+
+        setLogger(logger);
+
+        const view = new DetailView(
+            root,
+            new FakeActions(),
+            fakeArea as any,
+            fakeState as any,
+            {
+                mapFactory,
+                widgetFactory: new StubWidgetFactory(),
+            }
+        );
+
+        view.render();
+        mapFactory.map.simulateClick([40.8518, 14.2681]);
+
+        expect(logger.calls).toHaveLength(1);
+        expect(logger.calls[0].message).toBe("map.click");
+        expect(logger.calls[0].props).toEqual({ lat: 40.8518, lng: 14.2681 });
     });
 });

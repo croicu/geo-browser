@@ -57,6 +57,7 @@ export interface MapHandle {
     remove(): void;
     getZoom(): number;
     onZoom(handler: (zoom: number) => void): () => void;
+    onClick(handler: (latLng: [number, number]) => void): () => void;
 }
 
 export interface GeoDataService {
