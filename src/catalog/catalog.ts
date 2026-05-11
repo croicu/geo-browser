@@ -4,8 +4,8 @@ import { GeoArea } from "./area";
 
 export class GeoCatalog {
     private readonly catalogUrl: string;
-    _version: number;
-    _createdAt: string;
+    _version?: number;
+    _createdAt?: string;
     private _areas: GeoArea[] | undefined;
 
     constructor(catalogUrl: string) {
@@ -30,12 +30,12 @@ export class GeoCatalog {
         this._areas = catalog.areas.map((area: AreaSummary) => new GeoArea(area));
     }
 
-    get version(): number {
+    get version(): number | undefined {
 
         return this._version;
     }
 
-    get createdAt(): string {
+    get createdAt(): string | undefined {
 
         return this._createdAt;
     }
