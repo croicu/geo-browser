@@ -31,7 +31,7 @@ describe("catalog loader", () => {
         ok: true,
         json: async () => ({
           version: 1,
-          catalogUrl: "/catalogs/catalog.2026-05-02.json",
+          catalogUrl: "catalogs/catalog.2026-05-02.json",
         }),
       })
     );
@@ -41,7 +41,7 @@ describe("catalog loader", () => {
         fallbackUrl: TEST_FALLBACK_URL,
     });
 
-    expect(url).toBe("/catalogs/catalog.2026-05-02.json");
+    expect(url).toBe("http://localhost:3000/test/catalogs/catalog.2026-05-02.json");
     expect(fetch).toHaveBeenCalledWith(TEST_HEAD_URL, {
       cache: "no-store",
     });

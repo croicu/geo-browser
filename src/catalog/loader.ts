@@ -11,8 +11,9 @@ export interface ResolveCatalogUrlOptions {
     fallbackUrl?: string;
 }
 
-const DEFAULT_HEAD_URL = "/catalog.head.json";
-const DEFAULT_FALLBACK_URL = "/catalogs/catalog.json";
+const BASE = import.meta.env.BASE_URL;
+const DEFAULT_HEAD_URL = `${BASE}catalog.head.json`;
+const DEFAULT_FALLBACK_URL = `${BASE}catalogs/catalog.json`;
 
 export async function resolveCatalogUrl(
     options: ResolveCatalogUrlOptions = {}
@@ -33,7 +34,7 @@ export async function resolveCatalogUrl(
       throw new AppError("catalog_head.invalid_payload", "Invalid catalog head payload");
     }
 
-    return json.catalogUrl;
+    return resolveUrl(json.catalogUrl, headUrl);
   } catch (err) {
     getLogger().warning("catalog_head_fallback", {
       message: "Falling back to bootstrap catalog",
@@ -42,6 +43,10 @@ export async function resolveCatalogUrl(
 
     return fallbackUrl;
   }
+}
+
+function resolveUrl(url: string, base: string): string {
+    return new URL(url, new URL(base, window.location.href)).href;
 }
 
 function isCatalogHead(value: unknown): value is CatalogHead {
