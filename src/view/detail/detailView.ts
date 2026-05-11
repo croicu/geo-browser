@@ -64,6 +64,10 @@ export class DetailView implements View {
         if (!this._map) {
             this.createMap();
 
+            if (!this._map) {
+                return;
+            }
+
             const summaryWidget = new SummaryWidget(
                 this._map,
                 this._actions,
