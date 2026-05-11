@@ -1,7 +1,7 @@
-// src/runtime/context.ts
 import { resolveCatalogUrl } from "../catalog/loader";
 import { ConsoleTelemetrySink, DefaultLogger } from "../logging";
 import { setLogger, resetLogger } from "../services";
+import { StorageGuard } from "./storageGuard";
 
 import type { GeoDataService, StorageService, Logger } from "../contracts";
 import type { ResolveCatalogUrlOptions } from "../catalog/loader";
@@ -15,7 +15,7 @@ export class Context {
     private readonly _debug: boolean;
 
     private readonly _dataSource: GeoDataService;
-    private readonly _storage: StorageService;
+    private readonly _storageGuard: StorageGuard;
     private readonly _logger: Logger;
     private readonly _host: unknown;
 
@@ -41,13 +41,31 @@ export class Context {
             : "browse";
 
         this._logger = new DefaultLogger(new ConsoleTelemetrySink());
-        // Placeholder implementations.
-        // These will be replaced by real factories/services.
         this._dataSource = {} as GeoDataService;
-        this._storage = {} as StorageService;
+        this._storageGuard = new StorageGuard();
         this._host = undefined;
 
         setLogger(this._logger);
+    }
+
+    public setStorage(impl: StorageService): void {
+        this._storageGuard.set(impl);
+
+        if (this.debug || this.mode === "design") {
+            this._storageGuard.nuke();
+        }
+    }
+
+    public get isStorageLocked(): boolean {
+        return this._storageGuard.isLocked;
+    }
+
+    public unlockStorage(): void {
+        this._storageGuard.unlock();
+    }
+
+    public nuke(): void {
+        this._storageGuard.nuke();
     }
 
     public get host(): unknown {
@@ -71,7 +89,7 @@ export class Context {
     }
 
     public get storage(): StorageService {
-        return this._storage;
+        return this._storageGuard;
     }
 
     public async resolveCatalogUrl(): Promise<string> {

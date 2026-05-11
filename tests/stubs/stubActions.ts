@@ -6,6 +6,11 @@ export class StubActions implements ControllerActions {
     public setLayerVisibleAreaId?: string;
     public setLayerVisibleLayerId?: string;
     public setLayerVisibleValue?: boolean;
+    public savedSummaryCenter?: [number, number];
+    public savedSummaryZoom?: number;
+    public savedDetailAreaId?: string;
+    public savedDetailCenter?: [number, number];
+    public savedDetailZoom?: number;
 
     openSummary(): void {
         this.openedSummary = true;
@@ -19,6 +24,17 @@ export class StubActions implements ControllerActions {
         this.setLayerVisibleAreaId = areaId;
         this.setLayerVisibleLayerId = layerId;
         this.setLayerVisibleValue = visible;
+    }
+
+    saveSummaryViewport(center: [number, number], zoom: number): void {
+        this.savedSummaryCenter = center;
+        this.savedSummaryZoom = zoom;
+    }
+
+    saveDetailViewport(areaId: string, center: [number, number], zoom: number): void {
+        this.savedDetailAreaId = areaId;
+        this.savedDetailCenter = center;
+        this.savedDetailZoom = zoom;
     }
 
     zoomIn(): void {}

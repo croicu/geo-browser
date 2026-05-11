@@ -14,9 +14,14 @@ import type { HeatPoint } from "../../src/protocols";
 export class StubMap implements MapHandle {
     public removeCalled = false;
     private _clickHandler?: (latLng: [number, number]) => void;
+    private _moveEndHandler?: () => void;
 
     remove(): void {
         this.removeCalled = true;
+    }
+
+    getCenter(): [number, number] {
+        return [0, 0];
     }
 
     getZoom(): number {
@@ -27,6 +32,11 @@ export class StubMap implements MapHandle {
         return () => {};
     }
 
+    onMoveEnd(handler: () => void): () => void {
+        this._moveEndHandler = handler;
+        return () => { this._moveEndHandler = undefined; };
+    }
+
     onClick(handler: (latLng: [number, number]) => void): () => void {
         this._clickHandler = handler;
         return () => { this._clickHandler = undefined; };
@@ -34,6 +44,10 @@ export class StubMap implements MapHandle {
 
     simulateClick(latLng: [number, number]): void {
         this._clickHandler?.(latLng);
+    }
+
+    simulateMoveEnd(): void {
+        this._moveEndHandler?.();
     }
 }
 

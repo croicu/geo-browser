@@ -42,6 +42,9 @@ export interface ControllerActions {
     openDetail(areaId: string): void;
     setLayerVisible(areaId: string, layerId: string, visible: boolean): void;
 
+    saveSummaryViewport(center: [number, number], zoom: number): void;
+    saveDetailViewport(areaId: string, center: [number, number], zoom: number): void;
+
     zoomIn(): void;
     zoomOut(): void;
     setZoom(zoomLevel: number): void;
@@ -55,8 +58,10 @@ export interface ControllerState {
 
 export interface MapHandle {
     remove(): void;
+    getCenter(): [number, number];
     getZoom(): number;
     onZoom(handler: (zoom: number) => void): () => void;
+    onMoveEnd(handler: () => void): () => void;
     onClick(handler: (latLng: [number, number]) => void): () => void;
 }
 
@@ -86,6 +91,8 @@ export interface StorageService {
     removeItem(
         key: string
     ): void;
+
+    clear(): void;
 }
 
 export interface HostService {
