@@ -62,6 +62,12 @@ class LeafletMapHandle implements MapHandle {
         return () => this._map.off("zoomend", listener);
     }
 
+    onClick(handler: (latLng: [number, number]) => void): () => void {
+        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
+        this._map.on("click", listener);
+        return () => this._map.off("click", listener);
+    }
+
     unwrap(): L.Map {
         return this._map;
     }

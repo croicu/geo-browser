@@ -1,6 +1,7 @@
 import type { GeoArea } from "../../catalog/area";
 import type { ControllerActions, MapFactory, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
+import { getLogger } from "../../services";
 import { HeatLayerView } from "./heatLayerView";
 import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
@@ -27,6 +28,7 @@ export class DetailView implements View {
     private _map?: MapHandle;
     private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
+    private _clickCleanup?: () => void;
 
     constructor(
         root: HTMLElement,
@@ -63,18 +65,18 @@ export class DetailView implements View {
 
         if (!this._map) {
             this.createMap();
+        }
 
-            if (!this._map) {
-                return;
-            }
+        const map = this._map;
 
-            const summaryWidget = new SummaryWidget(
-                this._map,
-                this._actions,
-                this._widgetFactory
-            );
+        if (!map) {
+            return;
+        }
+
+        if (!this._summaryWidget) {
+            const summaryWidget = new SummaryWidget(map, this._actions, this._widgetFactory);
             const layersWidget = new LayerSelectionWidget(
-                this._map,
+                map,
                 this._actions,
                 this._widgetFactory,
                 this._area.id,
@@ -86,6 +88,7 @@ export class DetailView implements View {
 
             this._summaryWidget = summaryWidget;
             this._layersWidget = layersWidget;
+            this._clickCleanup = map.onClick(latLng => this.onMapClick(latLng));
         }
 
         this.renderLayerViews();
@@ -95,6 +98,9 @@ export class DetailView implements View {
         this.destroyLayerViews();
 
         if (this._map) {
+            this._clickCleanup?.();
+            this._clickCleanup = undefined;
+
             this._map.remove();
             this._map = undefined;
 
@@ -178,5 +184,9 @@ export class DetailView implements View {
         }
 
         this._layerViews.clear();
+    }
+
+    private onMapClick(latLng: [number, number]): void {
+        getLogger().diagnostic("map.click", { lat: latLng[0], lng: latLng[1] });
     }
 }

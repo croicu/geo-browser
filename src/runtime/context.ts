@@ -1,7 +1,7 @@
 // src/runtime/context.ts
 import { resolveCatalogUrl } from "../catalog/loader";
 import { ConsoleTelemetrySink, DefaultLogger } from "../logging";
-import { setLogger } from "../services";
+import { setLogger, resetLogger } from "../services";
 
 import type { GeoDataService, StorageService, Logger } from "../contracts";
 import type { ResolveCatalogUrlOptions } from "../catalog/loader";
@@ -29,6 +29,7 @@ export class Context {
 
     public static reset(): void {
         Context.s_instance = undefined;
+        resetLogger();
     }
 
     private constructor() {
