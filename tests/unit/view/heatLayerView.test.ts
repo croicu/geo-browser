@@ -3,62 +3,32 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import type {
     HeatLayerOptions,
     LayerFactory,
-    MapHandle,
     MapLayerHandle,
 } from "../../../src/contracts";
-import { HeatPoint } from "../../../src/protocols"
+import { HeatPoint } from "../../../src/protocols";
 import { GeoLayer } from "../../../src/catalog/layer";
 import { HeatLayerView } from "../../../src/view/detail/heatLayerView";
+import { StubMap, StubMapLayerHandle } from "../../stubs/stubLeafletFactories";
+import { stubFetch } from "../../fakes/fakeFetch";
 
-class StubMap implements MapHandle {
-    remove(): void {
-    }
-}
-
-class StubMapLayerHandle implements MapLayerHandle {
-    public addedTo?: MapHandle;
-    public removed = false;
-
-    addTo(map: MapHandle): void {
-        this.addedTo = map;
-    }
-
-    remove(): void {
-        this.removed = true;
-    }
-}
-
-class StubLayerFactory implements LayerFactory {
+class FakeHeatLayerFactory implements LayerFactory {
     public heatPoints?: HeatPoint[];
     public heatOptions?: HeatLayerOptions;
-    public heatLayer = new StubMapLayerHandle();
+    public readonly heatLayer = new StubMapLayerHandle();
 
     createLayerGroup(): MapLayerHandle {
         return new StubMapLayerHandle();
     }
 
-    createCircleMarker(): MapLayerHandle {
-        return new StubMapLayerHandle();
+    createCircleMarker(): never {
+        throw new Error("Method not implemented.");
     }
 
-    createHeatLayer(
-        points: HeatPoint[],
-        options: HeatLayerOptions
-    ): MapLayerHandle {
+    createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {
         this.heatPoints = points;
         this.heatOptions = options;
-
         return this.heatLayer;
     }
-}
-
-function stubFetch(payload: unknown): void {
-    vi.stubGlobal("fetch", async () => {
-        return {
-            ok: true,
-            json: async () => payload,
-        };
-    });
 }
 
 describe("HeatLayerView", () => {
@@ -92,7 +62,7 @@ describe("HeatLayerView", () => {
         stubFetch(payload);
 
         const map = new StubMap();
-        const factory = new StubLayerFactory();
+        const factory = new FakeHeatLayerFactory();
 
         const layer = new GeoLayer({
             id: "debug-heat",
@@ -113,14 +83,8 @@ describe("HeatLayerView", () => {
         await view.render();
 
         expect(factory.heatPoints).toEqual([
-            {
-                latLng: [40.8518, 14.2681],
-                weight: 0.9,
-            },
-            {
-                latLng: [40.84, 14.25],
-                weight: 0.7,
-            },
+            { latLng: [40.8518, 14.2681], weight: 0.9 },
+            { latLng: [40.84, 14.25], weight: 0.7 },
         ]);
 
         expect(factory.heatOptions).toEqual({
@@ -151,7 +115,7 @@ describe("HeatLayerView", () => {
         stubFetch(payload);
 
         const map = new StubMap();
-        const factory = new StubLayerFactory();
+        const factory = new FakeHeatLayerFactory();
 
         const layer = new GeoLayer({
             id: "debug-heat",
@@ -165,10 +129,7 @@ describe("HeatLayerView", () => {
         await view.render();
 
         expect(factory.heatPoints).toEqual([
-            {
-                latLng: [40.8518, 14.2681],
-                weight: 1.0,
-            },
+            { latLng: [40.8518, 14.2681], weight: 1.0 },
         ]);
 
         expect(factory.heatOptions).toEqual({
@@ -207,7 +168,7 @@ describe("HeatLayerView", () => {
         stubFetch(payload);
 
         const map = new StubMap();
-        const factory = new StubLayerFactory();
+        const factory = new FakeHeatLayerFactory();
 
         const layer = new GeoLayer({
             id: "debug-heat",
@@ -221,10 +182,7 @@ describe("HeatLayerView", () => {
         await view.render();
 
         expect(factory.heatPoints).toEqual([
-            {
-                latLng: [40.86, 14.28],
-                weight: 0.5,
-            },
+            { latLng: [40.86, 14.28], weight: 0.5 },
         ]);
     });
 
@@ -237,7 +195,7 @@ describe("HeatLayerView", () => {
         stubFetch(payload);
 
         const map = new StubMap();
-        const factory = new StubLayerFactory();
+        const factory = new FakeHeatLayerFactory();
 
         const layer = new GeoLayer({
             id: "debug-heat",
@@ -249,7 +207,6 @@ describe("HeatLayerView", () => {
         const view = new HeatLayerView(map, layer, factory);
 
         await view.render();
-
         view.destroy();
 
         expect(factory.heatLayer.removed).toBe(true);
