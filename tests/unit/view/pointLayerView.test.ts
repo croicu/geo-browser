@@ -2,70 +2,39 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import type {
     CircleMarkerOptions,
+    ClickableMapLayerHandle,
     HeatLayerOptions,
     LayerFactory,
-    MapHandle,
     MapLayerHandle,
 } from "../../../src/contracts";
 import { GeoLayer } from "../../../src/catalog/layer";
 import { PointLayerView } from "../../../src/view/detail/pointLayerView";
 import { stubFetch } from "../../fakes/fakeFetch";
 import { HeatPoint } from "../../../src/protocols";
-
-class FakeMap implements MapHandle {
-    remove(): void {
-    }
-
-    getZoom(): number {
-        return 3;
-    }
-
-    onZoom(_handler: (zoom: number) => void): () => void {
-        return () => {};
-    }
-
-    onClick(_handler: (latLng: [number, number]) => void): () => void {
-        return () => {};
-    }
-}
-
-class FakeLayerHandle implements MapLayerHandle {
-    public addedTo?: MapHandle;
-    public removed = false;
-
-    addTo(target: MapHandle): void {
-        this.addedTo = target;
-    }
-
-    remove(): void {
-        this.removed = true;
-    }
-}
+import { StubMap, StubMapLayerHandle, StubMarker } from "../../stubs/stubLeafletFactories";
 
 class FakeLeafletLayerFactory implements LayerFactory {
-    createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {
-        throw new Error("Method not implemented.");
-    }
-    public readonly group = new FakeLayerHandle();
-    public readonly markers: FakeLayerHandle[] = [];
+    public readonly markers: StubMarker[] = [];
     public readonly markerLatLngs: [number, number][] = [];
     public readonly markerOptions: CircleMarkerOptions[] = [];
 
     createCircleMarker(
         latLng: [number, number],
         options: CircleMarkerOptions
-    ): MapLayerHandle {
-        const marker = new FakeLayerHandle();
-
+    ): ClickableMapLayerHandle {
+        const marker = new StubMarker();
         this.markers.push(marker);
         this.markerLatLngs.push(latLng);
         this.markerOptions.push(options);
-
         return marker;
     }
 
     createLayerGroup(): MapLayerHandle {
-        return this.group;
+        return new StubMapLayerHandle();
+    }
+
+    createHeatLayer(_points: HeatPoint[], _options: HeatLayerOptions): MapLayerHandle {
+        throw new Error("Method not implemented.");
     }
 }
 
@@ -80,7 +49,7 @@ const layer_data = {
         opacity: 0.7,
         radiusScale: 2,
     },
-}
+};
 
 const one_point = {
     type: "FeatureCollection",
@@ -116,7 +85,7 @@ const two_points = {
             },
         },
     ],
-}
+};
 
 const one_line = {
     type: "FeatureCollection",
@@ -141,10 +110,10 @@ describe("LayerView", () => {
     });
 
     it("renders GeoJSON point features as circle markers", async () => {
-
         stubFetch(two_points);
+
         const layer = new GeoLayer(layer_data);
-        const map = new FakeMap();
+        const map = new StubMap();
         const factory = new FakeLeafletLayerFactory();
 
         const view = new PointLayerView(map, layer, factory);
@@ -156,14 +125,14 @@ describe("LayerView", () => {
         expect(factory.markerLatLngs[0]).toEqual([40.8518, 14.2681]);
         expect(factory.markerLatLngs[1]).toEqual([40.84, 14.25]);
 
-        expect(factory.markers[0].addedTo).toBe(map);
-        expect(factory.markers[1].addedTo).toBe(map);
+        expect(factory.markers[0].addToMap).toBe(map);
+        expect(factory.markers[1].addToMap).toBe(map);
     });
 
     it("applies layer style to circle markers", async () => {
-
         stubFetch(one_point);
-        const map = new FakeMap();
+
+        const map = new StubMap();
         const layer = new GeoLayer(layer_data);
         const factory = new FakeLeafletLayerFactory();
 
@@ -177,9 +146,9 @@ describe("LayerView", () => {
     });
 
     it("ignores unsupported features", async () => {
-
         stubFetch(one_line);
-        const map = new FakeMap();
+
+        const map = new StubMap();
         const layer = new GeoLayer(layer_data);
         const factory = new FakeLeafletLayerFactory();
 
@@ -191,9 +160,9 @@ describe("LayerView", () => {
     });
 
     it("removes markers on destroy", async () => {
-
         stubFetch(two_points);
-        const map = new FakeMap();
+
+        const map = new StubMap();
         const layer = new GeoLayer(layer_data);
         const factory = new FakeLeafletLayerFactory();
 
@@ -202,7 +171,7 @@ describe("LayerView", () => {
         await view.render();
         view.destroy();
 
-        expect(factory.markers[0].removed).toBe(true);
-        expect(factory.markers[1].removed).toBe(true);
+        expect(factory.markers[0].removeCalled).toBe(true);
+        expect(factory.markers[1].removeCalled).toBe(true);
     });
 });

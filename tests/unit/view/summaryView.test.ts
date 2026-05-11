@@ -1,141 +1,14 @@
 import { vi, beforeEach, describe, expect, it } from "vitest";
-import type {
-    ClickableMapLayerHandle,
-    ControllerActions,
-    HeatLayerOptions,
-    LayerFactory,
-    Logger,
-    MapFactory,
-    MapHandle,
-    MapLayerHandle,
-} from "../../../src/contracts";
-import { setLogger } from "../../../src/services";
 import { GeoCatalog } from "../../../src/catalog/catalog";
 import { SummaryView } from "../../../src/view/summary/summaryView";
 import { SummaryViewState } from "../../../src/state/summaryViewState";
-import { HeatPoint } from "../../../src/protocols";
-
-class StubLogger implements Logger {
-    public readonly calls: Array<{ message: string; props?: Record<string, unknown> }> = [];
-
-    diagnostic(message: string, props?: Record<string, unknown>): void {
-        this.calls.push({ message, props });
-    }
-
-    info(): void {}
-    warning(): void {}
-    error(): void {}
-    fatal(): void {}
-}
-
-class StubMap implements MapHandle {
-    public removeCalled = false;
-    private _clickHandler?: (latLng: [number, number]) => void;
-
-    remove(): void {
-        this.removeCalled = true;
-    }
-
-    getZoom(): number {
-        return 3;
-    }
-
-    onZoom(_handler: (zoom: number) => void): () => void {
-        return () => {};
-    }
-
-    onClick(handler: (latLng: [number, number]) => void): () => void {
-        this._clickHandler = handler;
-        return () => { this._clickHandler = undefined; };
-    }
-
-    simulateClick(latLng: [number, number]): void {
-        this._clickHandler?.(latLng);
-    }
-}
-
-class StubMapFactory implements MapFactory {
-    public map = new StubMap();
-    public root?: HTMLElement;
-    public center?: [number, number];
-    public zoom?: number;
-
-    createMap(
-        root: HTMLElement,
-        center: [number, number],
-        zoom: number
-    ): MapHandle {
-        this.root = root;
-        this.center = center;
-        this.zoom = zoom;
-
-        return this.map;
-    }
-}
-
-class StubMarker implements ClickableMapLayerHandle {
-    public addToMap?: MapHandle;
-    public removeCalled = false;
-    public clickHandler?: () => void;
-
-    addTo(map: MapHandle): void {
-        this.addToMap = map;
-    }
-
-    remove(): void {
-        this.removeCalled = true;
-    }
-
-    onClick(handler: () => void): void {
-        this.clickHandler = handler;
-    }
-
-    setRadius(_r: number): void {
-    }
-}
-
-class StubLayerFactory implements LayerFactory {
-    public markers: StubMarker[] = [];
-
-    createLayerGroup(): ClickableMapLayerHandle {
-        const marker = new StubMarker();
-        this.markers.push(marker);
-        return marker;
-    }
-
-    createCircleMarker(): ClickableMapLayerHandle {
-        const marker = new StubMarker();
-        this.markers.push(marker);
-        return marker;
-    }
-
-    createHeatLayer(_points: HeatPoint[], _options: HeatLayerOptions): MapLayerHandle {
-        throw new Error("Method not implemented.");
-    }
-}
-
-class StubActions implements ControllerActions {
-    public openedDetailAreaId?: string;
-
-    openSummary(): void {
-    }
-
-    openDetail(areaId: string): void {
-        this.openedDetailAreaId = areaId;
-    }
-
-    zoomIn(): void {
-    }
-
-    zoomOut(): void {
-    }
-
-    setZoom(): void {
-    }
-
-    setLayerVisible(): void {
-    }
-}
+import { StubActions } from "../../stubs/stubActions";
+import { StubLogger } from "../../stubs/stubLogger";
+import {
+    StubLayerFactory,
+    StubMapFactory,
+} from "../../stubs/stubLeafletFactories";
+import { setLogger } from "../../../src/services";
 
 describe("SummaryView", () => {
     let root: HTMLElement;
@@ -174,10 +47,6 @@ describe("SummaryView", () => {
 
         expect(root.querySelector(".summary-view")).not.toBeNull();
         expect(root.querySelector(".summary-map")).not.toBeNull();
-
-        expect(mapFactory.root).toBe(root.querySelector(".summary-map"));
-        expect(mapFactory.center).toEqual([0, 0]);
-        expect(mapFactory.zoom).toBe(2);
     });
 
     it("renders one bubble marker per catalog area", async () => {

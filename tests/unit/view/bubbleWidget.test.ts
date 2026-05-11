@@ -1,108 +1,13 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import type {
-    ClickableMapLayerHandle,
-    ControllerActions,
-    HeatLayerOptions,
-    LayerFactory,
-    MapHandle,
-    MapLayerHandle,
-} from "../../../src/contracts";
 import { GeoArea } from "../../../src/catalog/area";
 import { BubbleWidget } from "../../../src/view/summary/bubbleWidget";
-import { HeatPoint } from "../../../src/protocols";
-
-class StubMap implements MapHandle {
-    remove(): void {
-    }
-
-    getZoom(): number {
-        return 3;
-    }
-
-    onZoom(_handler: (zoom: number) => void): () => void {
-        return () => {};
-    }
-
-    onClick(_handler: (latLng: [number, number]) => void): () => void {
-        return () => {};
-    }
-}
-
-class StubMarker implements ClickableMapLayerHandle {
-    public addToMap?: MapHandle;
-    public removeCalled = false;
-    public clickHandler?: () => void;
-    public radius?: number;
-
-    addTo(map: MapHandle): void {
-        this.addToMap = map;
-    }
-
-    remove(): void {
-        this.removeCalled = true;
-    }
-
-    onClick(handler: () => void): void {
-        this.clickHandler = handler;
-    }
-
-    setRadius(r: number): void {
-        this.radius = r;
-    }
-}
-
-class StubLayerGroup implements MapLayerHandle {
-    addTo(): void {
-    }
-
-    remove(): void {
-    }
-}
-
-class StubLayerFactory implements LayerFactory {
-    public markers: StubMarker[] = [];
-
-    createLayerGroup(): MapLayerHandle {
-        return new StubLayerGroup();
-    }
-
-    createCircleMarker(): ClickableMapLayerHandle {
-        const marker = new StubMarker();
-        this.markers.push(marker);
-
-        return marker;
-    }
-
-    createHeatLayer(
-        points: HeatPoint[], 
-        options: HeatLayerOptions
-    ): MapLayerHandle {
-        return new StubLayerGroup();
-    }
-}
-
-class StubActions implements ControllerActions {
-    public openedDetailAreaId?: string;
-
-    openSummary(): void {
-    }
-
-    openDetail(areaId: string): void {
-        this.openedDetailAreaId = areaId;
-    }
-
-    zoomIn(): void {
-    }
-
-    zoomOut(): void {
-    }
-
-    setZoom(): void {
-    }
-
-    setLayerVisible(): void {
-    }
-}
+import {
+    StubActions,
+} from "../../stubs/stubActions";
+import {
+    StubLayerFactory,
+    StubMap,
+} from "../../stubs/stubLeafletFactories";
 
 describe("BubbleWidget", () => {
     let map: StubMap;

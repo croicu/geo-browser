@@ -1,55 +1,9 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { DetailView } from "../../../src/view/detail/detailView";
-import type { ControllerActions, Logger, MapFactory, MapHandle } from "../../../src/contracts";
+import { StubActions } from "../../stubs/stubActions";
+import { StubLogger } from "../../stubs/stubLogger";
 import { StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories";
 import { setLogger } from "../../../src/services";
-
-class FakeMap implements MapHandle {
-    private _clickHandler?: (latLng: [number, number]) => void;
-
-    remove(): void {}
-    getZoom(): number { return 13; }
-    onZoom(_handler: (zoom: number) => void): () => void { return () => {}; }
-
-    onClick(handler: (latLng: [number, number]) => void): () => void {
-        this._clickHandler = handler;
-        return () => { this._clickHandler = undefined; };
-    }
-
-    simulateClick(latLng: [number, number]): void {
-        this._clickHandler?.(latLng);
-    }
-}
-
-class FakeMapFactory implements MapFactory {
-    public readonly map = new FakeMap();
-
-    createMap(): MapHandle {
-        return this.map;
-    }
-}
-
-class StubLogger implements Logger {
-    public readonly calls: Array<{ message: string; props?: Record<string, unknown> }> = [];
-
-    diagnostic(message: string, props?: Record<string, unknown>): void {
-        this.calls.push({ message, props });
-    }
-
-    info(): void {}
-    warning(): void {}
-    error(): void {}
-    fatal(): void {}
-}
-
-class FakeActions implements ControllerActions {
-    openSummary(): void {}
-    openDetail(_areaId: string): void {}
-    setLayerVisible(areaId: string, layerId: string, visible: boolean): void {}
-    zoomIn(): void {}
-    zoomOut(): void {}
-    setZoom(_zoomLevel: number): void {}
-}
 
 const fakeArea = {
     id: "napoli",
@@ -83,12 +37,12 @@ describe("DetailView", () => {
 
         const view = new DetailView(
             root,
-            new FakeActions(),
+            new StubActions(),
             fakeArea as any,
             fakeState as any,
             {
                 mapFactory: new StubMapFactory(),
-                widgetFactory: new StubWidgetFactory()
+                widgetFactory: new StubWidgetFactory(),
             }
         );
 
@@ -103,12 +57,12 @@ describe("DetailView", () => {
 
         const view = new DetailView(
             root,
-            new FakeActions(),
+            new StubActions(),
             fakeArea as any,
             fakeState as any,
             {
                 mapFactory: new StubMapFactory(),
-                widgetFactory: new StubWidgetFactory()
+                widgetFactory: new StubWidgetFactory(),
             }
         );
 
@@ -123,12 +77,12 @@ describe("DetailView", () => {
 
         const view = new DetailView(
             root,
-            new FakeActions(),
+            new StubActions(),
             fakeArea as any,
             fakeState as any,
             {
                 mapFactory: new StubMapFactory(),
-                widgetFactory: new StubWidgetFactory()
+                widgetFactory: new StubWidgetFactory(),
             }
         );
 
@@ -141,14 +95,14 @@ describe("DetailView", () => {
 
     it("logs GPS coordinates on map click", () => {
         const root = document.createElement("div");
-        const mapFactory = new FakeMapFactory();
+        const mapFactory = new StubMapFactory();
         const logger = new StubLogger();
 
         setLogger(logger);
 
         const view = new DetailView(
             root,
-            new FakeActions(),
+            new StubActions(),
             fakeArea as any,
             fakeState as any,
             {

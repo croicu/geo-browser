@@ -3,108 +3,46 @@ import { describe, expect, it, vi } from "vitest";
 import { SummaryWidget } from "../../../src/view/detail/summaryWidget";
 
 import type {
-    ControllerActions,
-    WidgetFactory,
-    MapHandle,
-    WidgetHandle,
     LayerSelectionWidgetItem,
+    MapHandle,
+    WidgetFactory,
+    WidgetHandle,
 } from "../../../src/contracts";
+import { StubActions } from "../../stubs/stubActions";
+import { StubMap, StubWidget } from "../../stubs/stubLeafletFactories";
 
-// --- stubs ---
-
-class StubMap implements MapHandle {
-    remove(): void {
-    }
-}
-
-class StubWidgetHandle implements WidgetHandle {
-    public addedTo?: MapHandle;
-    public removed = false;
-
-    addTo(map: MapHandle): void {
-        this.addedTo = map;
-    }
-
-    remove(): void {
-        this.removed = true;
-    }
-}
-
-class StubWidgetFactory implements WidgetFactory {
+class FakeWidgetFactory implements WidgetFactory {
     public createdLabel?: string;
-    public createdLayers?: LayerSelectionWidgetItem[];
     public createdOnClick?: () => void;
-    public createdOnToggle?: (layerId: string, visible: boolean) => void;
 
-    private readonly _handle = new StubWidgetHandle();
+    private readonly _handle = new StubWidget();
 
-    createSummaryWidget(
-        label: string,
-        onClick: () => void
-    ): WidgetHandle {
-
+    createSummaryWidget(label: string, onClick: () => void): WidgetHandle {
         this.createdLabel = label;
         this.createdOnClick = onClick;
-
         return this._handle;
     }
 
     createLayerSelectionWidget(
-        layers: LayerSelectionWidgetItem[], 
-        onToggle: (
-            layerId: string, 
-            visible: boolean
-        ) => void
-    ): WidgetHandle 
-    {
-        this.createdLayers = layers;
-        this.createdOnToggle = onToggle;
-
+        _layers: LayerSelectionWidgetItem[],
+        _onToggle: (layerId: string, visible: boolean) => void
+    ): WidgetHandle {
         return this._handle;
     }
 
-    get handle(): StubWidgetHandle {
+    get handle(): StubWidget {
         return this._handle;
     }
 }
-
-class StubActions implements ControllerActions {
-    public openedSummary = false;
-
-    openSummary(): void {
-        this.openedSummary = true;
-    }
-
-    openDetail(): void {
-    }
-
-    setLayerVisible(areaId: string, layerId: string, visible: boolean): void {
-    }
-
-    zoomIn(): void {
-    }
-
-    zoomOut(): void {
-    }
-
-    setZoom(): void {
-    }
-}
-
-// --- tests ---
 
 describe("SummaryWidget", () => {
 
     it("creates widget on render", () => {
         const map = new StubMap();
         const actions = new StubActions();
-        const factory = new StubWidgetFactory();
+        const factory = new FakeWidgetFactory();
 
-        const widget = new SummaryWidget(
-            map,
-            actions,
-            factory
-        );
+        const widget = new SummaryWidget(map, actions, factory);
 
         widget.render();
 
@@ -115,13 +53,9 @@ describe("SummaryWidget", () => {
     it("adds widget to map", () => {
         const map = new StubMap();
         const actions = new StubActions();
-        const factory = new StubWidgetFactory();
+        const factory = new FakeWidgetFactory();
 
-        const widget = new SummaryWidget(
-            map,
-            actions,
-            factory
-        );
+        const widget = new SummaryWidget(map, actions, factory);
 
         widget.render();
         widget.addTo(map);
@@ -132,13 +66,9 @@ describe("SummaryWidget", () => {
     it("opens summary on click", () => {
         const map = new StubMap();
         const actions = new StubActions();
-        const factory = new StubWidgetFactory();
+        const factory = new FakeWidgetFactory();
 
-        const widget = new SummaryWidget(
-            map,
-            actions,
-            factory
-        );
+        const widget = new SummaryWidget(map, actions, factory);
 
         widget.render();
 
@@ -154,13 +84,9 @@ describe("SummaryWidget", () => {
     it("removes widget on destroy", () => {
         const map = new StubMap();
         const actions = new StubActions();
-        const factory = new StubWidgetFactory();
+        const factory = new FakeWidgetFactory();
 
-        const widget = new SummaryWidget(
-            map,
-            actions,
-            factory
-        );
+        const widget = new SummaryWidget(map, actions, factory);
 
         widget.render();
         widget.remove();
@@ -171,18 +97,11 @@ describe("SummaryWidget", () => {
     it("does not recreate widget on multiple renders", () => {
         const map = new StubMap();
         const actions = new StubActions();
-        const factory = new StubWidgetFactory();
+        const factory = new FakeWidgetFactory();
 
-        const createSpy = vi.spyOn(
-            factory,
-            "createSummaryWidget"
-        );
+        const createSpy = vi.spyOn(factory, "createSummaryWidget");
 
-        const widget = new SummaryWidget(
-            map,
-            actions,
-            factory
-        );
+        const widget = new SummaryWidget(map, actions, factory);
 
         widget.render();
         widget.render();
