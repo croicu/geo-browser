@@ -79,10 +79,12 @@ export class Context {
     }
 
     private getCatalogOptions(): ResolveCatalogUrlOptions {
+        const base = import.meta.env.BASE_URL;
+
         if (this._debug) {
             return {
-                headUrl: "/catalog.head.debug.json",
-                fallbackUrl: "/catalogs/catalog.debug.json",
+                headUrl: `${base}catalog.head.debug.json`,
+                fallbackUrl: `${base}catalogs/catalog.debug.json`,
             };
         }
 
