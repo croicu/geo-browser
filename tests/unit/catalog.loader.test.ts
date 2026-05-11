@@ -15,6 +15,7 @@ function createMockLogger(): Logger {
 
 const TEST_HEAD_URL = "/test/catalog.head.json";
 const TEST_FALLBACK_URL = "/test/catalog.json";
+const TEST_CATALOG_URL = "http://localhost:3000/test/catalogs/catalog.2026-05-02.json";
 
 describe("catalog loader", () => {
   afterEach(() => {
@@ -31,7 +32,7 @@ describe("catalog loader", () => {
         ok: true,
         json: async () => ({
           version: 1,
-          catalogUrl: "catalogs/catalog.2026-05-02.json",
+          catalogUrl: "catalogs/catalog.2026-05-02.json", // relative to head URL
         }),
       })
     );
@@ -41,7 +42,7 @@ describe("catalog loader", () => {
         fallbackUrl: TEST_FALLBACK_URL,
     });
 
-    expect(url).toBe("http://localhost:3000/test/catalogs/catalog.2026-05-02.json");
+    expect(url).toBe(TEST_CATALOG_URL);
     expect(fetch).toHaveBeenCalledWith(TEST_HEAD_URL, {
       cache: "no-store",
     });
