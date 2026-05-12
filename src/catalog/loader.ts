@@ -13,7 +13,7 @@ export interface ResolveCatalogUrlOptions {
 
 const BASE = import.meta.env.BASE_URL;
 const DEFAULT_HEAD_URL = `${BASE}catalog.head.json`;
-const DEFAULT_FALLBACK_URL = `${BASE}catalogs/catalog.json`;
+const DEFAULT_FALLBACK_URL = `${BASE}catalog.json`;
 
 export async function resolveCatalogUrl(
     options: ResolveCatalogUrlOptions = {}
@@ -45,7 +45,7 @@ export async function resolveCatalogUrl(
   }
 }
 
-function resolveUrl(url: string, base: string): string {
+export function resolveUrl(url: string, base: string): string {
     return new URL(url, new URL(base, window.location.href)).href;
 }
 

@@ -102,7 +102,7 @@ export class Context {
         if (this._debug) {
             return {
                 headUrl: `${base}catalog.head.debug.json`,
-                fallbackUrl: `${base}catalogs/catalog.debug.json`,
+                fallbackUrl: `${base}catalog.debug.json`,
             };
         }
 

@@ -1,6 +1,7 @@
 import { fail } from "../errors";
 import type { AreaSummary, Catalog } from "../protocols";
 import { GeoArea } from "./area";
+import { resolveUrl } from "./loader";
 
 export class GeoCatalog {
     private readonly catalogUrl: string;
@@ -27,7 +28,10 @@ export class GeoCatalog {
 
         this._version = catalog.version;
         this._createdAt = catalog.createdAt;
-        this._areas = catalog.areas.map((area: AreaSummary) => new GeoArea(area));
+        this._areas = catalog.areas.map((area: AreaSummary) => {
+            const manifestUrl = resolveUrl(area.manifestUrl, this.catalogUrl);
+            return new GeoArea({ ...area, manifestUrl });
+        });
     }
 
     get version(): number | undefined {

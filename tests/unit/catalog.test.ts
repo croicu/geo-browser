@@ -32,7 +32,7 @@ describe("GeoCatalog", () => {
     });
 
     it("starts unloaded", () => {
-        const catalog = new GeoCatalog("/catalogs/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.debug.json");
 
         expect(catalog.isLoaded()).toBe(false);
     });
@@ -43,7 +43,7 @@ describe("GeoCatalog", () => {
             json: async () => catalogPayload,
         }));
 
-        const catalog = new GeoCatalog("/catalogs/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.debug.json");
 
         await catalog.load();
 
@@ -61,12 +61,12 @@ describe("GeoCatalog", () => {
 
         vi.stubGlobal("fetch", fetchMock);
 
-        const catalog = new GeoCatalog("/catalogs/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.debug.json");
 
         await catalog.load();
 
         expect(fetchMock).toHaveBeenCalledWith(
-            "/catalogs/catalog.debug.json",
+            "/catalog.debug.json",
             { cache: "no-store" },
         );
     });
@@ -79,7 +79,7 @@ describe("GeoCatalog", () => {
 
         vi.stubGlobal("fetch", fetchMock);
 
-        const catalog = new GeoCatalog("/catalogs/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.debug.json");
 
         await catalog.load();
         await catalog.load();
@@ -92,14 +92,35 @@ describe("GeoCatalog", () => {
             ok: false,
         }));
 
-        const catalog = new GeoCatalog("/catalogs/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.debug.json");
 
         await expect(catalog.load()).rejects.toThrow();
     });
 
     it("throws if accessing areas before load", () => {
-        const catalog = new GeoCatalog("/catalogs/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.debug.json");
 
         expect(() => catalog.areas).toThrow();
+    });
+
+    it("resolves relative manifestUrl against the catalog url", async () => {
+        const payload: Catalog = {
+            ...catalogPayload,
+            areas: [{
+                ...catalogPayload.areas[0],
+                manifestUrl: "./areas/napoli/manifest.json",
+            }],
+        };
+
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+            ok: true,
+            json: async () => payload,
+        }));
+
+        const catalog = new GeoCatalog("http://localhost:3000/catalog.json");
+        await catalog.load();
+
+        expect(catalog.areas[0].summary.manifestUrl)
+            .toBe("http://localhost:3000/areas/napoli/manifest.json");
     });
 });

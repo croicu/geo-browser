@@ -109,7 +109,32 @@ interface AreaDetail {
 }
 ```
 
-### 7. Production Cache Headers
+### 7. Geolocation Service
+
+Goal:
+
+```text
+User grants browser geolocation permission
+→ GeoLocationService resolves current position
+→ "Center on my location" widget appears bottom-right of map
+→ clicking it pans the map to current position
+```
+
+Design notes:
+
+- `GeoLocationService` is a pluggable seam in `contracts.ts` — production wraps `navigator.geolocation`, tests inject a stub.
+- Service exposes availability as a first-class concept; widget only renders when geolocation is supported and permission has not been denied.
+- Widget lives in `DetailView` and `SummaryView` independently (both maps may want it).
+- Keep widget creation/teardown inside the view lifecycle, consistent with existing widget ownership pattern.
+
+```ts
+interface GeoLocationService {
+    isAvailable(): boolean;
+    getCurrentPosition(): Promise<[number, number]>;
+}
+```
+
+### 8. Production Cache Headers
 
 Static hosting should use:
 

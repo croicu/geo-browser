@@ -5,7 +5,7 @@
       "id": "overpass_heatmap_1",
       "name": "Overpass #1 (heatmap)",
       "type": "heatmap",
-      "url": "/areas/napoli/layers/overpass_1.geojson",
+      "url": "./layers/overpass_1.geojson",
       "visible": true,
       "style": {
         "color": "#00ff00",
@@ -17,7 +17,7 @@
       "id": "overpass_heatmap_2",
       "name": "Overpass #2 (heatmap)",
       "type": "heatmap",
-      "url": "/areas/napoli/layers/overpass_2.geojson",
+      "url": "./layers/overpass_2.geojson",
       "visible": true,
       "style": {
         "color": "#0000ff",
