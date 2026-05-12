@@ -1,4 +1,4 @@
 {
   "version": 1,
-  "catalogUrl": "catalogs/catalog.json"
+  "catalogUrl": "./catalog.json"
 }

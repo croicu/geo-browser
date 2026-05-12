@@ -1,6 +1,7 @@
 import { fail } from "../errors";
 import type { AreaDetail, AreaImage, AreaSummary } from "../protocols";
 import { GeoLayer } from "./layer";
+import { resolveUrl } from "./loader";
 
 export class GeoArea {
     private readonly _summary: AreaSummary;
@@ -27,7 +28,10 @@ export class GeoArea {
         const detail = (await response.json()) as AreaDetail;
 
         this._detail = detail;
-        this._layers = detail.layers.map((l) => new GeoLayer(l));
+        this._layers = detail.layers.map((l) => {
+            const url = resolveUrl(l.url, this.summary.manifestUrl);
+            return new GeoLayer({ ...l, url });
+        });
     }
 
     get layers(): readonly GeoLayer[] {
