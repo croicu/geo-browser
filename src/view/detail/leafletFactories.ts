@@ -106,6 +106,25 @@ class LeafletMapLayerHandle implements MapLayerHandle {
     }
 }
 
+class LeafletHeatLayerHandle extends LeafletMapLayerHandle {
+    private readonly _heatLayer: L.HeatLayer;
+    private readonly _opacity: number;
+
+    constructor(layer: L.HeatLayer, opacity: number) {
+        super(layer);
+        this._heatLayer = layer;
+        this._opacity = opacity;
+    }
+
+    addTo(map: MapHandle): void {
+        super.addTo(map);
+        const canvas = (this._heatLayer as unknown as { _canvas?: HTMLCanvasElement })._canvas;
+        if (canvas) {
+            canvas.style.opacity = String(this._opacity);
+        }
+    }
+}
+
 class LeafletClickableMapLayerHandle
     extends LeafletMapLayerHandle
     implements ClickableMapLayerHandle {
@@ -170,7 +189,7 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
             },
         });
 
-        return new LeafletMapLayerHandle(layer);
+        return new LeafletHeatLayerHandle(layer, options.opacity);
     }
 }
 
