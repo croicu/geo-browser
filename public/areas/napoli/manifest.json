@@ -2,17 +2,30 @@
   "version": 1,
   "layers": [
     {
-      "id": "overpass",
+      "id": "overpass_leisure_garden_park",
       "name": "Overpass (heatmap)",
       "type": "heatmap",
-      "url": "./layers/overpass.geojson",
+      "url": "./layers/overpass_leisure_garden_park.geojson",
       "visible": true,
       "style": {
-        "color": "#0000af",
-        "opacity": 0.5,
-        "radiusScale": 1.0
+        "opacity": 0.7,
+        "radiusScale": 1.0,
+        "color": "#00ff00"
       },
-      "mergeKey": "overpass"
+      "mergeKey": "overpass:leisure=garden,park"
+    },
+    {
+      "id": "overpass_amenity_entertainment_sustenance",
+      "name": "Overpass (heatmap)",
+      "type": "heatmap",
+      "url": "./layers/overpass_amenity_entertainment_sustenance.geojson",
+      "visible": true,
+      "style": {
+        "opacity": 0.7,
+        "radiusScale": 1.0,
+        "color": "#ff0000"
+      },
+      "mergeKey": "overpass:amenity=entertainment,sustenance"
     }
   ]
 }
