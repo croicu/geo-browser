@@ -8,7 +8,7 @@
       "url": "./layers/overpass.geojson",
       "visible": true,
       "style": {
-        "color": "#00af00",
+        "color": "#0000af",
         "opacity": 0.5,
         "radiusScale": 1.0
       },
