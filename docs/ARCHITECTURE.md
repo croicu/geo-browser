@@ -239,7 +239,7 @@ HeatLayerView
 Layer type mapping:
 
 ```text
-"points"  → PointLayerView
+"circle"  → PointLayerView
 "heatmap" → HeatLayerView
 ```
 

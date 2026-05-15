@@ -1,5 +1,6 @@
 import { GeoLayer } from "../../catalog/layer";
 import type { LayerFactory, MapHandle, MapLayerHandle, View } from "../../contracts";
+import type { LayerStyle } from "../../protocols";
 
 interface GeoJsonFeatureCollection {
     type: "FeatureCollection";
@@ -108,7 +109,45 @@ export abstract class LayerView implements View {
         return 1;
     }
 
-    protected weightToRadius(weight: number): number {
+    protected geoRadiusMeters(feature: GeoJsonPointFeature): number | undefined {
+        const radiusM = feature.properties?.radius_m;
+        if (typeof radiusM === "number") {
+            return radiusM;
+        }
+
+        const areaSqm = feature.properties?.area_sqm;
+        if (typeof areaSqm === "number") {
+            return Math.sqrt(areaSqm / Math.PI);
+        }
+
+        return undefined;
+    }
+
+    protected computeHeatWeight(feature: GeoJsonPointFeature, style?: LayerStyle): number {
+        const geoRadius = this.geoRadiusMeters(feature);
+
+        if (geoRadius !== undefined) {
+            return geoRadius * (style?.radiusScale ?? 1);
+        }
+
+        return this.getWeight(feature);
+    }
+
+    protected computePointRadius(feature: GeoJsonPointFeature, style?: LayerStyle): number {
+        const scale = style?.radiusScale ?? 1;
+        const geoRadius = this.geoRadiusMeters(feature);
+
+        const radius = geoRadius !== undefined
+            ? geoRadius * scale
+            : this.weightToRadius(this.getWeight(feature)) * scale;
+
+        const min = style?.minRadius ?? 2;
+        const max = style?.maxRadius ?? 50;
+
+        return Math.max(min, Math.min(max, radius));
+    }
+
+    private weightToRadius(weight: number): number {
         return 4 + weight * 12;
     }
 }

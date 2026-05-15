@@ -127,7 +127,7 @@ export interface Layer {
 Supported current types:
 
 ```text
-"points"
+"circle"
 "heatmap"
 ```
 

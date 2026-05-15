@@ -168,6 +168,15 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
         return new LeafletClickableMapLayerHandle(marker);
     }
 
+    createGeoCircle(
+        latLng: [number, number],
+        radiusMeters: number,
+        options: CircleMarkerOptions
+    ): ClickableMapLayerHandle {
+        const circle = L.circle(latLng, { ...options, radius: radiusMeters });
+        return new LeafletClickableMapLayerHandle(circle);
+    }
+
     createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {
         const heatPoints: L.HeatLatLngTuple[] = [];
 
@@ -198,10 +207,14 @@ export class DefaultLeafletMapFactory implements MapFactory {
     createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle {
         const map = L.map(root).setView(center, zoom);
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            maxZoom: 19,
-            attribution: "&copy; OpenStreetMap contributors",
-        }).addTo(map);
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                maxZoom: 19,
+                attribution: "&copy; OpenStreetMap contributors",
+                className: "dark-osm"
+            }
+        ).addTo(map);
 
         return new LeafletMapHandle(map);
     }

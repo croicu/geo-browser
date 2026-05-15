@@ -118,7 +118,7 @@ export interface ClickableMapLayerHandle extends MapLayerHandle {
 export interface CircleMarkerOptions {
     title?: string,
     label?: string;
-    radius: number;
+    radius?: number;
     color?: string;
     weight?: number;
     fillColor?: string,
@@ -136,6 +136,11 @@ export interface LayerFactory {
     createLayerGroup(): MapLayerHandle;
     createCircleMarker(
         latLng: [number, number],
+        options: CircleMarkerOptions
+    ): ClickableMapLayerHandle;
+    createGeoCircle(
+        latLng: [number, number],
+        radiusMeters: number,
         options: CircleMarkerOptions
     ): ClickableMapLayerHandle;
 
