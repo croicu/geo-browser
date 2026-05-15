@@ -138,3 +138,7 @@ body,
 .leaflet-tooltip.bubble-label::before {
     display: none;
 }
+
+.dark-osm {
+    filter: grayscale(0%) invert(0%) brightness(70%) contrast(150%);
+}

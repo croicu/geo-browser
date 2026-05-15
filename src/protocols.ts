@@ -37,6 +37,8 @@ export interface LayerStyle {
     radius?: number;
     blur?: number;
     radiusScale?: number;
+    minRadius?: number;
+    maxRadius?: number;
 }
 
 export interface Layer {

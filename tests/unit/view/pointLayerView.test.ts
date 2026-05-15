@@ -41,7 +41,7 @@ class FakeLeafletLayerFactory implements LayerFactory {
 const layer_data = {
     id: "test-layer",
     name: "Test Layer",
-    type: "heatmap",
+    type: "circle",
     url: "/test/layer.geojson",
     visible: true,
     style: {
@@ -142,7 +142,7 @@ describe("LayerView", () => {
 
         expect(factory.markerOptions[0].color).toBe("#ff0000");
         expect(factory.markerOptions[0].opacity).toBe(0.7);
-        expect(factory.markerOptions[0].radius).toBe(10);
+        expect(factory.markerOptions[0].radius).toBe(20);
     });
 
     it("ignores unsupported features", async () => {

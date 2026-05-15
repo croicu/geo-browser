@@ -108,6 +108,12 @@ export class StubLayerFactory implements LayerFactory {
         return marker;
     }
 
+    createGeoCircle(): ClickableMapLayerHandle {
+        const marker = new StubMarker();
+        this.markers.push(marker);
+        return marker;
+    }
+
     createHeatLayer(_points: HeatPoint[], _options: HeatLayerOptions): MapLayerHandle {
         return new StubMapLayerHandle();
     }

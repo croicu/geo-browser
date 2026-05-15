@@ -36,13 +36,19 @@ export class PointLayerView extends LayerView {
 
             const coordinates = feature.geometry.coordinates;
             const latLng = this.geoJsonPointToLatLng(coordinates);
-            const weight = this.getWeight(feature);
+            const geoRadius = this.geoRadiusMeters(feature);
 
-            const marker = this._layerFactory.createCircleMarker(latLng, {
-                radius: this.weightToRadius(weight),
+            const markerOptions = {
                 color: style?.color,
                 opacity: style?.opacity ?? 0.8,
-            });
+            };
+
+            const marker = geoRadius !== undefined
+                ? this._layerFactory.createGeoCircle(latLng, geoRadius, markerOptions)
+                : this._layerFactory.createCircleMarker(latLng, {
+                    ...markerOptions,
+                    radius: this.computePointRadius(feature, style ?? undefined),
+                });
 
             marker.addTo(this._map);
             this._markers.push(marker);

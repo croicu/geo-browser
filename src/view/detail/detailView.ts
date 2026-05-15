@@ -163,12 +163,14 @@ export class DetailView implements View {
                         layer,
                         new DefaultLeafletLayerFactory()
                     );
-                } else {
+                } else if (layer.type === "circle") {
                     layerView = new PointLayerView(
                         this._map,
                         layer,
                         new DefaultLeafletLayerFactory()
                     );
+                } else {
+                    continue;
                 }
                 this._layerViews.set(layer.id, layerView);
 

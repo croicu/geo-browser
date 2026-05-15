@@ -13,6 +13,7 @@ export class HeatLayerView extends LayerView {
             });
         }
 
+        const style = this._layer.style;
         const points = [];
 
         for (const feature of payload.features) {
@@ -30,10 +31,8 @@ export class HeatLayerView extends LayerView {
             });
         }
 
-        const style = this._layer.style;
-
         const heatLayer = this._layerFactory.createHeatLayer(points, {
-            radius: style?.radius ?? 25,
+            radius: (style?.radius ?? 25) * (style?.radiusScale ?? 1),
             blur: style?.blur ?? 18,
             opacity: style?.opacity ?? 0.6,
             color: style?.color,
