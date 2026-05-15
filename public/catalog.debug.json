@@ -13,6 +13,19 @@
       "liveMapRadiusPx": 640,
 
       "manifestUrl": "./areas/napoli/manifest.json"
+    },
+    {
+      "id": "prague",
+      "name": "Prague",
+      "center": [
+        50.046,
+        14.4935
+      ],
+      "radiusMeters": 12000,
+      "minRadiusPx": 16,
+      "maxRadiusPx": 64,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/prague/manifest.json"
     }
   ]
 }
