@@ -18,6 +18,14 @@
       "sourceMaps": true
     },
     {
+      "name": "geo-browser (design)",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}",
+      "urlFilter": "http://localhost:5173/*"
+    },
+    {
       "name": "Vitest (run)",
       "type": "node",
       "request": "launch",

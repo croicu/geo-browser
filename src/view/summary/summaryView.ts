@@ -11,7 +11,6 @@ import { GeoCatalog } from "../../catalog/catalog";
 import { SummaryViewState } from "../../state/summaryViewState";
 import { BubbleWidget } from "./bubbleWidget";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory } from "../detail/leafletFactories";
-import { getLogger } from "../../services";
 
 export interface SummaryViewServices {
     mapFactory?: MapFactory;
@@ -29,7 +28,6 @@ export class SummaryView implements View {
     private _main?: HTMLElement;
     private _mapRoot?: HTMLElement;
     private _map?: MapHandle;
-    private _clickCleanup?: () => void;
     private _moveEndCleanup?: () => void;
     private readonly _bubbleWidgets: BubbleWidget[] = [];
 
@@ -69,7 +67,6 @@ export class SummaryView implements View {
         );
 
         this._map = map;
-        this._clickCleanup = map.onClick(latLng => this.onMapClick(latLng));
         this._moveEndCleanup = map.onMoveEnd(() => this.saveViewport());
 
         this.createBubbleWidgets();
@@ -94,8 +91,6 @@ export class SummaryView implements View {
 
         this._bubbleWidgets.length = 0;
 
-        this._clickCleanup?.();
-        this._clickCleanup = undefined;
         this._moveEndCleanup?.();
         this._moveEndCleanup = undefined;
 
@@ -112,10 +107,6 @@ export class SummaryView implements View {
             return;
         }
         this._actions.saveSummaryViewport(this._map.getCenter(), this._map.getZoom());
-    }
-
-    private onMapClick(latLng: [number, number]): void {
-        getLogger().diagnostic("map.click", { lat: latLng[0], lng: latLng[1] });
     }
 
     private createBubbleWidgets(): void {

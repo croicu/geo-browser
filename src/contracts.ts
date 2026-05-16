@@ -1,4 +1,5 @@
 import type { HeatPoint } from "./protocols";
+import type { Cookie, EventDef, MethodDef } from "./api";
 
 export type LogLevel =
     | "diagnostic"
@@ -50,6 +51,14 @@ export interface ControllerActions {
     setZoom(zoomLevel: number): void;
 }
 
+export interface GatewayService {
+    subscribe<TIn, TOut>(def: MethodDef<TIn, TOut>, fn: (data: TIn) => TOut): void;
+    unsubscribe<TIn, TOut>(def: MethodDef<TIn, TOut>): void;
+    invoke<TIn, TOut>(def: EventDef<TIn, TOut>, data: TIn, callback?: (response: TOut) => void): void;
+    register<TIn, TOut>(def: EventDef<TIn, TOut>, fn: (data: TIn) => TOut | void): Cookie;
+    unregister(cookie: Cookie): void;
+}
+
 export interface ControllerState {
     get zoom(): number;
     get minZoom(): number;
@@ -96,9 +105,8 @@ export interface StorageService {
 }
 
 export interface HostService {
-    getCapability(
-        name: string
-    ): unknown;
+    getCapability(name: string): unknown;
+    readonly gateway: GatewayService | null;
 }
 
 export interface MapFactory {

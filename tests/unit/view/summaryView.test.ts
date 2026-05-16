@@ -116,28 +116,6 @@ describe("SummaryView", () => {
         expect(root.querySelector(".summary-view")).toBeNull();
     });
 
-    it("logs GPS coordinates on map click", async () => {
-        const catalog = await createCatalog();
-        const state = new SummaryViewState({
-            center: [0, 0],
-            zoom: 2,
-        });
-        const logger = new StubLogger();
-
-        setLogger(logger);
-
-        const view = new SummaryView(root, actions, catalog, state, {
-            mapFactory,
-            layerFactory,
-        });
-
-        view.render();
-        mapFactory.map.simulateClick([40.8518, 14.2681]);
-
-        expect(logger.calls).toHaveLength(1);
-        expect(logger.calls[0].message).toBe("map.click");
-        expect(logger.calls[0].props).toEqual({ lat: 40.8518, lng: 14.2681 });
-    });
 });
 
 async function createCatalog(): Promise<GeoCatalog> {
