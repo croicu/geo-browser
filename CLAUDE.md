@@ -58,6 +58,12 @@ Debug mode (`?debug`) uses `/catalog.head.debug.json` → fallback `/catalogs/ca
 
 Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches its own GeoJSON URL — all on demand, cache bypassed.
 
+## Cross-Repo Contract Rule
+
+Any change to `src/api.ts` — adding, removing, or renaming a method/event definition or its payload types — **must** be reflected in `docs/MESSAGING.md` in the same commit.
+
+`docs/MESSAGING.md` is manually synchronized with the matching file in `geo-builder`. Keeping them in sync is the only mechanism that keeps the Python and TypeScript sides of the wire protocol aligned.
+
 ## Hard Architecture Rules
 
 - `protocols.ts` contains serializable data contracts only.
