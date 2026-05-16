@@ -12,23 +12,16 @@ export interface EventDef<TIn, TOut> {
     readonly _types?: readonly [TIn, TOut];
 }
 
-// Universal error code constant. All other codes are API-specific.
+// Universal error code constant. All other codes are method-specific.
 export const OK = 0;
 
-// ── Ping / Pong (internal connection handshake) ───────────────────────────────
+// ── Ready (connection handshake, builder → browser) ───────────────────────────
 
-export interface PingData {
-    token: string;
-}
+export interface ReadyData {}
 
-export interface PongData {
-    token: string;
-}
+export const Ready: EventDef<ReadyData, void> = { id: "__geo_ready__", _kind: "event" };
 
-export const Ping: MethodDef<PingData, PingData> = { id: "__geo_ping__", _kind: "method" };
-export const Pong: EventDef<PongData, void> = { id: "__geo_pong__", _kind: "event" };
-
-// ── GetAreaBbox ───────────────────────────────────────────────────────────────
+// ── GetAreaBbox (browser → builder) ──────────────────────────────────────────
 
 export interface GetAreaBboxInput {
     areaId: string;
@@ -40,7 +33,7 @@ export interface GetAreaBboxOutput {
     bbox: [number, number, number, number] | null; // [west, south, east, north]
 }
 
-export const GetAreaBbox: EventDef<GetAreaBboxInput, GetAreaBboxOutput> = {
+export const GetAreaBbox: MethodDef<GetAreaBboxInput, GetAreaBboxOutput> = {
     id: "__geo_get_area_bbox__",
-    _kind: "event",
+    _kind: "method",
 };

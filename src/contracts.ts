@@ -52,11 +52,9 @@ export interface ControllerActions {
 }
 
 export interface GatewayService {
-    subscribe<TIn, TOut>(def: MethodDef<TIn, TOut>, fn: (data: TIn) => TOut): void;
-    unsubscribe<TIn, TOut>(def: MethodDef<TIn, TOut>): void;
-    invoke<TIn, TOut>(def: EventDef<TIn, TOut>, data: TIn, callback?: (response: TOut) => void): void;
-    register<TIn, TOut>(def: EventDef<TIn, TOut>, fn: (data: TIn) => TOut | void): Cookie;
-    unregister(cookie: Cookie): void;
+    invoke<TIn, TOut>(def: MethodDef<TIn, TOut>, data: TIn, callback?: (response: TOut) => void): void;
+    subscribe<TIn, TOut>(def: EventDef<TIn, TOut>, fn: (data: TIn) => TOut | void): Cookie;
+    unsubscribe(cookie: Cookie): void;
 }
 
 export interface ControllerState {
@@ -133,6 +131,13 @@ export interface CircleMarkerOptions {
     opacity: number;
 }
 
+export interface RectangleOptions {
+    color: string;
+    weight: number;
+    fillColor: string;
+    fillOpacity: number;
+}
+
 export interface HeatLayerOptions {
     radius: number;
     blur: number;
@@ -151,10 +156,13 @@ export interface LayerFactory {
         radiusMeters: number,
         options: CircleMarkerOptions
     ): ClickableMapLayerHandle;
-
     createHeatLayer(
         points: HeatPoint[],
         options: HeatLayerOptions
+    ): MapLayerHandle;
+    createRectangle(
+        bounds: [[number, number], [number, number]],
+        options: RectangleOptions
     ): MapLayerHandle;
 }
 

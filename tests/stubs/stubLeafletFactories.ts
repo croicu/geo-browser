@@ -6,6 +6,7 @@ import type {
     MapFactory,
     MapHandle,
     MapLayerHandle,
+    RectangleOptions,
     WidgetFactory,
     WidgetHandle,
 } from "../../src/contracts";
@@ -115,6 +116,10 @@ export class StubLayerFactory implements LayerFactory {
     }
 
     createHeatLayer(_points: HeatPoint[], _options: HeatLayerOptions): MapLayerHandle {
+        return new StubMapLayerHandle();
+    }
+
+    createRectangle(_bounds: [[number, number], [number, number]], _options: RectangleOptions): MapLayerHandle {
         return new StubMapLayerHandle();
     }
 }

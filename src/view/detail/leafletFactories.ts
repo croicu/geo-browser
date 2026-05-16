@@ -30,6 +30,7 @@ import type {
     CircleMarkerOptions,
     LayerFactory,
     MapFactory,
+    RectangleOptions,
     WidgetFactory,
     MapHandle,
     MapLayerHandle,
@@ -175,6 +176,19 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
     ): ClickableMapLayerHandle {
         const circle = L.circle(latLng, { ...options, radius: radiusMeters });
         return new LeafletClickableMapLayerHandle(circle);
+    }
+
+    createRectangle(
+        bounds: [[number, number], [number, number]],
+        options: RectangleOptions
+    ): MapLayerHandle {
+        const rect = L.rectangle(bounds, {
+            color: options.color,
+            weight: options.weight,
+            fillColor: options.fillColor,
+            fillOpacity: options.fillOpacity,
+        });
+        return new LeafletMapLayerHandle(rect);
     }
 
     createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {

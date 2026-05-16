@@ -1,6 +1,6 @@
 import type { GatewayService } from "../contracts";
 import type { Cookie, EventDef, MethodDef } from "../api";
-import { Ping, Pong } from "../api";
+import { Ready } from "../api";
 import { getLogger } from "../services";
 
 type Handler = (data: unknown) => unknown;
@@ -25,26 +25,18 @@ export class Gateway implements GatewayService {
         this.registerInternals();
     }
 
-    subscribe<TIn, TOut>(def: MethodDef<TIn, TOut>, fn: (data: TIn) => TOut): void {
-        window.geo?.subscribe(def.id, fn as Handler);
-    }
-
-    unsubscribe<TIn, TOut>(def: MethodDef<TIn, TOut>): void {
-        window.geo?.unsubscribe(def.id);
-    }
-
-    invoke<TIn, TOut>(def: EventDef<TIn, TOut>, data: TIn, callback?: (response: TOut) => void): void {
+    invoke<TIn, TOut>(def: MethodDef<TIn, TOut>, data: TIn, callback?: (response: TOut) => void): void {
         window.geo?.invoke(def.id, data, callback as ((data: unknown) => void) | undefined);
     }
 
-    register<TIn, TOut>(def: EventDef<TIn, TOut>, fn: (data: TIn) => TOut | void): Cookie {
+    subscribe<TIn, TOut>(def: EventDef<TIn, TOut>, fn: (data: TIn) => TOut | void): Cookie {
         const cookie = ++this._cookieCounter;
         this._registrations.set(cookie, { id: def.id, fn: fn as Handler });
         this.rebuildSubscription(def.id);
         return cookie;
     }
 
-    unregister(cookie: Cookie): void {
+    unsubscribe(cookie: Cookie): void {
         const reg = this._registrations.get(cookie);
         if (!reg) {
             return;
@@ -54,10 +46,8 @@ export class Gateway implements GatewayService {
     }
 
     private registerInternals(): void {
-        this.subscribe(Ping, ({ token }) => {
-            getLogger().diagnostic("gateway.ping", { token });
-            this.invoke(Pong, { token });
-            return { token };
+        this.subscribe(Ready, () => {
+            getLogger().diagnostic("gateway.ready");
         });
     }
 
