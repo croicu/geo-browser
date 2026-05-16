@@ -64,6 +64,27 @@ Any change to `src/api.ts` — adding, removing, or renaming a method/event defi
 
 `docs/MESSAGING.md` is manually synchronized with the matching file in `geo-builder`. Keeping them in sync is the only mechanism that keeps the Python and TypeScript sides of the wire protocol aligned.
 
+## API Shape Rule
+
+Every API response payload carries exactly these fields:
+
+```ts
+error: number;             // 0 = OK; non-zero = caller-defined error code
+errorDescription: string | null;  // human-readable detail; null when error === OK
+// ...domain payload fields (may be null when error !== OK)
+```
+
+Rules:
+- Error codes are part of the contract and are declared by the Python side in `api.py`.
+- TypeScript must always check `error` before using payload fields.
+- Branch on the numeric code, not `errorDescription` — that field is for logging only.
+- `OK = 0` is the only universal constant; all other codes are API-specific.
+
+**Typical direction (not a strict rule):**
+- Browser → Builder: browser calls builder via `EventDef` / `gateway.invoke`.
+- Builder → Browser: builder raises events or makes requests via `MethodDef` / `gateway.subscribe`.
+- Ping/Pong is an internal handshake exception handled by the Gateway itself.
+
 ## Hard Architecture Rules
 
 - `protocols.ts` contains serializable data contracts only.

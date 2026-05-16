@@ -20,6 +20,24 @@ Both directions use the same wire format and the same `window.__geo_dispatch` en
 
 ---
 
+## API Response Contract
+
+Every API response payload must carry three fields:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `error` | `number` | `0` = success (`OK`); non-zero = caller-defined error code |
+| `errorDescription` | `string \| null` | Human-readable detail; `null` when `error === OK` |
+| payload fields | varies | Domain data (e.g. `bbox`); may be absent or `null` when `error !== OK` |
+
+**Rules:**
+- Error codes are part of the API contract and are declared by the Python caller in `api.py`.
+- The TypeScript callee must always check `error` before using payload fields.
+- Branch on the numeric code, not `errorDescription` — that field is for logging only.
+- `OK = 0` is the only universal constant; all other codes are API-specific.
+
+---
+
 ## Wire Protocol
 
 All messages are JSON objects posted via `window.chrome.webview.postMessage` (JS→Python) or injected via `window.__geo_dispatch(msg)` (Python→JS).
@@ -123,6 +141,13 @@ Every `@dataclass` in `src/geo_builder/api.py` becomes a TypeScript interface in
 | `dict[str,T]` | `Record<string,T>` |
 | `T \| None`   | `T \| null`     |
 
+Error codes:
+
+```typescript
+const OK               = 0;
+const ERR_AREA_NOT_FOUND = 1;
+```
+
 Current shared types:
 
 ```typescript
@@ -131,6 +156,14 @@ interface PingData { token: string; }
 
 // __geo_pong__
 interface PongData { token: string; }
+
+// __geo_get_area_bbox__
+interface GetAreaBboxInput  { areaId: string; }
+interface GetAreaBboxOutput {
+  error: number;
+  errorDescription: string | null;
+  bbox: [number, number, number, number] | null;  // [west, south, east, north]
+}
 ```
 
 ---
@@ -225,3 +258,21 @@ def on_area_selected(data: AreaSelectedInput) -> AreaSelectedOutput:
 
 gateway.register("__geo_area_selected__", on_area_selected)
 ```
+
+---
+
+## GetAreaBbox (`__geo_get_area_bbox__`)
+
+Returns the bounding box (GPS) of an area given its ID. The bbox is derived from `area.center` and `area.radiusMeters`.
+
+**TypeScript:**
+```typescript
+const GetAreaBbox: EventDef<GetAreaBboxInput, GetAreaBboxOutput> = { id: "__geo_get_area_bbox__" };
+
+gateway.invoke(GetAreaBbox, { areaId: "paris" }, ({ error, bbox }) => {
+  if (error !== OK) return;
+  // bbox = [west, south, east, north]
+});
+```
+
+**Python:** handled by `Catalog.register_handlers(gateway)` — no manual wiring needed.
