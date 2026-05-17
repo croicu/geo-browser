@@ -2,47 +2,46 @@
 
 ## Current Branch: `working`
 
-Ahead of `main`. All changes are uncommitted (see below).
+Ahead of `main`. All changes committed and pushed.
 
 ---
 
 ## What Was Done This Session
 
-### 1. StorageService + viewport persistence (committed `99d9d52`)
-- `StorageGuard` — locks on first I/O, `unlock()`, `nuke()`
-- `GeoStateStore` — saves/loads `SummaryViewState` and `DetailViewState` by key
-- `Controller` implements `GeoState` as a decorator over `GeoStateStore`
-- `SummaryView` and `DetailView` both save viewport on `moveend` and on `destroy()`
-- Storage is nuked on startup in debug (`?debug`) and design (`?design`) modes
-- `tests/setup.ts` injects `StubStorage` before each test
+### 1. Design mode messaging foundation (`7b73b6a`)
 
-### 2. Relative URL resolution in catalog loading (committed `50cde75`)
-- `resolveUrl` exported from `loader.ts`
-- `GeoCatalog.load()` resolves `manifestUrl` relative to the catalog URL
-- `GeoArea.load()` resolves layer `url` relative to the manifest URL
-- All public JSON files now use `./foo` style URLs
-- Catalog files moved from `public/catalogs/` to `public/` root
+- `src/api.ts` — typed `MethodDef<TIn,TOut>` / `EventDef<TIn,TOut>` with `_kind` discriminant; `OK = 0` constant
+- `src/designer/gateway.ts` — `Gateway` class: `invoke` (JS→Python), `subscribe` (Python→JS, cookie-based demuxer), `unsubscribe`; internal `Ready` subscription logs `gateway.ready`
+- `src/runtime/webViewHostService.ts` — `WebViewHostService` creates a `Gateway` in design mode (`?design=1`), `null` in browse mode
+- `HostService` interface: `gateway: GatewayService | null` (replaced raw `invoke`)
+- `Context` exposes typed `HostService`; mode passed to `WebViewHostService` constructor
 
-### 3. Heatmap opacity fix (committed `0da812a`)
-- `leaflet.heat` has no opacity option
-- `LeafletHeatLayerHandle` sets `canvas.style.opacity` after `addTo()`
+### 2. Architecture documentation (`44cd103`, `16638e1`)
 
-### 4. Uncommitted work in progress
-These changes are staged but not yet committed:
+- **Cross-repo contract rule** in `CLAUDE.md`: any change to `src/api.ts` must be reflected in `docs/MESSAGING.md` in the same commit
+- **API shape rule** in `CLAUDE.md`: all method responses carry `error: number`, `errorDescription: string | null`, and domain payload fields
+- `docs/MESSAGING.md`: full wire protocol spec, direction model, startup.js bridge, Gateway interface, Ready handshake, GetAreaBbox, add-method / add-event guides
 
-**`radiusScale` applied to layers**
-- `PointLayerView`: radius = `weightToRadius(weight) * radiusScale`
-- `HeatLayerView`: heat radius = `style.radius * radiusScale`
+### 3. Corrected messaging model + bbox rectangle overlay (`8a24814`)
 
-**`area_sqm` / `radius_m` GeoJSON feature properties**
-- Both are optional properties on individual GeoJSON Point features
-- `LayerView.geoRadiusMeters(feature)` — returns geographic radius in meters if either property is present, else `undefined`
-- `LayerView.computeHeatWeight(feature, style)` — uses geo radius × `radiusScale` if present, else falls back to `weight`
-- `LayerView.computePointRadius(feature, style)` — uses geo radius × `radiusScale` if present, else `weightToRadius(weight) × radiusScale`, clamped to `[minRadius, maxRadius]`
-- `LayerFactory.createGeoCircle(latLng, radiusMeters, options)` — uses `L.circle` (scales with map zoom) for features with geographic radius
-- `PointLayerView` dispatches: features with `radius_m`/`area_sqm` → `createGeoCircle`; others → `createCircleMarker`
-- `protocols.ts`: `LayerStyle` now has `minRadius?` and `maxRadius?`
-- `contracts.ts`: `CircleMarkerOptions.radius` is now optional; `LayerFactory` has `createGeoCircle`
+**Direction model (corrected):**
+- `MethodDef` = JS calls Python (browser → builder) via `gateway.invoke`
+- `EventDef` = Python calls JS (builder → browser) via `gateway.subscribe`
+
+**Ready handshake (replaces Ping/Pong):**
+- Builder fires `__geo_ready__` after setup; browser subscribes to it
+- `Gateway` subscribes internally in its constructor
+
+**GetAreaBbox:**
+- `MethodDef<GetAreaBboxInput, GetAreaBboxOutput>` — browser calls builder
+- Response: `{ error, errorDescription, bbox: [west, south, east, north] | null }`
+
+**Bbox rectangle in `DetailView`:**
+- After map creation, `DetailView` invokes `GetAreaBbox` via the gateway
+- On success, draws a light-gray (50% opacity) `L.rectangle` over the area bounds
+- `createRectangle(bounds, RectangleOptions): MapLayerHandle` added to `LayerFactory` / `leafletFactories.ts`
+- Rectangle is cleaned up in `destroy()`
+- `gateway` threaded through `ControllerOptions` → `DetailViewServices`
 
 ---
 
@@ -50,40 +49,37 @@ These changes are staged but not yet committed:
 
 ```
 src/
-  app/controller.ts          — orchestration, GeoState decorator
-  runtime/context.ts         — Context singleton, StorageGuard wiring
-  runtime/storageGuard.ts    — StorageService with lock lifecycle
-  runtime/localStorageService.ts
-  state/geoState.ts          — GeoState interface
-  state/geoStateStore.ts     — persistence impl
-  catalog/loader.ts          — resolveCatalogUrl, resolveUrl (exported)
-  catalog/catalog.ts         — GeoCatalog, resolves manifestUrl on load
-  catalog/area.ts            — GeoArea, resolves layer URLs on load
-  view/detail/layerView.ts   — abstract base: geoRadiusMeters, computeHeatWeight, computePointRadius
-  view/detail/heatLayerView.ts
-  view/detail/pointLayerView.ts
-  view/detail/leafletFactories.ts  — ALL Leaflet code lives here
+  api.ts                            — MethodDef, EventDef, OK, Ready, GetAreaBbox
+  designer/gateway.ts               — Gateway implementation (invoke/subscribe/unsubscribe)
+  runtime/webViewHostService.ts     — creates Gateway in design mode; null in browse
+  runtime/context.ts                — Context singleton; exposes host: HostService
+  contracts.ts                      — GatewayService, HostService, RectangleOptions, LayerFactory
+  app/controller.ts                 — threads gateway to DetailView
+  view/detail/detailView.ts         — invokes GetAreaBbox, draws bbox rectangle
+  view/detail/leafletFactories.ts   — ALL Leaflet code; createRectangle added
 
-public/
-  catalog.head.json          — { "catalogUrl": "./catalog.json" }
-  catalog.json               — areas list (currently empty)
-  areas/napoli/manifest.json — single heatmap layer, references ./layers/...
+docs/
+  MESSAGING.md                      — wire protocol spec (keep in sync with geo-builder)
+  CLAUDE.md                         — cross-repo rule + API shape rule
 ```
 
 ---
 
-## Architecture Reminders
+## Architecture Decisions Made
 
-- `contracts.ts` = behavioral interfaces; `protocols.ts` = serializable data
-- Only `leafletFactories.ts` imports Leaflet
-- Views emit intent only; Controller owns behavior
-- `StorageGuard` locks on first I/O — call `context.setStorage()` before controller starts
-- `resolveUrl(relative, base)` — always use this for URL resolution in catalog loading
+- `HostService.gateway` is `GatewayService | null` — null in browse mode, active in design mode
+- `GatewayService` exposes exactly three methods: `invoke`, `subscribe`, `unsubscribe`
+- `subscribe` returns a `Cookie`; `unsubscribe(cookie)` removes a single listener
+- Multiple listeners per event id are supported via internal demuxer (`rebuildSubscription`)
+- `window.geo` is only used inside `gateway.ts` — no other file touches it
+- The `Gateway` constructor registers internal subscriptions (currently just `Ready`)
+- All Leaflet calls go through `leafletFactories.ts` — no exceptions
 
 ---
 
 ## Next Likely Work
 
-- Commit the uncommitted WIP (radiusScale, area_sqm/radius_m, createGeoCircle)
-- Test the geographic circle rendering in the browser with the Napoli dataset
-- See `docs/ROADMAP.md` for the full backlog (GeoLocationService is item 7)
+- Use `GetAreaBbox` result to constrain the map viewport (fit bounds on open)
+- Add more builder events (catalog updated, area selection from builder side)
+- Add more browser methods (focus area, save project)
+- See `docs/ROADMAP.md` for full backlog
