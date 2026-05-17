@@ -37,3 +37,20 @@ export const GetAreaBbox: MethodDef<GetAreaBboxInput, GetAreaBboxOutput> = {
     id: "__geo_get_area_bbox__",
     _kind: "method",
 };
+
+// ── SetAreaBbox (browser → builder) ──────────────────────────────────────────
+
+export interface SetAreaBboxInput {
+    areaId: string;
+    bbox: [number, number, number, number]; // [west, south, east, north]
+}
+
+export interface SetAreaBboxOutput {
+    error: number;
+    errorDescription: string | null;
+}
+
+export const SetAreaBbox: MethodDef<SetAreaBboxInput, SetAreaBboxOutput> = {
+    id: "__geo_set_area_bbox__",
+    _kind: "method",
+};

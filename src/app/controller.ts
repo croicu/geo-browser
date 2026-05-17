@@ -70,6 +70,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
             this,
             this._catalog,
             this._summaryViewState,
+            { gateway: this._gateway }
         );
 
         this.switchView(summaryView);

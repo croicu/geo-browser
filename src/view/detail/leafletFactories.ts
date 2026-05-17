@@ -28,8 +28,10 @@ declare module "leaflet" {
 
 import type {
     CircleMarkerOptions,
+    DraggableMarkerHandle,
     LayerFactory,
     MapFactory,
+    RectangleHandle,
     RectangleOptions,
     WidgetFactory,
     MapHandle,
@@ -126,6 +128,50 @@ class LeafletHeatLayerHandle extends LeafletMapLayerHandle {
     }
 }
 
+class LeafletRectangleHandle extends LeafletMapLayerHandle implements RectangleHandle {
+    private readonly _rect: L.Rectangle;
+
+    constructor(rect: L.Rectangle) {
+        super(rect);
+        this._rect = rect;
+    }
+
+    setBounds(bounds: [[number, number], [number, number]]): void {
+        this._rect.setBounds(bounds);
+    }
+}
+
+class LeafletDraggableMarkerHandle extends LeafletMapLayerHandle implements DraggableMarkerHandle {
+    private readonly _marker: L.Marker;
+
+    constructor(marker: L.Marker) {
+        super(marker);
+        this._marker = marker;
+    }
+
+    setLatLng(latLng: [number, number]): void {
+        this._marker.setLatLng(latLng);
+    }
+
+    onDrag(handler: (latLng: [number, number]) => void): () => void {
+        const listener = () => {
+            const ll = this._marker.getLatLng();
+            handler([ll.lat, ll.lng]);
+        };
+        this._marker.on("drag", listener);
+        return () => this._marker.off("drag", listener);
+    }
+
+    onDragEnd(handler: (latLng: [number, number]) => void): () => void {
+        const listener = () => {
+            const ll = this._marker.getLatLng();
+            handler([ll.lat, ll.lng]);
+        };
+        this._marker.on("dragend", listener);
+        return () => this._marker.off("dragend", listener);
+    }
+}
+
 class LeafletClickableMapLayerHandle
     extends LeafletMapLayerHandle
     implements ClickableMapLayerHandle {
@@ -181,14 +227,26 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
     createRectangle(
         bounds: [[number, number], [number, number]],
         options: RectangleOptions
-    ): MapLayerHandle {
+    ): RectangleHandle {
         const rect = L.rectangle(bounds, {
             color: options.color,
             weight: options.weight,
             fillColor: options.fillColor,
             fillOpacity: options.fillOpacity,
+            interactive: false,
         });
-        return new LeafletMapLayerHandle(rect);
+        return new LeafletRectangleHandle(rect);
+    }
+
+    createDraggableMarker(latLng: [number, number]): DraggableMarkerHandle {
+        const icon = L.divIcon({
+            className: "",
+            html: '<div style="width:10px;height:10px;background:#fff;border:2px solid #595959;border-radius:2px;cursor:crosshair;box-shadow:0 1px 3px rgba(0,0,0,0.4);"></div>',
+            iconSize: [10, 10],
+            iconAnchor: [5, 5],
+        });
+        const marker = L.marker(latLng, { draggable: true, icon });
+        return new LeafletDraggableMarkerHandle(marker);
     }
 
     createHeatLayer(points: HeatPoint[], options: HeatLayerOptions): MapLayerHandle {

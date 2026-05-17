@@ -2,16 +2,19 @@
 
 import type {
     ControllerActions,
+    GatewayService,
     LayerFactory,
     MapHandle,
     CircleMarkerOptions,
     ClickableMapLayerHandle,
 } from "../../contracts";
 import { GeoArea } from "../../catalog/area";
+import { BboxWidget } from "./bboxWidget";
 
 export interface BubbleWidgetOptions {
     map: MapHandle;
     layerFactory: LayerFactory;
+    gateway?: GatewayService | null;
 }
 
 export class BubbleWidget {
@@ -19,8 +22,10 @@ export class BubbleWidget {
     private readonly _actions: ControllerActions;
     private readonly _map: MapHandle;
     private readonly _layerFactory: LayerFactory;
+    private readonly _gateway: GatewayService | null;
 
     private _marker?: ClickableMapLayerHandle;
+    private _bboxWidget?: BboxWidget;
     private _zoomCleanup?: () => void;
 
     constructor(
@@ -32,6 +37,7 @@ export class BubbleWidget {
         this._actions = actions;
         this._map = options.map;
         this._layerFactory = options.layerFactory;
+        this._gateway = options.gateway ?? null;
     }
 
     render(): void {
@@ -43,6 +49,8 @@ export class BubbleWidget {
     destroy(): void {
         this._zoomCleanup?.();
         this._zoomCleanup = undefined;
+        this._bboxWidget?.destroy();
+        this._bboxWidget = undefined;
         this._marker?.remove();
         this._marker = undefined;
     }
@@ -60,6 +68,18 @@ export class BubbleWidget {
         this._marker.onClick(this.handleClick);
 
         this._zoomCleanup = this._map.onZoom(zoom => this.updateRadius(zoom));
+
+        if (this._gateway) {
+            const bboxWidget = new BboxWidget(
+                this._map,
+                this._layerFactory,
+                this._gateway,
+                this._area.id,
+                this._area.bbox
+            );
+            bboxWidget.render();
+            this._bboxWidget = bboxWidget;
+        }
     }
 
     private handleClick = (): void => {

@@ -62,6 +62,8 @@ Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches it
 
 Any change to `src/api.ts` — adding, removing, or renaming a method/event definition or its payload types — **must** be reflected in `docs/MESSAGING.md` in the same commit.
 
+Any change to the shared data entities in `src/protocols.ts` — `Catalog`, `AreaSummary`, `AreaDetail`, `Layer`, or their nested types — **must** also be reflected in `docs/MESSAGING.md` in the same commit. These types describe the JSON structures that `geo-builder` writes and `geo-browser` reads; a mismatch silently breaks data loading.
+
 `docs/MESSAGING.md` is manually synchronized with the matching file in `geo-builder`. Keeping them in sync is the only mechanism that keeps the Python and TypeScript sides of the wire protocol aligned.
 
 ## API Shape Rule
@@ -331,8 +333,8 @@ Default event weight is `1.0`; heatmap density accumulation is handled by the re
 
 Good next branches:
 
-1. Map click logging in DetailView: click map → log GPS coordinates.
-2. Viewport synchronization: Leaflet move/zoom → update view state → persist/restore.
-3. Design-mode data source abstraction.
+1. Viewport synchronization: Leaflet move/zoom → update view state → persist/restore.
+2. Design-mode data source abstraction.
+3. Bbox persistence: `GeoArea.bbox` is computed from `center + radiusMeters` and is always square. Calling `SetAreaBbox` persists edits in the builder, but on the next load the square is recomputed, losing the edit. Fix: call `GetAreaBbox` on render and update the widget once the response arrives (render square immediately as placeholder, replace when builder responds).
 
 Keep branches narrow.

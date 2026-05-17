@@ -1,8 +1,6 @@
 import type { GeoArea } from "../../catalog/area";
-import type { ControllerActions, GatewayService, MapFactory, MapLayerHandle, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
+import type { ControllerActions, GatewayService, LayerFactory, MapFactory, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
-import type { GetAreaBboxOutput } from "../../api";
-import { GetAreaBbox, OK } from "../../api";
 import { getLogger } from "../../services";
 import { HeatLayerView } from "./heatLayerView";
 import { LayerSelectionWidget } from "./layerSelectionWidget";
@@ -10,9 +8,11 @@ import { LayerView } from "./layerView";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
 import { PointLayerView } from "./pointLayerView";
 import { SummaryWidget } from "./summaryWidget";
+import { BboxWidget } from "../summary/bboxWidget";
 
 export interface DetailViewServices {
     mapFactory?: MapFactory;
+    layerFactory?: LayerFactory;
     widgetFactory?: WidgetFactory;
     gateway?: GatewayService | null;
 }
@@ -23,6 +23,7 @@ export class DetailView implements View {
     private readonly _area: GeoArea;
     private readonly _state: DetailViewState;
     private readonly _mapFactory: MapFactory;
+    private readonly _layerFactory: LayerFactory;
     private readonly _widgetFactory: WidgetFactory;
     private readonly _layerViews = new Map<string, LayerView>();
 
@@ -31,7 +32,7 @@ export class DetailView implements View {
     private _element?: HTMLElement;
     private _mapRoot?: HTMLElement;
     private _map?: MapHandle;
-    private _bboxRect?: MapLayerHandle;
+    private _bboxWidget?: BboxWidget;
     private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
     private _clickCleanup?: () => void;
@@ -49,6 +50,7 @@ export class DetailView implements View {
         this._area = area;
         this._state = state;
         this._mapFactory = services.mapFactory ?? new DefaultLeafletMapFactory();
+        this._layerFactory = services.layerFactory ?? new DefaultLeafletLayerFactory();
         this._widgetFactory = services.widgetFactory ?? new DefaultLeafletWidgetFactory();
         this._gateway = services.gateway ?? null;
 
@@ -108,8 +110,8 @@ export class DetailView implements View {
         if (this._map) {
             this.saveViewport();
 
-            this._bboxRect?.remove();
-            this._bboxRect = undefined;
+            this._bboxWidget?.destroy();
+            this._bboxWidget = undefined;
 
             this._clickCleanup?.();
             this._clickCleanup = undefined;
@@ -155,24 +157,16 @@ export class DetailView implements View {
         this._moveEndCleanup = this._map.onMoveEnd(() => this.saveViewport());
 
         if (this._gateway) {
-            this._gateway.invoke(GetAreaBbox, { areaId: this._area.id }, response => this.onBboxResponse(response));
+            const bboxWidget = new BboxWidget(
+                this._map,
+                this._layerFactory,
+                this._gateway,
+                this._area.id,
+                this._area.bbox
+            );
+            bboxWidget.render();
+            this._bboxWidget = bboxWidget;
         }
-    }
-
-    private onBboxResponse(response: GetAreaBboxOutput): void {
-        if (response.error !== OK || !response.bbox || !this._map) {
-            return;
-        }
-
-        const [west, south, east, north] = response.bbox;
-
-        const rect = new DefaultLeafletLayerFactory().createRectangle(
-            [[south, west], [north, east]],
-            { color: "#999999", weight: 1, fillColor: "#cccccc", fillOpacity: 0.5 }
-        );
-
-        rect.addTo(this._map);
-        this._bboxRect = rect;
     }
 
     private renderLayerViews(): void {

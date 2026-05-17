@@ -89,6 +89,20 @@ describe("GeoArea", () => {
         expect(() => area.layers).toThrow();
     });
 
+    it("computes bbox from center and radius", () => {
+        const area = new GeoArea(summary);
+        const [west, south, east, north] = area.bbox;
+
+        expect(west).toBeLessThan(summary.center[1]);
+        expect(east).toBeGreaterThan(summary.center[1]);
+        expect(south).toBeLessThan(summary.center[0]);
+        expect(north).toBeGreaterThan(summary.center[0]);
+
+        // width and height should be symmetric around center
+        expect(summary.center[1] - west).toBeCloseTo(east - summary.center[1], 5);
+        expect(summary.center[0] - south).toBeCloseTo(north - summary.center[0], 5);
+    });
+
     it("throws if fetch fails", async () => {
         vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false }));
 

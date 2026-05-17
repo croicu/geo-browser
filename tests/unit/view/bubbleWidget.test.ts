@@ -8,6 +8,7 @@ import {
     StubLayerFactory,
     StubMap,
 } from "../../stubs/stubLeafletFactories";
+import { StubGateway } from "../../stubs/stubGateway";
 
 describe("BubbleWidget", () => {
     let map: StubMap;
@@ -78,6 +79,40 @@ describe("BubbleWidget", () => {
         widget.destroy();
 
         expect(marker.removeCalled).toBe(true);
+    });
+
+    it("does not create bbox widget without a gateway", () => {
+        const area = createArea();
+        const widget = new BubbleWidget(area, actions, { map, layerFactory });
+
+        widget.render();
+
+        expect(layerFactory.rectangles.length).toBe(0);
+    });
+
+    it("creates bbox widget immediately when gateway is present", () => {
+        const area = createArea();
+        const gateway = new StubGateway();
+        const widget = new BubbleWidget(area, actions, { map, layerFactory, gateway });
+
+        widget.render();
+
+        expect(layerFactory.rectangles.length).toBe(1);
+        expect(layerFactory.rectangles[0].addedTo).toBe(map);
+        expect(layerFactory.draggableMarkers.length).toBe(4);
+    });
+
+    it("destroys bbox widget on destroy", () => {
+        const area = createArea();
+        const gateway = new StubGateway();
+        const widget = new BubbleWidget(area, actions, { map, layerFactory, gateway });
+
+        widget.render();
+
+        const rect = layerFactory.rectangles[0];
+        widget.destroy();
+
+        expect(rect.removed).toBe(true);
     });
 });
 

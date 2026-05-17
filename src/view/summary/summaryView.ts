@@ -2,6 +2,7 @@
 
 import type {
     ControllerActions,
+    GatewayService,
     LayerFactory,
     MapFactory,
     MapHandle,
@@ -15,6 +16,7 @@ import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory } from "../detail/
 export interface SummaryViewServices {
     mapFactory?: MapFactory;
     layerFactory?: LayerFactory;
+    gateway?: GatewayService | null;
 }
 
 export class SummaryView implements View {
@@ -24,6 +26,7 @@ export class SummaryView implements View {
     private readonly _state: SummaryViewState;
     private readonly _mapFactory: MapFactory;
     private readonly _layerFactory: LayerFactory;
+    private readonly _gateway: GatewayService | null;
 
     private _main?: HTMLElement;
     private _mapRoot?: HTMLElement;
@@ -44,6 +47,7 @@ export class SummaryView implements View {
         this._state = state;
         this._mapFactory = services.mapFactory ?? new DefaultLeafletMapFactory();
         this._layerFactory = services.layerFactory ?? new DefaultLeafletLayerFactory();
+        this._gateway = services.gateway ?? null;
     }
 
     create(): void {
@@ -125,6 +129,7 @@ export class SummaryView implements View {
                 {
                     map,
                     layerFactory: this._layerFactory,
+                    gateway: this._gateway,
                 }
             );
 

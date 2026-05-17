@@ -116,6 +116,16 @@ export interface MapLayerHandle {
     remove(): void;
 }
 
+export interface RectangleHandle extends MapLayerHandle {
+    setBounds(bounds: [[number, number], [number, number]]): void;
+}
+
+export interface DraggableMarkerHandle extends MapLayerHandle {
+    setLatLng(latLng: [number, number]): void;
+    onDrag(handler: (latLng: [number, number]) => void): () => void;
+    onDragEnd(handler: (latLng: [number, number]) => void): () => void;
+}
+
 export interface ClickableMapLayerHandle extends MapLayerHandle {
     onClick: (handler: () => void) => void;
     setRadius(r: number): void;
@@ -163,7 +173,8 @@ export interface LayerFactory {
     createRectangle(
         bounds: [[number, number], [number, number]],
         options: RectangleOptions
-    ): MapLayerHandle;
+    ): RectangleHandle;
+    createDraggableMarker(latLng: [number, number]): DraggableMarkerHandle;
 }
 
 export interface WidgetHandle {
