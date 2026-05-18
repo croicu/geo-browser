@@ -13,7 +13,7 @@
       "name": "geo-browser (debug)",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:5173?debug=1",
+      "url": "http://localhost:5173?debug=1&design=1",
       "webRoot": "${workspaceFolder}",
       "sourceMaps": true
     },

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+  width="130" 
+  height="110" 
+  viewBox="0 0 130 110" 
+  role="img" 
+  aria-label="Design: New Area">
+  <!-- hand-drawn-style straightened rectangle -->
+  <path d="M80 20 L10 20 L10 100 L110 100 L 110 50"
+        fill="none"
+        stroke="#181818"
+        stroke-width="8"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- plus sign -->
+  <path d="M110 5 L110 35 M95 20 L125 20"
+        fill="none"
+        stroke="#181818"
+        stroke-width="8"
+        stroke-linecap="round"/>
+</svg>

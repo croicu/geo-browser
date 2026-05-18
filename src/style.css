@@ -142,3 +142,40 @@ body,
 .dark-osm {
     filter: grayscale(0%) invert(0%) brightness(70%) contrast(150%);
 }
+
+.design-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.design-toolbar-button {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+.design-toolbar-button:hover {
+    background: #f4f4f4;
+}
+
+.design-toolbar-button.active {
+    background: #dce8f5;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.design-toolbar-button img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}

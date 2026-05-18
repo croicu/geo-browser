@@ -40,4 +40,6 @@ export class StubActions implements ControllerActions {
     zoomIn(): void {}
     zoomOut(): void {}
     setZoom(): void {}
+    newArea(): void {}
+    setArea(_bbox: [number, number, number, number]): void {}
 }

@@ -1,5 +1,6 @@
 import type {
     ClickableMapLayerHandle,
+    DesignToolbarButton,
     DraggableMarkerHandle,
     HeatLayerOptions,
     LayerFactory,
@@ -49,6 +50,22 @@ export class StubMap implements MapHandle {
     onClick(handler: (latLng: [number, number]) => void): () => void {
         this._clickHandler = handler;
         return () => { this._clickHandler = undefined; };
+    }
+
+    setCursor(_cursor: string): void {}
+    disableDrag(): void {}
+    enableDrag(): void {}
+
+    onMouseDown(_handler: (latLng: [number, number]) => void): () => void {
+        return () => {};
+    }
+
+    onMouseMove(_handler: (latLng: [number, number]) => void): () => void {
+        return () => {};
+    }
+
+    onMouseUp(_handler: (latLng: [number, number]) => void): () => void {
+        return () => {};
     }
 
     simulateZoom(zoom: number): void {
@@ -205,6 +222,10 @@ export class StubWidgetFactory implements WidgetFactory {
         _layers: LayerSelectionWidgetItem[],
         _onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle {
+        return new StubWidget();
+    }
+
+    createDesignToolbar(_buttons: DesignToolbarButton[]): WidgetHandle {
         return new StubWidget();
     }
 }

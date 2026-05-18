@@ -1,6 +1,7 @@
 import { getLogger } from "../services";
 import { GeoCatalog } from "../catalog/catalog";
 import type { ControllerActions, ControllerState, GatewayService, StorageService, View } from "../contracts";
+import type { LatLng } from "../protocols";
 import type { GeoState } from "../state/geoState";
 
 import { GeoStateStore } from "../state/geoStateStore";
@@ -14,6 +15,8 @@ export interface ControllerOptions {
     catalog: GeoCatalog;
     storage: StorageService;
     gateway: GatewayService | null;
+    initialCenter?: LatLng;
+    initialZoom?: number;
 }
 
 export class Controller implements ControllerActions, ControllerState, GeoState {
@@ -31,6 +34,13 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
         this._gateway = options.gateway;
         this._geoStateStore = new GeoStateStore(options.storage);
         this._summaryViewState = this._geoStateStore.loadSummaryViewState();
+
+        if (options.initialCenter !== undefined) {
+            this._summaryViewState.center = options.initialCenter;
+        }
+        if (options.initialZoom !== undefined) {
+            this._summaryViewState.zoom = options.initialZoom;
+        }
     }
 
     async start(): Promise<void> {
@@ -140,6 +150,14 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
         this._detailViewState.center = center;
         this._detailViewState.zoom = zoom;
         this.saveDetailViewState(this._detailViewState);
+    }
+
+    newArea(): void {
+        getLogger().info("new area");
+    }
+
+    setArea(bbox: [number, number, number, number]): void {
+        getLogger().info("set area", { bbox });
     }
 
     zoomIn(): void {

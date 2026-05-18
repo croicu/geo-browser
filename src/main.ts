@@ -16,6 +16,8 @@ const controller = new Controller({
     catalog,
     storage: context.storage,
     gateway: context.host.gateway,
+    initialCenter: context.initialCenter,
+    initialZoom: context.initialZoom,
 });
 
 await controller.start().catch((err) => {

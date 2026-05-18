@@ -28,6 +28,7 @@ declare module "leaflet" {
 
 import type {
     CircleMarkerOptions,
+    DesignToolbarButton,
     DraggableMarkerHandle,
     LayerFactory,
     MapFactory,
@@ -79,6 +80,36 @@ class LeafletMapHandle implements MapHandle {
         const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
         this._map.on("click", listener);
         return () => this._map.off("click", listener);
+    }
+
+    setCursor(cursor: string): void {
+        this._map.getContainer().style.cursor = cursor;
+    }
+
+    onMouseDown(handler: (latLng: [number, number]) => void): () => void {
+        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
+        this._map.on("mousedown", listener);
+        return () => this._map.off("mousedown", listener);
+    }
+
+    onMouseMove(handler: (latLng: [number, number]) => void): () => void {
+        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
+        this._map.on("mousemove", listener);
+        return () => this._map.off("mousemove", listener);
+    }
+
+    onMouseUp(handler: (latLng: [number, number]) => void): () => void {
+        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
+        this._map.on("mouseup", listener);
+        return () => this._map.off("mouseup", listener);
+    }
+
+    disableDrag(): void {
+        this._map.dragging.disable();
+    }
+
+    enableDrag(): void {
+        this._map.dragging.enable();
     }
 
     unwrap(): L.Map {
@@ -333,7 +364,7 @@ class SummaryControl extends L.Control {
 
         const image = document.createElement("img");
 
-        image.src = "/icons/back.svg";
+        image.src = "/icons/browse-back.svg";
         image.alt = "Back";
 
         button.appendChild(image);
@@ -400,23 +431,58 @@ class LayerControl extends L.Control {
     }
 }
 
-export class DefaultLeafletWidgetFactory implements WidgetFactory{
+class DesignToolbarControl extends L.Control {
+    private readonly _buttons: DesignToolbarButton[];
+
+    constructor(buttons: DesignToolbarButton[]) {
+        super({ position: "topleft" });
+        this._buttons = buttons;
+    }
+
+    onAdd(): HTMLElement {
+        const container = L.DomUtil.create("div", "design-toolbar");
+
+        for (const btn of this._buttons) {
+            const button = L.DomUtil.create("button", "design-toolbar-button", container);
+            button.type = "button";
+            button.title = btn.title;
+
+            const img = document.createElement("img");
+            img.src = btn.iconUrl;
+            img.alt = btn.title;
+            button.appendChild(img);
+
+            L.DomEvent.disableClickPropagation(button);
+
+            const setActive = (active: boolean) => button.classList.toggle("active", active);
+
+            button.addEventListener("click", (e) => {
+                e.preventDefault();
+                btn.onClick(setActive);
+            });
+        }
+
+        return container;
+    }
+}
+
+export class DefaultLeafletWidgetFactory implements WidgetFactory {
 
     createSummaryWidget(
         label: string,
         onClick: () => void
     ): WidgetHandle {
-
-        return new LeafletWidgetHandle(
-            new SummaryControl(label, onClick));
+        return new LeafletWidgetHandle(new SummaryControl(label, onClick));
     }
 
     createLayerSelectionWidget(
-        layers: LayerSelectionWidgetItem[], 
-        onToggle: (layerId: string, visible: boolean) => void): WidgetHandle
-    {
-        return new LeafletWidgetHandle(
-            new LayerControl(layers, onToggle));
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void
+    ): WidgetHandle {
+        return new LeafletWidgetHandle(new LayerControl(layers, onToggle));
     }
 
+    createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle {
+        return new LeafletWidgetHandle(new DesignToolbarControl(buttons));
+    }
 }

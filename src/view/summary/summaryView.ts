@@ -7,15 +7,19 @@ import type {
     MapFactory,
     MapHandle,
     View,
+    WidgetFactory,
+    WidgetHandle,
 } from "../../contracts";
 import { GeoCatalog } from "../../catalog/catalog";
 import { SummaryViewState } from "../../state/summaryViewState";
 import { BubbleWidget } from "./bubbleWidget";
-import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory } from "../detail/leafletFactories";
+import { DrawAreaInteraction } from "./drawAreaInteraction";
+import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "../detail/leafletFactories";
 
 export interface SummaryViewServices {
     mapFactory?: MapFactory;
     layerFactory?: LayerFactory;
+    widgetFactory?: WidgetFactory;
     gateway?: GatewayService | null;
 }
 
@@ -28,11 +32,15 @@ export class SummaryView implements View {
     private readonly _layerFactory: LayerFactory;
     private readonly _gateway: GatewayService | null;
 
+    private readonly _widgetFactory: WidgetFactory;
+
     private _main?: HTMLElement;
     private _mapRoot?: HTMLElement;
     private _map?: MapHandle;
     private _moveEndCleanup?: () => void;
     private readonly _bubbleWidgets: BubbleWidget[] = [];
+    private _designToolbar?: WidgetHandle;
+    private _drawInteraction?: DrawAreaInteraction;
 
     constructor(
         root: HTMLElement,
@@ -47,6 +55,7 @@ export class SummaryView implements View {
         this._state = state;
         this._mapFactory = services.mapFactory ?? new DefaultLeafletMapFactory();
         this._layerFactory = services.layerFactory ?? new DefaultLeafletLayerFactory();
+        this._widgetFactory = services.widgetFactory ?? new DefaultLeafletWidgetFactory();
         this._gateway = services.gateway ?? null;
     }
 
@@ -74,6 +83,13 @@ export class SummaryView implements View {
         this._moveEndCleanup = map.onMoveEnd(() => this.saveViewport());
 
         this.createBubbleWidgets();
+
+        if (this._gateway) {
+            this._designToolbar = this._widgetFactory.createDesignToolbar([
+                { iconUrl: "/icons/design-new.svg", title: "New area", onClick: setActive => this.newArea(setActive) },
+            ]);
+            this._designToolbar.addTo(map);
+        }
     }
 
     render(): void {
@@ -88,6 +104,12 @@ export class SummaryView implements View {
 
     destroy(): void {
         this.saveViewport();
+
+        this._drawInteraction?.stop();
+        this._drawInteraction = undefined;
+
+        this._designToolbar?.remove();
+        this._designToolbar = undefined;
 
         for (const bubbleWidget of this._bubbleWidgets) {
             bubbleWidget.destroy();
@@ -104,6 +126,37 @@ export class SummaryView implements View {
         this._main?.remove();
         this._main = undefined;
         this._mapRoot = undefined;
+    }
+
+    private newArea(setActive: (active: boolean) => void): void {
+        if (this._drawInteraction) {
+            this._drawInteraction.stop();
+            this._drawInteraction = undefined;
+            setActive(false);
+            return;
+        }
+
+        const map = this._map;
+        if (!map) {
+            return;
+        }
+
+        setActive(true);
+
+        this._drawInteraction = new DrawAreaInteraction(
+            map,
+            this._layerFactory,
+            bbox => {
+                this._drawInteraction = undefined;
+                setActive(false);
+                this.setArea(bbox);
+            }
+        );
+        this._drawInteraction.start();
+    }
+
+    private setArea(bbox: [number, number, number, number]): void {
+        this._actions.setArea(bbox);
     }
 
     private saveViewport(): void {
