@@ -7,11 +7,11 @@ import { setLogger } from "../../../src/services";
 
 const fakeArea = {
     id: "napoli",
+    center: [40.8518, 14.2681] as [number, number],
     summary: {
         id: "napoli",
         name: "Napoli",
-        center: [40.8518, 14.2681],
-        radiusMeters: 1000,
+        bbox: [14.25, 40.84, 14.28, 40.86] as [number, number, number, number],
         minRadiusPx: 32,
         maxRadiusPx: 256,
         liveMapRadiusPx: 128,

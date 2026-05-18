@@ -149,7 +149,7 @@ export class DetailView implements View {
             center = this._state.center;
             zoom = this._state.zoom;
         } else {
-            center = this._area.summary.center;
+            center = this._area.center;
             zoom = 12;
         }
 

@@ -57,24 +57,21 @@ export class GeoArea {
         return this._summary.name;
     }
 
+    get bbox(): [number, number, number, number] {
+        return this._summary.bbox;
+    }
+
     get center(): [number, number] {
-        return this._summary.center;
+        const [west, south, east, north] = this._summary.bbox;
+        return [(south + north) / 2, (west + east) / 2];
     }
 
     get radiusMeters(): number {
-        return this._summary.radiusMeters;
-    }
-
-    // NOTE: this always produces a square bbox (equal meters in every direction).
-    // The builder may store a non-square bbox via SetAreaBbox, but we have no way
-    // to read it back without calling GetAreaBbox. Accepted limitation for now —
-    // the placeholder resets to square on every reload.
-    get bbox(): [number, number, number, number] {
-        const [lat, lng] = this._summary.center;
-        const r = this._summary.radiusMeters;
-        const latDelta = r / 111320;
-        const lngDelta = r / (111320 * Math.cos(lat * Math.PI / 180));
-        return [lng - lngDelta, lat - latDelta, lng + lngDelta, lat + latDelta];
+        const [west, south, east, north] = this._summary.bbox;
+        const lat = (south + north) / 2;
+        const latRadius = (north - south) * 111320 / 2;
+        const lngRadius = (east - west) * 111320 * Math.cos(lat * Math.PI / 180) / 2;
+        return (latRadius + lngRadius) / 2;
     }
 
     get minRadiusPx(): number {

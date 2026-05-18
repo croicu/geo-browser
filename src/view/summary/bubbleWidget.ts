@@ -56,11 +56,10 @@ export class BubbleWidget {
     }
 
     private createMarker(): void {
-        const summary = this._area.summary;
         const style = this.getCircleMarkerOptions();
 
         this._marker = this._layerFactory.createCircleMarker(
-            summary.center,
+            this._area.center,
             style
         );
 
@@ -91,10 +90,10 @@ export class BubbleWidget {
     }
 
     private computeRadius(zoom: number): number {
-        const lat = this._area.summary.center[0];
+        const lat = this._area.center[0];
         const metersPerPixel =
             40075016.686 * Math.abs(Math.cos(lat * Math.PI / 180)) / Math.pow(2, zoom + 8);
-        const radiusPx = this._area.summary.radiusMeters / metersPerPixel;
+        const radiusPx = this._area.radiusMeters / metersPerPixel;
         return Math.max(this._area.summary.minRadiusPx, radiusPx);
     }
 

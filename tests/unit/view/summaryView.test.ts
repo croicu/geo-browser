@@ -132,8 +132,7 @@ async function createCatalog(): Promise<GeoCatalog> {
                         {
                             id: "napoli",
                             name: "Napoli",
-                            center: [40.8518, 14.2681],
-                            radiusMeters: 12000,
+                            bbox: [14.13, 40.74, 14.41, 40.96],
                             minRadiusPx: 16,
                             maxRadiusPx: 64,
                             liveMapRadiusPx: 256,
@@ -143,8 +142,7 @@ async function createCatalog(): Promise<GeoCatalog> {
                         {
                             id: "rome",
                             name: "Rome",
-                            center: [41.9028, 12.4964],
-                            radiusMeters: 12000,
+                            bbox: [12.35, 41.79, 12.64, 42.01],
                             minRadiusPx: 16,
                             maxRadiusPx: 64,
                             liveMapRadiusPx: 256,

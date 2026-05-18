@@ -94,7 +94,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
 
         this._detailViewState = new DetailViewState({
             areaId: area.id,
-            center: saved?.center ?? area.summary.center,
+            center: saved?.center ?? area.center,
             zoom: saved?.zoom ?? this._zoomLevel,
             visibleLayers,
         });
