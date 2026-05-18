@@ -1,6 +1,7 @@
 import type {
     ClickableMapLayerHandle,
     DesignToolbarButton,
+    DesignToolbarHandle,
     DraggableMarkerHandle,
     HeatLayerOptions,
     LayerFactory,
@@ -213,7 +214,27 @@ export class StubWidget implements WidgetHandle {
     }
 }
 
+export class StubDesignToolbarHandle implements DesignToolbarHandle {
+    public addedTo?: MapHandle;
+    public removed = false;
+    public lastButtons?: DesignToolbarButton[];
+
+    addTo(map: MapHandle): void {
+        this.addedTo = map;
+    }
+
+    remove(): void {
+        this.removed = true;
+    }
+
+    setButtons(buttons: DesignToolbarButton[]): void {
+        this.lastButtons = buttons;
+    }
+}
+
 export class StubWidgetFactory implements WidgetFactory {
+    public readonly designToolbar = new StubDesignToolbarHandle();
+
     createSummaryWidget(_label: string, _onClick: () => void): WidgetHandle {
         return new StubWidget();
     }
@@ -225,7 +246,7 @@ export class StubWidgetFactory implements WidgetFactory {
         return new StubWidget();
     }
 
-    createDesignToolbar(_buttons: DesignToolbarButton[]): WidgetHandle {
-        return new StubWidget();
+    createDesignToolbar(_buttons: DesignToolbarButton[]): DesignToolbarHandle {
+        return this.designToolbar;
     }
 }

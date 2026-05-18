@@ -29,6 +29,7 @@ declare module "leaflet" {
 import type {
     CircleMarkerOptions,
     DesignToolbarButton,
+    DesignToolbarHandle,
     DraggableMarkerHandle,
     LayerFactory,
     MapFactory,
@@ -432,7 +433,8 @@ class LayerControl extends L.Control {
 }
 
 class DesignToolbarControl extends L.Control {
-    private readonly _buttons: DesignToolbarButton[];
+    private _buttons: DesignToolbarButton[];
+    private _container?: HTMLElement;
 
     constructor(buttons: DesignToolbarButton[]) {
         super({ position: "topleft" });
@@ -440,7 +442,25 @@ class DesignToolbarControl extends L.Control {
     }
 
     onAdd(): HTMLElement {
-        const container = L.DomUtil.create("div", "design-toolbar");
+        this._container = L.DomUtil.create("div", "design-toolbar");
+        this.renderButtons();
+        return this._container;
+    }
+
+    setButtons(buttons: DesignToolbarButton[]): void {
+        this._buttons = buttons;
+        if (this._container) {
+            this.renderButtons();
+        }
+    }
+
+    private renderButtons(): void {
+        const container = this._container;
+        if (!container) {
+            return;
+        }
+
+        container.innerHTML = "";
 
         for (const btn of this._buttons) {
             const button = L.DomUtil.create("button", "design-toolbar-button", container);
@@ -461,8 +481,26 @@ class DesignToolbarControl extends L.Control {
                 btn.onClick(setActive);
             });
         }
+    }
+}
 
-        return container;
+class LeafletDesignToolbarHandle implements DesignToolbarHandle {
+    private readonly _control: DesignToolbarControl;
+
+    constructor(control: DesignToolbarControl) {
+        this._control = control;
+    }
+
+    addTo(map: MapHandle): void {
+        this._control.addTo(unwrapMap(map));
+    }
+
+    remove(): void {
+        this._control.remove();
+    }
+
+    setButtons(buttons: DesignToolbarButton[]): void {
+        this._control.setButtons(buttons);
     }
 }
 
@@ -482,7 +520,7 @@ export class DefaultLeafletWidgetFactory implements WidgetFactory {
         return new LeafletWidgetHandle(new LayerControl(layers, onToggle));
     }
 
-    createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle {
-        return new LeafletWidgetHandle(new DesignToolbarControl(buttons));
+    createDesignToolbar(buttons: DesignToolbarButton[]): DesignToolbarHandle {
+        return new LeafletDesignToolbarHandle(new DesignToolbarControl(buttons));
     }
 }

@@ -156,8 +156,12 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
         getLogger().info("new area");
     }
 
-    setArea(bbox: [number, number, number, number]): void {
-        getLogger().info("set area", { bbox });
+    commitArea(bbox: [number, number, number, number]): void {
+        getLogger().info("commit area", { bbox });
+    }
+
+    discardArea(): void {
+        getLogger().info("discard area");
     }
 
     zoomIn(): void {
