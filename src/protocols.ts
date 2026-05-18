@@ -8,8 +8,7 @@ export interface AreaSummary {
     id: string;
     name: string;
 
-    center: [number, number];
-    radiusMeters: number;
+    bbox: [number, number, number, number];  // [west, south, east, north]
 
     minRadiusPx: number;
     maxRadiusPx: number;

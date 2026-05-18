@@ -15,6 +15,7 @@ const catalog = new GeoCatalog(catalogUrl);
 const controller = new Controller({
     catalog,
     storage: context.storage,
+    gateway: context.host.gateway,
 });
 
 await controller.start().catch((err) => {

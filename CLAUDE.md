@@ -58,6 +58,35 @@ Debug mode (`?debug`) uses `/catalog.head.debug.json` → fallback `/catalogs/ca
 
 Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches its own GeoJSON URL — all on demand, cache bypassed.
 
+## Cross-Repo Contract Rule
+
+Any change to `src/api.ts` — adding, removing, or renaming a method/event definition or its payload types — **must** be reflected in `docs/MESSAGING.md` in the same commit.
+
+Any change to the shared data entities in `src/protocols.ts` — `Catalog`, `AreaSummary`, `AreaDetail`, `Layer`, or their nested types — **must** also be reflected in `docs/MESSAGING.md` in the same commit. These types describe the JSON structures that `geo-builder` writes and `geo-browser` reads; a mismatch silently breaks data loading.
+
+`docs/MESSAGING.md` is manually synchronized with the matching file in `geo-builder`. Keeping them in sync is the only mechanism that keeps the Python and TypeScript sides of the wire protocol aligned.
+
+## API Shape Rule
+
+Every API response payload carries exactly these fields:
+
+```ts
+error: number;             // 0 = OK; non-zero = caller-defined error code
+errorDescription: string | null;  // human-readable detail; null when error === OK
+// ...domain payload fields (may be null when error !== OK)
+```
+
+Rules:
+- Error codes are part of the contract and are declared by the Python side in `api.py`.
+- TypeScript must always check `error` before using payload fields.
+- Branch on the numeric code, not `errorDescription` — that field is for logging only.
+- `OK = 0` is the only universal constant; all other codes are API-specific.
+
+**Typical direction (not a strict rule):**
+- Browser → Builder: browser calls builder via `EventDef` / `gateway.invoke`.
+- Builder → Browser: builder raises events or makes requests via `MethodDef` / `gateway.subscribe`.
+- Ping/Pong is an internal handshake exception handled by the Gateway itself.
+
 ## Hard Architecture Rules
 
 - `protocols.ts` contains serializable data contracts only.
@@ -304,8 +333,8 @@ Default event weight is `1.0`; heatmap density accumulation is handled by the re
 
 Good next branches:
 
-1. Map click logging in DetailView: click map → log GPS coordinates.
-2. Viewport synchronization: Leaflet move/zoom → update view state → persist/restore.
-3. Design-mode data source abstraction.
+1. Viewport synchronization: Leaflet move/zoom → update view state → persist/restore.
+2. Design-mode data source abstraction.
+3. Bbox persistence: `GeoArea.bbox` is computed from `center + radiusMeters` and is always square. Calling `SetAreaBbox` persists edits in the builder, but on the next load the square is recomputed, losing the edit. Fix: call `GetAreaBbox` on render and update the widget once the response arrives (render square immediately as placeholder, replace when builder responds).
 
 Keep branches narrow.

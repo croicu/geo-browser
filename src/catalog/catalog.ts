@@ -1,5 +1,6 @@
 import { fail } from "../errors";
 import type { AreaSummary, Catalog } from "../protocols";
+import { getLogger } from "../services";
 import { GeoArea } from "./area";
 import { resolveUrl } from "./loader";
 
@@ -24,7 +25,14 @@ export class GeoCatalog {
             fail("catalog.load_failed", `Failed to load catalog: ${this.catalogUrl}`);
         }
 
-        const catalog = (await response.json()) as Catalog;
+        let catalog: Catalog;
+        try {
+            catalog = (await response.json()) as Catalog;
+        } catch {
+            getLogger().warning("catalog.parse_failed", { url: this.catalogUrl });
+            this._areas = [];
+            return;
+        }
 
         this._version = catalog.version;
         this._createdAt = catalog.createdAt;

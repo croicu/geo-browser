@@ -1,4 +1,5 @@
 import type { HeatPoint } from "./protocols";
+import type { Cookie, EventDef, MethodDef } from "./api";
 
 export type LogLevel =
     | "diagnostic"
@@ -50,6 +51,12 @@ export interface ControllerActions {
     setZoom(zoomLevel: number): void;
 }
 
+export interface GatewayService {
+    invoke<TIn, TOut>(def: MethodDef<TIn, TOut>, data: TIn, callback?: (response: TOut) => void): void;
+    subscribe<TIn, TOut>(def: EventDef<TIn, TOut>, fn: (data: TIn) => TOut | void): Cookie;
+    unsubscribe(cookie: Cookie): void;
+}
+
 export interface ControllerState {
     get zoom(): number;
     get minZoom(): number;
@@ -96,9 +103,8 @@ export interface StorageService {
 }
 
 export interface HostService {
-    getCapability(
-        name: string
-    ): unknown;
+    getCapability(name: string): unknown;
+    readonly gateway: GatewayService | null;
 }
 
 export interface MapFactory {
@@ -108,6 +114,16 @@ export interface MapFactory {
 export interface MapLayerHandle {
     addTo(map: MapHandle): void;
     remove(): void;
+}
+
+export interface RectangleHandle extends MapLayerHandle {
+    setBounds(bounds: [[number, number], [number, number]]): void;
+}
+
+export interface DraggableMarkerHandle extends MapLayerHandle {
+    setLatLng(latLng: [number, number]): void;
+    onDrag(handler: (latLng: [number, number]) => void): () => void;
+    onDragEnd(handler: (latLng: [number, number]) => void): () => void;
 }
 
 export interface ClickableMapLayerHandle extends MapLayerHandle {
@@ -123,6 +139,13 @@ export interface CircleMarkerOptions {
     weight?: number;
     fillColor?: string,
     opacity: number;
+}
+
+export interface RectangleOptions {
+    color: string;
+    weight: number;
+    fillColor: string;
+    fillOpacity: number;
 }
 
 export interface HeatLayerOptions {
@@ -143,11 +166,15 @@ export interface LayerFactory {
         radiusMeters: number,
         options: CircleMarkerOptions
     ): ClickableMapLayerHandle;
-
     createHeatLayer(
         points: HeatPoint[],
         options: HeatLayerOptions
     ): MapLayerHandle;
+    createRectangle(
+        bounds: [[number, number], [number, number]],
+        options: RectangleOptions
+    ): RectangleHandle;
+    createDraggableMarker(latLng: [number, number]): DraggableMarkerHandle;
 }
 
 export interface WidgetHandle {

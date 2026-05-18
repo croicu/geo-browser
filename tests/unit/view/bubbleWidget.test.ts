@@ -8,6 +8,7 @@ import {
     StubLayerFactory,
     StubMap,
 } from "../../stubs/stubLeafletFactories";
+import { StubGateway } from "../../stubs/stubGateway";
 
 describe("BubbleWidget", () => {
     let map: StubMap;
@@ -79,14 +80,47 @@ describe("BubbleWidget", () => {
 
         expect(marker.removeCalled).toBe(true);
     });
+
+    it("does not create bbox widget without a gateway", () => {
+        const area = createArea();
+        const widget = new BubbleWidget(area, actions, { map, layerFactory });
+
+        widget.render();
+
+        expect(layerFactory.rectangles.length).toBe(0);
+    });
+
+    it("creates bbox widget immediately when gateway is present", () => {
+        const area = createArea();
+        const gateway = new StubGateway();
+        const widget = new BubbleWidget(area, actions, { map, layerFactory, gateway });
+
+        widget.render();
+
+        expect(layerFactory.rectangles.length).toBe(1);
+        expect(layerFactory.rectangles[0].addedTo).toBe(map);
+        expect(layerFactory.draggableMarkers.length).toBe(4);
+    });
+
+    it("destroys bbox widget on destroy", () => {
+        const area = createArea();
+        const gateway = new StubGateway();
+        const widget = new BubbleWidget(area, actions, { map, layerFactory, gateway });
+
+        widget.render();
+
+        const rect = layerFactory.rectangles[0];
+        widget.destroy();
+
+        expect(rect.removed).toBe(true);
+    });
 });
 
 function createArea(): GeoArea {
     return new GeoArea({
         id: "napoli",
         name: "Napoli",
-        center: [40.8518, 14.2681],
-        radiusMeters: 12000,
+        bbox: [14.13, 40.74, 14.41, 40.96],
         minRadiusPx: 16,
         maxRadiusPx: 64,
         liveMapRadiusPx: 256,

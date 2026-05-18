@@ -5,8 +5,7 @@ import type { AreaSummary } from "../../src/protocols";
 const summary: AreaSummary = {
     id: "napoli",
     name: "Napoli",
-    center: [40.8518, 14.2681],
-    radiusMeters: 12000,
+    bbox: [14.13, 40.74, 14.41, 40.96],
     minRadiusPx: 32,
     maxRadiusPx: 512,
     liveMapRadiusPx: 640,
@@ -87,6 +86,19 @@ describe("GeoArea", () => {
         const area = new GeoArea(summary);
 
         expect(() => area.layers).toThrow();
+    });
+
+    it("returns stored bbox", () => {
+        const area = new GeoArea(summary);
+        expect(area.bbox).toEqual(summary.bbox);
+    });
+
+    it("computes center from bbox midpoint", () => {
+        const area = new GeoArea(summary);
+        const [west, south, east, north] = summary.bbox;
+        const [lat, lng] = area.center;
+        expect(lat).toBeCloseTo((south + north) / 2, 10);
+        expect(lng).toBeCloseTo((west + east) / 2, 10);
     });
 
     it("throws if fetch fails", async () => {

@@ -2,8 +2,9 @@ import { resolveCatalogUrl } from "../catalog/loader";
 import { ConsoleTelemetrySink, DefaultLogger } from "../logging";
 import { setLogger, resetLogger } from "../services";
 import { StorageGuard } from "./storageGuard";
+import { WebViewHostService } from "./webViewHostService";
 
-import type { GeoDataService, StorageService, Logger } from "../contracts";
+import type { GeoDataService, HostService, StorageService, Logger } from "../contracts";
 import type { ResolveCatalogUrlOptions } from "../catalog/loader";
 
 export type Mode = "browse" | "design";
@@ -13,11 +14,12 @@ export class Context {
 
     private readonly _mode: Mode;
     private readonly _debug: boolean;
+    private readonly _design: boolean;
 
     private readonly _dataSource: GeoDataService;
     private readonly _storageGuard: StorageGuard;
     private readonly _logger: Logger;
-    private readonly _host: unknown;
+    private readonly _host: HostService;
 
     public static get Instance(): Context {
         if (!Context.s_instance) {
@@ -36,6 +38,7 @@ export class Context {
         const params = new URLSearchParams(window.location.search);
 
         this._debug = this.hasValue(params, "debug");
+        this._design = this.hasValue(params, "design");
         this._mode = this.hasValue(params, "design")
             ? "design"
             : "browse";
@@ -43,7 +46,7 @@ export class Context {
         this._logger = new DefaultLogger(new ConsoleTelemetrySink());
         this._dataSource = {} as GeoDataService;
         this._storageGuard = new StorageGuard();
-        this._host = undefined;
+        this._host = new WebViewHostService(this._mode);
 
         setLogger(this._logger);
     }
@@ -68,7 +71,7 @@ export class Context {
         this._storageGuard.nuke();
     }
 
-    public get host(): unknown {
+    public get host(): HostService {
         return this._host;
     }
 
@@ -78,6 +81,10 @@ export class Context {
 
     public get debug(): boolean {
         return this._debug;
+    }
+
+    public get design(): boolean {
+        return this._design;
     }
 
     public get logger(): Logger {

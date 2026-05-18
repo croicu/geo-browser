@@ -1,6 +1,6 @@
 import { getLogger } from "../services";
 import { GeoCatalog } from "../catalog/catalog";
-import type { ControllerActions, ControllerState, StorageService, View } from "../contracts";
+import type { ControllerActions, ControllerState, GatewayService, StorageService, View } from "../contracts";
 import type { GeoState } from "../state/geoState";
 
 import { GeoStateStore } from "../state/geoStateStore";
@@ -13,10 +13,12 @@ import { fail } from "../errors";
 export interface ControllerOptions {
     catalog: GeoCatalog;
     storage: StorageService;
+    gateway: GatewayService | null;
 }
 
 export class Controller implements ControllerActions, ControllerState, GeoState {
     private readonly _catalog: GeoCatalog;
+    private readonly _gateway: GatewayService | null;
     private readonly _geoStateStore: GeoStateStore;
     private readonly _summaryViewState: SummaryViewState;
     private _detailViewState?: DetailViewState;
@@ -26,6 +28,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
 
     constructor(options: ControllerOptions) {
         this._catalog = options.catalog;
+        this._gateway = options.gateway;
         this._geoStateStore = new GeoStateStore(options.storage);
         this._summaryViewState = this._geoStateStore.loadSummaryViewState();
     }
@@ -67,6 +70,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
             this,
             this._catalog,
             this._summaryViewState,
+            { gateway: this._gateway }
         );
 
         this.switchView(summaryView);
@@ -90,7 +94,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
 
         this._detailViewState = new DetailViewState({
             areaId: area.id,
-            center: saved?.center ?? area.summary.center,
+            center: saved?.center ?? area.center,
             zoom: saved?.zoom ?? this._zoomLevel,
             visibleLayers,
         });
@@ -99,7 +103,8 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
             this._app,
             this,
             area,
-            this._detailViewState
+            this._detailViewState,
+            { gateway: this._gateway }
         );
 
         this.switchView(detailView);

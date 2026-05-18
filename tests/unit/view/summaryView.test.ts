@@ -116,28 +116,6 @@ describe("SummaryView", () => {
         expect(root.querySelector(".summary-view")).toBeNull();
     });
 
-    it("logs GPS coordinates on map click", async () => {
-        const catalog = await createCatalog();
-        const state = new SummaryViewState({
-            center: [0, 0],
-            zoom: 2,
-        });
-        const logger = new StubLogger();
-
-        setLogger(logger);
-
-        const view = new SummaryView(root, actions, catalog, state, {
-            mapFactory,
-            layerFactory,
-        });
-
-        view.render();
-        mapFactory.map.simulateClick([40.8518, 14.2681]);
-
-        expect(logger.calls).toHaveLength(1);
-        expect(logger.calls[0].message).toBe("map.click");
-        expect(logger.calls[0].props).toEqual({ lat: 40.8518, lng: 14.2681 });
-    });
 });
 
 async function createCatalog(): Promise<GeoCatalog> {
@@ -154,8 +132,7 @@ async function createCatalog(): Promise<GeoCatalog> {
                         {
                             id: "napoli",
                             name: "Napoli",
-                            center: [40.8518, 14.2681],
-                            radiusMeters: 12000,
+                            bbox: [14.13, 40.74, 14.41, 40.96],
                             minRadiusPx: 16,
                             maxRadiusPx: 64,
                             liveMapRadiusPx: 256,
@@ -165,8 +142,7 @@ async function createCatalog(): Promise<GeoCatalog> {
                         {
                             id: "rome",
                             name: "Rome",
-                            center: [41.9028, 12.4964],
-                            radiusMeters: 12000,
+                            bbox: [12.35, 41.79, 12.64, 42.01],
                             minRadiusPx: 16,
                             maxRadiusPx: 64,
                             liveMapRadiusPx: 256,

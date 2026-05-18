@@ -10,8 +10,7 @@ describe("GeoCatalog", () => {
             {
                 id: "napoli",
                 name: "Napoli",
-                center: [40.8518, 14.2681],
-                radiusMeters: 12000,
+                bbox: [14.13, 40.74, 14.41, 40.96],
                 minRadiusPx: 32,
                 maxRadiusPx: 512,
                 liveMapRadiusPx: 640,

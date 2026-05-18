@@ -1,11 +1,14 @@
 import type {
     ClickableMapLayerHandle,
+    DraggableMarkerHandle,
     HeatLayerOptions,
     LayerFactory,
     LayerSelectionWidgetItem,
     MapFactory,
     MapHandle,
     MapLayerHandle,
+    RectangleHandle,
+    RectangleOptions,
     WidgetFactory,
     WidgetHandle,
 } from "../../src/contracts";
@@ -13,8 +16,10 @@ import type { HeatPoint } from "../../src/protocols";
 
 export class StubMap implements MapHandle {
     public removeCalled = false;
+    private _zoom = 8;
     private _clickHandler?: (latLng: [number, number]) => void;
     private _moveEndHandler?: () => void;
+    private readonly _zoomHandlers: ((zoom: number) => void)[] = [];
 
     remove(): void {
         this.removeCalled = true;
@@ -25,11 +30,15 @@ export class StubMap implements MapHandle {
     }
 
     getZoom(): number {
-        return 3;
+        return this._zoom;
     }
 
-    onZoom(_handler: (zoom: number) => void): () => void {
-        return () => {};
+    onZoom(handler: (zoom: number) => void): () => void {
+        this._zoomHandlers.push(handler);
+        return () => {
+            const idx = this._zoomHandlers.indexOf(handler);
+            if (idx >= 0) { this._zoomHandlers.splice(idx, 1); }
+        };
     }
 
     onMoveEnd(handler: () => void): () => void {
@@ -40,6 +49,11 @@ export class StubMap implements MapHandle {
     onClick(handler: (latLng: [number, number]) => void): () => void {
         this._clickHandler = handler;
         return () => { this._clickHandler = undefined; };
+    }
+
+    simulateZoom(zoom: number): void {
+        this._zoom = zoom;
+        for (const h of this._zoomHandlers) { h(zoom); }
     }
 
     simulateClick(latLng: [number, number]): void {
@@ -95,8 +109,46 @@ export class StubMarker implements ClickableMapLayerHandle {
     }
 }
 
+export class StubRectangle extends StubMapLayerHandle implements RectangleHandle {
+    public lastBounds?: [[number, number], [number, number]];
+
+    setBounds(bounds: [[number, number], [number, number]]): void {
+        this.lastBounds = bounds;
+    }
+}
+
+export class StubDraggableMarker extends StubMapLayerHandle implements DraggableMarkerHandle {
+    public latLng?: [number, number];
+    private _dragHandler?: (latLng: [number, number]) => void;
+    private _dragEndHandler?: (latLng: [number, number]) => void;
+
+    setLatLng(latLng: [number, number]): void {
+        this.latLng = latLng;
+    }
+
+    onDrag(handler: (latLng: [number, number]) => void): () => void {
+        this._dragHandler = handler;
+        return () => { this._dragHandler = undefined; };
+    }
+
+    onDragEnd(handler: (latLng: [number, number]) => void): () => void {
+        this._dragEndHandler = handler;
+        return () => { this._dragEndHandler = undefined; };
+    }
+
+    simulateDrag(latLng: [number, number]): void {
+        this._dragHandler?.(latLng);
+    }
+
+    simulateDragEnd(latLng: [number, number]): void {
+        this._dragEndHandler?.(latLng);
+    }
+}
+
 export class StubLayerFactory implements LayerFactory {
     public readonly markers: StubMarker[] = [];
+    public readonly rectangles: StubRectangle[] = [];
+    public readonly draggableMarkers: StubDraggableMarker[] = [];
 
     createLayerGroup(): MapLayerHandle {
         return new StubMapLayerHandle();
@@ -116,6 +168,18 @@ export class StubLayerFactory implements LayerFactory {
 
     createHeatLayer(_points: HeatPoint[], _options: HeatLayerOptions): MapLayerHandle {
         return new StubMapLayerHandle();
+    }
+
+    createRectangle(_bounds: [[number, number], [number, number]], _options: RectangleOptions): RectangleHandle {
+        const rect = new StubRectangle();
+        this.rectangles.push(rect);
+        return rect;
+    }
+
+    createDraggableMarker(_latLng: [number, number]): DraggableMarkerHandle {
+        const marker = new StubDraggableMarker();
+        this.draggableMarkers.push(marker);
+        return marker;
     }
 }
 
