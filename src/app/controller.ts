@@ -3,6 +3,7 @@ import { GeoCatalog } from "../catalog/catalog";
 import type { ControllerActions, ControllerState, GatewayService, StorageService, View } from "../contracts";
 import type { LatLng } from "../protocols";
 import type { GeoState } from "../state/geoState";
+import { AddArea, OK } from "../api";
 
 import { GeoStateStore } from "../state/geoStateStore";
 import { SummaryViewState } from "../state/summaryViewState";
@@ -157,7 +158,25 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
     }
 
     commitArea(bbox: [number, number, number, number], name: string): void {
-        getLogger().info("commit area", { bbox, name });
+        const logger = getLogger();
+        logger.info("commit area", { bbox, name });
+
+        if (!this._gateway) {
+            logger.warning("commitArea: no gateway, ignoring");
+            return;
+        }
+
+        this._gateway.invoke(AddArea, { areaName: name, bbox }, (response) => {
+            if (response.error !== OK) {
+                logger.error("commitArea failed", undefined, {
+                    error: response.error,
+                    errorDescription: response.errorDescription,
+                });
+            } else if (response.area) {
+                this._catalog.addArea(response.area);
+            }
+            this.openSummary();
+        });
     }
 
     discardArea(): void {

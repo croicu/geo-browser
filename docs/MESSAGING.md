@@ -141,8 +141,9 @@ Every `@dataclass` in `src/geo_builder/api.py` becomes a TypeScript interface in
 Error codes:
 
 ```typescript
-const OK               = 0;
-const ERR_AREA_NOT_FOUND = 1;
+const OK                   = 0;
+const ERR_AREA_NOT_FOUND   = 1;
+const ERR_TEMPLATE_NOT_FOUND = 2;
 ```
 
 Current shared types:
@@ -150,6 +151,18 @@ Current shared types:
 ```typescript
 // __geo_ready__ (event: Python → JS)
 interface ReadyData {}
+
+// __geo_add_area__ (method: JS → Python)
+interface AddAreaInput {
+  areaName: string;
+  bbox: [number, number, number, number];  // [west, south, east, north]
+  template?: string;  // default "default"
+}
+interface AddAreaOutput {
+  error: number;
+  errorDescription: string | null;
+  area: AreaSummary | null;  // populated on success; null when error !== OK
+}
 
 // __geo_get_area_bbox__ (method: JS → Python)
 interface GetAreaBboxInput  { areaId: string; }
@@ -428,4 +441,53 @@ gateway.register("__geo_set_area_bbox__", on_set_area_bbox)
 **Notes:**
 - Fired on drag-end only, not on every drag frame.
 - The browser does not revert the visual on error — the builder is authoritative but the UI optimistically keeps the dragged position. Log the error.
+- `bbox` is always `[west, south, east, north]` with longitude first (matching GeoJSON convention).
+
+---
+
+## AddArea (`__geo_add_area__`)
+
+Creates a new area by running the named template's acquisition pipeline against the given bbox, then running aggregation and deduplication. Initiated by the browser.
+
+**TypeScript:**
+```typescript
+const AddArea: MethodDef<AddAreaInput, AddAreaOutput> = { id: "__geo_add_area__" };
+
+gateway.invoke(AddArea, { areaName: "Rome", bbox: [12.30, 41.80, 12.60, 42.00] }, ({ error, errorDescription, area }) => {
+  if (error !== OK) {
+    console.error(errorDescription);
+    return;
+  }
+  // area built — append to in-memory catalog and re-render
+  catalog.addArea(area!);
+});
+```
+
+**Python:** registered by the designer host. Expected handler input/output:
+```python
+@dataclass
+class AddAreaInput:
+    areaName: str
+    bbox: list[float]     # [west, south, east, north]
+    template: str = "*"   # name of the template task in tasks.json
+
+@dataclass
+class AddAreaOutput:
+    error: int
+    errorDescription: str | None
+    area: AreaSummary | None  # populated on success; None when error != OK
+                              # shape matches the AreaSummary entry in catalog.json (see Static Artifacts)
+```
+
+**Error codes:**
+
+| Code | Constant | Meaning |
+|------|----------|---------|
+| `0` | `OK` | Area built and saved successfully |
+| `2` | `ERR_TEMPLATE_NOT_FOUND` | No template with the given name in tasks.json |
+
+**Notes:**
+- `areaId` is derived server-side from `areaName`: lowercased, non-alphanumeric runs replaced by `_`, leading/trailing underscores stripped. Example: `"New York"` → `"new_york"`.
+- `template` defaults to `"default"` — the conventional name for the default acquisition template.
+- On success the builder returns the full `AreaSummary` for the new area; the browser appends it to its in-memory catalog without re-fetching `catalog.head.json`.
 - `bbox` is always `[west, south, east, north]` with longitude first (matching GeoJSON convention).

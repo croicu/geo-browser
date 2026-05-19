@@ -29,6 +29,7 @@ body,
 }
 
 .summary-view {
+    position: relative;
     width: 100%;
     height: 100%;
 }
@@ -211,4 +212,44 @@ body,
     display: flex;
     gap: 4px;
     justify-content: flex-end;
+}
+
+.area-build-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.area-build-overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    border-radius: 8px;
+    padding: 24px 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.area-build-spinner-ring {
+    width: 36px;
+    height: 36px;
+    border: 4px solid rgba(51, 136, 255, 0.2);
+    border-top-color: #3388ff;
+    border-radius: 50%;
+    animation: spinner-rotate 0.8s linear infinite;
+}
+
+.area-build-overlay-label {
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@keyframes spinner-rotate {
+    to { transform: rotate(360deg); }
 }

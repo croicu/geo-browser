@@ -44,6 +44,7 @@ export class SummaryView implements View {
     private _drawInteraction?: DrawAreaInteraction;
     private _namePopup?: WidgetHandle;
     private _pendingRect?: RectangleHandle;
+    private _buildOverlay?: HTMLElement;
 
     constructor(
         root: HTMLElement,
@@ -116,6 +117,9 @@ export class SummaryView implements View {
 
         this._pendingRect?.remove();
         this._pendingRect = undefined;
+
+        this._buildOverlay?.remove();
+        this._buildOverlay = undefined;
 
         this._designToolbar?.remove();
         this._designToolbar = undefined;
@@ -193,7 +197,33 @@ export class SummaryView implements View {
         this._namePopup = undefined;
         this._pendingRect?.remove();
         this._pendingRect = undefined;
+        this.showBuildOverlay(name);
         this._actions.commitArea(bbox, name);
+    }
+
+    private showBuildOverlay(areaName: string): void {
+        if (!this._main) {
+            return;
+        }
+
+        const overlay = document.createElement("div");
+        overlay.className = "area-build-overlay";
+
+        const content = document.createElement("div");
+        content.className = "area-build-overlay-content";
+
+        const ring = document.createElement("div");
+        ring.className = "area-build-spinner-ring";
+
+        const label = document.createElement("div");
+        label.className = "area-build-overlay-label";
+        label.textContent = `Building "${areaName}"…`;
+
+        content.appendChild(ring);
+        content.appendChild(label);
+        overlay.appendChild(content);
+        this._main.appendChild(overlay);
+        this._buildOverlay = overlay;
     }
 
     private onDiscard(): void {
