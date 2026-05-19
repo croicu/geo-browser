@@ -2,8 +2,6 @@
 
 import type {
     ControllerActions,
-    DesignToolbarButton,
-    DesignToolbarHandle,
     GatewayService,
     LayerFactory,
     MapFactory,
@@ -11,6 +9,7 @@ import type {
     RectangleHandle,
     View,
     WidgetFactory,
+    WidgetHandle,
 } from "../../contracts";
 import { GeoCatalog } from "../../catalog/catalog";
 import { SummaryViewState } from "../../state/summaryViewState";
@@ -41,10 +40,9 @@ export class SummaryView implements View {
     private _map?: MapHandle;
     private _moveEndCleanup?: () => void;
     private readonly _bubbleWidgets: BubbleWidget[] = [];
-    private _normalButtons: DesignToolbarButton[] = [];
-    private _designToolbar?: DesignToolbarHandle;
+    private _designToolbar?: WidgetHandle;
     private _drawInteraction?: DrawAreaInteraction;
-    private _pendingBbox?: [number, number, number, number];
+    private _namePopup?: WidgetHandle;
     private _pendingRect?: RectangleHandle;
 
     constructor(
@@ -90,10 +88,9 @@ export class SummaryView implements View {
         this.createBubbleWidgets();
 
         if (this._gateway) {
-            this._normalButtons = [
-                { iconUrl: "/icons/design-new.svg", title: "New area", onClick: setActive => this.newArea(setActive) },
-            ];
-            this._designToolbar = this._widgetFactory.createDesignToolbar(this._normalButtons);
+            this._designToolbar = this._widgetFactory.createDesignToolbar([
+                { iconUrl: "/icons/design-new.svg", title: "New area", onClick: (setActive: (active: boolean) => void) => this.newArea(setActive) },
+            ]);
             this._designToolbar.addTo(map);
         }
     }
@@ -114,9 +111,11 @@ export class SummaryView implements View {
         this._drawInteraction?.stop();
         this._drawInteraction = undefined;
 
+        this._namePopup?.remove();
+        this._namePopup = undefined;
+
         this._pendingRect?.remove();
         this._pendingRect = undefined;
-        this._pendingBbox = undefined;
 
         this._designToolbar?.remove();
         this._designToolbar = undefined;
@@ -166,40 +165,42 @@ export class SummaryView implements View {
     }
 
     private onDrawComplete(bbox: [number, number, number, number]): void {
-        this._pendingBbox = bbox;
-
         const map = this._map;
-        if (map) {
-            const [west, south, east, north] = bbox;
-            this._pendingRect = this._layerFactory.createRectangle(
-                [[south, west], [north, east]],
-                { color: "#22c55e", weight: 2, fillColor: "#22c55e", fillOpacity: 0.12 }
-            );
-            this._pendingRect.addTo(map);
+        if (!map) {
+            return;
         }
 
-        this._designToolbar?.setButtons([
-            { iconUrl: "/icons/design-ok.svg", title: "Commit area", onClick: _ => this.commitArea() },
-            { iconUrl: "/icons/design-cancel.svg", title: "Discard area", onClick: _ => this.discardArea() },
-        ]);
+        const [west, south, east, north] = bbox;
+        this._pendingRect = this._layerFactory.createRectangle(
+            [[south, west], [north, east]],
+            { color: "#22c55e", weight: 2, fillColor: "#22c55e", fillOpacity: 0.12 }
+        );
+        this._pendingRect.addTo(map);
+
+        const centerLat = (south + north) / 2;
+        const centerLng = (west + east) / 2;
+
+        this._namePopup = this._widgetFactory.createNamePromptPopup(
+            [centerLat, centerLng],
+            name => this.onCommit(bbox, name),
+            () => this.onDiscard()
+        );
+        this._namePopup.addTo(map);
     }
 
-    private commitArea(): void {
-        const bbox = this._pendingBbox;
-        this._pendingBbox = undefined;
+    private onCommit(bbox: [number, number, number, number], name: string): void {
+        this._namePopup?.remove();
+        this._namePopup = undefined;
         this._pendingRect?.remove();
         this._pendingRect = undefined;
-        this._designToolbar?.setButtons(this._normalButtons);
-        if (bbox) {
-            this._actions.commitArea(bbox);
-        }
+        this._actions.commitArea(bbox, name);
     }
 
-    private discardArea(): void {
-        this._pendingBbox = undefined;
+    private onDiscard(): void {
+        this._namePopup?.remove();
+        this._namePopup = undefined;
         this._pendingRect?.remove();
         this._pendingRect = undefined;
-        this._designToolbar?.setButtons(this._normalButtons);
         this._actions.discardArea();
     }
 

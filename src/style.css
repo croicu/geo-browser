@@ -179,3 +179,31 @@ body,
     height: 24px;
     display: block;
 }
+
+.area-name-prompt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 180px;
+}
+
+.area-name-input {
+    padding: 5px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    font-size: 13px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.area-name-input:focus {
+    border-color: #3388ff;
+    box-shadow: 0 0 0 2px rgba(51, 136, 255, 0.2);
+}
+
+.area-name-actions {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+}

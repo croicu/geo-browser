@@ -51,7 +51,7 @@ export interface ControllerActions {
     setZoom(zoomLevel: number): void;
 
     newArea(): void;
-    commitArea(bbox: [number, number, number, number]): void;
+    commitArea(bbox: [number, number, number, number], name: string): void;
     discardArea(): void;
 }
 
@@ -192,10 +192,6 @@ export interface WidgetHandle {
     remove(): void;
 }
 
-export interface DesignToolbarHandle extends WidgetHandle {
-    setButtons(buttons: DesignToolbarButton[]): void;
-}
-
 export interface DesignToolbarButton {
     iconUrl: string;
     title: string;
@@ -220,5 +216,11 @@ export interface WidgetFactory {
         onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle;
 
-    createDesignToolbar(buttons: DesignToolbarButton[]): DesignToolbarHandle;
+    createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle;
+
+    createNamePromptPopup(
+        latLng: [number, number],
+        onCommit: (name: string) => void,
+        onDiscard: () => void
+    ): WidgetHandle;
 }
