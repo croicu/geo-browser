@@ -545,8 +545,17 @@ export class DefaultLeafletWidgetFactory implements WidgetFactory {
 
         L.DomEvent.disableClickPropagation(container);
 
-        const commit = () => onCommit(input.value.trim() || "New area");
+        const commit = () => {
+            const name = input.value.trim();
+            if (!name || name === "*") {
+                input.classList.add("area-name-input--invalid");
+                input.focus();
+                return;
+            }
+            onCommit(name);
+        };
 
+        input.addEventListener("input", () => input.classList.remove("area-name-input--invalid"));
         okBtn.addEventListener("click", commit);
         cancelBtn.addEventListener("click", () => onDiscard());
         input.addEventListener("keydown", (e: KeyboardEvent) => {

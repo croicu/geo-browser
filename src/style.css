@@ -202,6 +202,11 @@ body,
     box-shadow: 0 0 0 2px rgba(51, 136, 255, 0.2);
 }
 
+.area-name-input--invalid {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
 .area-name-actions {
     display: flex;
     gap: 4px;
