@@ -1,24 +1,58 @@
 {
-  "version": 1,
-  "createdAt": "2026-05-03T00:00:00Z",
+  "version": "1.0",
+  "createdAt": "2026-05-19 03:12:32.594216+00:00",
   "areas": [
     {
-      "id": "napoli",
-      "name": "Napoli",
-      "bbox": [14.13, 40.74, 14.41, 40.96],
-      "minRadiusPx": 16,
-      "maxRadiusPx": 64,
+      "id": "bucharest",
+      "name": "Bucharest",
+      "bbox": [
+        26.080183823634428,
+        44.416648224903014,
+        26.12959715193014,
+        44.44532231737092
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
       "liveMapRadiusPx": 640,
-      "manifestUrl": "./areas/napoli/manifest.json"
-    },
-    {
-      "id": "prague",
-      "name": "Prague",
-      "bbox": [14.33, 49.94, 14.66, 50.15],
-      "minRadiusPx": 16,
-      "maxRadiusPx": 64,
-      "liveMapRadiusPx": 640,
-      "manifestUrl": "./areas/prague/manifest.json"
+      "manifestUrl": "./areas/bucharest/manifest.json",
+      "acquisition": {
+        "provider": "overpass",
+        "filters": {
+          "leisure": {
+            "values": [
+              "park",
+              "garden"
+            ],
+            "name": "Parks",
+            "color": "#007f00",
+            "scale": null,
+            "surface": true,
+            "type": "circle"
+          },
+          "amenity": {
+            "values": [
+              "sustenance",
+              "entertainment"
+            ],
+            "name": "Restaurants",
+            "color": null,
+            "scale": null,
+            "surface": false,
+            "type": "heatmap"
+          },
+          "historic": {
+            "values": [
+              "monuments",
+              "memorials"
+            ],
+            "name": "Places",
+            "color": "#ffff00",
+            "scale": 3.0,
+            "surface": false,
+            "type": "heatmap"
+          }
+        }
+      }
     }
   ]
 }

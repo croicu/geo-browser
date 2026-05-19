@@ -3,7 +3,7 @@
   "layers": [
     {
       "id": "overpass_historic_memorials_monuments",
-      "name": "Overpass (heatmap)",
+      "name": "Places",
       "type": "heatmap",
       "url": "./layers/overpass_historic_memorials_monuments.geojson",
       "visible": true,
@@ -16,7 +16,7 @@
     },
     {
       "id": "overpass_amenity_entertainment_sustenance",
-      "name": "Overpass (heatmap)",
+      "name": "Restaurants",
       "type": "heatmap",
       "url": "./layers/overpass_amenity_entertainment_sustenance.geojson",
       "visible": true,
@@ -29,7 +29,7 @@
     },
     {
       "id": "overpass_leisure_garden_park",
-      "name": "Overpass (circle)",
+      "name": "Parks",
       "type": "circle",
       "url": "./layers/overpass_leisure_garden_park.geojson",
       "visible": true,
@@ -37,7 +37,7 @@
         "opacity": 0.7,
         "radiusScale": 1.0,
         "surface": true,
-        "color": "#3f3fbf"
+        "color": "#007f00"
       },
       "mergeKey": "overpass:leisure=garden,park"
     }

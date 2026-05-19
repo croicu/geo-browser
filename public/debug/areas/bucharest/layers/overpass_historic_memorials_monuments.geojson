@@ -1,0 +1,1065 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 422555836,
+        "name": "Av\u00e2ntul \u021a\u0103rii",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.093237,
+          44.4374186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 899670271,
+        "name": "Monumentul Eroilor din 1916-1919",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1149324,
+          44.4427233
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 939719545,
+        "name": "Bustul lui Dimitrie Cantemir",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1035319,
+          44.4213167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 979600941,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1254268,
+          44.4353596
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1015104607,
+        "name": "Crucea Centenarului Bisericii Sf\u00e2ntul Silvestru",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1152307,
+          44.4430733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1015159329,
+        "name": "Monumentul Eroilor Revolu\u021biei din 1989",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1022266,
+          44.435956
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1393030628,
+        "name": "Memorialul Rena\u0219terii",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0974538,
+          44.4388891
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1439641175,
+        "name": "Monumentul Sf\u00e2nta Vineri",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1072592,
+          44.4298569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2079451985,
+        "name": "Troi\u021ba M\u00e2ntuirii Neamului",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.102986,
+          44.4279719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2440139875,
+        "name": "Memorialul Victimelor Comunismului \u0219i al Rezisten\u021bei",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1045515,
+          44.4418533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2634651951,
+        "name": "Muzeul Memorial \"Gh. M. Tattarescu\"",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0951839,
+          44.4337177
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3462282897,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1042897,
+          44.4324085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4281742599,
+        "name": "Papa Ioan Paul al II-lea",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.086942,
+          44.4391737
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5975924373,
+        "name": "Emil Cioran",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0806367,
+          44.4429344
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6053541306,
+        "name": "Pia\u021ba Francofoniei",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0902246,
+          44.4242212
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6068484016,
+        "name": "Monumentul Eroilor \u0218colii de Jandarmerie Dr\u0103g\u0103\u0219ani",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0887586,
+          44.4393231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6164079115,
+        "name": "Ruinele Hanului Greci",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0996207,
+          44.4320314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6164079116,
+        "name": "Ruinele Hanului \u0218erban Vod\u0103",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0994123,
+          44.4322141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6900444401,
+        "name": "Monumentul Sturdza",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0903974,
+          44.4357274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6943602087,
+        "name": "Dimitre Onciul (1858-1923)",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.091697,
+          44.4345418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6945692385,
+        "name": "Dimitar Hadjvasilev (Bulgaria)",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1092095,
+          44.4317753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7128900790,
+        "name": "Monumentul Victimelor Pogromului",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1089131,
+          44.4296366
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7608850690,
+        "name": "Kilometrul 0 al Democra\u021biei",
+        "weight": 1.0,
+        "names": [
+          "Kilometrul 0 al Democra\u021biei",
+          "Cristian Pa\u021burc\u0103"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1023626,
+          44.4363633
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9411250345,
+        "name": "Cruce de piatr\u0103",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1005318,
+          44.4258573
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9755660216,
+        "name": "Monumentul Eroilor Americani",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0882908,
+          44.4383278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10726686133,
+        "name": "Bustul lui Barbu Constantinescu",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1018035,
+          44.4247243
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10726686135,
+        "name": "Crucea lui Leon Vod\u0103",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1032576,
+          44.4218671
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10728222293,
+        "name": "Crucea logof\u0103tului Stoica",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0978416,
+          44.4247745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10733062644,
+        "name": "Maria Regina Rom\u00e2niei (1914-1927)",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.091862,
+          44.4327251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10864893638,
+        "name": "Decebal",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1030931,
+          44.4287768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10864943925,
+        "name": "Monumentul Eroilor Poli\u0163i\u015fti",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0976577,
+          44.4332867
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11157681068,
+        "name": "Crucea Mineriadelor 1990-1991",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.102496,
+          44.4361055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11190283307,
+        "name": "Corneliu Coposu",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1109217,
+          44.4323461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11329728418,
+        "name": "Cruce de piatr\u0103",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0887761,
+          44.4439523
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11329734994,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1270337,
+          44.4429375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11329812302,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0954961,
+          44.4292806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13031817932,
+        "name": "Ruinele Cur\u021bii Boierilor Dude\u0219ti",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0934828,
+          44.4292884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13125264745,
+        "name": "500 de ani de la reforma\u021bie",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.091797,
+          44.4417384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13191000953,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1030823,
+          44.4350331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13197997353,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1031192,
+          44.4348164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13197997354,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.103369,
+          44.4339366
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13234297367,
+        "name": "General Constantin N. H\u00e2rjeu",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1234398,
+          44.4262425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13235056864,
+        "name": "Monumentul Reformei Protestante",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0942269,
+          44.4399845
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13645220824,
+        "name": "St\u00e2lpul Electric Verzi\u0219ori",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.10924,
+          44.416763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32335381,
+        "name": "Palatul Bursei de Valori",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1006904,
+          44.4335679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39313897,
+        "name": "Palatul Cre\u021bulescu",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0887214,
+          44.4395312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 76914269,
+        "name": "Palatul Romanit",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0911684,
+          44.4447292
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 80192188,
+        "name": "Palatul Bragadiru",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0871226,
+          44.4215339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 129316970,
+        "name": "Palatul Su\u021bu",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1022056,
+          44.4347486
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 131269862,
+        "name": "7",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0936408,
+          44.444824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 131269872,
+        "name": "Palatul \u0218tirbei",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0917635,
+          44.443727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 150803296,
+        "name": "Memorialul Holocaustului",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0942375,
+          44.432868
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 164369116,
+        "name": "Grand Hotel Continental",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0981593,
+          44.4370222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 232472401,
+        "name": "Palatul Regal",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.095863,
+          44.4394889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 381822404,
+        "name": "Clopotni\u021ba din Dealul Patriarhiei",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0985501,
+          44.4248488
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 420527738,
+        "name": "Palatul Noblesse",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1078823,
+          44.435617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 551583245,
+        "name": "Palatul Nun\u021biaturii Apostolice a Sf\u00e2ntului Scaun din Bucure\u0219ti",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0859418,
+          44.4391298
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 658220894,
+        "name": "Palatul Voievodal Curtea Veche",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1013341,
+          44.430116
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 996044652,
+        "name": "Memorial Revolu\u021bie",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0982497,
+          44.4385904
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1124824842,
+        "name": "A\u0219ez\u0103mintele I. C. Br\u0103tianu",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0931275,
+          44.4451126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1153352867,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1075212,
+          44.4241517
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1176896690,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1024561,
+          44.4267843
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1456390102,
+        "name": "Palatul B\u0103ncii Marmorosch Blank",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0989146,
+          44.4336344
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1473257051,
+        "name": "Palatul Societ\u0103\u021bii Creditul Rural",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1028234,
+          44.4334038
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1475438341,
+        "name": "Doctor Constantin I. Istrati",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0947531,
+          44.4175123
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2230393,
+        "name": "Cercul Militar Na\u021bional",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0970948,
+          44.4351005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3166516,
+        "name": "Re\u0219edin\u021ba Patriarhului",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0971471,
+          44.4243798
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13411665,
+        "name": "Palatul Societ\u0103\u021bii de Asigur\u0103ri \u201eNa\u021bionala\u201d",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1007494,
+          44.4328866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14059159,
+        "name": "Palatul Patriarhiei",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0980756,
+          44.4241141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14317768,
+        "name": "Palatul Generala",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1008972,
+          44.4342769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14862831,
+        "name": "Palatul Nifon Mitropolitul",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0986804,
+          44.434251
+        ]
+      }
+    }
+  ]
+}
