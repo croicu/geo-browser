@@ -1,5 +1,6 @@
 import { getLogger } from "../services";
 import { GeoCatalog } from "../catalog/catalog";
+import { Context } from "../runtime/context";
 import type { ControllerActions, ControllerState, GatewayService, StorageService, View } from "../contracts";
 import type { LatLng } from "../protocols";
 import type { GeoState } from "../state/geoState";
@@ -115,7 +116,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
             this,
             area,
             this._detailViewState,
-            { gateway: this._gateway }
+            { gateway: this._gateway, geoLocation: Context.Instance.geoLocation }
         );
 
         this.switchView(detailView);

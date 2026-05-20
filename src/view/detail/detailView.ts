@@ -1,5 +1,5 @@
 import type { GeoArea } from "../../catalog/area";
-import type { ControllerActions, GatewayService, LayerFactory, MapFactory, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
+import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
 import { getLogger } from "../../services";
 import { HeatLayerView } from "./heatLayerView";
@@ -9,12 +9,14 @@ import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWid
 import { PointLayerView } from "./pointLayerView";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
+import { GeoLocationWidget } from "./geoLocationWidget";
 
 export interface DetailViewServices {
     mapFactory?: MapFactory;
     layerFactory?: LayerFactory;
     widgetFactory?: WidgetFactory;
     gateway?: GatewayService | null;
+    geoLocation?: GeoLocationService | null;
 }
 
 export class DetailView implements View {
@@ -28,6 +30,7 @@ export class DetailView implements View {
     private readonly _layerViews = new Map<string, LayerView>();
 
     private readonly _gateway: GatewayService | null;
+    private readonly _geoLocation: GeoLocationService | null;
 
     private _element?: HTMLElement;
     private _mapRoot?: HTMLElement;
@@ -35,6 +38,7 @@ export class DetailView implements View {
     private _bboxWidget?: BboxWidget;
     private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
+    private _geoLocationWidget?: GeoLocationWidget;
     private _clickCleanup?: () => void;
     private _moveEndCleanup?: () => void;
 
@@ -53,6 +57,7 @@ export class DetailView implements View {
         this._layerFactory = services.layerFactory ?? new DefaultLeafletLayerFactory();
         this._widgetFactory = services.widgetFactory ?? new DefaultLeafletWidgetFactory();
         this._gateway = services.gateway ?? null;
+        this._geoLocation = services.geoLocation ?? null;
 
         void this._actions;
     }
@@ -99,6 +104,17 @@ export class DetailView implements View {
             this._summaryWidget = summaryWidget;
             this._layersWidget = layersWidget;
             this._clickCleanup = map.onClick(latLng => this.onMapClick(latLng));
+
+            if (this._geoLocation) {
+                const geoWidget = new GeoLocationWidget(
+                    map,
+                    this._geoLocation,
+                    this._widgetFactory,
+                    this._layerFactory
+                );
+                geoWidget.render();
+                this._geoLocationWidget = geoWidget;
+            }
         }
 
         this.renderLayerViews();
@@ -112,6 +128,9 @@ export class DetailView implements View {
 
             this._bboxWidget?.destroy();
             this._bboxWidget = undefined;
+
+            this._geoLocationWidget?.destroy();
+            this._geoLocationWidget = undefined;
 
             this._clickCleanup?.();
             this._clickCleanup = undefined;

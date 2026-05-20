@@ -254,6 +254,55 @@ body,
     to { transform: rotate(360deg); }
 }
 
+.geo-location-button {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+    border: none;
+    border-radius: 50%;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+
+    transition: background 0.15s ease;
+}
+
+.geo-location-button:hover:not(:disabled) {
+    background: #f4f4f4;
+}
+
+.geo-location-button:disabled {
+    cursor: not-allowed;
+}
+
+.geo-location-button img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.geo-location-button--unavailable img {
+    filter: grayscale(100%) brightness(1.8);
+}
+
+.geo-location-button--following {
+    background: #1a73e8;
+}
+
+.geo-location-button--following:hover {
+    background: #1557b0;
+}
+
+.geo-location-button--following img {
+    filter: brightness(0) invert(1);
+}
+
 .bbox-confirm-bar {
     display: flex;
     gap: 6px;

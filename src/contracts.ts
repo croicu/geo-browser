@@ -72,6 +72,7 @@ export interface MapHandle {
     getCenter(): [number, number];
     getZoom(): number;
     getContainer(): HTMLElement;
+    panTo(latLng: [number, number]): void;
     onZoom(handler: (zoom: number) => void): () => void;
     onMoveEnd(handler: () => void): () => void;
     onClick(handler: (latLng: [number, number]) => void): () => void;
@@ -118,6 +119,20 @@ export interface HostService {
     readonly gateway: GatewayService | null;
 }
 
+export interface GeoPosition {
+    latLng: [number, number];
+    accuracy: number;
+}
+
+export interface GeoLocationService {
+    readonly isAvailable: boolean;
+    watch(
+        onPosition: (position: GeoPosition) => void,
+        onDenied: () => void,
+        onRecovered?: () => void
+    ): () => void;
+}
+
 export interface MapFactory {
     createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle;
 }
@@ -129,6 +144,15 @@ export interface MapLayerHandle {
 
 export interface RectangleHandle extends MapLayerHandle {
     setBounds(bounds: [[number, number], [number, number]]): void;
+}
+
+export interface PositionMarkerHandle extends MapLayerHandle {
+    setLatLng(latLng: [number, number]): void;
+}
+
+export interface AccuracyRingHandle extends MapLayerHandle {
+    setLatLng(latLng: [number, number]): void;
+    setRadius(radiusMeters: number): void;
 }
 
 export interface DraggableMarkerHandle extends MapLayerHandle {
@@ -186,11 +210,18 @@ export interface LayerFactory {
         options: RectangleOptions
     ): RectangleHandle;
     createDraggableMarker(latLng: [number, number]): DraggableMarkerHandle;
+    createPositionMarker(latLng: [number, number]): PositionMarkerHandle;
+    createAccuracyRing(latLng: [number, number], radiusMeters: number): AccuracyRingHandle;
 }
 
 export interface WidgetHandle {
     addTo(map: MapHandle): void;
     remove(): void;
+}
+
+export interface GeoLocationWidgetHandle extends WidgetHandle {
+    setAvailable(available: boolean): void;
+    setFollowing(following: boolean): void;
 }
 
 export interface DesignToolbarButton {
@@ -224,4 +255,9 @@ export interface WidgetFactory {
         onCommit: (name: string) => void,
         onDiscard: () => void
     ): WidgetHandle;
+
+    createGeoLocationWidget(
+        available: boolean,
+        onToggle: () => void
+    ): GeoLocationWidgetHandle;
 }
