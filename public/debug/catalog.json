@@ -1,20 +1,20 @@
 {
   "version": "1.0",
-  "createdAt": "2026-05-20 00:41:26.991481+00:00",
+  "createdAt": "2026-05-20 02:29:29.216307+00:00",
   "areas": [
     {
-      "id": "prague",
-      "name": "Prague",
+      "id": "redmond",
+      "name": "Redmond",
       "bbox": [
-        14.41150198771892,
-        50.084683518129665,
-        14.425153506976109,
-        50.09233814610216
+        -122.16316223144533,
+        47.62391559878863,
+        -122.01999664306642,
+        47.736331408398186
       ],
       "minRadiusPx": 32,
       "maxRadiusPx": 512,
       "liveMapRadiusPx": 640,
-      "manifestUrl": "./areas/prague/manifest.json"
+      "manifestUrl": "./areas/redmond/manifest.json"
     }
   ]
 }
