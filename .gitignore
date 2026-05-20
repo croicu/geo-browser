@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+*.csv
+
 # Editor directories and files
 .idea
 .DS_Store
