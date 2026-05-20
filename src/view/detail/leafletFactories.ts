@@ -291,6 +291,8 @@ class LeafletClickableMapLayerHandle
 }
 
 export class DefaultLeafletLayerFactory implements LayerFactory {
+    private readonly _canvas = L.canvas();
+
     createLayerGroup(): MapLayerHandle {
         return new LeafletMapLayerHandle(L.layerGroup());
     }
@@ -299,7 +301,7 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
         latLng: [number, number],
         options: CircleMarkerOptions
     ): ClickableMapLayerHandle {
-        const marker = L.circleMarker(latLng, options);
+        const marker = L.circleMarker(latLng, { ...options, renderer: this._canvas });
 
         if (options.label) {
             marker.bindTooltip(options.label, {
@@ -318,7 +320,7 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
         radiusMeters: number,
         options: CircleMarkerOptions
     ): ClickableMapLayerHandle {
-        const circle = L.circle(latLng, { ...options, radius: radiusMeters });
+        const circle = L.circle(latLng, { ...options, radius: radiusMeters, renderer: this._canvas });
         return new LeafletClickableMapLayerHandle(circle);
     }
 
