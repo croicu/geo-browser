@@ -374,7 +374,11 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
 
 export class DefaultLeafletMapFactory implements MapFactory {
     createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle {
-        const map = L.map(root).setView(center, zoom);
+        // tap: false — Leaflet's tap handler dispatches a synthetic click AND the browser
+        // synthesises a native click (with pointer-events: auto on the SVG layer), causing
+        // double/triple fires on iOS. Native click synthesis alone is sufficient on iOS 13+
+        // with a width=device-width viewport.
+        const map = L.map(root, { tap: false } as L.MapOptions).setView(center, zoom);
 
         L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
