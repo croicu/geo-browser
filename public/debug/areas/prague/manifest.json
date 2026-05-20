@@ -1,5 +1,46 @@
 {
   "version": 1,
+  "tasks": [
+    {
+      "type": "acquisition",
+      "provider": "overpass",
+      "filters": {
+        "leisure": {
+          "values": [
+            "park",
+            "garden"
+          ],
+          "name": "Parks",
+          "color": "#007f00",
+          "scale": null,
+          "surface": true,
+          "type": "circle"
+        },
+        "amenity": {
+          "values": [
+            "sustenance",
+            "entertainment"
+          ],
+          "name": "Restaurants",
+          "color": null,
+          "scale": null,
+          "surface": false,
+          "type": "heatmap"
+        },
+        "historic": {
+          "values": [
+            "monuments",
+            "memorials"
+          ],
+          "name": "Places",
+          "color": "#ffff00",
+          "scale": 3.0,
+          "surface": false,
+          "type": "heatmap"
+        }
+      }
+    }
+  ],
   "layers": [
     {
       "id": "overpass_historic_memorials_monuments",

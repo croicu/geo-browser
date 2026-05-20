@@ -1,0 +1,5576 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 290026925,
+        "name": "U Parlamentu",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4165887,
+          50.0882606
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 290026926,
+        "name": "Pizzeria Donna",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Pizzeria Donna",
+          "SOVA Restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4164882,
+          50.087785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296454184,
+        "name": "Kafka Hummus Caf\u00e9",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4186581,
+          50.0890958
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296466846,
+        "name": "U \u010cerven\u00e9ho P\u00e1va",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4229078,
+          50.0865707
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296467865,
+        "name": "Moon Club",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243757,
+          50.0899862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296495446,
+        "name": "U Kunstatu",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4169924,
+          50.0853503
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296515266,
+        "name": "Cr\u00e8me de la Cr\u00e8me",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4182972,
+          50.0857057
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296587488,
+        "name": "Les Moules",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4180687,
+          50.0906327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296590541,
+        "name": "Gruzie Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4212469,
+          50.0910404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296604443,
+        "name": "Pepenero",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Pepenero",
+          "Caf\u00e9 mar\u00e9s"
+        ],
+        "amenities": [
+          "restaurant",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192566,
+          50.0907824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296679665,
+        "name": "Absintherie Franz Kafka",
+        "amenity": "bar",
+        "weight": 1.0,
+        "names": [
+          "Absintherie Franz Kafka",
+          "Ambiente Brasileiro"
+        ],
+        "amenities": [
+          "bar",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4193478,
+          50.0874351
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296827931,
+        "name": "Na \u010cepu",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4246878,
+          50.0862735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 310249230,
+        "name": "U Rudolfina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4155827,
+          50.0880711
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 331954484,
+        "name": "Starom\u011bstsk\u00fd Pil\u00ed\u0159",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4173958,
+          50.0922149
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 331956702,
+        "name": "Kozlovna Apropos",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4152587,
+          50.0872945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 331956703,
+        "name": "Rivier",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4139985,
+          50.0849453
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 331956704,
+        "name": "Klub l\u00e1vka",
+        "amenity": "nightclub",
+        "weight": 1.0,
+        "names": [
+          "Klub l\u00e1vka",
+          "Divadlo L\u00e1vka",
+          "U Karlova Mostu"
+        ],
+        "amenities": [
+          "nightclub",
+          "theatre",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4130786,
+          50.0854385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 472661924,
+        "name": "Danielas by Barock",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192013,
+          50.08699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 472662968,
+        "name": "Blatnice",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4200603,
+          50.0846899
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 472662974,
+        "name": "Zlat\u00fd dv\u016fr",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.417874,
+          50.085285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 528455638,
+        "name": "U Kr\u00e1le Ji\u0159\u00edho",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "U Kr\u00e1le Ji\u0159\u00edho",
+          "Blues sklep"
+        ],
+        "amenities": [
+          "restaurant",
+          "nightclub"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4166138,
+          50.0851253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 661404298,
+        "name": "\u010cajovna Siva",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238324,
+          50.0890945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 900638824,
+        "name": "PUB Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4159028,
+          50.0879397
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 989045388,
+        "name": "Caff\u00e8 Pascucci",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4212054,
+          50.0897405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 989045389,
+        "name": "Tretter's New York Bar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4218499,
+          50.0895991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 989045390,
+        "name": "Bakeshop",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4223119,
+          50.0896927
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 989045391,
+        "name": "Crystal Bar & Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4214931,
+          50.0896756
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1054002290,
+        "name": "Bertoldi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4248957,
+          50.0880826
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1218253628,
+        "amenity": "pub",
+        "weight": 1.0,
+        "amenities": [
+          "pub",
+          "ice_cream"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4189571,
+          50.0861923
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1229052820,
+        "name": "AghaRTA Jazz Centrum",
+        "amenity": "nightclub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4220734,
+          50.0863674
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1229057545,
+        "name": "Aloha Wave Lounge",
+        "amenity": "nightclub",
+        "weight": 1.0,
+        "names": [
+          "Aloha Wave Lounge",
+          "Venue"
+        ],
+        "amenities": [
+          "nightclub",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4202726,
+          50.0905163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1229086344,
+        "name": "Harley's bar",
+        "amenity": "nightclub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4235127,
+          50.0896854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1229108524,
+        "name": "Chapeau Rouge",
+        "amenity": "nightclub",
+        "weight": 1.0,
+        "amenities": [
+          "nightclub",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.424627,
+          50.0880421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1229108525,
+        "name": "Popocafepetl",
+        "amenity": "nightclub",
+        "weight": 1.0,
+        "names": [
+          "Popocafepetl",
+          "U dvou sester"
+        ],
+        "amenities": [
+          "nightclub",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4209226,
+          50.0857063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1229108526,
+        "name": "Popocafepetl",
+        "amenity": "nightclub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4198327,
+          50.0853237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1240244383,
+        "name": "All Colours Theatre",
+        "amenity": "theatre",
+        "weight": 1.0,
+        "names": [
+          "All Colours Theatre",
+          "V Ryt\u00ed\u0159sk\u00e9"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4228597,
+          50.0855462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1252317575,
+        "name": "Divadlo Disk",
+        "amenity": "theatre",
+        "weight": 1.0,
+        "names": [
+          "Divadlo Disk",
+          "Kafe Damu"
+        ],
+        "amenities": [
+          "theatre",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4172908,
+          50.085939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1256014702,
+        "name": "Divadlo Kolowrat",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4242138,
+          50.0859978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1256042277,
+        "name": "Divadlo v Celetn\u00e9",
+        "amenity": "theatre",
+        "weight": 1.0,
+        "names": [
+          "Divadlo v Celetn\u00e9",
+          "Caf\u00e9 Gaspar Kasper"
+        ],
+        "amenities": [
+          "theatre",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4246474,
+          50.0872843
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1258869789,
+        "name": "Starom\u011bstsk\u00e1 restaurace",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4216285,
+          50.0870294
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1258869798,
+        "name": "Maitrea",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.422479,
+          50.0883411
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1269076942,
+        "name": "Divadlo Lucie B\u00edl\u00e9",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4150968,
+          50.0857858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1269085411,
+        "name": "Divadlo Na z\u00e1bradl\u00ed",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4145776,
+          50.0850203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1269584632,
+        "name": "N\u00e1rodn\u00ed divadlo Marionet",
+        "amenity": "theatre",
+        "weight": 1.0,
+        "names": [
+          "N\u00e1rodn\u00ed divadlo Marionet",
+          "\u0158\u00ed\u0161e loutek"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4175947,
+          50.0877719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1270663144,
+        "name": "U Zlat\u00e9ho stromu",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "U Zlat\u00e9ho stromu",
+          "Zlat\u00fd strom",
+          "Pietro Gelato",
+          "Charlie's"
+        ],
+        "amenities": [
+          "restaurant",
+          "nightclub",
+          "ice_cream"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4149316,
+          50.0858881
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1270663146,
+        "name": "Karlovy l\u00e1zn\u011b",
+        "amenity": "nightclub",
+        "weight": 1.0,
+        "names": [
+          "Karlovy l\u00e1zn\u011b",
+          "Ice Pub"
+        ],
+        "amenities": [
+          "nightclub",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4138645,
+          50.0853954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1271002121,
+        "name": "Kamenn\u00fd most music club",
+        "amenity": "nightclub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4140017,
+          50.0858267
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1283244558,
+        "name": "Divadlo Ungelt",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243083,
+          50.0878439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1322042433,
+        "name": "Public interest",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4218283,
+          50.0917877
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1322903299,
+        "name": "Orange Moon",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4237855,
+          50.0905861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1323934500,
+        "name": "Bombay Cocktail Bar",
+        "amenity": "bar",
+        "weight": 1.0,
+        "names": [
+          "Bombay Cocktail Bar",
+          "The Spot"
+        ],
+        "amenities": [
+          "bar",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4233027,
+          50.0898866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1324031994,
+        "name": "Crazy Cow",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4222151,
+          50.0889995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1325291691,
+        "name": "Double Trouble",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4204885,
+          50.0859247
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1325308150,
+        "name": "La Bodeguita del Medio",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4171478,
+          50.0885047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1336887208,
+        "name": "Kogo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4221112,
+          50.0858033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1612941196,
+        "name": "El Pablo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4115138,
+          50.0906135
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1695273762,
+        "name": "galerie Vysok\u00e9 \u0161koly um\u011bleckopr\u016fmyslov\u00e9 v Praze",
+        "amenity": "arts_centre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4149642,
+          50.0886367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1823091272,
+        "name": "Pastacaff\u00e9",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4210715,
+          50.0902274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1834647238,
+        "name": "V Kolkovn\u011b",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4211902,
+          50.0899778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1946542385,
+        "name": "Lavazza",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4176731,
+          50.0908381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1946542390,
+        "name": "Marina ristorante",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.413805,
+          50.0891443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1946542560,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4139338,
+          50.0860672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1947138803,
+        "name": "La Veranda",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4199947,
+          50.0902437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1947148280,
+        "name": "James Dean",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4222256,
+          50.0894885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1947150084,
+        "name": "Katr Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.422251,
+          50.0907123
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155686,
+        "name": "Amorino",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192744,
+          50.0879237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155687,
+        "name": "Capriccio",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Capriccio",
+          "Meet Burger"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4194062,
+          50.0876045
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155688,
+        "name": "Lippert",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4197769,
+          50.0876712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155689,
+        "name": "Caf\u00e9 Mozart",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4209933,
+          50.08679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155694,
+        "name": "Caffe Italia",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Caffe Italia",
+          "Caf\u00e9 U T\u00fdna"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4220539,
+          50.0875493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155696,
+        "name": "Caffrey's Irish Bar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.421701,
+          50.088346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155703,
+        "name": "Follow Me",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4236618,
+          50.0897644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155704,
+        "name": "Restaurant Anna",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4239933,
+          50.0898625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155706,
+        "name": "Hard Rock Cafe",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.419156,
+          50.0866733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155707,
+        "name": "Prague Coyotes",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4191426,
+          50.0865614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155709,
+        "name": "Restaurant U Prince",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Restaurant U Prince",
+          "U Prince"
+        ],
+        "amenities": [
+          "restaurant",
+          "fast_food"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4201913,
+          50.086484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155711,
+        "name": "Black Angel's Bar",
+        "amenity": "bar",
+        "weight": 1.0,
+        "names": [
+          "Black Angel's Bar",
+          "Terasa U Prince"
+        ],
+        "amenities": [
+          "bar",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4200492,
+          50.0864803
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155722,
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4181609,
+          50.0859846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1948155896,
+        "name": "KFC",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4183755,
+          50.0879121
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1977821251,
+        "name": "Bed Lounge",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Bed Lounge",
+          "Mama Lucy"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4217235,
+          50.0884446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1977821253,
+        "name": "At the Bell",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "At the Bell",
+          "The City Gallery Prague"
+        ],
+        "amenities": [
+          "cafe",
+          "arts_centre"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4219067,
+          50.0877379
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1977821255,
+        "name": "El Toro Negro",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "El Toro Negro",
+          "Music bar"
+        ],
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4211045,
+          50.086861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1977821257,
+        "name": "George & Dragon",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.421702,
+          50.08824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1977821263,
+        "name": "Trdeln\u00edk",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4198128,
+          50.0875593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1977821265,
+        "name": "Ristorante San Remo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4198567,
+          50.087448
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1977821268,
+        "name": "San Nicola",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4198412,
+          50.0873322
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1977834000,
+        "name": "O'Che's bar",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4164382,
+          50.0854346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1986853161,
+        "name": "U T\u0159\u00ed r\u016f\u017e\u00ed",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "U T\u0159\u00ed r\u016f\u017e\u00ed",
+          "Pivovar Zlat\u00e1 r\u016f\u017ee"
+        ],
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4183242,
+          50.0855901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2194917098,
+        "name": "Muc Dong",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4154453,
+          50.0877417
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2262363790,
+        "name": "T\u00fdnsk\u00e1 Bar and Books",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4239904,
+          50.0887058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2262367508,
+        "name": "The Dubliner Prague",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4232292,
+          50.0880549
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2335332793,
+        "name": "Mlejnice",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4215285,
+          50.0864001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2352440355,
+        "name": "Dhaba Beas",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4234014,
+          50.0888143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2407308936,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.421279,
+          50.0869306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2475659290,
+        "name": "Alforno",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4175415,
+          50.0888794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2504036065,
+        "name": "\u010cesk\u00e1 Kuchyn\u011b Havelsk\u00e1 Koruna",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4216649,
+          50.0855253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2558545041,
+        "name": "FotoGrafic gallery",
+        "amenity": "arts_centre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4149389,
+          50.0847116
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2606740928,
+        "name": "Kozi\u010dka",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4223404,
+          50.0898314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2606740951,
+        "name": "Krcma",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4202421,
+          50.0890454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2737907490,
+        "name": "Pivnice \u0160tupartsk\u00e1",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.424689,
+          50.087796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2820088123,
+        "name": "Vinn\u00fd",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Vinn\u00fd",
+          "Bar&Books"
+        ],
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4236677,
+          50.0887534
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2918364154,
+        "name": "Caf\u00e9 Golem",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4181802,
+          50.0896593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2989896329,
+        "name": "Shelanu Kosher Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4174744,
+          50.0909311
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3095381655,
+        "name": "U \u0160pirk\u016f",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4214627,
+          50.0862926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3104099769,
+        "name": "Hooters",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4217723,
+          50.0856399
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3115230144,
+        "name": "V C\u00edpu",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4198782,
+          50.085945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3146941029,
+        "name": "Mistral Caf\u00e9",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4162862,
+          50.0883139
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3154299218,
+        "name": "\u00b3Gracie",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4132744,
+          50.0854144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3154299219,
+        "name": "Ml\u00fdnec",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4135949,
+          50.0854101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3172430740,
+        "name": "Potrefen\u00e1 husa",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4157189,
+          50.0873508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3183501713,
+        "name": "La Scala",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4229103,
+          50.0874321
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3183501716,
+        "name": "Pasta Fresca",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Pasta Fresca",
+          "Erawan"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238267,
+          50.0872247
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3189682941,
+        "name": "Food Story",
+        "amenity": "food_court",
+        "weight": 1.0,
+        "names": [
+          "Food Story",
+          "Food story"
+        ],
+        "amenities": [
+          "food_court",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4227306,
+          50.0892142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3204170012,
+        "name": "James Joyce",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4232403,
+          50.0910932
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3243128388,
+        "name": "Bonaguil Spirits",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4233898,
+          50.0879498
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3278391834,
+        "name": "Caf\u00e9 Montmartre",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Caf\u00e9 Montmartre",
+          "HILT black light theatre Prague"
+        ],
+        "amenities": [
+          "cafe",
+          "theatre"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4176726,
+          50.0855463
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3278391835,
+        "name": "Liter\u00e1rn\u00ed kav\u00e1rna \u0158et\u011bzov\u00e1",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4175863,
+          50.085426
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3278391836,
+        "name": "T\u00fdnsk\u00e1 liter\u00e1rn\u00ed kav\u00e1rna",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4234595,
+          50.0883709
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3334816110,
+        "name": "Bageterie Boulevard",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4168549,
+          50.0885336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3334816111,
+        "name": "Kafe & Houska",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4168301,
+          50.0883052
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3336194610,
+        "name": "La Finestra in Cucina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4161458,
+          50.0873159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3336194611,
+        "name": "Five Rivers",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.415531,
+          50.0879393
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3336194612,
+        "name": "Cottocrudo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.414434,
+          50.0878051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3336194613,
+        "name": "Caf\u00e9 Milani",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Caf\u00e9 Milani",
+          "Kaprovka"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4180992,
+          50.0882087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3343392548,
+        "name": "U Golema",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4186922,
+          50.088567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3343392550,
+        "name": "P\u00e1t\u00e1 \u010ctvr\u0165",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4179224,
+          50.0889775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3343392551,
+        "name": "Zubang",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4178299,
+          50.0885231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3343392552,
+        "name": "U Pivrnce",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.417563,
+          50.0886367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3373089716,
+        "name": "Cafe Ebel Kaprov\u00e1",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4182857,
+          50.0881635
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3373089717,
+        "name": "Cafe Ebel \u0158et\u011bzov\u00e1",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4179699,
+          50.0855925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3384309136,
+        "name": "POINT Gallery",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4195066,
+          50.0879393
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3391074373,
+        "name": "Atelier Kalina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4140576,
+          50.0846992
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3391079728,
+        "name": "U Pivrnce",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.418565,
+          50.0883348
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3394024949,
+        "name": "La Degustation Boh\u00eame Bourgeoise",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4251059,
+          50.0910323
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3394024951,
+        "name": "U Svat\u00e9ho Ha\u0161tala",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "U Svat\u00e9ho Ha\u0161tala",
+          "the bankers bar"
+        ],
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4248577,
+          50.0910263
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3414032189,
+        "name": "Zlat\u00e1 Praha",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4184791,
+          50.091476
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3475173904,
+        "name": "Restaurace U Star\u00e9 synagogy",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4187585,
+          50.0899095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3475173908,
+        "name": "Zdenek's Oyster Bar",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243654,
+          50.0883326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3475173933,
+        "name": "Bubblify",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Bubblify",
+          "Trdlokafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4219331,
+          50.0866555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3507486607,
+        "name": "golden egg",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "golden egg",
+          "Nemo Cabaret Club"
+        ],
+        "amenities": [
+          "cafe",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4248541,
+          50.0867616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3507486608,
+        "name": "Pizza Coloseum",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4245372,
+          50.0861364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3531586091,
+        "name": "Apetit Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4245353,
+          50.0902701
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3615478616,
+        "name": "Divinis",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Divinis",
+          "Freemasons Pub"
+        ],
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4239773,
+          50.0888941
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620035646,
+        "name": "Loca",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Loca",
+          "Prague Beer Museum"
+        ],
+        "amenities": [
+          "restaurant",
+          "pub"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4140303,
+          50.0851416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620123109,
+        "name": "Art Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4144996,
+          50.0859573
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620123118,
+        "name": "Bodrum Kebab",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Bodrum Kebab",
+          "Torn\u00e1do"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4172248,
+          50.086095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620123120,
+        "name": "Starom\u00e1\u010dek",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4190354,
+          50.0860902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620123121,
+        "name": "Arieta",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4188529,
+          50.086379
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620123123,
+        "name": "Legendy",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Legendy",
+          "11 Cafe"
+        ],
+        "amenities": [
+          "restaurant",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4183647,
+          50.0868161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620445220,
+        "name": "Pivnice U Kata",
+        "amenity": "pub",
+        "weight": 1.0,
+        "amenities": [
+          "pub",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192916,
+          50.087329
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620445224,
+        "name": "Kotleta",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4194923,
+          50.0870929
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620445225,
+        "name": "Al Minuto",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4199897,
+          50.0867313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620445227,
+        "name": "U Zlat\u00e9 konvice",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "U Zlat\u00e9 konvice",
+          "Golden Kettle"
+        ],
+        "amenities": [
+          "restaurant",
+          "pub"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4208233,
+          50.0863687
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620445228,
+        "name": "Oliva Verde",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4209144,
+          50.0866084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620445233,
+        "name": "Le Cinque Corone",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Le Cinque Corone",
+          "Pulcinella"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4207152,
+          50.0855148
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620445234,
+        "name": "Zebra Asian noodle bar",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4211059,
+          50.0852225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620482760,
+        "name": "Pizzeria Corto",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4209564,
+          50.0850458
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620482763,
+        "name": "Pivnice U Zlat\u00e9ho slona",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4206879,
+          50.0848839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620482766,
+        "name": "Angelato Caf\u00e9",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4218229,
+          50.0848074
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620482767,
+        "name": "Pizzeria Giovanni",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4214771,
+          50.0866009
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620482769,
+        "name": "B\u00edl\u00fd kon\u00ed\u010dek",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4214958,
+          50.08698
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620539872,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4208152,
+          50.0865193
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620539879,
+        "name": "Restaurace Mincovna",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.42126,
+          50.0883388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3620539881,
+        "name": "Starom\u00e1\u010dek",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4219628,
+          50.0886309
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3689567202,
+        "name": "Vinn\u00fd Bar Blatni\u010dka",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4198517,
+          50.0847367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3690341395,
+        "name": "George Prime Steak",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4183145,
+          50.0875443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722734862,
+        "name": "Long Street Food",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243396,
+          50.0902098
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722734869,
+        "name": "Agave",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Agave",
+          "Burrito Loco"
+        ],
+        "amenities": [
+          "restaurant",
+          "fast_food"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4232839,
+          50.0892246
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722734871,
+        "name": "La Casa Bl\u016f",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4220461,
+          50.0911296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722734872,
+        "name": "YAMI\u2122 Sushi House",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4235079,
+          50.0894759
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722734874,
+        "name": "Steampunk",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4216934,
+          50.089629
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722751363,
+        "name": "Au Gourmand",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4223372,
+          50.0890869
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722751364,
+        "name": "Amos",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4250114,
+          50.089727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722751365,
+        "name": "Kalina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4225169,
+          50.0892073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722751368,
+        "name": "M1 Lounge",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4231357,
+          50.089433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722751372,
+        "name": "Cafe 80's",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4216531,
+          50.0898866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722751373,
+        "name": "Rasoi",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Rasoi",
+          "Bars"
+        ],
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4234328,
+          50.08994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722751374,
+        "name": "Casa del Carli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4216901,
+          50.0905238
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722751375,
+        "name": "Yoshihashi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4241684,
+          50.0902771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722785857,
+        "name": "Katr restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4224222,
+          50.0900671
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3722785865,
+        "name": "Baku Fast Food",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4248236,
+          50.0900713
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3752628081,
+        "name": "Las Adelitas",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4194325,
+          50.0863048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3899572131,
+        "name": "AnonymouS Bar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4200368,
+          50.0851983
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3902646919,
+        "name": "Bufet",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4154402,
+          50.086953
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3946427271,
+        "name": "The Swan Divadelni Klub",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4244305,
+          50.0859883
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4158081889,
+        "name": "Asian temple",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4209715,
+          50.0912362
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4167956489,
+        "name": "Kon\u00edrna",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4158151,
+          50.085467
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4214263333,
+        "name": "Il Mulino",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4232841,
+          50.0853999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4214263335,
+        "name": "Trdlo",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Trdlo",
+          "Sayf"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4224177,
+          50.0848749
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4214305891,
+        "name": "U Rotlev\u016f",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4229296,
+          50.0864475
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4214305893,
+        "name": "Frame",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4239255,
+          50.0903806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4214305895,
+        "name": "Caf\u00e9 Bar Fano",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4240635,
+          50.0908239
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4216885506,
+        "name": "Coffee Lovers",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.419764,
+          50.0862145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4216912565,
+        "name": "Staropra\u017esk\u00e1 Galerie",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4204563,
+          50.0847111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4234594520,
+        "name": "Kr\u010dma U Pavouka",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4246119,
+          50.087433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4316352190,
+        "name": "Sayf",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4225371,
+          50.0848033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4364714093,
+        "name": "Absintherie Jilsk\u00e1",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4189623,
+          50.0852824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4369893091,
+        "name": "U Svobodn\u00fdch zedn\u00e1\u0159\u016f",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238654,
+          50.0886624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4393342897,
+        "name": "Hany Bany",
+        "amenity": "bar",
+        "weight": 1.0,
+        "names": [
+          "Hany Bany",
+          "ramencraft"
+        ],
+        "amenities": [
+          "bar",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4161825,
+          50.0879505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4398106790,
+        "name": "Cathedral Caf\u00e8",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4231517,
+          50.0883254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4398945089,
+        "name": "Il Palazzo",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4181559,
+          50.084788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4440184292,
+        "name": "U \u010cern\u00e9 hv\u011bzdy",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.417224,
+          50.0862787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4450377689,
+        "name": "Kamenn\u00fd Most",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4140467,
+          50.0856594
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4460955047,
+        "name": "Marco",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4239251,
+          50.0893142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4460955050,
+        "name": "Freemasonic Club",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4236368,
+          50.088594
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4460955052,
+        "name": "Industry",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4244441,
+          50.0879564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4460955053,
+        "name": "Restaurace U \u0160tupart\u016f",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4241303,
+          50.0880837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4460955054,
+        "name": "Ungelt",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238715,
+          50.0883246
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4460955056,
+        "name": "Ungelt",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.423947,
+          50.0879282
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4460955057,
+        "name": "Tunel",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238018,
+          50.0878781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4622067493,
+        "name": "Georgia Gruzie",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4214822,
+          50.0910609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4637351206,
+        "name": "Drunken Monkey",
+        "amenity": "pub",
+        "weight": 1.0,
+        "names": [
+          "Drunken Monkey",
+          "U-Milo"
+        ],
+        "amenities": [
+          "pub",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4208733,
+          50.0917079
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4640472416,
+        "name": "Komorn\u00ed divadlo kalich",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4229967,
+          50.0856234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4642088991,
+        "name": "U Star\u00e9 pan\u00ed",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.419878,
+          50.0848935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4642107789,
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.419992,
+          50.0854259
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4706841499,
+        "name": "Prazska Cokoladova Manufaktura",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Prazska Cokoladova Manufaktura",
+          "My People Bar"
+        ],
+        "amenities": [
+          "cafe",
+          "pub"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4201595,
+          50.0859739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4707822011,
+        "name": "Cafe Rudolfinum",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4157253,
+          50.0901025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4708358388,
+        "name": "U dvou velbloud\u016f",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4211435,
+          50.0859158
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4716002091,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4212126,
+          50.0847881
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4771267833,
+        "name": "Liberica",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4168928,
+          50.0886814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4771268089,
+        "name": "The Miners",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4218739,
+          50.0865017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4786842157,
+        "name": "P\u00edpa beer story",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4229002,
+          50.0891595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4786842350,
+        "name": "Kamz\u00edk",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.422991,
+          50.0866702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4795590322,
+        "name": "El Gaucho",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4214886,
+          50.0892461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4796281479,
+        "name": "Ciao Bella",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4143045,
+          50.0853703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4799904802,
+        "name": "Night Gym",
+        "amenity": "nightclub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4140363,
+          50.0853068
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5003745899,
+        "name": "Na Lou\u017ei",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.419048,
+          50.0871893
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5053279896,
+        "name": "Skautsk\u00fd Institut",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Skautsk\u00fd Institut",
+          "Trdelnik"
+        ],
+        "amenities": [
+          "cafe",
+          "fast_food"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4198693,
+          50.0866222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5167731522,
+        "name": "U Zlat\u00e9ho tygra",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4180403,
+          50.0858358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5182475279,
+        "name": "Deer",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4197072,
+          50.0855905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5182475280,
+        "name": "Burgergrill",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4227032,
+          50.0880515
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5295901821,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Starbucks",
+          "The Irish Times Bar"
+        ],
+        "amenities": [
+          "cafe",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4164309,
+          50.0859702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5500048222,
+        "name": "Pauseteria",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192966,
+          50.0871887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5615751230,
+        "name": "Buggsy's Bar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4200404,
+          50.0889744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5703208521,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4198575,
+          50.0863876
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5732095621,
+        "name": "Pizzeria Castello",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4195638,
+          50.0910284
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5767606755,
+        "name": "K1 Karlova 1",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4167096,
+          50.0861456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5854650663,
+        "name": "Restaurace Country Life Melantrichova",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4202133,
+          50.0857235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6083077248,
+        "name": "U modr\u00e9 kachni\u010dky",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4200128,
+          50.0855537
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6085175585,
+        "name": "Bistro Monk",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Bistro Monk",
+          "Meeples & Coffee Board Game Cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4200127,
+          50.0858182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6183571086,
+        "name": "Signor Vino",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Signor Vino",
+          "Tradi\u010dn\u00ed Trdeln\u00edk"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4217741,
+          50.0867433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6213541085,
+        "name": "Bohemia Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4177581,
+          50.0862133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6410423085,
+        "name": "U Budovce",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4228794,
+          50.0880522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6487766015,
+        "name": "Cafe Elektric",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4242415,
+          50.0859042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6564683186,
+        "name": "Restaurace FIELD",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4219942,
+          50.091755
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6592264385,
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.423123,
+          50.0892733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6644519816,
+        "name": "Art Caf\u00e9",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4144954,
+          50.0856009
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6644520235,
+        "name": "Coffee and wine U z\u00e1bradl\u00ed",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4146132,
+          50.0853736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6672519685,
+        "name": "TRDLO",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4185185,
+          50.0860551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6673683686,
+        "amenity": "cafe",
+        "weight": 1.0,
+        "amenities": [
+          "cafe",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4233959,
+          50.0905044
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6746280285,
+        "name": "Sport Bar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4223745,
+          50.0881817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6760245786,
+        "name": "Bageterie Boulevard",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4168409,
+          50.0859527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6860631009,
+        "name": "Mal\u00e1 Brasserie",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4226568,
+          50.0889849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6873628485,
+        "name": "Maxim Bar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4210484,
+          50.0853295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6873628586,
+        "name": "Karl\u016fv Most",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4128421,
+          50.0860524
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6919368186,
+        "name": "420",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4208627,
+          50.0866959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7049665285,
+        "name": "Sweet Dreams Trdeln\u00edk",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.424813,
+          50.0871059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7102061558,
+        "name": "AnonymouS",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4202887,
+          50.0853493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7176060507,
+        "name": "GamberoRosso",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4251481,
+          50.0881001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8040463726,
+        "name": "Public Chili",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4251507,
+          50.0865235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9043835804,
+        "name": "Green Devil's Absinth bar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.424073,
+          50.0882442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9196982617,
+        "name": "Coffee & Waffles",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4166794,
+          50.0879905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9244635317,
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4208703,
+          50.0856164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9547264335,
+        "name": "Sladk\u00e1 Cesta",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4191105,
+          50.0857427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9551610817,
+        "name": "Pek\u00e1rna",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4219586,
+          50.0903341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9554849117,
+        "name": "Hangar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4203811,
+          50.0903257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9621161562,
+        "name": "European Fusion",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "European Fusion",
+          "U Malvaze - Czech Restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.415284,
+          50.0859309
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9621164374,
+        "name": "Taverna Toscana",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4196116,
+          50.0863673
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9621176023,
+        "name": "Fat Cat",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4186877,
+          50.0860615
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9714329382,
+        "name": "Trdelnik",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.424519,
+          50.0849909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9714369609,
+        "name": "Pelik\u00e1n",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4240801,
+          50.0848213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9721258335,
+        "name": "Bageterie Boulevard",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4226157,
+          50.086287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9721287982,
+        "name": "Wine & Food",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4216859,
+          50.0866687
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9999240495,
+        "name": "Matzip",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4213584,
+          50.0893566
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10098201819,
+        "name": "House Party",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4236129,
+          50.0877544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10098201821,
+        "name": "Delije",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4242971,
+          50.0877445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10108382719,
+        "name": "Caf\u00e9 M\u00e1nes",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4140742,
+          50.0893771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10120638520,
+        "name": "Gallery Of Steel Figures",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243579,
+          50.0873501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10214636185,
+        "name": "Trdeln\u00edk & Coffee",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Trdeln\u00edk & Coffee",
+          "Cr\u00eaperie / Pala\u010dinky"
+        ],
+        "amenities": [
+          "fast_food",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4180376,
+          50.0900415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10553960113,
+        "name": "F\u00e6ncy Fries",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4171579,
+          50.0882094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10730236809,
+        "name": "Einstein Bistrot",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4218628,
+          50.0871461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10733086119,
+        "name": "Little Break???",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4202092,
+          50.090256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10816695605,
+        "name": "Bistro Mezi \u0159\u00e1dky",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4160171,
+          50.0889416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11009912110,
+        "name": "Bo\u017esk\u00e1 Lahvice",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4196565,
+          50.0908026
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11018367965,
+        "name": "'W' Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "'W' Restaurant",
+          "Feel good"
+        ],
+        "amenities": [
+          "restaurant",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4187496,
+          50.0881806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11204939938,
+        "name": "U Supa",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243362,
+          50.0870913
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11235878437,
+        "name": "Baraqa Georgian cuisine",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4224016,
+          50.0904935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11660178395,
+        "name": "Menza pr\u00e1vnick\u00e1",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4168932,
+          50.0916193
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11831363869,
+        "name": "Husovka",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4175246,
+          50.085091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12051356518,
+        "name": "Trdeln\u00edk Celetn\u00e1",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4245859,
+          50.087101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12066658769,
+        "name": "Baraqa",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4225077,
+          50.0902536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12337994501,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.417463,
+          50.088148
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12440470601,
+        "name": "Fat Cat Beerhouse",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4188964,
+          50.0859669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12467127214,
+        "name": "Monastery garden",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4246234,
+          50.0917036
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12473783901,
+        "name": "El Gaucho",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4212393,
+          50.0851731
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12497791100,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4161451,
+          50.0859848
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12624030642,
+        "name": "Coffee Break",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4169003,
+          50.0913902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12624030643,
+        "name": "Bufet Pr\u00e1vnick\u00e1",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4167671,
+          50.0915572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12652504821,
+        "name": "Bubblify",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Bubblify",
+          "Trdlokafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4187214,
+          50.0880591
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12652517970,
+        "name": "Pizza & Kebab Kaprova",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Pizza & Kebab Kaprova",
+          "Rio"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4184737,
+          50.0881295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12741183681,
+        "name": "Basak Hotdog",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4201388,
+          50.0891846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12754442966,
+        "name": "Trdlokafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.425143,
+          50.0868302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12759353799,
+        "name": "Turquoise",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4163049,
+          50.0895881
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12798079739,
+        "name": "Coffee to go",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.421569,
+          50.0868743
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12882957267,
+        "name": "Trdeln\u00edk",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4195404,
+          50.0876842
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12899093794,
+        "name": "Divadlo Na Rejdi\u0161ti",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4161965,
+          50.090544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13013839901,
+        "name": "My People Bar",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4203488,
+          50.0859875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13049645901,
+        "name": "PLATZ Restaurace",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4199367,
+          50.0861679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13060092038,
+        "name": "\u00e2me du cycliste",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.422444,
+          50.090733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13061039813,
+        "name": "Ane\u017eka",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238934,
+          50.0921423
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13111894450,
+        "name": "Popeyes",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4178204,
+          50.088022
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13115235933,
+        "name": "Taiyaki Bar",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4186787,
+          50.0882739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13116181401,
+        "name": "Antricote",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4171388,
+          50.0908758
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13198432929,
+        "name": "Miboo",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.418387,
+          50.0853517
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13198441084,
+        "name": "Real Burger",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4182453,
+          50.0857926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13198444816,
+        "name": "\u0160vejk Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4180762,
+          50.0861069
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13246463622,
+        "name": "Liliova Snack & Coffee",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4167582,
+          50.0852415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13263742817,
+        "name": "Trdlokafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4249967,
+          50.087086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13265150779,
+        "name": "Zlat\u00e1 Lyra",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.419868,
+          50.0850388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13272564751,
+        "name": "Bond Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4248478,
+          50.0878082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13301590196,
+        "name": "Pauseteria",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.419631,
+          50.0871365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13570594301,
+        "name": "Heimishe Trdelaich - Kosher trdeln\u00edk & Di Shpayz kosher shop",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4172047,
+          50.0889181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13798946585,
+        "name": "El Mundo Del Tabaco & Caf\u00e9",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4170581,
+          50.0889593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 28552786,
+        "name": "svat\u00fd \u0160imon a Juda",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.420644,
+          50.092039
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1240702688,
+        "name": "Koncertn\u00ed s\u00e1l Pra\u017esk\u00e9 konzervato\u0159e",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4158579,
+          50.0906598
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5012258,
+        "name": "Stavovsk\u00e9 divadlo",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4236457,
+          50.085961
+        ]
+      }
+    }
+  ]
+}
