@@ -16,7 +16,8 @@ export class BrowserGeoLocationService implements GeoLocationService {
         }
 
         let watchId: number | null = null;
-        const permissionCleanups: (() => void)[] = [];
+        let stopped = false;
+        let removePermissionListener: (() => void) | null = null;
 
         const startWatch = () => {
             watchId = navigator.geolocation.watchPosition(
@@ -44,6 +45,7 @@ export class BrowserGeoLocationService implements GeoLocationService {
         if (onRecovered && navigator.permissions) {
             navigator.permissions.query({ name: "geolocation" })
                 .then((status) => {
+                    if (stopped) return;
                     const handler = () => {
                         if (status.state === "granted") {
                             startWatch();
@@ -51,20 +53,23 @@ export class BrowserGeoLocationService implements GeoLocationService {
                         }
                     };
                     status.addEventListener("change", handler);
-                    permissionCleanups.push(() => status.removeEventListener("change", handler));
+                    removePermissionListener = () => status.removeEventListener("change", handler);
+                    if (stopped) {
+                        removePermissionListener();
+                        removePermissionListener = null;
+                    }
                 })
                 .catch(() => {});
         }
 
         return () => {
+            stopped = true;
             if (watchId !== null) {
                 navigator.geolocation.clearWatch(watchId);
                 watchId = null;
             }
-            for (const cleanup of permissionCleanups) {
-                cleanup();
-            }
-            permissionCleanups.length = 0;
+            removePermissionListener?.();
+            removePermissionListener = null;
         };
     }
 }
