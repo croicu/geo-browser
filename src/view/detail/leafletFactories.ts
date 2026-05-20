@@ -27,11 +27,14 @@ declare module "leaflet" {
 }
 
 import type {
+    AccuracyRingHandle,
     CircleMarkerOptions,
     DesignToolbarButton,
     DraggableMarkerHandle,
+    GeoLocationWidgetHandle,
     LayerFactory,
     MapFactory,
+    PositionMarkerHandle,
     RectangleHandle,
     RectangleOptions,
     WidgetFactory,
@@ -67,6 +70,10 @@ class LeafletMapHandle implements MapHandle {
 
     getContainer(): HTMLElement {
         return this._map.getContainer();
+    }
+
+    panTo(latLng: [number, number]): void {
+        this._map.panTo(latLng);
     }
 
     onZoom(handler: (zoom: number) => void): () => void {
@@ -176,6 +183,36 @@ class LeafletRectangleHandle extends LeafletMapLayerHandle implements RectangleH
     }
 }
 
+class LeafletAccuracyRingHandle extends LeafletMapLayerHandle implements AccuracyRingHandle {
+    private readonly _circle: L.Circle;
+
+    constructor(circle: L.Circle) {
+        super(circle);
+        this._circle = circle;
+    }
+
+    setLatLng(latLng: [number, number]): void {
+        this._circle.setLatLng(latLng);
+    }
+
+    setRadius(radiusMeters: number): void {
+        this._circle.setRadius(radiusMeters);
+    }
+}
+
+class LeafletPositionMarkerHandle extends LeafletMapLayerHandle implements PositionMarkerHandle {
+    private readonly _marker: L.CircleMarker;
+
+    constructor(marker: L.CircleMarker) {
+        super(marker);
+        this._marker = marker;
+    }
+
+    setLatLng(latLng: [number, number]): void {
+        this._marker.setLatLng(latLng);
+    }
+}
+
 class LeafletDraggableMarkerHandle extends LeafletMapLayerHandle implements DraggableMarkerHandle {
     private readonly _marker: L.Marker;
 
@@ -271,6 +308,31 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
             interactive: false,
         });
         return new LeafletRectangleHandle(rect);
+    }
+
+    createAccuracyRing(latLng: [number, number], radiusMeters: number): AccuracyRingHandle {
+        const circle = L.circle(latLng, {
+            radius: radiusMeters,
+            color: "#1a73e8",
+            weight: 1,
+            opacity: 0.5,
+            fillColor: "#1a73e8",
+            fillOpacity: 0.15,
+            interactive: false,
+        });
+        return new LeafletAccuracyRingHandle(circle);
+    }
+
+    createPositionMarker(latLng: [number, number]): PositionMarkerHandle {
+        const marker = L.circleMarker(latLng, {
+            radius: 8,
+            color: "#ffffff",
+            weight: 2,
+            fillColor: "#1a73e8",
+            fillOpacity: 1,
+            opacity: 1,
+        });
+        return new LeafletPositionMarkerHandle(marker);
     }
 
     createDraggableMarker(latLng: [number, number]): DraggableMarkerHandle {
@@ -489,6 +551,101 @@ class LeafletPopupHandle implements WidgetHandle {
     }
 }
 
+function isPwa(): boolean {
+    return window.matchMedia("(display-mode: standalone)").matches
+        || (navigator as unknown as { standalone?: boolean }).standalone === true;
+}
+
+class GeoLocationControl extends L.Control {
+    private readonly _onToggle: () => void;
+    private _button?: HTMLButtonElement;
+    private _available: boolean;
+    private _following = false;
+
+    constructor(available: boolean, onToggle: () => void) {
+        super({ position: "bottomright" });
+        this._available = available;
+        this._onToggle = onToggle;
+    }
+
+    onAdd(): HTMLElement {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "geo-location-button";
+        button.title = "My location";
+        button.disabled = !this._available;
+
+        const img = document.createElement("img");
+        img.src = "/icons/geo-location.svg";
+        img.alt = "My location";
+        button.appendChild(img);
+
+        L.DomEvent.disableClickPropagation(button);
+
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            this._onToggle();
+        });
+
+        this._button = button;
+        this.applyState();
+
+        return button;
+    }
+
+    setAvailable(available: boolean): void {
+        this._available = available;
+        this.applyState();
+    }
+
+    setFollowing(following: boolean): void {
+        this._following = following;
+        this.applyState();
+    }
+
+    private applyState(): void {
+        if (!this._button) {
+            return;
+        }
+
+        this._button.disabled = !this._available;
+        this._button.classList.toggle("geo-location-button--following", this._following);
+        this._button.classList.toggle("geo-location-button--unavailable", !this._available);
+
+        if (!this._available) {
+            this._button.title = isPwa()
+                ? "Location access blocked. Reset it in your browser's site settings."
+                : "Location blocked. Click the lock icon in your address bar to allow it.";
+        } else {
+            this._button.title = "My location";
+        }
+    }
+}
+
+class LeafletGeoLocationWidgetHandle implements GeoLocationWidgetHandle {
+    private readonly _control: GeoLocationControl;
+
+    constructor(control: GeoLocationControl) {
+        this._control = control;
+    }
+
+    addTo(map: MapHandle): void {
+        this._control.addTo(unwrapMap(map));
+    }
+
+    remove(): void {
+        this._control.remove();
+    }
+
+    setAvailable(available: boolean): void {
+        this._control.setAvailable(available);
+    }
+
+    setFollowing(following: boolean): void {
+        this._control.setFollowing(following);
+    }
+}
+
 export class DefaultLeafletWidgetFactory implements WidgetFactory {
 
     createSummaryWidget(
@@ -507,6 +664,13 @@ export class DefaultLeafletWidgetFactory implements WidgetFactory {
 
     createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle {
         return new LeafletWidgetHandle(new DesignToolbarControl(buttons));
+    }
+
+    createGeoLocationWidget(
+        available: boolean,
+        onToggle: () => void
+    ): GeoLocationWidgetHandle {
+        return new LeafletGeoLocationWidgetHandle(new GeoLocationControl(available, onToggle));
     }
 
     createNamePromptPopup(

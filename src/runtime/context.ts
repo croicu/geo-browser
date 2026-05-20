@@ -3,8 +3,9 @@ import { ConsoleTelemetrySink, DefaultLogger } from "../logging";
 import { setLogger, resetLogger } from "../services";
 import { StorageGuard } from "./storageGuard";
 import { WebViewHostService } from "./webViewHostService";
+import { BrowserGeoLocationService } from "./browserGeoLocationService";
 
-import type { GeoDataService, HostService, StorageService, Logger } from "../contracts";
+import type { GeoDataService, GeoLocationService, HostService, StorageService, Logger } from "../contracts";
 import type { ResolveCatalogUrlOptions } from "../catalog/loader";
 import type { LatLng } from "../protocols";
 
@@ -23,6 +24,7 @@ export class Context {
     private readonly _storageGuard: StorageGuard;
     private readonly _logger: Logger;
     private readonly _host: HostService;
+    private readonly _geoLocation: GeoLocationService;
 
     public static get Instance(): Context {
         if (!Context.s_instance) {
@@ -53,6 +55,7 @@ export class Context {
         this._dataSource = {} as GeoDataService;
         this._storageGuard = new StorageGuard();
         this._host = new WebViewHostService(this._mode);
+        this._geoLocation = new BrowserGeoLocationService();
 
         setLogger(this._logger);
     }
@@ -79,6 +82,10 @@ export class Context {
 
     public get host(): HostService {
         return this._host;
+    }
+
+    public get geoLocation(): GeoLocationService {
+        return this._geoLocation;
     }
 
     public get mode(): Mode {

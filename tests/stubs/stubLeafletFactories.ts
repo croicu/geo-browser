@@ -1,13 +1,16 @@
 import type {
+    AccuracyRingHandle,
     ClickableMapLayerHandle,
     DesignToolbarButton,
     DraggableMarkerHandle,
+    GeoLocationWidgetHandle,
     HeatLayerOptions,
     LayerFactory,
     LayerSelectionWidgetItem,
     MapFactory,
     MapHandle,
     MapLayerHandle,
+    PositionMarkerHandle,
     RectangleHandle,
     RectangleOptions,
     WidgetFactory,
@@ -57,6 +60,7 @@ export class StubMap implements MapHandle {
         return this._container;
     }
 
+    panTo(_latLng: [number, number]): void {}
     setCursor(_cursor: string): void {}
     disableDrag(): void {}
     enableDrag(): void {}
@@ -171,6 +175,8 @@ export class StubLayerFactory implements LayerFactory {
     public readonly markers: StubMarker[] = [];
     public readonly rectangles: StubRectangle[] = [];
     public readonly draggableMarkers: StubDraggableMarker[] = [];
+    public readonly positionMarkers: StubPositionMarkerHandle[] = [];
+    public readonly accuracyRings: StubAccuracyRingHandle[] = [];
 
     createLayerGroup(): MapLayerHandle {
         return new StubMapLayerHandle();
@@ -203,6 +209,59 @@ export class StubLayerFactory implements LayerFactory {
         this.draggableMarkers.push(marker);
         return marker;
     }
+
+    createPositionMarker(_latLng: [number, number]): PositionMarkerHandle {
+        const marker = new StubPositionMarkerHandle();
+        this.positionMarkers.push(marker);
+        return marker;
+    }
+
+    createAccuracyRing(_latLng: [number, number], _radiusMeters: number): AccuracyRingHandle {
+        const ring = new StubAccuracyRingHandle();
+        this.accuracyRings.push(ring);
+        return ring;
+    }
+}
+
+export class StubAccuracyRingHandle implements AccuracyRingHandle {
+    public addedTo?: MapHandle;
+    public removed = false;
+    public latLng?: [number, number];
+    public radius?: number;
+
+    addTo(map: MapHandle): void {
+        this.addedTo = map;
+    }
+
+    remove(): void {
+        this.removed = true;
+    }
+
+    setLatLng(latLng: [number, number]): void {
+        this.latLng = latLng;
+    }
+
+    setRadius(radiusMeters: number): void {
+        this.radius = radiusMeters;
+    }
+}
+
+export class StubPositionMarkerHandle implements PositionMarkerHandle {
+    public addedTo?: MapHandle;
+    public removed = false;
+    public latLng?: [number, number];
+
+    addTo(map: MapHandle): void {
+        this.addedTo = map;
+    }
+
+    remove(): void {
+        this.removed = true;
+    }
+
+    setLatLng(latLng: [number, number]): void {
+        this.latLng = latLng;
+    }
 }
 
 export class StubWidget implements WidgetHandle {
@@ -218,7 +277,32 @@ export class StubWidget implements WidgetHandle {
     }
 }
 
+export class StubGeoLocationWidgetHandle implements GeoLocationWidgetHandle {
+    public addedTo?: MapHandle;
+    public removed = false;
+    public available = true;
+    public following = false;
+
+    addTo(map: MapHandle): void {
+        this.addedTo = map;
+    }
+
+    remove(): void {
+        this.removed = true;
+    }
+
+    setAvailable(available: boolean): void {
+        this.available = available;
+    }
+
+    setFollowing(following: boolean): void {
+        this.following = following;
+    }
+}
+
 export class StubWidgetFactory implements WidgetFactory {
+    public lastGeoLocationWidget?: StubGeoLocationWidgetHandle;
+
     createSummaryWidget(_label: string, _onClick: () => void): WidgetHandle {
         return new StubWidget();
     }
@@ -242,4 +326,12 @@ export class StubWidgetFactory implements WidgetFactory {
         return new StubWidget();
     }
 
+    createGeoLocationWidget(
+        _available: boolean,
+        _onToggle: () => void
+    ): GeoLocationWidgetHandle {
+        const handle = new StubGeoLocationWidgetHandle();
+        this.lastGeoLocationWidget = handle;
+        return handle;
+    }
 }
