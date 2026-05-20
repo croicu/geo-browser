@@ -1,0 +1,704 @@
+lon,lat,layer_id,amenities,amenity,area_sqm,id,name,names,radius_m,weight
+-122.1420336,47.7342736,overpass_historic_memorials_monuments,,,,9648996071,Peace Pole,,,1.0
+-122.0335281,47.7079288,overpass_historic_memorials_monuments,,,,9856684807,Memorial for Kari,,,1.0
+-122.0301085,47.7074928,overpass_historic_memorials_monuments,,,,9873415072,,,,1.0
+-122.0790992,47.6745795,overpass_historic_memorials_monuments,,,,9949852992,"Red Brick Road, 1913",,,1.0
+-122.0486345,47.7103291,overpass_historic_memorials_monuments,,,,10650605611,Siedel Creek Dam Ruins,,,1.0
+-122.1038143,47.6879701,overpass_historic_memorials_monuments,,,,11559098462,,,,1.0
+-122.1151256,47.6597385,overpass_historic_memorials_monuments,,,,11967963864,,,,1.0
+-122.1150824,47.6601057,overpass_historic_memorials_monuments,,,,11968002520,,,,1.0
+-122.1279944,47.6431413,overpass_historic_memorials_monuments,,,,488109874,Microsoft Product Walk of Fame,,,1.0
+-122.0473823,47.6498304,overpass_historic_memorials_monuments,,,,1482618618,,,,1.0
+-122.147451,47.7331995,overpass_amenity_entertainment_sustenance,,restaurant,,293835831,The Herbfarm,,,1.0
+-122.1474339,47.733569,overpass_amenity_entertainment_sustenance,,restaurant,,293835832,Barking Frog,,,1.0
+-122.1420281,47.7316091,overpass_amenity_entertainment_sustenance,,restaurant,,293835921,Purple Cafe and Wine Bar - Woodinville,,,1.0
+-122.1409412,47.7324083,overpass_amenity_entertainment_sustenance,,restaurant,,293835973,Heritage Restaurant|Bar,,,1.0
+-122.141619,47.6281526,overpass_amenity_entertainment_sustenance,,fast_food,,321705496,Crimson Coward,,,1.0
+-122.1424275,47.6325836,overpass_amenity_entertainment_sustenance,,pub,,329431185,Daman's Bar & Grill,,,1.0
+-122.1448369,47.6312175,overpass_amenity_entertainment_sustenance,,fast_food,,332083886,Taqueria Guadalajara,,,1.0
+-122.1350637,47.6287163,overpass_amenity_entertainment_sustenance,,restaurant,,339935528,Mediterranean Grill,,,1.0
+-122.1489543,47.6271572,overpass_amenity_entertainment_sustenance,,restaurant,,340337966,Rasoi Indian Restaurant and Bakery,,,1.0
+-122.1448865,47.6268807,overpass_amenity_entertainment_sustenance,,cafe,,340340361,MonGa Cafe,,,1.0
+-122.144297,47.6274173,overpass_amenity_entertainment_sustenance,,restaurant,,340340742,Photai,,,1.0
+-122.1437896,47.6276051,overpass_amenity_entertainment_sustenance,"['restaurant', 'fast_food']",restaurant,,340340743,Little Garden,"['Little Garden', 'Chaat House']",,1.0
+-122.1441496,47.6292529,overpass_amenity_entertainment_sustenance,,cafe,,343484718,Starbucks,,,1.0
+-122.141844,47.6325808,overpass_amenity_entertainment_sustenance,,restaurant,,346521344,Mandarin Buffet & Grill,,,1.0
+-122.1405142,47.6324527,overpass_amenity_entertainment_sustenance,,cafe,,346521484,Starbucks,,,1.0
+-122.13811,47.632106,overpass_amenity_entertainment_sustenance,,restaurant,,346526865,Lee’s Kitchen,,,1.0
+-122.1382763,47.6319367,overpass_amenity_entertainment_sustenance,"['fast_food', 'cafe']",fast_food,,346526866,Qdoba,"['Qdoba', 'Hui Lau Shan']",,1.0
+-122.142562,47.6287352,overpass_amenity_entertainment_sustenance,"['restaurant', 'fast_food']",restaurant,,347256907,Sichuan Cuisine,"['Sichuan Cuisine', 'Five Guys']",,1.0
+-122.1370267,47.6323693,overpass_amenity_entertainment_sustenance,,restaurant,,347259509,Seoul Hot Pot,,,1.0
+-122.1370321,47.6325735,overpass_amenity_entertainment_sustenance,,restaurant,,347259510,Sapporo Teriyaki,,,1.0
+-122.1366327,47.6319326,overpass_amenity_entertainment_sustenance,,restaurant,,352555208,Teapot Vegetarian House,,,1.0
+-122.1219693,47.6745059,overpass_amenity_entertainment_sustenance,,cafe,,418553403,Victor's Coffee House,,,1.0
+-122.1230261,47.6731886,overpass_amenity_entertainment_sustenance,,restaurant,,418553404,The Matador,,,1.0
+-122.1142552,47.6713987,overpass_amenity_entertainment_sustenance,,fast_food,,418778904,McDonald's,,,1.0
+-122.11066,47.6726525,overpass_amenity_entertainment_sustenance,,cafe,,418996958,Starbucks,,,1.0
+-122.11986,47.6687603,overpass_amenity_entertainment_sustenance,,restaurant,,418996963,BJ's,,,1.0
+-122.0925863,47.7022345,overpass_amenity_entertainment_sustenance,,cafe,,420020323,Mercurys Coffee Co.,,,1.0
+-122.1531238,47.6254515,overpass_amenity_entertainment_sustenance,,restaurant,,427246530,Liuyishou Hotpot,,,1.0
+-122.1447876,47.6510848,overpass_amenity_entertainment_sustenance,,cafe,,809708072,,,,1.0
+-122.145133,47.651233,overpass_amenity_entertainment_sustenance,,restaurant,,809709463,PRO Club Bistro,,,1.0
+-122.1259874,47.6385264,overpass_amenity_entertainment_sustenance,,food_court,,809733889,Microsoft Cafe 37,,,1.0
+-122.1234485,47.6406698,overpass_amenity_entertainment_sustenance,,food_court,,809846974,Microsoft Cafe 36,,,1.0
+-122.0239488,47.699595,overpass_amenity_entertainment_sustenance,,restaurant,,908632940,Silver Spoon,,,1.0
+-122.0245711,47.7002268,overpass_amenity_entertainment_sustenance,,cafe,,908632947,Starbucks,,,1.0
+-122.04118,47.6945569,overpass_amenity_entertainment_sustenance,,restaurant,,908633008,Ixtapa,,,1.0
+-122.041866,47.6944644,overpass_amenity_entertainment_sustenance,,fast_food,,908633012,Subway,"['Subway', ""Tony Maroni's""]",,1.0
+-122.1231522,47.6737726,overpass_amenity_entertainment_sustenance,,pub,,986076497,Palmers,,,1.0
+-122.125221,47.6764909,overpass_amenity_entertainment_sustenance,,restaurant,,1020824408,Royal Biryani House,,,1.0
+-122.1261198,47.6759806,overpass_amenity_entertainment_sustenance,,pub,,1020849071,Three Lions Pub,,,1.0
+-122.1262638,47.6759811,overpass_amenity_entertainment_sustenance,,restaurant,,1020852776,The British Pantry Ltd.,,,1.0
+-122.1301227,47.6758398,overpass_amenity_entertainment_sustenance,,pub,,1021370421,J Michaels Pub & Eatery,,,1.0
+-122.1140559,47.6707916,overpass_amenity_entertainment_sustenance,,cafe,,1021843304,Starbucks,,,1.0
+-122.124949,47.6788593,overpass_amenity_entertainment_sustenance,,cafe,,1028669255,Village Square Cafe,,,1.0
+-122.1233962,47.6819189,overpass_amenity_entertainment_sustenance,,pub,,1078173445,JJ Mahoneys,,,1.0
+-122.1234744,47.6820117,overpass_amenity_entertainment_sustenance,,restaurant,,1078173888,Racha Noodle & Thai,,,1.0
+-122.1305741,47.6694091,overpass_amenity_entertainment_sustenance,"['cafe', 'restaurant']",cafe,,1103954941,Sunrise Cafe,"['Sunrise Cafe', 'Bangkok Basil']",,1.0
+-122.0425584,47.6944229,overpass_amenity_entertainment_sustenance,,cafe,,1125487671,Cypress Coffee Company,,,1.0
+-122.0410049,47.694565,overpass_amenity_entertainment_sustenance,,restaurant,,1125487703,Himitsu,,,1.0
+-122.024265,47.7001242,overpass_amenity_entertainment_sustenance,,pub,,1134581367,Three Lions Pub,,,1.0
+-122.0241043,47.6999254,overpass_amenity_entertainment_sustenance,,restaurant,,1134581421,Miyakos Teriyaki & Wok,,,1.0
+-122.025043,47.6990287,overpass_amenity_entertainment_sustenance,,fast_food,,1191231784,Papa Murphy's,,,1.0
+-122.0251851,47.69898,overpass_amenity_entertainment_sustenance,"['fast_food', 'restaurant']",fast_food,,1191231791,Papa Murphy's,"[""Papa Murphy's"", ""Luigi's Italian Cucina""]",,1.0
+-122.1300893,47.6767956,overpass_amenity_entertainment_sustenance,,restaurant,,1199361856,Ooba Tooba,,,1.0
+-122.154317,47.62701,overpass_amenity_entertainment_sustenance,,restaurant,,1213922799,Frying Fish,,,1.0
+-122.154542,47.6270082,overpass_amenity_entertainment_sustenance,,fast_food,,1213922824,Papa Murphy's,,,1.0
+-122.0995243,47.6664531,overpass_amenity_entertainment_sustenance,,restaurant,,1217745663,Pomegranate Bistro,,,1.0
+-122.0261338,47.6987658,overpass_amenity_entertainment_sustenance,,cafe,,1235037503,Starbucks,,,1.0
+-122.125217,47.6801713,overpass_amenity_entertainment_sustenance,"['restaurant', 'fast_food']",restaurant,,1241063653,Los Chilangos,"['Los Chilangos', ""Papa John's"", 'Boling Point']",,1.0
+-122.102626,47.6669937,overpass_amenity_entertainment_sustenance,,cafe,,1241180008,Peet's Coffee,,,1.0
+-122.102327,47.6672916,overpass_amenity_entertainment_sustenance,,fast_food,,1241180080,Chipotle,,,1.0
+-122.1110032,47.6702464,overpass_amenity_entertainment_sustenance,,ice_cream,,1242265277,Baskin-Robbins,,,1.0
+-122.1099678,47.6726114,overpass_amenity_entertainment_sustenance,,restaurant,,1243260800,Yummy Teriyaki,,,1.0
+-122.1117501,47.6719611,overpass_amenity_entertainment_sustenance,,restaurant,,1257414155,Agave Cocina & Cantina,,,1.0
+-122.1446573,47.6855472,overpass_amenity_entertainment_sustenance,,pub,,1262848052,Black Raven Brewing Company,,,1.0
+-122.026476,47.6451947,overpass_amenity_entertainment_sustenance,,cafe,,1276548279,Starbucks,,,1.0
+-122.1232079,47.67366,overpass_amenity_entertainment_sustenance,,restaurant,,1372948758,Hakka House,,,1.0
+-122.122344,47.6779991,overpass_amenity_entertainment_sustenance,,restaurant,,1380602517,Ristorante Tropea,,,1.0
+-122.1178197,47.6724928,overpass_amenity_entertainment_sustenance,,restaurant,,1438943256,Kanishka,,,1.0
+-122.1227671,47.6744858,overpass_amenity_entertainment_sustenance,,pub,,1738744874,Redmond's Bar and Grill,,,1.0
+-122.154652,47.6250241,overpass_amenity_entertainment_sustenance,,cafe,,1739472328,Starbucks,,,1.0
+-122.1277078,47.6767931,overpass_amenity_entertainment_sustenance,,restaurant,,1740887062,Sages Restaurant,,,1.0
+-122.1101164,47.6710477,overpass_amenity_entertainment_sustenance,,fast_food,,1774361993,Panera Bread,,,1.0
+-122.1200436,47.6706107,overpass_amenity_entertainment_sustenance,"['cafe', 'restaurant']",cafe,,1988524258,Starbucks,"['Starbucks', 'The Original Pancake House']",,1.0
+-122.1231617,47.6816407,overpass_amenity_entertainment_sustenance,,restaurant,,2071062675,Yummy Pho,,,1.0
+-122.121293,47.6719873,overpass_amenity_entertainment_sustenance,,pub,,2071065704,Flatstick Pub,,,1.0
+-122.144064,47.6835259,overpass_amenity_entertainment_sustenance,"['fast_food', 'restaurant']",fast_food,,2106231828,Subway,"['Subway', 'Zaucer Pizza']",,1.0
+-122.1540685,47.6308799,overpass_amenity_entertainment_sustenance,,restaurant,,2136439847,Amulya Indian Cuisine,,,1.0
+-122.1419021,47.7322151,overpass_amenity_entertainment_sustenance,,restaurant,,2447402598,Pablo y Pablo,,,1.0
+-122.102567,47.6672896,overpass_amenity_entertainment_sustenance,,restaurant,,2622999539,Asiana Bistro,,,1.0
+-122.110783,47.6701837,overpass_amenity_entertainment_sustenance,,fast_food,,2623010946,Jersey Mike's Subs,,,1.0
+-122.025448,47.6448981,overpass_amenity_entertainment_sustenance,,fast_food,,2623485882,Subway,,,1.0
+-122.1031584,47.6672899,overpass_amenity_entertainment_sustenance,,restaurant,,2623497488,Sahara,,,1.0
+-122.1005764,47.6669517,overpass_amenity_entertainment_sustenance,,cafe,,2623987923,Mercurys Coffee Co.,,,1.0
+-122.1284051,47.6750561,overpass_amenity_entertainment_sustenance,,fast_food,,2624145049,Qdoba,,,1.0
+-122.1271082,47.6756342,overpass_amenity_entertainment_sustenance,,fast_food,,2624145607,Jimmy John's,,,1.0
+-122.1266886,47.6744086,overpass_amenity_entertainment_sustenance,,cafe,,2624148528,The Screaming Parrots Cafe,,,1.0
+-122.1270057,47.6746005,overpass_amenity_entertainment_sustenance,,restaurant,,2624149206,Zeeks Pizza - Redmond,,,1.0
+-122.1223323,47.6731103,overpass_amenity_entertainment_sustenance,,restaurant,,2624157364,Tipsy Cow Burger Bar,,,1.0
+-122.127345,47.6810002,overpass_amenity_entertainment_sustenance,,fast_food,,2626116367,Potbelly,,,1.0
+-122.1200345,47.6697211,overpass_amenity_entertainment_sustenance,"['restaurant', 'cafe']",restaurant,,2626130765,Matts' Rotisserie & Oyster Lounge,"[""Matts' Rotisserie & Oyster Lounge"", 'Creperie de Paris', 'jaShn']",,1.0
+-122.1117912,47.6713719,overpass_amenity_entertainment_sustenance,,fast_food,,2627336275,Five Guys,,,1.0
+-122.1278505,47.675058,overpass_amenity_entertainment_sustenance,,restaurant,,2627376310,Niko Teriyaki,,,1.0
+-122.127259,47.6760205,overpass_amenity_entertainment_sustenance,,cafe,,2627417682,Yi Fang Tea,,,1.0
+-122.1217426,47.6704373,overpass_amenity_entertainment_sustenance,,ice_cream,,2627471720,Cold Stone Creamery,,,1.0
+-122.1446883,47.6268803,overpass_amenity_entertainment_sustenance,,restaurant,,2716358137,Tang Bar Hot Pot Restaurant,,,1.0
+-122.1441416,47.6274075,overpass_amenity_entertainment_sustenance,"['ice_cream', 'restaurant']",ice_cream,,2716358161,Somisomi,"['Somisomi', 'Tiger Bites']",,1.0
+-122.123005,47.6814552,overpass_amenity_entertainment_sustenance,,fast_food,,2834328914,MOD Pizza,,,1.0
+-122.145002,47.631134,overpass_amenity_entertainment_sustenance,,restaurant,,3295744762,Dough Zone,,,1.0
+-122.1452654,47.6309962,overpass_amenity_entertainment_sustenance,,restaurant,,3295746561,Anjappar Chettinad,,,1.0
+-122.1449817,47.6309268,overpass_amenity_entertainment_sustenance,,cafe,,3295746861,Mavalli Tiffin Rooms (MTR 1924),,,1.0
+-122.099381,47.6644483,overpass_amenity_entertainment_sustenance,,fast_food,,3351104940,Subway,,,1.0
+-122.1559605,47.6301559,overpass_amenity_entertainment_sustenance,,restaurant,,3377511542,Shahana Steakhouse,,,1.0
+-122.1543163,47.6306101,overpass_amenity_entertainment_sustenance,,fast_food,,3728489926,El Rinconsito,,,1.0
+-122.141331,47.6405442,overpass_amenity_entertainment_sustenance,,food_court,,3734075551,Microsoft Cafe 112,,,1.0
+-122.1210852,47.6703078,overpass_amenity_entertainment_sustenance,,cinema,,3812153314,IPIC Theaters,,,1.0
+-122.1502131,47.6282964,overpass_amenity_entertainment_sustenance,,restaurant,,3889813431,Steve's Bar and Grill,,,1.0
+-122.1489551,47.6273198,overpass_amenity_entertainment_sustenance,,restaurant,,3889813433,Donburi Station,,,1.0
+-122.1495471,47.6282878,overpass_amenity_entertainment_sustenance,,restaurant,,3889813443,,,,1.0
+-122.1505741,47.6282967,overpass_amenity_entertainment_sustenance,,restaurant,,3889813448,Nan Noodles,,,1.0
+-122.151475,47.6282977,overpass_amenity_entertainment_sustenance,,restaurant,,3889828768,Dickey's Barbecue Pit,,,1.0
+-122.151719,47.628298,overpass_amenity_entertainment_sustenance,,restaurant,,3889828774,Shaoshan Impression,,,1.0
+-122.15482,47.6262389,overpass_amenity_entertainment_sustenance,,fast_food,,3889833961,Wayback Burgers,"['Wayback Burgers', 'Subway']",,1.0
+-122.154822,47.6263327,overpass_amenity_entertainment_sustenance,"['cafe', 'restaurant']",cafe,,3889833973,Happy Lemon,"['Happy Lemon', 'Thai Chef']",,1.0
+-122.154652,47.6251192,overpass_amenity_entertainment_sustenance,,fast_food,,3889833976,Ezell's Chicken,,,1.0
+-122.134036,47.6308986,overpass_amenity_entertainment_sustenance,,fast_food,,3893778039,Potbelly,,,1.0
+-122.1444262,47.6276109,overpass_amenity_entertainment_sustenance,,cafe,,3899118617,85°C Bakery Cafe,,,1.0
+-122.1219969,47.6706107,overpass_amenity_entertainment_sustenance,,cafe,,3900551372,Kitanda,,,1.0
+-122.1415829,47.6296695,overpass_amenity_entertainment_sustenance,,fast_food,,3933280523,Panda Express,,,1.0
+-122.1543197,47.6305184,overpass_amenity_entertainment_sustenance,"['restaurant', 'ice_cream']",restaurant,,3940718893,Wibbley's Burgers,"[""Wibbley's Burgers"", 'Baskin-Robbins']",,1.0
+-122.1544949,47.6304374,overpass_amenity_entertainment_sustenance,,restaurant,,3950968415,I Love Teriyaki,,,1.0
+-122.1547965,47.6299141,overpass_amenity_entertainment_sustenance,,restaurant,,3950968421,Tasty Time 425 & KTV Karaoke Lounge,,,1.0
+-122.1554631,47.6299241,overpass_amenity_entertainment_sustenance,,restaurant,,3950968423,Little Taipei,,,1.0
+-122.1351225,47.6286168,overpass_amenity_entertainment_sustenance,,fast_food,,4129359890,Jimmy John's,,,1.0
+-122.1172155,47.6728574,overpass_amenity_entertainment_sustenance,,restaurant,,4158630595,Taqueria Gallo,,,1.0
+-122.1172873,47.6722971,overpass_amenity_entertainment_sustenance,,fast_food,,4164273089,Emerald City Smoothie,,,1.0
+-122.1273099,47.6768496,overpass_amenity_entertainment_sustenance,,restaurant,,4350392293,Caadxi Mezcaleria,,,1.0
+-122.1249446,47.6737261,overpass_amenity_entertainment_sustenance,,pub,,4350410789,Woodblock,,,1.0
+-122.123368,47.6746196,overpass_amenity_entertainment_sustenance,,fast_food,,4353378417,Domino's,,,1.0
+-122.1229096,47.6735746,overpass_amenity_entertainment_sustenance,,restaurant,,4353378418,The Third Place,,,1.0
+-122.1261139,47.6740476,overpass_amenity_entertainment_sustenance,,restaurant,,4353378424,Garlic Crush,,,1.0
+-122.1233018,47.6747483,overpass_amenity_entertainment_sustenance,,restaurant,,4353378439,La Quemada Tienda Carnicera,,,1.0
+-122.1235093,47.6736599,overpass_amenity_entertainment_sustenance,,ice_cream,,4353378443,Molly Moon's Homemade Ice Cream - Redmond,,,1.0
+-122.1221418,47.6733836,overpass_amenity_entertainment_sustenance,,restaurant,,4353378454,Prime Steakhouse,,,1.0
+-122.1304741,47.6784294,overpass_amenity_entertainment_sustenance,,cafe,,4353378467,River Trail Roasters,,,1.0
+-122.141752,47.6424067,overpass_amenity_entertainment_sustenance,,food_court,,4442745488,Microsoft Cafe 99,,,1.0
+-122.1426086,47.7339469,overpass_amenity_entertainment_sustenance,,cafe,,4491042323,Chateau Espresso,,,1.0
+-122.142595,47.7343961,overpass_amenity_entertainment_sustenance,,pub,,4491042337,Good Brewing,,,1.0
+-122.1420347,47.7319417,overpass_amenity_entertainment_sustenance,,restaurant,,4491062199,Sora Sushi,,,1.0
+-122.1198628,47.6701236,overpass_amenity_entertainment_sustenance,,restaurant,,4789555194,Supreme Dumplings,,,1.0
+-122.1217339,47.6698313,overpass_amenity_entertainment_sustenance,,restaurant,,4789555721,Just Poke,,,1.0
+-122.1190959,47.6714612,overpass_amenity_entertainment_sustenance,,restaurant,,4792797634,Zio Sal Ristorante Italiano,,,1.0
+-122.1206533,47.6706391,overpass_amenity_entertainment_sustenance,,restaurant,,4792797647,Thai Ginger,,,1.0
+-122.119732,47.6700875,overpass_amenity_entertainment_sustenance,,theatre,,4792797661,SecondStory Repertory,,,1.0
+-122.1309978,47.6451619,overpass_amenity_entertainment_sustenance,,food_court,,4806566584,Microsoft Cafe 25,,,1.0
+-122.1371112,47.6440488,overpass_amenity_entertainment_sustenance,,food_court,,4829304096,,,,1.0
+-122.1368215,47.6444825,overpass_amenity_entertainment_sustenance,,food_court,,4829304097,,,,1.0
+-122.1185772,47.6604327,overpass_amenity_entertainment_sustenance,,cafe,,4852385321,Bear Creek Coffee Co.,,,1.0
+-122.1054223,47.6636505,overpass_amenity_entertainment_sustenance,,pub,,4853787338,Postdoc Brewing,,,1.0
+-122.0993763,47.6648504,overpass_amenity_entertainment_sustenance,,fast_food,,4853787341,Sammamish Deli,,,1.0
+-122.0992271,47.6644896,overpass_amenity_entertainment_sustenance,,restaurant,,4853787342,Taste of Hyderabad,,,1.0
+-122.1127384,47.6730212,overpass_amenity_entertainment_sustenance,,restaurant,,4853787343,Bommarillu Biryani,,,1.0
+-122.1259348,47.6759799,overpass_amenity_entertainment_sustenance,,restaurant,,4959184317,Oto Sushi,,,1.0
+-122.1253295,47.6763433,overpass_amenity_entertainment_sustenance,,cafe,,5039621985,Five Stones Coffee Co.,,,1.0
+-122.135813,47.631943,overpass_amenity_entertainment_sustenance,,cafe,,5045655525,Tapioca Express,,,1.0
+-122.137358,47.6354314,overpass_amenity_entertainment_sustenance,,bar,,5093478022,W XYZ Lounge,,,1.0
+-122.133739,47.649076,overpass_amenity_entertainment_sustenance,,food_court,,5148003019,Microsoft Cafe 83,,,1.0
+-122.1410975,47.6434545,overpass_amenity_entertainment_sustenance,,food_court,,5148061072,Microsoft Cafe H,,,1.0
+-122.1371387,47.6477956,overpass_amenity_entertainment_sustenance,,food_court,,5148061085,Microsoft Cafe 121,,,1.0
+-122.1342867,47.6518645,overpass_amenity_entertainment_sustenance,,food_court,,5148061086,Microsoft Cafe 86,,,1.0
+-122.0915438,47.6773934,overpass_amenity_entertainment_sustenance,,food_court,,5148109690,Microsoft Millenium Cafe,,,1.0
+-122.1182962,47.6688695,overpass_amenity_entertainment_sustenance,,food_court,,5148150230,Microsoft Cafe RTC-5,,,1.0
+-122.1531717,47.7333929,overpass_amenity_entertainment_sustenance,,bar,,5266167421,Woodinville Whiskey Co.,,,1.0
+-122.1139486,47.6709317,overpass_amenity_entertainment_sustenance,,restaurant,,5281069373,Dough Zone,,,1.0
+-122.1360022,47.6319412,overpass_amenity_entertainment_sustenance,,restaurant,,5282730742,Tian Tian Noodles,,,1.0
+-122.1421879,47.6322258,overpass_amenity_entertainment_sustenance,,restaurant,,5484699952,Nine Way,,,1.0
+-122.1374211,47.6344528,overpass_amenity_entertainment_sustenance,,cafe,,5555369743,Maxwella Cafe and Bar,,,1.0
+-122.1228105,47.6737003,overpass_amenity_entertainment_sustenance,,bar,,5872801325,Northwest Brewing Co.,,,1.0
+-122.1243593,47.6735973,overpass_amenity_entertainment_sustenance,,restaurant,,5953192257,Hello Poké,,,1.0
+-122.1444793,47.6268673,overpass_amenity_entertainment_sustenance,,restaurant,,6013559134,Núodle,,,1.0
+-122.1414176,47.7339843,overpass_amenity_entertainment_sustenance,,restaurant,,6373249169,The Bistro at Hollywood Schoolhouse,,,1.0
+-122.142272,47.6862274,overpass_amenity_entertainment_sustenance,,restaurant,,6546105692,Willows Deli,,,1.0
+-122.1304706,47.6271491,overpass_amenity_entertainment_sustenance,,fast_food,,6571035787,El Maestro del Taco,,,1.0
+-122.1385421,47.6319341,overpass_amenity_entertainment_sustenance,,restaurant,,6654415785,Southern Spice,,,1.0
+-122.141467,47.733098,overpass_amenity_entertainment_sustenance,,restaurant,,6981184317,Maryhill Winery,,,1.0
+-122.141135,47.6861775,overpass_amenity_entertainment_sustenance,,pub,,6991510649,Big Block Brewing Taproom,,,1.0
+-122.1497284,47.7347722,overpass_amenity_entertainment_sustenance,,restaurant,,7182782287,Wheelhouse,,,1.0
+-122.1262578,47.6810479,overpass_amenity_entertainment_sustenance,,fast_food,,7745768115,Panda Express,,,1.0
+-122.0950303,47.6623002,overpass_amenity_entertainment_sustenance,,restaurant,,8927370753,Rocky’s Empanadas,,,1.0
+-122.1241327,47.6750336,overpass_amenity_entertainment_sustenance,,cafe,,9211179006,Meetea,,,1.0
+-122.155387,47.6250025,overpass_amenity_entertainment_sustenance,,restaurant,,9630989868,Cho Dang Tofu,,,1.0
+-122.1427072,47.7330596,overpass_amenity_entertainment_sustenance,,restaurant,,9648986119,Vivi's,"[""Vivi's"", 'Vivi Pizzeria']",,1.0
+-122.1465849,47.6272169,overpass_amenity_entertainment_sustenance,"['restaurant', 'fast_food']",restaurant,,9742523177,Taste Of Xi’an,"['Taste Of Xi’an', 'DrinkT']",,1.0
+-122.1111439,47.6702866,overpass_amenity_entertainment_sustenance,,cafe,,9791566415,Happy Lemon,,,1.0
+-122.1222398,47.6746349,overpass_amenity_entertainment_sustenance,,restaurant,,9791573115,Biryani Bowl,,,1.0
+-122.0289482,47.7068418,overpass_amenity_entertainment_sustenance,,restaurant,,9829419433,Pines Bistro,,,1.0
+-122.0264148,47.7040198,overpass_amenity_entertainment_sustenance,,cafe,,9843431891,Crooked Spoon,,,1.0
+-122.1225292,47.6759979,overpass_amenity_entertainment_sustenance,,restaurant,,10093621766,Bandidos Mexican Grill,,,1.0
+-122.1194265,47.6700031,overpass_amenity_entertainment_sustenance,,restaurant,,10112282391,Kizuki Ramen & Izakaya,,,1.0
+-122.1032222,47.6754221,overpass_amenity_entertainment_sustenance,,cafe,,10833061619,Mercurys Coffee Co.,,,1.0
+-122.1166345,47.6701408,overpass_amenity_entertainment_sustenance,,fast_food,,10874962805,Musashi's,,,1.0
+-122.1168307,47.6701435,overpass_amenity_entertainment_sustenance,,restaurant,,10874962806,A Ma Chicken Rice,,,1.0
+-122.120475,47.6737906,overpass_amenity_entertainment_sustenance,,cafe,,11028360363,Farine Bakery & Cafe,,,1.0
+-122.1480749,47.7336125,overpass_amenity_entertainment_sustenance,,bar,,11050125701,The Lounge,,,1.0
+-122.1374332,47.6346523,overpass_amenity_entertainment_sustenance,,restaurant,,11070415611,151 Days,,,1.0
+-122.1259092,47.674567,overpass_amenity_entertainment_sustenance,,restaurant,,11146740763,Tavolàta,,,1.0
+-122.125854,47.674712,overpass_amenity_entertainment_sustenance,,cafe,,11146740764,Rubinstein Bagels,,,1.0
+-122.1192968,47.6699673,overpass_amenity_entertainment_sustenance,,cafe,,11216616300,Sharetea,,,1.0
+-122.1313925,47.6744654,overpass_amenity_entertainment_sustenance,,arts_centre,,11292017327,Sweety Saradha Arts,,,1.0
+-122.1196915,47.6703731,overpass_amenity_entertainment_sustenance,,restaurant,,11357378255,Dong Ting Chun,,,1.0
+-122.1300425,47.641624,overpass_amenity_entertainment_sustenance,,ice_cream,,11372369931,Salt & Straw,,,1.0
+-122.1301472,47.6416799,overpass_amenity_entertainment_sustenance,,cafe,,11372369934,DOTE Espresso,"['DOTE Espresso', 'Bobae Coffee & Tea']",,1.0
+-122.1304638,47.641278,overpass_amenity_entertainment_sustenance,,pub,,11372369935,Craft75 Gastropub,,,1.0
+-122.1315804,47.6404779,overpass_amenity_entertainment_sustenance,,food_court,,11372369936,Microsoft Food Hall 9,,,1.0
+-122.1302919,47.6418431,overpass_amenity_entertainment_sustenance,,food_court,,11372369937,Microsoft Food Hall 6,,,1.0
+-122.1290311,47.6415154,overpass_amenity_entertainment_sustenance,,food_court,,11372369938,Microsoft Food Hall 4,,,1.0
+-122.1125,47.6729973,overpass_amenity_entertainment_sustenance,,restaurant,,11712066238,Kobuta and Ookami,,,1.0
+-122.1461576,47.6282941,overpass_amenity_entertainment_sustenance,,restaurant,,11746004728,Gyu-Kaku,,,1.0
+-122.1273322,47.6765588,overpass_amenity_entertainment_sustenance,,cafe,,11826478783,Doppio Cafe and Creperie,,,1.0
+-122.1228998,47.6813679,overpass_amenity_entertainment_sustenance,,restaurant,,11951229825,Noburu Ramen & Sushi,,,1.0
+-122.1449415,47.6306875,overpass_amenity_entertainment_sustenance,,restaurant,,11977329469,Honest,,,1.0
+-122.0279943,47.6992885,overpass_amenity_entertainment_sustenance,,fast_food,,11980126838,MOD Pizza,,,1.0
+-122.1493475,47.6282448,overpass_amenity_entertainment_sustenance,,cafe,,11986409607,Timeless Tea,,,1.0
+-122.1203507,47.6698189,overpass_amenity_entertainment_sustenance,,restaurant,,12004776069,Fuji Steakhouse,,,1.0
+-122.1158052,47.6694244,overpass_amenity_entertainment_sustenance,,cafe,,12004787970,Mayuri Bakery & Cafe,,,1.0
+-122.1160889,47.6702169,overpass_amenity_entertainment_sustenance,,restaurant,,12004789569,Bon Korean Cuisine,,,1.0
+-122.1349394,47.6354042,overpass_amenity_entertainment_sustenance,,cafe,,12021735406,Jack Sprat,,,1.0
+-122.0917135,47.673576,overpass_amenity_entertainment_sustenance,,fast_food,,12088031079,Costco Food Court,,,1.0
+-122.1251006,47.6751398,overpass_amenity_entertainment_sustenance,,fast_food,,12104478171,Nekter Juice Bar,,,1.0
+-122.1165392,47.6726205,overpass_amenity_entertainment_sustenance,,cafe,,12249411501,Neighborhood Cafe,,,1.0
+-122.1047711,47.6674331,overpass_amenity_entertainment_sustenance,,restaurant,,12517175569,Stone Korean Restaurant,,,1.0
+-122.1359624,47.6281366,overpass_amenity_entertainment_sustenance,,fast_food,,12570481061,Pagliacci Pizza,,,1.0
+-122.132761,47.6317883,overpass_amenity_entertainment_sustenance,,restaurant,,12755680201,Foody Moody,,,1.0
+-122.1196014,47.6731779,overpass_amenity_entertainment_sustenance,,restaurant,,12877545794,Due Cucina,,,1.0
+-122.1265718,47.6759961,overpass_amenity_entertainment_sustenance,,restaurant,,12877578669,Neville’s Restaurant,,,1.0
+-122.1304187,47.6692119,overpass_amenity_entertainment_sustenance,,fast_food,,12994801500,Sodo Pizza,,,1.0
+-122.1190549,47.6730384,overpass_amenity_entertainment_sustenance,,restaurant,,13018083204,Sip Thai Zooom,,,1.0
+-122.1200155,47.6732906,overpass_amenity_entertainment_sustenance,,fast_food,,13018274253,Dave's Hot Chicken,,,1.0
+-122.1203007,47.6726343,overpass_amenity_entertainment_sustenance,,restaurant,,13018291791,Mendocino Farms,,,1.0
+-122.1199047,47.6724707,overpass_amenity_entertainment_sustenance,,ice_cream,,13018291792,Salt & Straw,,,1.0
+-122.1412634,47.628153,overpass_amenity_entertainment_sustenance,,restaurant,,13032908202,Miah’s Kitchen,,,1.0
+-122.1411267,47.6281523,overpass_amenity_entertainment_sustenance,,restaurant,,13032908203,Shinya Shokudo,,,1.0
+-122.1597005,47.6276547,overpass_amenity_entertainment_sustenance,,cafe,,13039815267,Young Tea,,,1.0
+-122.1212518,47.6708058,overpass_amenity_entertainment_sustenance,,restaurant,,13182442471,#K-Street KBBQ,,,1.0
+-122.1333182,47.6320046,overpass_amenity_entertainment_sustenance,,fast_food,,13414438100,La Tia Angelina,,,1.0
+-122.1224518,47.6737933,overpass_amenity_entertainment_sustenance,,restaurant,,13419627731,Pagliacci Pizza,,,1.0
+-122.1191405,47.6723439,overpass_amenity_entertainment_sustenance,,restaurant,,13422301381,Momiji,,,1.0
+-122.1427345,47.7308843,overpass_amenity_entertainment_sustenance,,restaurant,,13436914703,Bin 47,,,1.0
+-122.1058595,47.6650503,overpass_amenity_entertainment_sustenance,,cafe,,13436987499,Qamaria Yemeni Coffee Co.,,,1.0
+-122.146617,47.6274143,overpass_amenity_entertainment_sustenance,"['restaurant', 'fast_food', 'food_court']",restaurant,,13565756501,Lucky Barbecue & Noodles House,"['Lucky Barbecue & Noodles House', 'Hua Xi Rice Ramen', 'De Zhuang De Hot Pot Mini', 'Cocotree Chef', 'The Northern Dumplings', 'Asian Street Food']",,1.0
+-122.1464132,47.6271919,overpass_amenity_entertainment_sustenance,,fast_food,,13565772401,Sando by Fuji,"['Sando by Fuji', ""King's Rice Noodle""]",,1.0
+-122.1464381,47.6273113,overpass_amenity_entertainment_sustenance,,fast_food,,13565772502,Lunch on the Plate,"['Lunch on the Plate', 'Xaio Lu Jiang']",,1.0
+-122.1464077,47.6274325,overpass_amenity_entertainment_sustenance,,fast_food,,13565772504,Dough Savor,,,1.0
+-122.1465946,47.6273168,overpass_amenity_entertainment_sustenance,,fast_food,,13565772701,Boiling Hot Malatang,,,1.0
+-122.1413837,47.6438511,overpass_amenity_entertainment_sustenance,,cafe,,13728699927,Espresso,,,1.0
+-122.142328,47.6312062,overpass_amenity_entertainment_sustenance,,restaurant,,29217689,Red Robin,,,1.0
+-122.1436819,47.6271182,overpass_amenity_entertainment_sustenance,,restaurant,,29362154,IHOP,,,1.0
+-122.1504323,47.6276591,overpass_amenity_entertainment_sustenance,,fast_food,,29362303,MOD Pizza,,,1.0
+-122.1417287,47.6318333,overpass_amenity_entertainment_sustenance,,restaurant,,29362438,Bai Tong,,,1.0
+-122.1355952,47.6281896,overpass_amenity_entertainment_sustenance,,fast_food,,29653567,Dosa House,,,1.0
+-122.1427395,47.6274788,overpass_amenity_entertainment_sustenance,,fast_food,,29658559,Taco Bell,,,1.0
+-122.1448607,47.6318397,overpass_amenity_entertainment_sustenance,,fast_food,,29893872,California Mexican Food,,,1.0
+-122.1406602,47.6592945,overpass_amenity_entertainment_sustenance,,food_court,,30425770,Microsoft Cafe RedW-F,,,1.0
+-122.1426839,47.6269956,overpass_amenity_entertainment_sustenance,,fast_food,,30491230,Jack in the Box,,,1.0
+-122.1352976,47.6295602,overpass_amenity_entertainment_sustenance,,fast_food,,30705180,Can-Am Pizza,,,1.0
+-122.1355734,47.629305,overpass_amenity_entertainment_sustenance,,restaurant,,30705181,Jack’s BBQ,,,1.0
+-122.1246206,47.6445837,overpass_amenity_entertainment_sustenance,,food_court,,31058485,Cafeteria 34/35,,,1.0
+-122.1272064,47.6752062,overpass_amenity_entertainment_sustenance,,fast_food,,31928055,Jamba,,,1.0
+-122.114338,47.6702238,overpass_amenity_entertainment_sustenance,,restaurant,,31928119,Red Robin,,,1.0
+-122.0936452,47.7027227,overpass_amenity_entertainment_sustenance,,fast_food,,32540646,Pizzatwist,,,1.0
+-122.0936863,47.702506,overpass_amenity_entertainment_sustenance,"['fast_food', 'cafe']",fast_food,,32540680,Subway,"['Subway', 'Starbucks']",,1.0
+-122.0936627,47.7026161,overpass_amenity_entertainment_sustenance,,fast_food,,32540743,Apple Teriyaki,,,1.0
+-122.1297116,47.6747437,overpass_amenity_entertainment_sustenance,,restaurant,,33967742,Bombay Bistro,,,1.0
+-122.1328539,47.6369997,overpass_amenity_entertainment_sustenance,,food_court,,35486617,Microsoft Cafe 40/41,,,1.0
+-122.1288462,47.6749122,overpass_amenity_entertainment_sustenance,,cafe,,35796575,Starbucks,,,1.0
+-122.127875,47.6745069,overpass_amenity_entertainment_sustenance,,fast_food,,35796576,Wendy's,,,1.0
+-122.1296706,47.6740504,overpass_amenity_entertainment_sustenance,,fast_food,,35796577,KFC,,,1.0
+-122.1112551,47.6712142,overpass_amenity_entertainment_sustenance,,fast_food,,35837600,Taco Time,,,1.0
+-122.1336536,47.6400916,overpass_amenity_entertainment_sustenance,,food_court,,66992731,Microsoft Cafe 43,,,1.0
+-122.1044913,47.6685035,overpass_amenity_entertainment_sustenance,,restaurant,,105757826,Family Pancake House,,,1.0
+-122.1378304,47.6441302,overpass_amenity_entertainment_sustenance,,restaurant,,135576072,The Boardwalk,,,1.0
+-122.0253124,47.6999828,overpass_amenity_entertainment_sustenance,,fast_food,,147334574,McDonald's,,,1.0
+-122.1390422,47.6313069,overpass_amenity_entertainment_sustenance,,fast_food,,161888047,Arby's,,,1.0
+-122.1545863,47.6275553,overpass_amenity_entertainment_sustenance,,fast_food,,161888052,McDonald's,,,1.0
+-122.1589711,47.6285199,overpass_amenity_entertainment_sustenance,,fast_food,,161915554,Papa John's,,,1.0
+-122.1550334,47.6245696,overpass_amenity_entertainment_sustenance,,restaurant,,162003366,Applebee's,,,1.0
+-122.1212828,47.6757045,overpass_amenity_entertainment_sustenance,,restaurant,,256664751,Spark Pizza,,,1.0
+-122.124015,47.6738625,overpass_amenity_entertainment_sustenance,,fast_food,,257931975,Coastline Burgers,,,1.0
+-122.116979,47.6723862,overpass_amenity_entertainment_sustenance,,restaurant,,258909113,Chatpata By Kanishka,,,1.0
+-122.0253276,47.644522,overpass_amenity_entertainment_sustenance,,cafe,,261427173,Mercurys Coffee Co.,,,1.0
+-122.1285574,47.6435195,overpass_amenity_entertainment_sustenance,,food_court,,261484974,Microsoft Cafe 16,,,1.0
+-122.1219492,47.6442833,overpass_amenity_entertainment_sustenance,,food_court,,264209435,Microsoft Cafe 31,,,1.0
+-122.130561,47.6752266,overpass_amenity_entertainment_sustenance,,cafe,,316480822,SoulFood Coffee House,,,1.0
+-122.099696,47.6652178,overpass_amenity_entertainment_sustenance,,cafe,,325652228,Sammamish Pointe Espresso,,,1.0
+-122.1226042,47.6807984,overpass_amenity_entertainment_sustenance,,cinema,,329706541,Regal Bella Bottega 11,,,1.0
+-122.1251863,47.6819802,overpass_amenity_entertainment_sustenance,,restaurant,,329706559,Woomadang,,,1.0
+-122.1226178,47.6800639,overpass_amenity_entertainment_sustenance,,fast_food,,329706560,Jack in the Box,,,1.0
+-122.1382977,47.6272357,overpass_amenity_entertainment_sustenance,,restaurant,,390292342,Bento House,,,1.0
+-122.1540871,47.629962,overpass_amenity_entertainment_sustenance,,cafe,,391840023,Amore' Coffee,,,1.0
+-122.1248046,47.6445681,overpass_amenity_entertainment_sustenance,,restaurant,,530040178,in.gredients,,,1.0
+-122.132705,47.6439252,overpass_amenity_entertainment_sustenance,,cafe,,1020679320,DOTE Espresso,,,1.0
+-122.1104065,47.6631231,overpass_amenity_entertainment_sustenance,,cinema,,1154157264,Movies at Marymoor (Summer Only),,,1.0
+-122.1353405,47.6351334,overpass_amenity_entertainment_sustenance,,restaurant,,1237977639,Pizza Poggio,,,1.0
+-122.153948,47.692389,overpass_amenity_entertainment_sustenance,,theatre,,1284262026,,,,1.0
+-122.1529165,47.7331554,overpass_amenity_entertainment_sustenance,,pub,,1305154355,The Hollywood Tavern,,,1.0
+-122.144398,47.7350819,overpass_amenity_entertainment_sustenance,,fast_food,,1384269955,Baseball Concession Stand,,,1.0
+-122.1350847,47.6354254,overpass_amenity_entertainment_sustenance,,biergarten,,1427227076,,,,1.0
+-122.1511485,47.7284197,overpass_amenity_entertainment_sustenance,,theatre,,1430105094,,,,1.0
+-122.1466003,47.6276274,overpass_amenity_entertainment_sustenance,,restaurant,,1478964894,Sum Yee Kae Seafood Restaurant,,,1.0
+-122.1278208,47.6792209,overpass_leisure_garden_park,,,,4853806256,Doolittle Art Garden,,,1.0
+-122.10529377777779,47.629565166666666,overpass_leisure_garden_park,,,38268.5,29544113,Viewpoint Open Space,"['Viewpoint Open Space', 'Viewpont Open Space']",110.4,1.0
+-122.12591454,47.672523068000004,overpass_leisure_garden_park,,,22676.9,29691854,Heron Rookery Park,,85.0,1.0
+-122.08502492857143,47.68344388285714,overpass_leisure_garden_park,,,231794.2,31886681,Perrigo Park,,271.6,1.0
+-122.1248326814815,47.67699199259259,overpass_leisure_garden_park,,,4751.5,31928094,The Edge Skate Park,,38.9,1.0
+-122.11560427222223,47.672699277777774,overpass_leisure_garden_park,,,12347.8,31928133,Albert Anderson Memorial Park,,62.7,1.0
+-122.14570097142857,47.66799306,overpass_leisure_garden_park,,,113064.1,32215299,Grass Lawn Park,,189.7,1.0
+-122.08042097894737,47.69471764736842,overpass_leisure_garden_park,,,276152.9,32544404,Farrel-McWhirter Park,,296.5,1.0
+-122.10843741818182,47.672393396969696,overpass_leisure_garden_park,,,44099.0,32544729,Bear Creek Park,,118.5,1.0
+-122.03064499500002,47.726480885,overpass_leisure_garden_park,,,111312.4,32919331,Kathryn Taylor Equestrian Park,,188.2,1.0
+-122.10823318,47.69054852,overpass_leisure_garden_park,,,152565.9,33441484,Jonathan Hartman Park,,220.4,1.0
+-122.11810996,47.62360938,overpass_leisure_garden_park,,,10562.4,35107692,Ivanhoe Park,,58.0,1.0
+-122.1436392125,47.626147287500004,overpass_leisure_garden_park,,,2642.4,43709061,Commissioner's Waterway,,29.0,1.0
+-122.11550986363636,47.63640653636364,overpass_leisure_garden_park,,,7471.5,44115568,Ardmore Park,,48.8,1.0
+-122.15176824285713,47.6817584,overpass_leisure_garden_park,,,5851.4,55760663,Willows Creek Neighborhood Park,,43.2,1.0
+-122.16307212222222,47.666193222222226,overpass_leisure_garden_park,,,17700.0,55950342,Snyders Corner Park,,75.1,1.0
+-122.13916140416666,47.664732612499996,overpass_leisure_garden_park,,,8436.1,59871392,Spiritbrook Park,,51.8,1.0
+-122.10616393636364,47.62552890909091,overpass_leisure_garden_park,,,57944.3,73530090,Tam O'Shanter Park,,135.8,1.0
+-122.11358718888889,47.634978951851856,overpass_leisure_garden_park,,,118269.8,74295594,Ardmore Park,,194.0,1.0
+-122.13031464000001,47.68615742,overpass_leisure_garden_park,,,523.4,92973550,Avignon Estate Community Park,,12.9,1.0
+-122.13130260666667,47.68614570666667,overpass_leisure_garden_park,,,267.8,92973552,Avignon Estate Community Park,,9.2,1.0
+-122.131021975,47.68774335,overpass_leisure_garden_park,,,398.7,92974832,Avignon Estate Community Park,,11.3,1.0
+-122.08798747142858,47.70167301428571,overpass_leisure_garden_park,,,155808.1,103455177,Juel Community Park,,222.7,1.0
+-122.14520329444446,47.73446485555556,overpass_leisure_garden_park,,,77203.1,105613756,Northshore Athletic Fields,,156.8,1.0
+-122.05755783684211,47.71272503157895,overpass_leisure_garden_park,,,10645.5,112412456,Redmond Watershed Addition Park,,58.2,1.0
+-122.14457686666667,47.6475172,overpass_leisure_garden_park,,,18596.1,114464546,North Bellevue Community Park,,76.9,1.0
+-122.13092286,47.659420540000006,overpass_leisure_garden_park,,,23646.6,114464547,Westside Park,,86.8,1.0
+-122.15155362352941,47.6261213,overpass_leisure_garden_park,,,46495.2,114464946,Highland Park,,121.7,1.0
+-122.09455598333334,47.63201725,overpass_leisure_garden_park,,,16057.2,126043943,Viewpoint Neighborhood Park,,71.5,1.0
+-122.09780802857144,47.69818597142857,overpass_leisure_garden_park,,,384.7,146997195,,,11.1,1.0
+-122.11685064285714,47.70867417142857,overpass_leisure_garden_park,,,327.7,154423043,,,10.2,1.0
+-122.1183265,47.70829239230769,overpass_leisure_garden_park,,,4694.5,154423044,Prescott Community Park,,38.7,1.0
+-122.11597028999999,47.70905861,overpass_leisure_garden_park,,,919.4,154423049,,,17.1,1.0
+-122.11637286,47.7104915,overpass_leisure_garden_park,,,421.3,154428442,,,11.6,1.0
+-122.11721304,47.71049946,overpass_leisure_garden_park,,,512.1,154428445,,,12.8,1.0
+-122.11721278333334,47.70970868333333,overpass_leisure_garden_park,,,1907.4,154428447,,,24.6,1.0
+-122.11697522499999,47.704850666666665,overpass_leisure_garden_park,,,1621.3,154429496,Northstar Neighborhood Park,,22.7,1.0
+-122.16240072000001,47.63107048,overpass_leisure_garden_park,,,50861.8,161916219,Viewpoint Park,,127.2,1.0
+-122.12573640000001,47.696652799999995,overpass_leisure_garden_park,,,20884.6,162040572,Meadow Park,,81.5,1.0
+-122.104348875,47.71007665,overpass_leisure_garden_park,,,39555.3,177067178,Smith Woods,,112.2,1.0
+-122.15249098888889,47.67687965555555,overpass_leisure_garden_park,,,10990.0,182648409,Welcome Park,,59.1,1.0
+-122.1526573,47.67580473333334,overpass_leisure_garden_park,,,5301.4,182648411,Scotts Pond Park,,41.1,1.0
+-122.13589701935483,47.70536633870967,overpass_leisure_garden_park,,,234614.4,185227446,Sixty Acres North,,273.3,1.0
+-122.08569949047619,47.666291228571424,overpass_leisure_garden_park,,,12759.3,200659527,Southeast Redmond Park,,63.7,1.0
+-122.12447944999998,47.67411929705882,overpass_leisure_garden_park,,,7969.7,238108677,Downtown Park,,50.4,1.0
+-122.034085525,47.69116535,overpass_leisure_garden_park,,,45042.9,259778966,Redmond Ridge Park,,119.7,1.0
+-122.03697098518518,47.6837005,overpass_leisure_garden_park,,,2630.0,259804980,,,28.9,1.0
+-122.0452482909091,47.68453104545454,overpass_leisure_garden_park,,,1645.9,259847042,,,22.9,1.0
+-122.03679971666666,47.68166473333333,overpass_leisure_garden_park,,,2239.9,259847051,,,26.7,1.0
+-122.02507591666667,47.680522024999995,overpass_leisure_garden_park,,,1795.9,259850101,,,23.9,1.0
+-122.04570131428571,47.69383570714286,overpass_leisure_garden_park,,,994.7,259947579,,,17.8,1.0
+-122.03611795833335,47.69231605833334,overpass_leisure_garden_park,,,2731.3,259990323,,,29.5,1.0
+-122.04334543200001,47.688074224000005,overpass_leisure_garden_park,,,1191.2,259994976,,,19.5,1.0
+-122.03984059,47.68904509,overpass_leisure_garden_park,,,450.4,259998131,,,12.0,1.0
+-122.03572965833332,47.681986358333326,overpass_leisure_garden_park,,,997.4,259999506,,,17.8,1.0
+-122.03530488333332,47.682583550000004,overpass_leisure_garden_park,,,769.2,259999509,,,15.6,1.0
+-122.02326564583332,47.69441675416667,overpass_leisure_garden_park,,,6813.7,260951231,Elliston Park,,46.6,1.0
+-122.02069416666666,47.69871053333333,overpass_leisure_garden_park,,,352.2,260980352,,,10.6,1.0
+-122.0834623625,47.665726625,overpass_leisure_garden_park,,,1474.3,261447958,,,21.7,1.0
+-122.08254663333334,47.66491138333333,overpass_leisure_garden_park,,,916.9,261447959,,,17.1,1.0
+-122.081993775,47.66434113125,overpass_leisure_garden_park,,,721.9,261447960,,,15.2,1.0
+-122.0837179,47.6638161625,overpass_leisure_garden_park,,,1345.8,261447961,,,20.7,1.0
+-122.08585322380952,47.66370871428572,overpass_leisure_garden_park,,,2492.4,261447962,Woodbridge Private Park,,28.2,1.0
+-122.08551222068965,47.66350909310345,overpass_leisure_garden_park,,,800.3,261447965,,,16.0,1.0
+-122.0871054,47.661142095,overpass_leisure_garden_park,,,481.3,261447966,,,12.4,1.0
+-122.0862659652174,47.664562260869566,overpass_leisure_garden_park,,,3953.8,261448631,Woodbridge Swing Park,,35.5,1.0
+-122.02240252666667,47.69573922,overpass_leisure_garden_park,,,651.0,262766405,,,14.4,1.0
+-122.02549851666667,47.695327866666666,overpass_leisure_garden_park,,,461.7,262766406,,,12.1,1.0
+-122.05524942800001,47.624902456,overpass_leisure_garden_park,,,78265.2,268729637,East Sammamish Park,,157.8,1.0
+-122.12553319705881,47.67315495588235,overpass_leisure_garden_park,,,20912.8,296620644,Redmond Central Connector Park,,81.6,1.0
+-122.12794884666667,47.671207620000004,overpass_leisure_garden_park,,,4555.3,296802865,Dudley Carter Park,,38.1,1.0
+-122.13184792777777,47.67729448611111,overpass_leisure_garden_park,,,5297.6,316480809,The Stroll,,41.1,1.0
+-122.08117960400001,47.677143515999994,overpass_leisure_garden_park,,,38515.1,320071697,Martin Park,,110.7,1.0
+-122.1377164142857,47.66003814285714,overpass_leisure_garden_park,,,21963.3,369791522,Redmond West Wetlands,,83.6,1.0
+-122.14714815,47.639667,overpass_leisure_garden_park,,,31313.5,392695167,Goldsmith Neighborhood Park,,99.8,1.0
+-122.16172414444443,47.63212172222222,overpass_leisure_garden_park,,,8195.3,417102030,Bridal Trails Corner Park,,51.1,1.0
+-122.04602871136363,47.64459221136363,overpass_leisure_garden_park,,,831666.8,422278033,Evans Creek Preserve,,514.5,1.0
+-122.09595777,47.686135730000004,overpass_leisure_garden_park,,,5385.6,424596658,Sunset Gardens Park,,41.4,1.0
+-122.12133627,47.7101695,overpass_leisure_garden_park,,,276.8,447274315,,,9.4,1.0
+-122.13193254,47.66655224,overpass_leisure_garden_park,,,359.9,449101333,,,10.7,1.0
+-122.149698475,47.7274605375,overpass_leisure_garden_park,,,300.0,451941783,,,9.8,1.0
+-122.14217868,47.732710175,overpass_leisure_garden_park,,,343.2,451941786,,,10.5,1.0
+-122.15054735999999,47.70638334,overpass_leisure_garden_park,,,124629.4,479194885,Sammamish Valley Park,,199.2,1.0
+-122.1409756090909,47.7029127,overpass_leisure_garden_park,,,130412.8,479199365,Sixty Acres South,,203.7,1.0
+-122.04879814324326,47.71047937027027,overpass_leisure_garden_park,,,3338734.5,479215139,Redmond Watershed Preserve,,1030.9,1.0
+-122.11019215,47.7282877,overpass_leisure_garden_park,,,23493.2,480083703,English Hill Greenbelt,,86.5,1.0
+-122.11205465,47.73041493333333,overpass_leisure_garden_park,,,40363.7,480083704,Hollywood Hill Greenbelt,,113.3,1.0
+-122.13147956249999,47.67320052916667,overpass_leisure_garden_park,,,12241.0,480267645,Luke McRedmond Landing,,62.4,1.0
+-122.10969195294119,47.70631492352941,overpass_leisure_garden_park,,,10261.5,480784774,Woodlands Park,,57.2,1.0
+-122.11196810000001,47.7072133,overpass_leisure_garden_park,,,1137.3,480784780,Woodlands Community Park,,19.0,1.0
+-122.11397141333333,47.70659724666667,overpass_leisure_garden_park,,,5886.5,480784783,,,43.3,1.0
+-122.10353176666666,47.712838675,overpass_leisure_garden_park,,,1706.0,480784803,,,23.3,1.0
+-122.1115308,47.68891644,overpass_leisure_garden_park,,,9985.7,480795320,Redmond Bike Park,,56.4,1.0
+-122.12305060999999,47.67415519,overpass_leisure_garden_park,,,280.5,490140126,O'Leary Park,,9.4,1.0
+-122.12175747777776,47.67412358888889,overpass_leisure_garden_park,,,153.7,490141438,Flagpole Plaza Park,,7.0,1.0
+-122.13280221999999,47.67306998,overpass_leisure_garden_park,,,3686.5,490142428,Rotary Park,,34.3,1.0
+-122.10972612857142,47.72014661428572,overpass_leisure_garden_park,,,2456.4,534352720,,,28.0,1.0
+-122.02539041666667,47.62425526111111,overpass_leisure_garden_park,,,12104.2,581812731,,,62.1,1.0
+-122.02678724285715,47.627611128571424,overpass_leisure_garden_park,,,3937.0,581812734,,,35.4,1.0
+-122.02856025909091,47.63112513181818,overpass_leisure_garden_park,,,5454.4,581812735,,,41.7,1.0
+-122.0303195137931,47.63463346206897,overpass_leisure_garden_park,,,14499.1,581812736,,,67.9,1.0
+-122.02573297272728,47.63325662727273,overpass_leisure_garden_park,,,6309.8,581812738,Summer Ridge Community Park,,44.8,1.0
+-122.03439062142857,47.625574799999995,overpass_leisure_garden_park,,,15876.6,581826178,Deer Field Sports Field,,71.1,1.0
+-122.02424884999999,47.6296736875,overpass_leisure_garden_park,,,744.8,583863741,,,15.4,1.0
+-122.10644921666666,47.70805873333333,overpass_leisure_garden_park,,,890.1,610980563,,,16.8,1.0
+-122.1106958142857,47.701012514285715,overpass_leisure_garden_park,,,1213.7,619880843,Trailside Community Park,,19.7,1.0
+-122.11832383999999,47.70946912,overpass_leisure_garden_park,,,968.8,619882508,Hedgewood East Community Park,,17.6,1.0
+-122.021218768,47.699609620000004,overpass_leisure_garden_park,,,10093.4,654358467,Village Green,,56.7,1.0
+-122.0284727,47.70506794,overpass_leisure_garden_park,,,168.8,654419709,,,7.3,1.0
+-122.02832396,47.70483968,overpass_leisure_garden_park,,,35.3,654419710,,,3.4,1.0
+-122.02817135999999,47.704849620000005,overpass_leisure_garden_park,,,35.2,654419712,,,3.3,1.0
+-122.03339423695651,47.677474636956525,overpass_leisure_garden_park,,,4936.8,654563474,South Park,,39.6,1.0
+-122.03389851538462,47.67536226153846,overpass_leisure_garden_park,,,802.2,654812829,,,16.0,1.0
+-122.03852912957746,47.68870104929578,overpass_leisure_garden_park,,,3214.2,656067015,Cascara Circle,,32.0,1.0
+-122.03865072467534,47.68605350649351,overpass_leisure_garden_park,,,7548.8,656081275,Redmond Ridge Commons,,49.0,1.0
+-122.032782455,47.68577947,overpass_leisure_garden_park,,,313.2,656122899,,,10.0,1.0
+-122.03273472999999,47.678876375,overpass_leisure_garden_park,,,1003.2,656611292,,,17.9,1.0
+-122.03423927857143,47.67943485357143,overpass_leisure_garden_park,,,1189.6,658889108,,,19.5,1.0
+-122.11325085294118,47.70538909411765,overpass_leisure_garden_park,,,4086.8,668169603,Woodlands West Park & Playground,,36.1,1.0
+-122.11233268260868,47.70445863478261,overpass_leisure_garden_park,,,7289.6,668175405,Parkridge at the Woodlands Park,,48.2,1.0
+-122.12237836666667,47.67262991333334,overpass_leisure_garden_park,,,2771.8,679251100,,,29.7,1.0
+-122.02359385625,47.67155975625,overpass_leisure_garden_park,,,51.2,682584723,,,4.0,1.0
+-122.02368654761906,47.6716323,overpass_leisure_garden_park,,,37.5,682584724,,,3.5,1.0
+-122.02381758888889,47.6714667,overpass_leisure_garden_park,,,5.4,682584727,,,1.3,1.0
+-122.02334892564103,47.67180541025641,overpass_leisure_garden_park,,,435.4,682584743,,,11.8,1.0
+-122.02350910666665,47.67169558666667,overpass_leisure_garden_park,,,8.4,682585710,,,1.6,1.0
+-122.13536263255814,47.63498741395348,overpass_leisure_garden_park,,,9608.2,682692867,Esterra Park,,55.3,1.0
+-122.12579188571429,47.70743947142857,overpass_leisure_garden_park,,,1865.1,706235949,Greystone Community Park,,24.4,1.0
+-122.1245372357143,47.705684735714286,overpass_leisure_garden_park,,,2583.5,706235950,Greystone Community Park,,28.7,1.0
+-122.12614833636363,47.705603518181825,overpass_leisure_garden_park,,,2017.4,706235951,Greystone Community Park,,25.3,1.0
+-122.12771219999999,47.70429706,overpass_leisure_garden_park,,,1278.3,706237975,Kensington Community Park,,20.2,1.0
+-122.04567390000001,47.62897088,overpass_leisure_garden_park,,,3443.0,713843940,The Park at Hampton Woods,,33.1,1.0
+-122.10896599166666,47.701437274999996,overpass_leisure_garden_park,,,2921.9,733984596,,,30.5,1.0
+-122.11467616666665,47.67721718333333,overpass_leisure_garden_park,,,937.4,757017909,,,17.3,1.0
+-122.12627780000001,47.683160125,overpass_leisure_garden_park,,,5874.6,757017910,,,43.2,1.0
+-122.12860237857141,47.68436238571429,overpass_leisure_garden_park,,,1237.3,757017911,,,19.8,1.0
+-122.12215334999999,47.70464857857143,overpass_leisure_garden_park,,,809.5,824014303,,,16.1,1.0
+-122.13089052000001,47.7036794,overpass_leisure_garden_park,,,1344.5,825695822,,,20.7,1.0
+-122.12877076363635,47.70259516363637,overpass_leisure_garden_park,,,584.7,825695825,,,13.6,1.0
+-122.10168612,47.704896180000006,overpass_leisure_garden_park,,,438.0,826340715,,,11.8,1.0
+-122.102742175,47.70563456666667,overpass_leisure_garden_park,,,1398.1,826340717,,,21.1,1.0
+-122.10298565714287,47.70139318571429,overpass_leisure_garden_park,,,455.7,827117261,,,12.0,1.0
+-122.1004442,47.7026414,overpass_leisure_garden_park,,,1179.4,827152500,,,19.4,1.0
+-122.11459056666666,47.704169400000005,overpass_leisure_garden_park,,,728.3,830200371,,,15.2,1.0
+-122.12092994545455,47.70834520909091,overpass_leisure_garden_park,,,270.8,830611282,,,9.3,1.0
+-122.1056865,47.70887532,overpass_leisure_garden_park,,,2460.5,831065085,,,28.0,1.0
+-122.10614135714286,47.706861242857144,overpass_leisure_garden_park,,,1218.5,831070726,,,19.7,1.0
+-122.10140711666666,47.709698550000006,overpass_leisure_garden_park,,,1043.1,832076255,,,18.2,1.0
+-122.1082303375,47.7102442875,overpass_leisure_garden_park,,,272.5,832391642,,,9.3,1.0
+-122.11253768000002,47.71038198,overpass_leisure_garden_park,,,773.9,832395556,,,15.7,1.0
+-122.119174325,47.7095623,overpass_leisure_garden_park,,,1146.5,832826688,,,19.1,1.0
+-122.1198539,47.71023281428571,overpass_leisure_garden_park,,,173.6,832826694,,,7.4,1.0
+-122.10823112631579,47.683092863157896,overpass_leisure_garden_park,,,60627.0,842032368,Nike Neighborhood Park,,138.9,1.0
+-122.10269820196078,47.64299330588235,overpass_leisure_garden_park,,,65628.1,850661172,Idylwood Park,,144.5,1.0
+-122.10322715555556,47.64126608888889,overpass_leisure_garden_park,,,11943.7,850756937,Idylwood Park,,61.7,1.0
+-122.02402417,47.62556927,overpass_leisure_garden_park,,,356.3,865181318,,,10.6,1.0
+-122.16120555666666,47.63235978,overpass_leisure_garden_park,,,155.0,898357184,,,7.0,1.0
+-122.16105594545455,47.63214837272728,overpass_leisure_garden_park,,,16.8,898357185,,,2.3,1.0
+-122.16116962142857,47.63225645,overpass_leisure_garden_park,,,46.4,898357186,,,3.8,1.0
+-122.08895292,47.66878044,overpass_leisure_garden_park,,,140.1,903907559,,,6.7,1.0
+-122.159495675,47.71614415833333,overpass_leisure_garden_park,,,2671.2,918396798,,,29.2,1.0
+-122.0375828255814,47.68962654651163,overpass_leisure_garden_park,,,20129.1,967726565,Cascara Gardens,,80.0,1.0
+-122.04247325476192,47.633591335714286,overpass_leisure_garden_park,,,23450.6,1011276092,Heritage Hills Park,,86.4,1.0
+-122.07342198181819,47.710593009090914,overpass_leisure_garden_park,,,1474.5,1025393597,Tuscany Community Park,,21.7,1.0
+-122.08127745806452,47.663613932258066,overpass_leisure_garden_park,,,683447.0,1046596581,Sportsman Park,,466.4,1.0
+-122.15262933333332,47.65073736666667,overpass_leisure_garden_park,,,4544.2,1047298632,Bridle Trails Valley Creek Park,,38.0,1.0
+-122.09825765000001,47.6697678625,overpass_leisure_garden_park,,,403.8,1058625338,Sunrise Cremation Garden,,11.3,1.0
+-122.09967741999999,47.66924239,overpass_leisure_garden_park,,,1664.9,1058625339,Green Burial Garden,,23.0,1.0
+-122.10382025454545,47.714291281818184,overpass_leisure_garden_park,,,352.1,1105626906,,,10.6,1.0
+-122.13227338333334,47.707284344444446,overpass_leisure_garden_park,,,458.2,1108389123,,,12.1,1.0
+-122.10424033333334,47.66708415,overpass_leisure_garden_park,,,232.4,1152475288,,,8.6,1.0
+-122.06524549999999,47.63941148,overpass_leisure_garden_park,,,3607.0,1164587285,Timberline Ridge Park,,33.9,1.0
+-122.07986988,47.6469802,overpass_leisure_garden_park,,,2539.6,1164587921,Waterbrook Playground,,28.4,1.0
+-122.13091565714285,47.626909714285716,overpass_leisure_garden_park,,,40.9,1187060874,Overlake Park Presbyterian Church Community Garden,,3.6,1.0
+-122.08386054827587,47.66666077241379,overpass_leisure_garden_park,,,1451.2,1231576844,,,21.5,1.0
+-122.09118845999998,47.7018203,overpass_leisure_garden_park,,,218.8,1234743281,,,8.3,1.0
+-122.09134366666666,47.70041,overpass_leisure_garden_park,,,275.5,1234743282,,,9.4,1.0
+-122.1067587,47.68844906875,overpass_leisure_garden_park,,,12788.0,1243938594,Perrigo Heights Park,,63.8,1.0
+-122.15842253636364,47.72175188181818,overpass_leisure_garden_park,,,3346.8,1304381389,,,32.6,1.0
+-122.1568122857143,47.71863471428571,overpass_leisure_garden_park,,,2118.6,1304381401,,,26.0,1.0
+-122.15766464000001,47.71700718,overpass_leisure_garden_park,,,848.1,1304381405,,,16.4,1.0
+-122.040355245,47.687733300000005,overpass_leisure_garden_park,,,409.5,1308379748,,,11.4,1.0
+-122.03993712857142,47.690828485714285,overpass_leisure_garden_park,,,832.6,1308525267,,,16.3,1.0
+-122.0429389125,47.6900176625,overpass_leisure_garden_park,,,1058.6,1308525268,,,18.4,1.0
+-122.02298532,47.62987072,overpass_leisure_garden_park,,,898.8,1336266260,,,16.9,1.0
+-122.06165122,47.62791788,overpass_leisure_garden_park,,,267.0,1342567206,,,9.2,1.0
+-122.0637895,47.63579139354839,overpass_leisure_garden_park,,,6865.2,1352794130,,,46.7,1.0
+-122.05620963846152,47.642762830769236,overpass_leisure_garden_park,,,9611.1,1353818199,Northeast Sammamish Park,,55.3,1.0
+-122.0808726875,47.6675241625,overpass_leisure_garden_park,,,163.3,1361754731,,,7.2,1.0
+-122.16375466153846,47.71399464615384,overpass_leisure_garden_park,,,1161.4,1396741639,,,19.2,1.0
+-122.08535507142857,47.71372357142857,overpass_leisure_garden_park,,,841.5,1413396094,,,16.4,1.0
+-122.13172913636363,47.64739365454545,overpass_leisure_garden_park,,,217.0,1422570975,,,8.3,1.0
+-122.13201707692308,47.647383861538465,overpass_leisure_garden_park,,,326.1,1422570976,,,10.2,1.0
+-122.132005405,47.646532815,overpass_leisure_garden_park,,,32.3,1422570979,,,3.2,1.0
+-122.13196828157893,47.64668671052632,overpass_leisure_garden_park,,,966.6,1422570980,,,17.5,1.0
+-122.13201141875,47.64627721875,overpass_leisure_garden_park,,,102.5,1422570981,,,5.7,1.0
+-122.13138806666666,47.64624077777778,overpass_leisure_garden_park,,,651.8,1422570982,,,14.4,1.0
+-122.13106712941175,47.647026370588236,overpass_leisure_garden_park,,,292.0,1422570985,,,9.6,1.0
+-122.13134436666668,47.64692964444444,overpass_leisure_garden_park,,,110.7,1422570988,,,5.9,1.0
+-122.13133697999999,47.64659372,overpass_leisure_garden_park,,,154.1,1422570989,,,7.0,1.0
+-122.13120966,47.646514720000006,overpass_leisure_garden_park,,,20.1,1422570996,,,2.5,1.0
+-122.13099874444444,47.646468999999996,overpass_leisure_garden_park,,,87.1,1422570997,,,5.3,1.0
+-122.13091009230769,47.64635079230769,overpass_leisure_garden_park,,,50.6,1422570998,,,4.0,1.0
+-122.13119280000001,47.64717893333333,overpass_leisure_garden_park,,,54.6,1422570999,,,4.2,1.0
+-122.131024,47.6467665875,overpass_leisure_garden_park,,,26.5,1422571005,,,2.9,1.0
+-122.13106396,47.64665642,overpass_leisure_garden_park,,,22.2,1422571007,,,2.7,1.0
+-122.1134217142857,47.692564571428576,overpass_leisure_garden_park,,,21.1,1425477425,,,2.6,1.0
+-122.11304500000001,47.69207376,overpass_leisure_garden_park,,,8.3,1425477429,,,1.6,1.0
+-122.11319055,47.692352066666665,overpass_leisure_garden_park,,,18.4,1425477431,,,2.4,1.0
+-122.1132911,47.69228728,overpass_leisure_garden_park,,,19.3,1425477432,,,2.5,1.0
+-122.11331724166666,47.69211406666667,overpass_leisure_garden_park,,,42.4,1425477438,,,3.7,1.0
+-122.11309630000001,47.69259629,overpass_leisure_garden_park,,,18.9,1425477439,,,2.5,1.0
+-122.11358451666666,47.69151796666667,overpass_leisure_garden_park,,,85.6,1425477444,,,5.2,1.0
+-122.11371712,47.69158192,overpass_leisure_garden_park,,,161.0,1425477445,,,7.2,1.0
+-122.11301896666667,47.691533533333335,overpass_leisure_garden_park,,,21.5,1425477447,,,2.6,1.0
+-122.11320464,47.69154994,overpass_leisure_garden_park,,,51.9,1425477448,,,4.1,1.0
+-122.1134132,47.69150404285715,overpass_leisure_garden_park,,,23.6,1425477449,,,2.7,1.0
+-122.11245326000001,47.69228368,overpass_leisure_garden_park,,,16.1,1425477450,,,2.3,1.0
+-122.10600454,47.67742556,overpass_leisure_garden_park,,,218.1,1427201132,,,8.3,1.0
+-122.10586761666667,47.69481645,overpass_leisure_garden_park,,,105.6,1427455459,,,5.8,1.0
+-122.1061084,47.69467846,overpass_leisure_garden_park,,,41.3,1427455461,,,3.6,1.0
+-122.10602994615384,47.69440084615384,overpass_leisure_garden_park,,,20.6,1427455464,,,2.6,1.0
+-122.10656260769231,47.69413839230769,overpass_leisure_garden_park,,,287.8,1427455467,,,9.6,1.0
+-122.106955,47.694399759999996,overpass_leisure_garden_park,,,93.3,1427455468,,,5.5,1.0
+-122.10695295999999,47.6945463,overpass_leisure_garden_park,,,278.9,1427455469,,,9.4,1.0
+-122.1069652375,47.6931686625,overpass_leisure_garden_park,,,325.9,1427455471,,,10.2,1.0
+-122.10698026,47.69394502,overpass_leisure_garden_park,,,277.7,1427455472,,,9.4,1.0
+-122.10585525714285,47.69504955714286,overpass_leisure_garden_park,,,22.3,1427455477,,,2.7,1.0
+-122.10582632,47.69516518,overpass_leisure_garden_park,,,22.8,1427455478,,,2.7,1.0
+-122.10614727142857,47.69525978571429,overpass_leisure_garden_park,,,74.5,1427455479,,,4.9,1.0
+-122.10605184545453,47.695396609090906,overpass_leisure_garden_park,,,141.2,1427455480,,,6.7,1.0
+-122.10581421818182,47.69495875454545,overpass_leisure_garden_park,,,34.3,1427455485,,,3.3,1.0
+-122.10814404,47.69560706,overpass_leisure_garden_park,,,59.4,1427455500,,,4.4,1.0
+-122.1065959,47.694409622222224,overpass_leisure_garden_park,,,376.8,1427455514,,,11.0,1.0
+-122.11465150000001,47.6458638,overpass_leisure_garden_park,,,1200.5,1427461434,Flicker's Pond,,19.5,1.0
+-122.07479332,47.69271002,overpass_leisure_garden_park,,,199.9,1429285289,,,8.0,1.0
+-122.10813138333333,47.69527606666667,overpass_leisure_garden_park,,,13.2,1429372022,,,2.1,1.0
+-122.10896522,47.693512479999995,overpass_leisure_garden_park,,,67.9,1429372049,,,4.6,1.0
+-122.10896651666667,47.693169149999996,overpass_leisure_garden_park,,,89.3,1429372050,,,5.3,1.0
+-122.10896070000001,47.6938269,overpass_leisure_garden_park,,,106.5,1429372056,,,5.8,1.0
+-122.10910919999999,47.69378405,overpass_leisure_garden_park,,,30.9,1429372057,,,3.1,1.0
+-122.10911371818183,47.694313309090916,overpass_leisure_garden_park,,,317.1,1429372058,,,10.0,1.0
+-122.10896018333334,47.69443758333333,overpass_leisure_garden_park,,,243.9,1429372059,,,8.8,1.0
+-122.1089598,47.69483846666666,overpass_leisure_garden_park,,,14.4,1429372060,,,2.1,1.0
+-122.13684155,47.65262676428572,overpass_leisure_garden_park,,,380.7,1430066936,,,11.0,1.0
+-122.13455324285715,47.64758016428571,overpass_leisure_garden_park,,,1227.4,1430066944,,,19.8,1.0
+-122.13448911,47.648052289999995,overpass_leisure_garden_park,,,96.8,1430066946,,,5.6,1.0
+-122.1339374857143,47.64671030714286,overpass_leisure_garden_park,,,147.1,1430066952,,,6.8,1.0
+-122.1340331875,47.64677744375,overpass_leisure_garden_park,,,720.2,1430066953,,,15.1,1.0
+-122.13369718749999,47.646394975,overpass_leisure_garden_park,,,40.2,1430066956,,,3.6,1.0
+-122.13381196,47.64629234,overpass_leisure_garden_park,,,286.4,1430066960,,,9.5,1.0
+-122.1334891090909,47.646246818181815,overpass_leisure_garden_park,,,165.1,1430066964,,,7.3,1.0
+-122.11827046923077,47.67360615384616,overpass_leisure_garden_park,,,31.4,1430774691,,,3.2,1.0
+-122.11803082857143,47.67363387142858,overpass_leisure_garden_park,,,6.5,1430774692,,,1.4,1.0
+-122.11820363,47.67376514,overpass_leisure_garden_park,,,145.2,1430774693,,,6.8,1.0
+-122.118060375,47.673001925,overpass_leisure_garden_park,,,70.8,1430774702,,,4.7,1.0
+-122.11827047142857,47.67306522857143,overpass_leisure_garden_park,,,21.1,1430774703,,,2.6,1.0
+-122.10687843333334,47.694832416666664,overpass_leisure_garden_park,,,265.3,1430776618,,,9.2,1.0
+-122.10727378571428,47.69496372857143,overpass_leisure_garden_park,,,511.0,1430776619,,,12.8,1.0
+-122.10782887999999,47.6948884,overpass_leisure_garden_park,,,93.3,1430776620,,,5.5,1.0
+-122.10782856,47.69501222,overpass_leisure_garden_park,,,452.5,1430776621,,,12.0,1.0
+-122.0809389,47.699382,overpass_leisure_garden_park,,,6592.3,1431605784,,,45.8,1.0
+-122.0581404,47.69648682,overpass_leisure_garden_park,,,294.3,1431607646,,,9.7,1.0
+-122.06352342857143,47.70133331428571,overpass_leisure_garden_park,,,135.9,1432186618,,,6.6,1.0
+-122.06011501111112,47.70008861111111,overpass_leisure_garden_park,,,258.8,1432186650,,,9.1,1.0
+-122.07152268333334,47.68686903333333,overpass_leisure_garden_park,,,189.7,1432383942,,,7.8,1.0
+-122.06832635999999,47.6850673,overpass_leisure_garden_park,,,453.0,1432459426,,,12.0,1.0
+-122.07093877857143,47.68246896071429,overpass_leisure_garden_park,,,10589.4,1432459468,,,58.1,1.0
+-122.06502972941176,47.681379299999996,overpass_leisure_garden_park,,,334.3,1433091956,,,10.3,1.0
+-122.0635018,47.68129722,overpass_leisure_garden_park,,,134.3,1433091960,,,6.5,1.0
+-122.06293328823529,47.679643664705885,overpass_leisure_garden_park,,,651.0,1433091978,,,14.4,1.0
+-122.06325449230768,47.67972304615385,overpass_leisure_garden_park,,,126.7,1433091979,,,6.3,1.0
+-122.06332970000001,47.67949611,overpass_leisure_garden_park,,,156.6,1433091980,,,7.1,1.0
+-122.06358282222222,47.67945452222222,overpass_leisure_garden_park,,,49.5,1433091981,,,4.0,1.0
+-122.06388667142856,47.67944934285714,overpass_leisure_garden_park,,,42.1,1433091982,,,3.7,1.0
+-122.0633819,47.67934436,overpass_leisure_garden_park,,,57.9,1433091986,,,4.3,1.0
+-122.06294614285714,47.67934485714285,overpass_leisure_garden_park,,,17.4,1433091987,,,2.4,1.0
+-122.0646472909091,47.67911082727273,overpass_leisure_garden_park,,,153.0,1433091989,,,7.0,1.0
+-122.06460402,47.67974784,overpass_leisure_garden_park,,,517.5,1433091991,,,12.8,1.0
+-122.06420894444445,47.67981392222222,overpass_leisure_garden_park,,,289.9,1433091992,,,9.6,1.0
+-122.06517119655172,47.67926947931034,overpass_leisure_garden_park,,,1051.5,1433091996,,,18.3,1.0
+-122.064620432,47.679320084000004,overpass_leisure_garden_park,,,419.8,1433092001,,,11.6,1.0
+-122.0649749857143,47.67945587142857,overpass_leisure_garden_park,,,166.2,1433092002,,,7.3,1.0
+-122.06467797272727,47.67958451818181,overpass_leisure_garden_park,,,238.8,1433092003,,,8.7,1.0
+-122.07141128999999,47.69295058,overpass_leisure_garden_park,,,197.8,1433388917,,,7.9,1.0
+-122.06846123333334,47.69247152222223,overpass_leisure_garden_park,,,86.2,1433388944,,,5.2,1.0
+-122.06731766,47.70770144,overpass_leisure_garden_park,,,92.3,1433503696,,,5.4,1.0
+-122.06596955714285,47.708669678571425,overpass_leisure_garden_park,,,500.0,1433503710,,,12.6,1.0
+-122.06284908,47.70894796,overpass_leisure_garden_park,,,146.1,1433503736,,,6.8,1.0
+-122.05733080769231,47.70887144615384,overpass_leisure_garden_park,,,402.1,1434905154,,,11.3,1.0
+-122.05765552142857,47.708849171428575,overpass_leisure_garden_park,,,1903.0,1434905155,,,24.6,1.0
+-122.0982368375,47.6767096,overpass_leisure_garden_park,,,29.6,1436347411,,,3.1,1.0
+-122.0989061375,47.67607155,overpass_leisure_garden_park,,,31.8,1436347412,,,3.2,1.0
+-122.09846391666667,47.67626001666667,overpass_leisure_garden_park,,,14.4,1436347414,,,2.1,1.0
+-122.09827571428572,47.67626905714286,overpass_leisure_garden_park,,,24.5,1436347415,,,2.8,1.0
+-122.0994947818182,47.67618278181818,overpass_leisure_garden_park,,,69.7,1436347418,,,4.7,1.0
+-122.09892434000001,47.6765709,overpass_leisure_garden_park,,,14.6,1436347421,,,2.2,1.0
+-122.0985486875,47.67655063125,overpass_leisure_garden_park,,,292.9,1436347422,,,9.7,1.0
+-122.09908651999999,47.676229,overpass_leisure_garden_park,,,75.9,1436347424,,,4.9,1.0
+-122.07983988125,47.67706800625,overpass_leisure_garden_park,,,1833.5,1436840137,,,24.2,1.0
+-122.07928376,47.67728477,overpass_leisure_garden_park,,,1468.8,1436840138,,,21.6,1.0
+-122.07922988666665,47.676378480000004,overpass_leisure_garden_park,,,993.2,1436840139,,,17.8,1.0
+-122.07988162222222,47.67632141666667,overpass_leisure_garden_park,,,1523.6,1436840140,,,22.0,1.0
+-122.08004008571429,47.675917057142854,overpass_leisure_garden_park,,,151.4,1436840145,,,6.9,1.0
+-122.08013955555556,47.67721687777778,overpass_leisure_garden_park,,,1170.6,1436840152,,,19.3,1.0
+-122.07899144666666,47.67501274666667,overpass_leisure_garden_park,,,493.1,1441752080,,,12.5,1.0
+-122.09789239285715,47.6724847,overpass_leisure_garden_park,,,371.0,1442428438,,,10.9,1.0
+-122.09828650000001,47.67238888888889,overpass_leisure_garden_park,,,35.6,1442428458,,,3.4,1.0
+-122.09861023333333,47.67239573333333,overpass_leisure_garden_park,,,142.5,1442428459,,,6.7,1.0
+-122.09688948333333,47.672711308333334,overpass_leisure_garden_park,,,77.9,1442428468,,,5.0,1.0
+-122.09682013333334,47.673036922222224,overpass_leisure_garden_park,,,95.4,1442428474,,,5.5,1.0
+-122.09668037142856,47.67319222857143,overpass_leisure_garden_park,,,55.2,1442428476,,,4.2,1.0
+-122.09658328333335,47.67240691666667,overpass_leisure_garden_park,,,17.6,1442428482,,,2.4,1.0
+-122.09657935999999,47.67258822,overpass_leisure_garden_park,,,37.6,1442428483,,,3.5,1.0
+-122.09740181428572,47.672386214285716,overpass_leisure_garden_park,,,32.7,1442428487,,,3.2,1.0
+-122.09714555,47.672389583333334,overpass_leisure_garden_park,,,57.4,1442428488,,,4.3,1.0
+-122.0979791809524,47.67223534285714,overpass_leisure_garden_park,,,280.5,1442428490,,,9.4,1.0
+-122.09704891818183,47.672235572727274,overpass_leisure_garden_park,,,330.1,1442428491,,,10.3,1.0
+-122.098984125,47.6723895875,overpass_leisure_garden_park,,,74.7,1442428495,,,4.9,1.0
+-122.09443643529411,47.672269011764705,overpass_leisure_garden_park,,,412.4,1442428508,,,11.5,1.0
+-122.0938273125,47.6724855375,overpass_leisure_garden_park,,,214.8,1442428509,,,8.3,1.0
+-122.0937897,47.67266886,overpass_leisure_garden_park,,,115.9,1442428512,,,6.1,1.0
+-122.09378575999999,47.67290512,overpass_leisure_garden_park,,,238.7,1442428514,,,8.7,1.0
+-122.09378133999999,47.67320646,overpass_leisure_garden_park,,,175.1,1442428515,,,7.5,1.0
+-122.09380259090909,47.6737026,overpass_leisure_garden_park,,,366.5,1442428516,,,10.8,1.0
+-122.09454124444444,47.67382101111111,overpass_leisure_garden_park,,,263.3,1442428520,,,9.2,1.0
+-122.09379255000002,47.67416996,overpass_leisure_garden_park,,,384.3,1442428522,,,11.1,1.0
+-122.0943335,47.67432208333333,overpass_leisure_garden_park,,,54.7,1442428523,,,4.2,1.0
+-122.09486297999999,47.67413968,overpass_leisure_garden_park,,,90.3,1442428524,,,5.4,1.0
+-122.09508916666665,47.672946849999995,overpass_leisure_garden_park,,,110.6,1442428526,,,5.9,1.0
+-122.09508166666667,47.67245103333333,overpass_leisure_garden_park,,,70.2,1442428528,,,4.7,1.0
+-122.09479489090909,47.67244767272727,overpass_leisure_garden_park,,,125.5,1442428529,,,6.3,1.0
+-122.09410133333334,47.672445474999996,overpass_leisure_garden_park,,,114.6,1442428530,,,6.0,1.0
+-122.09549223333335,47.67228082222223,overpass_leisure_garden_park,,,434.3,1442428531,,,11.8,1.0
+-122.09624591428572,47.67223987142857,overpass_leisure_garden_park,,,95.5,1442428532,,,5.5,1.0
+-122.0940378375,47.6735209625,overpass_leisure_garden_park,,,94.2,1442428534,,,5.5,1.0
+-122.09419420769231,47.67259183846154,overpass_leisure_garden_park,,,63.0,1442428538,,,4.5,1.0
+-122.09549895714285,47.672418871428576,overpass_leisure_garden_park,,,13.2,1442428539,,,2.1,1.0
+-122.09476262000001,47.67259672,overpass_leisure_garden_park,,,11.2,1442428545,,,1.9,1.0
+-122.0944335,47.67259502,overpass_leisure_garden_park,,,4.6,1442428546,,,1.2,1.0
+-122.05008522,47.71813914,overpass_leisure_garden_park,,,232.9,1444314186,,,8.6,1.0
+-122.13654795882354,47.65376315882353,overpass_leisure_garden_park,,,739.4,1444589414,,,15.3,1.0
+-122.1338486923077,47.64525014615385,overpass_leisure_garden_park,,,494.9,1444589418,,,12.6,1.0
+-122.06087125714285,47.71512347142857,overpass_leisure_garden_park,,,2070.4,1446430702,,,25.7,1.0
+-122.06103915,47.71471091666667,overpass_leisure_garden_park,,,1089.0,1446430703,,,18.6,1.0
+-122.06175582727273,47.71398614545455,overpass_leisure_garden_park,,,320.5,1446430706,,,10.1,1.0
+-122.07754784,47.7186953,overpass_leisure_garden_park,,,350.2,1446564715,,,10.6,1.0
+-122.07806576,47.71857936,overpass_leisure_garden_park,,,326.1,1446564716,,,10.2,1.0
+-122.0759803,47.71789612,overpass_leisure_garden_park,,,259.9,1446564729,,,9.1,1.0
+-122.07764618888889,47.719223633333335,overpass_leisure_garden_park,,,1293.5,1446564731,,,20.3,1.0
+-122.09767669583334,47.67706150833333,overpass_leisure_garden_park,,,230.3,1447029144,,,8.6,1.0
+-122.097446676,47.677159352,overpass_leisure_garden_park,,,144.9,1447029145,,,6.8,1.0
+-122.09525780000001,47.677523986842104,overpass_leisure_garden_park,,,239.4,1447029146,,,8.7,1.0
+-122.09529233023255,47.677344188372096,overpass_leisure_garden_park,,,213.4,1447029147,,,8.2,1.0
+-122.09551508,47.677140386666665,overpass_leisure_garden_park,,,85.8,1447029148,,,5.2,1.0
+-122.09281002903225,47.67700023225806,overpass_leisure_garden_park,,,139.4,1447029149,,,6.7,1.0
+-122.094603903125,47.676766503125,overpass_leisure_garden_park,,,156.9,1447029150,,,7.1,1.0
+-122.09624922500001,47.67651035,overpass_leisure_garden_park,,,173.4,1447029151,,,7.4,1.0
+-122.0965737125,47.676460125,overpass_leisure_garden_park,,,130.9,1447029152,,,6.5,1.0
+-122.09378551111111,47.67712983333333,overpass_leisure_garden_park,,,248.6,1447029158,,,8.9,1.0
+-122.09383796,47.67725446,overpass_leisure_garden_park,,,16.9,1447029159,,,2.3,1.0
+-122.09353628,47.67713148,overpass_leisure_garden_park,,,15.6,1447029160,,,2.2,1.0
+-122.09382491538462,47.677832307692306,overpass_leisure_garden_park,,,105.2,1447029161,,,5.8,1.0
+-122.09412218461537,47.677783269230765,overpass_leisure_garden_park,,,102.0,1447029162,,,5.7,1.0
+-122.09175478235295,47.6781457882353,overpass_leisure_garden_park,,,97.0,1447029169,,,5.6,1.0
+-122.09102778333333,47.67833449166667,overpass_leisure_garden_park,,,50.8,1447029170,,,4.0,1.0
+-122.09045127333334,47.678295739999996,overpass_leisure_garden_park,,,55.5,1447029171,,,4.2,1.0
+-122.09021424,47.67816348666667,overpass_leisure_garden_park,,,104.8,1447029172,,,5.8,1.0
+-122.09021919999999,47.677998807142856,overpass_leisure_garden_park,,,86.9,1447029173,,,5.3,1.0
+-122.09021325625,47.677832775,overpass_leisure_garden_park,,,78.8,1447029174,,,5.0,1.0
+-122.090876425,47.6772094125,overpass_leisure_garden_park,,,204.7,1447029175,,,8.1,1.0
+-122.09117387777779,47.6771605,overpass_leisure_garden_park,,,196.6,1447029176,,,7.9,1.0
+-122.09217114444444,47.67758753333333,overpass_leisure_garden_park,,,92.7,1447029193,,,5.4,1.0
+-122.0940068,47.676836592857136,overpass_leisure_garden_park,,,320.3,1447029194,,,10.1,1.0
+-122.09344171875,47.67691255,overpass_leisure_garden_park,,,333.6,1447029195,,,10.3,1.0
+-122.10487037777777,47.67534397777778,overpass_leisure_garden_park,,,28.8,1447273186,,,3.0,1.0
+-122.13782885,47.631446175,overpass_leisure_garden_park,,,10.7,1447280978,,,1.8,1.0
+-122.1376196375,47.6314470125,overpass_leisure_garden_park,,,8.4,1447280979,,,1.6,1.0
+-122.1375924875,47.6316544875,overpass_leisure_garden_park,,,6.5,1447280980,,,1.4,1.0
+-122.13785543333334,47.63164868888889,overpass_leisure_garden_park,,,11.9,1447280981,,,1.9,1.0
+-122.15342282105262,47.63129745789474,overpass_leisure_garden_park,,,232.8,1447884608,,,8.6,1.0
+-122.15359712,47.63056302,overpass_leisure_garden_park,,,67.6,1447884610,,,4.6,1.0
+-122.1527194,47.63146958,overpass_leisure_garden_park,,,30.6,1447884612,,,3.1,1.0
+-122.0879924,47.71801488,overpass_leisure_garden_park,,,457.4,1447885632,,,12.1,1.0
+-122.12667684285715,47.717990285714286,overpass_leisure_garden_park,,,455.8,1449299322,,,12.0,1.0
+-122.08700036,47.69654744,overpass_leisure_garden_park,,,251.3,1455927844,,,8.9,1.0
+-122.09004497142857,47.69741567142857,overpass_leisure_garden_park,,,246.6,1455927870,,,8.9,1.0
+-122.13293049285714,47.645604078571424,overpass_leisure_garden_park,,,150.1,1463270458,,,6.9,1.0
+-122.06769897142856,47.65497712857143,overpass_leisure_garden_park,,,1392.8,1474012432,,,21.1,1.0
+-122.14125961111111,47.66001116666666,overpass_leisure_garden_park,,,68.0,1474045739,,,4.7,1.0
+-122.14125845555554,47.65984904444444,overpass_leisure_garden_park,,,68.0,1474045740,,,4.7,1.0
+-122.14169118888887,47.65984527777778,overpass_leisure_garden_park,,,68.0,1474045741,,,4.7,1.0
+-122.1416939888889,47.660008033333334,overpass_leisure_garden_park,,,68.0,1474045742,,,4.7,1.0
+-122.14083248888889,47.66001414444444,overpass_leisure_garden_park,,,68.0,1474045743,,,4.7,1.0
+-122.14083088888889,47.659854700000004,overpass_leisure_garden_park,,,68.0,1474045744,,,4.7,1.0
