@@ -29,6 +29,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
     private _detailViewState?: DetailViewState;
     private _app!: HTMLElement;
     private _view?: View;
+    private _navigating = false;
     private _zoomLevel: number = 12;
 
     constructor(options: ControllerOptions) {
@@ -75,51 +76,65 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
     // ControllerActions
 
     async openSummary(): Promise<void> {
-        getLogger().info("open summary");
+        if (this._navigating) return;
+        this._navigating = true;
 
-        const summaryView: View = new SummaryView(
-            this._app,
-            this,
-            this._catalog,
-            this._summaryViewState,
-            { gateway: this._gateway }
-        );
+        try {
+            getLogger().info("open summary");
 
-        this.switchView(summaryView);
+            const summaryView: View = new SummaryView(
+                this._app,
+                this,
+                this._catalog,
+                this._summaryViewState,
+                { gateway: this._gateway }
+            );
+
+            this.switchView(summaryView);
+        } finally {
+            this._navigating = false;
+        }
     }
 
     async openDetail(areaId: string): Promise<void> {
+        if (this._navigating) return;
+        this._navigating = true;
+
         getLogger().info("open detail", { areaId });
 
-        const area = this._catalog.getArea(areaId);
+        try {
+            const area = this._catalog.getArea(areaId);
 
-        await area.load();
+            await area.load();
 
-        const saved = this.loadDetailViewState(areaId);
+            const saved = this.loadDetailViewState(areaId);
 
-        const visibleLayers: Record<string, boolean> = {};
-        for (const layer of area.layers) {
-            visibleLayers[layer.id] = saved
-                ? saved.isLayerVisible(layer.id, layer.isVisible())
-                : layer.isVisible();
+            const visibleLayers: Record<string, boolean> = {};
+            for (const layer of area.layers) {
+                visibleLayers[layer.id] = saved
+                    ? saved.isLayerVisible(layer.id, layer.isVisible())
+                    : layer.isVisible();
+            }
+
+            this._detailViewState = new DetailViewState({
+                areaId: area.id,
+                center: saved?.center ?? area.center,
+                zoom: saved?.zoom ?? this._zoomLevel,
+                visibleLayers,
+            });
+
+            const detailView: View = new DetailView(
+                this._app,
+                this,
+                area,
+                this._detailViewState,
+                { gateway: this._gateway, geoLocation: Context.Instance.geoLocation }
+            );
+
+            this.switchView(detailView);
+        } finally {
+            this._navigating = false;
         }
-
-        this._detailViewState = new DetailViewState({
-            areaId: area.id,
-            center: saved?.center ?? area.center,
-            zoom: saved?.zoom ?? this._zoomLevel,
-            visibleLayers,
-        });
-
-        const detailView: View = new DetailView(
-            this._app,
-            this,
-            area,
-            this._detailViewState,
-            { gateway: this._gateway, geoLocation: Context.Instance.geoLocation }
-        );
-
-        this.switchView(detailView);
     }
 
     setLayerVisible(
