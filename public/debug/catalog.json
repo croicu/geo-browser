@@ -15,6 +15,20 @@
       "maxRadiusPx": 512,
       "liveMapRadiusPx": 640,
       "manifestUrl": "./areas/redmond/manifest.json"
+    },
+    {
+      "id": "melbourne",
+      "name": "Melbourne",
+      "bbox": [
+        144.85464778526898,
+        -37.87587994167842,
+        145.0032309182693,
+        -37.778561569641276
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/melbourne/manifest.json"
     }
   ]
 }
