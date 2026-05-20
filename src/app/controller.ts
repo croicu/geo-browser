@@ -172,10 +172,18 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
                     error: response.error,
                     errorDescription: response.errorDescription,
                 });
-            } else if (response.area) {
+                // Defer so any in-flight click events from the name-prompt OK button
+                // settle before the new summary view mounts its bubble markers.
+                setTimeout(() => this.openSummary(), 0);
+                return;
+            }
+
+            if (response.area) {
                 this._catalog.addArea(response.area);
             }
-            this.openSummary();
+
+            const areaId = response.area?.id;
+            setTimeout(() => areaId ? this.openDetail(areaId) : this.openSummary(), 0);
         });
     }
 

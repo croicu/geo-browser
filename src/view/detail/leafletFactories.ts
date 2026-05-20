@@ -65,6 +65,10 @@ class LeafletMapHandle implements MapHandle {
         return this._map.getZoom();
     }
 
+    getContainer(): HTMLElement {
+        return this._map.getContainer();
+    }
+
     onZoom(handler: (zoom: number) => void): () => void {
         const listener = () => handler(this._map.getZoom());
         this._map.on("zoomend", listener);

@@ -18,6 +18,7 @@ import type { HeatPoint } from "../../src/protocols";
 export class StubMap implements MapHandle {
     public removeCalled = false;
     private _zoom = 8;
+    private readonly _container = document.createElement("div");
     private _clickHandler?: (latLng: [number, number]) => void;
     private _moveEndHandler?: () => void;
     private readonly _zoomHandlers: ((zoom: number) => void)[] = [];
@@ -50,6 +51,10 @@ export class StubMap implements MapHandle {
     onClick(handler: (latLng: [number, number]) => void): () => void {
         this._clickHandler = handler;
         return () => { this._clickHandler = undefined; };
+    }
+
+    getContainer(): HTMLElement {
+        return this._container;
     }
 
     setCursor(_cursor: string): void {}
@@ -236,4 +241,5 @@ export class StubWidgetFactory implements WidgetFactory {
     ): WidgetHandle {
         return new StubWidget();
     }
+
 }

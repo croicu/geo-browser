@@ -71,6 +71,7 @@ export interface MapHandle {
     remove(): void;
     getCenter(): [number, number];
     getZoom(): number;
+    getContainer(): HTMLElement;
     onZoom(handler: (zoom: number) => void): () => void;
     onMoveEnd(handler: () => void): () => void;
     onClick(handler: (latLng: [number, number]) => void): () => void;
