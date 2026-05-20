@@ -29,6 +29,7 @@ body,
 }
 
 .summary-view {
+    position: relative;
     width: 100%;
     height: 100%;
 }
@@ -142,3 +143,123 @@ body,
 .dark-osm {
     filter: grayscale(0%) invert(0%) brightness(70%) contrast(150%);
 }
+
+.design-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.design-toolbar-button {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+.design-toolbar-button:hover {
+    background: #f4f4f4;
+}
+
+.design-toolbar-button.active {
+    background: #dce8f5;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.design-toolbar-button img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.area-name-prompt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 180px;
+}
+
+.area-name-input {
+    padding: 5px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    font-size: 13px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.area-name-input:focus {
+    border-color: #3388ff;
+    box-shadow: 0 0 0 2px rgba(51, 136, 255, 0.2);
+}
+
+.area-name-input--invalid {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.area-name-actions {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+}
+
+.area-build-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.area-build-overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    border-radius: 8px;
+    padding: 24px 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.area-build-spinner-ring {
+    width: 36px;
+    height: 36px;
+    border: 4px solid rgba(51, 136, 255, 0.2);
+    border-top-color: #3388ff;
+    border-radius: 50%;
+    animation: spinner-rotate 0.8s linear infinite;
+}
+
+.area-build-overlay-label {
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@keyframes spinner-rotate {
+    to { transform: rotate(360deg); }
+}
+
+.bbox-confirm-bar {
+    display: flex;
+    gap: 6px;
+    background: white;
+    border-radius: 4px;
+    padding: 3px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+

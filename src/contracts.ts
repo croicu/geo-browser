@@ -49,6 +49,10 @@ export interface ControllerActions {
     zoomIn(): void;
     zoomOut(): void;
     setZoom(zoomLevel: number): void;
+
+    newArea(): void;
+    commitArea(bbox: [number, number, number, number], name: string): void;
+    discardArea(): void;
 }
 
 export interface GatewayService {
@@ -67,9 +71,16 @@ export interface MapHandle {
     remove(): void;
     getCenter(): [number, number];
     getZoom(): number;
+    getContainer(): HTMLElement;
     onZoom(handler: (zoom: number) => void): () => void;
     onMoveEnd(handler: () => void): () => void;
     onClick(handler: (latLng: [number, number]) => void): () => void;
+    setCursor(cursor: string): void;
+    onMouseDown(handler: (latLng: [number, number]) => void): () => void;
+    onMouseMove(handler: (latLng: [number, number]) => void): () => void;
+    onMouseUp(handler: (latLng: [number, number]) => void): () => void;
+    disableDrag(): void;
+    enableDrag(): void;
 }
 
 export interface GeoDataService {
@@ -182,6 +193,12 @@ export interface WidgetHandle {
     remove(): void;
 }
 
+export interface DesignToolbarButton {
+    iconUrl: string;
+    title: string;
+    onClick: (setActive: (active: boolean) => void) => void;
+}
+
 export interface LayerSelectionWidgetItem {
     id: string;
     name: string;
@@ -200,4 +217,11 @@ export interface WidgetFactory {
         onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle;
 
+    createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle;
+
+    createNamePromptPopup(
+        latLng: [number, number],
+        onCommit: (name: string) => void,
+        onDiscard: () => void
+    ): WidgetHandle;
 }

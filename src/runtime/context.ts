@@ -6,6 +6,7 @@ import { WebViewHostService } from "./webViewHostService";
 
 import type { GeoDataService, HostService, StorageService, Logger } from "../contracts";
 import type { ResolveCatalogUrlOptions } from "../catalog/loader";
+import type { LatLng } from "../protocols";
 
 export type Mode = "browse" | "design";
 
@@ -15,6 +16,8 @@ export class Context {
     private readonly _mode: Mode;
     private readonly _debug: boolean;
     private readonly _design: boolean;
+    private readonly _initialCenter?: LatLng;
+    private readonly _initialZoom?: number;
 
     private readonly _dataSource: GeoDataService;
     private readonly _storageGuard: StorageGuard;
@@ -39,9 +42,12 @@ export class Context {
 
         this._debug = this.hasValue(params, "debug");
         this._design = this.hasValue(params, "design");
-        this._mode = this.hasValue(params, "design")
-            ? "design"
-            : "browse";
+        this._mode = this._design ? "design" : "browse";
+
+        if (this._design) {
+            this._initialCenter = this.parseCenter(params);
+            this._initialZoom = this.parseZoom(params);
+        }
 
         this._logger = new DefaultLogger(new ConsoleTelemetrySink());
         this._dataSource = {} as GeoDataService;
@@ -114,6 +120,32 @@ export class Context {
         }
 
         return {};
+    }
+
+    get initialCenter(): LatLng | undefined {
+        return this._initialCenter;
+    }
+
+    get initialZoom(): number | undefined {
+        return this._initialZoom;
+    }
+
+    private parseCenter(params: URLSearchParams): LatLng | undefined {
+        const raw = params.get("center");
+        if (!raw) return undefined;
+        const parts = raw.split(",");
+        if (parts.length !== 2) return undefined;
+        const lat = Number(parts[0]);
+        const lng = Number(parts[1]);
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return undefined;
+        return [lat, lng];
+    }
+
+    private parseZoom(params: URLSearchParams): number | undefined {
+        const raw = params.get("zoom");
+        if (!raw) return undefined;
+        const z = Number(raw);
+        return Number.isFinite(z) ? z : undefined;
     }
 
     private hasValue(

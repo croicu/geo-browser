@@ -26,19 +26,23 @@ Just the quiet signal of urban life, rendered as a heatmap.
 ## What RioneSanità Does
 
 RioneSanità visualizes city liveliness as a heatmap, built entirely from
-OpenStreetMap POI density. Open it before you explore. See where life is.
-Walk toward the bright spots. Avoid the dark ones.
+OpenStreetMap POI density.
 
-That is the entire product. No routing. No recommendations. No liability.
-The map shows data. You decide where to walk.
+**Two use cases**:
+
+1. **Before you walk**: Open it at home or a café. See where life is. Plan a route
+   through the bright spots. Commit to that route in Google Maps.
+1. **While you’re walking**: Enable location tracking. When you’re at an intersection
+   and Google Maps says “left or right,” glance at RioneSanità. Left street is bright,
+   right street is dark. You decide.
 
 ## Why It Works
 
 - **Objective**: OSM amenity density is data, not opinion
 - **Honest**: nobody paid to appear on it
-- **Offline-first**: download a city before your trip, works with no connectivity —
-  in the metro, in a tunnel, in a catacomb
+- **Offline-first**: download a city before your trip, works with no connectivity
 - **Street-level granularity**: zoom in from neighborhood to individual block
+- **Real-time location**: optional GPS tracking for mid-walk decisions
 - **Free and open**: built entirely on OpenStreetMap, the Wikipedia of maps
 
 ## The Composite Signal
@@ -49,12 +53,12 @@ infrastructure does not guarantee activity.
 
 The right signal is the combination:
 
-| Photos | Amenities | Signal |
-|--------|-----------|--------|
-| High | High | Lively neighborhood — go |
-| High | Low | Danger tourism / urban decay — avoid |
-| Low | Low | Dead area — avoid |
-| Low | High | Quiet residential — neutral |
+|Photos|Amenities|Signal                              |
+|------|---------|------------------------------------|
+|High  |High     |Lively neighborhood — go            |
+|High  |Low      |Danger tourism / urban decay — avoid|
+|Low   |Low      |Dead area — avoid                   |
+|Low   |High     |Quiet residential — neutral         |
 
 ## Nearest Competitor
 
@@ -69,5 +73,6 @@ more objectively, and fully offline.
 - Working heatmap live at geo-browser.croicu.com
 - Naples fully mapped and validated
 - PWA (installable, offline-capable) in progress
+- GPS location tracking in development
 - Prague, Dresden, Berlin next
 - Open source, MIT license: github.com/croicu/geo-browser

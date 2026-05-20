@@ -28,6 +28,7 @@ declare module "leaflet" {
 
 import type {
     CircleMarkerOptions,
+    DesignToolbarButton,
     DraggableMarkerHandle,
     LayerFactory,
     MapFactory,
@@ -64,6 +65,10 @@ class LeafletMapHandle implements MapHandle {
         return this._map.getZoom();
     }
 
+    getContainer(): HTMLElement {
+        return this._map.getContainer();
+    }
+
     onZoom(handler: (zoom: number) => void): () => void {
         const listener = () => handler(this._map.getZoom());
         this._map.on("zoomend", listener);
@@ -79,6 +84,36 @@ class LeafletMapHandle implements MapHandle {
         const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
         this._map.on("click", listener);
         return () => this._map.off("click", listener);
+    }
+
+    setCursor(cursor: string): void {
+        this._map.getContainer().style.cursor = cursor;
+    }
+
+    onMouseDown(handler: (latLng: [number, number]) => void): () => void {
+        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
+        this._map.on("mousedown", listener);
+        return () => this._map.off("mousedown", listener);
+    }
+
+    onMouseMove(handler: (latLng: [number, number]) => void): () => void {
+        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
+        this._map.on("mousemove", listener);
+        return () => this._map.off("mousemove", listener);
+    }
+
+    onMouseUp(handler: (latLng: [number, number]) => void): () => void {
+        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
+        this._map.on("mouseup", listener);
+        return () => this._map.off("mouseup", listener);
+    }
+
+    disableDrag(): void {
+        this._map.dragging.disable();
+    }
+
+    enableDrag(): void {
+        this._map.dragging.enable();
     }
 
     unwrap(): L.Map {
@@ -333,7 +368,7 @@ class SummaryControl extends L.Control {
 
         const image = document.createElement("img");
 
-        image.src = "/icons/back.svg";
+        image.src = "/icons/browse-back.svg";
         image.alt = "Back";
 
         button.appendChild(image);
@@ -400,23 +435,142 @@ class LayerControl extends L.Control {
     }
 }
 
-export class DefaultLeafletWidgetFactory implements WidgetFactory{
+class DesignToolbarControl extends L.Control {
+    private readonly _buttons: DesignToolbarButton[];
+
+    constructor(buttons: DesignToolbarButton[]) {
+        super({ position: "topleft" });
+        this._buttons = buttons;
+    }
+
+    onAdd(): HTMLElement {
+        const container = L.DomUtil.create("div", "design-toolbar");
+
+        for (const btn of this._buttons) {
+            const button = L.DomUtil.create("button", "design-toolbar-button", container);
+            button.type = "button";
+            button.title = btn.title;
+
+            const img = document.createElement("img");
+            img.src = btn.iconUrl;
+            img.alt = btn.title;
+            button.appendChild(img);
+
+            L.DomEvent.disableClickPropagation(button);
+
+            const setActive = (active: boolean) => button.classList.toggle("active", active);
+
+            button.addEventListener("click", (e) => {
+                e.preventDefault();
+                btn.onClick(setActive);
+            });
+        }
+
+        return container;
+    }
+}
+
+class LeafletPopupHandle implements WidgetHandle {
+    private readonly _popup: L.Popup;
+    private readonly _input: HTMLInputElement;
+
+    constructor(popup: L.Popup, input: HTMLInputElement) {
+        this._popup = popup;
+        this._input = input;
+    }
+
+    addTo(map: MapHandle): void {
+        this._popup.openOn(unwrapMap(map));
+        this._input.focus();
+    }
+
+    remove(): void {
+        this._popup.remove();
+    }
+}
+
+export class DefaultLeafletWidgetFactory implements WidgetFactory {
 
     createSummaryWidget(
         label: string,
         onClick: () => void
     ): WidgetHandle {
-
-        return new LeafletWidgetHandle(
-            new SummaryControl(label, onClick));
+        return new LeafletWidgetHandle(new SummaryControl(label, onClick));
     }
 
     createLayerSelectionWidget(
-        layers: LayerSelectionWidgetItem[], 
-        onToggle: (layerId: string, visible: boolean) => void): WidgetHandle
-    {
-        return new LeafletWidgetHandle(
-            new LayerControl(layers, onToggle));
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void
+    ): WidgetHandle {
+        return new LeafletWidgetHandle(new LayerControl(layers, onToggle));
     }
 
+    createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle {
+        return new LeafletWidgetHandle(new DesignToolbarControl(buttons));
+    }
+
+    createNamePromptPopup(
+        latLng: [number, number],
+        onCommit: (name: string) => void,
+        onDiscard: () => void
+    ): WidgetHandle {
+        const container = document.createElement("div");
+        container.className = "area-name-prompt";
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.className = "area-name-input";
+        input.placeholder = "Area name";
+        container.appendChild(input);
+
+        const actions = document.createElement("div");
+        actions.className = "area-name-actions";
+        container.appendChild(actions);
+
+        const okBtn = document.createElement("button");
+        okBtn.type = "button";
+        okBtn.className = "design-toolbar-button";
+        okBtn.title = "Commit area";
+        const okImg = document.createElement("img");
+        okImg.src = "/icons/design-ok.svg";
+        okImg.alt = "OK";
+        okBtn.appendChild(okImg);
+        actions.appendChild(okBtn);
+
+        const cancelBtn = document.createElement("button");
+        cancelBtn.type = "button";
+        cancelBtn.className = "design-toolbar-button";
+        cancelBtn.title = "Discard area";
+        const cancelImg = document.createElement("img");
+        cancelImg.src = "/icons/design-cancel.svg";
+        cancelImg.alt = "Cancel";
+        cancelBtn.appendChild(cancelImg);
+        actions.appendChild(cancelBtn);
+
+        L.DomEvent.disableClickPropagation(container);
+
+        const commit = () => {
+            const name = input.value.trim();
+            if (!name || name === "*") {
+                input.classList.add("area-name-input--invalid");
+                input.focus();
+                return;
+            }
+            onCommit(name);
+        };
+
+        input.addEventListener("input", () => input.classList.remove("area-name-input--invalid"));
+        okBtn.addEventListener("click", commit);
+        cancelBtn.addEventListener("click", () => onDiscard());
+        input.addEventListener("keydown", (e: KeyboardEvent) => {
+            if (e.key === "Enter") { commit(); }
+            else if (e.key === "Escape") { onDiscard(); }
+        });
+
+        const popup = L.popup({ closeButton: false, autoClose: false, closeOnClick: false })
+            .setLatLng(latLng)
+            .setContent(container);
+
+        return new LeafletPopupHandle(popup, input);
+    }
 }

@@ -18,6 +18,16 @@ describe("BboxWidget", () => {
         return new BboxWidget(map, layerFactory, gateway, "napoli", bbox);
     }
 
+    function dragEndAndConfirm(markerIndex: number, latLng: [number, number]): void {
+        layerFactory.draggableMarkers[markerIndex].simulateDrag(latLng);
+        layerFactory.draggableMarkers[markerIndex].simulateDragEnd(latLng);
+        confirmBar().querySelector<HTMLButtonElement>("button:first-child")!.click();
+    }
+
+    function confirmBar(): HTMLElement {
+        return map.getContainer().querySelector<HTMLElement>(".bbox-confirm-bar")!;
+    }
+
     it("renders one rectangle and four corner handles", () => {
         const widget = makeWidget();
         widget.render();
@@ -49,7 +59,6 @@ describe("BboxWidget", () => {
         const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
         widget.render();
 
-        // drag NE corner (index 1) northward
         layerFactory.draggableMarkers[1].simulateDrag([41.5, 14.6]);
 
         expect(layerFactory.rectangles[0].lastBounds).toBeDefined();
@@ -59,30 +68,134 @@ describe("BboxWidget", () => {
         const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
         widget.render();
 
-        // drag NW corner (index 0) — north and west change
         layerFactory.draggableMarkers[0].simulateDrag([41.5, 13.8]);
 
-        // NE (index 1) should receive new north lat
         expect(layerFactory.draggableMarkers[1].latLng?.[0]).toBeCloseTo(41.5);
-        // SW (index 2) should receive new west lng
         expect(layerFactory.draggableMarkers[2].latLng?.[1]).toBeCloseTo(13.8);
     });
 
-    it("fires SetAreaBbox on drag end", () => {
+    it("shows confirm bar after drag end", () => {
         const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
         widget.render();
 
         layerFactory.draggableMarkers[3].simulateDragEnd([40.5, 14.6]);
 
+        expect(confirmBar()).not.toBeNull();
+    });
+
+    it("does not fire SetAreaBbox on drag end alone", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        layerFactory.draggableMarkers[3].simulateDragEnd([40.5, 14.6]);
+
+        expect(gateway.invocations.length).toBe(0);
+    });
+
+    it("fires SetAreaBbox when OK is clicked after drag end", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+
         expect(gateway.invocations.length).toBe(1);
         expect(gateway.invocations[0].id).toBe("__geo_set_area_bbox__");
+    });
+
+    it("hides confirm bar after OK is clicked", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+
+        expect(map.getContainer().querySelector(".bbox-confirm-bar")).toBeNull();
+    });
+
+    it("shows saving overlay after OK is clicked", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+
+        expect(map.getContainer().querySelector(".area-build-overlay")).not.toBeNull();
+    });
+
+    it("hides saving overlay when save response arrives", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+        gateway.respond(0, { error: 0, errorDescription: null });
+
+        expect(map.getContainer().querySelector(".area-build-overlay")).toBeNull();
+    });
+
+    it("reverts bbox and hides confirm bar on cancel", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        layerFactory.draggableMarkers[0].simulateDrag([42.0, 13.0]);
+        layerFactory.draggableMarkers[0].simulateDragEnd([42.0, 13.0]);
+        confirmBar().querySelector<HTMLButtonElement>("button:last-child")!.click();
+
+        expect(map.getContainer().querySelector(".bbox-confirm-bar")).toBeNull();
+        expect(gateway.invocations.length).toBe(0);
+        expect(layerFactory.draggableMarkers[0].latLng?.[0]).toBeCloseTo(41.0);
+        expect(layerFactory.draggableMarkers[0].latLng?.[1]).toBeCloseTo(14.0);
+    });
+
+    it("additional drags while editing do not open a second confirm bar", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        layerFactory.draggableMarkers[0].simulateDragEnd([41.5, 13.8]);
+        layerFactory.draggableMarkers[1].simulateDragEnd([41.5, 14.7]);
+
+        expect(map.getContainer().querySelectorAll(".bbox-confirm-bar").length).toBe(1);
+    });
+
+    it("calls onEditStart when edit mode begins", () => {
+        let started = false;
+        const widget = new BboxWidget(map, layerFactory, gateway, "napoli", [14.0, 40.7, 14.5, 41.0], {
+            onEditStart: () => { started = true; },
+        });
+        widget.render();
+
+        layerFactory.draggableMarkers[0].simulateDragEnd([41.5, 13.8]);
+
+        expect(started).toBe(true);
+    });
+
+    it("calls onEditEnd when OK is clicked", () => {
+        let ended = false;
+        const widget = new BboxWidget(map, layerFactory, gateway, "napoli", [14.0, 40.7, 14.5, 41.0], {
+            onEditEnd: () => { ended = true; },
+        });
+        widget.render();
+
+        dragEndAndConfirm(0, [41.5, 13.8]);
+
+        expect(ended).toBe(true);
+    });
+
+    it("calls onEditEnd when cancel is clicked", () => {
+        let ended = false;
+        const widget = new BboxWidget(map, layerFactory, gateway, "napoli", [14.0, 40.7, 14.5, 41.0], {
+            onEditEnd: () => { ended = true; },
+        });
+        widget.render();
+
+        layerFactory.draggableMarkers[0].simulateDragEnd([41.5, 13.8]);
+        confirmBar().querySelector<HTMLButtonElement>("button:last-child")!.click();
+
+        expect(ended).toBe(true);
     });
 
     it("hides rect and handles when bbox is too small on screen", () => {
         const widget = makeWidget();
         widget.render();
 
-        map.simulateZoom(3); // bbox shrinks to a few pixels
+        map.simulateZoom(3);
 
         expect(layerFactory.rectangles[0].removed).toBe(true);
         for (const handle of layerFactory.draggableMarkers) {
@@ -98,9 +211,11 @@ describe("BboxWidget", () => {
         expect(layerFactory.rectangles[0].addedTo).toBeUndefined();
     });
 
-    it("removes rectangle and handles on destroy", () => {
+    it("removes rectangle, handles, and overlays on destroy", () => {
         const widget = makeWidget();
         widget.render();
+
+        layerFactory.draggableMarkers[0].simulateDragEnd([41.5, 13.8]);
 
         const rect = layerFactory.rectangles[0];
         const handles = [...layerFactory.draggableMarkers];
@@ -111,5 +226,17 @@ describe("BboxWidget", () => {
         for (const handle of handles) {
             expect(handle.removed).toBe(true);
         }
+        expect(map.getContainer().querySelector(".bbox-confirm-bar")).toBeNull();
+    });
+
+    it("removes saving overlay on destroy", () => {
+        const widget = makeWidget();
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+
+        widget.destroy();
+
+        expect(map.getContainer().querySelector(".area-build-overlay")).toBeNull();
     });
 });

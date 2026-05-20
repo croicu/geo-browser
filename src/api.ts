@@ -1,3 +1,5 @@
+import type { AreaSummary } from "./protocols";
+
 export type Cookie = number;
 
 export interface MethodDef<TIn, TOut> {
@@ -14,6 +16,8 @@ export interface EventDef<TIn, TOut> {
 
 // Universal error code constant. All other codes are method-specific.
 export const OK = 0;
+export const ERR_AREA_NOT_FOUND = 1;
+export const ERR_TEMPLATE_NOT_FOUND = 2;
 
 // ── Ready (connection handshake, builder → browser) ───────────────────────────
 
@@ -52,5 +56,24 @@ export interface SetAreaBboxOutput {
 
 export const SetAreaBbox: MethodDef<SetAreaBboxInput, SetAreaBboxOutput> = {
     id: "__geo_set_area_bbox__",
+    _kind: "method",
+};
+
+// ── AddArea (browser → builder) ───────────────────────────────────────────────
+
+export interface AddAreaInput {
+    areaName: string;
+    bbox: [number, number, number, number]; // [west, south, east, north]
+    template?: string;
+}
+
+export interface AddAreaOutput {
+    error: number;
+    errorDescription: string | null;
+    area: AreaSummary | null;
+}
+
+export const AddArea: MethodDef<AddAreaInput, AddAreaOutput> = {
+    id: "__geo_add_area__",
     _kind: "method",
 };

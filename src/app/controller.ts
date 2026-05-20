@@ -1,7 +1,9 @@
 import { getLogger } from "../services";
 import { GeoCatalog } from "../catalog/catalog";
 import type { ControllerActions, ControllerState, GatewayService, StorageService, View } from "../contracts";
+import type { LatLng } from "../protocols";
 import type { GeoState } from "../state/geoState";
+import { AddArea, OK } from "../api";
 
 import { GeoStateStore } from "../state/geoStateStore";
 import { SummaryViewState } from "../state/summaryViewState";
@@ -14,6 +16,8 @@ export interface ControllerOptions {
     catalog: GeoCatalog;
     storage: StorageService;
     gateway: GatewayService | null;
+    initialCenter?: LatLng;
+    initialZoom?: number;
 }
 
 export class Controller implements ControllerActions, ControllerState, GeoState {
@@ -31,6 +35,13 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
         this._gateway = options.gateway;
         this._geoStateStore = new GeoStateStore(options.storage);
         this._summaryViewState = this._geoStateStore.loadSummaryViewState();
+
+        if (options.initialCenter !== undefined) {
+            this._summaryViewState.center = options.initialCenter;
+        }
+        if (options.initialZoom !== undefined) {
+            this._summaryViewState.zoom = options.initialZoom;
+        }
     }
 
     async start(): Promise<void> {
@@ -140,6 +151,44 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
         this._detailViewState.center = center;
         this._detailViewState.zoom = zoom;
         this.saveDetailViewState(this._detailViewState);
+    }
+
+    newArea(): void {
+        getLogger().info("new area");
+    }
+
+    commitArea(bbox: [number, number, number, number], name: string): void {
+        const logger = getLogger();
+        logger.info("commit area", { bbox, name });
+
+        if (!this._gateway) {
+            logger.warning("commitArea: no gateway, ignoring");
+            return;
+        }
+
+        this._gateway.invoke(AddArea, { areaName: name, bbox }, (response) => {
+            if (response.error !== OK) {
+                logger.error("commitArea failed", undefined, {
+                    error: response.error,
+                    errorDescription: response.errorDescription,
+                });
+                // Defer so any in-flight click events from the name-prompt OK button
+                // settle before the new summary view mounts its bubble markers.
+                setTimeout(() => this.openSummary(), 0);
+                return;
+            }
+
+            if (response.area) {
+                this._catalog.addArea(response.area);
+            }
+
+            const areaId = response.area?.id;
+            setTimeout(() => areaId ? this.openDetail(areaId) : this.openSummary(), 0);
+        });
+    }
+
+    discardArea(): void {
+        getLogger().info("discard area");
     }
 
     zoomIn(): void {

@@ -49,6 +49,10 @@ export class GeoLayer {
         return this._payload !== undefined;
     }
 
+    invalidate(): void {
+        this._payload = undefined;
+    }
+
     async load(): Promise<void> {
         if (this._payload !== undefined) {
             return;

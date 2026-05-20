@@ -1,24 +1,20 @@
 {
-  "version": 1,
-  "createdAt": "2026-05-03T00:00:00Z",
+  "version": "1.0",
+  "createdAt": "2026-05-20 02:29:29.216307+00:00",
   "areas": [
     {
-      "id": "napoli",
-      "name": "Napoli",
-      "bbox": [14.13, 40.74, 14.41, 40.96],
-      "minRadiusPx": 16,
-      "maxRadiusPx": 64,
+      "id": "redmond",
+      "name": "Redmond",
+      "bbox": [
+        -122.16316223144533,
+        47.62391559878863,
+        -122.01999664306642,
+        47.736331408398186
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
       "liveMapRadiusPx": 640,
-      "manifestUrl": "./areas/napoli/manifest.json"
-    },
-    {
-      "id": "prague",
-      "name": "Prague",
-      "bbox": [14.33, 49.94, 14.66, 50.15],
-      "minRadiusPx": 16,
-      "maxRadiusPx": 64,
-      "liveMapRadiusPx": 640,
-      "manifestUrl": "./areas/prague/manifest.json"
+      "manifestUrl": "./areas/redmond/manifest.json"
     }
   ]
 }

@@ -162,7 +162,16 @@ export class DetailView implements View {
                 this._layerFactory,
                 this._gateway,
                 this._area.id,
-                this._area.bbox
+                this._area.bbox,
+                {
+                    onSaveSuccess: () => {
+                        for (const layer of this._area.layers) {
+                            layer.invalidate();
+                        }
+                        this.destroyLayerViews();
+                        this.renderLayerViews();
+                    },
+                }
             );
             bboxWidget.render();
             this._bboxWidget = bboxWidget;

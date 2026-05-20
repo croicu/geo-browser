@@ -74,7 +74,11 @@ export class BubbleWidget {
                 this._layerFactory,
                 this._gateway,
                 this._area.id,
-                this._area.bbox
+                this._area.bbox,
+                {
+                    onEditStart: () => this._marker?.remove(),
+                    onEditEnd: () => { if (this._marker) { this._marker.addTo(this._map); } },
+                }
             );
             bboxWidget.render();
             this._bboxWidget = bboxWidget;

@@ -78,4 +78,13 @@ export class GeoCatalog {
 
         return this._areas !== undefined;
     }
+
+    addArea(summary: AreaSummary): void {
+        if (!this._areas) {
+            fail("catalog.not_loaded", "Catalog not loaded");
+        }
+
+        const manifestUrl = resolveUrl(summary.manifestUrl, this.catalogUrl);
+        this._areas = [...this._areas, new GeoArea({ ...summary, manifestUrl })];
+    }
 }
