@@ -120,6 +120,14 @@ body,
     opacity: 0.45;
 }
 
+/* Override Leaflet's SVG pointer-events="visiblePainted" attribute.
+   iOS Safari doesn't recognize the SVG-specific value for elementFromPoint,
+   so Leaflet's tap handler can't find the element. "auto" is the standard
+   CSS equivalent and is handled correctly on all platforms. */
+.leaflet-interactive {
+    pointer-events: auto;
+}
+
 .leaflet-tooltip.bubble-label {
     background: transparent;
     border: none;

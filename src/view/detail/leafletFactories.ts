@@ -256,33 +256,7 @@ class LeafletClickableMapLayerHandle
     }
 
     onClick(handler: () => void): void {
-        // iOS Safari doesn't reliably fire synthetic click on SVG layers via Leaflet's tap handler.
-        // Register touchend directly as a fallback, suppressing the subsequent click to avoid double-fire.
-        let suppressClick = false;
-        let touchStartX = 0;
-        let touchStartY = 0;
-
-        this._marker.on("touchstart", (e: L.LeafletEvent) => {
-            const touch = (e as unknown as { originalEvent: TouchEvent }).originalEvent.changedTouches[0];
-            touchStartX = touch.clientX;
-            touchStartY = touch.clientY;
-        });
-
-        this._marker.on("touchend", (e: L.LeafletEvent) => {
-            const touch = (e as unknown as { originalEvent: TouchEvent }).originalEvent.changedTouches[0];
-            const moved = Math.abs(touch.clientX - touchStartX) >= 10 || Math.abs(touch.clientY - touchStartY) >= 10;
-            if (!moved) {
-                suppressClick = true;
-                setTimeout(() => { suppressClick = false; }, 300);
-                handler();
-            }
-        });
-
-        this._marker.on("click", () => {
-            if (!suppressClick) {
-                handler();
-            }
-        });
+        this._marker.on("click", handler);
     }
 
     setRadius(r: number): void {
