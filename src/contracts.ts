@@ -67,6 +67,11 @@ export interface ControllerState {
     get maxZoom(): number;
 }
 
+export interface MapPopupHandle {
+    update(element: HTMLElement): void;
+    remove(): void;
+}
+
 export interface MapHandle {
     remove(): void;
     getCenter(): [number, number];
@@ -76,6 +81,7 @@ export interface MapHandle {
     onZoom(handler: (zoom: number) => void): () => void;
     onMoveEnd(handler: () => void): () => void;
     onClick(handler: (latLng: [number, number]) => void): () => void;
+    onLongPress(handler: (latLng: [number, number]) => void): () => void;
     setCursor(cursor: string): void;
     onMouseDown(handler: (latLng: [number, number]) => void): () => void;
     onMouseMove(handler: (latLng: [number, number]) => void): () => void;
@@ -86,6 +92,7 @@ export interface MapHandle {
     getBoundsZoom(sw: [number, number], ne: [number, number]): number;
     setMinZoom(zoom: number): void;
     getBounds(): { sw: [number, number]; ne: [number, number] };
+    createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle;
 }
 
 export interface GeoDataService {
@@ -216,6 +223,23 @@ export interface LayerFactory {
     createDraggableMarker(latLng: [number, number]): DraggableMarkerHandle;
     createPositionMarker(latLng: [number, number]): PositionMarkerHandle;
     createAccuracyRing(latLng: [number, number], radiusMeters: number): AccuracyRingHandle;
+}
+
+export interface PoiInfo {
+    source: string;
+    latLng: [number, number];
+    name?: string;
+    address?: string;
+    neighbourhood?: string;
+    city?: string;
+}
+
+export interface PoiRequest {
+    cancel(): void;
+}
+
+export interface PoiService {
+    query(latLng: [number, number], onPoiInfo: (info: PoiInfo) => void): PoiRequest;
 }
 
 export interface WidgetHandle {

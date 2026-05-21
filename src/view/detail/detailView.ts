@@ -1,5 +1,5 @@
 import type { GeoArea } from "../../catalog/area";
-import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
+import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, PoiRequest, PoiService, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
 import { getLogger } from "../../services";
 import { HeatLayerView } from "./heatLayerView";
@@ -7,6 +7,7 @@ import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
 import { PointLayerView } from "./pointLayerView";
+import { PoiWidget } from "./poiWidget";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
 import { GeoLocationWidget } from "./geoLocationWidget";
@@ -17,6 +18,7 @@ export interface DetailViewServices {
     widgetFactory?: WidgetFactory;
     gateway?: GatewayService | null;
     geoLocation?: GeoLocationService | null;
+    poiService?: PoiService | null;
 }
 
 export class DetailView implements View {
@@ -31,6 +33,7 @@ export class DetailView implements View {
 
     private readonly _gateway: GatewayService | null;
     private readonly _geoLocation: GeoLocationService | null;
+    private readonly _poiService: PoiService | null;
 
     private _element?: HTMLElement;
     private _mapRoot?: HTMLElement;
@@ -41,7 +44,12 @@ export class DetailView implements View {
     private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
     private _geoLocationWidget?: GeoLocationWidget;
+    private _poiWidget?: PoiWidget;
+    private _poiRequest?: PoiRequest;
+    private _poiRequestPending = false;
     private _clickCleanup?: () => void;
+    private _longPressCleanup?: () => void;
+    private _pointerUpCleanup?: () => void;
     private _moveEndCleanup?: () => void;
     private _zoomCleanup?: () => void;
     private _minZoom = 0;
@@ -62,6 +70,7 @@ export class DetailView implements View {
         this._widgetFactory = services.widgetFactory ?? new DefaultLeafletWidgetFactory();
         this._gateway = services.gateway ?? null;
         this._geoLocation = services.geoLocation ?? null;
+        this._poiService = services.poiService ?? null;
 
         void this._actions;
     }
@@ -108,6 +117,8 @@ export class DetailView implements View {
             this._summaryWidget = summaryWidget;
             this._layersWidget = layersWidget;
             this._clickCleanup = map.onClick(latLng => this.onMapClick(latLng));
+            this._longPressCleanup = map.onLongPress(latLng => this.onLongPress(latLng));
+            this._pointerUpCleanup = map.onMouseUp(() => this.onPointerUp());
 
             if (this._geoLocation) {
                 const geoWidget = new GeoLocationWidget(
@@ -137,8 +148,20 @@ export class DetailView implements View {
             this._geoLocationWidget?.destroy();
             this._geoLocationWidget = undefined;
 
+            this._poiWidget?.destroy();
+            this._poiWidget = undefined;
+            this._poiRequest?.cancel();
+            this._poiRequest = undefined;
+            this._poiRequestPending = false;
+
             this._clickCleanup?.();
             this._clickCleanup = undefined;
+
+            this._longPressCleanup?.();
+            this._longPressCleanup = undefined;
+
+            this._pointerUpCleanup?.();
+            this._pointerUpCleanup = undefined;
 
             this._moveEndCleanup?.();
             this._moveEndCleanup = undefined;
@@ -308,7 +331,42 @@ export class DetailView implements View {
         this._actions.saveDetailViewport(this._area.id, this._map.getCenter(), this._map.getZoom());
     }
 
+    private onLongPress(latLng: [number, number]): void {
+        this._poiWidget?.destroy();
+        this._poiRequest?.cancel();
+        this._poiWidget = undefined;
+        this._poiRequest = undefined;
+        this._poiRequestPending = false;
+
+        if (!this._poiService || !this._map) return;
+
+        const widget = new PoiWidget(this._map, latLng, this._layerFactory);
+        widget.render();
+        this._poiWidget = widget;
+        this._poiRequestPending = true;
+
+        this._poiRequest = this._poiService.query(latLng, info => {
+            this._poiRequestPending = false;
+            this._poiWidget?.addInfo(info);
+        });
+    }
+
+    private onPointerUp(): void {
+        if (this._poiRequestPending) {
+            this._poiRequest?.cancel();
+            this._poiRequest = undefined;
+            this._poiWidget?.destroy();
+            this._poiWidget = undefined;
+            this._poiRequestPending = false;
+        }
+    }
+
     private onMapClick(latLng: [number, number]): void {
         getLogger().diagnostic("map.click", { lat: latLng[0], lng: latLng[1] });
+
+        this._poiWidget?.destroy();
+        this._poiWidget = undefined;
+        this._poiRequest = undefined;
+        this._poiRequestPending = false;
     }
 }
