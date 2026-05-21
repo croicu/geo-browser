@@ -6,8 +6,8 @@ export default defineConfig({
         VitePWA({
             registerType: "autoUpdate",
             manifest: {
-                name: "CityLife",
-                short_name: "CityLife",
+                name: "City Life",
+                short_name: "City Life",
                 description: "See where city life actually is — before you walk into the wrong street.",
                 theme_color: "#3388ff",
                 background_color: "#ffffff",
