@@ -64,6 +64,13 @@ export class PoiWidget {
                 section.appendChild(el);
             }
 
+            if (info.category) {
+                const el = document.createElement("div");
+                el.className = "poi-category";
+                el.textContent = info.category;
+                section.appendChild(el);
+            }
+
             if (info.address) {
                 const el = document.createElement("div");
                 el.className = "poi-address";
@@ -82,6 +89,13 @@ export class PoiWidget {
                 const el = document.createElement("div");
                 el.className = "poi-city";
                 el.textContent = info.city;
+                section.appendChild(el);
+            }
+
+            if (info.country) {
+                const el = document.createElement("div");
+                el.className = "poi-country";
+                el.textContent = info.country;
                 section.appendChild(el);
             }
 

@@ -229,9 +229,11 @@ export interface PoiInfo {
     source: string;
     latLng: [number, number];
     name?: string;
+    category?: string;
     address?: string;
     neighbourhood?: string;
     city?: string;
+    country?: string;
 }
 
 export interface PoiRequest {
