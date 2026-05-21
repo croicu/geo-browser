@@ -24,7 +24,7 @@ deserted, rundown street. His wife nearly had a panic attack.
 The alternative route via Viale Colli Aminei was only 2 minutes faster on paper.
 Google Maps picked the wrong one by every measure: slower AND more dangerous.
 
-**RioneSanità is the tool that would have prevented that.**
+**CityLife is the tool that would have prevented that.**
 
 The Capodimonte → Piazza Cavour walk is the canonical validation test:
 if the heatmap shows Rione Sanità visibly darker than the Viale Colli Aminei
@@ -32,7 +32,7 @@ alternative, the concept is validated.
 
 -----
 
-## What RioneSanità Is
+## What CityLife Is
 
 A heatmap of urban liveliness, built from OpenStreetMap POI density, that helps
 travelers intuitively identify neighborhoods worth walking through — before they walk
@@ -47,18 +47,18 @@ life — and the presence of risk — without ever using the word “dangerous.�
 1. **Pre-walk planning** (at home, at a café):
 - “I want to go to Microsoft Headquarters”
 - Google Maps shows 3 route options
-- Open RioneSanità, zoom in on the heatmap
+- Open CityLife, zoom in on the heatmap
 - Trace each corridor visually
 - Pick the one that passes through the brightest areas
 - Commit to that route in Google Maps
 1. **Mid-walk micro-decisions** (at an intersection):
 - Google Maps: “Turn left or right?”
-- Enable location tracking on RioneSanità
+- Enable location tracking on CityLife
 - Glance at your current location on the heatmap
 - Left street is bright, right street is dark
 - You decide based on the liveness data, not the algorithm
 
-**It is not a navigation app.** RioneSanità shows data. The user decides where to walk.
+**It is not a navigation app.** CityLife shows data. The user decides where to walk.
 This is intentional — zero liability, zero controversy.
 
 -----
@@ -73,14 +73,14 @@ User wants to check: which route from A to B passes through lively areas?
 
 1. User is at home (or café, or hotel)
 1. Opens Google Maps, enters destination, gets route options
-1. Opens RioneSanità to the same city
+1. Opens CityLife to the same city
 1. Zooms in on the area between current location and destination
 1. Visually traces each potential corridor
 1. Identifies which path has the brightest (most amenity-dense) areas
 1. Goes back to Google Maps, commits to that route
 1. Navigates using Google Maps
 
-**RioneSanità’s role**: Show the heatmap at sufficient granularity to compare corridors.
+**CityLife’s role**: Show the heatmap at sufficient granularity to compare corridors.
 
 **No real-time updates needed. No GPS required. Offline works perfectly.**
 
@@ -94,14 +94,14 @@ a dump and one goes through great scenery.”
 **Workflow**:
 
 1. User is on the street, at an intersection
-1. Taps RioneSanità (or it’s already open)
+1. Taps CityLife (or it’s already open)
 1. Enables “Show my location” (GPS)
 1. Blue dot appears, showing current position on heatmap
 1. User can see immediately: left street is bright, right street is dark
 1. User chooses the lively one
 1. Google Maps recalculates from new direction
 
-**RioneSanità’s role**: Show user’s current location + heatmap at street level for
+**CityLife’s role**: Show user’s current location + heatmap at street level for
 immediate visual assessment.
 
 **GPS required. Works offline (no network calls). Battery-conscious.**
@@ -160,7 +160,7 @@ making it unsuitable. Photo density layer is a V2 consideration.
 (“No locals, just tourists and pickpockets” over Barcelona’s tourist center).
 Has a “Crime” layer based on crowdsourced opinion.
 
-**How RioneSanità differs**:
+**How CityLife differs**:
 
 - Objective data signal (OSM POI density) vs. subjective human opinion
 - Offline-first — works with no connectivity
@@ -170,7 +170,7 @@ Has a “Crime” layer based on crowdsourced opinion.
 - Real-time location awareness for mid-walk decisions
 
 Hoodmaps validates the market: people want honest city intelligence that
-Google Maps won’t give them. RioneSanità delivers it more reliably, more objectively,
+Google Maps won’t give them. CityLife delivers it more reliably, more objectively,
 and with the added benefit of real-time location awareness while walking.
 
 -----
@@ -179,7 +179,7 @@ and with the added benefit of real-time location awareness while walking.
 
 **The core user scenario**:
 
-1. At home before the trip: open RioneSanità, the Naples area loads and caches via PWA service worker
+1. At home before the trip: open CityLife, the Naples area loads and caches via PWA service worker
 1. On the plane: app works, no connectivity needed
 1. In the catacombs under Naples: full offline, tap a dot, get context
 1. In Rione Sanità: know to turn around before you’re in too deep
@@ -232,9 +232,9 @@ John’s wife. Her UX reactions are a reliable product signal.
 ## What Was Considered and Dropped
 
 **Strada** — considered as product name, evocative Italian name for “the street.”
-Dropped in favor of RioneSanità — simpler, self-explanatory, works across languages.
+Dropped in favor of RioneSanità, then later renamed to CityLife — broader, works across languages and cities beyond Naples.
 
-**Routing engine** — considered and explicitly rejected. RioneSanità shows a heatmap,
+**Routing engine** — considered and explicitly rejected. CityLife shows a heatmap,
 the user decides where to walk. Adding routing would create liability and complexity.
 
 **Flickr photo density** — considered as the primary data signal. Dropped because

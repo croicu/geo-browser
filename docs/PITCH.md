@@ -1,4 +1,4 @@
-# RioneSanità — Elevator Pitch
+# CityLife — Elevator Pitch
 
 ## The Problem
 
@@ -23,9 +23,9 @@ walking through. Dense amenity areas are lively. Sparse amenity areas are not.
 No crime data needed. No subjective ratings. No sponsored pins.
 Just the quiet signal of urban life, rendered as a heatmap.
 
-## What RioneSanità Does
+## What CityLife Does
 
-RioneSanità visualizes city liveliness as a heatmap, built entirely from
+CityLife visualizes city liveliness as a heatmap, built entirely from
 OpenStreetMap POI density.
 
 **Two use cases**:
@@ -33,7 +33,7 @@ OpenStreetMap POI density.
 1. **Before you walk**: Open it at home or a café. See where life is. Plan a route
    through the bright spots. Commit to that route in Google Maps.
 1. **While you’re walking**: Enable location tracking. When you’re at an intersection
-   and Google Maps says “left or right,” glance at RioneSanità. Left street is bright,
+   and Google Maps says “left or right,” glance at CityLife. Left street is bright,
    right street is dark. You decide.
 
 ## Why It Works
@@ -65,14 +65,15 @@ The right signal is the combination:
 **Hoodmaps** (hoodmaps.com) — crowdsourced neighborhood vibe maps.
 Honest and funny, but subjective, coarse-grained, and online-only.
 
-RioneSanità delivers the same honest city intelligence more reliably,
+CityLife delivers the same honest city intelligence more reliably,
 more objectively, and fully offline.
 
 ## Status
 
 - Working heatmap live at geo-browser.croicu.com
 - Naples fully mapped and validated
+- GPS location tracking live (blue dot, accuracy ring, follow toggle)
+- Auto-navigation between overview and street-level view
 - PWA (installable, offline-capable) in progress
-- GPS location tracking in development
 - Prague, Dresden, Berlin next
 - Open source, MIT license: github.com/croicu/geo-browser
