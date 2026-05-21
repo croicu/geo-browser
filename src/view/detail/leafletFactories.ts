@@ -56,6 +56,9 @@ class LeafletMapHandle implements MapHandle {
     }
 
     remove(): void {
+        // Cancel Leaflet's debounced scroll-wheel zoom timer; it can fire
+        // after map.remove() deletes the map pane, crashing on _leaflet_pos.
+        clearTimeout((this._map.scrollWheelZoom as unknown as { _timer?: number })._timer);
         this._map.remove();
     }
 
