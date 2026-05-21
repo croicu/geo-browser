@@ -24,6 +24,7 @@ src/
     summary/
       summaryView.ts
       bubbleWidget.ts
+      bboxWidget.ts
 
     detail/
       detailView.ts
@@ -32,6 +33,7 @@ src/
       heatLayerView.ts
       summaryWidget.ts
       layerSelectionWidget.ts
+      geoLocationWidget.ts
       leafletFactories.ts
 
   contracts.ts
@@ -167,7 +169,27 @@ DetailView owns:
 Leaflet map handle
 summary/back widget
 layer selection widget
+GeoLocationWidget (optional, only when GeoLocationService is injected)
+BboxWidget (optional, only when GatewayService is injected)
+bbox highlight rectangle
 Map<string, LayerView>
+```
+
+Map creation in `createMap()`:
+
+1. Create Leaflet map via `MapFactory`.
+2. `applyMaxBounds()` — computes padded bounds (half-bbox on each side), sets `maxBounds` with `maxBoundsViscosity: 1.0` (hard stop), computes `minZoom` from `getBoundsZoom(paddedBounds) - 1`.
+3. `addBboxHighlight()` — draws a subtle rectangle over the area bbox.
+4. Attach `onMoveEnd` → `saveViewport()`.
+5. Attach `onZoom` → `onZoomChange()`.
+
+Auto-navigate to summary:
+
+```text
+onZoomChange(zoom)
+    if zoom <= minZoom:
+        saveSummaryViewport(center, zoom)
+        openSummary()
 ```
 
 Layer reconciliation:
@@ -212,7 +234,7 @@ Do not import `leaflet.heat` outside `leafletFactories.ts`.
 
 ## SummaryView
 
-SummaryView now uses Leaflet.
+SummaryView uses Leaflet.
 
 It owns:
 
@@ -225,6 +247,19 @@ BubbleWidget[]
 
 It creates BubbleWidgets for catalog areas.
 
+Auto-navigate to detail:
+
+```text
+onZoomChange(zoom)
+    if zoom < 11: return
+    bounds = map.getBounds()
+    area = findAreaInBounds(bounds, map.getCenter())
+    if area:
+        openDetail(area.id, center, zoom)
+```
+
+`findAreaInBounds` picks the area whose bbox intersects the current viewport, closest to the map center (by squared distance). If multiple areas are visible it picks the nearest one.
+
 ## BubbleWidget
 
 BubbleWidget is Leaflet marker-based now.
@@ -236,6 +271,41 @@ ControllerActions.openDetail(areaId)
 ```
 
 It should not load areas or make navigation decisions.
+
+## GeoLocationWidget
+
+`GeoLocationWidget` lives in `DetailView`.
+
+It owns:
+
+```text
+GeoLocationWidgetHandle (follow-toggle button)
+position marker (circle)
+accuracy ring (circle, drawn before marker so marker renders on top)
+```
+
+Lifecycle:
+
+- Created in `DetailView.render()` only when a `GeoLocationService` is injected.
+- Passed the padded bounds computed in `applyMaxBounds()`.
+
+Position handling:
+
+```text
+onPosition(position):
+    if outside padded bounds:
+        disable widget
+        clear following
+    else:
+        enable widget
+        update marker and accuracy ring
+        if following: pan map to position
+```
+
+Out-of-bounds rule: the widget is disabled (greyed out, non-interactive) when the GPS
+position is outside the padded area bounds. It re-enables automatically when the
+position returns inside bounds. This prevents the "follow" mode from silently panning
+the map off the visible area.
 
 ## LayerSelectionWidget
 

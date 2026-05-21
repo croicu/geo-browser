@@ -75,18 +75,35 @@ Controller
 SummaryView
   → Leaflet map
   → BubbleWidget[]
-  → click bubble
-  → ControllerActions.openDetail(areaId)
+  → click bubble → ControllerActions.openDetail(areaId)
+  → zoom ≥ 11 and area bbox on screen
+      → ControllerActions.openDetail(areaId, center, zoom)
 
 Controller
   → GeoArea.load()
   → switchView(DetailView)
 
 DetailView
-  → Leaflet map
+  → Leaflet map with maxBounds + minZoom (hard pan/zoom restriction)
+  → bbox highlight rectangle
+  → GeoLocationWidget (if geolocation service injected)
+  → BboxWidget (if gateway service injected)
   → widgets
   → LayerView reconciliation
+  → zoom ≤ minZoom
+      → saveSummaryViewport(center, zoom)
+      → ControllerActions.openSummary()
 ```
+
+Center synchronization: both transitions carry the current map center and zoom so the
+receiving view opens at the same position, providing a fluid experience.
+
+Summary → Detail: `openDetail(areaId, center, zoom)` — `DetailViewState` prefers these
+over saved state.
+
+Detail → Summary: `saveSummaryViewport(center, zoom)` mutates `_summaryViewState` in
+the controller before `openSummary()` is called, so the new center is picked up
+immediately without any additional API surface.
 
 ## Summary vs Detail
 
@@ -100,9 +117,12 @@ Both are Leaflet-backed.
 The important split is not SVG vs Leaflet. The split is:
 
 ```text
-Summary = cheap discovery
-Detail  = heavier layer rendering
+Summary = cheap discovery, world zoom, area bubbles
+Detail  = heavy layer rendering, constrained to area bbox
 ```
+
+Transitions between the two are automatic based on zoom level, in addition to
+explicit user gestures (bubble tap, back button).
 
 ## Protocols vs Runtime Models
 
