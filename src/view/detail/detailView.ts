@@ -47,6 +47,7 @@ export class DetailView implements View {
     private _poiWidget?: PoiWidget;
     private _poiRequest?: PoiRequest;
     private _poiRequestPending = false;
+    private _suppressNextClick = false;
     private _clickCleanup?: () => void;
     private _longPressCleanup?: () => void;
     private _pointerUpCleanup?: () => void;
@@ -153,6 +154,7 @@ export class DetailView implements View {
             this._poiRequest?.cancel();
             this._poiRequest = undefined;
             this._poiRequestPending = false;
+            this._suppressNextClick = false;
 
             this._clickCleanup?.();
             this._clickCleanup = undefined;
@@ -337,6 +339,7 @@ export class DetailView implements View {
         this._poiWidget = undefined;
         this._poiRequest = undefined;
         this._poiRequestPending = false;
+        this._suppressNextClick = false;
 
         if (!this._poiService || !this._map) return;
 
@@ -347,6 +350,7 @@ export class DetailView implements View {
 
         this._poiRequest = this._poiService.query(latLng, info => {
             this._poiRequestPending = false;
+            this._suppressNextClick = true;
             this._poiWidget?.addInfo(info);
         });
     }
@@ -363,6 +367,11 @@ export class DetailView implements View {
 
     private onMapClick(latLng: [number, number]): void {
         getLogger().diagnostic("map.click", { lat: latLng[0], lng: latLng[1] });
+
+        if (this._suppressNextClick) {
+            this._suppressNextClick = false;
+            return;
+        }
 
         this._poiWidget?.destroy();
         this._poiWidget = undefined;
