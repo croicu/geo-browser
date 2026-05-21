@@ -1,0 +1,150 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9648996071,
+        "name": "Peace Pole",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1420336,
+          47.7342736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9856684807,
+        "name": "Memorial for Kari",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0335281,
+          47.7079288
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9873415072,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0301085,
+          47.7074928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9949852992,
+        "name": "Red Brick Road, 1913",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0790992,
+          47.6745795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10650605611,
+        "name": "Siedel Creek Dam Ruins",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0486345,
+          47.7103291
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11559098462,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1038143,
+          47.6879701
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11967963864,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1151256,
+          47.6597385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11968002520,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1150824,
+          47.6601057
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 488109874,
+        "name": "Microsoft Product Walk of Fame",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1279944,
+          47.6431413
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1482618618,
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0473823,
+          47.6498304
+        ]
+      }
+    }
+  ]
+}

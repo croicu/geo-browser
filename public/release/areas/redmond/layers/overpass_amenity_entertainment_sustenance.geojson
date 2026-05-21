@@ -1,0 +1,4917 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 293835831,
+        "name": "The Herbfarm",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.147451,
+          47.7331995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 293835832,
+        "name": "Barking Frog",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1474339,
+          47.733569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 293835921,
+        "name": "Purple Cafe and Wine Bar - Woodinville",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1420281,
+          47.7316091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 293835973,
+        "name": "Heritage Restaurant|Bar",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1409412,
+          47.7324083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 321705496,
+        "name": "Crimson Coward",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.141619,
+          47.6281526
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 329431185,
+        "name": "Daman's Bar & Grill",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1424275,
+          47.6325836
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 332083886,
+        "name": "Taqueria Guadalajara",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1448369,
+          47.6312175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 339935528,
+        "name": "Mediterranean Grill",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1350637,
+          47.6287163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 340337966,
+        "name": "Rasoi Indian Restaurant and Bakery",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1489543,
+          47.6271572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 340340361,
+        "name": "MonGa Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1448865,
+          47.6268807
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 340340742,
+        "name": "Photai",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.144297,
+          47.6274173
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 340340743,
+        "name": "Little Garden",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Little Garden",
+          "Chaat House"
+        ],
+        "amenities": [
+          "restaurant",
+          "fast_food"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1437896,
+          47.6276051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 343484718,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1441496,
+          47.6292529
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 346521344,
+        "name": "Mandarin Buffet & Grill",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.141844,
+          47.6325808
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 346521484,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1405142,
+          47.6324527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 346526865,
+        "name": "Lee\u2019s Kitchen",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13811,
+          47.632106
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 346526866,
+        "name": "Qdoba",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Qdoba",
+          "Hui Lau Shan"
+        ],
+        "amenities": [
+          "fast_food",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1382763,
+          47.6319367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 347256907,
+        "name": "Sichuan Cuisine",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Sichuan Cuisine",
+          "Five Guys"
+        ],
+        "amenities": [
+          "restaurant",
+          "fast_food"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.142562,
+          47.6287352
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 347259509,
+        "name": "Seoul Hot Pot",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1370267,
+          47.6323693
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 347259510,
+        "name": "Sapporo Teriyaki",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1370321,
+          47.6325735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 352555208,
+        "name": "Teapot Vegetarian House",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1366327,
+          47.6319326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 418553403,
+        "name": "Victor's Coffee House",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1219693,
+          47.6745059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 418553404,
+        "name": "The Matador",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1230261,
+          47.6731886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 418778904,
+        "name": "McDonald's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1142552,
+          47.6713987
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 418996958,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11066,
+          47.6726525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 418996963,
+        "name": "BJ's",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11986,
+          47.6687603
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 420020323,
+        "name": "Mercurys Coffee Co.",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0925863,
+          47.7022345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 427246530,
+        "name": "Liuyishou Hotpot",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1531238,
+          47.6254515
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 809708072,
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1447876,
+          47.6510848
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 809709463,
+        "name": "PRO Club Bistro",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.145133,
+          47.651233
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 809733889,
+        "name": "Microsoft Cafe 37",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1259874,
+          47.6385264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 809846974,
+        "name": "Microsoft Cafe 36",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1234485,
+          47.6406698
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 908632940,
+        "name": "Silver Spoon",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0239488,
+          47.699595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 908632947,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0245711,
+          47.7002268
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 908633008,
+        "name": "Ixtapa",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.04118,
+          47.6945569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 908633012,
+        "name": "Subway",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Subway",
+          "Tony Maroni's"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.041866,
+          47.6944644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 986076497,
+        "name": "Palmers",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1231522,
+          47.6737726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1020824408,
+        "name": "Royal Biryani House",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.125221,
+          47.6764909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1020849071,
+        "name": "Three Lions Pub",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1261198,
+          47.6759806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1020852776,
+        "name": "The British Pantry Ltd.",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1262638,
+          47.6759811
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1021370421,
+        "name": "J Michaels Pub & Eatery",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1301227,
+          47.6758398
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1021843304,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1140559,
+          47.6707916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1028669255,
+        "name": "Village Square Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.124949,
+          47.6788593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1078173445,
+        "name": "JJ Mahoneys",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1233962,
+          47.6819189
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1078173888,
+        "name": "Racha Noodle & Thai",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1234744,
+          47.6820117
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1103954941,
+        "name": "Sunrise Cafe",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Sunrise Cafe",
+          "Bangkok Basil"
+        ],
+        "amenities": [
+          "cafe",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1305741,
+          47.6694091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1125487671,
+        "name": "Cypress Coffee Company",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0425584,
+          47.6944229
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1125487703,
+        "name": "Himitsu",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0410049,
+          47.694565
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1134581367,
+        "name": "Three Lions Pub",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.024265,
+          47.7001242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1134581421,
+        "name": "Miyakos Teriyaki & Wok",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0241043,
+          47.6999254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1191231784,
+        "name": "Papa Murphy's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.025043,
+          47.6990287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1191231791,
+        "name": "Papa Murphy's",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Papa Murphy's",
+          "Luigi's Italian Cucina"
+        ],
+        "amenities": [
+          "fast_food",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0251851,
+          47.69898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1199361856,
+        "name": "Ooba Tooba",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1300893,
+          47.6767956
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1213922799,
+        "name": "Frying Fish",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.154317,
+          47.62701
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1213922824,
+        "name": "Papa Murphy's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.154542,
+          47.6270082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1217745663,
+        "name": "Pomegranate Bistro",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0995243,
+          47.6664531
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1235037503,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0261338,
+          47.6987658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1241063653,
+        "name": "Los Chilangos",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Los Chilangos",
+          "Papa John's",
+          "Boling Point"
+        ],
+        "amenities": [
+          "restaurant",
+          "fast_food"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.125217,
+          47.6801713
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1241180008,
+        "name": "Peet's Coffee",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.102626,
+          47.6669937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1241180080,
+        "name": "Chipotle",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.102327,
+          47.6672916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1242265277,
+        "name": "Baskin-Robbins",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1110032,
+          47.6702464
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1243260800,
+        "name": "Yummy Teriyaki",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1099678,
+          47.6726114
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1257414155,
+        "name": "Agave Cocina & Cantina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1117501,
+          47.6719611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1262848052,
+        "name": "Black Raven Brewing Company",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1446573,
+          47.6855472
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1276548279,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.026476,
+          47.6451947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1372948758,
+        "name": "Hakka House",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1232079,
+          47.67366
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1380602517,
+        "name": "Ristorante Tropea",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.122344,
+          47.6779991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1438943256,
+        "name": "Kanishka",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1178197,
+          47.6724928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1738744874,
+        "name": "Redmond's Bar and Grill",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1227671,
+          47.6744858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1739472328,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.154652,
+          47.6250241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1740887062,
+        "name": "Sages Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1277078,
+          47.6767931
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1774361993,
+        "name": "Panera Bread",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1101164,
+          47.6710477
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1988524258,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Starbucks",
+          "The Original Pancake House"
+        ],
+        "amenities": [
+          "cafe",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1200436,
+          47.6706107
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2071062675,
+        "name": "Yummy Pho",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1231617,
+          47.6816407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2071065704,
+        "name": "Flatstick Pub",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.121293,
+          47.6719873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2106231828,
+        "name": "Subway",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Subway",
+          "Zaucer Pizza"
+        ],
+        "amenities": [
+          "fast_food",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.144064,
+          47.6835259
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2136439847,
+        "name": "Amulya Indian Cuisine",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1540685,
+          47.6308799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2447402598,
+        "name": "Pablo y Pablo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1419021,
+          47.7322151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2622999539,
+        "name": "Asiana Bistro",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.102567,
+          47.6672896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2623010946,
+        "name": "Jersey Mike's Subs",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.110783,
+          47.6701837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2623485882,
+        "name": "Subway",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.025448,
+          47.6448981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2623497488,
+        "name": "Sahara",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1031584,
+          47.6672899
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2623987923,
+        "name": "Mercurys Coffee Co.",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1005764,
+          47.6669517
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2624145049,
+        "name": "Qdoba",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1284051,
+          47.6750561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2624145607,
+        "name": "Jimmy John's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1271082,
+          47.6756342
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2624148528,
+        "name": "The Screaming Parrots Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1266886,
+          47.6744086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2624149206,
+        "name": "Zeeks Pizza - Redmond",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1270057,
+          47.6746005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2624157364,
+        "name": "Tipsy Cow Burger Bar",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1223323,
+          47.6731103
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2626116367,
+        "name": "Potbelly",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.127345,
+          47.6810002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2626130765,
+        "name": "Matts' Rotisserie & Oyster Lounge",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Matts' Rotisserie & Oyster Lounge",
+          "Creperie de Paris",
+          "jaShn"
+        ],
+        "amenities": [
+          "restaurant",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1200345,
+          47.6697211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2627336275,
+        "name": "Five Guys",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1117912,
+          47.6713719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2627376310,
+        "name": "Niko Teriyaki",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1278505,
+          47.675058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2627417682,
+        "name": "Yi Fang Tea",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.127259,
+          47.6760205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2627471720,
+        "name": "Cold Stone Creamery",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1217426,
+          47.6704373
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2716358137,
+        "name": "Tang Bar Hot Pot Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1446883,
+          47.6268803
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2716358161,
+        "name": "Somisomi",
+        "amenity": "ice_cream",
+        "weight": 1.0,
+        "names": [
+          "Somisomi",
+          "Tiger Bites"
+        ],
+        "amenities": [
+          "ice_cream",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1441416,
+          47.6274075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2834328914,
+        "name": "MOD Pizza",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.123005,
+          47.6814552
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3295744762,
+        "name": "Dough Zone",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.145002,
+          47.631134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3295746561,
+        "name": "Anjappar Chettinad",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1452654,
+          47.6309962
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3295746861,
+        "name": "Mavalli Tiffin Rooms (MTR 1924)",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1449817,
+          47.6309268
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3351104940,
+        "name": "Subway",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.099381,
+          47.6644483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3377511542,
+        "name": "Shahana Steakhouse",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1559605,
+          47.6301559
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3728489926,
+        "name": "El Rinconsito",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1543163,
+          47.6306101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3734075551,
+        "name": "Microsoft Cafe 112",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.141331,
+          47.6405442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3812153314,
+        "name": "IPIC Theaters",
+        "amenity": "cinema",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1210852,
+          47.6703078
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889813431,
+        "name": "Steve's Bar and Grill",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1502131,
+          47.6282964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889813433,
+        "name": "Donburi Station",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1489551,
+          47.6273198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889813443,
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1495471,
+          47.6282878
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889813448,
+        "name": "Nan Noodles",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1505741,
+          47.6282967
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889828768,
+        "name": "Dickey's Barbecue Pit",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.151475,
+          47.6282977
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889828774,
+        "name": "Shaoshan Impression",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.151719,
+          47.628298
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889833961,
+        "name": "Wayback Burgers",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Wayback Burgers",
+          "Subway"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15482,
+          47.6262389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889833973,
+        "name": "Happy Lemon",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "Happy Lemon",
+          "Thai Chef"
+        ],
+        "amenities": [
+          "cafe",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.154822,
+          47.6263327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3889833976,
+        "name": "Ezell's Chicken",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.154652,
+          47.6251192
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3893778039,
+        "name": "Potbelly",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.134036,
+          47.6308986
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3899118617,
+        "name": "85\u00b0C Bakery Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1444262,
+          47.6276109
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3900551372,
+        "name": "Kitanda",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1219969,
+          47.6706107
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3933280523,
+        "name": "Panda Express",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1415829,
+          47.6296695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3940718893,
+        "name": "Wibbley's Burgers",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Wibbley's Burgers",
+          "Baskin-Robbins"
+        ],
+        "amenities": [
+          "restaurant",
+          "ice_cream"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1543197,
+          47.6305184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3950968415,
+        "name": "I Love Teriyaki",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1544949,
+          47.6304374
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3950968421,
+        "name": "Tasty Time 425 & KTV Karaoke Lounge",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1547965,
+          47.6299141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3950968423,
+        "name": "Little Taipei",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1554631,
+          47.6299241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4129359890,
+        "name": "Jimmy John's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1351225,
+          47.6286168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4158630595,
+        "name": "Taqueria Gallo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1172155,
+          47.6728574
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4164273089,
+        "name": "Emerald City Smoothie",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1172873,
+          47.6722971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4350392293,
+        "name": "Caadxi Mezcaleria",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1273099,
+          47.6768496
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4350410789,
+        "name": "Woodblock",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1249446,
+          47.6737261
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4353378417,
+        "name": "Domino's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.123368,
+          47.6746196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4353378418,
+        "name": "The Third Place",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1229096,
+          47.6735746
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4353378424,
+        "name": "Garlic Crush",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1261139,
+          47.6740476
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4353378439,
+        "name": "La Quemada Tienda Carnicera",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1233018,
+          47.6747483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4353378443,
+        "name": "Molly Moon's Homemade Ice Cream - Redmond",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1235093,
+          47.6736599
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4353378454,
+        "name": "Prime Steakhouse",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1221418,
+          47.6733836
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4353378467,
+        "name": "River Trail Roasters",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1304741,
+          47.6784294
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4442745488,
+        "name": "Microsoft Cafe 99",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.141752,
+          47.6424067
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4491042323,
+        "name": "Chateau Espresso",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1426086,
+          47.7339469
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4491042337,
+        "name": "Good Brewing",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.142595,
+          47.7343961
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4491062199,
+        "name": "Sora Sushi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1420347,
+          47.7319417
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4789555194,
+        "name": "Supreme Dumplings",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1198628,
+          47.6701236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4789555721,
+        "name": "Just Poke",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1217339,
+          47.6698313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4792797634,
+        "name": "Zio Sal Ristorante Italiano",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1190959,
+          47.6714612
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4792797647,
+        "name": "Thai Ginger",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1206533,
+          47.6706391
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4792797661,
+        "name": "SecondStory Repertory",
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.119732,
+          47.6700875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4806566584,
+        "name": "Microsoft Cafe 25",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1309978,
+          47.6451619
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4829304096,
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1371112,
+          47.6440488
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4829304097,
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1368215,
+          47.6444825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4852385321,
+        "name": "Bear Creek Coffee Co.",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1185772,
+          47.6604327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4853787338,
+        "name": "Postdoc Brewing",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1054223,
+          47.6636505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4853787341,
+        "name": "Sammamish Deli",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0993763,
+          47.6648504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4853787342,
+        "name": "Taste of Hyderabad",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0992271,
+          47.6644896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4853787343,
+        "name": "Bommarillu Biryani",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1127384,
+          47.6730212
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4959184317,
+        "name": "Oto Sushi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1259348,
+          47.6759799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5039621985,
+        "name": "Five Stones Coffee Co.",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1253295,
+          47.6763433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5045655525,
+        "name": "Tapioca Express",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.135813,
+          47.631943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5093478022,
+        "name": "W XYZ Lounge",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.137358,
+          47.6354314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5148003019,
+        "name": "Microsoft Cafe 83",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.133739,
+          47.649076
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5148061072,
+        "name": "Microsoft Cafe H",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1410975,
+          47.6434545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5148061085,
+        "name": "Microsoft Cafe 121",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1371387,
+          47.6477956
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5148061086,
+        "name": "Microsoft Cafe 86",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1342867,
+          47.6518645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5148109690,
+        "name": "Microsoft Millenium Cafe",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0915438,
+          47.6773934
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5148150230,
+        "name": "Microsoft Cafe RTC-5",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1182962,
+          47.6688695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5266167421,
+        "name": "Woodinville Whiskey Co.",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1531717,
+          47.7333929
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5281069373,
+        "name": "Dough Zone",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1139486,
+          47.6709317
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5282730742,
+        "name": "Tian Tian Noodles",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1360022,
+          47.6319412
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5484699952,
+        "name": "Nine Way",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1421879,
+          47.6322258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5555369743,
+        "name": "Maxwella Cafe and Bar",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1374211,
+          47.6344528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5872801325,
+        "name": "Northwest Brewing Co.",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1228105,
+          47.6737003
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5953192257,
+        "name": "Hello Pok\u00e9",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1243593,
+          47.6735973
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6013559134,
+        "name": "N\u00faodle",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1444793,
+          47.6268673
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6373249169,
+        "name": "The Bistro at Hollywood Schoolhouse",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1414176,
+          47.7339843
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6546105692,
+        "name": "Willows Deli",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.142272,
+          47.6862274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6571035787,
+        "name": "El Maestro del Taco",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1304706,
+          47.6271491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6654415785,
+        "name": "Southern Spice",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1385421,
+          47.6319341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6981184317,
+        "name": "Maryhill Winery",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.141467,
+          47.733098
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6991510649,
+        "name": "Big Block Brewing Taproom",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.141135,
+          47.6861775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7182782287,
+        "name": "Wheelhouse",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1497284,
+          47.7347722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7745768115,
+        "name": "Panda Express",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1262578,
+          47.6810479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8927370753,
+        "name": "Rocky\u2019s Empanadas",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0950303,
+          47.6623002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9211179006,
+        "name": "Meetea",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1241327,
+          47.6750336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9630989868,
+        "name": "Cho Dang Tofu",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.155387,
+          47.6250025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9648986119,
+        "name": "Vivi's",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Vivi's",
+          "Vivi Pizzeria"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1427072,
+          47.7330596
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9742523177,
+        "name": "Taste Of Xi\u2019an",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Taste Of Xi\u2019an",
+          "DrinkT"
+        ],
+        "amenities": [
+          "restaurant",
+          "fast_food"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1465849,
+          47.6272169
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9791566415,
+        "name": "Happy Lemon",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1111439,
+          47.6702866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9791573115,
+        "name": "Biryani Bowl",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1222398,
+          47.6746349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9829419433,
+        "name": "Pines Bistro",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0289482,
+          47.7068418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9843431891,
+        "name": "Crooked Spoon",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0264148,
+          47.7040198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10093621766,
+        "name": "Bandidos Mexican Grill",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1225292,
+          47.6759979
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10112282391,
+        "name": "Kizuki Ramen & Izakaya",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1194265,
+          47.6700031
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10833061619,
+        "name": "Mercurys Coffee Co.",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1032222,
+          47.6754221
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10874962805,
+        "name": "Musashi's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1166345,
+          47.6701408
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10874962806,
+        "name": "A Ma Chicken Rice",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1168307,
+          47.6701435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11028360363,
+        "name": "Farine Bakery & Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.120475,
+          47.6737906
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11050125701,
+        "name": "The Lounge",
+        "amenity": "bar",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1480749,
+          47.7336125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11070415611,
+        "name": "151 Days",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1374332,
+          47.6346523
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11146740763,
+        "name": "Tavol\u00e0ta",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1259092,
+          47.674567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11146740764,
+        "name": "Rubinstein Bagels",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.125854,
+          47.674712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11216616300,
+        "name": "Sharetea",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1192968,
+          47.6699673
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11292017327,
+        "name": "Sweety Saradha Arts",
+        "amenity": "arts_centre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1313925,
+          47.6744654
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11357378255,
+        "name": "Dong Ting Chun",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1196915,
+          47.6703731
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11372369931,
+        "name": "Salt & Straw",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1300425,
+          47.641624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11372369934,
+        "name": "DOTE Espresso",
+        "amenity": "cafe",
+        "weight": 1.0,
+        "names": [
+          "DOTE Espresso",
+          "Bobae Coffee & Tea"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1301472,
+          47.6416799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11372369935,
+        "name": "Craft75 Gastropub",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1304638,
+          47.641278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11372369936,
+        "name": "Microsoft Food Hall 9",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1315804,
+          47.6404779
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11372369937,
+        "name": "Microsoft Food Hall 6",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1302919,
+          47.6418431
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11372369938,
+        "name": "Microsoft Food Hall 4",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1290311,
+          47.6415154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11712066238,
+        "name": "Kobuta and Ookami",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1125,
+          47.6729973
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11746004728,
+        "name": "Gyu-Kaku",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1461576,
+          47.6282941
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11826478783,
+        "name": "Doppio Cafe and Creperie",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1273322,
+          47.6765588
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11951229825,
+        "name": "Noburu Ramen & Sushi",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1228998,
+          47.6813679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11977329469,
+        "name": "Honest",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1449415,
+          47.6306875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11980126838,
+        "name": "MOD Pizza",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0279943,
+          47.6992885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11986409607,
+        "name": "Timeless Tea",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1493475,
+          47.6282448
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12004776069,
+        "name": "Fuji Steakhouse",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1203507,
+          47.6698189
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12004787970,
+        "name": "Mayuri Bakery & Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1158052,
+          47.6694244
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12004789569,
+        "name": "Bon Korean Cuisine",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1160889,
+          47.6702169
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12021735406,
+        "name": "Jack Sprat",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1349394,
+          47.6354042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12088031079,
+        "name": "Costco Food Court",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0917135,
+          47.673576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12104478171,
+        "name": "Nekter Juice Bar",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1251006,
+          47.6751398
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12249411501,
+        "name": "Neighborhood Cafe",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1165392,
+          47.6726205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12517175569,
+        "name": "Stone Korean Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1047711,
+          47.6674331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12570481061,
+        "name": "Pagliacci Pizza",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1359624,
+          47.6281366
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12755680201,
+        "name": "Foody Moody",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.132761,
+          47.6317883
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12877545794,
+        "name": "Due Cucina",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1196014,
+          47.6731779
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12877578669,
+        "name": "Neville\u2019s Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1265718,
+          47.6759961
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12994801500,
+        "name": "Sodo Pizza",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1304187,
+          47.6692119
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13018083204,
+        "name": "Sip Thai Zooom",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1190549,
+          47.6730384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13018274253,
+        "name": "Dave's Hot Chicken",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1200155,
+          47.6732906
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13018291791,
+        "name": "Mendocino Farms",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1203007,
+          47.6726343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13018291792,
+        "name": "Salt & Straw",
+        "amenity": "ice_cream",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1199047,
+          47.6724707
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13032908202,
+        "name": "Miah\u2019s Kitchen",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1412634,
+          47.628153
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13032908203,
+        "name": "Shinya Shokudo",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1411267,
+          47.6281523
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13039815267,
+        "name": "Young Tea",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1597005,
+          47.6276547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13182442471,
+        "name": "#K-Street KBBQ",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1212518,
+          47.6708058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13414438100,
+        "name": "La Tia Angelina",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1333182,
+          47.6320046
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13419627731,
+        "name": "Pagliacci Pizza",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1224518,
+          47.6737933
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13422301381,
+        "name": "Momiji",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1191405,
+          47.6723439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13436914703,
+        "name": "Bin 47",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1427345,
+          47.7308843
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13436987499,
+        "name": "Qamaria Yemeni Coffee Co.",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1058595,
+          47.6650503
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13565756501,
+        "name": "Lucky Barbecue & Noodles House",
+        "amenity": "restaurant",
+        "weight": 1.0,
+        "names": [
+          "Lucky Barbecue & Noodles House",
+          "Hua Xi Rice Ramen",
+          "De Zhuang De Hot Pot Mini",
+          "Cocotree Chef",
+          "The Northern Dumplings",
+          "Asian Street Food"
+        ],
+        "amenities": [
+          "restaurant",
+          "fast_food",
+          "food_court"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.146617,
+          47.6274143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13565772401,
+        "name": "Sando by Fuji",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Sando by Fuji",
+          "King's Rice Noodle"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1464132,
+          47.6271919
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13565772502,
+        "name": "Lunch on the Plate",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Lunch on the Plate",
+          "Xaio Lu Jiang"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1464381,
+          47.6273113
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13565772504,
+        "name": "Dough Savor",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1464077,
+          47.6274325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13565772701,
+        "name": "Boiling Hot Malatang",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1465946,
+          47.6273168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13728699927,
+        "name": "Espresso",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1413837,
+          47.6438511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29217689,
+        "name": "Red Robin",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.142328,
+          47.6312062
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29362154,
+        "name": "IHOP",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1436819,
+          47.6271182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29362303,
+        "name": "MOD Pizza",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1504323,
+          47.6276591
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29362438,
+        "name": "Bai Tong",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1417287,
+          47.6318333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29653567,
+        "name": "Dosa House",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1355952,
+          47.6281896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29658559,
+        "name": "Taco Bell",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1427395,
+          47.6274788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29893872,
+        "name": "California Mexican Food",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1448607,
+          47.6318397
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30425770,
+        "name": "Microsoft Cafe RedW-F",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1406602,
+          47.6592945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30491230,
+        "name": "Jack in the Box",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1426839,
+          47.6269956
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30705180,
+        "name": "Can-Am Pizza",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1352976,
+          47.6295602
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30705181,
+        "name": "Jack\u2019s BBQ",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1355734,
+          47.629305
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31058485,
+        "name": "Cafeteria 34/35",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1246206,
+          47.6445837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31928055,
+        "name": "Jamba",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1272064,
+          47.6752062
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31928119,
+        "name": "Red Robin",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.114338,
+          47.6702238
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32540646,
+        "name": "Pizzatwist",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0936452,
+          47.7027227
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32540680,
+        "name": "Subway",
+        "amenity": "fast_food",
+        "weight": 1.0,
+        "names": [
+          "Subway",
+          "Starbucks"
+        ],
+        "amenities": [
+          "fast_food",
+          "cafe"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0936863,
+          47.702506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32540743,
+        "name": "Apple Teriyaki",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0936627,
+          47.7026161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 33967742,
+        "name": "Bombay Bistro",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1297116,
+          47.6747437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35486617,
+        "name": "Microsoft Cafe 40/41",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1328539,
+          47.6369997
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35796575,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1288462,
+          47.6749122
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35796576,
+        "name": "Wendy's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.127875,
+          47.6745069
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35796577,
+        "name": "KFC",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1296706,
+          47.6740504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35837600,
+        "name": "Taco Time",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1112551,
+          47.6712142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 66992731,
+        "name": "Microsoft Cafe 43",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1336536,
+          47.6400916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 105757826,
+        "name": "Family Pancake House",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1044913,
+          47.6685035
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 135576072,
+        "name": "The Boardwalk",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1378304,
+          47.6441302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 147334574,
+        "name": "McDonald's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0253124,
+          47.6999828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 161888047,
+        "name": "Arby's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1390422,
+          47.6313069
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 161888052,
+        "name": "McDonald's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1545863,
+          47.6275553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 161915554,
+        "name": "Papa John's",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1589711,
+          47.6285199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 162003366,
+        "name": "Applebee's",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1550334,
+          47.6245696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 256664751,
+        "name": "Spark Pizza",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1212828,
+          47.6757045
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 257931975,
+        "name": "Coastline Burgers",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.124015,
+          47.6738625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 258909113,
+        "name": "Chatpata By Kanishka",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.116979,
+          47.6723862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261427173,
+        "name": "Mercurys Coffee Co.",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0253276,
+          47.644522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261484974,
+        "name": "Microsoft Cafe 16",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1285574,
+          47.6435195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 264209435,
+        "name": "Microsoft Cafe 31",
+        "amenity": "food_court",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1219492,
+          47.6442833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 316480822,
+        "name": "SoulFood Coffee House",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.130561,
+          47.6752266
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 325652228,
+        "name": "Sammamish Pointe Espresso",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.099696,
+          47.6652178
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 329706541,
+        "name": "Regal Bella Bottega 11",
+        "amenity": "cinema",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1226042,
+          47.6807984
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 329706559,
+        "name": "Woomadang",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1251863,
+          47.6819802
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 329706560,
+        "name": "Jack in the Box",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1226178,
+          47.6800639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 390292342,
+        "name": "Bento House",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1382977,
+          47.6272357
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 391840023,
+        "name": "Amore' Coffee",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1540871,
+          47.629962
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 530040178,
+        "name": "in.gredients",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1248046,
+          47.6445681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1020679320,
+        "name": "DOTE Espresso",
+        "amenity": "cafe",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.132705,
+          47.6439252
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1154157264,
+        "name": "Movies at Marymoor (Summer Only)",
+        "amenity": "cinema",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1104065,
+          47.6631231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1237977639,
+        "name": "Pizza Poggio",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1353405,
+          47.6351334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1284262026,
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.153948,
+          47.692389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1305154355,
+        "name": "The Hollywood Tavern",
+        "amenity": "pub",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1529165,
+          47.7331554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1384269955,
+        "name": "Baseball Concession Stand",
+        "amenity": "fast_food",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.144398,
+          47.7350819
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427227076,
+        "amenity": "biergarten",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1350847,
+          47.6354254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430105094,
+        "amenity": "theatre",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1511485,
+          47.7284197
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1478964894,
+        "name": "Sum Yee Kae Seafood Restaurant",
+        "amenity": "restaurant",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1466003,
+          47.6276274
+        ]
+      }
+    }
+  ]
+}
