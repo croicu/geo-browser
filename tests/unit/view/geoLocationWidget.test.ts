@@ -22,9 +22,10 @@ function makeWidget(
     map: StubMap,
     service: StubGeoLocationService,
     widgetFactory: StubWidgetFactory,
-    layerFactory = new StubLayerFactory()
+    layerFactory = new StubLayerFactory(),
+    bounds?: { sw: [number, number]; ne: [number, number] }
 ): GeoLocationWidget {
-    return new GeoLocationWidget(map, service, widgetFactory, layerFactory);
+    return new GeoLocationWidget(map, service, widgetFactory, layerFactory, bounds);
 }
 
 describe("GeoLocationWidget", () => {
@@ -322,5 +323,53 @@ describe("GeoLocationWidget", () => {
 
         expect(layerFactory.accuracyRings[0].removed).toBe(true);
         expect(layerFactory.positionMarkers[0].removed).toBe(true);
+    });
+
+    it("disables widget when position is outside bounds", () => {
+        const map = new StubMap();
+        const service = new StubGeoLocationService();
+        const factory = new StubWidgetFactory();
+        const bounds = { sw: [40.84, 14.25] as [number, number], ne: [40.86, 14.28] as [number, number] };
+
+        const widget = makeWidget(map, service, factory, new StubLayerFactory(), bounds);
+        widget.render();
+
+        service.simulatePosition([47.674, -122.121]); // Redmond, outside Napoli bounds
+
+        expect(factory.lastGeoLocationWidget?.available).toBe(false);
+    });
+
+    it("re-enables widget when position returns inside bounds", () => {
+        const map = new StubMap();
+        const service = new StubGeoLocationService();
+        const factory = new StubWidgetFactory();
+        const bounds = { sw: [40.84, 14.25] as [number, number], ne: [40.86, 14.28] as [number, number] };
+
+        const widget = makeWidget(map, service, factory, new StubLayerFactory(), bounds);
+        widget.render();
+
+        service.simulatePosition([47.674, -122.121]); // outside
+        expect(factory.lastGeoLocationWidget?.available).toBe(false);
+
+        service.simulatePosition([40.85, 14.26]); // inside
+        expect(factory.lastGeoLocationWidget?.available).toBe(true);
+    });
+
+    it("stops following when position goes outside bounds", () => {
+        const map = new StubMap();
+        const service = new StubGeoLocationService();
+        const factory = new CapturingWidgetFactory();
+        const bounds = { sw: [40.84, 14.25] as [number, number], ne: [40.86, 14.28] as [number, number] };
+
+        const widget = makeWidget(map, service, factory, new StubLayerFactory(), bounds);
+        widget.render();
+
+        factory.capturedToggle!();
+        expect(factory.lastGeoLocationWidget?.following).toBe(true);
+
+        service.simulatePosition([47.674, -122.121]); // outside
+
+        expect(factory.lastGeoLocationWidget?.following).toBe(false);
+        expect(factory.lastGeoLocationWidget?.available).toBe(false);
     });
 });

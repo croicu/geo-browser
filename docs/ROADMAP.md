@@ -14,49 +14,17 @@
 - Back-to-summary Leaflet widget.
 - Runtime Context skeleton.
 - Offline unit test strategy.
+- Detail map click logging (GPS coordinates logged on tap).
+- Viewport synchronization — moveend/zoomend → state → persist/restore across navigation and reload.
+- Geolocation service — blue dot, accuracy ring, follow toggle, disable outside area bounds.
+- Area bounds restriction — hard pan/zoom limit in detail view with padded maxBounds and dynamic minZoom.
+- Bbox highlight rectangle — subtle fill overlay showing area extent on detail map.
+- Auto-navigate summary → detail — zoom past threshold (≥ 11) with area bbox on screen opens detail.
+- Auto-navigate detail → summary — zoom out past minZoom returns to summary, preserving map center.
 
 ## Recommended Next Branches
 
-### 1. Detail Map Click Logging
-
-Goal:
-
-```text
-Click detail map
-→ get GPS coordinates
-→ log coordinates
-```
-
-Keep through renderer abstraction:
-
-```ts
-interface MapClickEvent {
-    lat: number;
-    lng: number;
-}
-
-interface MapHandle {
-    remove(): void;
-    onClick(handler: (event: MapClickEvent) => void): void;
-}
-```
-
-Log through `Context.logger` or current logger service bridge.
-
-### 2. Viewport Synchronization
-
-Goal:
-
-```text
-Leaflet moveend / zoomend
-→ update SummaryViewState / DetailViewState
-→ persist
-→ restore after navigation/reload
-```
-
-Do summary and detail separately if needed.
-
-### 3. Data Source Abstraction
+### 1. Data Source Abstraction
 
 Move direct fetch behind `GeoDataService`:
 
@@ -73,7 +41,7 @@ Implement:
 - StaticDataService using fetch/static URLs.
 - WebViewDataService using `window.geoHost` for design mode.
 
-### 4. Design Mode Host Bridge
+### 2. Design Mode Host Bridge
 
 Add:
 
@@ -83,7 +51,7 @@ src/host/ or src/runtime host service implementation
 
 Keep Python out of geo-browser.
 
-### 5. Better Summary Markers
+### 3. Better Summary Markers
 
 Current BubbleWidget uses simple circle markers.
 
@@ -94,7 +62,7 @@ Future:
 - LOD image choice
 - area radius visualization
 
-### 6. Area Detail Default View
+### 4. Area Detail Default View
 
 Consider extending `AreaDetail`:
 
@@ -109,32 +77,7 @@ interface AreaDetail {
 }
 ```
 
-### 7. Geolocation Service
-
-Goal:
-
-```text
-User grants browser geolocation permission
-→ GeoLocationService resolves current position
-→ "Center on my location" widget appears bottom-right of map
-→ clicking it pans the map to current position
-```
-
-Design notes:
-
-- `GeoLocationService` is a pluggable seam in `contracts.ts` — production wraps `navigator.geolocation`, tests inject a stub.
-- Service exposes availability as a first-class concept; widget only renders when geolocation is supported and permission has not been denied.
-- Widget lives in `DetailView` and `SummaryView` independently (both maps may want it).
-- Keep widget creation/teardown inside the view lifecycle, consistent with existing widget ownership pattern.
-
-```ts
-interface GeoLocationService {
-    isAvailable(): boolean;
-    getCurrentPosition(): Promise<[number, number]>;
-}
-```
-
-### 8. Production Cache Headers
+### 5. Production Cache Headers
 
 Static hosting should use:
 

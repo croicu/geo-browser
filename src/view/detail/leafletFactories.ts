@@ -56,6 +56,19 @@ class LeafletMapHandle implements MapHandle {
     }
 
     remove(): void {
+        // Cancel Leaflet's pending async timers before removing the map.
+        // Both can fire after map.remove() deletes the map pane and crash
+        // reading _leaflet_pos from the deleted element.
+        //
+        // _animatingZoomTimer: set by _animateZoom (~300ms), fires _onZoomTransitionEnd.
+        //   Triggered when a second scroll event arrives while a zoom animation is
+        //   already running — the second zoom fires zoomend synchronously (no new
+        //   animation started), our handler navigates away, but this older timer
+        //   still fires on the now-dead map.
+        //
+        // scrollWheelZoom._timer: the 40ms debounce before _performZoom fires.
+        clearTimeout((this._map as unknown as { _animatingZoomTimer?: number })._animatingZoomTimer);
+        clearTimeout((this._map.scrollWheelZoom as unknown as { _timer?: number })._timer);
         this._map.remove();
     }
 
@@ -121,6 +134,26 @@ class LeafletMapHandle implements MapHandle {
 
     enableDrag(): void {
         this._map.dragging.enable();
+    }
+
+    setMaxBounds(sw: [number, number], ne: [number, number]): void {
+        this._map.setMaxBounds([sw, ne]);
+    }
+
+    getBoundsZoom(sw: [number, number], ne: [number, number]): number {
+        return this._map.getBoundsZoom([sw, ne]);
+    }
+
+    setMinZoom(zoom: number): void {
+        this._map.setMinZoom(zoom);
+    }
+
+    getBounds(): { sw: [number, number]; ne: [number, number] } {
+        const b = this._map.getBounds();
+        return {
+            sw: [b.getSouth(), b.getWest()],
+            ne: [b.getNorth(), b.getEast()],
+        };
     }
 
     unwrap(): L.Map {
@@ -378,7 +411,7 @@ export class DefaultLeafletMapFactory implements MapFactory {
         // synthesises a native click (with pointer-events: auto on the SVG layer), causing
         // double/triple fires on iOS. Native click synthesis alone is sufficient on iOS 13+
         // with a width=device-width viewport.
-        const map = L.map(root, { tap: false } as L.MapOptions).setView(center, zoom);
+        const map = L.map(root, { tap: false, maxBoundsViscosity: 1.0 } as L.MapOptions).setView(center, zoom);
 
         L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",

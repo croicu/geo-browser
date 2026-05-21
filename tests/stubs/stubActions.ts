@@ -3,6 +3,8 @@ import type { ControllerActions } from "../../src/contracts";
 export class StubActions implements ControllerActions {
     public openedSummary = false;
     public openedDetailAreaId?: string;
+    public openedDetailCenter?: [number, number];
+    public openedDetailZoom?: number;
     public setLayerVisibleAreaId?: string;
     public setLayerVisibleLayerId?: string;
     public setLayerVisibleValue?: boolean;
@@ -16,8 +18,10 @@ export class StubActions implements ControllerActions {
         this.openedSummary = true;
     }
 
-    openDetail(areaId: string): void {
+    openDetail(areaId: string, center?: [number, number], zoom?: number): void {
         this.openedDetailAreaId = areaId;
+        this.openedDetailCenter = center;
+        this.openedDetailZoom = zoom;
     }
 
     setLayerVisible(areaId: string, layerId: string, visible: boolean): void {

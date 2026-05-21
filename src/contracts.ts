@@ -40,7 +40,7 @@ export interface Widget {
 
 export interface ControllerActions {
     openSummary(): void;
-    openDetail(areaId: string): void;
+    openDetail(areaId: string, center?: [number, number], zoom?: number): void;
     setLayerVisible(areaId: string, layerId: string, visible: boolean): void;
 
     saveSummaryViewport(center: [number, number], zoom: number): void;
@@ -82,6 +82,10 @@ export interface MapHandle {
     onMouseUp(handler: (latLng: [number, number]) => void): () => void;
     disableDrag(): void;
     enableDrag(): void;
+    setMaxBounds(sw: [number, number], ne: [number, number]): void;
+    getBoundsZoom(sw: [number, number], ne: [number, number]): number;
+    setMinZoom(zoom: number): void;
+    getBounds(): { sw: [number, number]; ne: [number, number] };
 }
 
 export interface GeoDataService {
