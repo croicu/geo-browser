@@ -123,6 +123,18 @@ class LeafletMapHandle implements MapHandle {
         this._map.dragging.enable();
     }
 
+    setMaxBounds(sw: [number, number], ne: [number, number]): void {
+        this._map.setMaxBounds([sw, ne]);
+    }
+
+    getBoundsZoom(sw: [number, number], ne: [number, number]): number {
+        return this._map.getBoundsZoom([sw, ne]);
+    }
+
+    setMinZoom(zoom: number): void {
+        this._map.setMinZoom(zoom);
+    }
+
     unwrap(): L.Map {
         return this._map;
     }
@@ -378,7 +390,7 @@ export class DefaultLeafletMapFactory implements MapFactory {
         // synthesises a native click (with pointer-events: auto on the SVG layer), causing
         // double/triple fires on iOS. Native click synthesis alone is sufficient on iOS 13+
         // with a width=device-width viewport.
-        const map = L.map(root, { tap: false } as L.MapOptions).setView(center, zoom);
+        const map = L.map(root, { tap: false, maxBoundsViscosity: 1.0 } as L.MapOptions).setView(center, zoom);
 
         L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",

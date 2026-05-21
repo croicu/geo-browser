@@ -14,6 +14,7 @@ export class GeoLocationWidget {
     private readonly _service: GeoLocationService;
     private readonly _widgetFactory: WidgetFactory;
     private readonly _layerFactory: LayerFactory;
+    private readonly _bounds?: { sw: [number, number]; ne: [number, number] };
 
     private _handle?: GeoLocationWidgetHandle;
     private _accuracyRing?: AccuracyRingHandle;
@@ -26,12 +27,14 @@ export class GeoLocationWidget {
         map: MapHandle,
         service: GeoLocationService,
         widgetFactory: WidgetFactory,
-        layerFactory: LayerFactory
+        layerFactory: LayerFactory,
+        bounds?: { sw: [number, number]; ne: [number, number] }
     ) {
         this._map = map;
         this._service = service;
         this._widgetFactory = widgetFactory;
         this._layerFactory = layerFactory;
+        this._bounds = bounds;
     }
 
     render(): void {
@@ -83,6 +86,16 @@ export class GeoLocationWidget {
     private onPosition(position: GeoPosition): void {
         this._lastPosition = position;
 
+        if (!this.isInBounds(position.latLng)) {
+            if (this._following) {
+                this._following = false;
+                this._handle?.setFollowing(false);
+            }
+            this._handle?.setAvailable(false);
+        } else {
+            this._handle?.setAvailable(true);
+        }
+
         if (this._accuracyRing) {
             this._accuracyRing.setLatLng(position.latLng);
             this._accuracyRing.setRadius(position.accuracy);
@@ -101,6 +114,15 @@ export class GeoLocationWidget {
         if (this._following) {
             this._map.panTo(position.latLng);
         }
+    }
+
+    private isInBounds(latLng: [number, number]): boolean {
+        if (!this._bounds) {
+            return true;
+        }
+        const { sw, ne } = this._bounds;
+        return latLng[0] >= sw[0] && latLng[0] <= ne[0]
+            && latLng[1] >= sw[1] && latLng[1] <= ne[1];
     }
 
     private onDenied(): void {

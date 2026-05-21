@@ -82,6 +82,9 @@ export interface MapHandle {
     onMouseUp(handler: (latLng: [number, number]) => void): () => void;
     disableDrag(): void;
     enableDrag(): void;
+    setMaxBounds(sw: [number, number], ne: [number, number]): void;
+    getBoundsZoom(sw: [number, number], ne: [number, number]): number;
+    setMinZoom(zoom: number): void;
 }
 
 export interface GeoDataService {

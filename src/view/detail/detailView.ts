@@ -1,5 +1,5 @@
 import type { GeoArea } from "../../catalog/area";
-import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
+import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
 import { getLogger } from "../../services";
 import { HeatLayerView } from "./heatLayerView";
@@ -35,7 +35,9 @@ export class DetailView implements View {
     private _element?: HTMLElement;
     private _mapRoot?: HTMLElement;
     private _map?: MapHandle;
+    private _paddedBounds?: { sw: [number, number]; ne: [number, number] };
     private _bboxWidget?: BboxWidget;
+    private _bboxHighlight?: MapLayerHandle;
     private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
     private _geoLocationWidget?: GeoLocationWidget;
@@ -110,7 +112,8 @@ export class DetailView implements View {
                     map,
                     this._geoLocation,
                     this._widgetFactory,
-                    this._layerFactory
+                    this._layerFactory,
+                    this._paddedBounds
                 );
                 geoWidget.render();
                 this._geoLocationWidget = geoWidget;
@@ -137,6 +140,9 @@ export class DetailView implements View {
 
             this._moveEndCleanup?.();
             this._moveEndCleanup = undefined;
+
+            this._bboxHighlight?.remove();
+            this._bboxHighlight = undefined;
 
             this._map.remove();
             this._map = undefined;
@@ -173,6 +179,8 @@ export class DetailView implements View {
         }
 
         this._map = this._mapFactory.createMap(this._mapRoot, center, zoom);
+        this.applyMaxBounds();
+        this.addBboxHighlight();
         this._moveEndCleanup = this._map.onMoveEnd(() => this.saveViewport());
 
         if (this._gateway) {
@@ -244,6 +252,36 @@ export class DetailView implements View {
         }
 
         this._layerViews.clear();
+    }
+
+    private applyMaxBounds(): void {
+        const map = this._map;
+        if (!map) {
+            return;
+        }
+        const [west, south, east, north] = this._area.bbox;
+        const padLat = (north - south) / 2;
+        const padLng = (east - west) / 2;
+        const sw: [number, number] = [south - padLat, west - padLng];
+        const ne: [number, number] = [north + padLat, east + padLng];
+        this._paddedBounds = { sw, ne };
+        map.setMaxBounds(sw, ne);
+        const fitZoom = map.getBoundsZoom(sw, ne);
+        map.setMinZoom(Math.max(1, Math.floor(fitZoom) - 1));
+    }
+
+    private addBboxHighlight(): void {
+        const map = this._map;
+        if (!map) {
+            return;
+        }
+        const [west, south, east, north] = this._area.bbox;
+        const highlight = this._layerFactory.createRectangle(
+            [[south, west], [north, east]],
+            { color: "#3388ff", weight: 1, fillColor: "#3388ff", fillOpacity: 0.05 }
+        );
+        highlight.addTo(map);
+        this._bboxHighlight = highlight;
     }
 
     private saveViewport(): void {

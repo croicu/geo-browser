@@ -64,6 +64,9 @@ export class StubMap implements MapHandle {
     setCursor(_cursor: string): void {}
     disableDrag(): void {}
     enableDrag(): void {}
+    setMaxBounds(_sw: [number, number], _ne: [number, number]): void {}
+    getBoundsZoom(_sw: [number, number], _ne: [number, number]): number { return 10; }
+    setMinZoom(_zoom: number): void {}
 
     onMouseDown(_handler: (latLng: [number, number]) => void): () => void {
         return () => {};

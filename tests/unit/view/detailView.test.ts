@@ -2,12 +2,13 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { DetailView } from "../../../src/view/detail/detailView";
 import { StubActions } from "../../stubs/stubActions";
 import { StubLogger } from "../../stubs/stubLogger";
-import { StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories";
+import { StubLayerFactory, StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories";
 import { setLogger } from "../../../src/services";
 
 const fakeArea = {
     id: "napoli",
     center: [40.8518, 14.2681] as [number, number],
+    bbox: [14.25, 40.84, 14.28, 40.86] as [number, number, number, number],
     summary: {
         id: "napoli",
         name: "Napoli",
@@ -42,6 +43,7 @@ describe("DetailView", () => {
             fakeState as any,
             {
                 mapFactory: new StubMapFactory(),
+                layerFactory: new StubLayerFactory(),
                 widgetFactory: new StubWidgetFactory(),
             }
         );
@@ -62,6 +64,7 @@ describe("DetailView", () => {
             fakeState as any,
             {
                 mapFactory: new StubMapFactory(),
+                layerFactory: new StubLayerFactory(),
                 widgetFactory: new StubWidgetFactory(),
             }
         );
@@ -82,6 +85,7 @@ describe("DetailView", () => {
             fakeState as any,
             {
                 mapFactory: new StubMapFactory(),
+                layerFactory: new StubLayerFactory(),
                 widgetFactory: new StubWidgetFactory(),
             }
         );
@@ -107,6 +111,7 @@ describe("DetailView", () => {
             fakeState as any,
             {
                 mapFactory,
+                layerFactory: new StubLayerFactory(),
                 widgetFactory: new StubWidgetFactory(),
             }
         );
