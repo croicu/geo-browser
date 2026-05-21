@@ -43,6 +43,8 @@ export class DetailView implements View {
     private _geoLocationWidget?: GeoLocationWidget;
     private _clickCleanup?: () => void;
     private _moveEndCleanup?: () => void;
+    private _zoomCleanup?: () => void;
+    private _minZoom = 0;
 
     constructor(
         root: HTMLElement,
@@ -141,6 +143,9 @@ export class DetailView implements View {
             this._moveEndCleanup?.();
             this._moveEndCleanup = undefined;
 
+            this._zoomCleanup?.();
+            this._zoomCleanup = undefined;
+
             this._bboxHighlight?.remove();
             this._bboxHighlight = undefined;
 
@@ -182,6 +187,7 @@ export class DetailView implements View {
         this.applyMaxBounds();
         this.addBboxHighlight();
         this._moveEndCleanup = this._map.onMoveEnd(() => this.saveViewport());
+        this._zoomCleanup = this._map.onZoom(zoom => this.onZoomChange(zoom));
 
         if (this._gateway) {
             const bboxWidget = new BboxWidget(
@@ -254,6 +260,12 @@ export class DetailView implements View {
         this._layerViews.clear();
     }
 
+    private onZoomChange(zoom: number): void {
+        if (zoom <= this._minZoom) {
+            this._actions.openSummary();
+        }
+    }
+
     private applyMaxBounds(): void {
         const map = this._map;
         if (!map) {
@@ -267,7 +279,8 @@ export class DetailView implements View {
         this._paddedBounds = { sw, ne };
         map.setMaxBounds(sw, ne);
         const fitZoom = map.getBoundsZoom(sw, ne);
-        map.setMinZoom(Math.max(1, Math.floor(fitZoom) - 1));
+        this._minZoom = Math.max(1, Math.floor(fitZoom) - 1);
+        map.setMinZoom(this._minZoom);
     }
 
     private addBboxHighlight(): void {

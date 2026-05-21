@@ -123,4 +123,51 @@ describe("DetailView", () => {
         expect(logger.calls[0].message).toBe("map.click");
         expect(logger.calls[0].props).toEqual({ lat: 40.8518, lng: 14.2681 });
     });
+
+    it("navigates to summary when zoom reaches minimum", () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const actions = new StubActions();
+
+        const view = new DetailView(
+            root,
+            actions,
+            fakeArea as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory: new StubWidgetFactory(),
+            }
+        );
+
+        view.render();
+        // StubMap.getBoundsZoom returns 10 → minZoom = floor(10) - 1 = 9
+        mapFactory.map.simulateZoom(9);
+
+        expect(actions.openedSummary).toBe(true);
+    });
+
+    it("does not navigate to summary when zoom is above minimum", () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const actions = new StubActions();
+
+        const view = new DetailView(
+            root,
+            actions,
+            fakeArea as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory: new StubWidgetFactory(),
+            }
+        );
+
+        view.render();
+        mapFactory.map.simulateZoom(10);
+
+        expect(actions.openedSummary).toBe(false);
+    });
 });
