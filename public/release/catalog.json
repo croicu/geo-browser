@@ -1,5 +1,20 @@
 {
   "version": 1,
   "createdAt": "2026-05-03T00:00:00Z",
-  "areas": []
+  "areas": [
+    {
+      "id": "redmond",
+      "name": "Redmond",
+      "bbox": [
+        -122.16316223144533,
+        47.62391559878863,
+        -122.01999664306642,
+        47.736331408398186
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/redmond/manifest.json"
+    }
+  ]
 }

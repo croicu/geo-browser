@@ -1,0 +1,6424 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4853806256,
+        "name": "Doolittle Art Garden",
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1278208,
+          47.6792209
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29544113,
+        "name": "Viewpoint Open Space",
+        "weight": 1.0,
+        "area_sqm": 38268.5,
+        "radius_m": 110.4,
+        "names": [
+          "Viewpoint Open Space",
+          "Viewpont Open Space"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10529377777779,
+          47.629565166666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29691854,
+        "name": "Heron Rookery Park",
+        "weight": 1.0,
+        "area_sqm": 22676.9,
+        "radius_m": 85.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12591454,
+          47.672523068000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31886681,
+        "name": "Perrigo Park",
+        "weight": 1.0,
+        "area_sqm": 231794.2,
+        "radius_m": 271.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08502492857143,
+          47.68344388285714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31928094,
+        "name": "The Edge Skate Park",
+        "weight": 1.0,
+        "area_sqm": 4751.5,
+        "radius_m": 38.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1248326814815,
+          47.67699199259259
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31928133,
+        "name": "Albert Anderson Memorial Park",
+        "weight": 1.0,
+        "area_sqm": 12347.8,
+        "radius_m": 62.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11560427222223,
+          47.672699277777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32215299,
+        "name": "Grass Lawn Park",
+        "weight": 1.0,
+        "area_sqm": 113064.1,
+        "radius_m": 189.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14570097142857,
+          47.66799306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32544404,
+        "name": "Farrel-McWhirter Park",
+        "weight": 1.0,
+        "area_sqm": 276152.9,
+        "radius_m": 296.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08042097894737,
+          47.69471764736842
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32544729,
+        "name": "Bear Creek Park",
+        "weight": 1.0,
+        "area_sqm": 44099.0,
+        "radius_m": 118.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10843741818182,
+          47.672393396969696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32919331,
+        "name": "Kathryn Taylor Equestrian Park",
+        "weight": 1.0,
+        "area_sqm": 111312.4,
+        "radius_m": 188.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03064499500002,
+          47.726480885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 33441484,
+        "name": "Jonathan Hartman Park",
+        "weight": 1.0,
+        "area_sqm": 152565.9,
+        "radius_m": 220.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10823318,
+          47.69054852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35107692,
+        "name": "Ivanhoe Park",
+        "weight": 1.0,
+        "area_sqm": 10562.4,
+        "radius_m": 58.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11810996,
+          47.62360938
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 43709061,
+        "name": "Commissioner's Waterway",
+        "weight": 1.0,
+        "area_sqm": 2642.4,
+        "radius_m": 29.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1436392125,
+          47.626147287500004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 44115568,
+        "name": "Ardmore Park",
+        "weight": 1.0,
+        "area_sqm": 7471.5,
+        "radius_m": 48.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11550986363636,
+          47.63640653636364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 55760663,
+        "name": "Willows Creek Neighborhood Park",
+        "weight": 1.0,
+        "area_sqm": 5851.4,
+        "radius_m": 43.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15176824285713,
+          47.6817584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 55950342,
+        "name": "Snyders Corner Park",
+        "weight": 1.0,
+        "area_sqm": 17700.0,
+        "radius_m": 75.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16307212222222,
+          47.666193222222226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 59871392,
+        "name": "Spiritbrook Park",
+        "weight": 1.0,
+        "area_sqm": 8436.1,
+        "radius_m": 51.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13916140416666,
+          47.664732612499996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 73530090,
+        "name": "Tam O'Shanter Park",
+        "weight": 1.0,
+        "area_sqm": 57944.3,
+        "radius_m": 135.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10616393636364,
+          47.62552890909091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 74295594,
+        "name": "Ardmore Park",
+        "weight": 1.0,
+        "area_sqm": 118269.8,
+        "radius_m": 194.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11358718888889,
+          47.634978951851856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 92973550,
+        "name": "Avignon Estate Community Park",
+        "weight": 1.0,
+        "area_sqm": 523.4,
+        "radius_m": 12.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13031464000001,
+          47.68615742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 92973552,
+        "name": "Avignon Estate Community Park",
+        "weight": 1.0,
+        "area_sqm": 267.8,
+        "radius_m": 9.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13130260666667,
+          47.68614570666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 92974832,
+        "name": "Avignon Estate Community Park",
+        "weight": 1.0,
+        "area_sqm": 398.7,
+        "radius_m": 11.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.131021975,
+          47.68774335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 103455177,
+        "name": "Juel Community Park",
+        "weight": 1.0,
+        "area_sqm": 155808.1,
+        "radius_m": 222.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08798747142858,
+          47.70167301428571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 105613756,
+        "name": "Northshore Athletic Fields",
+        "weight": 1.0,
+        "area_sqm": 77203.1,
+        "radius_m": 156.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14520329444446,
+          47.73446485555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 112412456,
+        "name": "Redmond Watershed Addition Park",
+        "weight": 1.0,
+        "area_sqm": 10645.5,
+        "radius_m": 58.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.05755783684211,
+          47.71272503157895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 114464546,
+        "name": "North Bellevue Community Park",
+        "weight": 1.0,
+        "area_sqm": 18596.1,
+        "radius_m": 76.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14457686666667,
+          47.6475172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 114464547,
+        "name": "Westside Park",
+        "weight": 1.0,
+        "area_sqm": 23646.6,
+        "radius_m": 86.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13092286,
+          47.659420540000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 114464946,
+        "name": "Highland Park",
+        "weight": 1.0,
+        "area_sqm": 46495.2,
+        "radius_m": 121.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15155362352941,
+          47.6261213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 126043943,
+        "name": "Viewpoint Neighborhood Park",
+        "weight": 1.0,
+        "area_sqm": 16057.2,
+        "radius_m": 71.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09455598333334,
+          47.63201725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 146997195,
+        "weight": 1.0,
+        "area_sqm": 384.7,
+        "radius_m": 11.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09780802857144,
+          47.69818597142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154423043,
+        "weight": 1.0,
+        "area_sqm": 327.7,
+        "radius_m": 10.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11685064285714,
+          47.70867417142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154423044,
+        "name": "Prescott Community Park",
+        "weight": 1.0,
+        "area_sqm": 4694.5,
+        "radius_m": 38.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1183265,
+          47.70829239230769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154423049,
+        "weight": 1.0,
+        "area_sqm": 919.4,
+        "radius_m": 17.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11597028999999,
+          47.70905861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154428442,
+        "weight": 1.0,
+        "area_sqm": 421.3,
+        "radius_m": 11.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11637286,
+          47.7104915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154428445,
+        "weight": 1.0,
+        "area_sqm": 512.1,
+        "radius_m": 12.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11721304,
+          47.71049946
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154428447,
+        "weight": 1.0,
+        "area_sqm": 1907.4,
+        "radius_m": 24.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11721278333334,
+          47.70970868333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154429496,
+        "name": "Northstar Neighborhood Park",
+        "weight": 1.0,
+        "area_sqm": 1621.3,
+        "radius_m": 22.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11697522499999,
+          47.704850666666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 161916219,
+        "name": "Viewpoint Park",
+        "weight": 1.0,
+        "area_sqm": 50861.8,
+        "radius_m": 127.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16240072000001,
+          47.63107048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 162040572,
+        "name": "Meadow Park",
+        "weight": 1.0,
+        "area_sqm": 20884.6,
+        "radius_m": 81.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12573640000001,
+          47.696652799999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 177067178,
+        "name": "Smith Woods",
+        "weight": 1.0,
+        "area_sqm": 39555.3,
+        "radius_m": 112.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.104348875,
+          47.71007665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 182648409,
+        "name": "Welcome Park",
+        "weight": 1.0,
+        "area_sqm": 10990.0,
+        "radius_m": 59.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15249098888889,
+          47.67687965555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 182648411,
+        "name": "Scotts Pond Park",
+        "weight": 1.0,
+        "area_sqm": 5301.4,
+        "radius_m": 41.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1526573,
+          47.67580473333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 185227446,
+        "name": "Sixty Acres North",
+        "weight": 1.0,
+        "area_sqm": 234614.4,
+        "radius_m": 273.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13589701935483,
+          47.70536633870967
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 200659527,
+        "name": "Southeast Redmond Park",
+        "weight": 1.0,
+        "area_sqm": 12759.3,
+        "radius_m": 63.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08569949047619,
+          47.666291228571424
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 238108677,
+        "name": "Downtown Park",
+        "weight": 1.0,
+        "area_sqm": 7969.7,
+        "radius_m": 50.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12447944999998,
+          47.67411929705882
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259778966,
+        "name": "Redmond Ridge Park",
+        "weight": 1.0,
+        "area_sqm": 45042.9,
+        "radius_m": 119.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.034085525,
+          47.69116535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259804980,
+        "weight": 1.0,
+        "area_sqm": 2630.0,
+        "radius_m": 28.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03697098518518,
+          47.6837005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259847042,
+        "weight": 1.0,
+        "area_sqm": 1645.9,
+        "radius_m": 22.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0452482909091,
+          47.68453104545454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259847051,
+        "weight": 1.0,
+        "area_sqm": 2239.9,
+        "radius_m": 26.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03679971666666,
+          47.68166473333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259850101,
+        "weight": 1.0,
+        "area_sqm": 1795.9,
+        "radius_m": 23.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02507591666667,
+          47.680522024999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259947579,
+        "weight": 1.0,
+        "area_sqm": 994.7,
+        "radius_m": 17.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.04570131428571,
+          47.69383570714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259990323,
+        "weight": 1.0,
+        "area_sqm": 2731.3,
+        "radius_m": 29.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03611795833335,
+          47.69231605833334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259994976,
+        "weight": 1.0,
+        "area_sqm": 1191.2,
+        "radius_m": 19.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.04334543200001,
+          47.688074224000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259998131,
+        "weight": 1.0,
+        "area_sqm": 450.4,
+        "radius_m": 12.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03984059,
+          47.68904509
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259999506,
+        "weight": 1.0,
+        "area_sqm": 997.4,
+        "radius_m": 17.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03572965833332,
+          47.681986358333326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 259999509,
+        "weight": 1.0,
+        "area_sqm": 769.2,
+        "radius_m": 15.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03530488333332,
+          47.682583550000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 260951231,
+        "name": "Elliston Park",
+        "weight": 1.0,
+        "area_sqm": 6813.7,
+        "radius_m": 46.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02326564583332,
+          47.69441675416667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 260980352,
+        "weight": 1.0,
+        "area_sqm": 352.2,
+        "radius_m": 10.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02069416666666,
+          47.69871053333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261447958,
+        "weight": 1.0,
+        "area_sqm": 1474.3,
+        "radius_m": 21.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0834623625,
+          47.665726625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261447959,
+        "weight": 1.0,
+        "area_sqm": 916.9,
+        "radius_m": 17.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08254663333334,
+          47.66491138333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261447960,
+        "weight": 1.0,
+        "area_sqm": 721.9,
+        "radius_m": 15.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.081993775,
+          47.66434113125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261447961,
+        "weight": 1.0,
+        "area_sqm": 1345.8,
+        "radius_m": 20.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0837179,
+          47.6638161625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261447962,
+        "name": "Woodbridge Private Park",
+        "weight": 1.0,
+        "area_sqm": 2492.4,
+        "radius_m": 28.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08585322380952,
+          47.66370871428572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261447965,
+        "weight": 1.0,
+        "area_sqm": 800.3,
+        "radius_m": 16.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08551222068965,
+          47.66350909310345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261447966,
+        "weight": 1.0,
+        "area_sqm": 481.3,
+        "radius_m": 12.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0871054,
+          47.661142095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 261448631,
+        "name": "Woodbridge Swing Park",
+        "weight": 1.0,
+        "area_sqm": 3953.8,
+        "radius_m": 35.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0862659652174,
+          47.664562260869566
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 262766405,
+        "weight": 1.0,
+        "area_sqm": 651.0,
+        "radius_m": 14.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02240252666667,
+          47.69573922
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 262766406,
+        "weight": 1.0,
+        "area_sqm": 461.7,
+        "radius_m": 12.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02549851666667,
+          47.695327866666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 268729637,
+        "name": "East Sammamish Park",
+        "weight": 1.0,
+        "area_sqm": 78265.2,
+        "radius_m": 157.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.05524942800001,
+          47.624902456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296620644,
+        "name": "Redmond Central Connector Park",
+        "weight": 1.0,
+        "area_sqm": 20912.8,
+        "radius_m": 81.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12553319705881,
+          47.67315495588235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 296802865,
+        "name": "Dudley Carter Park",
+        "weight": 1.0,
+        "area_sqm": 4555.3,
+        "radius_m": 38.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12794884666667,
+          47.671207620000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 316480809,
+        "name": "The Stroll",
+        "weight": 1.0,
+        "area_sqm": 5297.6,
+        "radius_m": 41.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13184792777777,
+          47.67729448611111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 320071697,
+        "name": "Martin Park",
+        "weight": 1.0,
+        "area_sqm": 38515.1,
+        "radius_m": 110.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08117960400001,
+          47.677143515999994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 369791522,
+        "name": "Redmond West Wetlands",
+        "weight": 1.0,
+        "area_sqm": 21963.3,
+        "radius_m": 83.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1377164142857,
+          47.66003814285714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 392695167,
+        "name": "Goldsmith Neighborhood Park",
+        "weight": 1.0,
+        "area_sqm": 31313.5,
+        "radius_m": 99.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14714815,
+          47.639667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 417102030,
+        "name": "Bridal Trails Corner Park",
+        "weight": 1.0,
+        "area_sqm": 8195.3,
+        "radius_m": 51.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16172414444443,
+          47.63212172222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 422278033,
+        "name": "Evans Creek Preserve",
+        "weight": 1.0,
+        "area_sqm": 831666.8,
+        "radius_m": 514.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.04602871136363,
+          47.64459221136363
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 424596658,
+        "name": "Sunset Gardens Park",
+        "weight": 1.0,
+        "area_sqm": 5385.6,
+        "radius_m": 41.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09595777,
+          47.686135730000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 447274315,
+        "weight": 1.0,
+        "area_sqm": 276.8,
+        "radius_m": 9.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12133627,
+          47.7101695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 449101333,
+        "weight": 1.0,
+        "area_sqm": 359.9,
+        "radius_m": 10.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13193254,
+          47.66655224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 451941783,
+        "weight": 1.0,
+        "area_sqm": 300.0,
+        "radius_m": 9.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.149698475,
+          47.7274605375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 451941786,
+        "weight": 1.0,
+        "area_sqm": 343.2,
+        "radius_m": 10.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14217868,
+          47.732710175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 479194885,
+        "name": "Sammamish Valley Park",
+        "weight": 1.0,
+        "area_sqm": 124629.4,
+        "radius_m": 199.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15054735999999,
+          47.70638334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 479199365,
+        "name": "Sixty Acres South",
+        "weight": 1.0,
+        "area_sqm": 130412.8,
+        "radius_m": 203.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1409756090909,
+          47.7029127
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 479215139,
+        "name": "Redmond Watershed Preserve",
+        "weight": 1.0,
+        "area_sqm": 3338734.5,
+        "radius_m": 1030.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.04879814324326,
+          47.71047937027027
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 480083703,
+        "name": "English Hill Greenbelt",
+        "weight": 1.0,
+        "area_sqm": 23493.2,
+        "radius_m": 86.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11019215,
+          47.7282877
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 480083704,
+        "name": "Hollywood Hill Greenbelt",
+        "weight": 1.0,
+        "area_sqm": 40363.7,
+        "radius_m": 113.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11205465,
+          47.73041493333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 480267645,
+        "name": "Luke McRedmond Landing",
+        "weight": 1.0,
+        "area_sqm": 12241.0,
+        "radius_m": 62.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13147956249999,
+          47.67320052916667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 480784774,
+        "name": "Woodlands Park",
+        "weight": 1.0,
+        "area_sqm": 10261.5,
+        "radius_m": 57.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10969195294119,
+          47.70631492352941
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 480784780,
+        "name": "Woodlands Community Park",
+        "weight": 1.0,
+        "area_sqm": 1137.3,
+        "radius_m": 19.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11196810000001,
+          47.7072133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 480784783,
+        "weight": 1.0,
+        "area_sqm": 5886.5,
+        "radius_m": 43.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11397141333333,
+          47.70659724666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 480784803,
+        "weight": 1.0,
+        "area_sqm": 1706.0,
+        "radius_m": 23.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10353176666666,
+          47.712838675
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 480795320,
+        "name": "Redmond Bike Park",
+        "weight": 1.0,
+        "area_sqm": 9985.7,
+        "radius_m": 56.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1115308,
+          47.68891644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 490140126,
+        "name": "O'Leary Park",
+        "weight": 1.0,
+        "area_sqm": 280.5,
+        "radius_m": 9.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12305060999999,
+          47.67415519
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 490141438,
+        "name": "Flagpole Plaza Park",
+        "weight": 1.0,
+        "area_sqm": 153.7,
+        "radius_m": 7.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12175747777776,
+          47.67412358888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 490142428,
+        "name": "Rotary Park",
+        "weight": 1.0,
+        "area_sqm": 3686.5,
+        "radius_m": 34.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13280221999999,
+          47.67306998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 534352720,
+        "weight": 1.0,
+        "area_sqm": 2456.4,
+        "radius_m": 28.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10972612857142,
+          47.72014661428572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 581812731,
+        "weight": 1.0,
+        "area_sqm": 12104.2,
+        "radius_m": 62.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02539041666667,
+          47.62425526111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 581812734,
+        "weight": 1.0,
+        "area_sqm": 3937.0,
+        "radius_m": 35.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02678724285715,
+          47.627611128571424
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 581812735,
+        "weight": 1.0,
+        "area_sqm": 5454.4,
+        "radius_m": 41.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02856025909091,
+          47.63112513181818
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 581812736,
+        "weight": 1.0,
+        "area_sqm": 14499.1,
+        "radius_m": 67.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0303195137931,
+          47.63463346206897
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 581812738,
+        "name": "Summer Ridge Community Park",
+        "weight": 1.0,
+        "area_sqm": 6309.8,
+        "radius_m": 44.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02573297272728,
+          47.63325662727273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 581826178,
+        "name": "Deer Field Sports Field",
+        "weight": 1.0,
+        "area_sqm": 15876.6,
+        "radius_m": 71.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03439062142857,
+          47.625574799999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 583863741,
+        "weight": 1.0,
+        "area_sqm": 744.8,
+        "radius_m": 15.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02424884999999,
+          47.6296736875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 610980563,
+        "weight": 1.0,
+        "area_sqm": 890.1,
+        "radius_m": 16.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10644921666666,
+          47.70805873333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 619880843,
+        "name": "Trailside Community Park",
+        "weight": 1.0,
+        "area_sqm": 1213.7,
+        "radius_m": 19.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1106958142857,
+          47.701012514285715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 619882508,
+        "name": "Hedgewood East Community Park",
+        "weight": 1.0,
+        "area_sqm": 968.8,
+        "radius_m": 17.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11832383999999,
+          47.70946912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 654358467,
+        "name": "Village Green",
+        "weight": 1.0,
+        "area_sqm": 10093.4,
+        "radius_m": 56.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.021218768,
+          47.699609620000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 654419709,
+        "weight": 1.0,
+        "area_sqm": 168.8,
+        "radius_m": 7.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0284727,
+          47.70506794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 654419710,
+        "weight": 1.0,
+        "area_sqm": 35.3,
+        "radius_m": 3.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02832396,
+          47.70483968
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 654419712,
+        "weight": 1.0,
+        "area_sqm": 35.2,
+        "radius_m": 3.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02817135999999,
+          47.704849620000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 654563474,
+        "name": "South Park",
+        "weight": 1.0,
+        "area_sqm": 4936.8,
+        "radius_m": 39.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03339423695651,
+          47.677474636956525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 654812829,
+        "weight": 1.0,
+        "area_sqm": 802.2,
+        "radius_m": 16.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03389851538462,
+          47.67536226153846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 656067015,
+        "name": "Cascara Circle",
+        "weight": 1.0,
+        "area_sqm": 3214.2,
+        "radius_m": 32.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03852912957746,
+          47.68870104929578
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 656081275,
+        "name": "Redmond Ridge Commons",
+        "weight": 1.0,
+        "area_sqm": 7548.8,
+        "radius_m": 49.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03865072467534,
+          47.68605350649351
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 656122899,
+        "weight": 1.0,
+        "area_sqm": 313.2,
+        "radius_m": 10.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.032782455,
+          47.68577947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 656611292,
+        "weight": 1.0,
+        "area_sqm": 1003.2,
+        "radius_m": 17.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03273472999999,
+          47.678876375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 658889108,
+        "weight": 1.0,
+        "area_sqm": 1189.6,
+        "radius_m": 19.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03423927857143,
+          47.67943485357143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 668169603,
+        "name": "Woodlands West Park & Playground",
+        "weight": 1.0,
+        "area_sqm": 4086.8,
+        "radius_m": 36.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11325085294118,
+          47.70538909411765
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 668175405,
+        "name": "Parkridge at the Woodlands Park",
+        "weight": 1.0,
+        "area_sqm": 7289.6,
+        "radius_m": 48.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11233268260868,
+          47.70445863478261
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 679251100,
+        "weight": 1.0,
+        "area_sqm": 2771.8,
+        "radius_m": 29.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12237836666667,
+          47.67262991333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 682584723,
+        "weight": 1.0,
+        "area_sqm": 51.2,
+        "radius_m": 4.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02359385625,
+          47.67155975625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 682584724,
+        "weight": 1.0,
+        "area_sqm": 37.5,
+        "radius_m": 3.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02368654761906,
+          47.6716323
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 682584727,
+        "weight": 1.0,
+        "area_sqm": 5.4,
+        "radius_m": 1.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02381758888889,
+          47.6714667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 682584743,
+        "weight": 1.0,
+        "area_sqm": 435.4,
+        "radius_m": 11.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02334892564103,
+          47.67180541025641
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 682585710,
+        "weight": 1.0,
+        "area_sqm": 8.4,
+        "radius_m": 1.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02350910666665,
+          47.67169558666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 682692867,
+        "name": "Esterra Park",
+        "weight": 1.0,
+        "area_sqm": 9608.2,
+        "radius_m": 55.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13536263255814,
+          47.63498741395348
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 706235949,
+        "name": "Greystone Community Park",
+        "weight": 1.0,
+        "area_sqm": 1865.1,
+        "radius_m": 24.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12579188571429,
+          47.70743947142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 706235950,
+        "name": "Greystone Community Park",
+        "weight": 1.0,
+        "area_sqm": 2583.5,
+        "radius_m": 28.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1245372357143,
+          47.705684735714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 706235951,
+        "name": "Greystone Community Park",
+        "weight": 1.0,
+        "area_sqm": 2017.4,
+        "radius_m": 25.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12614833636363,
+          47.705603518181825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 706237975,
+        "name": "Kensington Community Park",
+        "weight": 1.0,
+        "area_sqm": 1278.3,
+        "radius_m": 20.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12771219999999,
+          47.70429706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 713843940,
+        "name": "The Park at Hampton Woods",
+        "weight": 1.0,
+        "area_sqm": 3443.0,
+        "radius_m": 33.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.04567390000001,
+          47.62897088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 733984596,
+        "weight": 1.0,
+        "area_sqm": 2921.9,
+        "radius_m": 30.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10896599166666,
+          47.701437274999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 757017909,
+        "weight": 1.0,
+        "area_sqm": 937.4,
+        "radius_m": 17.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11467616666665,
+          47.67721718333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 757017910,
+        "weight": 1.0,
+        "area_sqm": 5874.6,
+        "radius_m": 43.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12627780000001,
+          47.683160125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 757017911,
+        "weight": 1.0,
+        "area_sqm": 1237.3,
+        "radius_m": 19.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12860237857141,
+          47.68436238571429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 824014303,
+        "weight": 1.0,
+        "area_sqm": 809.5,
+        "radius_m": 16.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12215334999999,
+          47.70464857857143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 825695822,
+        "weight": 1.0,
+        "area_sqm": 1344.5,
+        "radius_m": 20.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13089052000001,
+          47.7036794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 825695825,
+        "weight": 1.0,
+        "area_sqm": 584.7,
+        "radius_m": 13.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12877076363635,
+          47.70259516363637
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 826340715,
+        "weight": 1.0,
+        "area_sqm": 438.0,
+        "radius_m": 11.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10168612,
+          47.704896180000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 826340717,
+        "weight": 1.0,
+        "area_sqm": 1398.1,
+        "radius_m": 21.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.102742175,
+          47.70563456666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 827117261,
+        "weight": 1.0,
+        "area_sqm": 455.7,
+        "radius_m": 12.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10298565714287,
+          47.70139318571429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 827152500,
+        "weight": 1.0,
+        "area_sqm": 1179.4,
+        "radius_m": 19.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1004442,
+          47.7026414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 830200371,
+        "weight": 1.0,
+        "area_sqm": 728.3,
+        "radius_m": 15.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11459056666666,
+          47.704169400000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 830611282,
+        "weight": 1.0,
+        "area_sqm": 270.8,
+        "radius_m": 9.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12092994545455,
+          47.70834520909091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 831065085,
+        "weight": 1.0,
+        "area_sqm": 2460.5,
+        "radius_m": 28.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1056865,
+          47.70887532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 831070726,
+        "weight": 1.0,
+        "area_sqm": 1218.5,
+        "radius_m": 19.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10614135714286,
+          47.706861242857144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 832076255,
+        "weight": 1.0,
+        "area_sqm": 1043.1,
+        "radius_m": 18.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10140711666666,
+          47.709698550000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 832391642,
+        "weight": 1.0,
+        "area_sqm": 272.5,
+        "radius_m": 9.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1082303375,
+          47.7102442875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 832395556,
+        "weight": 1.0,
+        "area_sqm": 773.9,
+        "radius_m": 15.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11253768000002,
+          47.71038198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 832826688,
+        "weight": 1.0,
+        "area_sqm": 1146.5,
+        "radius_m": 19.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.119174325,
+          47.7095623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 832826694,
+        "weight": 1.0,
+        "area_sqm": 173.6,
+        "radius_m": 7.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1198539,
+          47.71023281428571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 842032368,
+        "name": "Nike Neighborhood Park",
+        "weight": 1.0,
+        "area_sqm": 60627.0,
+        "radius_m": 138.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10823112631579,
+          47.683092863157896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 850661172,
+        "name": "Idylwood Park",
+        "weight": 1.0,
+        "area_sqm": 65628.1,
+        "radius_m": 144.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10269820196078,
+          47.64299330588235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 850756937,
+        "name": "Idylwood Park",
+        "weight": 1.0,
+        "area_sqm": 11943.7,
+        "radius_m": 61.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10322715555556,
+          47.64126608888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 865181318,
+        "weight": 1.0,
+        "area_sqm": 356.3,
+        "radius_m": 10.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02402417,
+          47.62556927
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 898357184,
+        "weight": 1.0,
+        "area_sqm": 155.0,
+        "radius_m": 7.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16120555666666,
+          47.63235978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 898357185,
+        "weight": 1.0,
+        "area_sqm": 16.8,
+        "radius_m": 2.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16105594545455,
+          47.63214837272728
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 898357186,
+        "weight": 1.0,
+        "area_sqm": 46.4,
+        "radius_m": 3.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16116962142857,
+          47.63225645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 903907559,
+        "weight": 1.0,
+        "area_sqm": 140.1,
+        "radius_m": 6.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08895292,
+          47.66878044
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 918396798,
+        "weight": 1.0,
+        "area_sqm": 2671.2,
+        "radius_m": 29.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.159495675,
+          47.71614415833333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 967726565,
+        "name": "Cascara Gardens",
+        "weight": 1.0,
+        "area_sqm": 20129.1,
+        "radius_m": 80.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0375828255814,
+          47.68962654651163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1011276092,
+        "name": "Heritage Hills Park",
+        "weight": 1.0,
+        "area_sqm": 23450.6,
+        "radius_m": 86.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.04247325476192,
+          47.633591335714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1025393597,
+        "name": "Tuscany Community Park",
+        "weight": 1.0,
+        "area_sqm": 1474.5,
+        "radius_m": 21.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07342198181819,
+          47.710593009090914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1046596581,
+        "name": "Sportsman Park",
+        "weight": 1.0,
+        "area_sqm": 683447.0,
+        "radius_m": 466.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08127745806452,
+          47.663613932258066
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1047298632,
+        "name": "Bridle Trails Valley Creek Park",
+        "weight": 1.0,
+        "area_sqm": 4544.2,
+        "radius_m": 38.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15262933333332,
+          47.65073736666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1058625338,
+        "name": "Sunrise Cremation Garden",
+        "weight": 1.0,
+        "area_sqm": 403.8,
+        "radius_m": 11.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09825765000001,
+          47.6697678625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1058625339,
+        "name": "Green Burial Garden",
+        "weight": 1.0,
+        "area_sqm": 1664.9,
+        "radius_m": 23.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09967741999999,
+          47.66924239
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1105626906,
+        "weight": 1.0,
+        "area_sqm": 352.1,
+        "radius_m": 10.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10382025454545,
+          47.714291281818184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1108389123,
+        "weight": 1.0,
+        "area_sqm": 458.2,
+        "radius_m": 12.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13227338333334,
+          47.707284344444446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1152475288,
+        "weight": 1.0,
+        "area_sqm": 232.4,
+        "radius_m": 8.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10424033333334,
+          47.66708415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1164587285,
+        "name": "Timberline Ridge Park",
+        "weight": 1.0,
+        "area_sqm": 3607.0,
+        "radius_m": 33.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06524549999999,
+          47.63941148
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1164587921,
+        "name": "Waterbrook Playground",
+        "weight": 1.0,
+        "area_sqm": 2539.6,
+        "radius_m": 28.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07986988,
+          47.6469802
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1187060874,
+        "name": "Overlake Park Presbyterian Church Community Garden",
+        "weight": 1.0,
+        "area_sqm": 40.9,
+        "radius_m": 3.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13091565714285,
+          47.626909714285716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1231576844,
+        "weight": 1.0,
+        "area_sqm": 1451.2,
+        "radius_m": 21.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08386054827587,
+          47.66666077241379
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1234743281,
+        "weight": 1.0,
+        "area_sqm": 218.8,
+        "radius_m": 8.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09118845999998,
+          47.7018203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1234743282,
+        "weight": 1.0,
+        "area_sqm": 275.5,
+        "radius_m": 9.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09134366666666,
+          47.70041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1243938594,
+        "name": "Perrigo Heights Park",
+        "weight": 1.0,
+        "area_sqm": 12788.0,
+        "radius_m": 63.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1067587,
+          47.68844906875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1304381389,
+        "weight": 1.0,
+        "area_sqm": 3346.8,
+        "radius_m": 32.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15842253636364,
+          47.72175188181818
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1304381401,
+        "weight": 1.0,
+        "area_sqm": 2118.6,
+        "radius_m": 26.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1568122857143,
+          47.71863471428571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1304381405,
+        "weight": 1.0,
+        "area_sqm": 848.1,
+        "radius_m": 16.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15766464000001,
+          47.71700718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1308379748,
+        "weight": 1.0,
+        "area_sqm": 409.5,
+        "radius_m": 11.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.040355245,
+          47.687733300000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1308525267,
+        "weight": 1.0,
+        "area_sqm": 832.6,
+        "radius_m": 16.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.03993712857142,
+          47.690828485714285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1308525268,
+        "weight": 1.0,
+        "area_sqm": 1058.6,
+        "radius_m": 18.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0429389125,
+          47.6900176625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1336266260,
+        "weight": 1.0,
+        "area_sqm": 898.8,
+        "radius_m": 16.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02298532,
+          47.62987072
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1342567206,
+        "weight": 1.0,
+        "area_sqm": 267.0,
+        "radius_m": 9.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06165122,
+          47.62791788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1352794130,
+        "weight": 1.0,
+        "area_sqm": 6865.2,
+        "radius_m": 46.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0637895,
+          47.63579139354839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1353818199,
+        "name": "Northeast Sammamish Park",
+        "weight": 1.0,
+        "area_sqm": 9611.1,
+        "radius_m": 55.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.05620963846152,
+          47.642762830769236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1361754731,
+        "weight": 1.0,
+        "area_sqm": 163.3,
+        "radius_m": 7.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0808726875,
+          47.6675241625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1396741639,
+        "weight": 1.0,
+        "area_sqm": 1161.4,
+        "radius_m": 19.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16375466153846,
+          47.71399464615384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1413396094,
+        "weight": 1.0,
+        "area_sqm": 841.5,
+        "radius_m": 16.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08535507142857,
+          47.71372357142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570975,
+        "weight": 1.0,
+        "area_sqm": 217.0,
+        "radius_m": 8.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13172913636363,
+          47.64739365454545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570976,
+        "weight": 1.0,
+        "area_sqm": 326.1,
+        "radius_m": 10.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13201707692308,
+          47.647383861538465
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570979,
+        "weight": 1.0,
+        "area_sqm": 32.3,
+        "radius_m": 3.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.132005405,
+          47.646532815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570980,
+        "weight": 1.0,
+        "area_sqm": 966.6,
+        "radius_m": 17.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13196828157893,
+          47.64668671052632
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570981,
+        "weight": 1.0,
+        "area_sqm": 102.5,
+        "radius_m": 5.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13201141875,
+          47.64627721875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570982,
+        "weight": 1.0,
+        "area_sqm": 651.8,
+        "radius_m": 14.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13138806666666,
+          47.64624077777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570985,
+        "weight": 1.0,
+        "area_sqm": 292.0,
+        "radius_m": 9.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13106712941175,
+          47.647026370588236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570988,
+        "weight": 1.0,
+        "area_sqm": 110.7,
+        "radius_m": 5.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13134436666668,
+          47.64692964444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570989,
+        "weight": 1.0,
+        "area_sqm": 154.1,
+        "radius_m": 7.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13133697999999,
+          47.64659372
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570996,
+        "weight": 1.0,
+        "area_sqm": 20.1,
+        "radius_m": 2.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13120966,
+          47.646514720000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570997,
+        "weight": 1.0,
+        "area_sqm": 87.1,
+        "radius_m": 5.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13099874444444,
+          47.646468999999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570998,
+        "weight": 1.0,
+        "area_sqm": 50.6,
+        "radius_m": 4.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13091009230769,
+          47.64635079230769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422570999,
+        "weight": 1.0,
+        "area_sqm": 54.6,
+        "radius_m": 4.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13119280000001,
+          47.64717893333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422571005,
+        "weight": 1.0,
+        "area_sqm": 26.5,
+        "radius_m": 2.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.131024,
+          47.6467665875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1422571007,
+        "weight": 1.0,
+        "area_sqm": 22.2,
+        "radius_m": 2.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13106396,
+          47.64665642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477425,
+        "weight": 1.0,
+        "area_sqm": 21.1,
+        "radius_m": 2.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1134217142857,
+          47.692564571428576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477429,
+        "weight": 1.0,
+        "area_sqm": 8.3,
+        "radius_m": 1.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11304500000001,
+          47.69207376
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477431,
+        "weight": 1.0,
+        "area_sqm": 18.4,
+        "radius_m": 2.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11319055,
+          47.692352066666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477432,
+        "weight": 1.0,
+        "area_sqm": 19.3,
+        "radius_m": 2.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1132911,
+          47.69228728
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477438,
+        "weight": 1.0,
+        "area_sqm": 42.4,
+        "radius_m": 3.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11331724166666,
+          47.69211406666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477439,
+        "weight": 1.0,
+        "area_sqm": 18.9,
+        "radius_m": 2.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11309630000001,
+          47.69259629
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477444,
+        "weight": 1.0,
+        "area_sqm": 85.6,
+        "radius_m": 5.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11358451666666,
+          47.69151796666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477445,
+        "weight": 1.0,
+        "area_sqm": 161.0,
+        "radius_m": 7.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11371712,
+          47.69158192
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477447,
+        "weight": 1.0,
+        "area_sqm": 21.5,
+        "radius_m": 2.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11301896666667,
+          47.691533533333335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477448,
+        "weight": 1.0,
+        "area_sqm": 51.9,
+        "radius_m": 4.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11320464,
+          47.69154994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477449,
+        "weight": 1.0,
+        "area_sqm": 23.6,
+        "radius_m": 2.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1134132,
+          47.69150404285715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1425477450,
+        "weight": 1.0,
+        "area_sqm": 16.1,
+        "radius_m": 2.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11245326000001,
+          47.69228368
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427201132,
+        "weight": 1.0,
+        "area_sqm": 218.1,
+        "radius_m": 8.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10600454,
+          47.67742556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455459,
+        "weight": 1.0,
+        "area_sqm": 105.6,
+        "radius_m": 5.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10586761666667,
+          47.69481645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455461,
+        "weight": 1.0,
+        "area_sqm": 41.3,
+        "radius_m": 3.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1061084,
+          47.69467846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455464,
+        "weight": 1.0,
+        "area_sqm": 20.6,
+        "radius_m": 2.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10602994615384,
+          47.69440084615384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455467,
+        "weight": 1.0,
+        "area_sqm": 287.8,
+        "radius_m": 9.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10656260769231,
+          47.69413839230769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455468,
+        "weight": 1.0,
+        "area_sqm": 93.3,
+        "radius_m": 5.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.106955,
+          47.694399759999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455469,
+        "weight": 1.0,
+        "area_sqm": 278.9,
+        "radius_m": 9.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10695295999999,
+          47.6945463
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455471,
+        "weight": 1.0,
+        "area_sqm": 325.9,
+        "radius_m": 10.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1069652375,
+          47.6931686625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455472,
+        "weight": 1.0,
+        "area_sqm": 277.7,
+        "radius_m": 9.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10698026,
+          47.69394502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455477,
+        "weight": 1.0,
+        "area_sqm": 22.3,
+        "radius_m": 2.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10585525714285,
+          47.69504955714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455478,
+        "weight": 1.0,
+        "area_sqm": 22.8,
+        "radius_m": 2.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10582632,
+          47.69516518
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455479,
+        "weight": 1.0,
+        "area_sqm": 74.5,
+        "radius_m": 4.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10614727142857,
+          47.69525978571429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455480,
+        "weight": 1.0,
+        "area_sqm": 141.2,
+        "radius_m": 6.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10605184545453,
+          47.695396609090906
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455485,
+        "weight": 1.0,
+        "area_sqm": 34.3,
+        "radius_m": 3.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10581421818182,
+          47.69495875454545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455500,
+        "weight": 1.0,
+        "area_sqm": 59.4,
+        "radius_m": 4.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10814404,
+          47.69560706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427455514,
+        "weight": 1.0,
+        "area_sqm": 376.8,
+        "radius_m": 11.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1065959,
+          47.694409622222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1427461434,
+        "name": "Flicker's Pond",
+        "weight": 1.0,
+        "area_sqm": 1200.5,
+        "radius_m": 19.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11465150000001,
+          47.6458638
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429285289,
+        "weight": 1.0,
+        "area_sqm": 199.9,
+        "radius_m": 8.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07479332,
+          47.69271002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429372022,
+        "weight": 1.0,
+        "area_sqm": 13.2,
+        "radius_m": 2.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10813138333333,
+          47.69527606666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429372049,
+        "weight": 1.0,
+        "area_sqm": 67.9,
+        "radius_m": 4.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10896522,
+          47.693512479999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429372050,
+        "weight": 1.0,
+        "area_sqm": 89.3,
+        "radius_m": 5.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10896651666667,
+          47.693169149999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429372056,
+        "weight": 1.0,
+        "area_sqm": 106.5,
+        "radius_m": 5.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10896070000001,
+          47.6938269
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429372057,
+        "weight": 1.0,
+        "area_sqm": 30.9,
+        "radius_m": 3.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10910919999999,
+          47.69378405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429372058,
+        "weight": 1.0,
+        "area_sqm": 317.1,
+        "radius_m": 10.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10911371818183,
+          47.694313309090916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429372059,
+        "weight": 1.0,
+        "area_sqm": 243.9,
+        "radius_m": 8.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10896018333334,
+          47.69443758333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1429372060,
+        "weight": 1.0,
+        "area_sqm": 14.4,
+        "radius_m": 2.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1089598,
+          47.69483846666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430066936,
+        "weight": 1.0,
+        "area_sqm": 380.7,
+        "radius_m": 11.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13684155,
+          47.65262676428572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430066944,
+        "weight": 1.0,
+        "area_sqm": 1227.4,
+        "radius_m": 19.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13455324285715,
+          47.64758016428571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430066946,
+        "weight": 1.0,
+        "area_sqm": 96.8,
+        "radius_m": 5.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13448911,
+          47.648052289999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430066952,
+        "weight": 1.0,
+        "area_sqm": 147.1,
+        "radius_m": 6.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1339374857143,
+          47.64671030714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430066953,
+        "weight": 1.0,
+        "area_sqm": 720.2,
+        "radius_m": 15.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1340331875,
+          47.64677744375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430066956,
+        "weight": 1.0,
+        "area_sqm": 40.2,
+        "radius_m": 3.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13369718749999,
+          47.646394975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430066960,
+        "weight": 1.0,
+        "area_sqm": 286.4,
+        "radius_m": 9.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13381196,
+          47.64629234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430066964,
+        "weight": 1.0,
+        "area_sqm": 165.1,
+        "radius_m": 7.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1334891090909,
+          47.646246818181815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430774691,
+        "weight": 1.0,
+        "area_sqm": 31.4,
+        "radius_m": 3.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11827046923077,
+          47.67360615384616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430774692,
+        "weight": 1.0,
+        "area_sqm": 6.5,
+        "radius_m": 1.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11803082857143,
+          47.67363387142858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430774693,
+        "weight": 1.0,
+        "area_sqm": 145.2,
+        "radius_m": 6.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11820363,
+          47.67376514
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430774702,
+        "weight": 1.0,
+        "area_sqm": 70.8,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.118060375,
+          47.673001925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430774703,
+        "weight": 1.0,
+        "area_sqm": 21.1,
+        "radius_m": 2.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11827047142857,
+          47.67306522857143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430776618,
+        "weight": 1.0,
+        "area_sqm": 265.3,
+        "radius_m": 9.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10687843333334,
+          47.694832416666664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430776619,
+        "weight": 1.0,
+        "area_sqm": 511.0,
+        "radius_m": 12.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10727378571428,
+          47.69496372857143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430776620,
+        "weight": 1.0,
+        "area_sqm": 93.3,
+        "radius_m": 5.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10782887999999,
+          47.6948884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1430776621,
+        "weight": 1.0,
+        "area_sqm": 452.5,
+        "radius_m": 12.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10782856,
+          47.69501222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1431605784,
+        "weight": 1.0,
+        "area_sqm": 6592.3,
+        "radius_m": 45.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0809389,
+          47.699382
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1431607646,
+        "weight": 1.0,
+        "area_sqm": 294.3,
+        "radius_m": 9.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0581404,
+          47.69648682
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1432186618,
+        "weight": 1.0,
+        "area_sqm": 135.9,
+        "radius_m": 6.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06352342857143,
+          47.70133331428571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1432186650,
+        "weight": 1.0,
+        "area_sqm": 258.8,
+        "radius_m": 9.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06011501111112,
+          47.70008861111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1432383942,
+        "weight": 1.0,
+        "area_sqm": 189.7,
+        "radius_m": 7.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07152268333334,
+          47.68686903333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1432459426,
+        "weight": 1.0,
+        "area_sqm": 453.0,
+        "radius_m": 12.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06832635999999,
+          47.6850673
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1432459468,
+        "weight": 1.0,
+        "area_sqm": 10589.4,
+        "radius_m": 58.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07093877857143,
+          47.68246896071429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091956,
+        "weight": 1.0,
+        "area_sqm": 334.3,
+        "radius_m": 10.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06502972941176,
+          47.681379299999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091960,
+        "weight": 1.0,
+        "area_sqm": 134.3,
+        "radius_m": 6.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0635018,
+          47.68129722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091978,
+        "weight": 1.0,
+        "area_sqm": 651.0,
+        "radius_m": 14.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06293328823529,
+          47.679643664705885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091979,
+        "weight": 1.0,
+        "area_sqm": 126.7,
+        "radius_m": 6.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06325449230768,
+          47.67972304615385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091980,
+        "weight": 1.0,
+        "area_sqm": 156.6,
+        "radius_m": 7.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06332970000001,
+          47.67949611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091981,
+        "weight": 1.0,
+        "area_sqm": 49.5,
+        "radius_m": 4.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06358282222222,
+          47.67945452222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091982,
+        "weight": 1.0,
+        "area_sqm": 42.1,
+        "radius_m": 3.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06388667142856,
+          47.67944934285714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091986,
+        "weight": 1.0,
+        "area_sqm": 57.9,
+        "radius_m": 4.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0633819,
+          47.67934436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091987,
+        "weight": 1.0,
+        "area_sqm": 17.4,
+        "radius_m": 2.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06294614285714,
+          47.67934485714285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091989,
+        "weight": 1.0,
+        "area_sqm": 153.0,
+        "radius_m": 7.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0646472909091,
+          47.67911082727273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091991,
+        "weight": 1.0,
+        "area_sqm": 517.5,
+        "radius_m": 12.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06460402,
+          47.67974784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091992,
+        "weight": 1.0,
+        "area_sqm": 289.9,
+        "radius_m": 9.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06420894444445,
+          47.67981392222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433091996,
+        "weight": 1.0,
+        "area_sqm": 1051.5,
+        "radius_m": 18.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06517119655172,
+          47.67926947931034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433092001,
+        "weight": 1.0,
+        "area_sqm": 419.8,
+        "radius_m": 11.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.064620432,
+          47.679320084000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433092002,
+        "weight": 1.0,
+        "area_sqm": 166.2,
+        "radius_m": 7.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0649749857143,
+          47.67945587142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433092003,
+        "weight": 1.0,
+        "area_sqm": 238.8,
+        "radius_m": 8.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06467797272727,
+          47.67958451818181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433388917,
+        "weight": 1.0,
+        "area_sqm": 197.8,
+        "radius_m": 7.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07141128999999,
+          47.69295058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433388944,
+        "weight": 1.0,
+        "area_sqm": 86.2,
+        "radius_m": 5.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06846123333334,
+          47.69247152222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433503696,
+        "weight": 1.0,
+        "area_sqm": 92.3,
+        "radius_m": 5.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06731766,
+          47.70770144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433503710,
+        "weight": 1.0,
+        "area_sqm": 500.0,
+        "radius_m": 12.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06596955714285,
+          47.708669678571425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1433503736,
+        "weight": 1.0,
+        "area_sqm": 146.1,
+        "radius_m": 6.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06284908,
+          47.70894796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1434905154,
+        "weight": 1.0,
+        "area_sqm": 402.1,
+        "radius_m": 11.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.05733080769231,
+          47.70887144615384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1434905155,
+        "weight": 1.0,
+        "area_sqm": 1903.0,
+        "radius_m": 24.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.05765552142857,
+          47.708849171428575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436347411,
+        "weight": 1.0,
+        "area_sqm": 29.6,
+        "radius_m": 3.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0982368375,
+          47.6767096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436347412,
+        "weight": 1.0,
+        "area_sqm": 31.8,
+        "radius_m": 3.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0989061375,
+          47.67607155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436347414,
+        "weight": 1.0,
+        "area_sqm": 14.4,
+        "radius_m": 2.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09846391666667,
+          47.67626001666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436347415,
+        "weight": 1.0,
+        "area_sqm": 24.5,
+        "radius_m": 2.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09827571428572,
+          47.67626905714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436347418,
+        "weight": 1.0,
+        "area_sqm": 69.7,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0994947818182,
+          47.67618278181818
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436347421,
+        "weight": 1.0,
+        "area_sqm": 14.6,
+        "radius_m": 2.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09892434000001,
+          47.6765709
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436347422,
+        "weight": 1.0,
+        "area_sqm": 292.9,
+        "radius_m": 9.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0985486875,
+          47.67655063125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436347424,
+        "weight": 1.0,
+        "area_sqm": 75.9,
+        "radius_m": 4.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09908651999999,
+          47.676229
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436840137,
+        "weight": 1.0,
+        "area_sqm": 1833.5,
+        "radius_m": 24.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07983988125,
+          47.67706800625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436840138,
+        "weight": 1.0,
+        "area_sqm": 1468.8,
+        "radius_m": 21.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07928376,
+          47.67728477
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436840139,
+        "weight": 1.0,
+        "area_sqm": 993.2,
+        "radius_m": 17.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07922988666665,
+          47.676378480000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436840140,
+        "weight": 1.0,
+        "area_sqm": 1523.6,
+        "radius_m": 22.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07988162222222,
+          47.67632141666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436840145,
+        "weight": 1.0,
+        "area_sqm": 151.4,
+        "radius_m": 6.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08004008571429,
+          47.675917057142854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1436840152,
+        "weight": 1.0,
+        "area_sqm": 1170.6,
+        "radius_m": 19.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08013955555556,
+          47.67721687777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1441752080,
+        "weight": 1.0,
+        "area_sqm": 493.1,
+        "radius_m": 12.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07899144666666,
+          47.67501274666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428438,
+        "weight": 1.0,
+        "area_sqm": 371.0,
+        "radius_m": 10.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09789239285715,
+          47.6724847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428458,
+        "weight": 1.0,
+        "area_sqm": 35.6,
+        "radius_m": 3.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09828650000001,
+          47.67238888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428459,
+        "weight": 1.0,
+        "area_sqm": 142.5,
+        "radius_m": 6.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09861023333333,
+          47.67239573333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428468,
+        "weight": 1.0,
+        "area_sqm": 77.9,
+        "radius_m": 5.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09688948333333,
+          47.672711308333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428474,
+        "weight": 1.0,
+        "area_sqm": 95.4,
+        "radius_m": 5.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09682013333334,
+          47.673036922222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428476,
+        "weight": 1.0,
+        "area_sqm": 55.2,
+        "radius_m": 4.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09668037142856,
+          47.67319222857143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428482,
+        "weight": 1.0,
+        "area_sqm": 17.6,
+        "radius_m": 2.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09658328333335,
+          47.67240691666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428483,
+        "weight": 1.0,
+        "area_sqm": 37.6,
+        "radius_m": 3.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09657935999999,
+          47.67258822
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428487,
+        "weight": 1.0,
+        "area_sqm": 32.7,
+        "radius_m": 3.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09740181428572,
+          47.672386214285716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428488,
+        "weight": 1.0,
+        "area_sqm": 57.4,
+        "radius_m": 4.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09714555,
+          47.672389583333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428490,
+        "weight": 1.0,
+        "area_sqm": 280.5,
+        "radius_m": 9.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0979791809524,
+          47.67223534285714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428491,
+        "weight": 1.0,
+        "area_sqm": 330.1,
+        "radius_m": 10.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09704891818183,
+          47.672235572727274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428495,
+        "weight": 1.0,
+        "area_sqm": 74.7,
+        "radius_m": 4.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.098984125,
+          47.6723895875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428508,
+        "weight": 1.0,
+        "area_sqm": 412.4,
+        "radius_m": 11.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09443643529411,
+          47.672269011764705
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428509,
+        "weight": 1.0,
+        "area_sqm": 214.8,
+        "radius_m": 8.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0938273125,
+          47.6724855375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428512,
+        "weight": 1.0,
+        "area_sqm": 115.9,
+        "radius_m": 6.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0937897,
+          47.67266886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428514,
+        "weight": 1.0,
+        "area_sqm": 238.7,
+        "radius_m": 8.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09378575999999,
+          47.67290512
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428515,
+        "weight": 1.0,
+        "area_sqm": 175.1,
+        "radius_m": 7.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09378133999999,
+          47.67320646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428516,
+        "weight": 1.0,
+        "area_sqm": 366.5,
+        "radius_m": 10.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09380259090909,
+          47.6737026
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428520,
+        "weight": 1.0,
+        "area_sqm": 263.3,
+        "radius_m": 9.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09454124444444,
+          47.67382101111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428522,
+        "weight": 1.0,
+        "area_sqm": 384.3,
+        "radius_m": 11.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09379255000002,
+          47.67416996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428523,
+        "weight": 1.0,
+        "area_sqm": 54.7,
+        "radius_m": 4.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0943335,
+          47.67432208333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428524,
+        "weight": 1.0,
+        "area_sqm": 90.3,
+        "radius_m": 5.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09486297999999,
+          47.67413968
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428526,
+        "weight": 1.0,
+        "area_sqm": 110.6,
+        "radius_m": 5.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09508916666665,
+          47.672946849999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428528,
+        "weight": 1.0,
+        "area_sqm": 70.2,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09508166666667,
+          47.67245103333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428529,
+        "weight": 1.0,
+        "area_sqm": 125.5,
+        "radius_m": 6.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09479489090909,
+          47.67244767272727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428530,
+        "weight": 1.0,
+        "area_sqm": 114.6,
+        "radius_m": 6.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09410133333334,
+          47.672445474999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428531,
+        "weight": 1.0,
+        "area_sqm": 434.3,
+        "radius_m": 11.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09549223333335,
+          47.67228082222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428532,
+        "weight": 1.0,
+        "area_sqm": 95.5,
+        "radius_m": 5.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09624591428572,
+          47.67223987142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428534,
+        "weight": 1.0,
+        "area_sqm": 94.2,
+        "radius_m": 5.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0940378375,
+          47.6735209625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428538,
+        "weight": 1.0,
+        "area_sqm": 63.0,
+        "radius_m": 4.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09419420769231,
+          47.67259183846154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428539,
+        "weight": 1.0,
+        "area_sqm": 13.2,
+        "radius_m": 2.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09549895714285,
+          47.672418871428576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428545,
+        "weight": 1.0,
+        "area_sqm": 11.2,
+        "radius_m": 1.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09476262000001,
+          47.67259672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1442428546,
+        "weight": 1.0,
+        "area_sqm": 4.6,
+        "radius_m": 1.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0944335,
+          47.67259502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1444314186,
+        "weight": 1.0,
+        "area_sqm": 232.9,
+        "radius_m": 8.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.05008522,
+          47.71813914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1444589414,
+        "weight": 1.0,
+        "area_sqm": 739.4,
+        "radius_m": 15.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13654795882354,
+          47.65376315882353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1444589418,
+        "weight": 1.0,
+        "area_sqm": 494.9,
+        "radius_m": 12.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1338486923077,
+          47.64525014615385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1446430702,
+        "weight": 1.0,
+        "area_sqm": 2070.4,
+        "radius_m": 25.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06087125714285,
+          47.71512347142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1446430703,
+        "weight": 1.0,
+        "area_sqm": 1089.0,
+        "radius_m": 18.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06103915,
+          47.71471091666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1446430706,
+        "weight": 1.0,
+        "area_sqm": 320.5,
+        "radius_m": 10.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06175582727273,
+          47.71398614545455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1446564715,
+        "weight": 1.0,
+        "area_sqm": 350.2,
+        "radius_m": 10.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07754784,
+          47.7186953
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1446564716,
+        "weight": 1.0,
+        "area_sqm": 326.1,
+        "radius_m": 10.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07806576,
+          47.71857936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1446564729,
+        "weight": 1.0,
+        "area_sqm": 259.9,
+        "radius_m": 9.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0759803,
+          47.71789612
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1446564731,
+        "weight": 1.0,
+        "area_sqm": 1293.5,
+        "radius_m": 20.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07764618888889,
+          47.719223633333335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029144,
+        "weight": 1.0,
+        "area_sqm": 230.3,
+        "radius_m": 8.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09767669583334,
+          47.67706150833333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029145,
+        "weight": 1.0,
+        "area_sqm": 144.9,
+        "radius_m": 6.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.097446676,
+          47.677159352
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029146,
+        "weight": 1.0,
+        "area_sqm": 239.4,
+        "radius_m": 8.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09525780000001,
+          47.677523986842104
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029147,
+        "weight": 1.0,
+        "area_sqm": 213.4,
+        "radius_m": 8.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09529233023255,
+          47.677344188372096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029148,
+        "weight": 1.0,
+        "area_sqm": 85.8,
+        "radius_m": 5.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09551508,
+          47.677140386666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029149,
+        "weight": 1.0,
+        "area_sqm": 139.4,
+        "radius_m": 6.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09281002903225,
+          47.67700023225806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029150,
+        "weight": 1.0,
+        "area_sqm": 156.9,
+        "radius_m": 7.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.094603903125,
+          47.676766503125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029151,
+        "weight": 1.0,
+        "area_sqm": 173.4,
+        "radius_m": 7.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09624922500001,
+          47.67651035
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029152,
+        "weight": 1.0,
+        "area_sqm": 130.9,
+        "radius_m": 6.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0965737125,
+          47.676460125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029158,
+        "weight": 1.0,
+        "area_sqm": 248.6,
+        "radius_m": 8.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09378551111111,
+          47.67712983333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029159,
+        "weight": 1.0,
+        "area_sqm": 16.9,
+        "radius_m": 2.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09383796,
+          47.67725446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029160,
+        "weight": 1.0,
+        "area_sqm": 15.6,
+        "radius_m": 2.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09353628,
+          47.67713148
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029161,
+        "weight": 1.0,
+        "area_sqm": 105.2,
+        "radius_m": 5.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09382491538462,
+          47.677832307692306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029162,
+        "weight": 1.0,
+        "area_sqm": 102.0,
+        "radius_m": 5.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09412218461537,
+          47.677783269230765
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029169,
+        "weight": 1.0,
+        "area_sqm": 97.0,
+        "radius_m": 5.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09175478235295,
+          47.6781457882353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029170,
+        "weight": 1.0,
+        "area_sqm": 50.8,
+        "radius_m": 4.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09102778333333,
+          47.67833449166667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029171,
+        "weight": 1.0,
+        "area_sqm": 55.5,
+        "radius_m": 4.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09045127333334,
+          47.678295739999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029172,
+        "weight": 1.0,
+        "area_sqm": 104.8,
+        "radius_m": 5.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09021424,
+          47.67816348666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029173,
+        "weight": 1.0,
+        "area_sqm": 86.9,
+        "radius_m": 5.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09021919999999,
+          47.677998807142856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029174,
+        "weight": 1.0,
+        "area_sqm": 78.8,
+        "radius_m": 5.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09021325625,
+          47.677832775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029175,
+        "weight": 1.0,
+        "area_sqm": 204.7,
+        "radius_m": 8.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.090876425,
+          47.6772094125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029176,
+        "weight": 1.0,
+        "area_sqm": 196.6,
+        "radius_m": 7.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09117387777779,
+          47.6771605
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029193,
+        "weight": 1.0,
+        "area_sqm": 92.7,
+        "radius_m": 5.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09217114444444,
+          47.67758753333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029194,
+        "weight": 1.0,
+        "area_sqm": 320.3,
+        "radius_m": 10.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0940068,
+          47.676836592857136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447029195,
+        "weight": 1.0,
+        "area_sqm": 333.6,
+        "radius_m": 10.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09344171875,
+          47.67691255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447273186,
+        "weight": 1.0,
+        "area_sqm": 28.8,
+        "radius_m": 3.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10487037777777,
+          47.67534397777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447280978,
+        "weight": 1.0,
+        "area_sqm": 10.7,
+        "radius_m": 1.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13782885,
+          47.631446175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447280979,
+        "weight": 1.0,
+        "area_sqm": 8.4,
+        "radius_m": 1.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1376196375,
+          47.6314470125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447280980,
+        "weight": 1.0,
+        "area_sqm": 6.5,
+        "radius_m": 1.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1375924875,
+          47.6316544875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447280981,
+        "weight": 1.0,
+        "area_sqm": 11.9,
+        "radius_m": 1.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13785543333334,
+          47.63164868888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447884608,
+        "weight": 1.0,
+        "area_sqm": 232.8,
+        "radius_m": 8.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15342282105262,
+          47.63129745789474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447884610,
+        "weight": 1.0,
+        "area_sqm": 67.6,
+        "radius_m": 4.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15359712,
+          47.63056302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447884612,
+        "weight": 1.0,
+        "area_sqm": 30.6,
+        "radius_m": 3.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1527194,
+          47.63146958
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1447885632,
+        "weight": 1.0,
+        "area_sqm": 457.4,
+        "radius_m": 12.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0879924,
+          47.71801488
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1449299322,
+        "weight": 1.0,
+        "area_sqm": 455.8,
+        "radius_m": 12.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12667684285715,
+          47.717990285714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1455927844,
+        "weight": 1.0,
+        "area_sqm": 251.3,
+        "radius_m": 8.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08700036,
+          47.69654744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1455927870,
+        "weight": 1.0,
+        "area_sqm": 246.6,
+        "radius_m": 8.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09004497142857,
+          47.69741567142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1463270458,
+        "weight": 1.0,
+        "area_sqm": 150.1,
+        "radius_m": 6.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13293049285714,
+          47.645604078571424
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1474012432,
+        "weight": 1.0,
+        "area_sqm": 1392.8,
+        "radius_m": 21.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.06769897142856,
+          47.65497712857143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1474045739,
+        "weight": 1.0,
+        "area_sqm": 68.0,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14125961111111,
+          47.66001116666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1474045740,
+        "weight": 1.0,
+        "area_sqm": 68.0,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14125845555554,
+          47.65984904444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1474045741,
+        "weight": 1.0,
+        "area_sqm": 68.0,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14169118888887,
+          47.65984527777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1474045742,
+        "weight": 1.0,
+        "area_sqm": 68.0,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1416939888889,
+          47.660008033333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1474045743,
+        "weight": 1.0,
+        "area_sqm": 68.0,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14083248888889,
+          47.66001414444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1474045744,
+        "weight": 1.0,
+        "area_sqm": 68.0,
+        "radius_m": 4.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14083088888889,
+          47.659854700000004
+        ]
+      }
+    }
+  ]
+}
