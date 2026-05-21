@@ -3,7 +3,7 @@
 Google Maps knows the fastest route.
 It doesn’t know the best one.
 
-CityLife shows you where city life actually is — before you walk into the wrong street.
+City Life shows you where city life actually is — before you walk into the wrong street.
 
 **And while you’re walking**, glance at your location to decide: left street or right street? Lively or dump?
 
