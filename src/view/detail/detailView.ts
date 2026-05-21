@@ -262,6 +262,10 @@ export class DetailView implements View {
 
     private onZoomChange(zoom: number): void {
         if (zoom <= this._minZoom) {
+            const map = this._map;
+            if (map) {
+                this._actions.saveSummaryViewport(map.getCenter(), map.getZoom());
+            }
             this._actions.openSummary();
         }
     }

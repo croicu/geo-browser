@@ -146,6 +146,8 @@ describe("DetailView", () => {
         mapFactory.map.simulateZoom(9);
 
         expect(actions.openedSummary).toBe(true);
+        expect(actions.savedSummaryCenter).toEqual([0, 0]);
+        expect(actions.savedSummaryZoom).toBe(9);
     });
 
     it("does not navigate to summary when zoom is above minimum", () => {

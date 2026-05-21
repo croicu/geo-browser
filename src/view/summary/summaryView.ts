@@ -249,7 +249,7 @@ export class SummaryView implements View {
         }
         const area = this.findAreaInBounds(map.getBounds(), map.getCenter());
         if (area) {
-            this._actions.openDetail(area.id);
+            this._actions.openDetail(area.id, map.getCenter(), map.getZoom());
         }
     }
 

@@ -108,6 +108,8 @@ describe("SummaryView", () => {
         mapFactory.map.simulateZoom(11);
 
         expect(actions.openedDetailAreaId).toBe("napoli");
+        expect(actions.openedDetailCenter).toEqual([0, 0]);
+        expect(actions.openedDetailZoom).toBe(11);
     });
 
     it("does not navigate when no area bbox intersects the viewport", async () => {

@@ -40,7 +40,7 @@ export interface Widget {
 
 export interface ControllerActions {
     openSummary(): void;
-    openDetail(areaId: string): void;
+    openDetail(areaId: string, center?: [number, number], zoom?: number): void;
     setLayerVisible(areaId: string, layerId: string, visible: boolean): void;
 
     saveSummaryViewport(center: [number, number], zoom: number): void;

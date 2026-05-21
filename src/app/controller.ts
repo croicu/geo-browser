@@ -96,7 +96,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
         }
     }
 
-    async openDetail(areaId: string): Promise<void> {
+    async openDetail(areaId: string, center?: [number, number], zoom?: number): Promise<void> {
         if (this._navigating) return;
         this._navigating = true;
 
@@ -118,8 +118,8 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
 
             this._detailViewState = new DetailViewState({
                 areaId: area.id,
-                center: saved?.center ?? area.center,
-                zoom: saved?.zoom ?? this._zoomLevel,
+                center: center ?? saved?.center ?? area.center,
+                zoom: zoom ?? saved?.zoom ?? this._zoomLevel,
                 visibleLayers,
             });
 
