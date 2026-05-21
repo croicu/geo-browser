@@ -56,8 +56,18 @@ class LeafletMapHandle implements MapHandle {
     }
 
     remove(): void {
-        // Cancel Leaflet's debounced scroll-wheel zoom timer; it can fire
-        // after map.remove() deletes the map pane, crashing on _leaflet_pos.
+        // Cancel Leaflet's pending async timers before removing the map.
+        // Both can fire after map.remove() deletes the map pane and crash
+        // reading _leaflet_pos from the deleted element.
+        //
+        // _animatingZoomTimer: set by _animateZoom (~300ms), fires _onZoomTransitionEnd.
+        //   Triggered when a second scroll event arrives while a zoom animation is
+        //   already running — the second zoom fires zoomend synchronously (no new
+        //   animation started), our handler navigates away, but this older timer
+        //   still fires on the now-dead map.
+        //
+        // scrollWheelZoom._timer: the 40ms debounce before _performZoom fires.
+        clearTimeout((this._map as unknown as { _animatingZoomTimer?: number })._animatingZoomTimer);
         clearTimeout((this._map.scrollWheelZoom as unknown as { _timer?: number })._timer);
         this._map.remove();
     }
