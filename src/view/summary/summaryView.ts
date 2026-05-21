@@ -39,6 +39,7 @@ export class SummaryView implements View {
     private _mapRoot?: HTMLElement;
     private _map?: MapHandle;
     private _moveEndCleanup?: () => void;
+    private _zoomCleanup?: () => void;
     private readonly _bubbleWidgets: BubbleWidget[] = [];
     private _designToolbar?: WidgetHandle;
     private _drawInteraction?: DrawAreaInteraction;
@@ -85,6 +86,7 @@ export class SummaryView implements View {
 
         this._map = map;
         this._moveEndCleanup = map.onMoveEnd(() => this.saveViewport());
+        this._zoomCleanup = map.onZoom(zoom => this.onZoomChange(zoom));
 
         this.createBubbleWidgets();
 
@@ -132,6 +134,9 @@ export class SummaryView implements View {
 
         this._moveEndCleanup?.();
         this._moveEndCleanup = undefined;
+
+        this._zoomCleanup?.();
+        this._zoomCleanup = undefined;
 
         this._map?.remove();
         this._map = undefined;
@@ -234,6 +239,43 @@ export class SummaryView implements View {
         this._actions.discardArea();
     }
 
+    private onZoomChange(zoom: number): void {
+        if (zoom < 11) {
+            return;
+        }
+        const map = this._map;
+        if (!map) {
+            return;
+        }
+        const area = this.findAreaInBounds(map.getBounds(), map.getCenter());
+        if (area) {
+            this._actions.openDetail(area.id);
+        }
+    }
+
+    private findAreaInBounds(
+        bounds: { sw: [number, number]; ne: [number, number] },
+        center: [number, number]
+    ) {
+        let best: (typeof this._catalog.areas)[0] | undefined;
+        let bestDist = Infinity;
+
+        for (const area of this._catalog.areas) {
+            const [west, south, east, north] = area.bbox;
+            if (south > bounds.ne[0] || north < bounds.sw[0]
+                || west > bounds.ne[1] || east < bounds.sw[1]) {
+                continue;
+            }
+            const dist = distSquared(area.center, center);
+            if (dist < bestDist) {
+                bestDist = dist;
+                best = area;
+            }
+        }
+
+        return best;
+    }
+
     private saveViewport(): void {
         if (!this._map) {
             return;
@@ -264,4 +306,8 @@ export class SummaryView implements View {
             this._bubbleWidgets.push(bubbleWidget);
         }
     }
+}
+
+function distSquared(a: [number, number], b: [number, number]): number {
+    return (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2;
 }

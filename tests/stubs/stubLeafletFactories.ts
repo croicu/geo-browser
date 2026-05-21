@@ -67,6 +67,8 @@ export class StubMap implements MapHandle {
     setMaxBounds(_sw: [number, number], _ne: [number, number]): void {}
     getBoundsZoom(_sw: [number, number], _ne: [number, number]): number { return 10; }
     setMinZoom(_zoom: number): void {}
+    public boundsResult = { sw: [0, 0] as [number, number], ne: [1, 1] as [number, number] };
+    getBounds(): { sw: [number, number]; ne: [number, number] } { return this.boundsResult; }
 
     onMouseDown(_handler: (latLng: [number, number]) => void): () => void {
         return () => {};

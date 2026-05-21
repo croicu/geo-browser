@@ -135,6 +135,14 @@ class LeafletMapHandle implements MapHandle {
         this._map.setMinZoom(zoom);
     }
 
+    getBounds(): { sw: [number, number]; ne: [number, number] } {
+        const b = this._map.getBounds();
+        return {
+            sw: [b.getSouth(), b.getWest()],
+            ne: [b.getNorth(), b.getEast()],
+        };
+    }
+
     unwrap(): L.Map {
         return this._map;
     }

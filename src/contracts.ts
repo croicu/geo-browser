@@ -85,6 +85,7 @@ export interface MapHandle {
     setMaxBounds(sw: [number, number], ne: [number, number]): void;
     getBoundsZoom(sw: [number, number], ne: [number, number]): number;
     setMinZoom(zoom: number): void;
+    getBounds(): { sw: [number, number]; ne: [number, number] };
 }
 
 export interface GeoDataService {
