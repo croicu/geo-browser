@@ -222,7 +222,9 @@ John’s wife. Her UX reactions are a reliable product signal.
 
 - The Capodimonte panic attack → motivated the entire product
 - Tapping heatmap dots and expecting information → drove the decision to bake
-  Nominatim reverse geocoding data into GeoJSON at build time
+  rich POI data (name, cuisine, address, phone, hours) from Overpass into GeoJSON
+  at build time; tappable `hasDetails` points show a popup with details and
+  links to Foursquare/Google Maps
 - “She tapped it and nothing happened, therefore it must do something” —
   best user feedback, always the most direct
 - Real-world usage feedback will drive V1.1 and beyond
@@ -245,8 +247,9 @@ complementary signal on top of OSM amenity density.
 composite signal instead.
 
 **Live Nominatim API calls** — considered for popup data when user taps a dot.
-Rejected because it breaks offline-first. Solution: bake geocoding data into
-GeoJSON at build time via the builder.
+Rejected because it breaks offline-first and returns little useful data (just reflects
+what's already visible on the map tiles). Solution: bake rich POI data (name, cuisine,
+address, phone, hours) from Overpass into GeoJSON at build time. See `docs/POI_LAYER.md`.
 
 **Crime data** — considered as a routing signal. No reliable free source exists.
 Irrelevant anyway — the composite signal (high photos + low amenities) identifies
@@ -286,12 +289,14 @@ Two separate repos, two separate tools:
 ```
 John draws rectangle in builder
   → Overpass query for OSM POIs
-  → Nominatim reverse geocoding baked in
-  → GeoJSON generated
+  → POI details baked in (name, cuisine, address, phone, hours)
+  → hasDetails flag set on enriched features
+  → GeoJSON generated (heatmap weight + optional POI metadata per point)
   → Pushed to GitHub
   → Cloudflare auto-deploys
   → Wife opens PWA on phone, area cached
   → Works offline in the catacombs
+  → Taps a bright dot → sees name, cuisine, hours, links to Foursquare/Google
   → Enables location tracking for street-level decisions
 ```
 
