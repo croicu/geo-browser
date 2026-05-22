@@ -24,15 +24,13 @@
 
 ## Recommended Next Branches
 
-### 1. POI Heat Layer (`poi-heat`)
+### 1. POI Layer (`poi`)
 
-New layer type combining heatmap density with tappable POI markers from a single GeoJSON file. Full plan of record in `docs/POI_LAYER.md`.
+Virtual layer type with tappable POI markers derived at runtime from `hasDetails` features in existing layers. Full plan of record in `docs/POI_LAYER.md`.
 
-- All points contribute to heat.
-- `hasDetails: true` features render as prominent interactive circle markers on top.
-- Popup shows baked name, cuisine, address, phone, website, opening hours.
-- Review links (Foursquare, Google Maps) computed at render time from `name + lat/lng`.
-- `protocols.ts` needs a new feature properties shape for `poi-heat` — coordinate with geo-builder before emitting data.
+- `hasDetails: true` features render as interactive circle markers.
+- Popup shows baked name, amenity, cuisine, address, website, opening hours.
+- Review links (Google Maps, Yelp, Foursquare) computed lazily when popup opens.
 
 ### 3. Data Source Abstraction
 

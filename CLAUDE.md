@@ -148,7 +148,7 @@ Area      = domain concept
 Bubble    = summary UI widget concept
 Layer     = protocol/data concept
 GeoLayer  = runtime wrapper/cache
-poi-heat  = layer type: heatmap + tappable POI markers from a single GeoJSON file
+poi  = layer type: tappable POI markers derived at runtime from hasDetails features in existing layers
 hasDetails = GeoJSON feature flag: point carries baked POI metadata and is tappable
 ```
 
@@ -331,14 +331,13 @@ Leaflet coordinates are `[latitude, longitude]`.
 
 Default event weight is `1.0`; heatmap density accumulation is handled by the renderer/plugin.
 
-### POI Heat Layer
+### POI Layer
 
-`poi-heat` is a planned layer type that combines heatmap density with tappable POI markers in a single GeoJSON file. See `docs/POI_LAYER.md` for the full plan of record.
+`poi` is a virtual layer type with no GeoJSON URL of its own. See `docs/POI_LAYER.md` for the full plan of record.
 
-- All features contribute to the heat layer.
-- Features with `hasDetails: true` also render as interactive circle markers on top.
-- Popup shows baked name, cuisine, address, phone, website, opening hours.
-- Review links (Foursquare, Google Maps) are computed at render time — not stored in GeoJSON.
+- Features with `hasDetails: true` in the area's existing layers render as interactive circle markers.
+- Popup shows baked name, amenity, cuisine, address, website, opening hours.
+- Review links (Google Maps, Yelp, Foursquare) are computed lazily when the popup opens — not stored in GeoJSON.
 
 Enriched feature shape:
 
@@ -363,7 +362,7 @@ Enriched feature shape:
 
 Good next branches:
 
-1. `poi-heat` layer type: new `LayerView` that renders heatmap + tappable `hasDetails` markers from a single GeoJSON. See `docs/POI_LAYER.md`.
+1. `poi` layer type: new `LayerView` that renders heatmap + tappable `hasDetails` markers from a single GeoJSON. See `docs/POI_LAYER.md`.
 2. Design-mode data source abstraction.
 3. Bbox persistence: `GeoArea.bbox` is computed from `center + radiusMeters` and is always square. Calling `SetAreaBbox` persists edits in the builder, but on the next load the square is recomputed, losing the edit. Fix: call `GetAreaBbox` on render and update the widget once the response arrives (render square immediately as placeholder, replace when builder responds).
 

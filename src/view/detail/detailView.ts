@@ -7,7 +7,7 @@ import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
 import { PointLayerView } from "./pointLayerView";
-import { PoiHeatLayerView } from "./poiHeatLayerView";
+import { PoiLayerView } from "./poiLayerView";
 import { PoiWidget } from "./poiWidget";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
@@ -261,8 +261,8 @@ export class DetailView implements View {
                         layer,
                         new DefaultLeafletLayerFactory()
                     );
-                } else if (layer.type === "poi-heat") {
-                    layerView = new PoiHeatLayerView(
+                } else if (layer.type === "poi") {
+                    layerView = new PoiLayerView(
                         this._map,
                         layer,
                         this._area.layers,

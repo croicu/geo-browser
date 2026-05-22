@@ -4,23 +4,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 9648996071,
-        "name": "Peace Pole",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1420336,
-          47.7342736
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 9856684807,
-        "name": "Memorial for Kari",
         "weight": 1.0
       },
       "geometry": {
@@ -34,7 +17,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 9873415072,
         "weight": 1.0
       },
       "geometry": {
@@ -48,8 +30,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 9949852992,
-        "name": "Red Brick Road, 1913",
         "weight": 1.0
       },
       "geometry": {
@@ -63,8 +43,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 10650605611,
-        "name": "Siedel Creek Dam Ruins",
         "weight": 1.0
       },
       "geometry": {
@@ -78,7 +56,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 11559098462,
         "weight": 1.0
       },
       "geometry": {
@@ -92,7 +69,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 11967963864,
         "weight": 1.0
       },
       "geometry": {
@@ -106,7 +82,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 11968002520,
         "weight": 1.0
       },
       "geometry": {
@@ -120,22 +95,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 488109874,
-        "name": "Microsoft Product Walk of Fame",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1279944,
-          47.6431413
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1482618618,
         "weight": 1.0
       },
       "geometry": {

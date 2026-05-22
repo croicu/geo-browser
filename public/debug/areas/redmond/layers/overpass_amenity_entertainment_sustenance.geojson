@@ -4,42 +4,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 293835831,
-        "name": "The Herbfarm",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.147451,
-          47.7331995
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 293835832,
-        "name": "Barking Frog",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1474339,
-          47.733569
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 293835921,
+        "hasDetails": true,
         "name": "Purple Cafe and Wine Bar - Woodinville",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "american",
+        "website": "https://www.purplecafe.com/purple-woodinville/",
+        "opening_hours": "Mo-Th 11:00-21:00; Fr 11:00-22:00; Sa 10:00-22:00; Su 10:00-16:00"
       },
       "geometry": {
         "type": "Point",
@@ -52,10 +24,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 293835973,
+        "hasDetails": true,
         "name": "Heritage Restaurant|Bar",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "american;meat;seafood",
+        "address": "Woodinville Redmond Road Northeast 14450, Woodinville"
       },
       "geometry": {
         "type": "Point",
@@ -68,306 +43,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 321705496,
-        "name": "Crimson Coward",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.141619,
-          47.6281526
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 329431185,
-        "name": "Daman's Bar & Grill",
-        "amenity": "pub",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1424275,
-          47.6325836
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 332083886,
-        "name": "Taqueria Guadalajara",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1448369,
-          47.6312175
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 339935528,
-        "name": "Mediterranean Grill",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1350637,
-          47.6287163
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 340337966,
-        "name": "Rasoi Indian Restaurant and Bakery",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1489543,
-          47.6271572
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 340340361,
-        "name": "MonGa Cafe",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1448865,
-          47.6268807
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 340340742,
-        "name": "Photai",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.144297,
-          47.6274173
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 340340743,
-        "name": "Little Garden",
-        "amenity": "restaurant",
         "weight": 1.0,
-        "names": [
-          "Little Garden",
-          "Chaat House"
-        ],
-        "amenities": [
-          "restaurant",
-          "fast_food"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1437896,
-          47.6276051
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 343484718,
-        "name": "Starbucks",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1441496,
-          47.6292529
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 346521344,
-        "name": "Mandarin Buffet & Grill",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.141844,
-          47.6325808
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 346521484,
-        "name": "Starbucks",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1405142,
-          47.6324527
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 346526865,
-        "name": "Lee\u2019s Kitchen",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.13811,
-          47.632106
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 346526866,
-        "name": "Qdoba",
-        "amenity": "fast_food",
-        "weight": 1.0,
-        "names": [
-          "Qdoba",
-          "Hui Lau Shan"
-        ],
-        "amenities": [
-          "fast_food",
-          "cafe"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1382763,
-          47.6319367
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 347256907,
-        "name": "Sichuan Cuisine",
-        "amenity": "restaurant",
-        "weight": 1.0,
-        "names": [
-          "Sichuan Cuisine",
-          "Five Guys"
-        ],
-        "amenities": [
-          "restaurant",
-          "fast_food"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.142562,
-          47.6287352
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 347259509,
-        "name": "Seoul Hot Pot",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1370267,
-          47.6323693
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 347259510,
-        "name": "Sapporo Teriyaki",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1370321,
-          47.6325735
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 352555208,
-        "name": "Teapot Vegetarian House",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1366327,
-          47.6319326
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "id": 418553403,
+        "hasDetails": true,
         "name": "Victor's Coffee House",
         "amenity": "cafe",
-        "weight": 1.0
+        "opening_hours": "Mo-Fr 07:00-16:00"
       },
       "geometry": {
         "type": "Point",
@@ -380,10 +61,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 418553404,
+        "hasDetails": true,
         "name": "The Matador",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "address": "Leary Way Northeast 7824, Redmond",
+        "website": "https://www.matadorrestaurants.com/locations/redmond",
+        "opening_hours": "Fr,Sa 11:00-02:00, Su-Th 11:00-24:00"
       },
       "geometry": {
         "type": "Point",
@@ -396,10 +82,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 418778904,
+        "hasDetails": true,
         "name": "McDonald's",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "burger",
+        "address": "Redmond Way 16975, Redmond",
+        "website": "https://www.mcdonalds.com/us/en-us/location/4594.html",
+        "opening_hours": "06:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -412,10 +103,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 418996958,
+        "hasDetails": true,
         "name": "Starbucks",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Redmond Way 17196, Redmond",
+        "website": "https://www.starbucks.com/store-locator/store/9071/bear-creek-17196-ne-redmond-wy-redmond-wa-980524405-us"
       },
       "geometry": {
         "type": "Point",
@@ -428,10 +123,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 418996963,
+        "hasDetails": true,
         "name": "BJ's",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "american",
+        "address": "166th Avenue Northeast 7211, Redmond",
+        "website": "https://www.bjsrestaurants.com/locations/wa/redmond",
+        "opening_hours": "Su-Th 11:00-23:00, Fr,Sa 11:00-24:00"
       },
       "geometry": {
         "type": "Point",
@@ -444,10 +144,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 420020323,
+        "hasDetails": true,
         "name": "Mercurys Coffee Co.",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Avondale Road Northeast 11440, Redmond",
+        "website": "https://mercurys.com/",
+        "opening_hours": "Mo-Fr 04:30-19:00; Sa-Su 05:00-19:00"
       },
       "geometry": {
         "type": "Point",
@@ -460,24 +165,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 427246530,
-        "name": "Liuyishou Hotpot",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1531238,
-          47.6254515
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 809708072,
-        "amenity": "cafe",
         "weight": 1.0
       },
       "geometry": {
@@ -491,9 +178,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 809709463,
-        "name": "PRO Club Bistro",
-        "amenity": "restaurant",
         "weight": 1.0
       },
       "geometry": {
@@ -507,42 +191,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 809733889,
-        "name": "Microsoft Cafe 37",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1259874,
-          47.6385264
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 809846974,
-        "name": "Microsoft Cafe 36",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1234485,
-          47.6406698
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 908632940,
+        "hasDetails": true,
         "name": "Silver Spoon",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "thai"
       },
       "geometry": {
         "type": "Point",
@@ -555,10 +209,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 908632947,
+        "hasDetails": true,
         "name": "Starbucks",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Northeast Novelty Hill Road 23515, Redmond",
+        "website": "https://www.starbucks.com/store-locator/store/10291/redmond-ridge-23515-novelty-hill-rd-d-312-redmond-wa-980531996-u"
       },
       "geometry": {
         "type": "Point",
@@ -571,10 +229,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 908633008,
+        "hasDetails": true,
         "name": "Ixtapa",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican"
       },
       "geometry": {
         "type": "Point",
@@ -587,10 +247,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 908633012,
+        "hasDetails": true,
         "name": "Subway",
         "amenity": "fast_food",
-        "weight": 1.0,
+        "cuisine": "sandwich",
+        "address": "Northeast Market Place Drive 22310, Redmond",
+        "website": "https://restaurants.subway.com/united-states/wa/redmond/22310-ne-market-place-dr",
+        "opening_hours": "Mo-Fr 09:00-20:00; Sa-Su 09:00-18:00",
         "names": [
           "Subway",
           "Tony Maroni's"
@@ -607,10 +272,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 986076497,
+        "hasDetails": true,
         "name": "Palmers",
         "amenity": "pub",
-        "weight": 1.0
+        "address": "Leary Way 7853, Redmond",
+        "opening_hours": "Mo-Su 10:00-02:00"
       },
       "geometry": {
         "type": "Point",
@@ -623,10 +291,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1020824408,
+        "hasDetails": true,
         "name": "Royal Biryani House",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "indian",
+        "address": "161th Avenue Northeast 8102",
+        "website": "https://royalbiryanihouse.com/",
+        "opening_hours": "Mo-Th 11:00-22:00; Fr-Sa 11:00-23:00; Su 11:00-21:30"
       },
       "geometry": {
         "type": "Point",
@@ -639,10 +312,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1020849071,
+        "hasDetails": true,
         "name": "Three Lions Pub",
         "amenity": "pub",
-        "weight": 1.0
+        "cuisine": "british",
+        "address": "161st Avenue Northeast 8125",
+        "website": "https://www.thethreelionspub.com/"
       },
       "geometry": {
         "type": "Point",
@@ -655,10 +332,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1020852776,
+        "hasDetails": true,
         "name": "The British Pantry Ltd.",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "british",
+        "address": "161st Avenue Northeast 8125, Redmond",
+        "website": "https://www.thebritishpantryltd.com/",
+        "opening_hours": "Mo-Th 10:00-18:00; Fr-Su 10:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -671,10 +353,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1021370421,
+        "hasDetails": true,
         "name": "J Michaels Pub & Eatery",
         "amenity": "pub",
-        "weight": 1.0
+        "address": "158th Avenue Northeast 15770, Redmond",
+        "website": "https://www.jmichaelsredmond.com/",
+        "opening_hours": "Mo-Sa 11:00-01:00; Su 10:00-01:00"
       },
       "geometry": {
         "type": "Point",
@@ -687,10 +373,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1021843304,
+        "hasDetails": true,
         "name": "Starbucks",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "170th Avenue Northeast 7625, Redmond",
+        "website": "https://www.starbucks.com/store-locator/store/15022/redmond-retail-7625-170th-ave-ne-101-redmond-wa-980520910-us"
       },
       "geometry": {
         "type": "Point",
@@ -703,10 +393,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1028669255,
+        "hasDetails": true,
         "name": "Village Square Cafe",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "diner",
+        "address": "Northeast 185th Street 16150, Redmond",
+        "website": "https://villagesquare.cafesinc.com/default.aspx?",
+        "opening_hours": "Su-Fr 07:00-15:00"
       },
       "geometry": {
         "type": "Point",
@@ -719,10 +414,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1078173445,
+        "hasDetails": true,
         "name": "JJ Mahoneys",
         "amenity": "pub",
-        "weight": 1.0
+        "address": "161st Avenue Northeast 8932, Redmond",
+        "website": "http://jjmahoneys.com"
       },
       "geometry": {
         "type": "Point",
@@ -735,10 +433,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1078173888,
+        "hasDetails": true,
         "name": "Racha Noodle & Thai",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "thai",
+        "address": "161st Avenue Northeast 8936, Redmond",
+        "website": "https://www.rachathai.com/redmond",
+        "opening_hours": "Mo-Th 11:00-14:30,16:00-21:00; Fr 11:00-22:00; Sa 11:30-22:00; Su 11:30-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -751,10 +454,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1103954941,
+        "hasDetails": true,
         "name": "Sunrise Cafe",
         "amenity": "cafe",
-        "weight": 1.0,
+        "address": "West Lake Sammamish Parkway Northeast 7299, Redmond",
+        "opening_hours": "Tu-Fr 05:30-13:00; Sa,Su 06:00-13:00",
         "names": [
           "Sunrise Cafe",
           "Bangkok Basil"
@@ -775,10 +481,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1125487671,
+        "hasDetails": true,
         "name": "Cypress Coffee Company",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "website": "https://www.cypresscoffee.co/"
       },
       "geometry": {
         "type": "Point",
@@ -791,10 +500,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1125487703,
+        "hasDetails": true,
         "name": "Himitsu",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "asian"
       },
       "geometry": {
         "type": "Point",
@@ -807,9 +518,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1134581367,
-        "name": "Three Lions Pub",
-        "amenity": "pub",
         "weight": 1.0
       },
       "geometry": {
@@ -823,10 +531,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1134581421,
+        "hasDetails": true,
         "name": "Miyakos Teriyaki & Wok",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "asian"
       },
       "geometry": {
         "type": "Point",
@@ -839,10 +549,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1191231784,
+        "hasDetails": true,
         "name": "Papa Murphy's",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "pizza",
+        "address": "Northeast Novelty Hill Road 23515, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -855,10 +568,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1191231791,
+        "hasDetails": true,
         "name": "Papa Murphy's",
         "amenity": "fast_food",
-        "weight": 1.0,
+        "cuisine": "pizza",
         "names": [
           "Papa Murphy's",
           "Luigi's Italian Cucina"
@@ -879,10 +594,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1199361856,
+        "hasDetails": true,
         "name": "Ooba Tooba",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "address": "Northeast 83rd Street 15802, Redmond",
+        "website": "https://oobatooba.com/",
+        "opening_hours": "Mo-Su 11:00-19:30"
       },
       "geometry": {
         "type": "Point",
@@ -895,42 +615,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1213922799,
-        "name": "Frying Fish",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.154317,
-          47.62701
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1213922824,
-        "name": "Papa Murphy's",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.154542,
-          47.6270082
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 1217745663,
+        "hasDetails": true,
         "name": "Pomegranate Bistro",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "american;italian;italian_pizza",
+        "website": "https://pomegranatebistro.com"
       },
       "geometry": {
         "type": "Point",
@@ -943,10 +634,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1235037503,
+        "hasDetails": true,
         "name": "Starbucks",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Northeast Novelty Hill Road 23475, Redmond",
+        "website": "https://www.starbucks.com/store-locator/store/8314/qfc-redmond-878-23475-ne-novelty-hill-rd-redmond-wa-980535501-us"
       },
       "geometry": {
         "type": "Point",
@@ -959,10 +654,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1241063653,
+        "hasDetails": true,
         "name": "Los Chilangos",
         "amenity": "restaurant",
-        "weight": 1.0,
+        "cuisine": "mexican",
+        "address": "Northeast 87th Street 16114, Redmond",
+        "website": "https://www.loschilangos.com/",
+        "opening_hours": "Su-Th 11:00-20:00; Fr,Sa 11:00-21:00",
         "names": [
           "Los Chilangos",
           "Papa John's",
@@ -984,10 +684,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1241180008,
+        "hasDetails": true,
         "name": "Peet's Coffee",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Redmond Way 17887, Redmond",
+        "opening_hours": "Mo-Fr 05:30-17:30; Sa-Su 06:00-17:30"
       },
       "geometry": {
         "type": "Point",
@@ -1000,10 +704,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1241180080,
+        "hasDetails": true,
         "name": "Chipotle",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "address": "Redmond Way 17875, Redmond",
+        "website": "https://locations.chipotle.com/wa/redmond/17875-redmond-way",
+        "opening_hours": "Mo-Su 10:45-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -1016,10 +725,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1242265277,
+        "hasDetails": true,
         "name": "Baskin-Robbins",
         "amenity": "ice_cream",
-        "weight": 1.0
+        "cuisine": "ice_cream",
+        "address": "Redmond Way 17181, Redmond",
+        "website": "https://locations.baskinrobbins.com/wa/redmond/17181-redmond-way",
+        "opening_hours": "Mo-Fr 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -1032,10 +746,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1243260800,
+        "hasDetails": true,
         "name": "Yummy Teriyaki",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "asian",
+        "address": "Redmond Way 17218, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1048,10 +765,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1257414155,
+        "hasDetails": true,
         "name": "Agave Cocina & Cantina",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "address": "Northeast Redmond Way 17158, Redmond",
+        "website": "https://agaverest.com/",
+        "opening_hours": "Su-Th 11:00-22:00; Fr-Sa 11:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -1064,10 +786,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1262848052,
+        "hasDetails": true,
         "name": "Black Raven Brewing Company",
         "amenity": "pub",
-        "weight": 1.0
+        "address": "Northeast 95th Street 14679, Redmond",
+        "website": "https://blackravenbrewing.com",
+        "opening_hours": "Mo-We 14:00-21:00; Th 14:00-22:00; Fr 12:00-22:00; Sa 12:00-21:00; Su 12:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -1080,10 +806,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1276548279,
+        "hasDetails": true,
         "name": "Starbucks",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "236th Avenue Northeast 3925, Redmond",
+        "website": "https://www.starbucks.com/store-locator/store/12625/albertsons-redmond-3418-3925-236th-ave-ne-redmond-wa-980538455-us"
       },
       "geometry": {
         "type": "Point",
@@ -1096,10 +826,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1372948758,
+        "hasDetails": true,
         "name": "Hakka House",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "chinese",
+        "address": "Leary Way Northeast 7845, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1112,10 +845,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1380602517,
+        "hasDetails": true,
         "name": "Ristorante Tropea",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "italian",
+        "address": "164th Avenue Northeast 8461, Redmond",
+        "website": "https://www.ristorantetropea.com/",
+        "opening_hours": "Mo-Th 11:00-14:00,16:30-21:00; Fr 11:00-14:00,16:30-22:00; Sa 16:30-22:00; Su 16:30-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -1128,10 +866,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1438943256,
+        "hasDetails": true,
         "name": "Kanishka",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "indian",
+        "address": "Redmond Way 16651, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1144,10 +885,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1738744874,
+        "hasDetails": true,
         "name": "Redmond's Bar and Grill",
         "amenity": "pub",
-        "weight": 1.0
+        "cuisine": "burger",
+        "address": "Leary Way 7979, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1160,26 +904,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1739472328,
-        "name": "Starbucks",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.154652,
-          47.6250241
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 1740887062,
+        "hasDetails": true,
         "name": "Sages Restaurant",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "italian",
+        "address": "Northeast 83rd Street 15916, Redmond",
+        "opening_hours": "Tu-Fr 11:30-14:00,17:00-21:00, Fr,Sa 17:00-22:00, Su 17:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -1192,10 +924,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1774361993,
+        "hasDetails": true,
         "name": "Panera Bread",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "sandwich;bakery",
+        "address": "Redmond Way 17262, Redmond",
+        "website": "https://locations.panerabread.com/wa/redmond/17262-redmond-way.html",
+        "opening_hours": "Mo-Sa 06:00-21:00; Su 07:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -1208,10 +945,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1988524258,
+        "hasDetails": true,
         "name": "Starbucks",
         "amenity": "cafe",
-        "weight": 1.0,
+        "cuisine": "coffee_shop",
+        "address": "Northeast 74th Street 16500, Redmond",
+        "website": "https://starbucks.com/store-locator/store/13039/redmond-town-center-7425-166th-ave-ne-ste-c-105-redmond-wa-980527868-u",
+        "opening_hours": "Mo-Fr 05:30-20:00; Sa,Su 07:00-19:30",
         "names": [
           "Starbucks",
           "The Original Pancake House"
@@ -1232,10 +974,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2071062675,
+        "hasDetails": true,
         "name": "Yummy Pho",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "vietnamese",
+        "address": "161st Avenue Northeast 8920, Redmond",
+        "opening_hours": "Mo-Su 11:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -1248,10 +994,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2071065704,
+        "hasDetails": true,
         "name": "Flatstick Pub",
         "amenity": "pub",
-        "weight": 1.0
+        "address": "164th Avenue Northeast 7530, Redmond",
+        "website": "https://flatstickpub.com/redmond/",
+        "opening_hours": "Su-Th 11:00-23:00; Fr-Sa 11:00-25:00"
       },
       "geometry": {
         "type": "Point",
@@ -1264,10 +1014,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2106231828,
+        "hasDetails": true,
         "name": "Subway",
         "amenity": "fast_food",
-        "weight": 1.0,
+        "cuisine": "sandwich",
+        "address": "Northeast 91st Street 14712, Redmond",
+        "website": "https://restaurants.subway.com/united-states/wa/redmond/14712-ne-91st-st",
+        "opening_hours": "Mo-Fr 07:00-22:00; Sa-Su 09:00-20:00",
         "names": [
           "Subway",
           "Zaucer Pizza"
@@ -1288,26 +1043,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 2136439847,
-        "name": "Amulya Indian Cuisine",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1540685,
-          47.6308799
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 2447402598,
+        "hasDetails": true,
         "name": "Pablo y Pablo",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "address": "Woodinville Redmond Road Northeast 14481, Woodinville",
+        "website": "https://www.pabloypablo.com/woodinville/"
       },
       "geometry": {
         "type": "Point",
@@ -1320,10 +1063,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2622999539,
+        "hasDetails": true,
         "name": "Asiana Bistro",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "asian",
+        "address": "Redmond Way 17875, Redmond",
+        "website": "http://www.asiana-bistro.com/",
+        "opening_hours": "Mo-Sa 10:30-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -1336,10 +1084,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2623010946,
+        "hasDetails": true,
         "name": "Jersey Mike's Subs",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "sandwich",
+        "address": "Northeast Redmond Way 17181, Redmond",
+        "website": "https://www.jerseymikes.com/18011/redmond-wa",
+        "opening_hours": "Mo-Fr 10:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -1352,10 +1105,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2623485882,
+        "hasDetails": true,
         "name": "Subway",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "sandwich",
+        "address": "Northeast Redmond Fall City Road 23530, Redmond",
+        "website": "https://restaurants.subway.com/united-states/wa/redmond/23530-ne-redmond-fall-city-rd",
+        "opening_hours": "Mo-Fr 06:00-21:00; Sa 08:00-21:00; Su 09:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -1368,10 +1126,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2623497488,
+        "hasDetails": true,
         "name": "Sahara",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mediterranean",
+        "address": "Redmond Way 17875, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1384,10 +1145,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2623987923,
+        "hasDetails": true,
         "name": "Mercurys Coffee Co.",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Redmond Way 17980, Redmond",
+        "website": "https://mercurys.com/",
+        "opening_hours": "Mo-Fr 04:00-19:00; Sa,Su 05:00-19:00"
       },
       "geometry": {
         "type": "Point",
@@ -1400,10 +1166,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2624145049,
+        "hasDetails": true,
         "name": "Qdoba",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "address": "Redmond Way 15946, Redmond",
+        "website": "https://locations.qdoba.com/us/wa/redmond/15946-redmond-way.html",
+        "opening_hours": "Mo-Su 10:30-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -1416,10 +1187,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2624145607,
+        "hasDetails": true,
         "name": "Jimmy John's",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "sandwich",
+        "address": "160th Avenue Northeast 8074, Redmond",
+        "website": "https://locations.jimmyjohns.com/wa/redmond/sandwiches-1981.html"
       },
       "geometry": {
         "type": "Point",
@@ -1432,10 +1207,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2624148528,
+        "hasDetails": true,
         "name": "The Screaming Parrots Cafe",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Cleveland Street 16095, Redmond",
+        "opening_hours": "Mo-Tu 08:00-23:00, We-Su 07:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -1448,10 +1227,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2624149206,
+        "hasDetails": true,
         "name": "Zeeks Pizza - Redmond",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "pizza",
+        "website": "https://zeekspizza.com/",
+        "opening_hours": "Su-Th 11:00-21:00; Fr,Sa 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -1464,10 +1247,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2624157364,
+        "hasDetails": true,
         "name": "Tipsy Cow Burger Bar",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "burger",
+        "address": "Cleveland Street 16345, Redmond",
+        "website": "https://www.tipsycowburgerbar.com/",
+        "opening_hours": "Su-Th 11:00-21:00; Fr,Sa 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -1480,10 +1268,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2626116367,
+        "hasDetails": true,
         "name": "Potbelly",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "sandwich",
+        "address": "161st Avenue Northeast 8867, Redmond",
+        "website": "https://www.potbelly.com/",
+        "opening_hours": "Mo-Su 10:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -1496,10 +1289,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2626130765,
+        "hasDetails": true,
         "name": "Matts' Rotisserie & Oyster Lounge",
         "amenity": "restaurant",
-        "weight": 1.0,
+        "cuisine": "regional",
+        "address": "Northeast 74th Street 16551, Redmond",
+        "website": "https://www.mattsrotisserie.com/",
+        "opening_hours": "Mo-Th 11:00-21:00; Fr,Sa 11:00-10:00",
         "names": [
           "Matts' Rotisserie & Oyster Lounge",
           "Creperie de Paris",
@@ -1521,10 +1319,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2627336275,
+        "hasDetails": true,
         "name": "Five Guys",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "burger",
+        "address": "Northeast Redmond Way 17124, Redmond",
+        "website": "https://www.fiveguys.com/",
+        "opening_hours": "11:00-21:30"
       },
       "geometry": {
         "type": "Point",
@@ -1537,10 +1340,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2627376310,
+        "hasDetails": true,
         "name": "Niko Teriyaki",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "asian",
+        "address": "Redmond Way 15946, Redmond",
+        "website": "https://www.nikoteriyaki.com/",
+        "opening_hours": "Mo-Sa 10:30-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -1553,10 +1361,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2627417682,
+        "hasDetails": true,
         "name": "Yi Fang Tea",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "bubble_tea",
+        "address": "160th Avenue Northeast 8145, Redmond",
+        "website": "https://www.yifangteapnw.com/",
+        "opening_hours": "Mo-Su 12:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -1569,10 +1382,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 2627471720,
+        "hasDetails": true,
         "name": "Cold Stone Creamery",
         "amenity": "ice_cream",
-        "weight": 1.0
+        "cuisine": "ice_cream",
+        "address": "164th Avenue Northeast 7349, Redmond",
+        "website": "https://www.coldstonecreamery.com/",
+        "opening_hours": "Su-Th 11:00-22:30; Fr,Sa 11:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -1585,50 +1403,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 2716358137,
-        "name": "Tang Bar Hot Pot Restaurant",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1446883,
-          47.6268803
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 2716358161,
-        "name": "Somisomi",
-        "amenity": "ice_cream",
         "weight": 1.0,
-        "names": [
-          "Somisomi",
-          "Tiger Bites"
-        ],
-        "amenities": [
-          "ice_cream",
-          "restaurant"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1441416,
-          47.6274075
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "id": 2834328914,
+        "hasDetails": true,
         "name": "MOD Pizza",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "pizza",
+        "address": "161st Avenue Northeast 8900, Redmond",
+        "website": "https://locations.modpizza.com/usa/wa/redmond/8900-161st-ave-ne",
+        "opening_hours": "Mo-We 10:30-22:00; Th-Sa 10:30-23:00; Su 10:30-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -1641,58 +1424,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 3295744762,
-        "name": "Dough Zone",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.145002,
-          47.631134
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3295746561,
-        "name": "Anjappar Chettinad",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1452654,
-          47.6309962
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3295746861,
-        "name": "Mavalli Tiffin Rooms (MTR 1924)",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1449817,
-          47.6309268
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 3351104940,
+        "hasDetails": true,
         "name": "Subway",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "sandwich",
+        "address": "East Sammamish Parkway 6536, Redmond",
+        "website": "https://restaurants.subway.com/united-states/wa/redmond/6536-e-sammamish-pky",
+        "opening_hours": "Mo-Fr 08:00-22:00, Sa 08:00-24:00, Su 10:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -1705,58 +1445,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 3377511542,
-        "name": "Shahana Steakhouse",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1559605,
-          47.6301559
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3728489926,
-        "name": "El Rinconsito",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1543163,
-          47.6306101
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3734075551,
-        "name": "Microsoft Cafe 112",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.141331,
-          47.6405442
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 3812153314,
+        "hasDetails": true,
         "name": "IPIC Theaters",
         "amenity": "cinema",
-        "weight": 1.0
+        "address": "164th Avenue Northeast 7330, Redmond",
+        "website": "https://www.ipic.com/redmond-wa/location"
       },
       "geometry": {
         "type": "Point",
@@ -1769,197 +1464,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 3889813431,
-        "name": "Steve's Bar and Grill",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1502131,
-          47.6282964
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3889813433,
-        "name": "Donburi Station",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1489551,
-          47.6273198
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3889813443,
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1495471,
-          47.6282878
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3889813448,
-        "name": "Nan Noodles",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1505741,
-          47.6282967
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3889828768,
-        "name": "Dickey's Barbecue Pit",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.151475,
-          47.6282977
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3889828774,
-        "name": "Shaoshan Impression",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.151719,
-          47.628298
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3889833961,
-        "name": "Wayback Burgers",
-        "amenity": "fast_food",
         "weight": 1.0,
-        "names": [
-          "Wayback Burgers",
-          "Subway"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.15482,
-          47.6262389
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3889833973,
-        "name": "Happy Lemon",
-        "amenity": "cafe",
-        "weight": 1.0,
-        "names": [
-          "Happy Lemon",
-          "Thai Chef"
-        ],
-        "amenities": [
-          "cafe",
-          "restaurant"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.154822,
-          47.6263327
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3889833976,
-        "name": "Ezell's Chicken",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.154652,
-          47.6251192
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3893778039,
-        "name": "Potbelly",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.134036,
-          47.6308986
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3899118617,
-        "name": "85\u00b0C Bakery Cafe",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1444262,
-          47.6276109
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "id": 3900551372,
+        "hasDetails": true,
         "name": "Kitanda",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop;acai",
+        "address": "Northeast 74th Street 16349, Redmond",
+        "website": "https://kitanda.com/redmond",
+        "opening_hours": "Mo-Sa 07:00-19:00; Su 08:00-18:00"
       },
       "geometry": {
         "type": "Point",
@@ -1972,114 +1485,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 3933280523,
-        "name": "Panda Express",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1415829,
-          47.6296695
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3940718893,
-        "name": "Wibbley's Burgers",
-        "amenity": "restaurant",
         "weight": 1.0,
-        "names": [
-          "Wibbley's Burgers",
-          "Baskin-Robbins"
-        ],
-        "amenities": [
-          "restaurant",
-          "ice_cream"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1543197,
-          47.6305184
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3950968415,
-        "name": "I Love Teriyaki",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1544949,
-          47.6304374
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3950968421,
-        "name": "Tasty Time 425 & KTV Karaoke Lounge",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1547965,
-          47.6299141
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 3950968423,
-        "name": "Little Taipei",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1554631,
-          47.6299241
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 4129359890,
-        "name": "Jimmy John's",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1351225,
-          47.6286168
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "id": 4158630595,
+        "hasDetails": true,
         "name": "Taqueria Gallo",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "website": "https://tegredmond.com/"
       },
       "geometry": {
         "type": "Point",
@@ -2092,10 +1504,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4164273089,
+        "hasDetails": true,
         "name": "Emerald City Smoothie",
         "amenity": "fast_food",
-        "weight": 1.0
+        "address": "Redmond Way 16717, Redmond",
+        "website": "https://emeraldcitysmoothie.com",
+        "opening_hours": "Mo-Fr 07:00-20:00; Sa, Su 08:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -2108,10 +1524,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4350392293,
+        "hasDetails": true,
         "name": "Caadxi Mezcaleria",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "opening_hours": "Su 12:00-21:00; Mo-Th 15:00-21:00; Fr 14:00-23:00; Sa 12:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -2124,10 +1543,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4350410789,
+        "hasDetails": true,
         "name": "Woodblock",
         "amenity": "pub",
-        "weight": 1.0
+        "address": "Cleveland Street 16175, Redmond",
+        "website": "https://www.woodblockredmond.com"
       },
       "geometry": {
         "type": "Point",
@@ -2140,10 +1562,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4353378417,
+        "hasDetails": true,
         "name": "Domino's",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "pizza",
+        "address": "Redmond Way 16260, Redmond",
+        "website": "https://pizza.dominos.com/washington/redmond/16260-redmond-way",
+        "opening_hours": "Su-Th 10:00-22:00; Fr,Sa 10:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -2156,10 +1583,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4353378418,
+        "hasDetails": true,
         "name": "The Third Place",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "korean",
+        "address": "Leary Way 7844, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -2172,10 +1602,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4353378424,
+        "hasDetails": true,
         "name": "Garlic Crush",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mediterranean",
+        "address": "Cleveland Street 16095, Redmond",
+        "website": "https://garliccrush.com/",
+        "opening_hours": "Su-Th 11:00-21:00; Fr,Sa 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -2188,10 +1623,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4353378439,
+        "hasDetails": true,
         "name": "La Quemada Tienda Carnicera",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican"
       },
       "geometry": {
         "type": "Point",
@@ -2204,10 +1641,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4353378443,
+        "hasDetails": true,
         "name": "Molly Moon's Homemade Ice Cream - Redmond",
         "amenity": "ice_cream",
-        "weight": 1.0
+        "cuisine": "ice_cream",
+        "address": "Cleveland Street 16272, Redmond",
+        "website": "https://www.mollymoon.com/locations/redmond",
+        "opening_hours": "Mo-Su 12:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -2220,10 +1662,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4353378454,
+        "hasDetails": true,
         "name": "Prime Steakhouse",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "steak_house",
+        "address": "Cleveland Street 16330, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -2236,10 +1681,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4353378467,
+        "hasDetails": true,
         "name": "River Trail Roasters",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "158th Avenue Northeast 8397, Redmond",
+        "opening_hours": "Mo-Fr 06:30-17:00; Sa 07:00-17:00; Su 08:00-16:00"
       },
       "geometry": {
         "type": "Point",
@@ -2252,58 +1701,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 4442745488,
-        "name": "Microsoft Cafe 99",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.141752,
-          47.6424067
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 4491042323,
-        "name": "Chateau Espresso",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1426086,
-          47.7339469
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 4491042337,
-        "name": "Good Brewing",
-        "amenity": "pub",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.142595,
-          47.7343961
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 4491062199,
+        "hasDetails": true,
         "name": "Sora Sushi",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "sushi"
       },
       "geometry": {
         "type": "Point",
@@ -2316,9 +1719,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 4789555194,
-        "name": "Supreme Dumplings",
-        "amenity": "restaurant",
         "weight": 1.0
       },
       "geometry": {
@@ -2332,10 +1732,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4789555721,
+        "hasDetails": true,
         "name": "Just Poke",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "poke",
+        "address": "164th Avenue Northeast 7345, Redmond",
+        "website": "https://justpoke.com/locations/redmond/",
+        "opening_hours": "Mo-Su 11:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -2348,10 +1753,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4792797634,
+        "hasDetails": true,
         "name": "Zio Sal Ristorante Italiano",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "italian",
+        "opening_hours": "Su-Th 11:30-21:00; Fr,Sa 11:30-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -2364,10 +1772,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4792797647,
+        "hasDetails": true,
         "name": "Thai Ginger",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "thai",
+        "address": "164th Avenue Northeast 7430, Redmond",
+        "website": "https://thaiginger.com/redmond-town-center/",
+        "opening_hours": "Mo-Su 11:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -2380,10 +1793,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4792797661,
+        "hasDetails": true,
         "name": "SecondStory Repertory",
         "amenity": "theatre",
-        "weight": 1.0
+        "address": "166th Avenue Northeast 7325, Redmond",
+        "website": "https://secondstoryrep.org"
       },
       "geometry": {
         "type": "Point",
@@ -2396,9 +1812,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 4806566584,
-        "name": "Microsoft Cafe 25",
-        "amenity": "food_court",
         "weight": 1.0
       },
       "geometry": {
@@ -2412,8 +1825,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 4829304096,
-        "amenity": "food_court",
         "weight": 1.0
       },
       "geometry": {
@@ -2427,8 +1838,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 4829304097,
-        "amenity": "food_court",
         "weight": 1.0
       },
       "geometry": {
@@ -2442,10 +1851,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4852385321,
+        "hasDetails": true,
         "name": "Bear Creek Coffee Co.",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop"
       },
       "geometry": {
         "type": "Point",
@@ -2458,10 +1869,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4853787338,
+        "hasDetails": true,
         "name": "Postdoc Brewing",
         "amenity": "pub",
-        "weight": 1.0
+        "address": "Northeast 65th Street 17625, Redmond",
+        "website": "https://www.postdocbrewing.com/",
+        "opening_hours": "Mo-Tu 15:00-22:00; We-Th 12:00-22:00; Fr-Sa 11:00-22:00; Su 11:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -2474,10 +1889,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4853787341,
+        "hasDetails": true,
         "name": "Sammamish Deli",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "sandwich"
       },
       "geometry": {
         "type": "Point",
@@ -2490,10 +1907,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4853787342,
+        "hasDetails": true,
         "name": "Taste of Hyderabad",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "indian;hyderabad;buffet",
+        "website": "https://tasteofhyderabadus.com",
+        "opening_hours": "We-Su 11:30-14:30,17:00-22:00; Mo 11:30-14:30,17:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -2506,10 +1927,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4853787343,
+        "hasDetails": true,
         "name": "Bommarillu Biryani",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "indian;pasta;pizza",
+        "address": "Avondale Way Northeast 17020, Redmond",
+        "website": "https://bommarillubiryani.com/home",
+        "opening_hours": "Mo 12:00-14:30,16:30-22:00; Tu-Th 11:00-14:30,16:30-22:00; Su 11:00-22:00; Fr-Sa 11:00-22:45"
       },
       "geometry": {
         "type": "Point",
@@ -2522,10 +1948,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 4959184317,
+        "hasDetails": true,
         "name": "Oto Sushi",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "sushi",
+        "address": "161st Avenue Northeast 8051, Redmond",
+        "website": "http://www.otoredmond.com",
+        "opening_hours": "Mo-Fr 11:30-14:30, Mo-Th 16:30-21:30, Fr 16:30-22:00; Sa 12:00-22:00; Su 12:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -2538,10 +1969,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 5039621985,
+        "hasDetails": true,
         "name": "Five Stones Coffee Co.",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "161st Avenue Northeast 8102, Redmond",
+        "website": "https://5stonescoffeeco.com/",
+        "opening_hours": "Mo-Su 07:00-18:00"
       },
       "geometry": {
         "type": "Point",
@@ -2554,41 +1990,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 5045655525,
-        "name": "Tapioca Express",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.135813,
-          47.631943
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 5093478022,
-        "name": "W XYZ Lounge",
-        "amenity": "bar",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.137358,
-          47.6354314
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 5148003019,
-        "name": "Microsoft Cafe 83",
-        "amenity": "food_court",
         "weight": 1.0
       },
       "geometry": {
@@ -2602,25 +2003,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 5148061072,
-        "name": "Microsoft Cafe H",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1410975,
-          47.6434545
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 5148061085,
-        "name": "Microsoft Cafe 121",
-        "amenity": "food_court",
         "weight": 1.0
       },
       "geometry": {
@@ -2634,9 +2016,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 5148061086,
-        "name": "Microsoft Cafe 86",
-        "amenity": "food_court",
         "weight": 1.0
       },
       "geometry": {
@@ -2650,9 +2029,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 5148109690,
-        "name": "Microsoft Millenium Cafe",
-        "amenity": "food_court",
         "weight": 1.0
       },
       "geometry": {
@@ -2666,9 +2042,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 5148150230,
-        "name": "Microsoft Cafe RTC-5",
-        "amenity": "food_court",
         "weight": 1.0
       },
       "geometry": {
@@ -2682,26 +2055,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 5266167421,
-        "name": "Woodinville Whiskey Co.",
-        "amenity": "bar",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1531717,
-          47.7333929
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 5281069373,
+        "hasDetails": true,
         "name": "Dough Zone",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "chinese",
+        "address": "170th Avenue Northeast 7625, Redmond",
+        "website": "https://www.doughzonedumplinghouse.com/redmond"
       },
       "geometry": {
         "type": "Point",
@@ -2714,58 +2075,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 5282730742,
-        "name": "Tian Tian Noodles",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1360022,
-          47.6319412
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 5484699952,
-        "name": "Nine Way",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1421879,
-          47.6322258
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 5555369743,
-        "name": "Maxwella Cafe and Bar",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1374211,
-          47.6344528
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 5872801325,
+        "hasDetails": true,
         "name": "Northwest Brewing Co.",
         "amenity": "bar",
-        "weight": 1.0
+        "address": "Leary Way 7858, Redmond",
+        "website": "https://redmond.pintnpie.com/"
       },
       "geometry": {
         "type": "Point",
@@ -2778,10 +2094,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 5953192257,
+        "hasDetails": true,
         "name": "Hello Pok\u00e9",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "hawaiian",
+        "opening_hours": "Tu-Fr 11:00-20:00; Sa 11:00-15:00"
       },
       "geometry": {
         "type": "Point",
@@ -2794,42 +2113,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 6013559134,
-        "name": "N\u00faodle",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1444793,
-          47.6268673
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 6373249169,
-        "name": "The Bistro at Hollywood Schoolhouse",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1414176,
-          47.7339843
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 6546105692,
+        "hasDetails": true,
         "name": "Willows Deli",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "american;sandwich",
+        "address": "Northeast 95th Street 14858, Redmond",
+        "website": "https://willowsdeli.com/",
+        "opening_hours": "Mo-Fr 07:00-16:00"
       },
       "geometry": {
         "type": "Point",
@@ -2842,58 +2134,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 6571035787,
-        "name": "El Maestro del Taco",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1304706,
-          47.6271491
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 6654415785,
-        "name": "Southern Spice",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1385421,
-          47.6319341
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 6981184317,
-        "name": "Maryhill Winery",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.141467,
-          47.733098
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 6991510649,
+        "hasDetails": true,
         "name": "Big Block Brewing Taproom",
         "amenity": "pub",
-        "weight": 1.0
+        "address": "Northeast 95th Street 14950, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -2906,26 +2152,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 7182782287,
-        "name": "Wheelhouse",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1497284,
-          47.7347722
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 7745768115,
+        "hasDetails": true,
         "name": "Panda Express",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "chinese",
+        "opening_hours": "Mo-Su 10:30-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -2938,10 +2171,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 8927370753,
+        "hasDetails": true,
         "name": "Rocky\u2019s Empanadas",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "argentinian;empanada",
+        "address": "Northeast Redmond Way 18390",
+        "website": "https://rockysempanadas.com"
       },
       "geometry": {
         "type": "Point",
@@ -2954,10 +2191,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 9211179006,
+        "hasDetails": true,
         "name": "Meetea",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Northeast 80th Street 16180, Redmond",
+        "website": "https://www.ordertogo.com/MeeteaCafe",
+        "opening_hours": "Mo-Su 12:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -2970,70 +2212,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 9630989868,
-        "name": "Cho Dang Tofu",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.155387,
-          47.6250025
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 9648986119,
-        "name": "Vivi's",
-        "amenity": "restaurant",
         "weight": 1.0,
-        "names": [
-          "Vivi's",
-          "Vivi Pizzeria"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1427072,
-          47.7330596
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 9742523177,
-        "name": "Taste Of Xi\u2019an",
-        "amenity": "restaurant",
-        "weight": 1.0,
-        "names": [
-          "Taste Of Xi\u2019an",
-          "DrinkT"
-        ],
-        "amenities": [
-          "restaurant",
-          "fast_food"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1465849,
-          47.6272169
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "id": 9791566415,
+        "hasDetails": true,
         "name": "Happy Lemon",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "bubble_tea",
+        "opening_hours": "Mo-Th,Su 11:00-08:30; Fr-Sa 11:00-09:00"
       },
       "geometry": {
         "type": "Point",
@@ -3046,10 +2231,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 9791573115,
+        "hasDetails": true,
         "name": "Biryani Bowl",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "indian",
+        "address": "Leary Way Northeast 7990, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -3062,9 +2250,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 9829419433,
-        "name": "Pines Bistro",
-        "amenity": "restaurant",
         "weight": 1.0
       },
       "geometry": {
@@ -3078,10 +2263,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 9843431891,
+        "hasDetails": true,
         "name": "Crooked Spoon",
         "amenity": "cafe",
-        "weight": 1.0
+        "address": "Trilogy Parkway Northeast 11825, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -3094,10 +2281,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 10093621766,
+        "hasDetails": true,
         "name": "Bandidos Mexican Grill",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "address": "164th Avenue Northeast 8151, Redmond",
+        "opening_hours": "Mo-Sa 11:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -3110,10 +2301,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 10112282391,
+        "hasDetails": true,
         "name": "Kizuki Ramen & Izakaya",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "ramen",
+        "address": "166th Avenue Northeast 7325, Redmond",
+        "website": "https://www.kizuki.com/",
+        "opening_hours": "Su-Th 11:00-21:00; Fr,Sa 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -3126,10 +2322,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 10833061619,
+        "hasDetails": true,
         "name": "Mercurys Coffee Co.",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Northeast Union Hill Road 17634, Redmond",
+        "website": "https://mercurys.com/"
       },
       "geometry": {
         "type": "Point",
@@ -3142,10 +2342,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 10874962805,
+        "hasDetails": true,
         "name": "Musashi's",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "sushi",
+        "address": "168th Avenue Northeast 7405, Redmond",
+        "website": "https://www.musashis-sushi.com"
       },
       "geometry": {
         "type": "Point",
@@ -3158,10 +2362,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 10874962806,
+        "hasDetails": true,
         "name": "A Ma Chicken Rice",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "chicken;hainanese;cambodian",
+        "address": "168th Avenue Northeast 7405, Redmond",
+        "website": "https://www.amachickenrice.com",
+        "opening_hours": "Mo-Sa 11:00-14:30,16:30-20:00; Su off"
       },
       "geometry": {
         "type": "Point",
@@ -3174,10 +2383,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 11028360363,
+        "hasDetails": true,
         "name": "Farine Bakery & Cafe",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "belgian;brunch;breakfast;coffee_shop;bakery",
+        "address": "Redmond Way 16450, Redmond",
+        "website": "https://farinecafe.com",
+        "opening_hours": "7:00-15:00"
       },
       "geometry": {
         "type": "Point",
@@ -3190,42 +2404,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 11050125701,
-        "name": "The Lounge",
-        "amenity": "bar",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1480749,
-          47.7336125
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 11070415611,
-        "name": "151 Days",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1374332,
-          47.6346523
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 11146740763,
+        "hasDetails": true,
         "name": "Tavol\u00e0ta",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "italian",
+        "address": "Cleveland Street 16050, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -3238,10 +2423,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 11146740764,
+        "hasDetails": true,
         "name": "Rubinstein Bagels",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "bagel",
+        "address": "Cleveland Street 16050, Redmond",
+        "website": "https://rubinsteinbagels.com/",
+        "opening_hours": "Mo-Su 07:00-15:00"
       },
       "geometry": {
         "type": "Point",
@@ -3254,10 +2444,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 11216616300,
+        "hasDetails": true,
         "name": "Sharetea",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "bubble_tea",
+        "address": "166th Avenue Northeast 7325, Redmond",
+        "website": "https://1992sharetea.com",
+        "opening_hours": "Sa 11:00-21:00; Su 11:00-20:00; Fr 12:00-21:00; Mo-Th 12:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -3270,10 +2465,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 11292017327,
+        "hasDetails": true,
         "name": "Sweety Saradha Arts",
         "amenity": "arts_centre",
-        "weight": 1.0
+        "address": "Redmond Way 15600, Redmond",
+        "website": "https://www.sweetysaradha.com/"
       },
       "geometry": {
         "type": "Point",
@@ -3286,10 +2484,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 11357378255,
+        "hasDetails": true,
         "name": "Dong Ting Chun",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "hunan",
+        "address": "166th Avenue Northeast 7425, Redmond",
+        "website": "https://www.dongtingchun.net/redmond.html",
+        "opening_hours": "Mo-Su 11:00-14:15,16:30-20:30"
       },
       "geometry": {
         "type": "Point",
@@ -3302,110 +2505,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 11372369931,
-        "name": "Salt & Straw",
-        "amenity": "ice_cream",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1300425,
-          47.641624
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 11372369934,
-        "name": "DOTE Espresso",
-        "amenity": "cafe",
         "weight": 1.0,
-        "names": [
-          "DOTE Espresso",
-          "Bobae Coffee & Tea"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1301472,
-          47.6416799
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 11372369935,
-        "name": "Craft75 Gastropub",
-        "amenity": "pub",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1304638,
-          47.641278
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 11372369936,
-        "name": "Microsoft Food Hall 9",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1315804,
-          47.6404779
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 11372369937,
-        "name": "Microsoft Food Hall 6",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1302919,
-          47.6418431
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 11372369938,
-        "name": "Microsoft Food Hall 4",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1290311,
-          47.6415154
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "id": 11712066238,
+        "hasDetails": true,
         "name": "Kobuta and Ookami",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "japanese;izakaya",
+        "address": "Avondale Way 17026, Redmond",
+        "website": "https://kobutaandookami.com",
+        "opening_hours": "Tu-Th 11:00-15:00, 17:00-21:00; Fr-Sa 11:00-15:00, 17:00-21:30; Su 12:00-15:00, 17:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -3418,26 +2526,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 11746004728,
-        "name": "Gyu-Kaku",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1461576,
-          47.6282941
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 11826478783,
+        "hasDetails": true,
         "name": "Doppio Cafe and Creperie",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "crepe;coffee_shop",
+        "address": "160th Avenue Northeast 8296, Redmond",
+        "website": "https://doppiocafeandcreperie.com",
+        "opening_hours": "Mo-Su 07:00-17:00"
       },
       "geometry": {
         "type": "Point",
@@ -3450,10 +2547,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 11951229825,
+        "hasDetails": true,
         "name": "Noburu Ramen & Sushi",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "ramen;sushi",
+        "address": "161st Avenue Northeast 8900, Redmond",
+        "website": "https://nobururamen.com/",
+        "opening_hours": "Mo-Fr 11:00-14:30, 16:30-21:00; Sa-Su 11:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -3466,26 +2568,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 11977329469,
-        "name": "Honest",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1449415,
-          47.6306875
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 11980126838,
+        "hasDetails": true,
         "name": "MOD Pizza",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "pizza",
+        "address": "Northeast Novelty Hill Road 23423, Redmond",
+        "website": "https://locations.modpizza.com/usa/wa/redmond/23423-ne-novelty-hill-rd",
+        "opening_hours": "Mo-We 10:30-22:00; Th-Sa 10:30-23:00; Su 10:30-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -3498,26 +2589,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 11986409607,
-        "name": "Timeless Tea",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1493475,
-          47.6282448
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 12004776069,
+        "hasDetails": true,
         "name": "Fuji Steakhouse",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "japanese;steak_house;sushi",
+        "address": "164th Avenue Northeast 7330, Redmond",
+        "website": "https://fujisteakhouseredmond.com",
+        "opening_hours": "Mo-Th 03:30-21:30; Fr-Su 12:00-14:30,15:30-21:30"
       },
       "geometry": {
         "type": "Point",
@@ -3530,10 +2610,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 12004787970,
+        "hasDetails": true,
         "name": "Mayuri Bakery & Cafe",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "indian"
       },
       "geometry": {
         "type": "Point",
@@ -3546,10 +2628,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 12004789569,
+        "hasDetails": true,
         "name": "Bon Korean Cuisine",
         "amenity": "restaurant",
-        "weight": 1.0
+        "address": "168th Avenue Northeast 120, Redmond",
+        "website": "https://bonredmond.com",
+        "opening_hours": "Mo-Su 11:00-21:30"
       },
       "geometry": {
         "type": "Point",
@@ -3562,26 +2648,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 12021735406,
-        "name": "Jack Sprat",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1349394,
-          47.6354042
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 12088031079,
+        "hasDetails": true,
         "name": "Costco Food Court",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "hot_dog;pizza;sandwich"
       },
       "geometry": {
         "type": "Point",
@@ -3594,10 +2666,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 12104478171,
+        "hasDetails": true,
         "name": "Nekter Juice Bar",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "juice",
+        "opening_hours": "Mo-Fr 08:00-19:00, Sa-Su 09:00-18:00"
       },
       "geometry": {
         "type": "Point",
@@ -3610,10 +2685,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 12249411501,
+        "hasDetails": true,
         "name": "Neighborhood Cafe",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "brunch;coffee_shop;filipino;boba;bubble_tea",
+        "address": "168th Avenue Northeast 7706, Redmond",
+        "website": "https://neighborhoodsea.com",
+        "opening_hours": "Mo-Su 07:00-17:00"
       },
       "geometry": {
         "type": "Point",
@@ -3626,10 +2706,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 12517175569,
+        "hasDetails": true,
         "name": "Stone Korean Restaurant",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "korean"
       },
       "geometry": {
         "type": "Point",
@@ -3642,42 +2724,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 12570481061,
-        "name": "Pagliacci Pizza",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1359624,
-          47.6281366
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 12755680201,
-        "name": "Foody Moody",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.132761,
-          47.6317883
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 12877545794,
+        "hasDetails": true,
         "name": "Due Cucina",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "italian",
+        "website": "https://duecucina.com/",
+        "opening_hours": "Mo-Su 11:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -3690,10 +2744,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 12877578669,
+        "hasDetails": true,
         "name": "Neville\u2019s Restaurant",
         "amenity": "restaurant",
-        "weight": 1.0
+        "address": "161st Avenue Northeast 8123, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -3706,10 +2762,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 12994801500,
+        "hasDetails": true,
         "name": "Sodo Pizza",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "pizza",
+        "address": "West Lake Sammamish Parkway Northeast 7289, Redmond",
+        "website": "https://www.sodo-pizza.com/",
+        "opening_hours": "Mo-Sa 11:00-19:00"
       },
       "geometry": {
         "type": "Point",
@@ -3722,10 +2783,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 13018083204,
+        "hasDetails": true,
         "name": "Sip Thai Zooom",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "thai",
+        "address": "Redmond Way 16595, Redmond",
+        "website": "https://www.sipthaibistro.com/",
+        "opening_hours": "11:00-20:30; Fr,Sa 11:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -3738,10 +2804,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 13018274253,
+        "hasDetails": true,
         "name": "Dave's Hot Chicken",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "chicken",
+        "address": "Redmond Way 16502, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -3754,10 +2823,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 13018291791,
+        "hasDetails": true,
         "name": "Mendocino Farms",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "salad;sandwich",
+        "address": "Cleveland Street 16502, Redmond",
+        "website": "https://www.mendocinofarms.com/locations/Redmond",
+        "opening_hours": "Su-Sa 10:30-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -3770,10 +2844,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 13018291792,
+        "hasDetails": true,
         "name": "Salt & Straw",
         "amenity": "ice_cream",
-        "weight": 1.0
+        "address": "Redmond Way 16595, Redmond",
+        "opening_hours": "Mo-Su 11:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -3786,58 +2863,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 13032908202,
-        "name": "Miah\u2019s Kitchen",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1412634,
-          47.628153
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 13032908203,
-        "name": "Shinya Shokudo",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1411267,
-          47.6281523
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 13039815267,
-        "name": "Young Tea",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1597005,
-          47.6276547
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 13182442471,
+        "hasDetails": true,
         "name": "#K-Street KBBQ",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "korean",
+        "address": "164th Avenue Northeast 7430, Redmond",
+        "website": "https://kstreetkbbq.com/",
+        "opening_hours": "We-Su 11:00-23:00; Mo 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -3850,26 +2884,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 13414438100,
-        "name": "La Tia Angelina",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1333182,
-          47.6320046
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 13419627731,
+        "hasDetails": true,
         "name": "Pagliacci Pizza",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "pizza",
+        "address": "Redmond Way 16311",
+        "website": "https://www.pagliacci.com/locations/redmond",
+        "opening_hours": "Mo-Th,Su 11:00-22:00; Fr-Sa 11:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -3882,10 +2905,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 13422301381,
+        "hasDetails": true,
         "name": "Momiji",
         "amenity": "restaurant",
-        "weight": 1.0
+        "address": "Redmond Way 16595, Redmond",
+        "website": "https://momijiredmond.com"
       },
       "geometry": {
         "type": "Point",
@@ -3898,10 +2924,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 13436914703,
+        "hasDetails": true,
         "name": "Bin 47",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "regional",
+        "website": "https://thesomm.com/eat-drink/bin-47"
       },
       "geometry": {
         "type": "Point",
@@ -3914,10 +2943,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 13436987499,
+        "hasDetails": true,
         "name": "Qamaria Yemeni Coffee Co.",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop;middle_eastern",
+        "address": "Northeast 67th Court 17585, Redmond",
+        "website": "https://www.qamariacoffee.com/",
+        "opening_hours": "Mo-Th,Su 08:00-22:00; Fr-Sa 08:00-24:00"
       },
       "geometry": {
         "type": "Point",
@@ -3930,239 +2964,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 13565756501,
-        "name": "Lucky Barbecue & Noodles House",
-        "amenity": "restaurant",
         "weight": 1.0,
-        "names": [
-          "Lucky Barbecue & Noodles House",
-          "Hua Xi Rice Ramen",
-          "De Zhuang De Hot Pot Mini",
-          "Cocotree Chef",
-          "The Northern Dumplings",
-          "Asian Street Food"
-        ],
-        "amenities": [
-          "restaurant",
-          "fast_food",
-          "food_court"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.146617,
-          47.6274143
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 13565772401,
-        "name": "Sando by Fuji",
-        "amenity": "fast_food",
-        "weight": 1.0,
-        "names": [
-          "Sando by Fuji",
-          "King's Rice Noodle"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1464132,
-          47.6271919
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 13565772502,
-        "name": "Lunch on the Plate",
-        "amenity": "fast_food",
-        "weight": 1.0,
-        "names": [
-          "Lunch on the Plate",
-          "Xaio Lu Jiang"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1464381,
-          47.6273113
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 13565772504,
-        "name": "Dough Savor",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1464077,
-          47.6274325
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 13565772701,
-        "name": "Boiling Hot Malatang",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1465946,
-          47.6273168
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 13728699927,
-        "name": "Espresso",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1413837,
-          47.6438511
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 29217689,
-        "name": "Red Robin",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.142328,
-          47.6312062
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 29362154,
-        "name": "IHOP",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1436819,
-          47.6271182
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 29362303,
-        "name": "MOD Pizza",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1504323,
-          47.6276591
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 29362438,
-        "name": "Bai Tong",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1417287,
-          47.6318333
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 29653567,
-        "name": "Dosa House",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1355952,
-          47.6281896
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 29658559,
-        "name": "Taco Bell",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1427395,
-          47.6274788
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 29893872,
-        "name": "California Mexican Food",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1448607,
-          47.6318397
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "id": 30425770,
+        "hasDetails": true,
         "name": "Microsoft Cafe RedW-F",
         "amenity": "food_court",
-        "weight": 1.0
+        "address": "148th Avenue Northeast 5600, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -4175,58 +2982,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 30491230,
-        "name": "Jack in the Box",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1426839,
-          47.6269956
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 30705180,
-        "name": "Can-Am Pizza",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1352976,
-          47.6295602
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 30705181,
-        "name": "Jack\u2019s BBQ",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1355734,
-          47.629305
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 31058485,
+        "hasDetails": true,
         "name": "Cafeteria 34/35",
         "amenity": "food_court",
-        "weight": 1.0
+        "address": "162nd Court Northeast 3831, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -4239,10 +3000,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 31928055,
+        "hasDetails": true,
         "name": "Jamba",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "juice",
+        "address": "Redmond Way Northeast 16002, Redmond",
+        "website": "https://locations.jamba.com/wa/redmond/16002-redmond-way-ne",
+        "opening_hours": "Mo-Fr 06:30-21:00; Sa 07:00-21:00; Su 08:00-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -4255,10 +3021,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 31928119,
+        "hasDetails": true,
         "name": "Red Robin",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "burger"
       },
       "geometry": {
         "type": "Point",
@@ -4271,10 +3039,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 32540646,
+        "hasDetails": true,
         "name": "Pizzatwist",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "pizza;indian",
+        "address": "Avondale Road Northeast 11523, Redmond",
+        "website": "https://pizzatwist.com/locations/beat-pizza-in-redmond-wa",
+        "opening_hours": "Su-Th 11:00-22:00; Fr-Sa 11:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -4287,10 +3060,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 32540680,
+        "hasDetails": true,
         "name": "Subway",
         "amenity": "fast_food",
-        "weight": 1.0,
+        "cuisine": "sandwich",
+        "address": "Avondale Road Northeast 11523, Redmond",
+        "website": "https://restaurants.subway.com/united-states/wa/redmond/11523-avondale-rd",
+        "opening_hours": "Mo-Fr 07:00-22:00; Sa-Su 08:00-22:00",
         "names": [
           "Subway",
           "Starbucks"
@@ -4311,10 +3089,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 32540743,
+        "hasDetails": true,
         "name": "Apple Teriyaki",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "asian",
+        "opening_hours": "Mo-Sa 11:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -4327,10 +3108,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 33967742,
+        "hasDetails": true,
         "name": "Bombay Bistro",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "indian",
+        "address": "Redmond Way 15740, Redmond",
+        "website": "https://www.bombaybistroredmond.com/",
+        "opening_hours": "Mo-Su 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -4343,26 +3129,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 35486617,
-        "name": "Microsoft Cafe 40/41",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1328539,
-          47.6369997
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 35796575,
+        "hasDetails": true,
         "name": "Starbucks",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Redmond Way 15738, Redmond",
+        "website": "https://www.starbucks.com/store-locator/store/17662/redmond-way-158th-15738-redmond-way-pad-3-redmond-wa-980523830-us"
       },
       "geometry": {
         "type": "Point",
@@ -4375,10 +3149,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 35796576,
+        "hasDetails": true,
         "name": "Wendy's",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "burger",
+        "address": "Redmond Way 15945, Redmond",
+        "website": "https://locations.wendys.com/united-states/wa/redmond/15945-redmond-way",
+        "opening_hours": "08:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -4391,10 +3170,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 35796577,
+        "hasDetails": true,
         "name": "KFC",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "chicken",
+        "address": "Bear Creek Parkway 15802, Redmond",
+        "website": "https://locations.kfc.com/wa/redmond/15802-bear-creek-parkway",
+        "opening_hours": "Mo-Su 10:30-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -4407,10 +3191,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 35837600,
+        "hasDetails": true,
         "name": "Taco Time",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "mexican",
+        "website": "https://tacotimenw.com/find-us/redmond/"
       },
       "geometry": {
         "type": "Point",
@@ -4423,26 +3210,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 66992731,
-        "name": "Microsoft Cafe 43",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1336536,
-          47.6400916
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 105757826,
+        "hasDetails": true,
         "name": "Family Pancake House",
         "amenity": "restaurant",
-        "weight": 1.0
+        "address": "Redmond Way 17621, Redmond",
+        "opening_hours": "Mo-Su 06:30-20:00"
       },
       "geometry": {
         "type": "Point",
@@ -4455,10 +3229,13 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 135576072,
+        "hasDetails": true,
         "name": "The Boardwalk",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "american",
+        "address": "Northeast 40th Street 15251, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -4471,10 +3248,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 147334574,
+        "hasDetails": true,
         "name": "McDonald's",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "burger",
+        "address": "Northeast Novelty Hill Road 23545, Redmond",
+        "website": "https://www.mcdonalds.com/us/en-us/location/31588.html",
+        "opening_hours": "11:00-19:00"
       },
       "geometry": {
         "type": "Point",
@@ -4487,74 +3269,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 161888047,
-        "name": "Arby's",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1390422,
-          47.6313069
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 161888052,
-        "name": "McDonald's",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1545863,
-          47.6275553
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 161915554,
-        "name": "Papa John's",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1589711,
-          47.6285199
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 162003366,
-        "name": "Applebee's",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1550334,
-          47.6245696
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 256664751,
+        "hasDetails": true,
         "name": "Spark Pizza",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "pizza",
+        "address": "164th Avenue Northeast 8110, Redmond",
+        "website": "https://sparkpizzaredmond.com",
+        "opening_hours": "Mo off; Tu-Th 03:00-21:00; Fr 03:00-22:00; Sa 12:00-22:00; Su 12:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -4567,10 +3290,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 257931975,
+        "hasDetails": true,
         "name": "Coastline Burgers",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "burger",
+        "address": "Cleveland Street 16244, Redmond",
+        "website": "https://www.coastlineburgers.com/",
+        "opening_hours": "Mo-Su 11:00-21:00"
       },
       "geometry": {
         "type": "Point",
@@ -4583,10 +3311,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 258909113,
+        "hasDetails": true,
         "name": "Chatpata By Kanishka",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "indian;indian_street_food;desert;bakery;chaat;burger;sandwich",
+        "address": "Redmond Way 16727, Redmond",
+        "website": "https://chatpatabykanishka.com",
+        "opening_hours": "Mo-Th 11:00-22:00; Fr-Su 11:00-24:00"
       },
       "geometry": {
         "type": "Point",
@@ -4599,10 +3332,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 261427173,
+        "hasDetails": true,
         "name": "Mercurys Coffee Co.",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "Northeast Redmond Fall City Road 23532, Redmond",
+        "website": "https://mercurys.com/"
       },
       "geometry": {
         "type": "Point",
@@ -4615,26 +3352,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 261484974,
-        "name": "Microsoft Cafe 16",
-        "amenity": "food_court",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1285574,
-          47.6435195
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "weight": 1.0,
         "id": 264209435,
+        "hasDetails": true,
         "name": "Microsoft Cafe 31",
         "amenity": "food_court",
-        "weight": 1.0
+        "address": "163rd Avenue Northeast 3750, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -4647,10 +3370,14 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 316480822,
+        "hasDetails": true,
         "name": "SoulFood Coffee House",
         "amenity": "cafe",
-        "weight": 1.0
+        "address": "Redmond Way Northeast 15748, Redmond",
+        "website": "https://soulfoodcoffeehouse.com/",
+        "opening_hours": "Mo-We 07:30-18:00; Th-Fr 07:30-20:00; Sa 08:00-21:00; Su 08:00-18:00"
       },
       "geometry": {
         "type": "Point",
@@ -4663,10 +3390,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 325652228,
+        "hasDetails": true,
         "name": "Sammamish Pointe Espresso",
         "amenity": "cafe",
-        "weight": 1.0
+        "opening_hours": "Mo-Fr 05:00-13:00; Sa-Su 07:00-13:00"
       },
       "geometry": {
         "type": "Point",
@@ -4679,10 +3408,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 329706541,
+        "hasDetails": true,
         "name": "Regal Bella Bottega 11",
         "amenity": "cinema",
-        "weight": 1.0
+        "address": "161st Avenue Northeast 8890, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -4695,10 +3426,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 329706559,
+        "hasDetails": true,
         "name": "Woomadang",
         "amenity": "restaurant",
-        "weight": 1.0
+        "cuisine": "korean",
+        "address": "161st Avenue Northeast 8976, Redmond",
+        "website": "https://woomadang.com/",
+        "opening_hours": "Mo-Su 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -4711,10 +3447,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 329706560,
+        "hasDetails": true,
         "name": "Jack in the Box",
         "amenity": "fast_food",
-        "weight": 1.0
+        "cuisine": "burger",
+        "address": "Northeast 87th Street 16280, Redmond",
+        "website": "https://locations.jackinthebox.com/us/wa/redmond/16280-ne-87th-st",
+        "opening_hours": "24/7"
       },
       "geometry": {
         "type": "Point",
@@ -4727,41 +3468,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 390292342,
-        "name": "Bento House",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1382977,
-          47.6272357
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 391840023,
-        "name": "Amore' Coffee",
-        "amenity": "cafe",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1540871,
-          47.629962
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 530040178,
-        "name": "in.gredients",
-        "amenity": "restaurant",
         "weight": 1.0
       },
       "geometry": {
@@ -4775,10 +3481,15 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1020679320,
+        "hasDetails": true,
         "name": "DOTE Espresso",
         "amenity": "cafe",
-        "weight": 1.0
+        "cuisine": "coffee_shop",
+        "address": "156th Avenue Northeast 3849, Redmond",
+        "website": "https://www.dailydote.com/",
+        "opening_hours": "Mo-Fr 08:00-17:30"
       },
       "geometry": {
         "type": "Point",
@@ -4791,10 +3502,12 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
         "id": 1154157264,
+        "hasDetails": true,
         "name": "Movies at Marymoor (Summer Only)",
         "amenity": "cinema",
-        "weight": 1.0
+        "website": "http://www.moviesatmarymoor.com/"
       },
       "geometry": {
         "type": "Point",
@@ -4807,24 +3520,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1237977639,
-        "name": "Pizza Poggio",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1353405,
-          47.6351334
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1284262026,
-        "amenity": "theatre",
         "weight": 1.0
       },
       "geometry": {
@@ -4838,55 +3533,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1305154355,
-        "name": "The Hollywood Tavern",
-        "amenity": "pub",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1529165,
-          47.7331554
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1384269955,
-        "name": "Baseball Concession Stand",
-        "amenity": "fast_food",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.144398,
-          47.7350819
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1427227076,
-        "amenity": "biergarten",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1350847,
-          47.6354254
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1430105094,
-        "amenity": "theatre",
         "weight": 1.0
       },
       "geometry": {
@@ -4894,22 +3540,6 @@
         "coordinates": [
           -122.1511485,
           47.7284197
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1478964894,
-        "name": "Sum Yee Kae Seafood Restaurant",
-        "amenity": "restaurant",
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1466003,
-          47.6276274
         ]
       }
     }

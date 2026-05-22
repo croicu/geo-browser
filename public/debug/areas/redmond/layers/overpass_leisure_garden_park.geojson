@@ -4,8 +4,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 4853806256,
-        "name": "Doolittle Art Garden",
         "weight": 1.0
       },
       "geometry": {
@@ -19,32 +17,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 29544113,
-        "name": "Viewpoint Open Space",
-        "weight": 1.0,
-        "area_sqm": 38268.5,
-        "radius_m": 110.4,
-        "names": [
-          "Viewpoint Open Space",
-          "Viewpont Open Space"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.10529377777779,
-          47.629565166666666
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 29691854,
-        "name": "Heron Rookery Park",
         "weight": 1.0,
         "area_sqm": 22676.9,
-        "radius_m": 85.0
+        "radius_m": 85.0,
+        "id": 29691854,
+        "hasDetails": true,
+        "name": "Heron Rookery Park",
+        "address": "Leary Way 7529, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Heron-Rookery-39",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -57,11 +38,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 31886681,
-        "name": "Perrigo Park",
         "weight": 1.0,
         "area_sqm": 231794.2,
-        "radius_m": 271.6
+        "radius_m": 271.6,
+        "id": 31886681,
+        "hasDetails": true,
+        "name": "Perrigo Park",
+        "address": "196th Avenue Northeast 9011, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Perrigo-Park-66",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -74,11 +59,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 31928094,
-        "name": "The Edge Skate Park",
         "weight": 1.0,
         "area_sqm": 4751.5,
-        "radius_m": 38.9
+        "radius_m": 38.9,
+        "id": 31928094,
+        "hasDetails": true,
+        "name": "The Edge Skate Park",
+        "address": "161st Avenue Northeast 8300, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/The-Edge-Skate-Park-60",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -91,11 +80,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 31928133,
-        "name": "Albert Anderson Memorial Park",
         "weight": 1.0,
         "area_sqm": 12347.8,
-        "radius_m": 62.7
+        "radius_m": 62.7,
+        "id": 31928133,
+        "hasDetails": true,
+        "name": "Albert Anderson Memorial Park",
+        "address": "168th Avenue Northeast 7802, Redmond",
+        "website": "https://www.redmond.gov/facilities/facility/details/Anderson-Park-59",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -108,11 +101,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 32215299,
-        "name": "Grass Lawn Park",
         "weight": 1.0,
         "area_sqm": 113064.1,
-        "radius_m": 189.7
+        "radius_m": 189.7,
+        "id": 32215299,
+        "hasDetails": true,
+        "name": "Grass Lawn Park",
+        "address": "148th Avenue Northeast 7031, Redmond",
+        "opening_hours": "Mo-Su 06:00-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -125,11 +121,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 32544404,
-        "name": "Farrel-McWhirter Park",
         "weight": 1.0,
         "area_sqm": 276152.9,
-        "radius_m": 296.5
+        "radius_m": 296.5,
+        "id": 32544404,
+        "hasDetails": true,
+        "name": "Farrel-McWhirter Park",
+        "address": "Northeast Redmond Road 19545, Redmond",
+        "website": "https://redmond.gov/Facilities/Facility/Details/FarrelMcWhirter-Park-61",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -142,11 +142,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 32544729,
-        "name": "Bear Creek Park",
         "weight": 1.0,
         "area_sqm": 44099.0,
-        "radius_m": 118.5
+        "radius_m": 118.5,
+        "id": 32544729,
+        "hasDetails": true,
+        "name": "Bear Creek Park",
+        "address": "Redmond",
+        "website": "https://www.redmond.gov/facilities/facility/details/Bear-Creek-Park-33",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -159,11 +163,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 32919331,
-        "name": "Kathryn Taylor Equestrian Park",
         "weight": 1.0,
         "area_sqm": 111312.4,
-        "radius_m": 188.2
+        "radius_m": 188.2,
+        "id": 32919331,
+        "hasDetails": true,
+        "name": "Kathryn Taylor Equestrian Park",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -176,11 +182,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 33441484,
-        "name": "Jonathan Hartman Park",
         "weight": 1.0,
         "area_sqm": 152565.9,
-        "radius_m": 220.4
+        "radius_m": 220.4,
+        "id": 33441484,
+        "hasDetails": true,
+        "name": "Jonathan Hartman Park",
+        "address": "Northeast 104th Street 17300, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Hartman-Park-63"
       },
       "geometry": {
         "type": "Point",
@@ -193,62 +202,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 35107692,
-        "name": "Ivanhoe Park",
-        "weight": 1.0,
-        "area_sqm": 10562.4,
-        "radius_m": 58.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.11810996,
-          47.62360938
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 43709061,
-        "name": "Commissioner's Waterway",
-        "weight": 1.0,
-        "area_sqm": 2642.4,
-        "radius_m": 29.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1436392125,
-          47.626147287500004
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 44115568,
-        "name": "Ardmore Park",
-        "weight": 1.0,
-        "area_sqm": 7471.5,
-        "radius_m": 48.8
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.11550986363636,
-          47.63640653636364
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 55760663,
-        "name": "Willows Creek Neighborhood Park",
         "weight": 1.0,
         "area_sqm": 5851.4,
-        "radius_m": 43.2
+        "radius_m": 43.2,
+        "id": 55760663,
+        "hasDetails": true,
+        "name": "Willows Creek Neighborhood Park",
+        "address": "142nd Avenue Northeast 8915, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Willows-Creek-Park-58",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -261,28 +223,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 55950342,
-        "name": "Snyders Corner Park",
-        "weight": 1.0,
-        "area_sqm": 17700.0,
-        "radius_m": 75.1
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.16307212222222,
-          47.666193222222226
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 59871392,
-        "name": "Spiritbrook Park",
         "weight": 1.0,
         "area_sqm": 8436.1,
-        "radius_m": 51.8
+        "radius_m": 51.8,
+        "id": 59871392,
+        "hasDetails": true,
+        "name": "Spiritbrook Park",
+        "address": "151st Avenue Northeast 6500, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Spiritbrook-Park-51",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -295,42 +244,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 73530090,
-        "name": "Tam O'Shanter Park",
-        "weight": 1.0,
-        "area_sqm": 57944.3,
-        "radius_m": 135.8
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.10616393636364,
-          47.62552890909091
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 74295594,
-        "name": "Ardmore Park",
-        "weight": 1.0,
-        "area_sqm": 118269.8,
-        "radius_m": 194.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.11358718888889,
-          47.634978951851856
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 92973550,
-        "name": "Avignon Estate Community Park",
         "weight": 1.0,
         "area_sqm": 523.4,
         "radius_m": 12.9
@@ -346,8 +259,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 92973552,
-        "name": "Avignon Estate Community Park",
         "weight": 1.0,
         "area_sqm": 267.8,
         "radius_m": 9.2
@@ -363,8 +274,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 92974832,
-        "name": "Avignon Estate Community Park",
         "weight": 1.0,
         "area_sqm": 398.7,
         "radius_m": 11.3
@@ -380,11 +289,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 103455177,
-        "name": "Juel Community Park",
         "weight": 1.0,
         "area_sqm": 155808.1,
-        "radius_m": 222.7
+        "radius_m": 222.7,
+        "id": 103455177,
+        "hasDetails": true,
+        "name": "Juel Community Park",
+        "address": "Northeast 116th Street 18815, Redmond",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -397,28 +309,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 105613756,
-        "name": "Northshore Athletic Fields",
-        "weight": 1.0,
-        "area_sqm": 77203.1,
-        "radius_m": 156.8
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.14520329444446,
-          47.73446485555556
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 112412456,
-        "name": "Redmond Watershed Addition Park",
         "weight": 1.0,
         "area_sqm": 10645.5,
-        "radius_m": 58.2
+        "radius_m": 58.2,
+        "id": 112412456,
+        "hasDetails": true,
+        "name": "Redmond Watershed Addition Park",
+        "address": "Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -431,8 +328,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 114464546,
-        "name": "North Bellevue Community Park",
         "weight": 1.0,
         "area_sqm": 18596.1,
         "radius_m": 76.9
@@ -448,11 +343,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 114464547,
-        "name": "Westside Park",
         "weight": 1.0,
         "area_sqm": 23646.6,
-        "radius_m": 86.8
+        "radius_m": 86.8,
+        "id": 114464547,
+        "hasDetails": true,
+        "name": "Westside Park",
+        "address": "156th Avenue Northeast 5810, Redmond",
+        "website": "https://www.redmond.gov/facilities/facility/details/Westside-Park-57",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -465,41 +364,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 114464946,
-        "name": "Highland Park",
-        "weight": 1.0,
-        "area_sqm": 46495.2,
-        "radius_m": 121.7
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.15155362352941,
-          47.6261213
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 126043943,
-        "name": "Viewpoint Neighborhood Park",
-        "weight": 1.0,
-        "area_sqm": 16057.2,
-        "radius_m": 71.5
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.09455598333334,
-          47.63201725
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 146997195,
         "weight": 1.0,
         "area_sqm": 384.7,
         "radius_m": 11.1
@@ -515,7 +379,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 154423043,
         "weight": 1.0,
         "area_sqm": 327.7,
         "radius_m": 10.2
@@ -531,8 +394,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 154423044,
-        "name": "Prescott Community Park",
         "weight": 1.0,
         "area_sqm": 4694.5,
         "radius_m": 38.7
@@ -548,7 +409,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 154423049,
         "weight": 1.0,
         "area_sqm": 919.4,
         "radius_m": 17.1
@@ -564,7 +424,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 154428442,
         "weight": 1.0,
         "area_sqm": 421.3,
         "radius_m": 11.6
@@ -580,7 +439,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 154428445,
         "weight": 1.0,
         "area_sqm": 512.1,
         "radius_m": 12.8
@@ -596,7 +454,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 154428447,
         "weight": 1.0,
         "area_sqm": 1907.4,
         "radius_m": 24.6
@@ -612,11 +469,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 154429496,
-        "name": "Northstar Neighborhood Park",
         "weight": 1.0,
         "area_sqm": 1621.3,
-        "radius_m": 22.7
+        "radius_m": 22.7,
+        "id": 154429496,
+        "hasDetails": true,
+        "name": "Northstar Neighborhood Park",
+        "address": "167th Place Northeast, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -629,28 +488,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 161916219,
-        "name": "Viewpoint Park",
-        "weight": 1.0,
-        "area_sqm": 50861.8,
-        "radius_m": 127.2
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.16240072000001,
-          47.63107048
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 162040572,
-        "name": "Meadow Park",
         "weight": 1.0,
         "area_sqm": 20884.6,
-        "radius_m": 81.5
+        "radius_m": 81.5,
+        "id": 162040572,
+        "hasDetails": true,
+        "name": "Meadow Park",
+        "address": "160th Avenue Northeast 10710, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Meadow-Park-41",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -663,11 +509,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 177067178,
-        "name": "Smith Woods",
         "weight": 1.0,
         "area_sqm": 39555.3,
-        "radius_m": 112.2
+        "radius_m": 112.2,
+        "id": 177067178,
+        "hasDetails": true,
+        "name": "Smith Woods",
+        "address": "Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Smith-Woods-48",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -680,8 +530,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 182648409,
-        "name": "Welcome Park",
         "weight": 1.0,
         "area_sqm": 10990.0,
         "radius_m": 59.1
@@ -697,8 +545,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 182648411,
-        "name": "Scotts Pond Park",
         "weight": 1.0,
         "area_sqm": 5301.4,
         "radius_m": 41.1
@@ -714,11 +560,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 185227446,
-        "name": "Sixty Acres North",
         "weight": 1.0,
         "area_sqm": 234614.4,
-        "radius_m": 273.3
+        "radius_m": 273.3,
+        "id": 185227446,
+        "hasDetails": true,
+        "name": "Sixty Acres North",
+        "address": "Northeast 116th Street 15200, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -731,8 +579,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 200659527,
-        "name": "Southeast Redmond Park",
         "weight": 1.0,
         "area_sqm": 12759.3,
         "radius_m": 63.7
@@ -748,11 +594,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 238108677,
-        "name": "Downtown Park",
         "weight": 1.0,
         "area_sqm": 7969.7,
-        "radius_m": 50.4
+        "radius_m": 50.4,
+        "id": 238108677,
+        "hasDetails": true,
+        "name": "Downtown Park",
+        "address": "Redmond Way 16101, Redmond",
+        "website": "https://redmond.gov/955/Downtown-Park",
+        "opening_hours": "dawn-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -765,11 +615,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259778966,
-        "name": "Redmond Ridge Park",
         "weight": 1.0,
         "area_sqm": 45042.9,
-        "radius_m": 119.7
+        "radius_m": 119.7,
+        "id": 259778966,
+        "hasDetails": true,
+        "name": "Redmond Ridge Park",
+        "address": "Northeast Alder Crest Drive 22915, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -782,7 +634,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259804980,
         "weight": 1.0,
         "area_sqm": 2630.0,
         "radius_m": 28.9
@@ -798,7 +649,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259847042,
         "weight": 1.0,
         "area_sqm": 1645.9,
         "radius_m": 22.9
@@ -814,7 +664,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259847051,
         "weight": 1.0,
         "area_sqm": 2239.9,
         "radius_m": 26.7
@@ -830,7 +679,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259850101,
         "weight": 1.0,
         "area_sqm": 1795.9,
         "radius_m": 23.9
@@ -846,7 +694,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259947579,
         "weight": 1.0,
         "area_sqm": 994.7,
         "radius_m": 17.8
@@ -862,7 +709,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259990323,
         "weight": 1.0,
         "area_sqm": 2731.3,
         "radius_m": 29.5
@@ -878,7 +724,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259994976,
         "weight": 1.0,
         "area_sqm": 1191.2,
         "radius_m": 19.5
@@ -894,7 +739,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259998131,
         "weight": 1.0,
         "area_sqm": 450.4,
         "radius_m": 12.0
@@ -910,7 +754,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259999506,
         "weight": 1.0,
         "area_sqm": 997.4,
         "radius_m": 17.8
@@ -926,7 +769,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 259999509,
         "weight": 1.0,
         "area_sqm": 769.2,
         "radius_m": 15.6
@@ -942,8 +784,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 260951231,
-        "name": "Elliston Park",
         "weight": 1.0,
         "area_sqm": 6813.7,
         "radius_m": 46.6
@@ -959,23 +799,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 260980352,
-        "weight": 1.0,
-        "area_sqm": 352.2,
-        "radius_m": 10.6
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02069416666666,
-          47.69871053333333
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 261447958,
         "weight": 1.0,
         "area_sqm": 1474.3,
         "radius_m": 21.7
@@ -991,7 +814,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 261447959,
         "weight": 1.0,
         "area_sqm": 916.9,
         "radius_m": 17.1
@@ -1007,7 +829,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 261447960,
         "weight": 1.0,
         "area_sqm": 721.9,
         "radius_m": 15.2
@@ -1023,7 +844,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 261447961,
         "weight": 1.0,
         "area_sqm": 1345.8,
         "radius_m": 20.7
@@ -1039,8 +859,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 261447962,
-        "name": "Woodbridge Private Park",
         "weight": 1.0,
         "area_sqm": 2492.4,
         "radius_m": 28.2
@@ -1056,7 +874,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 261447965,
         "weight": 1.0,
         "area_sqm": 800.3,
         "radius_m": 16.0
@@ -1072,7 +889,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 261447966,
         "weight": 1.0,
         "area_sqm": 481.3,
         "radius_m": 12.4
@@ -1088,8 +904,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 261448631,
-        "name": "Woodbridge Swing Park",
         "weight": 1.0,
         "area_sqm": 3953.8,
         "radius_m": 35.5
@@ -1105,7 +919,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 262766405,
         "weight": 1.0,
         "area_sqm": 651.0,
         "radius_m": 14.4
@@ -1121,7 +934,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 262766406,
         "weight": 1.0,
         "area_sqm": 461.7,
         "radius_m": 12.1
@@ -1137,28 +949,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 268729637,
-        "name": "East Sammamish Park",
-        "weight": 1.0,
-        "area_sqm": 78265.2,
-        "radius_m": 157.8
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.05524942800001,
-          47.624902456
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 296620644,
-        "name": "Redmond Central Connector Park",
         "weight": 1.0,
         "area_sqm": 20912.8,
-        "radius_m": 81.6
+        "radius_m": 81.6,
+        "id": 296620644,
+        "hasDetails": true,
+        "name": "Redmond Central Connector Park",
+        "address": "Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Redmond-Central-Connector-Park-12",
+        "opening_hours": "dawn-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -1171,11 +970,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 296802865,
-        "name": "Dudley Carter Park",
         "weight": 1.0,
         "area_sqm": 4555.3,
-        "radius_m": 38.1
+        "radius_m": 38.1,
+        "id": 296802865,
+        "hasDetails": true,
+        "name": "Dudley Carter Park",
+        "address": "159th Place Northeast 7447, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Dudley-Carter-Park-37",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1188,11 +991,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 316480809,
-        "name": "The Stroll",
         "weight": 1.0,
         "area_sqm": 5297.6,
-        "radius_m": 41.1
+        "radius_m": 41.1,
+        "id": 316480809,
+        "hasDetails": true,
+        "name": "The Stroll",
+        "address": "Sammamish River Trail, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1205,8 +1010,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 320071697,
-        "name": "Martin Park",
         "weight": 1.0,
         "area_sqm": 38515.1,
         "radius_m": 110.7
@@ -1222,11 +1025,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 369791522,
-        "name": "Redmond West Wetlands",
         "weight": 1.0,
         "area_sqm": 21963.3,
-        "radius_m": 83.6
+        "radius_m": 83.6,
+        "id": 369791522,
+        "hasDetails": true,
+        "name": "Redmond West Wetlands",
+        "address": "Northeast 60th Street, Redmond",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1239,42 +1045,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 392695167,
-        "name": "Goldsmith Neighborhood Park",
-        "weight": 1.0,
-        "area_sqm": 31313.5,
-        "radius_m": 99.8
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.14714815,
-          47.639667
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 417102030,
-        "name": "Bridal Trails Corner Park",
-        "weight": 1.0,
-        "area_sqm": 8195.3,
-        "radius_m": 51.1
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.16172414444443,
-          47.63212172222222
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 422278033,
-        "name": "Evans Creek Preserve",
         "weight": 1.0,
         "area_sqm": 831666.8,
         "radius_m": 514.5
@@ -1290,11 +1060,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 424596658,
-        "name": "Sunset Gardens Park",
         "weight": 1.0,
         "area_sqm": 5385.6,
-        "radius_m": 41.4
+        "radius_m": 41.4,
+        "id": 424596658,
+        "hasDetails": true,
+        "name": "Sunset Gardens Park",
+        "address": "Northeast 95th Street 18304, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Sunset-Gardens-Park-52",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1307,7 +1081,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 447274315,
         "weight": 1.0,
         "area_sqm": 276.8,
         "radius_m": 9.4
@@ -1323,7 +1096,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 449101333,
         "weight": 1.0,
         "area_sqm": 359.9,
         "radius_m": 10.7
@@ -1339,7 +1111,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 451941783,
         "weight": 1.0,
         "area_sqm": 300.0,
         "radius_m": 9.8
@@ -1355,7 +1126,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 451941786,
         "weight": 1.0,
         "area_sqm": 343.2,
         "radius_m": 10.5
@@ -1371,11 +1141,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 479194885,
-        "name": "Sammamish Valley Park",
         "weight": 1.0,
         "area_sqm": 124629.4,
-        "radius_m": 199.2
+        "radius_m": 199.2,
+        "id": 479194885,
+        "hasDetails": true,
+        "name": "Sammamish Valley Park",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Sammamish-Valley-Park-46",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1388,11 +1161,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 479199365,
-        "name": "Sixty Acres South",
         "weight": 1.0,
         "area_sqm": 130412.8,
-        "radius_m": 203.7
+        "radius_m": 203.7,
+        "id": 479199365,
+        "hasDetails": true,
+        "name": "Sixty Acres South",
+        "address": "Northeast 116th Street 15101, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1405,11 +1180,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 479215139,
-        "name": "Redmond Watershed Preserve",
         "weight": 1.0,
         "area_sqm": 3338734.5,
-        "radius_m": 1030.9
+        "radius_m": 1030.9,
+        "id": 479215139,
+        "hasDetails": true,
+        "name": "Redmond Watershed Preserve",
+        "address": "Northeast Novelty Hill Road 21760, Redmond",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1422,8 +1200,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 480083703,
-        "name": "English Hill Greenbelt",
         "weight": 1.0,
         "area_sqm": 23493.2,
         "radius_m": 86.5
@@ -1439,8 +1215,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 480083704,
-        "name": "Hollywood Hill Greenbelt",
         "weight": 1.0,
         "area_sqm": 40363.7,
         "radius_m": 113.3
@@ -1456,11 +1230,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 480267645,
-        "name": "Luke McRedmond Landing",
         "weight": 1.0,
         "area_sqm": 12241.0,
-        "radius_m": 62.4
+        "radius_m": 62.4,
+        "id": 480267645,
+        "hasDetails": true,
+        "name": "Luke McRedmond Landing",
+        "address": "Redmond Way 15811, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Luke-McRedmond-Landing-65",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1473,11 +1251,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 480784774,
-        "name": "Woodlands Park",
         "weight": 1.0,
         "area_sqm": 10261.5,
-        "radius_m": 57.2
+        "radius_m": 57.2,
+        "id": 480784774,
+        "hasDetails": true,
+        "name": "Woodlands Park",
+        "address": "Northeast 119th Court, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1490,11 +1270,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 480784780,
-        "name": "Woodlands Community Park",
         "weight": 1.0,
         "area_sqm": 1137.3,
-        "radius_m": 19.0
+        "radius_m": 19.0,
+        "id": 480784780,
+        "hasDetails": true,
+        "name": "Woodlands Community Park",
+        "address": "Northeast 120th Street, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1507,7 +1289,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 480784783,
         "weight": 1.0,
         "area_sqm": 5886.5,
         "radius_m": 43.3
@@ -1523,7 +1304,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 480784803,
         "weight": 1.0,
         "area_sqm": 1706.0,
         "radius_m": 23.3
@@ -1539,11 +1319,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 480795320,
-        "name": "Redmond Bike Park",
         "weight": 1.0,
         "area_sqm": 9985.7,
-        "radius_m": 56.4
+        "radius_m": 56.4,
+        "id": 480795320,
+        "hasDetails": true,
+        "name": "Redmond Bike Park",
+        "address": "Northeast 100th Street 17195, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Redmond-Bike-Park-78",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1556,11 +1340,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 490140126,
-        "name": "O'Leary Park",
         "weight": 1.0,
         "area_sqm": 280.5,
-        "radius_m": 9.4
+        "radius_m": 9.4,
+        "id": 490140126,
+        "hasDetails": true,
+        "name": "O'Leary Park",
+        "address": "Leary Way Northeast 78, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/OLeary-Park-90",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1573,11 +1361,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 490141438,
-        "name": "Flagpole Plaza Park",
         "weight": 1.0,
         "area_sqm": 153.7,
-        "radius_m": 7.0
+        "radius_m": 7.0,
+        "id": 490141438,
+        "hasDetails": true,
+        "name": "Flagpole Plaza Park",
+        "address": "Redmond Way 16380, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Flagpole-Plaza-Park-89",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1590,11 +1382,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 490142428,
-        "name": "Rotary Park",
         "weight": 1.0,
         "area_sqm": 3686.5,
-        "radius_m": 34.3
+        "radius_m": 34.3,
+        "id": 490142428,
+        "hasDetails": true,
+        "name": "Rotary Park",
+        "address": "154th Avenue Northeast, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Rotary-Park-92",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -1607,7 +1403,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 534352720,
         "weight": 1.0,
         "area_sqm": 2456.4,
         "radius_m": 28.0
@@ -1623,121 +1418,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 581812731,
-        "weight": 1.0,
-        "area_sqm": 12104.2,
-        "radius_m": 62.1
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02539041666667,
-          47.62425526111111
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 581812734,
-        "weight": 1.0,
-        "area_sqm": 3937.0,
-        "radius_m": 35.4
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02678724285715,
-          47.627611128571424
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 581812735,
-        "weight": 1.0,
-        "area_sqm": 5454.4,
-        "radius_m": 41.7
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02856025909091,
-          47.63112513181818
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 581812736,
-        "weight": 1.0,
-        "area_sqm": 14499.1,
-        "radius_m": 67.9
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.0303195137931,
-          47.63463346206897
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 581812738,
-        "name": "Summer Ridge Community Park",
-        "weight": 1.0,
-        "area_sqm": 6309.8,
-        "radius_m": 44.8
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02573297272728,
-          47.63325662727273
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 581826178,
-        "name": "Deer Field Sports Field",
-        "weight": 1.0,
-        "area_sqm": 15876.6,
-        "radius_m": 71.1
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.03439062142857,
-          47.625574799999995
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 583863741,
-        "weight": 1.0,
-        "area_sqm": 744.8,
-        "radius_m": 15.4
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02424884999999,
-          47.6296736875
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 610980563,
         "weight": 1.0,
         "area_sqm": 890.1,
         "radius_m": 16.8
@@ -1753,8 +1433,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 619880843,
-        "name": "Trailside Community Park",
         "weight": 1.0,
         "area_sqm": 1213.7,
         "radius_m": 19.7
@@ -1770,8 +1448,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 619882508,
-        "name": "Hedgewood East Community Park",
         "weight": 1.0,
         "area_sqm": 968.8,
         "radius_m": 17.6
@@ -1787,11 +1463,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 654358467,
-        "name": "Village Green",
         "weight": 1.0,
         "area_sqm": 10093.4,
-        "radius_m": 56.7
+        "radius_m": 56.7,
+        "id": 654358467,
+        "hasDetails": true,
+        "name": "Village Green",
+        "address": "Eastridge Drive Northeast 11433, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1804,7 +1482,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 654419709,
         "weight": 1.0,
         "area_sqm": 168.8,
         "radius_m": 7.3
@@ -1820,7 +1497,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 654419710,
         "weight": 1.0,
         "area_sqm": 35.3,
         "radius_m": 3.4
@@ -1836,7 +1512,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 654419712,
         "weight": 1.0,
         "area_sqm": 35.2,
         "radius_m": 3.3
@@ -1852,8 +1527,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 654563474,
-        "name": "South Park",
         "weight": 1.0,
         "area_sqm": 4936.8,
         "radius_m": 39.6
@@ -1869,7 +1542,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 654812829,
         "weight": 1.0,
         "area_sqm": 802.2,
         "radius_m": 16.0
@@ -1885,8 +1557,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 656067015,
-        "name": "Cascara Circle",
         "weight": 1.0,
         "area_sqm": 3214.2,
         "radius_m": 32.0
@@ -1902,8 +1572,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 656081275,
-        "name": "Redmond Ridge Commons",
         "weight": 1.0,
         "area_sqm": 7548.8,
         "radius_m": 49.0
@@ -1919,7 +1587,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 656122899,
         "weight": 1.0,
         "area_sqm": 313.2,
         "radius_m": 10.0
@@ -1935,7 +1602,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 656611292,
         "weight": 1.0,
         "area_sqm": 1003.2,
         "radius_m": 17.9
@@ -1951,7 +1617,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 658889108,
         "weight": 1.0,
         "area_sqm": 1189.6,
         "radius_m": 19.5
@@ -1967,11 +1632,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 668169603,
-        "name": "Woodlands West Park & Playground",
         "weight": 1.0,
         "area_sqm": 4086.8,
-        "radius_m": 36.1
+        "radius_m": 36.1,
+        "id": 668169603,
+        "hasDetails": true,
+        "name": "Woodlands West Park & Playground",
+        "address": "Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -1984,8 +1651,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 668175405,
-        "name": "Parkridge at the Woodlands Park",
         "weight": 1.0,
         "area_sqm": 7289.6,
         "radius_m": 48.2
@@ -2001,7 +1666,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 679251100,
         "weight": 1.0,
         "area_sqm": 2771.8,
         "radius_m": 29.7
@@ -2017,7 +1681,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 682584723,
         "weight": 1.0,
         "area_sqm": 51.2,
         "radius_m": 4.0
@@ -2033,7 +1696,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 682584724,
         "weight": 1.0,
         "area_sqm": 37.5,
         "radius_m": 3.5
@@ -2049,7 +1711,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 682584727,
         "weight": 1.0,
         "area_sqm": 5.4,
         "radius_m": 1.3
@@ -2065,7 +1726,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 682584743,
         "weight": 1.0,
         "area_sqm": 435.4,
         "radius_m": 11.8
@@ -2081,7 +1741,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 682585710,
         "weight": 1.0,
         "area_sqm": 8.4,
         "radius_m": 1.6
@@ -2097,25 +1756,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 682692867,
-        "name": "Esterra Park",
-        "weight": 1.0,
-        "area_sqm": 9608.2,
-        "radius_m": 55.3
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.13536263255814,
-          47.63498741395348
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 706235949,
-        "name": "Greystone Community Park",
         "weight": 1.0,
         "area_sqm": 1865.1,
         "radius_m": 24.4
@@ -2131,8 +1771,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 706235950,
-        "name": "Greystone Community Park",
         "weight": 1.0,
         "area_sqm": 2583.5,
         "radius_m": 28.7
@@ -2148,11 +1786,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 706235951,
-        "name": "Greystone Community Park",
         "weight": 1.0,
         "area_sqm": 2017.4,
-        "radius_m": 25.3
+        "radius_m": 25.3,
+        "id": 706235951,
+        "hasDetails": true,
+        "name": "Greystone Community Park",
+        "address": "159th Avenue Northeast, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -2165,11 +1805,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 706237975,
-        "name": "Kensington Community Park",
         "weight": 1.0,
         "area_sqm": 1278.3,
-        "radius_m": 20.2
+        "radius_m": 20.2,
+        "id": 706237975,
+        "hasDetails": true,
+        "name": "Kensington Community Park",
+        "address": "Northeast 117th Street 15847, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -2182,24 +1824,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 713843940,
-        "name": "The Park at Hampton Woods",
-        "weight": 1.0,
-        "area_sqm": 3443.0,
-        "radius_m": 33.1
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.04567390000001,
-          47.62897088
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 733984596,
         "weight": 1.0,
         "area_sqm": 2921.9,
         "radius_m": 30.5
@@ -2215,7 +1839,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 757017909,
         "weight": 1.0,
         "area_sqm": 937.4,
         "radius_m": 17.3
@@ -2231,7 +1854,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 757017910,
         "weight": 1.0,
         "area_sqm": 5874.6,
         "radius_m": 43.2
@@ -2247,7 +1869,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 757017911,
         "weight": 1.0,
         "area_sqm": 1237.3,
         "radius_m": 19.8
@@ -2263,7 +1884,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 824014303,
         "weight": 1.0,
         "area_sqm": 809.5,
         "radius_m": 16.1
@@ -2279,7 +1899,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 825695822,
         "weight": 1.0,
         "area_sqm": 1344.5,
         "radius_m": 20.7
@@ -2295,7 +1914,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 825695825,
         "weight": 1.0,
         "area_sqm": 584.7,
         "radius_m": 13.6
@@ -2311,7 +1929,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 826340715,
         "weight": 1.0,
         "area_sqm": 438.0,
         "radius_m": 11.8
@@ -2327,7 +1944,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 826340717,
         "weight": 1.0,
         "area_sqm": 1398.1,
         "radius_m": 21.1
@@ -2343,7 +1959,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 827117261,
         "weight": 1.0,
         "area_sqm": 455.7,
         "radius_m": 12.0
@@ -2359,7 +1974,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 827152500,
         "weight": 1.0,
         "area_sqm": 1179.4,
         "radius_m": 19.4
@@ -2375,7 +1989,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 830200371,
         "weight": 1.0,
         "area_sqm": 728.3,
         "radius_m": 15.2
@@ -2391,7 +2004,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 830611282,
         "weight": 1.0,
         "area_sqm": 270.8,
         "radius_m": 9.3
@@ -2407,7 +2019,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 831065085,
         "weight": 1.0,
         "area_sqm": 2460.5,
         "radius_m": 28.0
@@ -2423,7 +2034,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 831070726,
         "weight": 1.0,
         "area_sqm": 1218.5,
         "radius_m": 19.7
@@ -2439,7 +2049,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 832076255,
         "weight": 1.0,
         "area_sqm": 1043.1,
         "radius_m": 18.2
@@ -2455,7 +2064,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 832391642,
         "weight": 1.0,
         "area_sqm": 272.5,
         "radius_m": 9.3
@@ -2471,7 +2079,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 832395556,
         "weight": 1.0,
         "area_sqm": 773.9,
         "radius_m": 15.7
@@ -2487,7 +2094,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 832826688,
         "weight": 1.0,
         "area_sqm": 1146.5,
         "radius_m": 19.1
@@ -2503,7 +2109,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 832826694,
         "weight": 1.0,
         "area_sqm": 173.6,
         "radius_m": 7.4
@@ -2519,11 +2124,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 842032368,
-        "name": "Nike Neighborhood Park",
         "weight": 1.0,
         "area_sqm": 60627.0,
-        "radius_m": 138.9
+        "radius_m": 138.9,
+        "id": 842032368,
+        "hasDetails": true,
+        "name": "Nike Neighborhood Park",
+        "address": "Northeast 92nd Street 17207, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Nike-Park-42",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -2536,11 +2145,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 850661172,
-        "name": "Idylwood Park",
         "weight": 1.0,
         "area_sqm": 65628.1,
-        "radius_m": 144.5
+        "radius_m": 144.5,
+        "id": 850661172,
+        "hasDetails": true,
+        "name": "Idylwood Park",
+        "address": "West Lake Sammamish Parkway Northeast 3650, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Idylwood-Beach-Park-64",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -2553,88 +2166,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 850756937,
-        "name": "Idylwood Park",
-        "weight": 1.0,
-        "area_sqm": 11943.7,
-        "radius_m": 61.7
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.10322715555556,
-          47.64126608888889
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 865181318,
-        "weight": 1.0,
-        "area_sqm": 356.3,
-        "radius_m": 10.6
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02402417,
-          47.62556927
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 898357184,
-        "weight": 1.0,
-        "area_sqm": 155.0,
-        "radius_m": 7.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.16120555666666,
-          47.63235978
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 898357185,
-        "weight": 1.0,
-        "area_sqm": 16.8,
-        "radius_m": 2.3
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.16105594545455,
-          47.63214837272728
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 898357186,
-        "weight": 1.0,
-        "area_sqm": 46.4,
-        "radius_m": 3.8
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.16116962142857,
-          47.63225645
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 903907559,
         "weight": 1.0,
         "area_sqm": 140.1,
         "radius_m": 6.7
@@ -2650,24 +2181,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 918396798,
-        "weight": 1.0,
-        "area_sqm": 2671.2,
-        "radius_m": 29.2
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.159495675,
-          47.71614415833333
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 967726565,
-        "name": "Cascara Gardens",
         "weight": 1.0,
         "area_sqm": 20129.1,
         "radius_m": 80.0
@@ -2683,28 +2196,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1011276092,
-        "name": "Heritage Hills Park",
-        "weight": 1.0,
-        "area_sqm": 23450.6,
-        "radius_m": 86.4
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.04247325476192,
-          47.633591335714286
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1025393597,
-        "name": "Tuscany Community Park",
         "weight": 1.0,
         "area_sqm": 1474.5,
-        "radius_m": 21.7
+        "radius_m": 21.7,
+        "id": 1025393597,
+        "hasDetails": true,
+        "name": "Tuscany Community Park",
+        "opening_hours": "sunrise-sunset"
       },
       "geometry": {
         "type": "Point",
@@ -2717,8 +2215,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1046596581,
-        "name": "Sportsman Park",
         "weight": 1.0,
         "area_sqm": 683447.0,
         "radius_m": 466.4
@@ -2734,11 +2230,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1047298632,
-        "name": "Bridle Trails Valley Creek Park",
         "weight": 1.0,
         "area_sqm": 4544.2,
-        "radius_m": 38.0
+        "radius_m": 38.0,
+        "id": 1047298632,
+        "hasDetails": true,
+        "name": "Bridle Trails Valley Creek Park",
+        "address": "140th Avenue Northeast 4432, Bellevue",
+        "opening_hours": "dawn-dusk"
       },
       "geometry": {
         "type": "Point",
@@ -2751,8 +2250,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1058625338,
-        "name": "Sunrise Cremation Garden",
         "weight": 1.0,
         "area_sqm": 403.8,
         "radius_m": 11.3
@@ -2768,8 +2265,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1058625339,
-        "name": "Green Burial Garden",
         "weight": 1.0,
         "area_sqm": 1664.9,
         "radius_m": 23.0
@@ -2785,7 +2280,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1105626906,
         "weight": 1.0,
         "area_sqm": 352.1,
         "radius_m": 10.6
@@ -2801,7 +2295,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1108389123,
         "weight": 1.0,
         "area_sqm": 458.2,
         "radius_m": 12.1
@@ -2817,7 +2310,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1152475288,
         "weight": 1.0,
         "area_sqm": 232.4,
         "radius_m": 8.6
@@ -2833,25 +2325,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1164587285,
-        "name": "Timberline Ridge Park",
-        "weight": 1.0,
-        "area_sqm": 3607.0,
-        "radius_m": 33.9
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.06524549999999,
-          47.63941148
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1164587921,
-        "name": "Waterbrook Playground",
         "weight": 1.0,
         "area_sqm": 2539.6,
         "radius_m": 28.4
@@ -2867,24 +2340,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1187060874,
-        "name": "Overlake Park Presbyterian Church Community Garden",
-        "weight": 1.0,
-        "area_sqm": 40.9,
-        "radius_m": 3.6
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.13091565714285,
-          47.626909714285716
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1231576844,
         "weight": 1.0,
         "area_sqm": 1451.2,
         "radius_m": 21.5
@@ -2900,7 +2355,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1234743281,
         "weight": 1.0,
         "area_sqm": 218.8,
         "radius_m": 8.3
@@ -2916,7 +2370,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1234743282,
         "weight": 1.0,
         "area_sqm": 275.5,
         "radius_m": 9.4
@@ -2932,8 +2385,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1243938594,
-        "name": "Perrigo Heights Park",
         "weight": 1.0,
         "area_sqm": 12788.0,
         "radius_m": 63.8
@@ -2949,55 +2400,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1304381389,
-        "weight": 1.0,
-        "area_sqm": 3346.8,
-        "radius_m": 32.6
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.15842253636364,
-          47.72175188181818
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1304381401,
-        "weight": 1.0,
-        "area_sqm": 2118.6,
-        "radius_m": 26.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1568122857143,
-          47.71863471428571
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1304381405,
-        "weight": 1.0,
-        "area_sqm": 848.1,
-        "radius_m": 16.4
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.15766464000001,
-          47.71700718
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1308379748,
         "weight": 1.0,
         "area_sqm": 409.5,
         "radius_m": 11.4
@@ -3013,7 +2415,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1308525267,
         "weight": 1.0,
         "area_sqm": 832.6,
         "radius_m": 16.3
@@ -3029,7 +2430,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1308525268,
         "weight": 1.0,
         "area_sqm": 1058.6,
         "radius_m": 18.4
@@ -3045,72 +2445,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1336266260,
-        "weight": 1.0,
-        "area_sqm": 898.8,
-        "radius_m": 16.9
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02298532,
-          47.62987072
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1342567206,
-        "weight": 1.0,
-        "area_sqm": 267.0,
-        "radius_m": 9.2
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.06165122,
-          47.62791788
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1352794130,
-        "weight": 1.0,
-        "area_sqm": 6865.2,
-        "radius_m": 46.7
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.0637895,
-          47.63579139354839
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1353818199,
-        "name": "Northeast Sammamish Park",
-        "weight": 1.0,
-        "area_sqm": 9611.1,
-        "radius_m": 55.3
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.05620963846152,
-          47.642762830769236
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1361754731,
         "weight": 1.0,
         "area_sqm": 163.3,
         "radius_m": 7.2
@@ -3126,23 +2460,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1396741639,
-        "weight": 1.0,
-        "area_sqm": 1161.4,
-        "radius_m": 19.2
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.16375466153846,
-          47.71399464615384
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1413396094,
         "weight": 1.0,
         "area_sqm": 841.5,
         "radius_m": 16.4
@@ -3158,7 +2475,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570975,
         "weight": 1.0,
         "area_sqm": 217.0,
         "radius_m": 8.3
@@ -3174,7 +2490,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570976,
         "weight": 1.0,
         "area_sqm": 326.1,
         "radius_m": 10.2
@@ -3190,7 +2505,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570979,
         "weight": 1.0,
         "area_sqm": 32.3,
         "radius_m": 3.2
@@ -3206,7 +2520,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570980,
         "weight": 1.0,
         "area_sqm": 966.6,
         "radius_m": 17.5
@@ -3222,7 +2535,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570981,
         "weight": 1.0,
         "area_sqm": 102.5,
         "radius_m": 5.7
@@ -3238,7 +2550,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570982,
         "weight": 1.0,
         "area_sqm": 651.8,
         "radius_m": 14.4
@@ -3254,7 +2565,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570985,
         "weight": 1.0,
         "area_sqm": 292.0,
         "radius_m": 9.6
@@ -3270,7 +2580,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570988,
         "weight": 1.0,
         "area_sqm": 110.7,
         "radius_m": 5.9
@@ -3286,7 +2595,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570989,
         "weight": 1.0,
         "area_sqm": 154.1,
         "radius_m": 7.0
@@ -3302,7 +2610,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570996,
         "weight": 1.0,
         "area_sqm": 20.1,
         "radius_m": 2.5
@@ -3318,7 +2625,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570997,
         "weight": 1.0,
         "area_sqm": 87.1,
         "radius_m": 5.3
@@ -3334,7 +2640,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570998,
         "weight": 1.0,
         "area_sqm": 50.6,
         "radius_m": 4.0
@@ -3350,7 +2655,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422570999,
         "weight": 1.0,
         "area_sqm": 54.6,
         "radius_m": 4.2
@@ -3366,7 +2670,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422571005,
         "weight": 1.0,
         "area_sqm": 26.5,
         "radius_m": 2.9
@@ -3382,7 +2685,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1422571007,
         "weight": 1.0,
         "area_sqm": 22.2,
         "radius_m": 2.7
@@ -3398,7 +2700,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477425,
         "weight": 1.0,
         "area_sqm": 21.1,
         "radius_m": 2.6
@@ -3414,7 +2715,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477429,
         "weight": 1.0,
         "area_sqm": 8.3,
         "radius_m": 1.6
@@ -3430,7 +2730,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477431,
         "weight": 1.0,
         "area_sqm": 18.4,
         "radius_m": 2.4
@@ -3446,7 +2745,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477432,
         "weight": 1.0,
         "area_sqm": 19.3,
         "radius_m": 2.5
@@ -3462,7 +2760,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477438,
         "weight": 1.0,
         "area_sqm": 42.4,
         "radius_m": 3.7
@@ -3478,7 +2775,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477439,
         "weight": 1.0,
         "area_sqm": 18.9,
         "radius_m": 2.5
@@ -3494,7 +2790,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477444,
         "weight": 1.0,
         "area_sqm": 85.6,
         "radius_m": 5.2
@@ -3510,7 +2805,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477445,
         "weight": 1.0,
         "area_sqm": 161.0,
         "radius_m": 7.2
@@ -3526,7 +2820,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477447,
         "weight": 1.0,
         "area_sqm": 21.5,
         "radius_m": 2.6
@@ -3542,7 +2835,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477448,
         "weight": 1.0,
         "area_sqm": 51.9,
         "radius_m": 4.1
@@ -3558,7 +2850,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477449,
         "weight": 1.0,
         "area_sqm": 23.6,
         "radius_m": 2.7
@@ -3574,7 +2865,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1425477450,
         "weight": 1.0,
         "area_sqm": 16.1,
         "radius_m": 2.3
@@ -3590,7 +2880,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427201132,
         "weight": 1.0,
         "area_sqm": 218.1,
         "radius_m": 8.3
@@ -3606,7 +2895,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455459,
         "weight": 1.0,
         "area_sqm": 105.6,
         "radius_m": 5.8
@@ -3622,7 +2910,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455461,
         "weight": 1.0,
         "area_sqm": 41.3,
         "radius_m": 3.6
@@ -3638,7 +2925,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455464,
         "weight": 1.0,
         "area_sqm": 20.6,
         "radius_m": 2.6
@@ -3654,7 +2940,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455467,
         "weight": 1.0,
         "area_sqm": 287.8,
         "radius_m": 9.6
@@ -3670,7 +2955,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455468,
         "weight": 1.0,
         "area_sqm": 93.3,
         "radius_m": 5.5
@@ -3686,7 +2970,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455469,
         "weight": 1.0,
         "area_sqm": 278.9,
         "radius_m": 9.4
@@ -3702,7 +2985,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455471,
         "weight": 1.0,
         "area_sqm": 325.9,
         "radius_m": 10.2
@@ -3718,7 +3000,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455472,
         "weight": 1.0,
         "area_sqm": 277.7,
         "radius_m": 9.4
@@ -3734,7 +3015,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455477,
         "weight": 1.0,
         "area_sqm": 22.3,
         "radius_m": 2.7
@@ -3750,7 +3030,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455478,
         "weight": 1.0,
         "area_sqm": 22.8,
         "radius_m": 2.7
@@ -3766,7 +3045,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455479,
         "weight": 1.0,
         "area_sqm": 74.5,
         "radius_m": 4.9
@@ -3782,7 +3060,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455480,
         "weight": 1.0,
         "area_sqm": 141.2,
         "radius_m": 6.7
@@ -3798,7 +3075,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455485,
         "weight": 1.0,
         "area_sqm": 34.3,
         "radius_m": 3.3
@@ -3814,7 +3090,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455500,
         "weight": 1.0,
         "area_sqm": 59.4,
         "radius_m": 4.4
@@ -3830,7 +3105,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427455514,
         "weight": 1.0,
         "area_sqm": 376.8,
         "radius_m": 11.0
@@ -3846,11 +3120,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1427461434,
-        "name": "Flicker's Pond",
         "weight": 1.0,
         "area_sqm": 1200.5,
-        "radius_m": 19.5
+        "radius_m": 19.5,
+        "id": 1427461434,
+        "hasDetails": true,
+        "name": "Flicker's Pond",
+        "address": "Northeast 40th Street, Redmond"
       },
       "geometry": {
         "type": "Point",
@@ -3863,7 +3139,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429285289,
         "weight": 1.0,
         "area_sqm": 199.9,
         "radius_m": 8.0
@@ -3879,7 +3154,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429372022,
         "weight": 1.0,
         "area_sqm": 13.2,
         "radius_m": 2.1
@@ -3895,7 +3169,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429372049,
         "weight": 1.0,
         "area_sqm": 67.9,
         "radius_m": 4.6
@@ -3911,7 +3184,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429372050,
         "weight": 1.0,
         "area_sqm": 89.3,
         "radius_m": 5.3
@@ -3927,7 +3199,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429372056,
         "weight": 1.0,
         "area_sqm": 106.5,
         "radius_m": 5.8
@@ -3943,7 +3214,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429372057,
         "weight": 1.0,
         "area_sqm": 30.9,
         "radius_m": 3.1
@@ -3959,7 +3229,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429372058,
         "weight": 1.0,
         "area_sqm": 317.1,
         "radius_m": 10.0
@@ -3975,7 +3244,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429372059,
         "weight": 1.0,
         "area_sqm": 243.9,
         "radius_m": 8.8
@@ -3991,7 +3259,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1429372060,
         "weight": 1.0,
         "area_sqm": 14.4,
         "radius_m": 2.1
@@ -4007,7 +3274,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430066936,
         "weight": 1.0,
         "area_sqm": 380.7,
         "radius_m": 11.0
@@ -4023,7 +3289,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430066944,
         "weight": 1.0,
         "area_sqm": 1227.4,
         "radius_m": 19.8
@@ -4039,7 +3304,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430066946,
         "weight": 1.0,
         "area_sqm": 96.8,
         "radius_m": 5.6
@@ -4055,7 +3319,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430066952,
         "weight": 1.0,
         "area_sqm": 147.1,
         "radius_m": 6.8
@@ -4071,7 +3334,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430066953,
         "weight": 1.0,
         "area_sqm": 720.2,
         "radius_m": 15.1
@@ -4087,7 +3349,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430066956,
         "weight": 1.0,
         "area_sqm": 40.2,
         "radius_m": 3.6
@@ -4103,7 +3364,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430066960,
         "weight": 1.0,
         "area_sqm": 286.4,
         "radius_m": 9.5
@@ -4119,7 +3379,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430066964,
         "weight": 1.0,
         "area_sqm": 165.1,
         "radius_m": 7.3
@@ -4135,7 +3394,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430774691,
         "weight": 1.0,
         "area_sqm": 31.4,
         "radius_m": 3.2
@@ -4151,7 +3409,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430774692,
         "weight": 1.0,
         "area_sqm": 6.5,
         "radius_m": 1.4
@@ -4167,7 +3424,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430774693,
         "weight": 1.0,
         "area_sqm": 145.2,
         "radius_m": 6.8
@@ -4183,7 +3439,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430774702,
         "weight": 1.0,
         "area_sqm": 70.8,
         "radius_m": 4.7
@@ -4199,7 +3454,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430774703,
         "weight": 1.0,
         "area_sqm": 21.1,
         "radius_m": 2.6
@@ -4215,7 +3469,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430776618,
         "weight": 1.0,
         "area_sqm": 265.3,
         "radius_m": 9.2
@@ -4231,7 +3484,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430776619,
         "weight": 1.0,
         "area_sqm": 511.0,
         "radius_m": 12.8
@@ -4247,7 +3499,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430776620,
         "weight": 1.0,
         "area_sqm": 93.3,
         "radius_m": 5.5
@@ -4263,7 +3514,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1430776621,
         "weight": 1.0,
         "area_sqm": 452.5,
         "radius_m": 12.0
@@ -4279,7 +3529,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1431605784,
         "weight": 1.0,
         "area_sqm": 6592.3,
         "radius_m": 45.8
@@ -4295,7 +3544,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1431607646,
         "weight": 1.0,
         "area_sqm": 294.3,
         "radius_m": 9.7
@@ -4311,7 +3559,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1432186618,
         "weight": 1.0,
         "area_sqm": 135.9,
         "radius_m": 6.6
@@ -4327,7 +3574,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1432186650,
         "weight": 1.0,
         "area_sqm": 258.8,
         "radius_m": 9.1
@@ -4343,7 +3589,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1432383942,
         "weight": 1.0,
         "area_sqm": 189.7,
         "radius_m": 7.8
@@ -4359,7 +3604,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1432459426,
         "weight": 1.0,
         "area_sqm": 453.0,
         "radius_m": 12.0
@@ -4375,7 +3619,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1432459468,
         "weight": 1.0,
         "area_sqm": 10589.4,
         "radius_m": 58.1
@@ -4391,7 +3634,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091956,
         "weight": 1.0,
         "area_sqm": 334.3,
         "radius_m": 10.3
@@ -4407,7 +3649,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091960,
         "weight": 1.0,
         "area_sqm": 134.3,
         "radius_m": 6.5
@@ -4423,7 +3664,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091978,
         "weight": 1.0,
         "area_sqm": 651.0,
         "radius_m": 14.4
@@ -4439,7 +3679,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091979,
         "weight": 1.0,
         "area_sqm": 126.7,
         "radius_m": 6.3
@@ -4455,7 +3694,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091980,
         "weight": 1.0,
         "area_sqm": 156.6,
         "radius_m": 7.1
@@ -4471,7 +3709,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091981,
         "weight": 1.0,
         "area_sqm": 49.5,
         "radius_m": 4.0
@@ -4487,7 +3724,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091982,
         "weight": 1.0,
         "area_sqm": 42.1,
         "radius_m": 3.7
@@ -4503,7 +3739,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091986,
         "weight": 1.0,
         "area_sqm": 57.9,
         "radius_m": 4.3
@@ -4519,7 +3754,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091987,
         "weight": 1.0,
         "area_sqm": 17.4,
         "radius_m": 2.4
@@ -4535,7 +3769,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091989,
         "weight": 1.0,
         "area_sqm": 153.0,
         "radius_m": 7.0
@@ -4551,7 +3784,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091991,
         "weight": 1.0,
         "area_sqm": 517.5,
         "radius_m": 12.8
@@ -4567,7 +3799,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091992,
         "weight": 1.0,
         "area_sqm": 289.9,
         "radius_m": 9.6
@@ -4583,7 +3814,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433091996,
         "weight": 1.0,
         "area_sqm": 1051.5,
         "radius_m": 18.3
@@ -4599,7 +3829,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433092001,
         "weight": 1.0,
         "area_sqm": 419.8,
         "radius_m": 11.6
@@ -4615,7 +3844,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433092002,
         "weight": 1.0,
         "area_sqm": 166.2,
         "radius_m": 7.3
@@ -4631,7 +3859,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433092003,
         "weight": 1.0,
         "area_sqm": 238.8,
         "radius_m": 8.7
@@ -4647,7 +3874,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433388917,
         "weight": 1.0,
         "area_sqm": 197.8,
         "radius_m": 7.9
@@ -4663,7 +3889,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433388944,
         "weight": 1.0,
         "area_sqm": 86.2,
         "radius_m": 5.2
@@ -4679,7 +3904,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433503696,
         "weight": 1.0,
         "area_sqm": 92.3,
         "radius_m": 5.4
@@ -4695,7 +3919,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433503710,
         "weight": 1.0,
         "area_sqm": 500.0,
         "radius_m": 12.6
@@ -4711,7 +3934,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1433503736,
         "weight": 1.0,
         "area_sqm": 146.1,
         "radius_m": 6.8
@@ -4727,7 +3949,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1434905154,
         "weight": 1.0,
         "area_sqm": 402.1,
         "radius_m": 11.3
@@ -4743,7 +3964,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1434905155,
         "weight": 1.0,
         "area_sqm": 1903.0,
         "radius_m": 24.6
@@ -4759,7 +3979,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436347411,
         "weight": 1.0,
         "area_sqm": 29.6,
         "radius_m": 3.1
@@ -4775,7 +3994,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436347412,
         "weight": 1.0,
         "area_sqm": 31.8,
         "radius_m": 3.2
@@ -4791,7 +4009,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436347414,
         "weight": 1.0,
         "area_sqm": 14.4,
         "radius_m": 2.1
@@ -4807,7 +4024,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436347415,
         "weight": 1.0,
         "area_sqm": 24.5,
         "radius_m": 2.8
@@ -4823,7 +4039,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436347418,
         "weight": 1.0,
         "area_sqm": 69.7,
         "radius_m": 4.7
@@ -4839,7 +4054,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436347421,
         "weight": 1.0,
         "area_sqm": 14.6,
         "radius_m": 2.2
@@ -4855,7 +4069,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436347422,
         "weight": 1.0,
         "area_sqm": 292.9,
         "radius_m": 9.7
@@ -4871,7 +4084,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436347424,
         "weight": 1.0,
         "area_sqm": 75.9,
         "radius_m": 4.9
@@ -4887,7 +4099,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436840137,
         "weight": 1.0,
         "area_sqm": 1833.5,
         "radius_m": 24.2
@@ -4903,7 +4114,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436840138,
         "weight": 1.0,
         "area_sqm": 1468.8,
         "radius_m": 21.6
@@ -4919,7 +4129,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436840139,
         "weight": 1.0,
         "area_sqm": 993.2,
         "radius_m": 17.8
@@ -4935,7 +4144,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436840140,
         "weight": 1.0,
         "area_sqm": 1523.6,
         "radius_m": 22.0
@@ -4951,7 +4159,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436840145,
         "weight": 1.0,
         "area_sqm": 151.4,
         "radius_m": 6.9
@@ -4967,7 +4174,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1436840152,
         "weight": 1.0,
         "area_sqm": 1170.6,
         "radius_m": 19.3
@@ -4983,7 +4189,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1441752080,
         "weight": 1.0,
         "area_sqm": 493.1,
         "radius_m": 12.5
@@ -4999,7 +4204,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428438,
         "weight": 1.0,
         "area_sqm": 371.0,
         "radius_m": 10.9
@@ -5015,7 +4219,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428458,
         "weight": 1.0,
         "area_sqm": 35.6,
         "radius_m": 3.4
@@ -5031,7 +4234,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428459,
         "weight": 1.0,
         "area_sqm": 142.5,
         "radius_m": 6.7
@@ -5047,7 +4249,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428468,
         "weight": 1.0,
         "area_sqm": 77.9,
         "radius_m": 5.0
@@ -5063,7 +4264,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428474,
         "weight": 1.0,
         "area_sqm": 95.4,
         "radius_m": 5.5
@@ -5079,7 +4279,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428476,
         "weight": 1.0,
         "area_sqm": 55.2,
         "radius_m": 4.2
@@ -5095,7 +4294,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428482,
         "weight": 1.0,
         "area_sqm": 17.6,
         "radius_m": 2.4
@@ -5111,7 +4309,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428483,
         "weight": 1.0,
         "area_sqm": 37.6,
         "radius_m": 3.5
@@ -5127,7 +4324,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428487,
         "weight": 1.0,
         "area_sqm": 32.7,
         "radius_m": 3.2
@@ -5143,7 +4339,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428488,
         "weight": 1.0,
         "area_sqm": 57.4,
         "radius_m": 4.3
@@ -5159,7 +4354,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428490,
         "weight": 1.0,
         "area_sqm": 280.5,
         "radius_m": 9.4
@@ -5175,7 +4369,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428491,
         "weight": 1.0,
         "area_sqm": 330.1,
         "radius_m": 10.3
@@ -5191,7 +4384,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428495,
         "weight": 1.0,
         "area_sqm": 74.7,
         "radius_m": 4.9
@@ -5207,7 +4399,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428508,
         "weight": 1.0,
         "area_sqm": 412.4,
         "radius_m": 11.5
@@ -5223,7 +4414,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428509,
         "weight": 1.0,
         "area_sqm": 214.8,
         "radius_m": 8.3
@@ -5239,7 +4429,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428512,
         "weight": 1.0,
         "area_sqm": 115.9,
         "radius_m": 6.1
@@ -5255,7 +4444,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428514,
         "weight": 1.0,
         "area_sqm": 238.7,
         "radius_m": 8.7
@@ -5271,7 +4459,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428515,
         "weight": 1.0,
         "area_sqm": 175.1,
         "radius_m": 7.5
@@ -5287,7 +4474,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428516,
         "weight": 1.0,
         "area_sqm": 366.5,
         "radius_m": 10.8
@@ -5303,7 +4489,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428520,
         "weight": 1.0,
         "area_sqm": 263.3,
         "radius_m": 9.2
@@ -5319,7 +4504,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428522,
         "weight": 1.0,
         "area_sqm": 384.3,
         "radius_m": 11.1
@@ -5335,7 +4519,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428523,
         "weight": 1.0,
         "area_sqm": 54.7,
         "radius_m": 4.2
@@ -5351,7 +4534,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428524,
         "weight": 1.0,
         "area_sqm": 90.3,
         "radius_m": 5.4
@@ -5367,7 +4549,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428526,
         "weight": 1.0,
         "area_sqm": 110.6,
         "radius_m": 5.9
@@ -5383,7 +4564,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428528,
         "weight": 1.0,
         "area_sqm": 70.2,
         "radius_m": 4.7
@@ -5399,7 +4579,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428529,
         "weight": 1.0,
         "area_sqm": 125.5,
         "radius_m": 6.3
@@ -5415,7 +4594,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428530,
         "weight": 1.0,
         "area_sqm": 114.6,
         "radius_m": 6.0
@@ -5431,7 +4609,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428531,
         "weight": 1.0,
         "area_sqm": 434.3,
         "radius_m": 11.8
@@ -5447,7 +4624,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428532,
         "weight": 1.0,
         "area_sqm": 95.5,
         "radius_m": 5.5
@@ -5463,7 +4639,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428534,
         "weight": 1.0,
         "area_sqm": 94.2,
         "radius_m": 5.5
@@ -5479,7 +4654,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428538,
         "weight": 1.0,
         "area_sqm": 63.0,
         "radius_m": 4.5
@@ -5495,7 +4669,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428539,
         "weight": 1.0,
         "area_sqm": 13.2,
         "radius_m": 2.1
@@ -5511,7 +4684,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428545,
         "weight": 1.0,
         "area_sqm": 11.2,
         "radius_m": 1.9
@@ -5527,7 +4699,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1442428546,
         "weight": 1.0,
         "area_sqm": 4.6,
         "radius_m": 1.2
@@ -5543,7 +4714,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1444314186,
         "weight": 1.0,
         "area_sqm": 232.9,
         "radius_m": 8.6
@@ -5559,7 +4729,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1444589414,
         "weight": 1.0,
         "area_sqm": 739.4,
         "radius_m": 15.3
@@ -5575,7 +4744,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1444589418,
         "weight": 1.0,
         "area_sqm": 494.9,
         "radius_m": 12.6
@@ -5591,7 +4759,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1446430702,
         "weight": 1.0,
         "area_sqm": 2070.4,
         "radius_m": 25.7
@@ -5607,7 +4774,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1446430703,
         "weight": 1.0,
         "area_sqm": 1089.0,
         "radius_m": 18.6
@@ -5623,7 +4789,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1446430706,
         "weight": 1.0,
         "area_sqm": 320.5,
         "radius_m": 10.1
@@ -5639,7 +4804,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1446564715,
         "weight": 1.0,
         "area_sqm": 350.2,
         "radius_m": 10.6
@@ -5655,7 +4819,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1446564716,
         "weight": 1.0,
         "area_sqm": 326.1,
         "radius_m": 10.2
@@ -5671,7 +4834,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1446564729,
         "weight": 1.0,
         "area_sqm": 259.9,
         "radius_m": 9.1
@@ -5687,7 +4849,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1446564731,
         "weight": 1.0,
         "area_sqm": 1293.5,
         "radius_m": 20.3
@@ -5703,7 +4864,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029144,
         "weight": 1.0,
         "area_sqm": 230.3,
         "radius_m": 8.6
@@ -5719,7 +4879,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029145,
         "weight": 1.0,
         "area_sqm": 144.9,
         "radius_m": 6.8
@@ -5735,7 +4894,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029146,
         "weight": 1.0,
         "area_sqm": 239.4,
         "radius_m": 8.7
@@ -5751,7 +4909,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029147,
         "weight": 1.0,
         "area_sqm": 213.4,
         "radius_m": 8.2
@@ -5767,7 +4924,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029148,
         "weight": 1.0,
         "area_sqm": 85.8,
         "radius_m": 5.2
@@ -5783,7 +4939,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029149,
         "weight": 1.0,
         "area_sqm": 139.4,
         "radius_m": 6.7
@@ -5799,7 +4954,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029150,
         "weight": 1.0,
         "area_sqm": 156.9,
         "radius_m": 7.1
@@ -5815,7 +4969,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029151,
         "weight": 1.0,
         "area_sqm": 173.4,
         "radius_m": 7.4
@@ -5831,7 +4984,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029152,
         "weight": 1.0,
         "area_sqm": 130.9,
         "radius_m": 6.5
@@ -5847,7 +4999,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029158,
         "weight": 1.0,
         "area_sqm": 248.6,
         "radius_m": 8.9
@@ -5863,7 +5014,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029159,
         "weight": 1.0,
         "area_sqm": 16.9,
         "radius_m": 2.3
@@ -5879,7 +5029,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029160,
         "weight": 1.0,
         "area_sqm": 15.6,
         "radius_m": 2.2
@@ -5895,7 +5044,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029161,
         "weight": 1.0,
         "area_sqm": 105.2,
         "radius_m": 5.8
@@ -5911,7 +5059,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029162,
         "weight": 1.0,
         "area_sqm": 102.0,
         "radius_m": 5.7
@@ -5927,7 +5074,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029169,
         "weight": 1.0,
         "area_sqm": 97.0,
         "radius_m": 5.6
@@ -5943,7 +5089,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029170,
         "weight": 1.0,
         "area_sqm": 50.8,
         "radius_m": 4.0
@@ -5959,7 +5104,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029171,
         "weight": 1.0,
         "area_sqm": 55.5,
         "radius_m": 4.2
@@ -5975,7 +5119,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029172,
         "weight": 1.0,
         "area_sqm": 104.8,
         "radius_m": 5.8
@@ -5991,7 +5134,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029173,
         "weight": 1.0,
         "area_sqm": 86.9,
         "radius_m": 5.3
@@ -6007,7 +5149,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029174,
         "weight": 1.0,
         "area_sqm": 78.8,
         "radius_m": 5.0
@@ -6023,7 +5164,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029175,
         "weight": 1.0,
         "area_sqm": 204.7,
         "radius_m": 8.1
@@ -6039,7 +5179,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029176,
         "weight": 1.0,
         "area_sqm": 196.6,
         "radius_m": 7.9
@@ -6055,7 +5194,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029193,
         "weight": 1.0,
         "area_sqm": 92.7,
         "radius_m": 5.4
@@ -6071,7 +5209,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029194,
         "weight": 1.0,
         "area_sqm": 320.3,
         "radius_m": 10.1
@@ -6087,7 +5224,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447029195,
         "weight": 1.0,
         "area_sqm": 333.6,
         "radius_m": 10.3
@@ -6103,7 +5239,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447273186,
         "weight": 1.0,
         "area_sqm": 28.8,
         "radius_m": 3.0
@@ -6119,119 +5254,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1447280978,
-        "weight": 1.0,
-        "area_sqm": 10.7,
-        "radius_m": 1.8
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.13782885,
-          47.631446175
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1447280979,
-        "weight": 1.0,
-        "area_sqm": 8.4,
-        "radius_m": 1.6
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1376196375,
-          47.6314470125
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1447280980,
-        "weight": 1.0,
-        "area_sqm": 6.5,
-        "radius_m": 1.4
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1375924875,
-          47.6316544875
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1447280981,
-        "weight": 1.0,
-        "area_sqm": 11.9,
-        "radius_m": 1.9
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.13785543333334,
-          47.63164868888889
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1447884608,
-        "weight": 1.0,
-        "area_sqm": 232.8,
-        "radius_m": 8.6
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.15342282105262,
-          47.63129745789474
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1447884610,
-        "weight": 1.0,
-        "area_sqm": 67.6,
-        "radius_m": 4.6
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.15359712,
-          47.63056302
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1447884612,
-        "weight": 1.0,
-        "area_sqm": 30.6,
-        "radius_m": 3.1
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.1527194,
-          47.63146958
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": 1447885632,
         "weight": 1.0,
         "area_sqm": 457.4,
         "radius_m": 12.1
@@ -6247,7 +5269,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1449299322,
         "weight": 1.0,
         "area_sqm": 455.8,
         "radius_m": 12.0
@@ -6263,7 +5284,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1455927844,
         "weight": 1.0,
         "area_sqm": 251.3,
         "radius_m": 8.9
@@ -6279,7 +5299,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1455927870,
         "weight": 1.0,
         "area_sqm": 246.6,
         "radius_m": 8.9
@@ -6295,7 +5314,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1463270458,
         "weight": 1.0,
         "area_sqm": 150.1,
         "radius_m": 6.9
@@ -6311,7 +5329,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1474012432,
         "weight": 1.0,
         "area_sqm": 1392.8,
         "radius_m": 21.1
@@ -6327,7 +5344,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1474045739,
         "weight": 1.0,
         "area_sqm": 68.0,
         "radius_m": 4.7
@@ -6343,7 +5359,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1474045740,
         "weight": 1.0,
         "area_sqm": 68.0,
         "radius_m": 4.7
@@ -6359,7 +5374,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1474045741,
         "weight": 1.0,
         "area_sqm": 68.0,
         "radius_m": 4.7
@@ -6375,7 +5389,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1474045742,
         "weight": 1.0,
         "area_sqm": 68.0,
         "radius_m": 4.7
@@ -6391,7 +5404,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1474045743,
         "weight": 1.0,
         "area_sqm": 68.0,
         "radius_m": 4.7
@@ -6407,7 +5419,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1474045744,
         "weight": 1.0,
         "area_sqm": 68.0,
         "radius_m": 4.7

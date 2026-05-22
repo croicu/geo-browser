@@ -263,10 +263,10 @@ Entry point. Tells the browser where the catalog file lives.
 
 | Field | Type | Description |
 |---|---|---|
-| `type` | `"heatmap" \| "circle" \| "poi-heat"` | Render mode |
+| `type` | `"heatmap" \| "circle" \| "poi"` | Render mode |
 | `url` | `string \| null` | GeoJSON URL, or `null` for virtual layers |
 | `visible` | `boolean` | Default visibility |
-| `mergeKey` | `string` | Optional grouping key (required on `poi-heat` layers) |
+| `mergeKey` | `string` | Optional grouping key (required on `poi` layers) |
 | `style.type` | `string` | Optional render hint (e.g. `"circle"`) |
 | `style.opacity` | `number` | Layer opacity (0–1) |
 | `style.radiusScale` | `number` | Multiplier applied to the base render radius |
@@ -275,19 +275,19 @@ Entry point. Tells the browser where the catalog file lives.
 
 All `style` fields are optional; absent fields fall back to layer defaults.
 
-#### `poi-heat` layer
+#### `poi` layer
 
 A virtual layer with `url: null`. The browser derives its content at render time by scanning all other loaded layers for features with `hasDetails: true`. The manifest entry is only emitted when at least one enriched POI exists.
 
 ```jsonc
 {
-  "id": "poi-heat",
+  "id": "poi",
   "name": "POI",
-  "type": "poi-heat",
+  "type": "poi",
   "url": null,
   "visible": true,
   "style": { "opacity": 0.7, "type": "circle" },
-  "mergeKey": "poi-heat"
+  "mergeKey": "poi"
 }
 ```
 
@@ -298,7 +298,7 @@ Features in any heatmap layer may carry POI detail fields. All detail fields are
 | Property | Type | Description |
 |---|---|---|
 | `weight` | `number` | Heat contribution (default `1.0`) |
-| `hasDetails` | `boolean` | `true` = tappable POI marker in the `poi-heat` layer |
+| `hasDetails` | `boolean` | `true` = tappable POI marker in the `poi` layer |
 | `id` | `number` | OSM node ID |
 | `name` | `string` | Venue name |
 | `amenity` | `string` | OSM amenity tag (e.g. `"restaurant"`, `"cafe"`) |
