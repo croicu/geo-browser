@@ -12,6 +12,21 @@ Surface point-of-interest details (name, hours, cuisine, etc.) for relevant map 
 - Bake everything into the area's GeoJSON alongside the regular weight-only points.
 - Regular (non-enriched) points carry only `weight`; enriched points carry `weight` + details.
 
+### Stub file
+
+The builder always emits the `poi-heat` GeoJSON file and the corresponding manifest entry, even when no enriched POIs were found. This keeps the browser implementation simple — no missing-file case to handle.
+
+Minimum valid file (no enriched POIs):
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": []
+}
+```
+
+The manifest entry carries the layer metadata (color, display name, visibility default). The browser renders an empty `poi-heat` layer as pure heat with no tappable markers — gracefully degraded, not an error.
+
 ### GeoJSON shape
 
 ```json
@@ -78,3 +93,4 @@ const googleUrl = `https://www.google.com/maps/search/${encodeURIComponent(name)
 | Single `poi-heat` layer | Avoids double-rendering enriched points; one GeoJSON file per area |
 | No `reviews` in GeoJSON | Computed at render time — smaller files, no rebuild needed on URL schema changes |
 | Yelp uses text location | Yelp `find_loc` does not accept raw coordinates reliably |
+| Builder always emits stub | Empty `FeatureCollection` emitted even with no enriched POIs — browser never handles a missing file |
