@@ -142,12 +142,14 @@ Folder provides namespace. Class uses the simplest meaningful name.
 Use these terms consistently:
 
 ```text
-Summary = discovery/world overview mode
-Detail  = selected-area immersive mode
-Area    = domain concept
-Bubble  = summary UI widget concept
-Layer   = protocol/data concept
-GeoLayer = runtime wrapper/cache
+Summary   = discovery/world overview mode
+Detail    = selected-area immersive mode
+Area      = domain concept
+Bubble    = summary UI widget concept
+Layer     = protocol/data concept
+GeoLayer  = runtime wrapper/cache
+poi  = layer type: tappable POI markers derived at runtime from hasDetails features in existing layers
+hasDetails = GeoJSON feature flag: point carries baked POI metadata and is tappable
 ```
 
 Do not reintroduce `intro` vocabulary unless explicitly requested. The project settled on `summary/detail`.
@@ -329,11 +331,38 @@ Leaflet coordinates are `[latitude, longitude]`.
 
 Default event weight is `1.0`; heatmap density accumulation is handled by the renderer/plugin.
 
+### POI Layer
+
+`poi` is a virtual layer type with no GeoJSON URL of its own. See `docs/POI_LAYER.md` for the full plan of record.
+
+- Features with `hasDetails: true` in the area's existing layers render as interactive circle markers.
+- Popup shows baked name, amenity, cuisine, address, website, opening hours.
+- Review links (Google Maps, Yelp, Foursquare) are computed lazily when the popup opens — not stored in GeoJSON.
+
+Enriched feature shape:
+
+```json
+{
+  "type": "Feature",
+  "properties": {
+    "weight": 1.0,
+    "hasDetails": true,
+    "name": "Bar Ristorante Gaetano",
+    "cuisine": "italian",
+    "address": "Via Roma 42, Naples",
+    "phone": "+39 081 234 5678",
+    "website": "https://...",
+    "opening_hours": "Mo-Su 12:00-23:00"
+  },
+  "geometry": { "type": "Point", "coordinates": [14.267789, 40.853179] }
+}
+```
+
 ## Next Likely Work
 
 Good next branches:
 
-1. Viewport synchronization: Leaflet move/zoom → update view state → persist/restore.
+1. `poi` layer type: new `LayerView` that renders heatmap + tappable `hasDetails` markers from a single GeoJSON. See `docs/POI_LAYER.md`.
 2. Design-mode data source abstraction.
 3. Bbox persistence: `GeoArea.bbox` is computed from `center + radiusMeters` and is always square. Calling `SetAreaBbox` persists edits in the builder, but on the next load the square is recomputed, losing the edit. Fix: call `GetAreaBbox` on render and update the widget once the response arrives (render square immediately as placeholder, replace when builder responds).
 

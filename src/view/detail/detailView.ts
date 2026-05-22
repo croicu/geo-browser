@@ -7,6 +7,7 @@ import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
 import { PointLayerView } from "./pointLayerView";
+import { PoiLayerView } from "./poiLayerView";
 import { PoiWidget } from "./poiWidget";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
@@ -258,6 +259,13 @@ export class DetailView implements View {
                     layerView = new PointLayerView(
                         this._map,
                         layer,
+                        new DefaultLeafletLayerFactory()
+                    );
+                } else if (layer.type === "poi") {
+                    layerView = new PoiLayerView(
+                        this._map,
+                        layer,
+                        this._area.layers,
                         new DefaultLeafletLayerFactory()
                     );
                 } else {

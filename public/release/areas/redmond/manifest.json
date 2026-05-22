@@ -33,8 +33,8 @@
             "memorials"
           ],
           "name": "Places",
-          "color": "#cfcf00",
-          "scale": null,
+          "color": "#ffff00",
+          "scale": 3.0,
           "surface": false,
           "type": "heatmap"
         }
@@ -46,33 +46,32 @@
       "id": "overpass_historic_memorials_monuments",
       "name": "Places",
       "type": "heatmap",
-      "url": "./layers/overpass_historic_memorials_monuments.geojson",
       "visible": true,
       "style": {
-        "opacity": 1.0,
-        "radiusScale": 1.0,
-        "color": "#cfcf00"
+        "opacity": 0.7,
+        "radiusScale": 3.0,
+        "color": "#ffff00"
       },
-      "mergeKey": "overpass:historic=memorials,monuments"
+      "mergeKey": "overpass:historic=memorials,monuments",
+      "url": "./layers/overpass_historic_memorials_monuments.geojson"
     },
     {
       "id": "overpass_amenity_entertainment_sustenance",
       "name": "Restaurants",
       "type": "heatmap",
-      "url": "./layers/overpass_amenity_entertainment_sustenance.geojson",
       "visible": true,
       "style": {
         "opacity": 0.7,
         "radiusScale": 1.0,
         "color": "#ff0000"
       },
-      "mergeKey": "overpass:amenity=entertainment,sustenance"
+      "mergeKey": "overpass:amenity=entertainment,sustenance",
+      "url": "./layers/overpass_amenity_entertainment_sustenance.geojson"
     },
     {
       "id": "overpass_leisure_garden_park",
       "name": "Parks",
       "type": "circle",
-      "url": "./layers/overpass_leisure_garden_park.geojson",
       "visible": true,
       "style": {
         "opacity": 0.7,
@@ -80,7 +79,20 @@
         "surface": true,
         "color": "#007f00"
       },
-      "mergeKey": "overpass:leisure=garden,park"
+      "mergeKey": "overpass:leisure=garden,park",
+      "url": "./layers/overpass_leisure_garden_park.geojson"
+    },
+    {
+      "id": "poi",
+      "name": "POI",
+      "type": "poi",
+      "visible": true,
+      "style": {
+        "opacity": 0.7,
+        "type": "circle"
+      },
+      "mergeKey": "poi",
+      "url": null
     }
   ]
 }

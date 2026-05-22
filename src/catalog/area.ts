@@ -29,7 +29,7 @@ export class GeoArea {
 
         this._detail = detail;
         this._layers = detail.layers.map((l) => {
-            const url = resolveUrl(l.url, this.summary.manifestUrl);
+            const url = l.url !== null ? resolveUrl(l.url, this.summary.manifestUrl) : null;
             return new GeoLayer({ ...l, url });
         });
     }

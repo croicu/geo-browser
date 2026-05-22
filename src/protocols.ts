@@ -31,6 +31,7 @@ export interface AreaDetail {
     layers: Layer[];
 }
 export interface LayerStyle {
+    type?: string;
     color?: string;
     opacity?: number;
     radius?: number;
@@ -43,11 +44,12 @@ export interface LayerStyle {
 export interface Layer {
     id: string;
     type: string;
-    url: string;
+    url: string | null;
     visible: boolean;
 
     name?: string;
     style?: LayerStyle;
+    mergeKey?: string;
 }
 
 export type LatLng = [number, number];

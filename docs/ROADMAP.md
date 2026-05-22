@@ -24,7 +24,15 @@
 
 ## Recommended Next Branches
 
-### 1. Data Source Abstraction
+### 1. POI Layer (`poi`)
+
+Virtual layer type with tappable POI markers derived at runtime from `hasDetails` features in existing layers. Full plan of record in `docs/POI_LAYER.md`.
+
+- `hasDetails: true` features render as interactive circle markers.
+- Popup shows baked name, amenity, cuisine, address, website, opening hours.
+- Review links (Google Maps, Yelp, Foursquare) computed lazily when popup opens.
+
+### 3. Data Source Abstraction
 
 Move direct fetch behind `GeoDataService`:
 
@@ -51,7 +59,7 @@ src/host/ or src/runtime host service implementation
 
 Keep Python out of geo-browser.
 
-### 3. Better Summary Markers
+### 4. Better Summary Markers
 
 Current BubbleWidget uses simple circle markers.
 
@@ -62,7 +70,7 @@ Future:
 - LOD image choice
 - area radius visualization
 
-### 4. Area Detail Default View
+### 5. Area Detail Default View
 
 Consider extending `AreaDetail`:
 
@@ -77,7 +85,7 @@ interface AreaDetail {
 }
 ```
 
-### 5. Production Cache Headers
+### 6. Production Cache Headers
 
 Static hosting should use:
 

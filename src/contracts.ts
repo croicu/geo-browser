@@ -183,7 +183,8 @@ export interface CircleMarkerOptions {
     radius?: number;
     color?: string;
     weight?: number;
-    fillColor?: string,
+    fillColor?: string;
+    fillOpacity?: number;
     opacity: number;
 }
 
