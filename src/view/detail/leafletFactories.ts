@@ -34,6 +34,7 @@ import type {
     GeoLocationWidgetHandle,
     LayerFactory,
     MapFactory,
+    MapPopupHandle,
     PositionMarkerHandle,
     RectangleHandle,
     RectangleOptions,
@@ -153,6 +154,65 @@ class LeafletMapHandle implements MapHandle {
         return {
             sw: [b.getSouth(), b.getWest()],
             ne: [b.getNorth(), b.getEast()],
+        };
+    }
+
+    onLongPress(handler: (latLng: [number, number]) => void): () => void {
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        let startPoint: L.Point | undefined;
+
+        const onDown = (e: L.LeafletMouseEvent) => {
+            startPoint = this._map.latLngToContainerPoint(e.latlng);
+            timer = setTimeout(() => {
+                timer = undefined;
+                handler([e.latlng.lat, e.latlng.lng]);
+            }, 200);
+        };
+
+        const onMove = (e: L.LeafletMouseEvent) => {
+            if (timer === undefined || startPoint === undefined) return;
+            const p = this._map.latLngToContainerPoint(e.latlng);
+            const dx = p.x - startPoint.x;
+            const dy = p.y - startPoint.y;
+            if (dx * dx + dy * dy > 100) {
+                clearTimeout(timer);
+                timer = undefined;
+            }
+        };
+
+        const onUp = () => {
+            if (timer !== undefined) {
+                clearTimeout(timer);
+                timer = undefined;
+            }
+        };
+
+        this._map.on("mousedown", onDown);
+        this._map.on("mousemove", onMove);
+        this._map.on("mouseup", onUp);
+
+        return () => {
+            this._map.off("mousedown", onDown);
+            this._map.off("mousemove", onMove);
+            this._map.off("mouseup", onUp);
+            if (timer !== undefined) clearTimeout(timer);
+        };
+    }
+
+    createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle {
+        const popup = L.popup({ closeButton: false, autoClose: false, closeOnClick: false })
+            .setLatLng(latLng)
+            .setContent(element)
+            .openOn(this._map);
+
+        return {
+            update(el: HTMLElement): void {
+                popup.setContent(el);
+                popup.update();
+            },
+            remove(): void {
+                popup.remove();
+            },
         };
     }
 

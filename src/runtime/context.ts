@@ -4,8 +4,10 @@ import { setLogger, resetLogger } from "../services";
 import { StorageGuard } from "./storageGuard";
 import { WebViewHostService } from "./webViewHostService";
 import { BrowserGeoLocationService } from "./browserGeoLocationService";
+import { NominatimService } from "./nominatimService";
+import { PoiServiceCollection } from "./poiService";
 
-import type { GeoDataService, GeoLocationService, HostService, StorageService, Logger } from "../contracts";
+import type { GeoDataService, GeoLocationService, HostService, PoiService, StorageService, Logger } from "../contracts";
 import type { ResolveCatalogUrlOptions } from "../catalog/loader";
 import type { LatLng } from "../protocols";
 
@@ -25,6 +27,7 @@ export class Context {
     private readonly _logger: Logger;
     private readonly _host: HostService;
     private readonly _geoLocation: GeoLocationService;
+    private readonly _poiService: PoiService;
 
     public static get Instance(): Context {
         if (!Context.s_instance) {
@@ -56,6 +59,7 @@ export class Context {
         this._storageGuard = new StorageGuard();
         this._host = new WebViewHostService(this._mode);
         this._geoLocation = new BrowserGeoLocationService();
+        this._poiService = new PoiServiceCollection([new NominatimService()]);
 
         setLogger(this._logger);
     }
@@ -86,6 +90,10 @@ export class Context {
 
     public get geoLocation(): GeoLocationService {
         return this._geoLocation;
+    }
+
+    public get poiService(): PoiService {
+        return this._poiService;
     }
 
     public get mode(): Mode {

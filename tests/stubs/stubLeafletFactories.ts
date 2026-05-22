@@ -10,6 +10,7 @@ import type {
     MapFactory,
     MapHandle,
     MapLayerHandle,
+    MapPopupHandle,
     PositionMarkerHandle,
     RectangleHandle,
     RectangleOptions,
@@ -17,6 +18,25 @@ import type {
     WidgetHandle,
 } from "../../src/contracts";
 import type { HeatPoint } from "../../src/protocols";
+
+export class StubMapPopupHandle implements MapPopupHandle {
+    public latLng: [number, number];
+    public element: HTMLElement;
+    public removed = false;
+
+    constructor(latLng: [number, number], element: HTMLElement) {
+        this.latLng = latLng;
+        this.element = element;
+    }
+
+    update(element: HTMLElement): void {
+        this.element = element;
+    }
+
+    remove(): void {
+        this.removed = true;
+    }
+}
 
 export class StubMap implements MapHandle {
     public removeCalled = false;
@@ -80,6 +100,24 @@ export class StubMap implements MapHandle {
 
     onMouseUp(_handler: (latLng: [number, number]) => void): () => void {
         return () => {};
+    }
+
+    private _longPressHandler?: (latLng: [number, number]) => void;
+    public lastPopup?: StubMapPopupHandle;
+
+    onLongPress(handler: (latLng: [number, number]) => void): () => void {
+        this._longPressHandler = handler;
+        return () => { this._longPressHandler = undefined; };
+    }
+
+    createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle {
+        const popup = new StubMapPopupHandle(latLng, element);
+        this.lastPopup = popup;
+        return popup;
+    }
+
+    simulateLongPress(latLng: [number, number]): void {
+        this._longPressHandler?.(latLng);
     }
 
     simulateZoom(zoom: number): void {

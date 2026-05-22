@@ -128,7 +128,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
                 this,
                 area,
                 this._detailViewState,
-                { gateway: this._gateway, geoLocation: Context.Instance.geoLocation }
+                { gateway: this._gateway, geoLocation: Context.Instance.geoLocation, poiService: Context.Instance.poiService }
             );
 
             this.switchView(detailView);
