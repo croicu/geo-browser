@@ -159,10 +159,58 @@ class LeafletMapHandle implements MapHandle {
 
     onLongPress(handler: (latLng: [number, number]) => void): () => void {
         let timer: ReturnType<typeof setTimeout> | undefined;
-        let startPoint: L.Point | undefined;
+        let startX = 0;
+        let startY = 0;
+        let touchActive = false;
 
+        const container = this._map.getContainer();
+
+        const clearTimer = () => {
+            if (timer !== undefined) {
+                clearTimeout(timer);
+                timer = undefined;
+            }
+        };
+
+        // Touch path: listen to native touch events so we can react before iOS
+        // synthesises mouse events. passive:true — we don't call preventDefault,
+        // which keeps click synthesis alive (needed to dismiss the POI popup).
+        const onTouchStart = (e: TouchEvent) => {
+            if (e.touches.length !== 1) { clearTimer(); return; }
+            touchActive = true;
+            const t = e.touches[0];
+            startX = t.clientX;
+            startY = t.clientY;
+            timer = setTimeout(() => {
+                timer = undefined;
+                const rect = container.getBoundingClientRect();
+                const latlng = this._map.containerPointToLatLng(
+                    L.point(startX - rect.left, startY - rect.top)
+                );
+                handler([latlng.lat, latlng.lng]);
+            }, 200);
+        };
+
+        const onTouchMove = (e: TouchEvent) => {
+            if (timer === undefined) return;
+            if (e.touches.length !== 1) { clearTimer(); return; }
+            const t = e.touches[0];
+            const dx = t.clientX - startX;
+            const dy = t.clientY - startY;
+            if (dx * dx + dy * dy > 100) clearTimer();
+        };
+
+        const onTouchEnd = () => {
+            touchActive = false;
+            clearTimer();
+        };
+
+        // Mouse path: desktop only. The touchActive guard prevents double-firing
+        // on iOS where the browser also synthesises mousedown from touchstart.
         const onDown = (e: L.LeafletMouseEvent) => {
-            startPoint = this._map.latLngToContainerPoint(e.latlng);
+            if (touchActive) return;
+            startX = e.containerPoint.x;
+            startY = e.containerPoint.y;
             timer = setTimeout(() => {
                 timer = undefined;
                 handler([e.latlng.lat, e.latlng.lng]);
@@ -170,32 +218,33 @@ class LeafletMapHandle implements MapHandle {
         };
 
         const onMove = (e: L.LeafletMouseEvent) => {
-            if (timer === undefined || startPoint === undefined) return;
-            const p = this._map.latLngToContainerPoint(e.latlng);
-            const dx = p.x - startPoint.x;
-            const dy = p.y - startPoint.y;
-            if (dx * dx + dy * dy > 100) {
-                clearTimeout(timer);
-                timer = undefined;
-            }
+            if (touchActive || timer === undefined) return;
+            const dx = e.containerPoint.x - startX;
+            const dy = e.containerPoint.y - startY;
+            if (dx * dx + dy * dy > 100) clearTimer();
         };
 
         const onUp = () => {
-            if (timer !== undefined) {
-                clearTimeout(timer);
-                timer = undefined;
-            }
+            if (!touchActive) clearTimer();
         };
 
+        container.addEventListener("touchstart", onTouchStart, { passive: true });
+        container.addEventListener("touchmove", onTouchMove, { passive: true });
+        container.addEventListener("touchend", onTouchEnd);
+        container.addEventListener("touchcancel", onTouchEnd);
         this._map.on("mousedown", onDown);
         this._map.on("mousemove", onMove);
         this._map.on("mouseup", onUp);
 
         return () => {
+            container.removeEventListener("touchstart", onTouchStart);
+            container.removeEventListener("touchmove", onTouchMove);
+            container.removeEventListener("touchend", onTouchEnd);
+            container.removeEventListener("touchcancel", onTouchEnd);
             this._map.off("mousedown", onDown);
             this._map.off("mousemove", onMove);
             this._map.off("mouseup", onUp);
-            if (timer !== undefined) clearTimeout(timer);
+            clearTimer();
         };
     }
 
@@ -472,6 +521,9 @@ export class DefaultLeafletMapFactory implements MapFactory {
         // double/triple fires on iOS. Native click synthesis alone is sufficient on iOS 13+
         // with a width=device-width viewport.
         const map = L.map(root, { tap: false, maxBoundsViscosity: 1.0 } as L.MapOptions).setView(center, zoom);
+        // Prevent the iOS native long-press callout (Look Up / Share) from appearing
+        // over the map while the user is initiating a long-press gesture.
+        map.getContainer().style.setProperty("-webkit-touch-callout", "none");
 
         L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
