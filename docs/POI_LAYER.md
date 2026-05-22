@@ -19,12 +19,12 @@ Enriched feature:
 {
   "type": "Feature",
   "properties": {
+    "id": 293835813,
     "weight": 1.0,
     "hasDetails": true,
     "name": "Bar Ristorante Gaetano",
-    "cuisine": "italian",
-    "address": "Via Roma 42, Naples",
-    "phone": "+39 081 234 5678",
+    "amenity": "restaurant",
+    "cuisine": "italian;pizza",
     "website": "https://example.com",
     "opening_hours": "Mo-Su 12:00-23:00"
   },
@@ -46,9 +46,21 @@ Regular point (no details):
 
 ### Conditional manifest entry
 
-The `poi-heat` layer has **no GeoJSON URL** — it is a virtual layer derived at runtime from the existing layers. The builder adds a `poi-heat` manifest entry only when at least one enriched POI was found. The presence of the entry is the signal to the browser that POI data exists.
+The `poi-heat` layer has `url: null` — it is a virtual layer derived at runtime from the existing layers. The builder adds a `poi-heat` manifest entry only when at least one enriched POI was found. The presence of the entry is the signal to the browser that POI data exists.
 
 If the Overpass query yields no enrichable POIs, the builder omits the manifest entry entirely. The browser sees no `poi-heat` layer and shows nothing — no empty widget, no error.
+
+```json
+{
+  "id": "poi-heat",
+  "name": "POI",
+  "type": "poi-heat",
+  "url": null,
+  "visible": true,
+  "style": { "opacity": 0.7, "type": "circle" },
+  "mergeKey": "poi-heat"
+}
+```
 
 ## Runtime (geo-browser)
 

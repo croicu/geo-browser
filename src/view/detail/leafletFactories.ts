@@ -398,7 +398,10 @@ class LeafletClickableMapLayerHandle
     }
 
     onClick(handler: () => void): void {
-        this._marker.on("click", handler);
+        this._marker.on("click", (e: L.LeafletEvent) => {
+            L.DomEvent.stopPropagation(e as L.LeafletMouseEvent);
+            handler();
+        });
     }
 
     setRadius(r: number): void {
@@ -415,7 +418,10 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
         latLng: [number, number],
         options: CircleMarkerOptions
     ): ClickableMapLayerHandle {
-        const marker = L.circleMarker(latLng, options);
+        const marker = L.circleMarker(latLng, {
+            ...options,
+            fillOpacity: options.fillOpacity ?? options.opacity,
+        });
 
         if (options.label) {
             marker.bindTooltip(options.label, {

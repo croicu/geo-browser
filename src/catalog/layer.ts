@@ -21,8 +21,12 @@ export class GeoLayer {
         return this._data.type;
     }
 
-    get url(): string {
+    get url(): string | null {
         return this._data.url;
+    }
+
+    isVirtual(): boolean {
+        return this._data.url === null;
     }
 
     get style(): LayerStyle | undefined {
@@ -54,7 +58,7 @@ export class GeoLayer {
     }
 
     async load(): Promise<void> {
-        if (this._payload !== undefined) {
+        if (this._payload !== undefined || this._data.url === null) {
             return;
         }
 
