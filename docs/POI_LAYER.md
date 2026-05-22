@@ -12,20 +12,11 @@ Surface point-of-interest details (name, hours, cuisine, etc.) for relevant map 
 - Bake everything into the area's GeoJSON alongside the regular weight-only points.
 - Regular (non-enriched) points carry only `weight`; enriched points carry `weight` + details.
 
-### Stub file
+### Conditional emission
 
-The builder always emits the `poi-heat` GeoJSON file and the corresponding manifest entry, even when no enriched POIs were found. This keeps the browser implementation simple — no missing-file case to handle.
+The builder only emits the `poi-heat` GeoJSON file and its manifest entry when at least one enriched POI was found. The presence of the layer in the manifest is the signal to the browser that POI data exists — the layer then appears in the layer selection widget, can be toggled, etc.
 
-Minimum valid file (no enriched POIs):
-
-```json
-{
-  "type": "FeatureCollection",
-  "features": []
-}
-```
-
-The manifest entry carries the layer metadata (color, display name, visibility default). The browser renders an empty `poi-heat` layer as pure heat with no tappable markers — gracefully degraded, not an error.
+If the Overpass query returns no enrichable POIs, the builder skips the file and the manifest entry entirely. The browser sees no `poi-heat` layer and shows nothing — no empty widget, no error.
 
 ### GeoJSON shape
 
@@ -93,4 +84,4 @@ const googleUrl = `https://www.google.com/maps/search/${encodeURIComponent(name)
 | Single `poi-heat` layer | Avoids double-rendering enriched points; one GeoJSON file per area |
 | No `reviews` in GeoJSON | Computed at render time — smaller files, no rebuild needed on URL schema changes |
 | Yelp uses text location | Yelp `find_loc` does not accept raw coordinates reliably |
-| Builder always emits stub | Empty `FeatureCollection` emitted even with no enriched POIs — browser never handles a missing file |
+| Builder emits conditionally | File and manifest entry only created when enriched POIs exist — presence in manifest signals browser to show the layer |
