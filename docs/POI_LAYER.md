@@ -66,7 +66,7 @@ The heatmap layer already renders all points as heat — including the enriched 
 
 - Only `hasDetails` markers are tappable.
 - Tap → popup showing: name, cuisine, address, phone, website, opening hours.
-- Popup includes search links computed at render time:
+- Popup includes search links computed lazily when the popup opens (not at layer render time):
 
 ```typescript
 const foursquareUrl = `https://foursquare.com/search?query=${encodeURIComponent(name)}&near=${lat},${lng}`;
@@ -85,6 +85,6 @@ const googleUrl = `https://www.google.com/maps/search/${encodeURIComponent(name)
 | Build-time baking | Zero runtime latency; works offline; no API keys in the PWA |
 | `hasDetails` embedded in existing layer GeoJSON | No separate file, no data duplication — enriched points already contribute to the heatmap |
 | `poi-heat` is a virtual layer (no URL) | Derived at runtime by filtering loaded features; manifest entry is the only signal needed |
-| No `reviews` in GeoJSON | Computed at render time — smaller files, no rebuild needed on URL schema changes |
+| No `reviews` in GeoJSON | Computed lazily when popup opens — smaller files, no rebuild needed on URL schema changes |
 | Yelp uses text location | Yelp `find_loc` does not accept raw coordinates reliably |
 | Builder emits manifest entry conditionally | Only when enriched POIs exist — presence signals browser to show the layer widget |
