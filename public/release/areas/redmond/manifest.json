@@ -33,8 +33,8 @@
             "memorials"
           ],
           "name": "Places",
-          "color": "#ffff00",
-          "scale": 3.0,
+          "color": "#cfcf00",
+          "scale": null,
           "surface": false,
           "type": "heatmap"
         }
@@ -49,9 +49,9 @@
       "url": "./layers/overpass_historic_memorials_monuments.geojson",
       "visible": true,
       "style": {
-        "opacity": 0.7,
-        "radiusScale": 3.0,
-        "color": "#ffff00"
+        "opacity": 1.0,
+        "radiusScale": 1.0,
+        "color": "#cfcf00"
       },
       "mergeKey": "overpass:historic=memorials,monuments"
     },

@@ -166,7 +166,7 @@ class LeafletMapHandle implements MapHandle {
             timer = setTimeout(() => {
                 timer = undefined;
                 handler([e.latlng.lat, e.latlng.lng]);
-            }, 500);
+            }, 200);
         };
 
         const onMove = (e: L.LeafletMouseEvent) => {
