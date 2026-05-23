@@ -31,14 +31,18 @@ export class PoiLayerView extends LayerView {
 
     async render(): Promise<void> {
         const features = await this.collectFeatures();
-        const opacity = this._layer.style?.opacity ?? 1;
+        const style = this._layer.style;
+        const opacity = style?.opacity ?? 1;
+        const fillColor = style?.color ?? "#7b241c";
+        const strokeColor = style?.strokeColor ?? fillColor;
+        const strokeWidth = style?.strokeWidth ?? 0;
 
         for (const feature of features) {
             const marker = this._layerFactory.createCircleMarker(feature.latLng, {
                 radius: 5,
-                color: "#7b241c",
-                weight: 0,
-                fillColor: "#7b241c",
+                color: strokeColor,
+                weight: strokeWidth,
+                fillColor: fillColor,
                 fillOpacity: opacity,
                 opacity: opacity,
             });

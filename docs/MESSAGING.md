@@ -270,7 +270,9 @@ Entry point. Tells the browser where the catalog file lives.
 | `style.type` | `string` | Optional render hint (e.g. `"circle"`) |
 | `style.opacity` | `number` | Layer opacity (0–1) |
 | `style.radiusScale` | `number` | Multiplier applied to the base render radius |
-| `style.color` | `string` | Hex color override (e.g. `"#ff0000"`) |
+| `style.color` | `string` | Primary fill/gradient color (e.g. `"#ff0000"`) |
+| `style.strokeColor` | `string` | Border/stroke color; defaults to `color` if absent |
+| `style.strokeWidth` | `number` | Border width in pixels; `0` = no border |
 | `style.surface` | `boolean` | `circle` only — treat feature as an area rather than a point |
 
 All `style` fields are optional; absent fields fall back to layer defaults.
@@ -286,7 +288,7 @@ A virtual layer with `url: null`. The browser derives its content at render time
   "type": "poi",
   "url": null,
   "visible": true,
-  "style": { "opacity": 0.7, "type": "circle" },
+  "style": { "opacity": 0.7, "color": "#7b241c", "strokeWidth": 0 },
   "mergeKey": "poi"
 }
 ```

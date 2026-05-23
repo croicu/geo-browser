@@ -89,7 +89,8 @@
       "visible": true,
       "style": {
         "opacity": 0.7,
-        "type": "circle"
+        "color": "#7b241c",
+        "strokeWidth": 0
       },
       "mergeKey": "poi",
       "url": null

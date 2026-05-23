@@ -18,6 +18,7 @@ declare module "leaflet" {
         setLatLngs(latlngs: HeatLatLngTuple[]): this;
         addLatLng(latlng: HeatLatLngTuple): this;
         setOptions(options: HeatLayerOptions): this;
+        redraw(): this;
     }
 
     export function heatLayer(
@@ -296,6 +297,8 @@ class LeafletMapLayerHandle implements MapLayerHandle {
 class LeafletHeatLayerHandle extends LeafletMapLayerHandle {
     private readonly _heatLayer: L.HeatLayer;
     private readonly _opacity: number;
+    private _leafletMap?: L.Map;
+    private _zoomEndListener?: () => void;
 
     constructor(layer: L.HeatLayer, opacity: number) {
         super(layer);
@@ -305,6 +308,27 @@ class LeafletHeatLayerHandle extends LeafletMapLayerHandle {
 
     addTo(map: MapHandle): void {
         super.addTo(map);
+        this.applyOpacity();
+
+        const leafletMap = unwrapMap(map);
+        this._leafletMap = leafletMap;
+        this._zoomEndListener = () => {
+            this._heatLayer.redraw();
+            this.applyOpacity();
+        };
+        leafletMap.on("zoomend", this._zoomEndListener);
+    }
+
+    remove(): void {
+        if (this._leafletMap && this._zoomEndListener) {
+            this._leafletMap.off("zoomend", this._zoomEndListener);
+        }
+        this._leafletMap = undefined;
+        this._zoomEndListener = undefined;
+        super.remove();
+    }
+
+    private applyOpacity(): void {
         const canvas = (this._heatLayer as unknown as { _canvas?: HTMLCanvasElement })._canvas;
         if (canvas) {
             canvas.style.opacity = String(this._opacity);
