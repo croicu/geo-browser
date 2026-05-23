@@ -12,6 +12,7 @@ import { PoiWidget } from "./poiWidget";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
 import { GeoLocationWidget } from "./geoLocationWidget";
+import { ManifestEditorWidget } from "./manifestEditorWidget";
 
 export interface DetailViewServices {
     mapFactory?: MapFactory;
@@ -41,6 +42,7 @@ export class DetailView implements View {
     private _map?: MapHandle;
     private _paddedBounds?: { sw: [number, number]; ne: [number, number] };
     private _bboxWidget?: BboxWidget;
+    private _manifestEditorWidget?: ManifestEditorWidget;
     private _bboxHighlight?: MapLayerHandle;
     private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
@@ -147,6 +149,9 @@ export class DetailView implements View {
             this._bboxWidget?.destroy();
             this._bboxWidget = undefined;
 
+            this._manifestEditorWidget?.destroy();
+            this._manifestEditorWidget = undefined;
+
             this._geoLocationWidget?.destroy();
             this._geoLocationWidget = undefined;
 
@@ -234,6 +239,15 @@ export class DetailView implements View {
             );
             bboxWidget.render();
             this._bboxWidget = bboxWidget;
+
+            const manifestEditor = new ManifestEditorWidget(
+                this._map,
+                this._gateway,
+                this._area.id,
+                { onReload: () => this.reloadLayers() }
+            );
+            manifestEditor.render();
+            this._manifestEditorWidget = manifestEditor;
         }
     }
 
@@ -283,6 +297,37 @@ export class DetailView implements View {
                 this._layerViews.delete(layer.id);
             }
         }
+    }
+
+    private reloadLayers(): void {
+        void this.doReloadLayers();
+    }
+
+    private async doReloadLayers(): Promise<void> {
+        await this._area.reload();
+
+        for (const layer of this._area.layers) {
+            const visible = this._state.isLayerVisible(layer.id, layer.isVisible());
+            this._state.setLayerVisible(layer.id, visible);
+        }
+
+        if (this._map) {
+            this._layersWidget?.remove();
+            this._layersWidget = undefined;
+
+            const layersWidget = new LayerSelectionWidget(
+                this._map,
+                this._actions,
+                this._widgetFactory,
+                this._area.id,
+                this._area.layers
+            );
+            layersWidget.render();
+            this._layersWidget = layersWidget;
+        }
+
+        this.destroyLayerViews();
+        this.renderLayerViews();
     }
 
     private destroyLayerViews(): void {

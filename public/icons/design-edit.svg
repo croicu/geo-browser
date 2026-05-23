@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+  width="130" 
+  height="110" 
+  viewBox="0 0 130 110" 
+  role="img" 
+  aria-label="Design: Edit Area">
+  <!-- hand-drawn-style straightened rectangle -->
+  <path d="M80 20 L10 20 L10 100 L110 100 L 110 50"
+        fill="none"
+        stroke="#181818"
+        stroke-width="8"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- pencil: thicker, hand-drawn style -->
+  <!-- pencil body -->
+  <path d="M98 5 L122 5 Q124 5 124 7 L124 21 Q124 23 122 23 L98 23 Q96 23 96 21 L96 7 Q96 5 98 5"
+        fill="none"
+        stroke="#181818"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+  
+  <!-- pencil tip -->
+  <path d="M96 23 L90 32 L106 23 Z"
+        fill="#181818"/>
+</svg>

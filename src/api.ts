@@ -77,3 +77,55 @@ export const AddArea: MethodDef<AddAreaInput, AddAreaOutput> = {
     id: "__geo_add_area__",
     _kind: "method",
 };
+
+// ── Manifest editor error codes ───────────────────────────────────────────────
+
+export const ERR_MANIFEST_INVALID = 3;
+export const ERR_IO = 4;
+
+export type ManifestJson = Record<string, unknown>;
+
+// ── GetAreaJson (browser → builder) ──────────────────────────────────────────
+
+export interface GetAreaJsonInput {
+    areaId: string;
+}
+
+export interface GetAreaJsonOutput {
+    error: number;
+    errorDescription: string | null;
+    manifest: ManifestJson | null;
+}
+
+export const GetAreaJson: MethodDef<GetAreaJsonInput, GetAreaJsonOutput> = {
+    id: "__geo_get_area_json__",
+    _kind: "method",
+};
+
+// ── PutAreaJson (browser → builder) ──────────────────────────────────────────
+
+export interface PutAreaJsonInput {
+    areaId: string;
+    manifest: ManifestJson;
+}
+
+export interface PutAreaJsonOutput {
+    error: number;
+    errorDescription: string | null;
+}
+
+export const PutAreaJson: MethodDef<PutAreaJsonInput, PutAreaJsonOutput> = {
+    id: "__geo_put_area_json__",
+    _kind: "method",
+};
+
+// ── AreaChanged (builder → browser) ──────────────────────────────────────────
+
+export interface AreaChangedData {
+    area: AreaSummary;
+}
+
+export const AreaChanged: EventDef<AreaChangedData, void> = {
+    id: "__geo_area_changed__",
+    _kind: "event",
+};
