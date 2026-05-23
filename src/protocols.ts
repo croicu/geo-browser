@@ -39,6 +39,8 @@ export interface LayerStyle {
     radiusScale?: number;
     minRadius?: number;
     maxRadius?: number;
+    strokeColor?: string;
+    strokeWidth?: number;
 }
 
 export interface Layer {

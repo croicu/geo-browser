@@ -333,7 +333,7 @@ Default event weight is `1.0`; heatmap density accumulation is handled by the re
 
 ### POI Layer
 
-`poi` is a virtual layer type with no GeoJSON URL of its own. See `docs/POI_LAYER.md` for the full plan of record.
+`poi` is a virtual layer type with no GeoJSON URL of its own. See `docs/MANIFEST.md` for the full plan of record.
 
 - Features with `hasDetails: true` in the area's existing layers render as interactive circle markers.
 - Popup shows baked name, amenity, cuisine, address, website, opening hours.
@@ -362,7 +362,7 @@ Enriched feature shape:
 
 Good next branches:
 
-1. `poi` layer type: new `LayerView` that renders heatmap + tappable `hasDetails` markers from a single GeoJSON. See `docs/POI_LAYER.md`.
+1. `poi` layer type: new `LayerView` that renders heatmap + tappable `hasDetails` markers from a single GeoJSON. See `docs/MANIFEST.md`.
 2. Design-mode data source abstraction.
 3. Bbox persistence: `GeoArea.bbox` is computed from `center + radiusMeters` and is always square. Calling `SetAreaBbox` persists edits in the builder, but on the next load the square is recomputed, losing the edit. Fix: call `GetAreaBbox` on render and update the widget once the response arrives (render square immediately as placeholder, replace when builder responds).
 

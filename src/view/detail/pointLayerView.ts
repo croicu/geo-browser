@@ -39,7 +39,9 @@ export class PointLayerView extends LayerView {
             const geoRadius = this.geoRadiusMeters(feature);
 
             const markerOptions = {
-                color: style?.color,
+                fillColor: style?.color,
+                color: style?.strokeColor ?? style?.color,
+                weight: style?.strokeWidth,
                 opacity: style?.opacity ?? 0.8,
             };
 

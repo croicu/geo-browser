@@ -20,7 +20,10 @@ export class GeoLocationWidget {
     private _accuracyRing?: AccuracyRingHandle;
     private _positionMarker?: PositionMarkerHandle;
     private _stopWatching?: () => void;
+    private _stopWatchingMove?: () => void;
+    private _stopWatchingZoom?: () => void;
     private _following = false;
+    private _programmaticMove = false;
     private _lastPosition?: GeoPosition;
 
     constructor(
@@ -55,11 +58,18 @@ export class GeoLocationWidget {
                 () => this.onRecovered()
             );
         }
+
+        this._stopWatchingMove = this._map.onMoveEnd(() => this.onMapMoved());
+        this._stopWatchingZoom = this._map.onZoom(() => this.cancelFollowing());
     }
 
     destroy(): void {
         this._stopWatching?.();
         this._stopWatching = undefined;
+        this._stopWatchingMove?.();
+        this._stopWatchingMove = undefined;
+        this._stopWatchingZoom?.();
+        this._stopWatchingZoom = undefined;
 
         this._accuracyRing?.remove();
         this._accuracyRing = undefined;
@@ -79,6 +89,7 @@ export class GeoLocationWidget {
         this._handle?.setFollowing(this._following);
 
         if (this._following && this._lastPosition) {
+            this._programmaticMove = true;
             this._map.panTo(this._lastPosition.latLng);
         }
     }
@@ -112,6 +123,7 @@ export class GeoLocationWidget {
         }
 
         if (this._following) {
+            this._programmaticMove = true;
             this._map.panTo(position.latLng);
         }
     }
@@ -123,6 +135,20 @@ export class GeoLocationWidget {
         const { sw, ne } = this._bounds;
         return latLng[0] >= sw[0] && latLng[0] <= ne[0]
             && latLng[1] >= sw[1] && latLng[1] <= ne[1];
+    }
+
+    private onMapMoved(): void {
+        if (this._programmaticMove) {
+            this._programmaticMove = false;
+            return;
+        }
+        this.cancelFollowing();
+    }
+
+    private cancelFollowing(): void {
+        if (!this._following) return;
+        this._following = false;
+        this._handle?.setFollowing(false);
     }
 
     private onDenied(): void {
