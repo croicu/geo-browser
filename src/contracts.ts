@@ -72,6 +72,8 @@ export interface MapPopupHandle {
     remove(): void;
 }
 
+export type ControlPosition = "topleft" | "topright" | "bottomleft" | "bottomright";
+
 export interface MapHandle {
     remove(): void;
     getCenter(): [number, number];
@@ -93,6 +95,7 @@ export interface MapHandle {
     setMinZoom(zoom: number): void;
     getBounds(): { sw: [number, number]; ne: [number, number] };
     createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle;
+    addControl(position: ControlPosition, element: HTMLElement): WidgetHandle;
 }
 
 export interface GeoDataService {

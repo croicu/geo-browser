@@ -41,6 +41,12 @@ export class GeoArea {
         return this._layers;
     }
 
+    async reload(): Promise<void> {
+        this._detail = undefined;
+        this._layers = undefined;
+        await this.load();
+    }
+
     isLoaded(): boolean {
         return this._layers !== undefined;
     }

@@ -30,6 +30,7 @@ declare module "leaflet" {
 import type {
     AccuracyRingHandle,
     CircleMarkerOptions,
+    ControlPosition,
     DesignToolbarButton,
     DraggableMarkerHandle,
     GeoLocationWidgetHandle,
@@ -247,6 +248,14 @@ class LeafletMapHandle implements MapHandle {
             this._map.off("mouseup", onUp);
             clearTimer();
         };
+    }
+
+    addControl(position: ControlPosition, element: HTMLElement): WidgetHandle {
+        const control = new (class extends L.Control {
+            onAdd(): HTMLElement { return element; }
+        })({ position });
+        control.addTo(this._map);
+        return new LeafletWidgetHandle(control);
     }
 
     createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle {
