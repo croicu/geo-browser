@@ -360,10 +360,9 @@ Enriched feature shape:
 
 ## Next Likely Work
 
-Good next branches:
+Current branch: **ManifestEditor** (in progress).
 
-1. `poi` layer type: new `LayerView` that renders heatmap + tappable `hasDetails` markers from a single GeoJSON. See `docs/MANIFEST.md`.
-2. Design-mode data source abstraction.
-3. Bbox persistence: `GeoArea.bbox` is computed from `center + radiusMeters` and is always square. Calling `SetAreaBbox` persists edits in the builder, but on the next load the square is recomputed, losing the edit. Fix: call `GetAreaBbox` on render and update the widget once the response arrives (render square immediately as placeholder, replace when builder responds).
+- Error UX for `PutAreaJson` failures — currently logs and ignores; needs UI feedback.
+- Actual manifest editing UI — today the edit button round-trips the manifest unchanged; next step is surfacing an editor.
 
 Keep branches narrow.
