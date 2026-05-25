@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Area Manifest",
+  "type": "object",
+  "required": ["version", "layers"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Manifest format version"
+    },
+    "tasks": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/task" }
+    },
+    "layers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/layer" }
+    }
+  },
+  "definitions": {
+    "nullableString": {
+      "oneOf": [{ "type": "string" }, { "type": "null" }]
+    },
+    "nullableNumber": {
+      "oneOf": [{ "type": "number" }, { "type": "null" }]
+    },
+    "layerStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type":        { "type": "string" },
+        "color":       { "type": "string", "description": "CSS color string, e.g. \"#ff0000\"" },
+        "opacity":     { "type": "number", "minimum": 0, "maximum": 1 },
+        "radius":      { "type": "number", "minimum": 0 },
+        "blur":        { "type": "number", "minimum": 0 },
+        "radiusScale": { "type": "number", "minimum": 0 },
+        "minRadius":   { "type": "number", "minimum": 0 },
+        "maxRadius":   { "type": "number", "minimum": 0 },
+        "strokeColor": { "type": "string", "description": "CSS color string" },
+        "strokeWidth": { "type": "number", "minimum": 0 },
+        "surface":     { "type": "boolean" }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "required": ["id", "type", "url", "visible"],
+      "additionalProperties": false,
+      "properties": {
+        "id":       { "type": "string" },
+        "type":     { "type": "string", "enum": ["heatmap", "circle", "poi"] },
+        "url":      { "$ref": "#/definitions/nullableString" },
+        "visible":  { "type": "boolean" },
+        "name":     { "type": "string" },
+        "style":    { "$ref": "#/definitions/layerStyle" },
+        "mergeKey": { "type": "string" }
+      }
+    },
+    "filterSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "values":  { "type": "array", "items": { "type": "string" } },
+        "name":    { "type": "string" },
+        "color":   { "$ref": "#/definitions/nullableString" },
+        "scale":   { "$ref": "#/definitions/nullableNumber" },
+        "surface": { "type": "boolean" },
+        "type":    { "type": "string", "enum": ["heatmap", "circle"] }
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type":     { "type": "string" },
+        "provider": { "type": "string" },
+        "filters": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/filterSpec" }
+        }
+      }
+    }
+  }
+}

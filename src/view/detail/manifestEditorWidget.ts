@@ -1,20 +1,24 @@
 import { AreaChanged, GetAreaJson, OK, PutAreaJson } from "../../api";
-import type { Cookie, GetAreaJsonOutput, PutAreaJsonOutput } from "../../api";
-import type { GatewayService, MapHandle, WidgetHandle } from "../../contracts";
+import type { Cookie, GetAreaJsonOutput, ManifestJson, PutAreaJsonOutput } from "../../api";
+import type { GatewayService, JsonEditor, JsonEditorFactory, MapHandle, WidgetHandle } from "../../contracts";
 import { getLogger } from "../../services";
 
 export interface ManifestEditorWidgetOptions {
-    onReload: () => void;
+    editorFactory: JsonEditorFactory;
+    onReload?: () => void;
 }
 
 export class ManifestEditorWidget {
     private readonly _map: MapHandle;
     private readonly _gateway: GatewayService;
     private readonly _areaId: string;
+    private readonly _editorFactory: JsonEditorFactory;
     private readonly _onReload: () => void;
 
     private _buttonHandle?: WidgetHandle;
     private _spinner?: HTMLElement;
+    private _editorOverlay?: HTMLElement;
+    private _jsonEditor?: JsonEditor;
     private _areaChangedCookie?: Cookie;
     private _putPending = false;
     private _queuedReload = false;
@@ -23,12 +27,13 @@ export class ManifestEditorWidget {
         map: MapHandle,
         gateway: GatewayService,
         areaId: string,
-        options?: ManifestEditorWidgetOptions
+        options: ManifestEditorWidgetOptions
     ) {
         this._map = map;
         this._gateway = gateway;
         this._areaId = areaId;
-        this._onReload = options?.onReload ?? (() => undefined);
+        this._editorFactory = options.editorFactory;
+        this._onReload = options.onReload ?? (() => undefined);
     }
 
     render(): void {
@@ -71,6 +76,7 @@ export class ManifestEditorWidget {
         this._buttonHandle?.remove();
         this._buttonHandle = undefined;
 
+        this.hideEditorOverlay();
         this.hideSpinner();
     }
 
@@ -86,13 +92,99 @@ export class ManifestEditorWidget {
             return;
         }
 
-        const manifest = response.manifest!;
+        this.showEditorOverlay(response.manifest!);
+    }
+
+    private showEditorOverlay(manifest: ManifestJson): void {
+        const overlay = document.createElement("div");
+        overlay.className = "manifest-editor-overlay";
+
+        const panel = document.createElement("div");
+        panel.className = "manifest-editor-panel";
+
+        const content = document.createElement("div");
+        content.className = "manifest-editor-content";
+
+        const toolbar = document.createElement("div");
+        toolbar.className = "manifest-editor-toolbar";
+
+        const cancelBtn = document.createElement("button");
+        cancelBtn.type = "button";
+        cancelBtn.className = "manifest-editor-cancel";
+        cancelBtn.textContent = "Cancel";
+        cancelBtn.addEventListener("click", () => this.onEditorCancel());
+
+        const saveBtn = document.createElement("button");
+        saveBtn.type = "button";
+        saveBtn.className = "manifest-editor-save";
+        saveBtn.textContent = "Save";
+        saveBtn.addEventListener("click", () => this.onEditorSave());
+
+        toolbar.appendChild(cancelBtn);
+        toolbar.appendChild(saveBtn);
+        panel.appendChild(content);
+        panel.appendChild(toolbar);
+        overlay.appendChild(panel);
+
+        this.blockMapEvents(overlay);
+
+        this._map.getContainer().appendChild(overlay);
+        this._editorOverlay = overlay;
+
+        this.loadEditor(content, manifest);
+    }
+
+    private blockMapEvents(element: HTMLElement): void {
+        const stop = (e: Event) => e.stopPropagation();
+        for (const type of ["wheel", "mousedown", "mouseup", "click", "dblclick", "touchstart", "touchend", "touchmove"]) {
+            element.addEventListener(type, stop, { passive: false });
+        }
+    }
+
+    private loadEditor(container: HTMLElement, manifest: ManifestJson): void {
+        this._editorFactory.create(container, manifest).then(editor => {
+            if (!this._editorOverlay) {
+                editor.destroy();
+                return;
+            }
+            this._jsonEditor = editor;
+        }).catch((error: unknown) => {
+            getLogger().error("manifest_editor.create_failed", error);
+            this.hideEditorOverlay();
+        });
+    }
+
+    private onEditorSave(): void {
+        if (!this._jsonEditor) {
+            return;
+        }
+
+        let manifest: ManifestJson;
+        try {
+            manifest = this._jsonEditor.getJson();
+        } catch {
+            getLogger().warning("manifest_editor.invalid_json", {});
+            return;
+        }
+
+        this.hideEditorOverlay();
         this.showSpinner();
         this._putPending = true;
 
         this._gateway.invoke(PutAreaJson, { areaId: this._areaId, manifest }, response => {
             this.onPutResponse(response);
         });
+    }
+
+    private onEditorCancel(): void {
+        this.hideEditorOverlay();
+    }
+
+    private hideEditorOverlay(): void {
+        this._jsonEditor?.destroy();
+        this._jsonEditor = undefined;
+        this._editorOverlay?.remove();
+        this._editorOverlay = undefined;
     }
 
     private onPutResponse(response: PutAreaJsonOutput): void {
