@@ -197,8 +197,8 @@ export class DetailView implements View {
         this._map = this._mapFactory.createMap(this._mapRoot, center, zoom);
         if (this._mode !== "design") {
             this.applyMaxBounds();
-            this._zoomCleanup = this._map.onZoom(zoom => this.onZoomChange(zoom));
         }
+        this._zoomCleanup = this._map.onZoom(zoom => this.onZoomChange(zoom));
         this.addBboxHighlight();
         this._moveEndCleanup = this._map.onMoveEnd(() => this.saveViewport());
 
@@ -241,9 +241,17 @@ export class DetailView implements View {
             return;
         }
 
+        const zoom = this._map.getZoom();
+
         for (const layer of this._area.layers) {
+            if (layer.type === "__poi__" && !layer.isVisible()) {
+                continue;
+            }
+
             const existing = this._layerViews.get(layer.id);
-            const visible = this._state.isLayerVisible(layer.id);
+            const minZoom = layer.style?.minZoom;
+            const visible = this._state.isLayerVisible(layer.id)
+                && (minZoom === undefined || zoom >= minZoom);
 
             if (visible && !existing) {
                 let layerView: LayerView;
@@ -260,7 +268,7 @@ export class DetailView implements View {
                         layer,
                         new DefaultLeafletLayerFactory()
                     );
-                } else if (layer.type === "poi") {
+                } else if (layer.type === "__poi__") {
                     layerView = new PoiLayerView(
                         this._map,
                         layer,
@@ -324,13 +332,15 @@ export class DetailView implements View {
     }
 
     private onZoomChange(zoom: number): void {
-        if (zoom <= this._minZoom) {
+        if (this._mode !== "design" && zoom <= this._minZoom) {
             const map = this._map;
             if (map) {
                 this._actions.saveSummaryViewport(map.getCenter(), map.getZoom());
             }
             this._actions.openSummary();
+            return;
         }
+        this.renderLayerViews();
     }
 
     private applyMaxBounds(): void {

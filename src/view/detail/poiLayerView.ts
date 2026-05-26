@@ -1,6 +1,7 @@
 import type { ClickableMapLayerHandle, LayerFactory, MapHandle, MapPopupHandle } from "../../contracts";
 import type { GeoLayer } from "../../catalog/layer";
 import { LayerView } from "./layerView";
+import { getLogger } from "../../services";
 
 interface PoiBakedFeature {
     latLng: [number, number];
@@ -39,6 +40,7 @@ export class PoiLayerView extends LayerView {
 
         for (const feature of features) {
             const marker = this._layerFactory.createCircleMarker(feature.latLng, {
+                className: "poi-marker",
                 radius: 5,
                 color: strokeColor,
                 weight: strokeWidth,
@@ -80,7 +82,12 @@ export class PoiLayerView extends LayerView {
         const features: PoiBakedFeature[] = [];
 
         for (const source of this._sourceLayers) {
-            await source.load();
+            try {
+                await source.load();
+            } catch (err) {
+                getLogger().warning("poi.source_load_failed", { layerId: source.id, cause: err });
+                continue;
+            }
 
             const payload = source.payload;
             if (!this.isFeatureCollection(payload)) continue;

@@ -9,21 +9,20 @@
       "type": "integer",
       "description": "Manifest format version"
     },
-    "tasks": {
-      "type": "array",
-      "items": { "$ref": "#/definitions/task" }
-    },
     "layers": {
       "type": "array",
       "items": { "$ref": "#/definitions/layer" }
+    },
+    "aggregation": {
+      "type": "object"
+    },
+    "deduping": {
+      "type": "object"
     }
   },
   "definitions": {
     "nullableString": {
       "oneOf": [{ "type": "string" }, { "type": "null" }]
-    },
-    "nullableNumber": {
-      "oneOf": [{ "type": "number" }, { "type": "null" }]
     },
     "layerStyle": {
       "type": "object",
@@ -39,45 +38,32 @@
         "maxRadius":   { "type": "number", "minimum": 0 },
         "strokeColor": { "type": "string", "description": "CSS color string" },
         "strokeWidth": { "type": "number", "minimum": 0 },
-        "surface":     { "type": "boolean" }
+        "surface":     { "type": "boolean" },
+        "minZoom":     { "type": "number", "minimum": 0 }
+      }
+    },
+    "layerAcquisition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "filter", "values"],
+      "properties": {
+        "provider": { "type": "string" },
+        "filter":   { "type": "string" },
+        "values":   { "type": "array", "items": { "type": "string" } }
       }
     },
     "layer": {
       "type": "object",
-      "required": ["id", "type", "url", "visible"],
+      "required": ["id", "type", "visible"],
       "additionalProperties": false,
       "properties": {
-        "id":       { "type": "string" },
-        "type":     { "type": "string", "enum": ["heatmap", "circle", "poi"] },
-        "url":      { "$ref": "#/definitions/nullableString" },
-        "visible":  { "type": "boolean" },
-        "name":     { "type": "string" },
-        "style":    { "$ref": "#/definitions/layerStyle" },
-        "mergeKey": { "type": "string" }
-      }
-    },
-    "filterSpec": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "values":  { "type": "array", "items": { "type": "string" } },
-        "name":    { "type": "string" },
-        "color":   { "$ref": "#/definitions/nullableString" },
-        "scale":   { "$ref": "#/definitions/nullableNumber" },
-        "surface": { "type": "boolean" },
-        "type":    { "type": "string", "enum": ["heatmap", "circle"] }
-      }
-    },
-    "task": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "type":     { "type": "string" },
-        "provider": { "type": "string" },
-        "filters": {
-          "type": "object",
-          "additionalProperties": { "$ref": "#/definitions/filterSpec" }
-        }
+        "id":          { "type": "string" },
+        "type":        { "type": "string", "enum": ["heatmap", "circle", "__poi__"] },
+        "url":         { "$ref": "#/definitions/nullableString" },
+        "visible":     { "type": "boolean" },
+        "name":        { "type": "string" },
+        "style":       { "$ref": "#/definitions/layerStyle" },
+        "acquisition": { "$ref": "#/definitions/layerAcquisition" }
       }
     }
   }

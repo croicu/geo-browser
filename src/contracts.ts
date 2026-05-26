@@ -182,6 +182,7 @@ export interface ClickableMapLayerHandle extends MapLayerHandle {
 export interface CircleMarkerOptions {
     title?: string,
     label?: string;
+    className?: string;
     radius?: number;
     color?: string;
     weight?: number;

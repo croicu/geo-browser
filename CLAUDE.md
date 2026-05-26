@@ -148,7 +148,7 @@ Area      = domain concept
 Bubble    = summary UI widget concept
 Layer     = protocol/data concept
 GeoLayer  = runtime wrapper/cache
-poi  = layer type: tappable POI markers derived at runtime from hasDetails features in existing layers
+__poi__  = reserved builtin virtual layer type: tappable POI markers derived at runtime from hasDetails features in existing layers
 hasDetails = GeoJSON feature flag: point carries baked POI metadata and is tappable
 ```
 
@@ -333,7 +333,7 @@ Default event weight is `1.0`; heatmap density accumulation is handled by the re
 
 ### POI Layer
 
-`poi` is a virtual layer type with no GeoJSON URL of its own. See `docs/MANIFEST.md` for the full plan of record.
+`__poi__` is a reserved builtin virtual layer type with no GeoJSON URL of its own. See `docs/MANIFEST.md` for the full plan of record.
 
 - Features with `hasDetails: true` in the area's existing layers render as interactive circle markers.
 - Popup shows baked name, amenity, cuisine, address, website, opening hours.

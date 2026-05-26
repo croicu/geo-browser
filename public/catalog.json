@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-05-20 02:29:29.216307+00:00",
+  "areas": [
+    {
+      "id": "prague",
+      "name": "Prague",
+      "bbox": [
+        14.408554710696876,
+        50.074785608134654,
+        14.44210438870698,
+        50.0949893595785
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/prague/manifest.json"
+    }
+  ]
+}

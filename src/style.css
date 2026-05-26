@@ -401,6 +401,17 @@ body,
     border: 1px solid transparent;
 }
 
+/* Expand the POI marker touch target to ≥44 px diameter (Apple HIG minimum)
+   without changing the visible circle size. A transparent 40 px stroke makes
+   the interactive region extend 20 px beyond the visual radius in all directions.
+   pointer-events: all ensures the transparent stroke area responds to taps. */
+.poi-marker {
+    pointer-events: all;
+    stroke: rgba(0, 0, 0, 0);
+    stroke-width: 40px;
+    cursor: pointer;
+}
+
 .manifest-editor-cancel {
     background: transparent;
     border-color: rgba(255, 255, 255, 0.2);
