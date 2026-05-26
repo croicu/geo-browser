@@ -323,7 +323,7 @@ Entry point. Tells the browser where the catalog file lives.
 | `style.strokeColor` | `string` | Border/stroke color; defaults to `color` if absent |
 | `style.strokeWidth` | `number` | Border width in pixels; `0` = no border |
 | `style.surface` | `boolean` | `circle` only — treat feature as an area rather than a point |
-| `style.minZoom` | `number` | Minimum Leaflet zoom level at which the layer is rendered; absent = always shown |
+| `style.minZoom` | `number` | Layer is visible only when the map zoom level is ≥ this value; absent = always shown |
 
 All `style` fields are optional; absent fields fall back to layer defaults.
 
@@ -573,7 +573,7 @@ class AddAreaOutput:
 
 **Notes:**
 - `areaId` is derived server-side from `areaName`: lowercased, non-alphanumeric runs replaced by `_`, leading/trailing underscores stripped. Example: `"New York"` → `"new_york"`.
-- `template` defaults to `"acquisition"` — the key of the acquisition entry in `template.json`. `template.json` is the pipeline template: a named set of steps (acquisition, aggregation, deduplication). The `template` field selects which acquisition entry to use.
+- `template` is reserved for future multi-template support and is currently unused. `template.json` is a flat manifest-shaped document; the builder uses all data layers in it to create `AcquisitionTask`s for the new area.
 - On success the builder returns the full `AreaSummary` for the new area; the browser appends it to its in-memory catalog without re-fetching `catalog.head.json`.
 - `bbox` is always `[west, south, east, north]` with longitude first (matching GeoJSON convention).
 
@@ -589,7 +589,7 @@ const GetAreaJson: MethodDef<GetAreaJsonInput, GetAreaJsonOutput> = { id: "__geo
 
 gateway.invoke(GetAreaJson, { areaId: "paris" }, ({ error, manifest }) => {
   if (error !== OK) return;
-  // manifest is the full manifest.json-shaped object (tasks + layers)
+  // manifest is the full manifest.json-shaped object (layers + aggregation + deduping)
 });
 ```
 
