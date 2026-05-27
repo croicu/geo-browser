@@ -521,6 +521,21 @@ body,
     z-index: 450;
 }
 
+/* Red donut marking the 1-DOF pin anchor on the map container */
+.pin-anchor-marker {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #e53e3e;
+    background: rgba(229, 62, 62, 0.12);
+    pointer-events: all;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+    box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.2);
+}
+
 .image-overlay-img {
     display: block;
     max-width: 90%;

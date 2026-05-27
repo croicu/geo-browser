@@ -19,6 +19,10 @@ interface OverlaySnapshot {
     anchorLatLng?: [number, number];
     anchorZoom: number;
     scaleAtAnchor: number;
+    isPinned: boolean;
+    pinAnchorLatLng?: [number, number];
+    pinAnchorLocalX: number;
+    pinAnchorLocalY: number;
 }
 
 let _snapshot: OverlaySnapshot | null = null;
@@ -33,6 +37,7 @@ export class ImageOverlayWidget {
     private _activeUnlockedSection?: HTMLDivElement;
     private _activeLockedSection?: HTMLDivElement;
     private _opacitySlider?: HTMLInputElement;
+    private _pinBtn?: HTMLButtonElement;
     private _currentUrl = "";
     private _currentSource = "";
     private _currentBlobUrl?: string;
@@ -43,12 +48,23 @@ export class ImageOverlayWidget {
     private _offsetX = 0;
     private _offsetY = 0;
 
-    // Geo-lock state
+    // Geo-lock state (0-DOF: both translation and scale derived from map zoom)
     private _isLocked = false;
     private _anchorLatLng?: [number, number];
     private _anchorZoom = 0;
     private _scaleAtAnchor = 1.0;
     private _lockMoveCleanup?: () => void;
+
+    // Pin state (1-DOF: translation follows anchor, scale free)
+    private _isPinned = false;
+    private _pinAnchorLatLng?: [number, number];
+    private _pinAnchorLocalX = 0;
+    private _pinAnchorLocalY = 0;
+    private _pinMoveCleanup?: () => void;
+    private _pinAnchorMarker?: HTMLDivElement;
+
+    // Long-press detection for pin gesture
+    private _longPressTimer?: ReturnType<typeof setTimeout>;
 
     // Pinch state
     private _initialPinchDistance = 0;
@@ -74,6 +90,7 @@ export class ImageOverlayWidget {
     private _mouseDownCleanup?: () => void;
     private _mouseMoveCleanup?: () => void;
     private _mouseUpCleanup?: () => void;
+    private _dblClickCleanup?: () => void;
     private _touchStartCleanup?: () => void;
     private _touchMoveCleanup?: () => void;
     private _touchEndCleanup?: () => void;
@@ -106,6 +123,8 @@ export class ImageOverlayWidget {
         this._lockMoveCleanup?.();
         this._lockMoveCleanup = undefined;
 
+        this.clearPinState();
+
         this._wheelCleanup?.();
         this._wheelCleanup = undefined;
 
@@ -117,6 +136,9 @@ export class ImageOverlayWidget {
 
         this._mouseUpCleanup?.();
         this._mouseUpCleanup = undefined;
+
+        this._dblClickCleanup?.();
+        this._dblClickCleanup = undefined;
 
         this._touchStartCleanup?.();
         this._touchStartCleanup = undefined;
@@ -154,7 +176,7 @@ export class ImageOverlayWidget {
         const pasteBtn = this.buildIconButton("/icons/img-paste.svg", "Paste image from clipboard", () => { void this.handlePaste(); });
         container.appendChild(pasteBtn);
 
-        // Unlocked section: opacity slider + lock + delete
+        // Unlocked section: opacity slider + pin (hidden until pinned) + lock + delete
         const unlockedSection = document.createElement("div");
         unlockedSection.className = "image-overlay-toolbar-active";
         unlockedSection.hidden = true;
@@ -173,6 +195,12 @@ export class ImageOverlayWidget {
         });
         this._opacitySlider = slider;
         unlockedSection.appendChild(slider);
+
+        const pinBtn = this.buildIconButton("/icons/img-pinned.svg", "Unpin image from anchor", () => this.unpin());
+        pinBtn.classList.add("image-overlay-toolbar-btn--active");
+        pinBtn.hidden = true;
+        this._pinBtn = pinBtn;
+        unlockedSection.appendChild(pinBtn);
 
         const lockBtn = this.buildIconButton("/icons/img-lock.svg", "Lock image to map coordinates", () => this.lock());
         unlockedSection.appendChild(lockBtn);
@@ -274,7 +302,12 @@ export class ImageOverlayWidget {
         document.addEventListener("mouseup", mouseUpHandler);
         this._mouseUpCleanup = () => document.removeEventListener("mouseup", mouseUpHandler);
 
-        // Touch → pinch scales image; single finger inside image translates image
+        // Double-click → pin anchor (desktop equivalent of long-press)
+        const dblClickHandler = (e: MouseEvent) => this.onContainerDblClick(e);
+        mapContainer.addEventListener("dblclick", dblClickHandler, { capture: true });
+        this._dblClickCleanup = () => mapContainer.removeEventListener("dblclick", dblClickHandler, { capture: true });
+
+        // Touch → pinch scales image; single finger translates; long-press pins
         const touchStartHandler = (e: TouchEvent) => this.onContainerTouchStart(e);
         mapContainer.addEventListener("touchstart", touchStartHandler, { passive: false, capture: true });
         this._touchStartCleanup = () => mapContainer.removeEventListener("touchstart", touchStartHandler, { capture: true });
@@ -338,6 +371,14 @@ export class ImageOverlayWidget {
                     this._isLocked      = true;
                     this._lockMoveCleanup = this._map.onMove(() => this.updateLockedTransform());
                     this.updateLockedTransform();
+                } else if (restore.isPinned && restore.pinAnchorLatLng) {
+                    this._isPinned         = true;
+                    this._pinAnchorLatLng  = restore.pinAnchorLatLng;
+                    this._pinAnchorLocalX  = restore.pinAnchorLocalX;
+                    this._pinAnchorLocalY  = restore.pinAnchorLocalY;
+                    this._pinMoveCleanup   = this._map.onMove(() => this.updatePinnedTransform());
+                    this.createAnchorMarker();
+                    this.updatePinnedTransform();
                 }
             } else {
                 this._scale   = 1.0;
@@ -375,13 +416,15 @@ export class ImageOverlayWidget {
     private removeOverlay(): void {
         getLogger().info("image_overlay.remove");
 
-        // Clean up lock subscription silently — no UI update needed since we hide everything below
+        // Clear lock without UI update — showActiveControls(false) below handles it
         if (this._isLocked) {
             this._isLocked = false;
             this._anchorLatLng = undefined;
             this._lockMoveCleanup?.();
             this._lockMoveCleanup = undefined;
         }
+
+        this.clearPinState();
 
         if (this._currentBlobUrl) {
             URL.revokeObjectURL(this._currentBlobUrl);
@@ -400,16 +443,20 @@ export class ImageOverlayWidget {
             return;
         }
         _snapshot = {
-            url:           this._currentUrl,
-            source:        this._currentSource,
-            offsetX:       this._offsetX,
-            offsetY:       this._offsetY,
-            scale:         this._scale,
-            opacity:       this._opacity,
-            isLocked:      this._isLocked,
-            anchorLatLng:  this._anchorLatLng ? [this._anchorLatLng[0], this._anchorLatLng[1]] : undefined,
-            anchorZoom:    this._anchorZoom,
-            scaleAtAnchor: this._scaleAtAnchor,
+            url:            this._currentUrl,
+            source:         this._currentSource,
+            offsetX:        this._offsetX,
+            offsetY:        this._offsetY,
+            scale:          this._scale,
+            opacity:        this._opacity,
+            isLocked:       this._isLocked,
+            anchorLatLng:   this._anchorLatLng ? [this._anchorLatLng[0], this._anchorLatLng[1]] : undefined,
+            anchorZoom:     this._anchorZoom,
+            scaleAtAnchor:  this._scaleAtAnchor,
+            isPinned:       this._isPinned,
+            pinAnchorLatLng: this._pinAnchorLatLng ? [this._pinAnchorLatLng[0], this._pinAnchorLatLng[1]] : undefined,
+            pinAnchorLocalX: this._pinAnchorLocalX,
+            pinAnchorLocalY: this._pinAnchorLocalY,
         };
         getLogger().info("image_overlay.snapshot.save", { source: this._currentSource });
     }
@@ -420,12 +467,17 @@ export class ImageOverlayWidget {
         this.loadImage(snapshot.url, snapshot.source);
     }
 
+    // ── Lock (0-DOF) ───────────────────────────────────────────────────────────
+
     private lock(): void {
         if (!this._img) {
             return;
         }
 
         getLogger().info("image_overlay.lock");
+
+        // Pin and lock are mutually exclusive
+        this.clearPinState();
 
         const container = this._map.getContainer();
         const imageCenterX = container.offsetWidth  / 2 + this._offsetX;
@@ -473,6 +525,123 @@ export class ImageOverlayWidget {
         this.applyTransform();
     }
 
+    // ── Pin (1-DOF) ────────────────────────────────────────────────────────────
+
+    private pin(containerX: number, containerY: number): void {
+        if (!this._img || this._isLocked) {
+            return;
+        }
+
+        getLogger().info("image_overlay.pin");
+
+        const container = this._map.getContainer();
+
+        this._pinAnchorLatLng  = this._map.containerPointToLatLng([containerX, containerY]);
+        this._pinAnchorLocalX  = (containerX - (container.offsetWidth  / 2 + this._offsetX)) / this._scale;
+        this._pinAnchorLocalY  = (containerY - (container.offsetHeight / 2 + this._offsetY)) / this._scale;
+
+        if (!this._isPinned) {
+            this._isPinned = true;
+            this._pinMoveCleanup = this._map.onMove(() => this.updatePinnedTransform());
+            this.createAnchorMarker();
+        } else {
+            // Re-pinning to a new point — update marker position immediately
+            this.updateAnchorMarkerPosition();
+        }
+
+        this.showActiveControls(true);
+    }
+
+    private unpin(): void {
+        if (!this._isPinned) {
+            return;
+        }
+
+        getLogger().info("image_overlay.unpin");
+
+        this.clearPinState();
+        this.showActiveControls(this._img !== undefined);
+    }
+
+    private clearPinState(): void {
+        this._isPinned = false;
+        this._pinAnchorLatLng = undefined;
+
+        this._pinMoveCleanup?.();
+        this._pinMoveCleanup = undefined;
+
+        this.cancelLongPress();
+        this.removeAnchorMarker();
+    }
+
+    private updatePinnedTransform(): void {
+        const anchor = this._pinAnchorLatLng;
+        if (!anchor) {
+            return;
+        }
+
+        const container    = this._map.getContainer();
+        const screenAnchor = this._map.latLngToContainerPoint(anchor);
+
+        this._offsetX = screenAnchor[0] - this._pinAnchorLocalX * this._scale - container.offsetWidth  / 2;
+        this._offsetY = screenAnchor[1] - this._pinAnchorLocalY * this._scale - container.offsetHeight / 2;
+
+        this.applyTransform();
+        this.updateAnchorMarkerPosition();
+    }
+
+    private createAnchorMarker(): void {
+        const marker = document.createElement("div");
+        marker.className = "pin-anchor-marker";
+
+        marker.addEventListener("dblclick", e => {
+            e.stopPropagation();
+            this.unpin();
+        });
+
+        let markerLongPressTimer: ReturnType<typeof setTimeout> | undefined;
+
+        marker.addEventListener("touchstart", e => {
+            e.stopPropagation();
+            e.preventDefault();
+            markerLongPressTimer = setTimeout(() => {
+                markerLongPressTimer = undefined;
+                this.unpin();
+            }, 500);
+        }, { passive: false });
+
+        marker.addEventListener("touchmove", () => {
+            clearTimeout(markerLongPressTimer);
+            markerLongPressTimer = undefined;
+        });
+
+        marker.addEventListener("touchend", () => {
+            clearTimeout(markerLongPressTimer);
+            markerLongPressTimer = undefined;
+        });
+
+        this._map.getContainer().appendChild(marker);
+        this._pinAnchorMarker = marker;
+        this.updateAnchorMarkerPosition();
+    }
+
+    private updateAnchorMarkerPosition(): void {
+        const anchor = this._pinAnchorLatLng;
+        if (!anchor || !this._pinAnchorMarker) {
+            return;
+        }
+        const screenPos = this._map.latLngToContainerPoint(anchor);
+        this._pinAnchorMarker.style.left = `${screenPos[0]}px`;
+        this._pinAnchorMarker.style.top  = `${screenPos[1]}px`;
+    }
+
+    private removeAnchorMarker(): void {
+        this._pinAnchorMarker?.remove();
+        this._pinAnchorMarker = undefined;
+    }
+
+    // ── Shared state display ───────────────────────────────────────────────────
+
     private showActiveControls(visible: boolean): void {
         if (!visible) {
             if (this._activeUnlockedSection) { this._activeUnlockedSection.hidden = true; }
@@ -490,6 +659,7 @@ export class ImageOverlayWidget {
                     this._opacitySlider.value = String(Math.round(this._opacity * 100));
                 }
             }
+            if (this._pinBtn) { this._pinBtn.hidden = !this._isPinned; }
             if (this._activeLockedSection) { this._activeLockedSection.hidden = true; }
         }
     }
@@ -507,6 +677,25 @@ export class ImageOverlayWidget {
         }
     }
 
+    // ── Long-press helpers ─────────────────────────────────────────────────────
+
+    private startLongPressTimer(clientX: number, clientY: number): void {
+        this.cancelLongPress();
+        this._longPressTimer = setTimeout(() => {
+            this._longPressTimer = undefined;
+            this._isDraggingTouch = false;
+            const rect = this._map.getContainer().getBoundingClientRect();
+            this.pin(clientX - rect.left, clientY - rect.top);
+        }, 500);
+    }
+
+    private cancelLongPress(): void {
+        if (this._longPressTimer !== undefined) {
+            clearTimeout(this._longPressTimer);
+            this._longPressTimer = undefined;
+        }
+    }
+
     // ── Wheel (scale) ──────────────────────────────────────────────────────────
 
     private onContainerWheel(e: WheelEvent): void {
@@ -519,13 +708,18 @@ export class ImageOverlayWidget {
 
         const factor = e.deltaY < 0 ? 1.1 : (1 / 1.1);
         this._scale = Math.max(0.1, Math.min(10, this._scale * factor));
-        this.applyTransform();
+
+        if (this._isPinned) {
+            this.updatePinnedTransform();
+        } else {
+            this.applyTransform();
+        }
     }
 
     // ── Mouse drag (move image only; map does not pan) ────────────────────────
 
     private onContainerMouseDown(e: MouseEvent): void {
-        if (!this._img || this._isLocked || !this.isOverImage(e.clientX, e.clientY)) {
+        if (!this._img || this._isLocked || this._isPinned || !this.isOverImage(e.clientX, e.clientY)) {
             return;
         }
 
@@ -536,6 +730,26 @@ export class ImageOverlayWidget {
         this._mouseDragStartY = e.clientY;
         this._offsetXAtMouseDragStart = this._offsetX;
         this._offsetYAtMouseDragStart = this._offsetY;
+    }
+
+    // Double-click on image → pin anchor (desktop equivalent of long-press)
+    private onContainerDblClick(e: MouseEvent): void {
+        if (!this._img || this._isLocked) {
+            return;
+        }
+        // Let the anchor marker's own dblclick handler run instead
+        if (this._pinAnchorMarker && this._pinAnchorMarker.contains(e.target as Node)) {
+            return;
+        }
+        if (!this.isOverImage(e.clientX, e.clientY)) {
+            return;
+        }
+
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        const rect = this._map.getContainer().getBoundingClientRect();
+        this.pin(e.clientX - rect.left, e.clientY - rect.top);
     }
 
     private onDocumentMouseMove(e: MouseEvent): void {
@@ -552,35 +766,43 @@ export class ImageOverlayWidget {
         this._isDraggingMouse = false;
     }
 
-    // ── Touch (pinch = scale; single finger inside image = move image) ─────────
+    // ── Touch (pinch = scale; single finger = move or long-press to pin) ───────
 
     private onContainerTouchStart(e: TouchEvent): void {
         if (!this._img) {
             return;
         }
 
+        // Let anchor marker handle its own touch events (capture won't fire after stopPropagation on target)
+        if (this._pinAnchorMarker && this._pinAnchorMarker.contains(e.target as Node)) {
+            return;
+        }
+
         if (!this._isLocked && e.touches.length === 2 && this.bothTouchesOverImage(e)) {
             e.preventDefault();
             e.stopImmediatePropagation();
-
+            this.cancelLongPress();
             this._isDraggingTouch = false;
             this._initialPinchDistance = this.touchDistance(e);
             this._initialScaleAtPinch = this._scale;
             return;
         }
 
-        if (!this._isLocked && e.touches.length === 1) {
+        if (e.touches.length === 1) {
             const touch = e.touches[0];
             if (this.isOverImage(touch.clientX, touch.clientY)) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
 
-                this._isDraggingTouch = true;
+                // Track position for both drag and long-press detection
                 this._touchDragId = touch.identifier;
                 this._touchDragStartX = touch.clientX;
                 this._touchDragStartY = touch.clientY;
                 this._offsetXAtTouchDragStart = this._offsetX;
                 this._offsetYAtTouchDragStart = this._offsetY;
+
+                // Start long-press timer; drag activates only if finger moves first
+                this.startLongPressTimer(touch.clientX, touch.clientY);
             }
         }
     }
@@ -597,31 +819,60 @@ export class ImageOverlayWidget {
             const newDistance = this.touchDistance(e);
             const raw = this._initialScaleAtPinch * (newDistance / this._initialPinchDistance);
             this._scale = Math.max(0.1, Math.min(10, raw));
-            this.applyTransform();
+
+            if (this._isPinned) {
+                this.updatePinnedTransform();
+            } else {
+                this.applyTransform();
+            }
             return;
         }
 
-        if (e.touches.length === 1 && this._isDraggingTouch) {
-            let touch: Touch | undefined;
-            for (let i = 0; i < e.touches.length; i++) {
-                if (e.touches[i].identifier === this._touchDragId) {
-                    touch = e.touches[i];
-                    break;
+        if (e.touches.length === 1) {
+            // Check if the finger moved enough to cancel long-press and start drag
+            if (this._longPressTimer !== undefined) {
+                let movedTouch: Touch | undefined;
+                for (let i = 0; i < e.touches.length; i++) {
+                    if (e.touches[i].identifier === this._touchDragId) {
+                        movedTouch = e.touches[i];
+                        break;
+                    }
+                }
+                if (movedTouch) {
+                    const dx = Math.abs(movedTouch.clientX - this._touchDragStartX);
+                    const dy = Math.abs(movedTouch.clientY - this._touchDragStartY);
+                    if (dx > 8 || dy > 8) {
+                        this.cancelLongPress();
+                        if (!this._isPinned && !this._isLocked) {
+                            this._isDraggingTouch = true;
+                        }
+                    }
                 }
             }
 
-            if (touch) {
-                e.preventDefault();
-                e.stopImmediatePropagation();
+            if (this._isDraggingTouch) {
+                let touch: Touch | undefined;
+                for (let i = 0; i < e.touches.length; i++) {
+                    if (e.touches[i].identifier === this._touchDragId) {
+                        touch = e.touches[i];
+                        break;
+                    }
+                }
 
-                this._offsetX = this._offsetXAtTouchDragStart + (touch.clientX - this._touchDragStartX);
-                this._offsetY = this._offsetYAtTouchDragStart + (touch.clientY - this._touchDragStartY);
-                this.applyTransform();
+                if (touch) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+
+                    this._offsetX = this._offsetXAtTouchDragStart + (touch.clientX - this._touchDragStartX);
+                    this._offsetY = this._offsetYAtTouchDragStart + (touch.clientY - this._touchDragStartY);
+                    this.applyTransform();
+                }
             }
         }
     }
 
     private onContainerTouchEnd(e: TouchEvent): void {
+        this.cancelLongPress();
         if (e.touches.length < 2) {
             this._initialPinchDistance = 0;
         }

@@ -373,6 +373,9 @@ Enriched feature shape:
 }
 ```
 
+## New Tasks
+- **[1-DOF Editor](tasks/one_dof.md)**: Status: Implementation. Long-press / double-click on image pins an anchor lat/lng (derived from containerPointToLatLng at the gesture point). Translation follows the anchor on map pan/zoom; scale stays free. Red donut marker tracks anchor. Pin button in toolbar (shown when pinned) unpins. Double-click / long-press donut also unpins. Pin and lock are mutually exclusive.
+
 ## Completed Tasks
 - **[3-DOF Editor](tasks/image_overlay.md)**: CSS fixed overlay in detail view (browse mode). Paste/Google/Apple image sources. Translate X/Y via drag, scale via pinch/wheel, opacity slider, geo-lock to map coordinates. Session-level snapshot across view recreations.
 
