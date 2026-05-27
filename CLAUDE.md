@@ -208,6 +208,21 @@ fail("detail_state.missing", "DetailViewState is not available.");
 
 `src/services.ts` holds a module-level `Logger` instance. `Context` initializes it via `setLogger()` in its constructor. Always access it via `getLogger()` — it throws if called before `Context` is constructed.
 
+### Logging Rules
+
+Every feature must log action start, action end, and action error. Use `getLogger()`.
+
+```ts
+const log = getLogger();
+log.info("image_overlay.paste.start");
+// ...
+log.info("image_overlay.paste.end");
+// on failure:
+log.error("image_overlay.paste.error", err);
+```
+
+Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-frame events) are exempt to avoid log spam.
+
 ## Testing Rules
 
 Use Vitest with `happy-dom` (configured in `vitest.config.ts`).
@@ -357,6 +372,9 @@ Enriched feature shape:
   "geometry": { "type": "Point", "coordinates": [14.267789, 40.853179] }
 }
 ```
+
+## Completed Tasks
+- **[3-DOF Editor](tasks/image_overlay.md)**: CSS fixed overlay in detail view (browse mode). Paste/Google/Apple image sources. Translate X/Y via drag, scale via pinch/wheel, opacity slider, geo-lock to map coordinates. Session-level snapshot across view recreations.
 
 ## Next Likely Work
 

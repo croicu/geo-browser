@@ -14,6 +14,7 @@ import { BboxWidget } from "../summary/bboxWidget";
 import { GeoLocationWidget } from "./geoLocationWidget";
 import { ManifestEditorWidget } from "./manifestEditorWidget";
 import { CodeMirrorJsonEditorFactory } from "./codeMirrorJsonEditorFactory";
+import { ImageOverlayWidget } from "./imageOverlayWidget";
 
 export interface DetailViewServices {
     mapFactory?: MapFactory;
@@ -48,6 +49,7 @@ export class DetailView implements View {
     private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
     private _geoLocationWidget?: GeoLocationWidget;
+    private _imageOverlayWidget?: ImageOverlayWidget;
     private _clickCleanup?: () => void;
     private _moveEndCleanup?: () => void;
     private _zoomCleanup?: () => void;
@@ -128,6 +130,13 @@ export class DetailView implements View {
                 geoWidget.render();
                 this._geoLocationWidget = geoWidget;
             }
+
+            const imageOverlay = new ImageOverlayWidget(map, {
+                onImageLoaded: () => this.relaxBoundsForOverlay(),
+                onImageRemoved: () => this.restoreBoundsAfterOverlay(),
+            });
+            imageOverlay.render();
+            this._imageOverlayWidget = imageOverlay;
         }
 
         this.renderLayerViews();
@@ -147,6 +156,9 @@ export class DetailView implements View {
 
             this._geoLocationWidget?.destroy();
             this._geoLocationWidget = undefined;
+
+            this._imageOverlayWidget?.destroy();
+            this._imageOverlayWidget = undefined;
 
             this._clickCleanup?.();
             this._clickCleanup = undefined;
@@ -341,6 +353,21 @@ export class DetailView implements View {
             return;
         }
         this.renderLayerViews();
+    }
+
+    private relaxBoundsForOverlay(): void {
+        const map = this._map;
+        if (!map) {
+            return;
+        }
+        map.setMaxBounds([-90, -180], [90, 180]);
+        map.setMinZoom(1);
+    }
+
+    private restoreBoundsAfterOverlay(): void {
+        if (this._mode !== "design") {
+            this.applyMaxBounds();
+        }
     }
 
     private applyMaxBounds(): void {

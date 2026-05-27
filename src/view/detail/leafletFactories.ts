@@ -98,9 +98,24 @@ class LeafletMapHandle implements MapHandle {
         return () => this._map.off("zoomend", listener);
     }
 
+    onMove(handler: () => void): () => void {
+        this._map.on("move", handler);
+        return () => this._map.off("move", handler);
+    }
+
     onMoveEnd(handler: () => void): () => void {
         this._map.on("moveend", handler);
         return () => this._map.off("moveend", handler);
+    }
+
+    latLngToContainerPoint(latLng: [number, number]): [number, number] {
+        const p = this._map.latLngToContainerPoint(L.latLng(latLng[0], latLng[1]));
+        return [p.x, p.y];
+    }
+
+    containerPointToLatLng(point: [number, number]): [number, number] {
+        const ll = this._map.containerPointToLatLng(L.point(point[0], point[1]));
+        return [ll.lat, ll.lng];
     }
 
     onClick(handler: (latLng: [number, number]) => void): () => void {
