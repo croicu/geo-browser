@@ -2,10 +2,12 @@ import googleMapsUrl from "../../../tasks/image.png?url";
 import appleMapsUrl from "../../../tasks/image-1.png?url";
 import type { MapHandle, WidgetHandle } from "../../contracts";
 import { getLogger } from "../../services";
+import { detectBlueDot, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";
 
 export interface ImageOverlayOptions {
     onImageLoaded?: () => void;
     onImageRemoved?: () => void;
+    getCurrentLatLng?: () => [number, number] | undefined;
 }
 
 interface OverlaySnapshot {
@@ -196,6 +198,10 @@ export class ImageOverlayWidget {
         this._opacitySlider = slider;
         unlockedSection.appendChild(slider);
 
+        const luckyBtn = this.buildButton("🙂", () => this.handleLucky());
+        luckyBtn.title = "I feel lucky — auto-detect blue dot";
+        unlockedSection.appendChild(luckyBtn);
+
         const pinBtn = this.buildIconButton("/icons/img-pinned.svg", "Unpin image from anchor", () => this.unpin());
         pinBtn.classList.add("image-overlay-toolbar-btn--active");
         pinBtn.hidden = true;
@@ -384,6 +390,8 @@ export class ImageOverlayWidget {
                 this._scale   = 1.0;
                 this._offsetX = 0;
                 this._offsetY = 0;
+
+                this.tryAutoPin(img);
             }
 
             this.applyTransform();
@@ -527,16 +535,23 @@ export class ImageOverlayWidget {
 
     // ── Pin (1-DOF) ────────────────────────────────────────────────────────────
 
-    private pin(containerX: number, containerY: number): void {
+    private pin(containerX: number, containerY: number, latLng?: [number, number]): void {
         if (!this._img || this._isLocked) {
             return;
         }
 
-        getLogger().info("image_overlay.pin");
+        const imgRect       = this._img.getBoundingClientRect();
+        const containerRect = this._map.getContainer().getBoundingClientRect();
+        const imgNormX = (containerX - (imgRect.left - containerRect.left)) / imgRect.width;
+        const imgNormY = (containerY - (imgRect.top  - containerRect.top )) / imgRect.height;
+        getLogger().info("image_overlay.pin", {
+            normX: Math.round(imgNormX * 1000) / 1000,
+            normY: Math.round(imgNormY * 1000) / 1000,
+        });
 
         const container = this._map.getContainer();
 
-        this._pinAnchorLatLng  = this._map.containerPointToLatLng([containerX, containerY]);
+        this._pinAnchorLatLng  = latLng ?? this._map.containerPointToLatLng([containerX, containerY]);
         this._pinAnchorLocalX  = (containerX - (container.offsetWidth  / 2 + this._offsetX)) / this._scale;
         this._pinAnchorLocalY  = (containerY - (container.offsetHeight / 2 + this._offsetY)) / this._scale;
 
@@ -638,6 +653,44 @@ export class ImageOverlayWidget {
     private removeAnchorMarker(): void {
         this._pinAnchorMarker?.remove();
         this._pinAnchorMarker = undefined;
+    }
+
+    private tryAutoPin(img: HTMLImageElement): void {
+        const hit = detectBlueDot(img);
+        getLogger().info("image_overlay.blue_dot_scan", { confidence: hit?.confidence ?? 0 });
+
+        if (!hit || hit.confidence < AUTO_PIN_THRESHOLD) {
+            return;
+        }
+
+        this.pinAtDetectionResult(img, hit);
+        getLogger().info("image_overlay.auto_pin", { confidence: hit.confidence });
+    }
+
+    private handleLucky(): void {
+        const img = this._img;
+        if (!img) return;
+
+        getLogger().info("image_overlay.lucky.start");
+        const hit = detectBlueDot(img);
+
+        if (!hit) {
+            getLogger().warning("image_overlay.lucky.no_candidate");
+            return;
+        }
+
+        this.pinAtDetectionResult(img, hit);
+        getLogger().info("image_overlay.lucky.end", { confidence: hit.confidence });
+    }
+
+    private pinAtDetectionResult(img: HTMLImageElement, hit: { x: number; y: number }): void {
+        const imgRect       = img.getBoundingClientRect();
+        const containerRect = this._map.getContainer().getBoundingClientRect();
+        const cx = imgRect.left + hit.x * imgRect.width  - containerRect.left;
+        const cy = imgRect.top  + hit.y * imgRect.height - containerRect.top;
+        const currentLatLng = this._options.getCurrentLatLng?.();
+        this.pin(cx, cy, currentLatLng);
+        this.updatePinnedTransform();
     }
 
     // ── Shared state display ───────────────────────────────────────────────────

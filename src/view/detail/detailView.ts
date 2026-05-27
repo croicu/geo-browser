@@ -134,6 +134,7 @@ export class DetailView implements View {
             const imageOverlay = new ImageOverlayWidget(map, {
                 onImageLoaded: () => this.relaxBoundsForOverlay(),
                 onImageRemoved: () => this.restoreBoundsAfterOverlay(),
+                getCurrentLatLng: () => this._geoLocationWidget?.getLastPosition(),
             });
             imageOverlay.render();
             this._imageOverlayWidget = imageOverlay;
