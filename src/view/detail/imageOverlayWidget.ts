@@ -1,5 +1,5 @@
-import googleMapsUrl from "../../../tasks/image.png?url";
-import appleMapsUrl from "../../../tasks/image-1.png?url";
+import googleMapsUrl from "../../../tasks/google_maps.png?url";
+import appleMapsUrl from "../../../tasks/apple_maps.png?url";
 import type { MapHandle, WidgetHandle } from "../../contracts";
 import { getLogger } from "../../services";
 import { detectBlueDot, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";

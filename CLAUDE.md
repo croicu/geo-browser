@@ -373,8 +373,21 @@ Enriched feature shape:
 }
 ```
 
+## Task Workflow
+
+Every task moves through these statuses in order. Update the `Status:` field in both the CLAUDE.md entry and the task file as work progresses.
+
+1. **Brainstorm** — Create the `## New Tasks` entry with `Status: Brainstorm`. Create `tasks/<task-name>.md` with the problem statement. Update the task file as the design discussion evolves.
+2. **Implementation** — Advance to `Status: Implementation`. Add an implementation plan to the task file. Write the code.
+3. **Testing** — Advance to `Status: Testing`. Verify correctness; update the task file with test results and any open issues.
+4. **Ready to Submit** — Advance to `Status: Ready to Submit`. Run lint + tests; confirm docs are up to date.
+5. **Done** — Advance to `Status: Done` after merge/close; move the entry to `## Completed Tasks`.
+
 ## New Tasks
 - **[1-DOF Editor](tasks/one_dof.md)**: Status: Implementation. Long-press / double-click on image pins an anchor lat/lng (derived from containerPointToLatLng at the gesture point). Translation follows the anchor on map pan/zoom; scale stays free. Red donut marker tracks anchor. Pin button in toolbar (shown when pinned) unpins. Double-click / long-press donut also unpins. Pin and lock are mutually exclusive.
+
+## Postponed Tasks
+- **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
 
 ## Completed Tasks
 - **[Blue Dot Detection](tasks/blue_dot_detection.md)**: Canvas pixel scan in `src/vision/blueDotDetector.ts`. Multi-scale sliding window, 3-stage funnel, sector-aware ring scoring with MIN_RING_SECTORS filter. Auto-pins on paste when confidence ≥ threshold; "I feel lucky" button for manual trigger. Image visually snaps detected dot to GPS position immediately.
