@@ -7,7 +7,11 @@
       "Bash(npx vitest *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(Get-ChildItem -Path 'c:\\\\Projects\\\\GitHub\\\\geo-browser\\\\src\\\\app' -Filter '*ontroller*' -Recurse)",
+      "Bash(Get-ChildItem -Path 'c:\\\\Projects\\\\GitHub\\\\geo-browser\\\\src\\\\view' -Recurse -File)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)"
     ]
   }
 }

@@ -17,8 +17,8 @@ The user takes a screenshot of a route from a navigation app (primarily Google M
 ### Step 1: Test Scaffold
 
 Two permanent test buttons load pre-baked images without touching the clipboard:
-- `image.png` — Google Maps screenshot (Bellevue/Kirkland)
-- `image-1.png` — Apple Maps screenshot (Redmond/Bellevue)
+- `google_maps.png` — Google Maps screenshot (Bellevue/Kirkland)
+- `apple_maps.png` — Apple Maps screenshot (Redmond/Bellevue)
 
 These are always visible because the scenario is important for development and testing.
 

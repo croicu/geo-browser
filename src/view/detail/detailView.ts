@@ -348,7 +348,9 @@ export class DetailView implements View {
         if (this._mode !== "design" && zoom <= this._minZoom) {
             const map = this._map;
             if (map) {
-                this._actions.saveSummaryViewport(map.getCenter(), map.getZoom());
+                // Clamp to 10 so the summary never opens at zoom ≥ 11, which would
+                // immediately re-trigger openDetail and create a bounce loop.
+                this._actions.saveSummaryViewport(map.getCenter(), Math.min(map.getZoom(), 10));
             }
             this._actions.openSummary();
             return;

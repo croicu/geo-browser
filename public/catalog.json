@@ -3,6 +3,20 @@
   "createdAt": "2026-05-20 02:29:29.216307+00:00",
   "areas": [
     {
+      "id": "redmond",
+      "name": "Redmond",
+      "bbox": [
+        -122.19753613052966,
+        47.62176761612052,
+        -122.07294755643589,
+        47.743527551304254
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/redmond/manifest.json"
+    },
+    {
       "id": "prague",
       "name": "Prague",
       "bbox": [

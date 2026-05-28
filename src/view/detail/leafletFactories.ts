@@ -163,6 +163,14 @@ class LeafletMapHandle implements MapHandle {
     }
 
     setMinZoom(zoom: number): void {
+        // Pre-snap to minZoom without animation before calling setMinZoom.
+        // If we let Leaflet animate, _onZoomTransitionEnd fires synchronously inside
+        // the zoomanim handler (same-transform workaround), which emits zoomend,
+        // which can trigger openSummary while _animateZoom still holds the call stack.
+        // That destroys the map before _move runs, crashing with _mapPane undefined.
+        if (this._map.getZoom() < zoom) {
+            this._map.setZoom(zoom, { animate: false });
+        }
         this._map.setMinZoom(zoom);
     }
 
