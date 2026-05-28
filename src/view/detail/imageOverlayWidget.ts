@@ -2,10 +2,10 @@ import googleMapsUrl from "../../../tasks/google_maps.png?url";
 import appleMapsUrl from "../../../tasks/apple_maps.png?url";
 import type { MapHandle, WidgetHandle } from "../../contracts";
 import { getLogger } from "../../services";
+import { Context } from "../../runtime/context";
 import { detectBlueDot, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";
 
 export interface ImageOverlayOptions {
-    debug?: boolean;
     onImageLoaded?: () => void;
     onImageRemoved?: () => void;
     getCurrentLatLng?: () => [number, number] | undefined;
@@ -170,7 +170,7 @@ export class ImageOverlayWidget {
         container.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
         container.addEventListener("touchmove", e => e.stopPropagation(), { passive: true });
 
-        if (this._options.debug) {
+        if (Context.Instance.debug) {
             const gmBtn = this.buildIconButton("/icons/img-google.svg", "Google Maps", () => this.loadImage(googleMapsUrl, "google_maps"));
             container.appendChild(gmBtn);
 

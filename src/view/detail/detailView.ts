@@ -23,7 +23,6 @@ export interface DetailViewServices {
     gateway?: GatewayService | null;
     geoLocation?: GeoLocationService | null;
     mode?: Mode;
-    debug?: boolean;
 }
 
 export class DetailView implements View {
@@ -39,7 +38,6 @@ export class DetailView implements View {
     private readonly _gateway: GatewayService | null;
     private readonly _geoLocation: GeoLocationService | null;
     private readonly _mode: Mode;
-    private readonly _debug: boolean;
 
     private _element?: HTMLElement;
     private _mapRoot?: HTMLElement;
@@ -74,7 +72,6 @@ export class DetailView implements View {
         this._gateway = services.gateway ?? null;
         this._geoLocation = services.geoLocation ?? null;
         this._mode = services.mode ?? "browse";
-        this._debug = services.debug ?? false;
 
         void this._actions;
     }
@@ -135,7 +132,6 @@ export class DetailView implements View {
             }
 
             const imageOverlay = new ImageOverlayWidget(map, {
-                debug: this._debug,
                 onImageLoaded: () => this.relaxBoundsForOverlay(),
                 onImageRemoved: () => this.restoreBoundsAfterOverlay(),
                 getCurrentLatLng: () => this._geoLocationWidget?.getLastPosition(),
