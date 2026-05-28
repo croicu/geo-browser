@@ -81,8 +81,10 @@ export interface MapHandle {
     getContainer(): HTMLElement;
     panTo(latLng: [number, number]): void;
     onZoom(handler: (zoom: number) => void): () => void;
+    onZoomAnim(handler: (center: [number, number], zoom: number) => void): () => void;
     onMove(handler: () => void): () => void;
     onMoveEnd(handler: () => void): () => void;
+    project(latLng: [number, number], zoom: number): [number, number];
     latLngToContainerPoint(latLng: [number, number]): [number, number];
     containerPointToLatLng(point: [number, number]): [number, number];
     onClick(handler: (latLng: [number, number]) => void): () => void;

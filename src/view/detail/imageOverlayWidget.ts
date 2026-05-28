@@ -41,7 +41,6 @@ export class ImageOverlayWidget {
     private _activeUnlockedSection?: HTMLDivElement;
     private _activeLockedSection?: HTMLDivElement;
     private _opacitySlider?: HTMLInputElement;
-    private _luckyBtn?: HTMLButtonElement;
     private _pinBtn?: HTMLButtonElement;
     private _currentUrl = "";
     private _currentSource = "";
@@ -59,6 +58,7 @@ export class ImageOverlayWidget {
     private _anchorZoom = 0;
     private _scaleAtAnchor = 1.0;
     private _lockMoveCleanup?: () => void;
+    private _lockZoomAnimCleanup?: () => void;
 
     // Pin state (1-DOF: translation follows anchor, scale free)
     private _isPinned = false;
@@ -66,6 +66,7 @@ export class ImageOverlayWidget {
     private _pinAnchorLocalX = 0;
     private _pinAnchorLocalY = 0;
     private _pinMoveCleanup?: () => void;
+    private _pinZoomAnimCleanup?: () => void;
     private _pinAnchorMarker?: HTMLDivElement;
 
     // Long-press detection for pin gesture
@@ -127,6 +128,9 @@ export class ImageOverlayWidget {
 
         this._lockMoveCleanup?.();
         this._lockMoveCleanup = undefined;
+
+        this._lockZoomAnimCleanup?.();
+        this._lockZoomAnimCleanup = undefined;
 
         this.clearPinState();
 
@@ -204,12 +208,9 @@ export class ImageOverlayWidget {
         unlockedSection.appendChild(slider);
 
         const luckyBtn = this.buildIconButton("/icons/img-lucky.svg", "I feel lucky — auto-detect blue dot", () => this.handleLucky());
-        this._luckyBtn = luckyBtn;
         unlockedSection.appendChild(luckyBtn);
 
-        const pinBtn = this.buildIconButton("/icons/img-pinned.svg", "Unpin image from anchor", () => this.unpin());
-        pinBtn.classList.add("image-overlay-toolbar-btn--active");
-        pinBtn.hidden = true;
+        const pinBtn = this.buildIconButton("/icons/img-pinned.svg", "Pin image to GPS location", () => this.handlePinButtonClick());
         this._pinBtn = pinBtn;
         unlockedSection.appendChild(pinBtn);
 
@@ -367,14 +368,16 @@ export class ImageOverlayWidget {
                     this._anchorZoom    = restore.anchorZoom;
                     this._scaleAtAnchor = restore.scaleAtAnchor;
                     this._isLocked      = true;
-                    this._lockMoveCleanup = this._map.onMove(() => this.updateLockedTransform());
+                    this._lockMoveCleanup     = this._map.onMove(() => this.updateLockedTransform());
+                    this._lockZoomAnimCleanup = this._map.onZoomAnim((c, z) => this.updateLockedTransformAt(c, z));
                     this.updateLockedTransform();
                 } else if (restore.isPinned && restore.pinAnchorLatLng) {
                     this._isPinned         = true;
                     this._pinAnchorLatLng  = restore.pinAnchorLatLng;
                     this._pinAnchorLocalX  = restore.pinAnchorLocalX;
                     this._pinAnchorLocalY  = restore.pinAnchorLocalY;
-                    this._pinMoveCleanup   = this._map.onMove(() => this.updatePinnedTransform());
+                    this._pinMoveCleanup     = this._map.onMove(() => this.updatePinnedTransform());
+                    this._pinZoomAnimCleanup = this._map.onZoomAnim((c, z) => this.updatePinnedTransformAt(c, z));
                     this.createAnchorMarker();
                     this.updatePinnedTransform();
                 }
@@ -488,7 +491,8 @@ export class ImageOverlayWidget {
         this._scaleAtAnchor = this._scale;
         this._isLocked      = true;
 
-        this._lockMoveCleanup = this._map.onMove(() => this.updateLockedTransform());
+        this._lockMoveCleanup     = this._map.onMove(() => this.updateLockedTransform());
+        this._lockZoomAnimCleanup = this._map.onZoomAnim((c, z) => this.updateLockedTransformAt(c, z));
 
         this.showActiveControls(true);
     }
@@ -506,6 +510,9 @@ export class ImageOverlayWidget {
         this._lockMoveCleanup?.();
         this._lockMoveCleanup = undefined;
 
+        this._lockZoomAnimCleanup?.();
+        this._lockZoomAnimCleanup = undefined;
+
         this.showActiveControls(true);
     }
 
@@ -522,6 +529,17 @@ export class ImageOverlayWidget {
         this._offsetY = screenPos[1] - container.offsetHeight / 2;
         this._scale   = this._scaleAtAnchor * Math.pow(2, this._map.getZoom() - this._anchorZoom);
 
+        this.applyTransform();
+    }
+
+    private updateLockedTransformAt(center: [number, number], zoom: number): void {
+        const anchor = this._anchorLatLng;
+        if (!anchor) return;
+        const container = this._map.getContainer();
+        const screenPos = this.latLngToContainerPointAt(anchor, center, zoom);
+        this._offsetX = screenPos[0] - container.offsetWidth  / 2;
+        this._offsetY = screenPos[1] - container.offsetHeight / 2;
+        this._scale   = this._scaleAtAnchor * Math.pow(2, zoom - this._anchorZoom);
         this.applyTransform();
     }
 
@@ -549,7 +567,8 @@ export class ImageOverlayWidget {
 
         if (!this._isPinned) {
             this._isPinned = true;
-            this._pinMoveCleanup = this._map.onMove(() => this.updatePinnedTransform());
+            this._pinMoveCleanup     = this._map.onMove(() => this.updatePinnedTransform());
+            this._pinZoomAnimCleanup = this._map.onZoomAnim((c, z) => this.updatePinnedTransformAt(c, z));
             this.createAnchorMarker();
         } else {
             // Re-pinning to a new point — update marker position immediately
@@ -570,12 +589,38 @@ export class ImageOverlayWidget {
         this.showActiveControls(this._img !== undefined);
     }
 
+    private handlePinButtonClick(): void {
+        getLogger().info("image_overlay.pin_button.click", { isPinned: this._isPinned });
+        if (this._isPinned) {
+            this.unpin();
+        } else {
+            this.pinToCenter();
+        }
+    }
+
+    private pinToCenter(): void {
+        const img = this._img;
+        if (!img) {
+            getLogger().warning("image_overlay.pin_to_center.no_image");
+            return;
+        }
+        const imgRect = img.getBoundingClientRect();
+        const containerRect = this._map.getContainer().getBoundingClientRect();
+        const cx = imgRect.left + imgRect.width / 2 - containerRect.left;
+        const cy = imgRect.top + imgRect.height / 2 - containerRect.top;
+        this.pin(cx, cy, this._options.getCurrentLatLng?.());
+        this.updatePinnedTransform();
+    }
+
     private clearPinState(): void {
         this._isPinned = false;
         this._pinAnchorLatLng = undefined;
 
         this._pinMoveCleanup?.();
         this._pinMoveCleanup = undefined;
+
+        this._pinZoomAnimCleanup?.();
+        this._pinZoomAnimCleanup = undefined;
 
         this.cancelLongPress();
         this.removeAnchorMarker();
@@ -595,6 +640,27 @@ export class ImageOverlayWidget {
 
         this.applyTransform();
         this.updateAnchorMarkerPosition();
+    }
+
+    private updatePinnedTransformAt(center: [number, number], zoom: number): void {
+        const anchor = this._pinAnchorLatLng;
+        if (!anchor) return;
+        const container    = this._map.getContainer();
+        const screenAnchor = this.latLngToContainerPointAt(anchor, center, zoom);
+        this._offsetX = screenAnchor[0] - this._pinAnchorLocalX * this._scale - container.offsetWidth  / 2;
+        this._offsetY = screenAnchor[1] - this._pinAnchorLocalY * this._scale - container.offsetHeight / 2;
+        this.applyTransform();
+        this.updateAnchorMarkerPosition(center, zoom);
+    }
+
+    private latLngToContainerPointAt(latLng: [number, number], center: [number, number], zoom: number): [number, number] {
+        const p  = this._map.project(latLng, zoom);
+        const cp = this._map.project(center, zoom);
+        const container = this._map.getContainer();
+        return [
+            p[0] - cp[0] + container.offsetWidth  / 2,
+            p[1] - cp[1] + container.offsetHeight / 2,
+        ];
     }
 
     private createAnchorMarker(): void {
@@ -632,12 +698,14 @@ export class ImageOverlayWidget {
         this.updateAnchorMarkerPosition();
     }
 
-    private updateAnchorMarkerPosition(): void {
+    private updateAnchorMarkerPosition(animCenter?: [number, number], animZoom?: number): void {
         const anchor = this._pinAnchorLatLng;
         if (!anchor || !this._pinAnchorMarker) {
             return;
         }
-        const screenPos = this._map.latLngToContainerPoint(anchor);
+        const screenPos = (animCenter !== undefined && animZoom !== undefined)
+            ? this.latLngToContainerPointAt(anchor, animCenter, animZoom)
+            : this._map.latLngToContainerPoint(anchor);
         this._pinAnchorMarker.style.left = `${screenPos[0]}px`;
         this._pinAnchorMarker.style.top  = `${screenPos[1]}px`;
     }
@@ -664,8 +732,19 @@ export class ImageOverlayWidget {
     }
 
     private handleLucky(): void {
+        getLogger().info("image_overlay.lucky.click");
+
         const img = this._img;
-        if (!img || !this.isLocationAvailable() || img.naturalWidth === 0 || img.naturalHeight === 0) {
+        if (!img) {
+            getLogger().warning("image_overlay.lucky.no_image");
+            return;
+        }
+        if (!this.isLocationAvailable()) {
+            getLogger().warning("image_overlay.lucky.no_gps");
+            return;
+        }
+        if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+            getLogger().warning("image_overlay.lucky.zero_dimensions");
             return;
         }
 
@@ -710,8 +789,15 @@ export class ImageOverlayWidget {
                     this._opacitySlider.value = String(Math.round(this._opacity * 100));
                 }
             }
-            if (this._luckyBtn) { this._luckyBtn.disabled = !this.isLocationAvailable(); }
-            if (this._pinBtn) { this._pinBtn.hidden = !this._isPinned; }
+            if (this._pinBtn) {
+                const imgEl = this._pinBtn.querySelector("img");
+                const pinTitle = this._isPinned ? "Unpin image from anchor" : "Pin image to GPS location";
+                if (imgEl) {
+                    imgEl.src = this._isPinned ? "/icons/img-unpinned.svg" : "/icons/img-pinned.svg";
+                    imgEl.alt = pinTitle;
+                }
+                this._pinBtn.title = pinTitle;
+            }
             if (this._activeLockedSection) { this._activeLockedSection.hidden = true; }
         }
     }

@@ -98,9 +98,22 @@ class LeafletMapHandle implements MapHandle {
         return () => this._map.off("zoomend", listener);
     }
 
+    onZoomAnim(handler: (center: [number, number], zoom: number) => void): () => void {
+        type ZoomAnimEvent = { center: L.LatLng; zoom: number };
+        const listener = (e: ZoomAnimEvent) => handler([e.center.lat, e.center.lng], e.zoom);
+        const fn = listener as unknown as L.LeafletEventHandlerFn;
+        this._map.on("zoomanim", fn);
+        return () => this._map.off("zoomanim", fn);
+    }
+
     onMove(handler: () => void): () => void {
         this._map.on("move", handler);
         return () => this._map.off("move", handler);
+    }
+
+    project(latLng: [number, number], zoom: number): [number, number] {
+        const p = this._map.project(L.latLng(latLng[0], latLng[1]), zoom);
+        return [p.x, p.y];
     }
 
     onMoveEnd(handler: () => void): () => void {
