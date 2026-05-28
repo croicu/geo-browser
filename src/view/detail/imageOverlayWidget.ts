@@ -5,6 +5,7 @@ import { getLogger } from "../../services";
 import { detectBlueDot, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";
 
 export interface ImageOverlayOptions {
+    debug?: boolean;
     onImageLoaded?: () => void;
     onImageRemoved?: () => void;
     getCurrentLatLng?: () => [number, number] | undefined;
@@ -169,11 +170,13 @@ export class ImageOverlayWidget {
         container.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
         container.addEventListener("touchmove", e => e.stopPropagation(), { passive: true });
 
-        const gmBtn = this.buildIconButton("/icons/img-google.svg", "Google Maps", () => this.loadImage(googleMapsUrl, "google_maps"));
-        container.appendChild(gmBtn);
+        if (this._options.debug) {
+            const gmBtn = this.buildIconButton("/icons/img-google.svg", "Google Maps", () => this.loadImage(googleMapsUrl, "google_maps"));
+            container.appendChild(gmBtn);
 
-        const amBtn = this.buildIconButton("/icons/img-apple.svg", "Apple Maps", () => this.loadImage(appleMapsUrl, "apple_maps"));
-        container.appendChild(amBtn);
+            const amBtn = this.buildIconButton("/icons/img-apple.svg", "Apple Maps", () => this.loadImage(appleMapsUrl, "apple_maps"));
+            container.appendChild(amBtn);
+        }
 
         const pasteBtn = this.buildIconButton("/icons/img-paste.svg", "Paste image from clipboard", () => { void this.handlePaste(); });
         container.appendChild(pasteBtn);
@@ -198,8 +201,7 @@ export class ImageOverlayWidget {
         this._opacitySlider = slider;
         unlockedSection.appendChild(slider);
 
-        const luckyBtn = this.buildButton("🙂", () => this.handleLucky());
-        luckyBtn.title = "I feel lucky — auto-detect blue dot";
+        const luckyBtn = this.buildIconButton("/icons/img-lucky.svg", "I feel lucky — auto-detect blue dot", () => this.handleLucky());
         unlockedSection.appendChild(luckyBtn);
 
         const pinBtn = this.buildIconButton("/icons/img-pinned.svg", "Unpin image from anchor", () => this.unpin());
@@ -211,8 +213,7 @@ export class ImageOverlayWidget {
         const lockBtn = this.buildIconButton("/icons/img-lock.svg", "Lock image to map coordinates", () => this.lock());
         unlockedSection.appendChild(lockBtn);
 
-        const removeBtn = this.buildButton("✕", () => this.removeOverlay());
-        removeBtn.title = "Remove overlay";
+        const removeBtn = this.buildIconButton("/icons/img-close.svg", "Remove overlay", () => this.removeOverlay());
         unlockedSection.appendChild(removeBtn);
 
         container.appendChild(unlockedSection);
