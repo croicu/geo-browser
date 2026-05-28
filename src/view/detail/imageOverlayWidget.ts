@@ -6,6 +6,7 @@ import { Context } from "../../runtime/context";
 import { detectBlueDot, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";
 
 export interface ImageOverlayOptions {
+    areaBbox?: [number, number, number, number];
     onImageLoaded?: () => void;
     onImageRemoved?: () => void;
     getCurrentLatLng?: () => [number, number] | undefined;
@@ -40,6 +41,7 @@ export class ImageOverlayWidget {
     private _activeUnlockedSection?: HTMLDivElement;
     private _activeLockedSection?: HTMLDivElement;
     private _opacitySlider?: HTMLInputElement;
+    private _luckyBtn?: HTMLButtonElement;
     private _pinBtn?: HTMLButtonElement;
     private _currentUrl = "";
     private _currentSource = "";
@@ -202,6 +204,7 @@ export class ImageOverlayWidget {
         unlockedSection.appendChild(slider);
 
         const luckyBtn = this.buildIconButton("/icons/img-lucky.svg", "I feel lucky — auto-detect blue dot", () => this.handleLucky());
+        this._luckyBtn = luckyBtn;
         unlockedSection.appendChild(luckyBtn);
 
         const pinBtn = this.buildIconButton("/icons/img-pinned.svg", "Unpin image from anchor", () => this.unpin());
@@ -231,19 +234,7 @@ export class ImageOverlayWidget {
 
         return container;
     }
-
-    private buildButton(label: string, onClick: () => void): HTMLButtonElement {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "image-overlay-toolbar-btn";
-        btn.textContent = label;
-        btn.addEventListener("click", e => {
-            e.preventDefault();
-            onClick();
-        });
-        return btn;
-    }
-
+    
     private buildIconButton(iconUrl: string, title: string, onClick: () => void): HTMLButtonElement {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -713,9 +704,19 @@ export class ImageOverlayWidget {
                     this._opacitySlider.value = String(Math.round(this._opacity * 100));
                 }
             }
+            if (this._luckyBtn) { this._luckyBtn.disabled = !this.isLocationAvailable(); }
             if (this._pinBtn) { this._pinBtn.hidden = !this._isPinned; }
             if (this._activeLockedSection) { this._activeLockedSection.hidden = true; }
         }
+    }
+
+    private isLocationAvailable(): boolean {
+        const latLng = this._options.getCurrentLatLng?.();
+        if (!latLng) return false;
+        const bbox = this._options.areaBbox;
+        if (!bbox) return true;
+        const [west, south, east, north] = bbox;
+        return latLng[0] >= south && latLng[0] <= north && latLng[1] >= west && latLng[1] <= east;
     }
 
     private applyOpacity(): void {

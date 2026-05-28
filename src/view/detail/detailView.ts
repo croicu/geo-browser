@@ -132,6 +132,7 @@ export class DetailView implements View {
             }
 
             const imageOverlay = new ImageOverlayWidget(map, {
+                areaBbox: this._area.bbox,
                 onImageLoaded: () => this.relaxBoundsForOverlay(),
                 onImageRemoved: () => this.restoreBoundsAfterOverlay(),
                 getCurrentLatLng: () => this._geoLocationWidget?.getLastPosition(),
