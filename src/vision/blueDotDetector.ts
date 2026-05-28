@@ -98,9 +98,9 @@ interface Candidate {
 }
 
 // Synchronous. Runs in < 5 ms on typical phone screenshots.
-// Returns null only if no blue pixel was found at all.
-export function detectBlueDot(img: HTMLImageElement): DetectionResult | null {
-    if (!img.naturalWidth || !img.naturalHeight) return null;
+// Returns all spatially-distinct candidates sorted by confidence (best first).
+export function detectBlueDots(img: HTMLImageElement): DetectionResult[] {
+    if (!img.naturalWidth || !img.naturalHeight) return [];
 
     // --- Downsample to fixed working width ---
     const workW = WORK_WIDTH;
@@ -111,7 +111,7 @@ export function detectBlueDot(img: HTMLImageElement): DetectionResult | null {
     canvas.height = workH;
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) return null;
+    if (!ctx) return [];
 
     ctx.drawImage(img, 0, 0, workW, workH);
     const { data } = ctx.getImageData(0, 0, workW, workH);
@@ -123,10 +123,6 @@ export function detectBlueDot(img: HTMLImageElement): DetectionResult | null {
 
     // Precompute zone offset lists once per scale
     const zones = SCALES.map(W => ({ W, ...buildZoneOffsets(W) }));
-
-    let bestScore = 0;
-    let bestX     = 0;
-    let bestY     = 0;
 
     // Diagnostic: track stage pass counts, top candidates, and spatial heatmap
     let stage1Pass = 0;
@@ -214,11 +210,6 @@ export function detectBlueDot(img: HTMLImageElement): DetectionResult | null {
                     topCandidates.pop();
                 }
 
-                if (dotScore > bestScore) {
-                    bestScore = dotScore;
-                    bestX     = cx;
-                    bestY     = cy;
-                }
             }
         }
     }
@@ -256,11 +247,24 @@ export function detectBlueDot(img: HTMLImageElement): DetectionResult | null {
         });
     }
 
-    if (bestScore === 0) return null;
+    // Deduplicate: for each candidate (sorted best-first), skip if a better
+    // candidate already within 5 % of image width/height was kept.
+    const DEDUP_THRESHOLD = 0.05;
+    const deduped: Candidate[] = [];
+    for (const c of topCandidates) {
+        const tooClose = deduped.some(d =>
+            Math.abs(d.normX - c.normX) < DEDUP_THRESHOLD &&
+            Math.abs(d.normY - c.normY) < DEDUP_THRESHOLD
+        );
+        if (!tooClose) {
+            deduped.push(c);
+        }
+    }
 
-    return {
-        confidence: bestScore,
-        x: bestX / workW,
-        y: bestY / workH,
-    };
+    return deduped.map(c => ({ confidence: c.dotScore, x: c.normX, y: c.normY }));
+}
+
+// Single-result convenience wrapper; null when nothing was found.
+export function detectBlueDot(img: HTMLImageElement): DetectionResult | null {
+    return detectBlueDots(img)[0] ?? null;
 }

@@ -3,7 +3,8 @@ import appleMapsUrl from "../../../tasks/apple_maps.png?url";
 import type { MapHandle, WidgetHandle } from "../../contracts";
 import { getLogger } from "../../services";
 import { Context } from "../../runtime/context";
-import { detectBlueDot, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";
+import { detectBlueDots, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";
+import type { DetectionResult } from "../../vision/blueDotDetector";
 
 export interface ImageOverlayOptions {
     areaBbox?: [number, number, number, number];
@@ -36,12 +37,17 @@ export class ImageOverlayWidget {
     private readonly _options: ImageOverlayOptions;
 
     private _toolbarHandle?: WidgetHandle;
+    private _toolbarEl?: HTMLDivElement;
     private _overlayDiv?: HTMLDivElement;
     private _img?: HTMLImageElement;
     private _activeUnlockedSection?: HTMLDivElement;
     private _activeLockedSection?: HTMLDivElement;
     private _opacitySlider?: HTMLInputElement;
     private _pinBtn?: HTMLButtonElement;
+    private _pasteStatusLabel?: HTMLSpanElement;
+    private _pasteStatusTimer?: ReturnType<typeof setTimeout>;
+    private _luckyHits?: DetectionResult[];
+    private _luckyIndex = 0;
     private _currentUrl = "";
     private _currentSource = "";
     private _currentBlobUrl?: string;
@@ -114,6 +120,7 @@ export class ImageOverlayWidget {
         getLogger().info("image_overlay.render");
 
         const toolbar = this.buildToolbar();
+        this._toolbarEl = toolbar;
         this._toolbarHandle = this._map.addControl("topleft", toolbar);
         this.registerGestureHandlers();
 
@@ -162,6 +169,7 @@ export class ImageOverlayWidget {
 
         this._toolbarHandle?.remove();
         this._toolbarHandle = undefined;
+        this._toolbarEl = undefined;
     }
 
     private buildToolbar(): HTMLDivElement {
@@ -186,6 +194,12 @@ export class ImageOverlayWidget {
 
         const pasteBtn = this.buildIconButton("/icons/img-paste.svg", "Paste image from clipboard", () => { void this.handlePaste(); });
         container.appendChild(pasteBtn);
+
+        const statusLabel = document.createElement("span");
+        statusLabel.className = "image-overlay-paste-status";
+        statusLabel.hidden = true;
+        this._pasteStatusLabel = statusLabel;
+        container.appendChild(statusLabel);
 
         // Unlocked section: opacity slider + pin (hidden until pinned) + lock + delete
         const unlockedSection = document.createElement("div");
@@ -254,11 +268,25 @@ export class ImageOverlayWidget {
         return btn;
     }
 
+    private showPasteStatus(message: string): void {
+        const label = this._pasteStatusLabel;
+        if (!label) {
+            return;
+        }
+        label.textContent = message;
+        label.hidden = false;
+        clearTimeout(this._pasteStatusTimer);
+        this._pasteStatusTimer = setTimeout(() => {
+            label.hidden = true;
+        }, 3000);
+    }
+
     private async handlePaste(): Promise<void> {
         getLogger().info("image_overlay.paste.start");
 
         if (!navigator.clipboard?.read) {
             getLogger().warning("image_overlay.paste.unsupported");
+            this.showPasteStatus("Clipboard not supported");
             return;
         }
 
@@ -275,8 +303,10 @@ export class ImageOverlayWidget {
                 }
             }
             getLogger().warning("image_overlay.paste.no_image");
+            this.showPasteStatus("No image in clipboard");
         } catch (err) {
             getLogger().error("image_overlay.paste.error", err);
+            this.showPasteStatus("Could not read clipboard");
         }
     }
 
@@ -330,6 +360,8 @@ export class ImageOverlayWidget {
         }
 
         this.clearOverlay();
+        this._luckyHits = undefined;
+        this._luckyIndex = 0;
         this._currentUrl = url;
         this._currentSource = source;
         if (source === "paste") {
@@ -615,6 +647,8 @@ export class ImageOverlayWidget {
     private clearPinState(): void {
         this._isPinned = false;
         this._pinAnchorLatLng = undefined;
+        this._luckyHits = undefined;
+        this._luckyIndex = 0;
 
         this._pinMoveCleanup?.();
         this._pinMoveCleanup = undefined;
@@ -720,15 +754,18 @@ export class ImageOverlayWidget {
             return;
         }
 
-        const hit = detectBlueDot(img);
-        getLogger().info("image_overlay.blue_dot_scan", { confidence: hit?.confidence ?? 0 });
+        const hits = detectBlueDots(img);
+        const best = hits[0];
+        getLogger().info("image_overlay.blue_dot_scan", { confidence: best?.confidence ?? 0 });
 
-        if (!hit || hit.confidence < AUTO_PIN_THRESHOLD) {
+        if (!best || best.confidence < AUTO_PIN_THRESHOLD) {
             return;
         }
 
-        this.pinAtDetectionResult(img, hit);
-        getLogger().info("image_overlay.auto_pin", { confidence: hit.confidence });
+        this._luckyHits = hits;
+        this._luckyIndex = 0;
+        this.pinAtDetectionResult(img, best);
+        getLogger().info("image_overlay.auto_pin", { confidence: best.confidence });
     }
 
     private handleLucky(): void {
@@ -748,16 +785,26 @@ export class ImageOverlayWidget {
             return;
         }
 
-        getLogger().info("image_overlay.lucky.start");
-        const hit = detectBlueDot(img);
-
-        if (!hit) {
-            getLogger().warning("image_overlay.lucky.no_candidate");
-            return;
+        if (!this._luckyHits) {
+            getLogger().info("image_overlay.lucky.scan");
+            const hits = detectBlueDots(img);
+            if (hits.length === 0) {
+                getLogger().warning("image_overlay.lucky.no_candidate");
+                return;
+            }
+            this._luckyHits = hits;
+            this._luckyIndex = 0;
+        } else {
+            this._luckyIndex = (this._luckyIndex + 1) % this._luckyHits.length;
         }
 
+        const hit = this._luckyHits[this._luckyIndex];
         this.pinAtDetectionResult(img, hit);
-        getLogger().info("image_overlay.lucky.end", { confidence: hit.confidence });
+        getLogger().info("image_overlay.lucky.end", {
+            confidence: hit.confidence,
+            index: this._luckyIndex,
+            total: this._luckyHits.length,
+        });
     }
 
     private pinAtDetectionResult(img: HTMLImageElement, hit: { x: number; y: number }): void {
@@ -866,6 +913,10 @@ export class ImageOverlayWidget {
     // ── Mouse drag (move image only; map does not pan) ────────────────────────
 
     private onContainerMouseDown(e: MouseEvent): void {
+        if (this._toolbarEl && this._toolbarEl.contains(e.target as Node)) {
+            return;
+        }
+
         if (!this._img || this._isLocked || this._isPinned || !this.isOverImage(e.clientX, e.clientY)) {
             return;
         }
@@ -920,6 +971,10 @@ export class ImageOverlayWidget {
             return;
         }
 
+        if (this._toolbarEl && this._toolbarEl.contains(e.target as Node)) {
+            return;
+        }
+
         // Let anchor marker handle its own touch events (capture won't fire after stopPropagation on target)
         if (this._pinAnchorMarker && this._pinAnchorMarker.contains(e.target as Node)) {
             return;
@@ -935,7 +990,7 @@ export class ImageOverlayWidget {
             return;
         }
 
-        if (e.touches.length === 1) {
+        if (e.touches.length === 1 && !this._isLocked && !this._isPinned) {
             const touch = e.touches[0];
             if (this.isOverImage(touch.clientX, touch.clientY)) {
                 e.preventDefault();
