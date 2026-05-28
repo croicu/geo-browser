@@ -188,7 +188,6 @@ and with the added benefit of real-time location awareness while walking.
 **Every architectural decision flows from this constraint**:
 
 - Static GeoJSON files generated at build time — not live API calls
-- Nominatim reverse geocoding data baked into GeoJSON by the builder — not fetched live
 - PWA with service worker — caches all assets on first load
 - GPS location is local hardware — no server calls
 - Cloudflare Pages hosting — static files, CDN, no server
@@ -246,7 +245,7 @@ complementary signal on top of OSM amenity density.
 **Walking satisfaction metric** — discussed as a broader framing. Captured in the
 composite signal instead.
 
-**Live Nominatim API calls** — considered for popup data when user taps a dot.
+**Live reverse-geocoding API calls** — considered for popup data when user taps a dot.
 Rejected because it breaks offline-first and returns little useful data (just reflects
 what's already visible on the map tiles). Solution: bake rich POI data (name, cuisine,
 address, phone, hours) from Overpass into GeoJSON at build time. See `docs/POI_LAYER.md`.
@@ -280,7 +279,7 @@ Two separate repos, two separate tools:
 - Python + pywebview
 - Opens a browser UI — drag a rectangle over a city on the map
 - Rectangle coordinates sent via pywebview JS bridge to Python
-- Python queries Overpass API, crunches GeoJSON, bakes in Nominatim data
+- Python queries Overpass API, crunches GeoJSON, bakes in POI data
 - Sends result back to browser for preview and adjustment
 - Final GeoJSON pushed to GitHub → auto-deployed to Cloudflare Pages
 

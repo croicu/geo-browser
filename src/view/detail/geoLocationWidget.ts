@@ -161,6 +161,10 @@ export class GeoLocationWidget {
         this._handle?.setFollowing(false);
     }
 
+    getLastPosition(): [number, number] | undefined {
+        return this._lastPosition?.latLng;
+    }
+
     private onRecovered(): void {
         this._handle?.setAvailable(true);
     }

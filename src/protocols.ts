@@ -41,6 +41,13 @@ export interface LayerStyle {
     maxRadius?: number;
     strokeColor?: string;
     strokeWidth?: number;
+    minZoom?: number;
+}
+
+export interface LayerAcquisition {
+    provider: string;
+    filter: string;
+    values: string[];
 }
 
 export interface Layer {
@@ -51,7 +58,7 @@ export interface Layer {
 
     name?: string;
     style?: LayerStyle;
-    mergeKey?: string;
+    acquisition?: LayerAcquisition;
 }
 
 export type LatLng = [number, number];

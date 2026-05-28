@@ -148,7 +148,7 @@ Area      = domain concept
 Bubble    = summary UI widget concept
 Layer     = protocol/data concept
 GeoLayer  = runtime wrapper/cache
-poi  = layer type: tappable POI markers derived at runtime from hasDetails features in existing layers
+__poi__  = reserved builtin virtual layer type: tappable POI markers derived at runtime from hasDetails features in existing layers
 hasDetails = GeoJSON feature flag: point carries baked POI metadata and is tappable
 ```
 
@@ -207,6 +207,21 @@ fail("detail_state.missing", "DetailViewState is not available.");
 ### Global Logger Singleton
 
 `src/services.ts` holds a module-level `Logger` instance. `Context` initializes it via `setLogger()` in its constructor. Always access it via `getLogger()` — it throws if called before `Context` is constructed.
+
+### Logging Rules
+
+Every feature must log action start, action end, and action error. Use `getLogger()`.
+
+```ts
+const log = getLogger();
+log.info("image_overlay.paste.start");
+// ...
+log.info("image_overlay.paste.end");
+// on failure:
+log.error("image_overlay.paste.error", err);
+```
+
+Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-frame events) are exempt to avoid log spam.
 
 ## Testing Rules
 
@@ -333,7 +348,7 @@ Default event weight is `1.0`; heatmap density accumulation is handled by the re
 
 ### POI Layer
 
-`poi` is a virtual layer type with no GeoJSON URL of its own. See `docs/MANIFEST.md` for the full plan of record.
+`__poi__` is a reserved builtin virtual layer type with no GeoJSON URL of its own. See `docs/MANIFEST.md` for the full plan of record.
 
 - Features with `hasDetails: true` in the area's existing layers render as interactive circle markers.
 - Popup shows baked name, amenity, cuisine, address, website, opening hours.
@@ -358,12 +373,32 @@ Enriched feature shape:
 }
 ```
 
+## Task Workflow
+
+Every task moves through these statuses in order. Update the `Status:` field in both the CLAUDE.md entry and the task file as work progresses.
+
+1. **Brainstorm** — Create the `## New Tasks` entry with `Status: Brainstorm`. Create `tasks/<task-name>.md` with the problem statement. Update the task file as the design discussion evolves.
+2. **Implementation** — Advance to `Status: Implementation`. Add an implementation plan to the task file. Write the code.
+3. **Testing** — Advance to `Status: Testing`. Verify correctness; update the task file with test results and any open issues.
+4. **Ready to Submit** — Advance to `Status: Ready to Submit`. Run lint + tests; confirm docs are up to date.
+5. **Done** — Advance to `Status: Done` after merge/close; move the entry to `## Completed Tasks`.
+
+## New Tasks
+
+## Postponed Tasks
+- **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
+
+## Completed Tasks
+- **[Zoom out exception](tasks/zoom_out_bug.md)**: Status: Done. Fixed crash in Leaflet's animated zoom (setMinZoom pre-snaps without animation) and bounce-back loop (summary viewport zoom clamped to ≤ 10).
+- **[Blue Dot Detection](tasks/blue_dot_detection.md)**: Canvas pixel scan in `src/vision/blueDotDetector.ts`. Multi-scale sliding window, 3-stage funnel, sector-aware ring scoring with MIN_RING_SECTORS filter. Auto-pins on paste when confidence ≥ threshold; "I feel lucky" button for manual trigger. Image visually snaps detected dot to GPS position immediately.
+- **[3-DOF Editor](tasks/image_overlay.md)**: CSS fixed overlay in detail view (browse mode). Paste/Google/Apple image sources. Translate X/Y via drag, scale via pinch/wheel, opacity slider, geo-lock to map coordinates. Session-level snapshot across view recreations.
+- **[1-DOF Editor](tasks/one_dof.md)**: Status: Completed. Long-press / double-click on image pins an anchor lat/lng (derived from containerPointToLatLng at the gesture point). Translation follows the anchor on map pan/zoom; scale stays free. Red donut marker tracks anchor. Pin button in toolbar (shown when pinned) unpins. Double-click / long-press donut also unpins. Pin and lock are mutually exclusive.
+
 ## Next Likely Work
 
-Good next branches:
+Current branch: **ManifestEditor** (in progress).
 
-1. `poi` layer type: new `LayerView` that renders heatmap + tappable `hasDetails` markers from a single GeoJSON. See `docs/MANIFEST.md`.
-2. Design-mode data source abstraction.
-3. Bbox persistence: `GeoArea.bbox` is computed from `center + radiusMeters` and is always square. Calling `SetAreaBbox` persists edits in the builder, but on the next load the square is recomputed, losing the edit. Fix: call `GetAreaBbox` on render and update the widget once the response arrives (render square immediately as placeholder, replace when builder responds).
+- Error UX for `PutAreaJson` failures — currently logs and ignores; needs UI feedback.
+- Actual manifest editing UI — today the edit button round-trips the manifest unchanged; next step is surfacing an editor.
 
 Keep branches narrow.

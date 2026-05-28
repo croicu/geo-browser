@@ -102,6 +102,30 @@ export class StubMap implements MapHandle {
         return () => {};
     }
 
+    onZoomAnim(_handler: (center: [number, number], zoom: number) => void): () => void {
+        return () => {};
+    }
+
+    onMove(_handler: () => void): () => void {
+        return () => {};
+    }
+
+    project(_latLng: [number, number], _zoom: number): [number, number] {
+        return [0, 0];
+    }
+
+    addControl(_position: string, _element: HTMLElement): WidgetHandle {
+        return new StubWidget();
+    }
+
+    latLngToContainerPoint(_latLng: [number, number]): [number, number] {
+        return [0, 0];
+    }
+
+    containerPointToLatLng(_point: [number, number]): [number, number] {
+        return [0, 0];
+    }
+
     private _longPressHandler?: (latLng: [number, number]) => void;
     public lastPopup?: StubMapPopupHandle;
 

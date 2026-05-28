@@ -98,9 +98,37 @@ class LeafletMapHandle implements MapHandle {
         return () => this._map.off("zoomend", listener);
     }
 
+    onZoomAnim(handler: (center: [number, number], zoom: number) => void): () => void {
+        type ZoomAnimEvent = { center: L.LatLng; zoom: number };
+        const listener = (e: ZoomAnimEvent) => handler([e.center.lat, e.center.lng], e.zoom);
+        const fn = listener as unknown as L.LeafletEventHandlerFn;
+        this._map.on("zoomanim", fn);
+        return () => this._map.off("zoomanim", fn);
+    }
+
+    onMove(handler: () => void): () => void {
+        this._map.on("move", handler);
+        return () => this._map.off("move", handler);
+    }
+
+    project(latLng: [number, number], zoom: number): [number, number] {
+        const p = this._map.project(L.latLng(latLng[0], latLng[1]), zoom);
+        return [p.x, p.y];
+    }
+
     onMoveEnd(handler: () => void): () => void {
         this._map.on("moveend", handler);
         return () => this._map.off("moveend", handler);
+    }
+
+    latLngToContainerPoint(latLng: [number, number]): [number, number] {
+        const p = this._map.latLngToContainerPoint(L.latLng(latLng[0], latLng[1]));
+        return [p.x, p.y];
+    }
+
+    containerPointToLatLng(point: [number, number]): [number, number] {
+        const ll = this._map.containerPointToLatLng(L.point(point[0], point[1]));
+        return [ll.lat, ll.lng];
     }
 
     onClick(handler: (latLng: [number, number]) => void): () => void {
@@ -148,6 +176,14 @@ class LeafletMapHandle implements MapHandle {
     }
 
     setMinZoom(zoom: number): void {
+        // Pre-snap to minZoom without animation before calling setMinZoom.
+        // If we let Leaflet animate, _onZoomTransitionEnd fires synchronously inside
+        // the zoomanim handler (same-transform workaround), which emits zoomend,
+        // which can trigger openSummary while _animateZoom still holds the call stack.
+        // That destroys the map before _move runs, crashing with _mapPane undefined.
+        if (this._map.getZoom() < zoom) {
+            this._map.setZoom(zoom, { animate: false });
+        }
         this._map.setMinZoom(zoom);
     }
 
@@ -156,97 +192,6 @@ class LeafletMapHandle implements MapHandle {
         return {
             sw: [b.getSouth(), b.getWest()],
             ne: [b.getNorth(), b.getEast()],
-        };
-    }
-
-    onLongPress(handler: (latLng: [number, number]) => void): () => void {
-        let timer: ReturnType<typeof setTimeout> | undefined;
-        let startX = 0;
-        let startY = 0;
-        let touchActive = false;
-
-        const container = this._map.getContainer();
-
-        const clearTimer = () => {
-            if (timer !== undefined) {
-                clearTimeout(timer);
-                timer = undefined;
-            }
-        };
-
-        // Touch path: listen to native touch events so we can react before iOS
-        // synthesises mouse events. passive:true — we don't call preventDefault,
-        // which keeps click synthesis alive (needed to dismiss the POI popup).
-        const onTouchStart = (e: TouchEvent) => {
-            if (e.touches.length !== 1) { clearTimer(); return; }
-            touchActive = true;
-            const t = e.touches[0];
-            startX = t.clientX;
-            startY = t.clientY;
-            timer = setTimeout(() => {
-                timer = undefined;
-                const rect = container.getBoundingClientRect();
-                const latlng = this._map.containerPointToLatLng(
-                    L.point(startX - rect.left, startY - rect.top)
-                );
-                handler([latlng.lat, latlng.lng]);
-            }, 200);
-        };
-
-        const onTouchMove = (e: TouchEvent) => {
-            if (timer === undefined) return;
-            if (e.touches.length !== 1) { clearTimer(); return; }
-            const t = e.touches[0];
-            const dx = t.clientX - startX;
-            const dy = t.clientY - startY;
-            if (dx * dx + dy * dy > 100) clearTimer();
-        };
-
-        const onTouchEnd = () => {
-            touchActive = false;
-            clearTimer();
-        };
-
-        // Mouse path: desktop only. The touchActive guard prevents double-firing
-        // on iOS where the browser also synthesises mousedown from touchstart.
-        const onDown = (e: L.LeafletMouseEvent) => {
-            if (touchActive) return;
-            startX = e.containerPoint.x;
-            startY = e.containerPoint.y;
-            timer = setTimeout(() => {
-                timer = undefined;
-                handler([e.latlng.lat, e.latlng.lng]);
-            }, 200);
-        };
-
-        const onMove = (e: L.LeafletMouseEvent) => {
-            if (touchActive || timer === undefined) return;
-            const dx = e.containerPoint.x - startX;
-            const dy = e.containerPoint.y - startY;
-            if (dx * dx + dy * dy > 100) clearTimer();
-        };
-
-        const onUp = () => {
-            if (!touchActive) clearTimer();
-        };
-
-        container.addEventListener("touchstart", onTouchStart, { passive: true });
-        container.addEventListener("touchmove", onTouchMove, { passive: true });
-        container.addEventListener("touchend", onTouchEnd);
-        container.addEventListener("touchcancel", onTouchEnd);
-        this._map.on("mousedown", onDown);
-        this._map.on("mousemove", onMove);
-        this._map.on("mouseup", onUp);
-
-        return () => {
-            container.removeEventListener("touchstart", onTouchStart);
-            container.removeEventListener("touchmove", onTouchMove);
-            container.removeEventListener("touchend", onTouchEnd);
-            container.removeEventListener("touchcancel", onTouchEnd);
-            this._map.off("mousedown", onDown);
-            this._map.off("mousemove", onMove);
-            this._map.off("mouseup", onUp);
-            clearTimer();
         };
     }
 
@@ -473,7 +418,11 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
         radiusMeters: number,
         options: CircleMarkerOptions
     ): ClickableMapLayerHandle {
-        const circle = L.circle(latLng, { ...options, radius: radiusMeters });
+        const circle = L.circle(latLng, {
+            ...options,
+            radius: radiusMeters,
+            fillOpacity: options.fillOpacity ?? options.opacity,
+        });
         return new LeafletClickableMapLayerHandle(circle);
     }
 

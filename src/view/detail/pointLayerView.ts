@@ -1,5 +1,5 @@
 import type { GeoLayer } from "../../catalog/layer";
-import type { LayerFactory, MapHandle, MapLayerHandle } from "../../contracts";
+import type { CircleMarkerOptions, LayerFactory, MapHandle, MapLayerHandle } from "../../contracts";
 import { fail } from "../../errors";
 import { LayerView } from "./layerView";
 
@@ -38,12 +38,15 @@ export class PointLayerView extends LayerView {
             const latLng = this.geoJsonPointToLatLng(coordinates);
             const geoRadius = this.geoRadiusMeters(feature);
 
-            const markerOptions = {
+            const markerOptions: CircleMarkerOptions = {
                 fillColor: style?.color,
                 color: style?.strokeColor ?? style?.color,
-                weight: style?.strokeWidth,
-                opacity: style?.opacity ?? 0.8,
+                opacity: style?.opacity ?? 0.3,
             };
+
+            if (style?.strokeWidth !== undefined) {
+                markerOptions.weight = style.strokeWidth;
+            }
 
             const marker = geoRadius !== undefined
                 ? this._layerFactory.createGeoCircle(latLng, geoRadius, markerOptions)

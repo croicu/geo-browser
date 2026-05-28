@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Area Manifest",
+  "type": "object",
+  "required": ["version", "layers"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Manifest format version"
+    },
+    "layers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/layer" }
+    },
+    "aggregation": {
+      "type": "object"
+    },
+    "deduping": {
+      "type": "object"
+    }
+  },
+  "definitions": {
+    "nullableString": {
+      "oneOf": [{ "type": "string" }, { "type": "null" }]
+    },
+    "layerStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type":        { "type": "string" },
+        "color":       { "type": "string", "description": "CSS color string, e.g. \"#ff0000\"" },
+        "opacity":     { "type": "number", "minimum": 0, "maximum": 1 },
+        "radius":      { "type": "number", "minimum": 0 },
+        "blur":        { "type": "number", "minimum": 0 },
+        "radiusScale": { "type": "number", "minimum": 0 },
+        "minRadius":   { "type": "number", "minimum": 0 },
+        "maxRadius":   { "type": "number", "minimum": 0 },
+        "strokeColor": { "type": "string", "description": "CSS color string" },
+        "strokeWidth": { "type": "number", "minimum": 0 },
+        "surface":     { "type": "boolean" },
+        "minZoom":     { "type": "number", "minimum": 0 }
+      }
+    },
+    "layerAcquisition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "filter", "values"],
+      "properties": {
+        "provider": { "type": "string" },
+        "filter":   { "type": "string" },
+        "values":   { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "required": ["id", "type", "visible"],
+      "additionalProperties": false,
+      "properties": {
+        "id":          { "type": "string" },
+        "type":        { "type": "string", "enum": ["heatmap", "circle", "__poi__"] },
+        "url":         { "$ref": "#/definitions/nullableString" },
+        "visible":     { "type": "boolean" },
+        "name":        { "type": "string" },
+        "style":       { "$ref": "#/definitions/layerStyle" },
+        "acquisition": { "$ref": "#/definitions/layerAcquisition" }
+      }
+    }
+  }
+}

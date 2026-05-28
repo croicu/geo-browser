@@ -81,9 +81,13 @@ export interface MapHandle {
     getContainer(): HTMLElement;
     panTo(latLng: [number, number]): void;
     onZoom(handler: (zoom: number) => void): () => void;
+    onZoomAnim(handler: (center: [number, number], zoom: number) => void): () => void;
+    onMove(handler: () => void): () => void;
     onMoveEnd(handler: () => void): () => void;
+    project(latLng: [number, number], zoom: number): [number, number];
+    latLngToContainerPoint(latLng: [number, number]): [number, number];
+    containerPointToLatLng(point: [number, number]): [number, number];
     onClick(handler: (latLng: [number, number]) => void): () => void;
-    onLongPress(handler: (latLng: [number, number]) => void): () => void;
     setCursor(cursor: string): void;
     onMouseDown(handler: (latLng: [number, number]) => void): () => void;
     onMouseMove(handler: (latLng: [number, number]) => void): () => void;
@@ -183,6 +187,7 @@ export interface ClickableMapLayerHandle extends MapLayerHandle {
 export interface CircleMarkerOptions {
     title?: string,
     label?: string;
+    className?: string;
     radius?: number;
     color?: string;
     weight?: number;
@@ -229,24 +234,6 @@ export interface LayerFactory {
     createAccuracyRing(latLng: [number, number], radiusMeters: number): AccuracyRingHandle;
 }
 
-export interface PoiInfo {
-    source: string;
-    latLng: [number, number];
-    name?: string;
-    category?: string;
-    address?: string;
-    neighbourhood?: string;
-    city?: string;
-    country?: string;
-}
-
-export interface PoiRequest {
-    cancel(): void;
-}
-
-export interface PoiService {
-    query(latLng: [number, number], onPoiInfo: (info: PoiInfo) => void): PoiRequest;
-}
 
 export interface WidgetHandle {
     addTo(map: MapHandle): void;
@@ -256,6 +243,15 @@ export interface WidgetHandle {
 export interface GeoLocationWidgetHandle extends WidgetHandle {
     setAvailable(available: boolean): void;
     setFollowing(following: boolean): void;
+}
+
+export interface JsonEditor {
+    getJson(): Record<string, unknown>;
+    destroy(): void;
+}
+
+export interface JsonEditorFactory {
+    create(container: HTMLElement, initialJson: Record<string, unknown>): Promise<JsonEditor>;
 }
 
 export interface DesignToolbarButton {

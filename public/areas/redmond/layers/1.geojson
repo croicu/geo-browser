@@ -1,0 +1,3020 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 38268.5,
+        "radius_m": 110.4,
+        "id": 29544113,
+        "hasDetails": true,
+        "name": "Viewpoint Open Space",
+        "address": "Northeast 24th Street 17541, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Viewpoint-Open-Space-55",
+        "opening_hours": "dawn-dusk",
+        "names": [
+          "Viewpoint Open Space",
+          "Viewpont Open Space"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10529377777779,
+          47.629565166666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 22676.9,
+        "radius_m": 85.0,
+        "id": 29691854,
+        "hasDetails": true,
+        "name": "Heron Rookery Park",
+        "address": "Leary Way 7529, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Heron-Rookery-39",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12591454,
+          47.672523068000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 138969.5,
+        "radius_m": 210.3,
+        "id": 30369287,
+        "hasDetails": true,
+        "name": "Crossroads Park",
+        "address": "Northeast 10th Street 16000",
+        "website": "https://bellevuewa.gov/city-government/departments/parks/parks-and-trails/parks/crossroads-park",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12564540819672,
+          47.619410716393446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 14149.7,
+        "radius_m": 67.1,
+        "id": 30491719,
+        "hasDetails": true,
+        "name": "Tam o'Shanter Community Park",
+        "opening_hours": "sunrise-sunset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10275961875,
+          47.622113575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 39479.1,
+        "radius_m": 112.1,
+        "id": 31877353,
+        "hasDetails": true,
+        "name": "132nd Square Park",
+        "website": "https://www.kirklandwa.gov/Government/Departments/Parks-and-Community-Services/Find-a-Park/132nd-Square-Park",
+        "opening_hours": "sunrise-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16536331851852,
+          47.717520996296294
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 231794.2,
+        "radius_m": 271.6,
+        "id": 31886681,
+        "hasDetails": true,
+        "name": "Perrigo Park",
+        "address": "196th Avenue Northeast 9011, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Perrigo-Park-66",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08502492857143,
+          47.68344388285714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4751.5,
+        "radius_m": 38.9,
+        "id": 31928094,
+        "hasDetails": true,
+        "name": "The Edge Skate Park",
+        "address": "161st Avenue Northeast 8300, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/The-Edge-Skate-Park-60",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1248326814815,
+          47.67699199259259
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 12347.8,
+        "radius_m": 62.7,
+        "id": 31928133,
+        "hasDetails": true,
+        "name": "Albert Anderson Memorial Park",
+        "address": "168th Avenue Northeast 7802, Redmond",
+        "website": "https://www.redmond.gov/facilities/facility/details/Anderson-Park-59",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11560427222223,
+          47.672699277777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 113064.1,
+        "radius_m": 189.7,
+        "id": 32215299,
+        "hasDetails": true,
+        "name": "Grass Lawn Park",
+        "address": "148th Avenue Northeast 7031, Redmond",
+        "opening_hours": "Mo-Su 06:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14570097142857,
+          47.66799306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 276152.9,
+        "radius_m": 296.5,
+        "id": 32544404,
+        "hasDetails": true,
+        "name": "Farrel-McWhirter Park",
+        "address": "Northeast Redmond Road 19545, Redmond",
+        "website": "https://redmond.gov/Facilities/Facility/Details/FarrelMcWhirter-Park-61",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08042097894737,
+          47.69471764736842
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 44099.0,
+        "radius_m": 118.5,
+        "id": 32544729,
+        "hasDetails": true,
+        "name": "Bear Creek Park",
+        "address": "Redmond",
+        "website": "https://www.redmond.gov/facilities/facility/details/Bear-Creek-Park-33",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10843741818182,
+          47.672393396969696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 152565.9,
+        "radius_m": 220.4,
+        "id": 33441484,
+        "hasDetails": true,
+        "name": "Jonathan Hartman Park",
+        "address": "Northeast 104th Street 17300, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Hartman-Park-63"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10823318,
+          47.69054852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 137972.9,
+        "radius_m": 209.6,
+        "id": 33833800,
+        "hasDetails": true,
+        "name": "Gold Creek Park",
+        "address": "148th Avenue Northeast 16020, Woodinville"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14086530000002,
+          47.74247036111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 70033.1,
+        "radius_m": 149.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19299685172413,
+          47.62898085862069
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 10562.4,
+        "radius_m": 58.0,
+        "id": 35107692,
+        "hasDetails": true,
+        "name": "Ivanhoe Park",
+        "address": "Northrup Way 16600",
+        "website": "http://www.ci.bellevue.wa.us/ivanhoe.htm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11810996,
+          47.62360938
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 98457.8,
+        "radius_m": 177.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17367019736842,
+          47.68817225526316
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2642.4,
+        "radius_m": 29.0,
+        "id": 43709061,
+        "hasDetails": true,
+        "name": "Commissioner's Waterway",
+        "address": "148th Avenue NE 1669",
+        "website": "http://www.ci.bellevue.wa.us/commissioner%27s_waterway_mini.htm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1436392125,
+          47.626147287500004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 7471.5,
+        "radius_m": 48.8,
+        "id": 44115568,
+        "hasDetails": true,
+        "name": "Ardmore Park",
+        "address": "NE 30th Street 16833",
+        "website": "http://www.ci.bellevue.wa.us/ardmore.htm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11550986363636,
+          47.63640653636364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 30750.6,
+        "radius_m": 98.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16599649999999,
+          47.69574936666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 5851.4,
+        "radius_m": 43.2,
+        "id": 55760663,
+        "hasDetails": true,
+        "name": "Willows Creek Neighborhood Park",
+        "address": "142nd Avenue Northeast 8915, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Willows-Creek-Park-58",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15176824285713,
+          47.6817584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 17838.5,
+        "radius_m": 75.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.18302636666665,
+          47.690519583333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 76276.9,
+        "radius_m": 155.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19606454285714,
+          47.69110405714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 15082.6,
+        "radius_m": 69.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19356256666667,
+          47.68877084166667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 6813.0,
+        "radius_m": 46.6,
+        "id": 55786157,
+        "hasDetails": true,
+        "name": "Highlands Park",
+        "address": "Northeast 102nd Street 11210, Kirkland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.18991706000001,
+          47.69086658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 43896.8,
+        "radius_m": 118.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19706016111111,
+          47.705288177777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 8958.7,
+        "radius_m": 53.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.18570439999999,
+          47.694442245454546
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 79107.6,
+        "radius_m": 158.7,
+        "id": 55950297,
+        "hasDetails": true,
+        "name": "Everest Memorial Park",
+        "website": "https://www.kirklandwa.gov/Government/Departments/Parks-and-Community-Services/Find-a-Park/Everest-Park"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19158962857144,
+          47.67185054285714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 17700.0,
+        "radius_m": 75.1,
+        "id": 55950342,
+        "hasDetails": true,
+        "name": "Snyders Corner Park",
+        "address": "132nd Avenue Northeast 6720, Kirkland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16307212222222,
+          47.666193222222226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 8436.1,
+        "radius_m": 51.8,
+        "id": 59871392,
+        "hasDetails": true,
+        "name": "Spiritbrook Park",
+        "address": "151st Avenue Northeast 6500, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Spiritbrook-Park-51",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13916140416666,
+          47.664732612499996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 7174.8,
+        "radius_m": 47.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14098735,
+          47.62266674
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 18921.2,
+        "radius_m": 77.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17309164166666,
+          47.64111369166667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 22385.7,
+        "radius_m": 84.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17718263333335,
+          47.645166206666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 57944.3,
+        "radius_m": 135.8,
+        "id": 73530090,
+        "hasDetails": true,
+        "name": "Tam O'Shanter Park",
+        "address": "173rd Avenue Northeast 1655, Bellevue",
+        "website": "http://www.ci.bellevue.wa.us/tam_oshanter.htm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10616393636364,
+          47.62552890909091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 118269.8,
+        "radius_m": 194.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11358718888889,
+          47.634978951851856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 39737.9,
+        "radius_m": 112.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11726365,
+          47.62157568125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 523.4,
+        "radius_m": 12.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13031464000001,
+          47.68615742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 267.8,
+        "radius_m": 9.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13130260666667,
+          47.68614570666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 398.7,
+        "radius_m": 11.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.131021975,
+          47.68774335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 15502.4,
+        "radius_m": 70.2,
+        "id": 100907621,
+        "hasDetails": true,
+        "name": "Georgia Zumdieck Park",
+        "website": "http://parkstrails.myparksandrecreation.com/details.aspx?pid=43"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19492873636364,
+          47.62415322727273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 155808.1,
+        "radius_m": 222.7,
+        "id": 103455177,
+        "hasDetails": true,
+        "name": "Juel Community Park",
+        "address": "Northeast 116th Street 18815, Redmond",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08798747142858,
+          47.70167301428571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 111052.8,
+        "radius_m": 188.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17832278181818,
+          47.73856947272727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4986.4,
+        "radius_m": 39.8,
+        "id": 105539961,
+        "hasDetails": true,
+        "name": "Bud Homan Park",
+        "address": "119th Avenue Northeast 15305, Kirkland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.18286671999999,
+          47.73924258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 77203.1,
+        "radius_m": 156.8,
+        "id": 105613756,
+        "hasDetails": true,
+        "name": "Northshore Athletic Fields",
+        "address": "Northeast 145th Street 14600, Woodinville",
+        "website": "https://northshoreathleticfields.com-"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14520329444446,
+          47.73446485555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 18596.1,
+        "radius_m": 76.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14457686666667,
+          47.6475172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 23646.6,
+        "radius_m": 86.8,
+        "id": 114464547,
+        "hasDetails": true,
+        "name": "Westside Park",
+        "address": "156th Avenue Northeast 5810, Redmond",
+        "website": "https://www.redmond.gov/facilities/facility/details/Westside-Park-57",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13092286,
+          47.659420540000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 46495.2,
+        "radius_m": 121.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15155362352941,
+          47.6261213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 16057.2,
+        "radius_m": 71.5,
+        "id": 126043943,
+        "hasDetails": true,
+        "name": "Viewpoint Neighborhood Park",
+        "address": "Northeast 24th Street 18440, Redmond",
+        "website": "https://www.redmond.gov/facilities/facility/details/Viewpoint-Park-53",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09455598333334,
+          47.63201725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 384.7,
+        "radius_m": 11.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09780802857144,
+          47.69818597142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 327.7,
+        "radius_m": 10.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11685064285714,
+          47.70867417142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4694.5,
+        "radius_m": 38.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1183265,
+          47.70829239230769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 919.4,
+        "radius_m": 17.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11597028999999,
+          47.70905861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 421.3,
+        "radius_m": 11.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11637286,
+          47.7104915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 512.1,
+        "radius_m": 12.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11721304,
+          47.71049946
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1907.4,
+        "radius_m": 24.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11721278333334,
+          47.70970868333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1621.3,
+        "radius_m": 22.7,
+        "id": 154429496,
+        "hasDetails": true,
+        "name": "Northstar Neighborhood Park",
+        "address": "167th Place Northeast, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11697522499999,
+          47.704850666666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 50861.8,
+        "radius_m": 127.2,
+        "id": 161916219,
+        "hasDetails": true,
+        "name": "Viewpoint Park",
+        "website": "http://parkstrails.myparksandrecreation.com/details.aspx?pid=479"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16240072000001,
+          47.63107048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 20884.6,
+        "radius_m": 81.5,
+        "id": 162040572,
+        "hasDetails": true,
+        "name": "Meadow Park",
+        "address": "160th Avenue Northeast 10710, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Meadow-Park-41",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12573640000001,
+          47.696652799999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 154742.3,
+        "radius_m": 221.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19442181463415,
+          47.70881230853659
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 39555.3,
+        "radius_m": 112.2,
+        "id": 177067178,
+        "hasDetails": true,
+        "name": "Smith Woods",
+        "address": "Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Smith-Woods-48",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.104348875,
+          47.71007665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 7752.4,
+        "radius_m": 49.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17967828,
+          47.68454002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 28269.3,
+        "radius_m": 94.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17761397777778,
+          47.68631144444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 10990.0,
+        "radius_m": 59.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15249098888889,
+          47.67687965555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 5301.4,
+        "radius_m": 41.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1526573,
+          47.67580473333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 7264.1,
+        "radius_m": 48.1,
+        "id": 182657460,
+        "hasDetails": true,
+        "name": "South Rose Hill Park",
+        "address": "Northeast 72nd Street 12730, Kirkland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.169641125,
+          47.6690870375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 234614.4,
+        "radius_m": 273.3,
+        "id": 185227446,
+        "hasDetails": true,
+        "name": "Sixty Acres North",
+        "address": "Northeast 116th Street 15200, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13589701935483,
+          47.70536633870967
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 12759.3,
+        "radius_m": 63.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08569949047619,
+          47.666291228571424
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 7969.7,
+        "radius_m": 50.4,
+        "id": 238108677,
+        "hasDetails": true,
+        "name": "Downtown Park",
+        "address": "Redmond Way 16101, Redmond",
+        "website": "https://redmond.gov/955/Downtown-Park",
+        "opening_hours": "dawn-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12447944999998,
+          47.67411929705882
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1474.3,
+        "radius_m": 21.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0834623625,
+          47.665726625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 916.9,
+        "radius_m": 17.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08254663333334,
+          47.66491138333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 721.9,
+        "radius_m": 15.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.081993775,
+          47.66434113125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1345.8,
+        "radius_m": 20.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0837179,
+          47.6638161625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2492.4,
+        "radius_m": 28.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08585322380952,
+          47.66370871428572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 800.3,
+        "radius_m": 16.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08551222068965,
+          47.66350909310345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 481.3,
+        "radius_m": 12.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0871054,
+          47.661142095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 3953.8,
+        "radius_m": 35.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0862659652174,
+          47.664562260869566
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 18304.9,
+        "radius_m": 76.3,
+        "id": 285546738,
+        "hasDetails": true,
+        "name": "Rose Hill Meadows Park",
+        "address": "124th Avenue Northeast 8212, Kirkland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1751323,
+          47.67805779375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 20912.8,
+        "radius_m": 81.6,
+        "id": 296620644,
+        "hasDetails": true,
+        "name": "Redmond Central Connector Park",
+        "address": "Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Redmond-Central-Connector-Park-12",
+        "opening_hours": "dawn-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12553319705881,
+          47.67315495588235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4555.3,
+        "radius_m": 38.1,
+        "id": 296802865,
+        "hasDetails": true,
+        "name": "Dudley Carter Park",
+        "address": "159th Place Northeast 7447, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Dudley-Carter-Park-37",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12794884666667,
+          47.671207620000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 5297.6,
+        "radius_m": 41.1,
+        "id": 316480809,
+        "hasDetails": true,
+        "name": "The Stroll",
+        "address": "Sammamish River Trail, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13184792777777,
+          47.67729448611111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 38515.1,
+        "radius_m": 110.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08117960400001,
+          47.677143515999994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 54229.9,
+        "radius_m": 131.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.177757,
+          47.73416622777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 133881.4,
+        "radius_m": 206.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.18230055555556,
+          47.663435561111115
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 21963.3,
+        "radius_m": 83.6,
+        "id": 369791522,
+        "hasDetails": true,
+        "name": "Redmond West Wetlands",
+        "address": "Northeast 60th Street, Redmond",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1377164142857,
+          47.66003814285714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 31313.5,
+        "radius_m": 99.8,
+        "id": 392695167,
+        "hasDetails": true,
+        "name": "Goldsmith Neighborhood Park",
+        "address": "Northeast 35th Street 14475, Bellevue",
+        "website": "http://www.ci.bellevue.wa.us/goldsmith.htm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14714815,
+          47.639667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 8195.3,
+        "radius_m": 51.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16172414444443,
+          47.63212172222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4962.2,
+        "radius_m": 39.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17942990666667,
+          47.71893330666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 252429.5,
+        "radius_m": 283.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.14810969,
+          47.739897565
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 107426.1,
+        "radius_m": 184.9,
+        "id": 422104767,
+        "hasDetails": true,
+        "name": "Edith Moulton Park",
+        "website": "https://www.kirklandwa.gov/depart/parks/Parks_and_Open_Spaces/Online_Parks_Guide/Parks_Pop-up_Main/Parks_and_Community_Services__Edith_Moulton.htm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19323926923077,
+          47.72463073461539
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 5385.6,
+        "radius_m": 41.4,
+        "id": 424596658,
+        "hasDetails": true,
+        "name": "Sunset Gardens Park",
+        "address": "Northeast 95th Street 18304, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Sunset-Gardens-Park-52",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09595777,
+          47.686135730000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 276.8,
+        "radius_m": 9.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12133627,
+          47.7101695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 957.3,
+        "radius_m": 17.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.18052421333333,
+          47.71875088666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1945.2,
+        "radius_m": 24.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19573402,
+          47.65170614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 124629.4,
+        "radius_m": 199.2,
+        "id": 479194885,
+        "hasDetails": true,
+        "name": "Sammamish Valley Park",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Sammamish-Valley-Park-46",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15054735999999,
+          47.70638334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 130412.8,
+        "radius_m": 203.7,
+        "id": 479199365,
+        "hasDetails": true,
+        "name": "Sixty Acres South",
+        "address": "Northeast 116th Street 15101, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1409756090909,
+          47.7029127
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 9519.7,
+        "radius_m": 55.0,
+        "id": 479646311,
+        "hasDetails": true,
+        "name": "Cherry Crest Mini Park",
+        "address": "127th Avenue Northeast 2532, Bellevue"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16998389999999,
+          47.63296264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 23493.2,
+        "radius_m": 86.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11019215,
+          47.7282877
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 40363.7,
+        "radius_m": 113.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11205465,
+          47.73041493333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 12241.0,
+        "radius_m": 62.4,
+        "id": 480267645,
+        "hasDetails": true,
+        "name": "Luke McRedmond Landing",
+        "address": "Redmond Way 15811, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Luke-McRedmond-Landing-65",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13147956249999,
+          47.67320052916667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 10261.5,
+        "radius_m": 57.2,
+        "id": 480784774,
+        "hasDetails": true,
+        "name": "Woodlands Park",
+        "address": "Northeast 119th Court, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10969195294119,
+          47.70631492352941
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1137.3,
+        "radius_m": 19.0,
+        "id": 480784780,
+        "hasDetails": true,
+        "name": "Woodlands Community Park",
+        "address": "Northeast 120th Street, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11196810000001,
+          47.7072133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 5886.5,
+        "radius_m": 43.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11397141333333,
+          47.70659724666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1706.0,
+        "radius_m": 23.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10353176666666,
+          47.712838675
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 9985.7,
+        "radius_m": 56.4,
+        "id": 480795320,
+        "hasDetails": true,
+        "name": "Redmond Bike Park",
+        "address": "Northeast 100th Street 17195, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Redmond-Bike-Park-78",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1115308,
+          47.68891644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 280.5,
+        "radius_m": 9.4,
+        "id": 490140126,
+        "hasDetails": true,
+        "name": "O'Leary Park",
+        "address": "Leary Way Northeast 78, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/OLeary-Park-90",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12305060999999,
+          47.67415519
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 153.7,
+        "radius_m": 7.0,
+        "id": 490141438,
+        "hasDetails": true,
+        "name": "Flagpole Plaza Park",
+        "address": "Redmond Way 16380, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Flagpole-Plaza-Park-89",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12175747777776,
+          47.67412358888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 3686.5,
+        "radius_m": 34.3,
+        "id": 490142428,
+        "hasDetails": true,
+        "name": "Rotary Park",
+        "address": "154th Avenue Northeast, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Rotary-Park-92",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13280221999999,
+          47.67306998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 13286.7,
+        "radius_m": 65.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.18318797142857,
+          47.72230937142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2456.4,
+        "radius_m": 28.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10972612857142,
+          47.72014661428572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 3895.4,
+        "radius_m": 35.2,
+        "id": 538617235,
+        "hasDetails": true,
+        "name": "Windsor Vista Park",
+        "website": "https://www.kirklandwa.gov/depart/parks/Parks_and_Open_Spaces/Online_Parks_Guide/Parks_Pop-up_Main/Windsor_Vista.htm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19376092142856,
+          47.73049304285714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 13114.7,
+        "radius_m": 64.6,
+        "id": 545411373,
+        "hasDetails": true,
+        "name": "Kingsgate 3 and 4",
+        "opening_hours": "Mo-Su 06:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1799585969697,
+          47.72770623636364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 5448.9,
+        "radius_m": 41.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19044533333333,
+          47.673933883333326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 890.1,
+        "radius_m": 16.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10644921666666,
+          47.70805873333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1213.7,
+        "radius_m": 19.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1106958142857,
+          47.701012514285715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 968.8,
+        "radius_m": 17.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11832383999999,
+          47.70946912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 658.7,
+        "radius_m": 14.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17059447142857,
+          47.73818668571429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1792.3,
+        "radius_m": 23.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17170326,
+          47.73841474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4086.8,
+        "radius_m": 36.1,
+        "id": 668169603,
+        "hasDetails": true,
+        "name": "Woodlands West Park & Playground",
+        "address": "Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11325085294118,
+          47.70538909411765
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 7289.6,
+        "radius_m": 48.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11233268260868,
+          47.70445863478261
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2771.8,
+        "radius_m": 29.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12237836666667,
+          47.67262991333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 9608.2,
+        "radius_m": 55.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13536263255814,
+          47.63498741395348
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1865.1,
+        "radius_m": 24.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12579188571429,
+          47.70743947142857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2583.5,
+        "radius_m": 28.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1245372357143,
+          47.705684735714286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2017.4,
+        "radius_m": 25.3,
+        "id": 706235951,
+        "hasDetails": true,
+        "name": "Greystone Community Park",
+        "address": "159th Avenue Northeast, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12614833636363,
+          47.705603518181825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1278.3,
+        "radius_m": 20.2,
+        "id": 706237975,
+        "hasDetails": true,
+        "name": "Kensington Community Park",
+        "address": "Northeast 117th Street 15847, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12771219999999,
+          47.70429706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2355.3,
+        "radius_m": 27.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17001882,
+          47.6739087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2921.9,
+        "radius_m": 30.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10896599166666,
+          47.701437274999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 937.4,
+        "radius_m": 17.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11467616666665,
+          47.67721718333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 5874.6,
+        "radius_m": 43.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12627780000001,
+          47.683160125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1237.3,
+        "radius_m": 19.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12860237857141,
+          47.68436238571429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4182.9,
+        "radius_m": 36.5,
+        "id": 785736355,
+        "hasDetails": true,
+        "name": "Josten Park",
+        "address": "NE 129th St & 112th Pl NE",
+        "opening_hours": "sunrise-sunset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19148097,
+          47.71614972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 809.5,
+        "radius_m": 16.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12215334999999,
+          47.70464857857143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1344.5,
+        "radius_m": 20.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13089052000001,
+          47.7036794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 584.7,
+        "radius_m": 13.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12877076363635,
+          47.70259516363637
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 438.0,
+        "radius_m": 11.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10168612,
+          47.704896180000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1398.1,
+        "radius_m": 21.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.102742175,
+          47.70563456666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 455.7,
+        "radius_m": 12.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10298565714287,
+          47.70139318571429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1179.4,
+        "radius_m": 19.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1004442,
+          47.7026414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 728.3,
+        "radius_m": 15.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11459056666666,
+          47.704169400000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 270.8,
+        "radius_m": 9.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.12092994545455,
+          47.70834520909091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2460.5,
+        "radius_m": 28.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1056865,
+          47.70887532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1218.5,
+        "radius_m": 19.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10614135714286,
+          47.706861242857144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1043.1,
+        "radius_m": 18.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10140711666666,
+          47.709698550000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 272.5,
+        "radius_m": 9.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1082303375,
+          47.7102442875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 773.9,
+        "radius_m": 15.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11253768000002,
+          47.71038198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1146.5,
+        "radius_m": 19.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.119174325,
+          47.7095623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 173.6,
+        "radius_m": 7.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1198539,
+          47.71023281428571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 60627.0,
+        "radius_m": 138.9,
+        "id": 842032368,
+        "hasDetails": true,
+        "name": "Nike Neighborhood Park",
+        "address": "Northeast 92nd Street 17207, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Nike-Park-42",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10823112631579,
+          47.683092863157896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 65628.1,
+        "radius_m": 144.5,
+        "id": 850661172,
+        "hasDetails": true,
+        "name": "Idylwood Park",
+        "address": "West Lake Sammamish Parkway Northeast 3650, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Idylwood-Beach-Park-64",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10269820196078,
+          47.64299330588235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 11943.7,
+        "radius_m": 61.7,
+        "id": 850756937,
+        "hasDetails": true,
+        "name": "Idylwood Park",
+        "address": "West Lake Sammamish Parkway Northeast 3650, Redmond",
+        "website": "https://www.redmond.gov/Facilities/Facility/Details/Idylwood-Beach-Park-64",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10322715555556,
+          47.64126608888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2671.2,
+        "radius_m": 29.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.159495675,
+          47.71614415833333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 3599.8,
+        "radius_m": 33.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17758052592592,
+          47.7364602037037
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1094.2,
+        "radius_m": 18.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1838517590909,
+          47.667598977272725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4090.3,
+        "radius_m": 36.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17808789375,
+          47.6216872375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1474.5,
+        "radius_m": 21.7,
+        "id": 1025393597,
+        "hasDetails": true,
+        "name": "Tuscany Community Park",
+        "opening_hours": "sunrise-sunset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07342198181819,
+          47.710593009090914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1659.1,
+        "radius_m": 23.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16903676,
+          47.74124652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 683447.0,
+        "radius_m": 466.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08127745806452,
+          47.663613932258066
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4544.2,
+        "radius_m": 38.0,
+        "id": 1047298632,
+        "hasDetails": true,
+        "name": "Bridle Trails Valley Creek Park",
+        "address": "140th Avenue Northeast 4432, Bellevue",
+        "opening_hours": "dawn-dusk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15262933333332,
+          47.65073736666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 291889.0,
+        "radius_m": 304.8,
+        "id": 1054898029,
+        "hasDetails": true,
+        "name": "Watershed Park",
+        "address": "110th Avenue Northeast 4500, Kirkland",
+        "opening_hours": "sunrise-sunset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19245172857144,
+          47.649324297142854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 352.1,
+        "radius_m": 10.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.10382025454545,
+          47.714291281818184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 458.2,
+        "radius_m": 12.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.13227338333334,
+          47.707284344444446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2539.6,
+        "radius_m": 28.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07986988,
+          47.6469802
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 16072.0,
+        "radius_m": 71.5,
+        "id": 1180154433,
+        "hasDetails": true,
+        "name": "Feriton Spur Park",
+        "website": "https://www.kirklandwa.gov/Government/Departments/Parks-and-Community-Services/Find-a-Park/Feriton-Spur-Park"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19761203636364,
+          47.67113763636364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2330.9,
+        "radius_m": 27.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16970222857142,
+          47.73051145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1451.2,
+        "radius_m": 21.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.08386054827587,
+          47.66666077241379
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 218.8,
+        "radius_m": 8.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09118845999998,
+          47.7018203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 275.5,
+        "radius_m": 9.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.09134366666666,
+          47.70041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 12788.0,
+        "radius_m": 63.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1067587,
+          47.68844906875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1641.2,
+        "radius_m": 22.9,
+        "id": 1255422952,
+        "hasDetails": true,
+        "name": "Fisk Family Park",
+        "address": "6th Street South 212, Kirkland",
+        "website": "https://www.kirklandwa.gov/Government/Departments/Parks-and-Community-Services/Find-a-Park/Fisk-Family-Park",
+        "opening_hours": "sunrise-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.19598072857143,
+          47.67370428571429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 3346.8,
+        "radius_m": 32.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15842253636364,
+          47.72175188181818
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 816.6,
+        "radius_m": 16.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17514090909093,
+          47.719788618181816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 2118.6,
+        "radius_m": 26.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1568122857143,
+          47.71863471428571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 848.1,
+        "radius_m": 16.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15766464000001,
+          47.71700718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 938.2,
+        "radius_m": 17.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.18359854,
+          47.68606014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1175.4,
+        "radius_m": 19.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.15982140833334,
+          47.621635625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 163.3,
+        "radius_m": 7.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0808726875,
+          47.6675241625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1161.4,
+        "radius_m": 19.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.16375466153846,
+          47.71399464615384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1200.5,
+        "radius_m": 19.5,
+        "id": 1427461434,
+        "hasDetails": true,
+        "name": "Flicker's Pond",
+        "address": "Northeast 40th Street, Redmond"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.11465150000001,
+          47.6458638
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 11087.5,
+        "radius_m": 59.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.17052665555555,
+          47.73009096111111
+        ]
+      }
+    }
+  ]
+}
