@@ -648,6 +648,10 @@ export class ImageOverlayWidget {
     }
 
     private tryAutoPin(img: HTMLImageElement): void {
+        if (!this.isLocationAvailable() || img.naturalWidth === 0 || img.naturalHeight === 0) {
+            return;
+        }
+
         const hit = detectBlueDot(img);
         getLogger().info("image_overlay.blue_dot_scan", { confidence: hit?.confidence ?? 0 });
 
@@ -661,7 +665,9 @@ export class ImageOverlayWidget {
 
     private handleLucky(): void {
         const img = this._img;
-        if (!img) return;
+        if (!img || !this.isLocationAvailable() || img.naturalWidth === 0 || img.naturalHeight === 0) {
+            return;
+        }
 
         getLogger().info("image_overlay.lucky.start");
         const hit = detectBlueDot(img);
