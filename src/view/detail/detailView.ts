@@ -1,20 +1,24 @@
 import type { GeoArea } from "../../catalog/area";
 import type { Mode } from "../../runtime/context";
-import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
+import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
 import { getLogger } from "../../services";
+import { LocalStorageUserPointsStore, GatewayUserPointsStore } from "../../runtime/userPointsStore";
 import { HeatLayerView } from "./heatLayerView";
 import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
 import { PointLayerView } from "./pointLayerView";
 import { PoiLayerView } from "./poiLayerView";
+import { UserLayerView } from "./userLayerView";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
 import { GeoLocationWidget } from "./geoLocationWidget";
 import { ManifestEditorWidget } from "./manifestEditorWidget";
 import { CodeMirrorJsonEditorFactory } from "./codeMirrorJsonEditorFactory";
 import { ImageOverlayWidget } from "./imageOverlayWidget";
+import { Context } from "../../runtime/context";
+import { GeoLayer } from "../../catalog/layer";
 
 export interface DetailViewServices {
     mapFactory?: MapFactory;
@@ -50,7 +54,14 @@ export class DetailView implements View {
     private _layersWidget?: LayerSelectionWidget;
     private _geoLocationWidget?: GeoLocationWidget;
     private _imageOverlayWidget?: ImageOverlayWidget;
+    private _userPointsStore?: UserPointsStore;
+    private _userLayerView?: UserLayerView;
+    private _userGeoLayer?: GeoLayer;
+    private _hasImageOverlay = false;
+
     private _clickCleanup?: () => void;
+    private _contextMenuCleanup?: () => void;
+    private _longPressCleanup?: () => void;
     private _moveEndCleanup?: () => void;
     private _zoomCleanup?: () => void;
     private _minZoom = 0;
@@ -72,6 +83,10 @@ export class DetailView implements View {
         this._gateway = services.gateway ?? null;
         this._geoLocation = services.geoLocation ?? null;
         this._mode = services.mode ?? "browse";
+
+        this._userPointsStore = this._gateway
+            ? new GatewayUserPointsStore(this._gateway)
+            : new LocalStorageUserPointsStore(Context.Instance.storage);
 
         void this._actions;
     }
@@ -109,7 +124,7 @@ export class DetailView implements View {
                 this._actions,
                 this._widgetFactory,
                 this._area.id,
-                this._area.layers
+                this._area.layers.filter(l => l.type !== "__user__")
             );
 
             summaryWidget.render();
@@ -118,6 +133,8 @@ export class DetailView implements View {
             this._summaryWidget = summaryWidget;
             this._layersWidget = layersWidget;
             this._clickCleanup = map.onClick(latLng => this.onMapClick(latLng));
+            this._contextMenuCleanup = map.onContextMenu(latLng => this.onUserPoint(latLng, 0.5));
+            this._longPressCleanup = map.onLongPress((latLng, pressure) => this.onUserPoint(latLng, pressure));
 
             if (this._geoLocation) {
                 const geoWidget = new GeoLocationWidget(
@@ -133,8 +150,8 @@ export class DetailView implements View {
 
             const imageOverlay = new ImageOverlayWidget(map, {
                 areaBbox: this._area.bbox,
-                onImageLoaded: () => this.relaxBoundsForOverlay(),
-                onImageRemoved: () => this.restoreBoundsAfterOverlay(),
+                onImageLoaded: () => { this._hasImageOverlay = true; this.relaxBoundsForOverlay(); },
+                onImageRemoved: () => { this._hasImageOverlay = false; this.restoreBoundsAfterOverlay(); },
                 getCurrentLatLng: () => this._geoLocationWidget?.getLastPosition(),
             });
             imageOverlay.render();
@@ -164,6 +181,12 @@ export class DetailView implements View {
 
             this._clickCleanup?.();
             this._clickCleanup = undefined;
+
+            this._contextMenuCleanup?.();
+            this._contextMenuCleanup = undefined;
+
+            this._longPressCleanup?.();
+            this._longPressCleanup = undefined;
 
             this._moveEndCleanup?.();
             this._moveEndCleanup = undefined;
@@ -209,9 +232,7 @@ export class DetailView implements View {
         }
 
         this._map = this._mapFactory.createMap(this._mapRoot, center, zoom);
-        if (this._mode !== "design") {
-            this.applyMaxBounds();
-        }
+        this.applyMaxBounds();
         this._zoomCleanup = this._map.onZoom(zoom => this.onZoomChange(zoom));
         this.addBboxHighlight();
         this._moveEndCleanup = this._map.onMoveEnd(() => this.saveViewport());
@@ -289,12 +310,32 @@ export class DetailView implements View {
                         this._area.layers,
                         new DefaultLeafletLayerFactory()
                     );
+                } else if (layer.type === "__user__") {
+                    const userView = new UserLayerView(
+                        this._map,
+                        layer,
+                        new DefaultLeafletLayerFactory(),
+                        this._userPointsStore!,
+                        this._area.id,
+                    );
+                    this._userLayerView = userView;
+                    this._userGeoLayer = layer;
+                    layerView = userView;
                 } else {
                     continue;
                 }
                 this._layerViews.set(layer.id, layerView);
 
-                void layerView.render();
+                const renderPromise = layerView.render();
+                if (layer.type === "__user__") {
+                    void renderPromise.then(() => {
+                        if (this._userLayerView && this._userLayerView.featureCount > 0) {
+                            this.rebuildLayersWidget();
+                        }
+                    });
+                } else {
+                    void renderPromise;
+                }
 
                 continue;
             }
@@ -311,6 +352,8 @@ export class DetailView implements View {
     }
 
     private async doReloadLayers(): Promise<void> {
+        const log = getLogger();
+        log.info("detail.reload_layers.start", { areaId: this._area.id });
         await this._area.reload();
 
         for (const layer of this._area.layers) {
@@ -318,22 +361,15 @@ export class DetailView implements View {
             this._state.setLayerVisible(layer.id, visible);
         }
 
-        if (this._map) {
-            this._layersWidget?.remove();
-            this._layersWidget = undefined;
-
-            const layersWidget = new LayerSelectionWidget(
-                this._map,
-                this._actions,
-                this._widgetFactory,
-                this._area.id,
-                this._area.layers
-            );
-            layersWidget.render();
-            this._layersWidget = layersWidget;
+        // Preserve the user layer — it's managed incrementally and must not be re-fetched on every AreaChanged
+        for (const [id, layerView] of this._layerViews) {
+            if (id !== "__user__") layerView.destroy();
+        }
+        for (const id of [...this._layerViews.keys()]) {
+            if (id !== "__user__") this._layerViews.delete(id);
         }
 
-        this.destroyLayerViews();
+        this.rebuildLayersWidget();
         this.renderLayerViews();
     }
 
@@ -346,7 +382,8 @@ export class DetailView implements View {
     }
 
     private onZoomChange(zoom: number): void {
-        if (this._mode !== "design" && zoom <= this._minZoom) {
+        getLogger().info("map.zoom", { zoom, areaId: this._area.id });
+        if (zoom <= this._minZoom) {
             const map = this._map;
             if (map) {
                 // Clamp to 10 so the summary never opens at zoom ≥ 11, which would
@@ -369,9 +406,7 @@ export class DetailView implements View {
     }
 
     private restoreBoundsAfterOverlay(): void {
-        if (this._mode !== "design") {
-            this.applyMaxBounds();
-        }
+        this.applyMaxBounds();
     }
 
     private applyMaxBounds(): void {
@@ -385,9 +420,11 @@ export class DetailView implements View {
         const sw: [number, number] = [south - padLat, west - padLng];
         const ne: [number, number] = [north + padLat, east + padLng];
         this._paddedBounds = { sw, ne };
-        map.setMaxBounds(sw, ne);
+        if (this._mode !== "design") {
+            map.setMaxBounds(sw, ne);
+        }
         const fitZoom = map.getBoundsZoom(sw, ne);
-        this._minZoom = Math.max(1, Math.floor(fitZoom) - 1);
+        this._minZoom = Math.max(11, Math.floor(fitZoom) - 1);
         map.setMinZoom(this._minZoom);
     }
 
@@ -410,6 +447,103 @@ export class DetailView implements View {
             return;
         }
         this._actions.saveDetailViewport(this._area.id, this._map.getCenter(), this._map.getZoom());
+    }
+
+    private onUserPoint(latLng: [number, number], pressure: number): void {
+        void this.doOnUserPoint(latLng, pressure);
+    }
+
+    private async doOnUserPoint(latLng: [number, number], pressure: number): Promise<void> {
+        const log = getLogger();
+        log.info("user_layer.add_point.start", { lat: latLng[0], lng: latLng[1], pressure });
+
+        if (this._hasImageOverlay) {
+            log.info("user_layer.add_point.suppressed", { reason: "image_overlay_active" });
+            return;
+        }
+
+        if (!this._userLayerView) {
+            log.warning("user_layer.add_point.synthesize", {
+                reason: "__user__ layer missing from manifest — synthesizing defaults",
+                areaId: this._area.id,
+            });
+            await this.synthesizeUserLayerView();
+        }
+
+        if (!this._userLayerView || !this._map) return;
+
+        const store = this._userPointsStore;
+        if (!store) return;
+
+        const wasEmpty = this._userLayerView.featureCount === 0;
+
+        void store.addPoint(this._area.id, latLng[0], latLng[1], pressure);
+
+        this._userLayerView.addMarker(latLng, pressure);
+        log.info("user_layer.add_point.marker_placed", { featureCount: this._userLayerView.featureCount });
+
+        if (wasEmpty) {
+            this.rebuildLayersWidget();
+        }
+
+        log.info("user_layer.add_point.end", { lat: latLng[0], lng: latLng[1] });
+    }
+
+    private async synthesizeUserLayerView(): Promise<void> {
+        if (!this._map || !this._userPointsStore) return;
+
+        const syntheticLayer = new GeoLayer({
+            id: "__user__",
+            name: "My Trip",
+            type: "__user__",
+            url: null,
+            visible: true,
+            style: { color: "#5f5f5f", opacity: 0.7, radius: 40, minZoom: 12 },
+        });
+
+        const userView = new UserLayerView(
+            this._map,
+            syntheticLayer,
+            new DefaultLeafletLayerFactory(),
+            this._userPointsStore,
+            this._area.id,
+        );
+
+        this._userLayerView = userView;
+        this._userGeoLayer = syntheticLayer;
+        this._layerViews.set("__user__", userView);
+        await userView.render();
+    }
+
+    private rebuildLayersWidget(): void {
+        if (!this._map) return;
+
+        this._layersWidget?.remove();
+        this._layersWidget = undefined;
+
+        const hasUserPoints = this._userLayerView !== undefined && this._userLayerView.featureCount > 0;
+
+        const sourceLayers = [...this._area.layers];
+        const manifestHasUser = sourceLayers.some(l => l.type === "__user__");
+        if (!manifestHasUser && hasUserPoints && this._userGeoLayer) {
+            sourceLayers.push(this._userGeoLayer);
+        }
+
+        const visibleLayers = sourceLayers.filter(layer => {
+            if (layer.type === "__user__") return hasUserPoints;
+            if (layer.type === "__poi__") return layer.isVisible();
+            return true;
+        });
+
+        const layersWidget = new LayerSelectionWidget(
+            this._map,
+            this._actions,
+            this._widgetFactory,
+            this._area.id,
+            visibleLayers
+        );
+        layersWidget.render();
+        this._layersWidget = layersWidget;
     }
 
     private onMapClick(latLng: [number, number]): void {

@@ -50,6 +50,7 @@ import type {
 } from "../../contracts";
 
 import type { HeatPoint } from "../../protocols";
+import { getLogger } from "../../services";
 
 class LeafletMapHandle implements MapHandle {
     private readonly _map: L.Map;
@@ -135,6 +136,47 @@ class LeafletMapHandle implements MapHandle {
         const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
         this._map.on("click", listener);
         return () => this._map.off("click", listener);
+    }
+
+    onContextMenu(handler: (latLng: [number, number]) => void): () => void {
+        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
+        this._map.on("contextmenu", listener);
+        return () => this._map.off("contextmenu", listener);
+    }
+
+    onLongPress(handler: (latLng: [number, number], pressure: number) => void): () => void {
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        let downLatLng: [number, number] | undefined;
+        let downPressure = 0.5;
+
+        const onDown = (e: L.LeafletMouseEvent) => {
+            downLatLng = [e.latlng.lat, e.latlng.lng];
+            const pe = e.originalEvent as PointerEvent;
+            downPressure = typeof pe.pressure === "number" && pe.pressure > 0 ? pe.pressure : 0.5;
+            timer = setTimeout(() => {
+                if (downLatLng) {
+                    handler(downLatLng, downPressure);
+                }
+                downLatLng = undefined;
+            }, 600);
+        };
+
+        const cancel = () => {
+            clearTimeout(timer);
+            timer = undefined;
+            downLatLng = undefined;
+        };
+
+        this._map.on("mousedown", onDown);
+        this._map.on("mousemove", cancel);
+        this._map.on("mouseup", cancel);
+
+        return () => {
+            this._map.off("mousedown", onDown);
+            this._map.off("mousemove", cancel);
+            this._map.off("mouseup", cancel);
+            clearTimeout(timer);
+        };
     }
 
     setCursor(cursor: string): void {
@@ -329,6 +371,15 @@ class LeafletPositionMarkerHandle extends LeafletMapLayerHandle implements Posit
     }
 
     setLatLng(latLng: [number, number]): void {
+        // Leaflet's CircleMarker._empty() accesses _renderer._bounds which can be
+        // undefined when the SVG renderer is being recycled during a layer reload.
+        // Guard: skip the update; the next position fix will catch up.
+        type Internal = { _renderer?: { _bounds?: unknown } };
+        const internal = this._marker as unknown as Internal;
+        if (!internal._renderer?._bounds) {
+            getLogger().warning("geo_location.position_marker.renderer_not_ready", {});
+            return;
+        }
         this._marker.setLatLng(latLng);
     }
 }
