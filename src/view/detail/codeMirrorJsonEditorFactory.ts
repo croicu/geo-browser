@@ -7,10 +7,11 @@ export class CodeMirrorJsonEditorFactory implements JsonEditorFactory {
         const { json } = await import("@codemirror/lang-json");
         const { jsonSchema } = await import("codemirror-json-schema");
         const { oneDark } = await import("@codemirror/theme-one-dark");
+        const { jsonColorPicker } = await import("./jsonColorPicker");
 
         const view = new EditorView({
             doc: JSON.stringify(initialJson, null, 2),
-            extensions: [basicSetup, json(), jsonSchema(schema), oneDark],
+            extensions: [basicSetup, json(), jsonSchema(schema), oneDark, ...jsonColorPicker],
             parent: container,
         });
 
