@@ -384,12 +384,13 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 5. **Done** — Advance to `Status: Done` after merge/close; move the entry to `## Completed Tasks`.
 
 ## New Task
-- **File**: [User Points Service Worker](tasks/user_points_sw.md)
+- **File**: [Stabilization](tasks/stabilization.md)
 - **Status**: Brainstorm.
 - **GitHub Issue**: N/A
-- **Key Context**: Replace localStorage / gateway storage for user points with a Cloudflare Worker so points are durable and synced across devices.
+- **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Postponed Tasks
+- **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
 
 ## Completed Tasks
