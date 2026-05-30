@@ -88,6 +88,8 @@ export interface MapHandle {
     latLngToContainerPoint(latLng: [number, number]): [number, number];
     containerPointToLatLng(point: [number, number]): [number, number];
     onClick(handler: (latLng: [number, number]) => void): () => void;
+    onContextMenu(handler: (latLng: [number, number]) => void): () => void;
+    onLongPress(handler: (latLng: [number, number], pressure: number) => void): () => void;
     setCursor(cursor: string): void;
     onMouseDown(handler: (latLng: [number, number]) => void): () => void;
     onMouseMove(handler: (latLng: [number, number]) => void): () => void;
@@ -265,6 +267,11 @@ export interface LayerSelectionWidgetItem {
     name: string;
     color: string;
     visible: boolean;
+}
+
+export interface UserPointsStore {
+    getPoints(areaId: string): Promise<unknown>;
+    addPoint(areaId: string, lat: number, lon: number, pressure: number): Promise<void>;
 }
 
 export interface WidgetFactory {

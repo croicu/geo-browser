@@ -126,10 +126,16 @@ export class StubMap implements MapHandle {
         return [0, 0];
     }
 
-    private _longPressHandler?: (latLng: [number, number]) => void;
+    private _contextMenuHandler?: (latLng: [number, number]) => void;
+    private _longPressHandler?: (latLng: [number, number], pressure: number) => void;
     public lastPopup?: StubMapPopupHandle;
 
-    onLongPress(handler: (latLng: [number, number]) => void): () => void {
+    onContextMenu(handler: (latLng: [number, number]) => void): () => void {
+        this._contextMenuHandler = handler;
+        return () => { this._contextMenuHandler = undefined; };
+    }
+
+    onLongPress(handler: (latLng: [number, number], pressure: number) => void): () => void {
         this._longPressHandler = handler;
         return () => { this._longPressHandler = undefined; };
     }
@@ -140,8 +146,12 @@ export class StubMap implements MapHandle {
         return popup;
     }
 
-    simulateLongPress(latLng: [number, number]): void {
-        this._longPressHandler?.(latLng);
+    simulateContextMenu(latLng: [number, number]): void {
+        this._contextMenuHandler?.(latLng);
+    }
+
+    simulateLongPress(latLng: [number, number], pressure = 0.5): void {
+        this._longPressHandler?.(latLng, pressure);
     }
 
     simulateZoom(zoom: number): void {

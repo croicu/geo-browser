@@ -1521,8 +1521,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4302716,
-          50.0577882
+          14.430299,
+          50.0578116
         ]
       }
     },
@@ -1562,6 +1562,27 @@
         "coordinates": [
           14.4537678,
           50.0764629
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 296678540,
+        "hasDetails": true,
+        "name": "Pizza Scuola",
+        "amenity": "restaurant",
+        "cuisine": "pizza;italian",
+        "address": "Heydukova 896/11",
+        "website": "https://www.pizzascuola.cz/",
+        "opening_hours": "Mo-Fr 11:00-22:00, Sa-Su 12:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4750247,
+          50.1036202
         ]
       }
     },
@@ -1688,6 +1709,26 @@
         "coordinates": [
           14.458364,
           50.0707202
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 296690531,
+        "hasDetails": true,
+        "name": "Turnovsk\u00e1 pivnice",
+        "amenity": "restaurant",
+        "address": "Vr\u0161ovick\u00e1 1220/80",
+        "website": "https://turnovskapivnice.cz/",
+        "opening_hours": "Mo-Sa 11:00-23:00; Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4737198,
+          50.0699096
         ]
       }
     },
@@ -2166,8 +2207,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4306399,
-          50.0592987
+          14.4305737,
+          50.05932
         ]
       }
     },
@@ -2550,6 +2591,28 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 296843980,
+        "hasDetails": true,
+        "name": "Krm\u011blec Vr\u0161ky",
+        "amenity": "restaurant",
+        "address": "Rusk\u00e1 777/152",
+        "names": [
+          "Krm\u011blec Vr\u0161ky",
+          "Pizzeria Sole"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4765066,
+          50.0737125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 296844104,
         "hasDetails": true,
         "name": "Hole\u0161ovick\u00e1 Kozlovna",
@@ -2761,6 +2824,46 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 304322173,
+        "hasDetails": true,
+        "name": "Happy Noodles & Sushi",
+        "amenity": "restaurant",
+        "cuisine": "asian",
+        "address": "Biskupcova 10, Praha",
+        "opening_hours": "Mo-Sa 10:30-21:30; Su off"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4687445,
+          50.0892972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 304323580,
+        "hasDetails": true,
+        "name": "U \u0160tud\u00e1ka",
+        "amenity": "restaurant",
+        "address": "Str\u00e1\u017en\u00ed 10",
+        "website": "http://www.restauraceustudaka.cz",
+        "opening_hours": "Mo-Fr 10:00-22:00; Sa,Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4815374,
+          50.0920502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 305079222,
         "hasDetails": true,
         "name": "Pivnice U \u0160vejk\u016f",
@@ -2894,6 +2997,32 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 305867123,
+        "hasDetails": true,
+        "name": "Trochu Kafe",
+        "amenity": "cafe",
+        "opening_hours": "Mo-Sa 16:00-22:00",
+        "names": [
+          "Trochu Kafe",
+          "Lekn\u00edn"
+        ],
+        "amenities": [
+          "cafe",
+          "fast_food"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.470217,
+          50.0850442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 305996877,
         "hasDetails": true,
         "name": "U Veverky",
@@ -2940,6 +3069,25 @@
         "coordinates": [
           14.3990429,
           50.0985434
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 306266325,
+        "hasDetails": true,
+        "name": "Piccola Italia",
+        "amenity": "restaurant",
+        "cuisine": "italian",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4683194,
+          50.0890918
         ]
       }
     },
@@ -3038,6 +3186,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 307453840,
+        "hasDetails": true,
+        "name": "U Kozla",
+        "amenity": "restaurant",
+        "address": "Jana \u017delivsk\u00e9ho 1777/4",
+        "website": "https://ukozla.cz/",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.469767,
+          50.087315
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 308377158,
         "hasDetails": true,
         "name": "Vietnamese Restaurant Dua",
@@ -3050,6 +3218,45 @@
         "coordinates": [
           14.3888911,
           50.1005476
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 308815549,
+        "hasDetails": true,
+        "name": "Don's Kebab Pizza",
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "opening_hours": "Mo-Su 10:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4700785,
+          50.0853753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 308815550,
+        "hasDetails": true,
+        "name": "Hong",
+        "amenity": "fast_food",
+        "cuisine": "chinese;vietnamese",
+        "address": "Jana \u017delivsk\u00e9ho 1923/5, Praha",
+        "opening_hours": "Mo-Su 10:00-22:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4701425,
+          50.0852376
         ]
       }
     },
@@ -3250,6 +3457,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 311105338,
+        "hasDetails": true,
+        "name": "Na Kotl\u00e1\u0159ce",
+        "amenity": "restaurant",
+        "address": "Na Koc\u00ednce 210/3, Praha",
+        "website": "https://nakotlarce.cz/",
+        "opening_hours": "Mo-Sa 11:00-24:00; Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3868968,
+          50.1064654
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 314787249,
         "hasDetails": true,
         "name": "Kolkovna Olympia",
@@ -3391,7 +3618,7 @@
         "hasDetails": true,
         "name": "Chilli pizzeria",
         "amenity": "fast_food",
-        "cuisine": "indian",
+        "cuisine": "indian;kebab;pizza",
         "address": "Podolsk\u00e1 152, Praha",
         "opening_hours": "Mo-Fr 10:00-21:00; Sa 12:00-21:00"
       },
@@ -3513,7 +3740,7 @@
         "cuisine": "burger",
         "address": "Plze\u0148sk\u00e1 232/4, Praha",
         "website": "https://www.mcdonalds.cz/",
-        "opening_hours": "Mo-Su 00:00-02:00,06:00-24:00; Fr,Sa 00:00-24:00"
+        "opening_hours": "Su-Th 06:00-01:00, Fr,Sa 06:00-02:00"
       },
       "geometry": {
         "type": "Point",
@@ -3534,7 +3761,7 @@
         "cuisine": "chicken",
         "address": "Plze\u0148sk\u00e1 23/2, Praha",
         "website": "https://kfc.cz/",
-        "opening_hours": "Mo-Fr 06:00-24:00,00:00-01:00; Sa,Su 07:00-24:00,00:00-03:00",
+        "opening_hours": "Mo-We 06:00-02:00, Th 06:00-24:00, Fr,Sa 00:00-23:59, Su 00:00-02:00",
         "names": [
           "KFC",
           "Wokin"
@@ -3607,7 +3834,8 @@
         "hasDetails": true,
         "name": "Yam Yam",
         "amenity": "restaurant",
-        "cuisine": "thai"
+        "cuisine": "thai",
+        "opening_hours": "Mo-Su 11:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -4581,6 +4809,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 331960888,
+        "hasDetails": true,
+        "name": "O\u00e1za",
+        "amenity": "pub",
+        "address": "Mydl\u00e1\u0159ka 2, Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3847418,
+          50.1006723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 332148308,
         "hasDetails": true,
         "name": "Hotel Ol\u0161anka",
@@ -4592,6 +4838,24 @@
         "coordinates": [
           14.4580299,
           50.0828815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 332224303,
+        "hasDetails": true,
+        "name": "Sushi delivery",
+        "amenity": "restaurant",
+        "cuisine": "sushi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3950422,
+          50.1094017
         ]
       }
     },
@@ -4632,6 +4896,24 @@
         "coordinates": [
           14.3949796,
           50.1068533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 332332602,
+        "hasDetails": true,
+        "name": "Hosp\u016fdka U baz\u00e9nu",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Fr 10:00-20:00; Sa,Su 11:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4773087,
+          50.0937561
         ]
       }
     },
@@ -4760,6 +5042,32 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3874353,
+          50.0865212
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3865778,
+          50.0863618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 333305750,
         "hasDetails": true,
@@ -4791,6 +5099,29 @@
         "coordinates": [
           14.4484105,
           50.0780427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 333633842,
+        "hasDetails": true,
+        "name": "Kausar",
+        "amenity": "fast_food",
+        "cuisine": "kebab;pizza",
+        "opening_hours": "Mo-Fr 10:00-24:00, Sa 12:00-24:00, Su 12:00-22:00",
+        "names": [
+          "Kausar",
+          "Hotovky z krabi\u010dky"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4687227,
+          50.0902692
         ]
       }
     },
@@ -5048,6 +5379,27 @@
         "coordinates": [
           14.4049528,
           50.070944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 339048771,
+        "hasDetails": true,
+        "name": "\u017delva beers & burgers",
+        "amenity": "restaurant",
+        "cuisine": "burger",
+        "address": "Jana \u017delivsk\u00e9ho 1806/23, Praha",
+        "website": "https://m.facebook.com/burgerzelva/",
+        "opening_hours": "Mo-Sa 11:00-23:00, Su 11:30-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4691953,
+          50.0874244
         ]
       }
     },
@@ -5381,6 +5733,43 @@
         "coordinates": [
           14.4293927,
           50.0751439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 343804474,
+        "hasDetails": true,
+        "name": "Vina\u0159stv\u00ed Pfeffer",
+        "amenity": "bar",
+        "address": "Biskupcova 1719/42",
+        "opening_hours": "Mo,We,Fr 16:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4732912,
+          50.0900886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 343804477,
+        "hasDetails": true,
+        "name": "Restaurace Familie",
+        "amenity": "restaurant",
+        "opening_hours": "Fr,Sa 10:00-23:00; Su-Th 10:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4740708,
+          50.0905004
         ]
       }
     },
@@ -6037,6 +6426,45 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 355278872,
+        "hasDetails": true,
+        "name": "Burger Pub Na Hub\u00e1lce",
+        "amenity": "pub",
+        "address": "Za Hl\u00e1dkovem 975/2, Praha",
+        "opening_hours": "Mo-Su 12:00-22:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3844953,
+          50.0898396
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 355278874,
+        "hasDetails": true,
+        "name": "Wanhao - Asijsk\u00e1 Restaurace",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "address": "Hl\u00e1dkov 703/6, Praha",
+        "opening_hours": "Mo-Fr 10:30-22:00, Sa-Su 11:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3851472,
+          50.0891199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 355658947,
         "hasDetails": true,
         "name": "Lucerna",
@@ -6049,6 +6477,25 @@
         "coordinates": [
           14.4257487,
           50.0810699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 357551766,
+        "hasDetails": true,
+        "name": "\u010cerstv\u00e1 grilovan\u00e1 ku\u0159ata",
+        "amenity": "fast_food",
+        "cuisine": "chicken",
+        "opening_hours": "Mo-Fr 09:00-21:00; Sa,Su 10:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4734448,
+          50.1039087
         ]
       }
     },
@@ -6631,6 +7078,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 385954664,
+        "hasDetails": true,
+        "name": "Divadlo pod Palmovkou",
+        "amenity": "theatre",
+        "address": "Zenklova 566/34, Praha 8",
+        "website": "https://www.podpalmovkou.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4730962,
+          50.1054678
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 387766576,
         "hasDetails": true,
         "name": "\u010c\u00ednsk\u00e1 restaurace, Pizzeria Chenguang",
@@ -7199,6 +7665,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 444662243,
+        "hasDetails": true,
+        "name": "Pizza Hut",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "address": "Michelsk\u00e1 2, Praha 4",
+        "website": "https://pizzahut.cz/restaurants/976-pizza-hut-michelska"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4527436,
+          50.0545619
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 445800629,
         "hasDetails": true,
         "name": "Zabitej \u010das",
@@ -7211,6 +7697,19 @@
         "coordinates": [
           14.4672638,
           50.0625407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4685334,
+          50.0676956
         ]
       }
     },
@@ -7237,6 +7736,19 @@
         "coordinates": [
           14.4531572,
           50.0635133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4093929,
+          50.1102493
         ]
       }
     },
@@ -7400,6 +7912,19 @@
         "coordinates": [
           14.4286756,
           50.0800975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4763783,
+          50.0779362
         ]
       }
     },
@@ -7587,6 +8112,53 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 474822600,
+        "hasDetails": true,
+        "name": "Curry House",
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "address": "Nov\u00e1kov\u00fdch 893/7",
+        "website": "https://curryhouse.cz/",
+        "opening_hours": "Tu-Fr 11:00-22:00; Sa-Su 12:00-22:00",
+        "names": [
+          "Curry House",
+          "Verona"
+        ],
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4746584,
+          50.103264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 474878534,
+        "hasDetails": true,
+        "name": "Merkur",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Th 11:00-23:00; Fr 11:00-24:00; Sa 12:00-24:00; Su 12:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4762505,
+          50.1026487
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 475379711,
         "hasDetails": true,
         "name": "Cross Club",
@@ -7628,6 +8200,38 @@
         "coordinates": [
           14.404673,
           50.072359
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.476158,
+          50.1125899
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 516310891,
+        "hasDetails": true,
+        "name": "Osteria Il Piano",
+        "amenity": "restaurant",
+        "cuisine": "italian",
+        "address": "Na Dolin\u00e1ch 52, Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4305264,
+          50.0566917
         ]
       }
     },
@@ -7880,6 +8484,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4786732,
+          50.1045817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 537875046,
         "hasDetails": true,
@@ -8018,6 +8635,205 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.471003,
+          50.1072486
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585175531,
+        "hasDetails": true,
+        "name": "Pizzeria La Palma",
+        "amenity": "restaurant",
+        "website": "https://www.lapalma.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4763751,
+          50.105714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585175539,
+        "hasDetails": true,
+        "name": "Pivnice u Sv\u011bta",
+        "amenity": "pub",
+        "address": "Zenklova 465/31, Praha 8",
+        "opening_hours": "Mo-Su 09:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4725771,
+          50.1061752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585175542,
+        "hasDetails": true,
+        "name": "U Jagu\u0161ky",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4768888,
+          50.1044252
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585175556,
+        "hasDetails": true,
+        "name": "Kav\u00e1rna a Cukr\u00e1rna Sweetbar",
+        "amenity": "cafe",
+        "cuisine": "breakfast;coffee_shop;sandwich;ice_cream;steak_house",
+        "address": "N\u00e1m\u011bst\u00ed Dr. V\u00e1clava Hol\u00e9ho 1059/17, Praha 8",
+        "website": "https://www.sweetbarcafe.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4728998,
+          50.1064831
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585175558,
+        "hasDetails": true,
+        "name": "U Hork\u00fdch",
+        "amenity": "pub",
+        "address": "Ko\u017eelu\u017esk\u00e1 595/8, Praha",
+        "website": "https://www.uhorkych.cz/",
+        "opening_hours": "Mo-Fr 10:30-23:00; Sa-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4715042,
+          50.105505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585175567,
+        "hasDetails": true,
+        "name": "Tankovna Palmovka",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "address": "Zenklova 36, Praha 8",
+        "website": "http://www.tankovnapalmovka.cz/",
+        "opening_hours": "Mo-Su 11:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4730254,
+          50.1057439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585182680,
+        "hasDetails": true,
+        "name": "U chc\u00edp\u00e1ka",
+        "amenity": "pub",
+        "address": "Sokolovsk\u00e1 142, Praha",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4687689,
+          50.099074
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4746991,
+          50.1051681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585182690,
+        "hasDetails": true,
+        "name": "Vin\u00e1rna U Hrabala",
+        "amenity": "pub",
+        "opening_hours": "Mo-Fr 15:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4743559,
+          50.1051886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585182691,
+        "hasDetails": true,
+        "name": "Govinda",
+        "amenity": "restaurant",
+        "address": "Na Hr\u00e1zi 216/5, Praha 8",
+        "website": "https://www.govinda-vegclub.cz/",
+        "opening_hours": "Mo-Fr 11:30-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4738161,
+          50.1052369
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4648732,
           50.1065098
         ]
@@ -8061,6 +8877,52 @@
         "coordinates": [
           14.4398745,
           50.0893798
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585335090,
+        "hasDetails": true,
+        "amenity": "restaurant",
+        "cuisine": "asian"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4741186,
+          50.1051969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 585335091,
+        "hasDetails": true,
+        "name": "Restaurace U Rokytky",
+        "amenity": "restaurant",
+        "cuisine": "czech",
+        "address": "n\u00e1m\u011bst\u00ed Dr. V\u00e1clava Hol\u00e9ho 7",
+        "website": "http://www.urokytky.cz",
+        "opening_hours": "Mo-Th 10:30-22:30; Fr 10:30-23:00; Sa,Su off",
+        "names": [
+          "Restaurace U Rokytky",
+          "Na m\u011bs\u00edci"
+        ],
+        "amenities": [
+          "restaurant",
+          "bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4754219,
+          50.1063881
         ]
       }
     },
@@ -8182,6 +9044,67 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 632005997,
+        "hasDetails": true,
+        "name": "Pizza Sull Angolo",
+        "amenity": "fast_food",
+        "cuisine": "pizza",
+        "address": "U Dru\u017estva \u017divot 1216/6, Praha",
+        "website": "https://www.facebook.com/cafebaridea",
+        "opening_hours": "Tu-Th,Su 11:00-21:00; Mo 17:00-22:00; Sa 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4457337,
+          50.0555465
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 637868686,
+        "hasDetails": true,
+        "name": "Z\u00e1le\u017eitost",
+        "amenity": "restaurant",
+        "website": "https://www.zalezitost.cz/",
+        "opening_hours": "Mo-Fr 11:00-23:00; Sa,Su 12:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4699817,
+          50.0898016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 644621387,
+        "hasDetails": true,
+        "name": "Lidov\u00e1 j\u00eddelna",
+        "amenity": "fast_food",
+        "cuisine": "regional",
+        "address": "Zenklova 464/19, Praha",
+        "website": "https://www.facebook.com/reznikzenklova19",
+        "opening_hours": "Mo-Fr 07:30-18:00; Sa 07:30-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4729762,
+          50.1045744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 656405949,
         "hasDetails": true,
         "name": "Cinema City Slovansk\u00fd d\u016fm",
@@ -8232,6 +9155,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 658940538,
+        "hasDetails": true,
+        "name": "Family Restaurant",
+        "amenity": "restaurant",
+        "cuisine": "thai;vietnamese",
+        "opening_hours": "Mo-Su 10:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4566788,
+          50.1173202
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 661404298,
         "hasDetails": true,
         "name": "\u010cajovna Siva",
@@ -8244,6 +9186,27 @@
         "coordinates": [
           14.4238324,
           50.0890945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 663517817,
+        "hasDetails": true,
+        "name": "Bam Bam Bistro",
+        "amenity": "restaurant",
+        "cuisine": "asian;czech;vietnamese;thai",
+        "address": "Hartigova 118",
+        "website": "https://www.bambambistro.cz/",
+        "opening_hours": "Mo-Fr 10:00-21:00; Sa off; Su 11:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4690724,
+          50.0903359
         ]
       }
     },
@@ -8728,6 +9691,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 756793917,
+        "hasDetails": true,
+        "name": "Ciao bella",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "opening_hours": "Tu-Sa 11:00-23:00; Su 12:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4691758,
+          50.1167099
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 785883124,
         "hasDetails": true,
         "name": "Rice",
@@ -9106,6 +10088,43 @@
         "coordinates": [
           14.427382,
           50.081154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 890400248,
+        "hasDetails": true,
+        "name": "U Zvonu",
+        "amenity": "restaurant",
+        "address": "Mahenova 282/5, Praha",
+        "website": "http://www.restauraceuzvonu.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3871924,
+          50.0713114
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 895799253,
+        "hasDetails": true,
+        "name": "Amarula",
+        "amenity": "pub",
+        "opening_hours": "Mo-Su 20:00-01:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4561984,
+          50.1241879
         ]
       }
     },
@@ -9911,6 +10930,27 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 1096020083,
+        "hasDetails": true,
+        "name": "Na Star\u00e9 Sokolovn\u011b",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "address": "Podolsk\u00e1 5, Praha",
+        "website": "https://www.starasokolovna.cz/",
+        "opening_hours": "Mo-Th,Sa 10:30-24:00, Fr 10:30-01:00, Su 10:30-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4183959,
+          50.0539648
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -10160,6 +11200,27 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 1122568660,
+        "hasDetails": true,
+        "name": "Rana",
+        "amenity": "restaurant",
+        "cuisine": "pakistani",
+        "address": "Praha",
+        "website": "https://www.ranapakistani.cz",
+        "opening_hours": "Mo 11:30-16:00; Tu-Fr 11:30-23:00; Sa-Su 12:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4725829,
+          50.1155106
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -10367,6 +11428,25 @@
         "coordinates": [
           14.4144463,
           50.0713175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1174536750,
+        "hasDetails": true,
+        "name": "Na kr\u00e1sn\u00e9 vyhl\u00eddce",
+        "amenity": "restaurant",
+        "website": "https://vyhlidkatroja.cz/",
+        "opening_hours": "Tu-Su 12:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4426078,
+          50.1197235
         ]
       }
     },
@@ -10877,6 +11957,25 @@
         "coordinates": [
           14.4177784,
           50.0832435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1237556564,
+        "hasDetails": true,
+        "name": "Divadlo K\u00e1men",
+        "amenity": "theatre",
+        "address": "Nekvasilova 2, Praha 8",
+        "website": "http://studiodk.cz/;https://divadlokamen.cz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4684661,
+          50.0955973
         ]
       }
     },
@@ -11638,6 +12737,173 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1261026177,
+        "hasDetails": true,
+        "name": "Cukr\u00e1rna Libe\u0159sk\u00e9 lah\u016fdky",
+        "amenity": "cafe",
+        "opening_hours": "Mo-Fr 09:00-19:00; Sa,Su 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4743103,
+          50.1035588
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1261026192,
+        "hasDetails": true,
+        "name": "Wok & Grill",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Fr 11:00-23:00; Sa off; Su 12:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4748522,
+          50.1037872
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1261026197,
+        "hasDetails": true,
+        "name": "Viet Food Anbi",
+        "amenity": "restaurant",
+        "cuisine": "vietnamese;asian",
+        "address": "Zenklova 186/15, Praha",
+        "website": "https://www.facebook.com/anbi.cz/",
+        "opening_hours": "Mo-Fr 10:30-20:30; Su 12:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4730479,
+          50.1043113
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1261026223,
+        "hasDetails": true,
+        "name": "Palmovka kebab",
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "opening_hours": "Mo-Th 10:00-03:00, Fr,Sa 10:00-03:00, Su 11:00-01:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4746796,
+          50.1037077
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4687446,
+          50.0985027
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1261055274,
+        "hasDetails": true,
+        "name": "Ka\u010damba u m\u011bsta Rokycan",
+        "amenity": "pub",
+        "opening_hours": "Mo-Fr 12:00-24:00, Sa 11:00-01:00, Su 15:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4700365,
+          50.0995238
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1261055284,
+        "hasDetails": true,
+        "name": "Pho 14",
+        "amenity": "restaurant",
+        "cuisine": "asian",
+        "address": "Sokolovsk\u00e1 140, Praha",
+        "opening_hours": "Mo-Fr 10:00-22:00; Sa-Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4685474,
+          50.0989576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1261055296,
+        "hasDetails": true,
+        "name": "Akemi Karl\u00edn",
+        "amenity": "restaurant",
+        "address": "Sokolovsk\u00e1 142, Praha",
+        "website": "https://www.akemikarlin.cz/",
+        "opening_hours": "Mo-Fr 10:00-23:00; Sa, Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4689168,
+          50.0991307
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1261055302,
+        "hasDetails": true,
+        "name": "Styx",
+        "amenity": "bar",
+        "address": "Sokolovsk\u00e1 144, Praha",
+        "website": "https://clubstyx.cz/",
+        "opening_hours": "Mo-Fr 16:00-01:00, Sa 18:00-02:00, Su 18:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.469116,
+          50.0991314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1268311863,
         "hasDetails": true,
         "name": "Caf\u00e9 Modi",
@@ -12085,6 +13351,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1272075152,
+        "hasDetails": true,
+        "name": "V R\u016f\u017eov\u00e9 zahrad\u011b",
+        "amenity": "restaurant",
+        "website": "https://www.hotel-villa.cz/restaurace/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4822024,
+          50.0813712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1272921548,
         "hasDetails": true,
         "name": "Magister Kelley",
@@ -12300,6 +13584,24 @@
         "coordinates": [
           14.4056755,
           50.082297
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1293802163,
+        "hasDetails": true,
+        "name": "Casino Palmovka",
+        "amenity": "bar",
+        "opening_hours": "Mo-Su 00:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4739818,
+          50.1045033
         ]
       }
     },
@@ -12694,6 +13996,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1317072361,
+        "hasDetails": true,
+        "name": "Prostor Abaton",
+        "amenity": "nightclub",
+        "address": "Na Ko\u0161ince 2175/8, Praha",
+        "website": "www.prostorabaton.cz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4654724,
+          50.1113419
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1317088234,
         "hasDetails": true,
         "name": "M\u016fj \u0161\u00e1lek k\u00e1vy",
@@ -12803,6 +14124,24 @@
         "coordinates": [
           14.4508068,
           50.0686375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1320045997,
+        "hasDetails": true,
+        "name": "Restaurace Chaloupka",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Fr 11:00-22:00; Sa 13:00-18:00+; Su 13:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4699673,
+          50.0849184
         ]
       }
     },
@@ -13171,6 +14510,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4699957,
+          50.0721074
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4355892,
           50.0789547
         ]
@@ -13303,6 +14655,44 @@
         "coordinates": [
           14.4337621,
           50.0751969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1408426694,
+        "hasDetails": true,
+        "name": "Divadlo Karla Hackera",
+        "amenity": "theatre",
+        "website": "https://www.divadlokh.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4561692,
+          50.1240012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1408727053,
+        "hasDetails": true,
+        "name": "U Hofman\u016f",
+        "amenity": "restaurant",
+        "address": "Nad \u0160utkou 490/16, Praha",
+        "website": "http://www.uhofmanu.cz/",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4542558,
+          50.1226306
         ]
       }
     },
@@ -13521,7 +14911,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1428700636,
+        "hasDetails": true,
+        "name": "Ristorante Da Emanuel",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Su 11:30-23:00"
       },
       "geometry": {
         "type": "Point",
@@ -13646,6 +15041,38 @@
         "coordinates": [
           14.4153668,
           50.0843224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1438166669,
+        "hasDetails": true,
+        "name": "U Plev\u016f",
+        "amenity": "pub",
+        "address": "U Dru\u017estva Ide\u00e1l 2, Praha",
+        "opening_hours": "Mo-Fr 13:00-22:00; Sa,Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4450047,
+          50.0555513
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4222764,
+          50.1167203
         ]
       }
     },
@@ -13866,6 +15293,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1481233911,
+        "hasDetails": true,
+        "name": "Hui Bin Ge",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "opening_hours": "Mo-Su 10:30-22:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4760814,
+          50.0779599
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1483568068,
         "hasDetails": true,
         "name": "Sklep Gr\u00e9bovka",
@@ -14013,6 +15459,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1512478512,
+        "hasDetails": true,
+        "name": "Kav\u00e1rna a cukr\u00e1rna Lilly",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop",
+        "address": "Kub\u00e1nsk\u00e9 n\u00e1m\u011bst\u00ed 3, Praha",
+        "website": "https://cukrarnalilly.cz/",
+        "opening_hours": "Mo-Fr 09:00-18:00; Sa 09:00-14:00; Su off"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4774135,
+          50.0714995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1526165848,
         "hasDetails": true,
         "name": "Mama Coffee",
@@ -14085,6 +15552,39 @@
         "coordinates": [
           14.4385956,
           50.0819674
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1557970798,
+        "hasDetails": true,
+        "name": "U Prcka",
+        "amenity": "pub",
+        "address": "Zenklova 143, Praha 8",
+        "website": "https://hospudka-uprcka0.webnode.cz/",
+        "opening_hours": "Mo-Fr 11:00-23:00; Sa,Su 14:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4694669,
+          50.1149042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4585075,
+          50.119952
         ]
       }
     },
@@ -14519,6 +16019,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1690518527,
+        "hasDetails": true,
+        "name": "U Jarol\u00edmk\u016f",
+        "amenity": "pub",
+        "address": "Prim\u00e1torsk\u00e1 40",
+        "website": "https://www.ujarolimku.com/",
+        "opening_hours": "Mo-Th 11:00-22:00; Sa,Su 12:00-22:00; Fr 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4729769,
+          50.113744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1695234819,
         "hasDetails": true,
         "name": "Hangar",
@@ -14743,6 +16263,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4232198,
+          50.1136231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 1753758192,
         "hasDetails": true,
@@ -14862,6 +16395,51 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1764526253,
+        "hasDetails": true,
+        "name": "CAPUTEA",
+        "amenity": "fast_food",
+        "opening_hours": "Mo-Fr 09:00-19:00; Sa 10:00-18:00; Su 11:00-18:00",
+        "names": [
+          "CAPUTEA",
+          "Pizza Papa Cipolla"
+        ],
+        "amenities": [
+          "fast_food",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4765428,
+          50.0705215
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1776675668,
+        "hasDetails": true,
+        "name": "Na Vesel\u00ed",
+        "amenity": "pub",
+        "address": "Na Vesel\u00ed 738/34, Praha",
+        "opening_hours": "Mo-Su 15:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4415587,
+          50.0567842
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1784397175,
         "hasDetails": true,
         "name": "Villa Pell\u00e9",
@@ -14888,6 +16466,19 @@
         "coordinates": [
           14.4524057,
           50.0580421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4697752,
+          50.057308
         ]
       }
     },
@@ -14995,6 +16586,100 @@
         "coordinates": [
           14.4294815,
           50.0775935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1813147518,
+        "hasDetails": true,
+        "name": "Gaston",
+        "amenity": "fast_food",
+        "address": "Praha",
+        "opening_hours": "Nov-Feb PH,Mo-Su 10:00-16:00; Mar PH,Mo-Su 09:00-17:00; Apr-May,Sep-Oct PH,Mo-Su 09:00-18:00; Jun-Aug PH,Mo-Su 09:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4059977,
+          50.1159971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1813147552,
+        "hasDetails": true,
+        "name": "Go\u010d\u00e1r\u016fv d\u016fm",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3996844,
+          50.1191576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1813147561,
+        "hasDetails": true,
+        "name": "Ob\u010derstven\u00ed v\u00a0Obo\u0159e",
+        "amenity": "fast_food",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4018694,
+          50.1185847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1813147568,
+        "hasDetails": true,
+        "name": "Oce\u00e1n",
+        "amenity": "restaurant",
+        "address": "U Trojsk\u00e9ho z\u00e1mku 120/3, Praha",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.410856,
+          50.116606
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1813147572,
+        "hasDetails": true,
+        "name": "\u010cernohouska",
+        "amenity": "cafe",
+        "address": "Praha",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4064845,
+          50.1174338
         ]
       }
     },
@@ -15338,6 +17023,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4169017,
+          50.1171213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 1834647238,
         "hasDetails": true,
@@ -15411,6 +17109,19 @@
         "coordinates": [
           14.4400676,
           50.0779014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3986311,
+          50.1229619
         ]
       }
     },
@@ -16091,6 +17802,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1966472763,
+        "hasDetails": true,
+        "name": "Pa\u0165anka",
+        "amenity": "restaurant",
+        "address": "Pa\u0165anka 200/4",
+        "website": "https://www.patanka.cz/restaurace",
+        "opening_hours": "Mo-Fr 16:00-23:00; Sa,Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3889618,
+          50.1138987
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1977821251,
         "hasDetails": true,
         "name": "Bed Lounge",
@@ -16439,6 +18170,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2014818133,
+        "hasDetails": true,
+        "name": "McDonald's",
+        "amenity": "fast_food",
+        "cuisine": "burger",
+        "opening_hours": "Mo-Fr 06:00-24:00, Sa,Su 06:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4705839,
+          50.0679751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2015148540,
         "hasDetails": true,
         "name": "Alforno Trattoria Italiana",
@@ -16487,6 +18237,48 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2021363962,
+        "hasDetails": true,
+        "name": "Bageterie Boulevard",
+        "amenity": "fast_food",
+        "cuisine": "sandwich",
+        "address": "U Slavie 1527, Praha",
+        "website": "https://www.bb.cz/",
+        "opening_hours": "Mo-Fr 08:00-21:00; Sa-Su 09:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4685229,
+          50.0685934
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2023120740,
+        "hasDetails": true,
+        "name": "PizzaExpress",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "address": "Votick\u00e1 8, Praha 3",
+        "website": "https://www.pizzaexpresspraha.cz/",
+        "opening_hours": "10:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4734307,
+          50.0778652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2032666700,
         "hasDetails": true,
         "name": "U Labut\u00ed",
@@ -16501,6 +18293,26 @@
         "coordinates": [
           14.3960202,
           50.0899105
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2035703150,
+        "hasDetails": true,
+        "name": "Decada",
+        "amenity": "cafe",
+        "address": "Vac\u00ednova 10, Praha 8",
+        "website": "https://www.decada.cz/",
+        "opening_hours": "Mo-Fr 8:00-0:00, Sa-Su 16:00-0:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4771762,
+          50.1045085
         ]
       }
     },
@@ -16549,6 +18361,40 @@
         "coordinates": [
           14.437088,
           50.0788332
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2047259012,
+        "hasDetails": true,
+        "name": "P\u0159\u00edzem\u00ed",
+        "amenity": "restaurant",
+        "cuisine": "czech",
+        "address": "Pod H\u00e1jkem 1, Praha 8",
+        "website": "http://www.doprizemi.cz",
+        "opening_hours": "Mo-Sa 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4789504,
+          50.1054835
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4774604,
+          50.104587
         ]
       }
     },
@@ -16710,6 +18556,24 @@
         "coordinates": [
           14.4515919,
           50.0688649
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2114797838,
+        "hasDetails": true,
+        "name": "Pivovar u Bulovky",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Th 11:00-23:00; Fr 11:00-24:00; Sa 12:00-24:00; Su 12:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4663195,
+          50.11528
         ]
       }
     },
@@ -16955,6 +18819,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2201585158,
+        "hasDetails": true,
+        "name": "Na Barik\u00e1d\u00e1ch",
+        "amenity": "restaurant",
+        "cuisine": "regional"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.395348,
+          50.1089161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2202108094,
         "hasDetails": true,
         "name": "U baziliky svat\u00e9ho Vav\u0159ince",
@@ -17173,6 +19055,26 @@
         "coordinates": [
           14.4547176,
           50.0681408
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2248951305,
+        "hasDetails": true,
+        "name": "Kaf\u00e1rna Na kus \u0159e\u010di",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "address": "Na Dolin\u00e1ch 47, Praha",
+        "website": "https://www.kafarna.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4303812,
+          50.0570408
         ]
       }
     },
@@ -18156,6 +20058,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3938936,
+          50.1212453
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 2393704825,
         "hasDetails": true,
@@ -18420,7 +20335,8 @@
         "opening_hours": "Mo-Su,PH 11:30-24:00",
         "names": [
           "Knajpi\u010dka",
-          "Profesor artisan cafe bistro"
+          "Profesor artisan cafe bistro",
+          "M\u00e8m\u00e8"
         ],
         "amenities": [
           "restaurant",
@@ -18777,6 +20693,24 @@
         "coordinates": [
           14.4543167,
           50.0783102
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2421122247,
+        "hasDetails": true,
+        "name": "Meteor",
+        "amenity": "restaurant",
+        "cuisine": "regional"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4674107,
+          50.1090032
         ]
       }
     },
@@ -19614,6 +21548,44 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2571913485,
+        "hasDetails": true,
+        "name": "Herna Jezerka",
+        "amenity": "bar",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4450324,
+          50.056762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2571913488,
+        "hasDetails": true,
+        "name": "Pivnice U Ruml\u00edka",
+        "amenity": "pub",
+        "address": "Dru\u017estevn\u00ed ochoz 1307/30, Praha",
+        "website": "https://www.facebook.com/pages/Pivnice-U-Ruml%C3%ADka/897047703642025",
+        "opening_hours": "Mo-Fr 15:00-22:00; Su,PH 16:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4439641,
+          50.0564092
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2580226251,
         "hasDetails": true,
         "name": "Hoffa Bar",
@@ -19680,6 +21652,19 @@
         "coordinates": [
           14.4407225,
           50.0647548
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4583333,
+          50.1231229
         ]
       }
     },
@@ -19922,6 +21907,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4610588,
+          50.1187706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 2684168472,
         "hasDetails": true,
@@ -19982,6 +21980,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2692490061,
+        "hasDetails": true,
+        "name": "\u017deliv\u00e1rna",
+        "amenity": "restaurant",
+        "cuisine": "czech",
+        "address": "Vinohradsk\u00e1 185",
+        "website": "https://www.zelivarna.cz/",
+        "opening_hours": "Mo-Sa 11:00-24:00; Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4725612,
+          50.0780775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2700197588,
         "hasDetails": true,
         "name": "Mezera",
@@ -20016,6 +22035,64 @@
         "coordinates": [
           14.4178461,
           50.0665833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2717283632,
+        "hasDetails": true,
+        "name": "Nad ledem",
+        "amenity": "restaurant",
+        "address": "Vladivostock\u00e1 10, Praha",
+        "website": "https://www.restauracenadledem.cz/",
+        "opening_hours": "10:30-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4791913,
+          50.0688073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2717283633,
+        "hasDetails": true,
+        "name": "Star\u00e1 kotelna",
+        "amenity": "restaurant",
+        "website": "https://starakotelna.cz/",
+        "opening_hours": "10:30-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4782192,
+          50.0699088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2719404653,
+        "hasDetails": true,
+        "name": "House Mouse",
+        "amenity": "bar",
+        "website": "http://www.house-mouse.cz/",
+        "opening_hours": "Mo-Su 17:00-01:00; Fr-Sa 17:00-02:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.473866,
+          50.069936
         ]
       }
     },
@@ -20517,6 +22594,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2821281212,
+        "hasDetails": true,
+        "name": "Theremin",
+        "amenity": "nightclub",
+        "address": "Jana \u017delivsk\u00e9ho 2702, Praha",
+        "website": "http://theremin.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4774708,
+          50.0844832
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2823686634,
         "hasDetails": true,
         "name": "Sushi Time Florentinum",
@@ -20652,6 +22748,39 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4576767,
+          50.1207423
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2899438718,
+        "hasDetails": true,
+        "name": "La Stanzetta Cafe",
+        "amenity": "cafe",
+        "cuisine": "sandwich;pastry;dessert",
+        "address": "Hl\u00e1dkov 686/3, Praha",
+        "opening_hours": "Mo 12:00-16:00, Tu-Fr 10:00-18:00, Sa 12:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3853859,
+          50.0888859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 2905214115,
         "hasDetails": true,
@@ -20739,6 +22868,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2924307186,
+        "hasDetails": true,
+        "name": "Beach club",
+        "amenity": "pub",
+        "opening_hours": "Mo-Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4676036,
+          50.1132535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2936622429,
         "hasDetails": true,
         "name": "Taro",
@@ -20814,6 +22961,42 @@
         "coordinates": [
           14.4183644,
           50.0800994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2972995124,
+        "hasDetails": true,
+        "name": "Pivnice Tunel",
+        "amenity": "pub",
+        "address": "Da\u010dick\u00e9ho 2, Praha",
+        "opening_hours": "PH,Mo-Su 14:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4321184,
+          50.0561105
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2975954376,
+        "hasDetails": true,
+        "amenity": "fast_food",
+        "cuisine": "burger;hot_dog;barbecue"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4729432,
+          50.0922428
         ]
       }
     },
@@ -21542,6 +23725,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3104120230,
+        "hasDetails": true,
+        "name": "Bernard Pub",
+        "amenity": "pub",
+        "address": "Jeseniova 93, Praha",
+        "website": "https://bernardpub.cz/",
+        "opening_hours": "Mo-Su 14:00-02:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4692796,
+          50.0885683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3112948752,
         "hasDetails": true,
         "name": "Du\u0161e v\u00a0pe\u0159\u00ed",
@@ -21687,6 +23890,26 @@
         "coordinates": [
           14.4236388,
           50.0599697
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3131801815,
+        "hasDetails": true,
+        "name": "Restaurace U Kou\u0159il\u016f",
+        "amenity": "restaurant",
+        "address": "U Sv\u00e9pomoci 8, Praha",
+        "website": "https://www.ukourilu.cz/",
+        "opening_hours": "Mo-Fr 10:30-23:00; Sa 11:00-23:00; Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4421561,
+          50.0543131
         ]
       }
     },
@@ -22115,6 +24338,33 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3156984583,
+        "hasDetails": true,
+        "name": "VIETNAM Fast Food",
+        "amenity": "fast_food",
+        "address": "Zenklova 13, Praha 8",
+        "opening_hours": "Mo-Fr 10:30-22:00; Su 12:00-21:00; Sa 12:00-22:00",
+        "names": [
+          "VIETNAM Fast Food",
+          "Bar Napalm\u011b"
+        ],
+        "amenities": [
+          "fast_food",
+          "pub"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4730983,
+          50.1040634
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3156994661,
         "hasDetails": true,
         "name": "\u00e0 table!",
@@ -22148,6 +24398,26 @@
         "coordinates": [
           14.4440814,
           50.0748493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3164221210,
+        "hasDetails": true,
+        "name": "Puka",
+        "amenity": "restaurant",
+        "cuisine": "vietnamese",
+        "website": "www.caferico.cz",
+        "opening_hours": "Mo-Fr 10:00-22:00; Sa 11:00-21:00; Su 12:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4559125,
+          50.1232633
         ]
       }
     },
@@ -22462,6 +24732,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3186083469,
+        "hasDetails": true,
+        "name": "Salabka",
+        "amenity": "restaurant",
+        "address": "K Bohnic\u00edm 57/2, Praha",
+        "website": "https://www.salabka.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4103731,
+          50.1207534
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3188225061,
         "hasDetails": true,
         "name": "Chill Out Cafe",
@@ -22752,6 +25041,27 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 3224092716,
+        "hasDetails": true,
+        "name": "Pizzeria Palatino",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "address": "Lomnick\u00e9ho 5, Praha",
+        "website": "https://palatino-cz.com/",
+        "opening_hours": "Mo-Sa 11:00-23:00;Su 12:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4326507,
+          50.0570668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -22913,6 +25223,27 @@
         "coordinates": [
           14.4314522,
           50.0920718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3250000686,
+        "hasDetails": true,
+        "name": "Harry's restaurant",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "address": "Na Pankr\u00e1ci 109, Praha",
+        "website": "https://www.harrysrestaurant.cz/",
+        "opening_hours": "Mo-Fr 10:30-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4370332,
+          50.0545636
         ]
       }
     },
@@ -23366,6 +25697,26 @@
         "coordinates": [
           14.4457325,
           50.0719539
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3304045121,
+        "hasDetails": true,
+        "name": "Cheecup",
+        "amenity": "cafe",
+        "address": "Nedv\u011bdovo n\u00e1m\u011bst\u00ed 14, Praha 4",
+        "website": "https://www.cheecup.cz",
+        "opening_hours": "Mo-Fr 07:30-19:00; Sa,Su 09:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4209437,
+          50.0567012
         ]
       }
     },
@@ -23962,6 +26313,19 @@
         "coordinates": [
           14.433025,
           50.075853
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3946627,
+          50.1124084
         ]
       }
     },
@@ -24852,6 +27216,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3392410399,
+        "hasDetails": true,
+        "name": "Z\u00e1meck\u00e1 pek\u00e1rna",
+        "amenity": "cafe",
+        "address": "Doudova 22, Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4265031,
+          50.05665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3392410401,
         "hasDetails": true,
         "name": "Na Dolin\u00e1ch",
@@ -25527,6 +27909,19 @@
         "coordinates": [
           14.4434551,
           50.082642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4160957,
+          50.115424
         ]
       }
     },
@@ -26577,6 +28972,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.411669,
+          50.117056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 3475173908,
         "hasDetails": true,
@@ -26679,6 +29087,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4260978,
+          50.1130158
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 3505780527,
         "hasDetails": true,
@@ -26752,6 +29173,19 @@
         "coordinates": [
           14.4269477,
           50.0984333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4781593,
+          50.112097
         ]
       }
     },
@@ -27432,6 +29866,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3541979809,
+        "hasDetails": true,
+        "name": "Hercovka",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "address": "Trojsk\u00e1 157/36",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4505253,
+          50.1221271
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3544358940,
         "hasDetails": true,
         "name": "Dno Pytle",
@@ -27760,6 +30214,62 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3605587290,
+        "hasDetails": true,
+        "name": "Hui Feng",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "address": "Kub\u00e1nsk\u00e9 n\u00e1m\u011bst\u00ed 1283/2, Praha",
+        "opening_hours": "Mo-Fr 10:00-22:00; Sa-Su 11:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4767224,
+          50.0712172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3605587291,
+        "hasDetails": true,
+        "name": "Aqua Eden",
+        "amenity": "restaurant",
+        "address": "Vladivostock\u00e1 10, Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4785945,
+          50.0684541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3605588893,
+        "hasDetails": true,
+        "name": "Slavia",
+        "amenity": "restaurant",
+        "address": "Vladivostock\u00e1 10, Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4786562,
+          50.068349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3607787661,
         "hasDetails": true,
         "name": "U Soton\u016f",
@@ -27808,7 +30318,7 @@
         "weight": 1.0,
         "id": 3615466842,
         "hasDetails": true,
-        "name": "U Karla IV.",
+        "name": "Namastaey India",
         "amenity": "restaurant",
         "address": "Neklanova 5, Praha"
       },
@@ -28895,6 +31405,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3655520686,
+        "hasDetails": true,
+        "name": "Beli kebab",
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "opening_hours": "Mo-Su 11:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.470904,
+          50.115315
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3655952458,
         "hasDetails": true,
         "name": "Caf\u00e9 Z\u00e1horsk\u00fd",
@@ -29001,6 +31530,100 @@
         "coordinates": [
           14.4559165,
           50.0669562
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3668096040,
+        "hasDetails": true,
+        "name": "Archa",
+        "amenity": "theatre",
+        "address": "Praha",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4066066,
+          50.1155685
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3669731313,
+        "hasDetails": true,
+        "name": "Caf\u00e9 Bororo",
+        "amenity": "cafe",
+        "address": "Praha",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4086178,
+          50.1164302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3669731316,
+        "hasDetails": true,
+        "name": "U Vyder",
+        "amenity": "fast_food",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4092848,
+          50.1179412
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3671626893,
+        "hasDetails": true,
+        "name": "U Trilobita",
+        "amenity": "fast_food",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4009612,
+          50.1177052
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3671789746,
+        "hasDetails": true,
+        "name": "Alt\u00e1n",
+        "amenity": "restaurant",
+        "address": "U trojsk\u00e9ho z\u00e1mku 717/11, Praha",
+        "website": "https://www.restauracealtan.cz/",
+        "opening_hours": "Mo-Su 11:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4115872,
+          50.1169593
         ]
       }
     },
@@ -29290,6 +31913,37 @@
         "coordinates": [
           14.4654807,
           50.0851055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3693130507,
+        "hasDetails": true,
+        "name": "N\u00e1kladov\u00e9 n\u00e1dra\u017e\u00ed \u017di\u017ekov, kino NFA",
+        "amenity": "cinema",
+        "opening_hours": "Jun-Aug"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4724759,
+          50.0846236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3830383,
+          50.085303
         ]
       }
     },
@@ -29703,7 +32357,7 @@
         "amenity": "restaurant",
         "cuisine": "italian",
         "address": "\u0160tef\u00e1nikova 8, Praha",
-        "opening_hours": "Mo-Fr 07:00-20:00; Sa 09:00-19:00; Su 09:00-18:00"
+        "opening_hours": "Mo-Fr 07:00-22:00; Sa 09:00-22:00; Su 09:00-19:00"
       },
       "geometry": {
         "type": "Point",
@@ -30280,7 +32934,7 @@
         "amenity": "restaurant",
         "cuisine": "regional",
         "address": "Preslova 11, Praha 5",
-        "opening_hours": "Mo-Fr 11:00-22:00"
+        "opening_hours": "Tu-Fr 14:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -30491,6 +33145,26 @@
         "coordinates": [
           14.4467823,
           50.0913917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3722711155,
+        "hasDetails": true,
+        "name": "LT Caf\u00e9",
+        "amenity": "cafe",
+        "address": "Terronsk\u00e1 62, Praha",
+        "website": "https://ltcafe.cz/",
+        "opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3951876,
+          50.1092872
         ]
       }
     },
@@ -32407,6 +35081,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3772866060,
+        "hasDetails": true,
+        "name": "Pizza Paolo",
+        "amenity": "fast_food",
+        "cuisine": "pizza",
+        "address": "Praha",
+        "website": "http://holesovice.pizzapaolo.cz/",
+        "opening_hours": "Mo-Su 10:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4403971,
+          50.1097954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3774196062,
         "hasDetails": true,
         "name": "Bakery 60",
@@ -32421,6 +35116,44 @@
         "coordinates": [
           14.3944129,
           50.1060488
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3774196070,
+        "hasDetails": true,
+        "amenity": "fast_food",
+        "cuisine": "kebab;pizza"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3937457,
+          50.111917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3776050254,
+        "hasDetails": true,
+        "name": "J\u00eddelna Strahov",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "address": "Z\u00e1topkova 100/2, Praha",
+        "website": "http://jidelna-strahov.cz/",
+        "opening_hours": "Mo-Fr 08:00-13:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3857692,
+          50.0798044
         ]
       }
     },
@@ -32543,6 +35276,25 @@
         "coordinates": [
           14.4286148,
           50.076193
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3809706588,
+        "hasDetails": true,
+        "name": "Liliov\u00e1 \u010dajovna",
+        "amenity": "cafe",
+        "cuisine": "teahouse",
+        "opening_hours": "Mo-Su 15:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4695845,
+          50.0996662
         ]
       }
     },
@@ -33032,6 +35784,25 @@
         "coordinates": [
           14.4154402,
           50.086953
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3923570618,
+        "hasDetails": true,
+        "name": "Fu Gui Lou",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "opening_hours": "Mo-Su 10:30-22:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4360229,
+          50.0554036
         ]
       }
     },
@@ -33669,6 +36440,72 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4004371156,
+        "hasDetails": true,
+        "name": "Caf\u00e9 & cukr\u00e1rna",
+        "amenity": "cafe",
+        "website": "https://www.cafeacukrarna.cz/",
+        "opening_hours": "Mo-Th 09:30-18:00; Fr 09:30-17:00; Su 10:00-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4800702,
+          50.0923271
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4004371158,
+        "hasDetails": true,
+        "name": "Kreativn\u00ed malov\u00e1n\u00ed",
+        "amenity": "arts_centre",
+        "website": "https://www.kreativni-malovani.cz/",
+        "names": [
+          "Kreativn\u00ed malov\u00e1n\u00ed",
+          "Pasta Love"
+        ],
+        "amenities": [
+          "arts_centre",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4804475,
+          50.0923669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4004374889,
+        "hasDetails": true,
+        "name": "Pizza \u017di\u017ekov",
+        "amenity": "fast_food",
+        "cuisine": "italian",
+        "address": "Hartigova 1947/188",
+        "website": "https://www.pizzazizkov.cz/",
+        "opening_hours": "Mo-Su 10:30-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.481888,
+          50.0921265
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4009231862,
         "hasDetails": true,
         "name": "Olive",
@@ -33899,6 +36736,30 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4090294579,
+        "hasDetails": true,
+        "name": "Eurest",
+        "amenity": "cafe",
+        "cuisine": "international",
+        "address": "Vinohradsk\u00e1 159a, Praha 10",
+        "opening_hours": "Mo-Fr 08:00-20:00, Sa-Su 08:00-17:00",
+        "amenities": [
+          "cafe",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4782595,
+          50.0792365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4094945463,
         "hasDetails": true,
         "name": "Mr HotDog",
@@ -33982,6 +36843,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4123116263,
+        "hasDetails": true,
+        "name": "Burger & Bistro u Toma",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.47102,
+          50.1139096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4131919091,
         "hasDetails": true,
         "name": "\u010cerven\u00e1 sedma",
@@ -34026,6 +36905,19 @@
         "coordinates": [
           14.388313,
           50.1039409
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4698618,
+          50.06952
         ]
       }
     },
@@ -36028,6 +38920,38 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3987435,
+          50.1233741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4215366997,
+        "hasDetails": true,
+        "name": "U Kr\u00e1l\u016f",
+        "amenity": "pub",
+        "address": "Pivovarnick\u00e1 1022/1, Praha",
+        "opening_hours": "Mo-Fr 11:00-24:00; Sa 13:00-24:00; Su 13:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4741068,
+          50.1092061
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 4216885506,
         "hasDetails": true,
@@ -36526,6 +39450,19 @@
         "coordinates": [
           14.4505241,
           50.092499
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4170998,
+          50.1126835
         ]
       }
     },
@@ -37344,6 +40281,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4321849718,
+        "hasDetails": true,
+        "name": "Espressone",
+        "amenity": "cafe",
+        "opening_hours": "Mo-Fr 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4136667,
+          50.116674
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4325929802,
         "hasDetails": true,
         "name": "Takumi Praha",
@@ -37377,6 +40332,26 @@
         "coordinates": [
           14.4404535,
           50.0725761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4326020227,
+        "hasDetails": true,
+        "name": "Na Skalce",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "address": "5. kv\u011btna 18, Praha",
+        "opening_hours": "Mo-Fr 10:30-23:30; Sa 11:00-23:30; Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4390549,
+          50.0548687
         ]
       }
     },
@@ -39187,6 +42162,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4565030489,
+        "hasDetails": true,
+        "name": "Inspirace",
+        "amenity": "restaurant",
+        "address": "Nad \u0160utkou 540/14",
+        "website": "https://www.bistroinspirace.cz/",
+        "opening_hours": "Mo-Th 10:00-17:00; Fr 10:00-15:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4544302,
+          50.1225505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4567016989,
         "hasDetails": true,
         "name": "La Vita Caff\u00e9",
@@ -39231,6 +42226,26 @@
         "coordinates": [
           14.4253404,
           50.1026788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4585024698,
+        "hasDetails": true,
+        "name": "Kino Aero",
+        "amenity": "cinema",
+        "address": "Biskupcova 87/31a, Praha",
+        "website": "https://www.kinoaero.cz/",
+        "opening_hours": "Mo-Su,PH 10:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4718914,
+          50.090396
         ]
       }
     },
@@ -39589,6 +42604,46 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 4666185410,
+        "hasDetails": true,
+        "name": "Samarkand Kebab",
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "address": "Klapkova 15/14, Praha",
+        "website": "https://www.samarkandkebab.cz/",
+        "opening_hours": "Mo-Fr 10:00-24:00; Sa-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4562982,
+          50.1229732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4666185414,
+        "hasDetails": true,
+        "name": "U peka\u0159e",
+        "amenity": "fast_food",
+        "cuisine": "pizza",
+        "opening_hours": "Mo-Th 07:30-18:00; Fr 07:30-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4554988,
+          50.1222013
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -39596,6 +42651,25 @@
         "coordinates": [
           14.4500064,
           50.0856481
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4679035601,
+        "hasDetails": true,
+        "name": "Bistro u Rokytky",
+        "amenity": "bar",
+        "address": "Na Rokytce 20",
+        "opening_hours": "Mo-Su 10:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4741388,
+          50.1089631
         ]
       }
     },
@@ -39714,6 +42788,25 @@
         "coordinates": [
           14.4323945,
           50.0719492
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4706346002,
+        "hasDetails": true,
+        "name": "D\u0159evona",
+        "amenity": "pub",
+        "address": "U Libe\u0148sk\u00e9ho pivovaru 1613/14, Praha",
+        "opening_hours": "Mo,Tu 14:00-21:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4753894,
+          50.1087799
         ]
       }
     },
@@ -40496,6 +43589,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4781068524,
+        "hasDetails": true,
+        "name": "Kino Aero",
+        "amenity": "bar",
+        "address": "Biskupcova 87/31a, Praha",
+        "website": "https://www.kinoaero.cz/",
+        "opening_hours": "Mo-Fr 10:00-24:00; Sa,Su 11:30-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4717194,
+          50.0903682
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4781897274,
         "hasDetails": true,
         "name": "Champagneria",
@@ -40775,6 +43888,44 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 4805855105,
+        "hasDetails": true,
+        "name": "Geek\u00e1rna",
+        "amenity": "bar",
+        "address": "Staroko\u0161\u00ed\u0159sk\u00e1 9, Praha 5",
+        "website": "http://www.geekarna.cz/",
+        "opening_hours": "Mo-Fr 14:00-24:00; Sa-Su 16:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3860576,
+          50.0710248
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4808061424,
+        "hasDetails": true,
+        "name": "Caf\u00e9 bar Lampi\u010dky",
+        "amenity": "bar",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4810533,
+          50.0924338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -41041,6 +44192,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4844267821,
+        "hasDetails": true,
+        "name": "Bar na v\u011btvi",
+        "amenity": "bar",
+        "website": "https://bar-na-vetvi3.webnode.cz/",
+        "opening_hours": "Mo-Sa 19:00-04:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4742012,
+          50.0916788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4851137143,
         "hasDetails": true,
         "name": "Lotos",
@@ -41125,6 +44295,46 @@
         "coordinates": [
           14.4220723,
           50.0637474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4868136606,
+        "hasDetails": true,
+        "name": "Pizzerie Bambini",
+        "amenity": "restaurant",
+        "cuisine": "pizza;kebab;russian",
+        "website": "https://www.pizzabambini.cz/",
+        "opening_hours": "11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4714724,
+          50.090013
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4869327746,
+        "hasDetails": true,
+        "name": "Gidos",
+        "amenity": "fast_food",
+        "cuisine": "pizza",
+        "website": "www.gidos.cz",
+        "opening_hours": "Mo-Su 10:00-22:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4688725,
+          50.1164426
         ]
       }
     },
@@ -41220,6 +44430,39 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4892807153,
+        "hasDetails": true,
+        "name": "Bistro Na Dvoustovce",
+        "amenity": "fast_food",
+        "address": "D\u011bkansk\u00e1 vinice \u2160, Praha",
+        "website": "https://www.nadvoustovce.cz/",
+        "opening_hours": "Mo-Fr 15:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4314849,
+          50.0548435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3892482,
+          50.12316
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4902815196,
         "hasDetails": true,
         "name": "Wang Fu Jing",
@@ -41253,6 +44496,27 @@
         "coordinates": [
           14.4336762,
           50.0996161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4906256922,
+        "hasDetails": true,
+        "name": "Hadog",
+        "amenity": "restaurant",
+        "cuisine": "burger;salad",
+        "address": "Sokolovsk\u00e1 379/204, Praha 8",
+        "website": "https://www.hadog.cz/",
+        "opening_hours": "PH,Mo-Sa 11:00-22:00; Su 11:30-21:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4787494,
+          50.1031695
         ]
       }
     },
@@ -41363,6 +44627,25 @@
         "coordinates": [
           14.4312351,
           50.0866535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4950769404,
+        "hasDetails": true,
+        "name": "Pivnice u Hollara",
+        "amenity": "pub",
+        "address": "Sob\u011bslavsk\u00e1 25, Praha 3",
+        "opening_hours": "Mo-Fr 14:00-22:00; Sa,Su 16:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4746767,
+          50.077272
         ]
       }
     },
@@ -41528,6 +44811,26 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 4996151240,
+        "hasDetails": true,
+        "name": "Pho 17",
+        "amenity": "restaurant",
+        "cuisine": "asian;thai",
+        "address": "Biskupcova 1792, Praha",
+        "opening_hours": "Mo-Fr 10:30-21:00; Sa 11:00-21:00; Su 11:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4697136,
+          50.0897125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -41555,6 +44858,27 @@
         "coordinates": [
           14.4179633,
           50.083336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4999154585,
+        "hasDetails": true,
+        "name": "Kafe a pala\u010dinky",
+        "amenity": "cafe",
+        "cuisine": "pancake;savory_pancakes;coffee;coffee_shop",
+        "address": "Hartigova 126, Praha 3",
+        "website": "https://www.facebook.com/kafeapalacinky",
+        "opening_hours": "Sa,Su 10:00-18:00; Mo-Fr 07:30-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.47004,
+          50.0905583
         ]
       }
     },
@@ -42457,6 +45781,56 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4748988,
+          50.0917992
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5185664157,
+        "hasDetails": true,
+        "name": "Super Doner Kebab",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Sa 10:00-22:00; Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4742809,
+          50.0913184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5185664160,
+        "hasDetails": true,
+        "name": "Pivn\u00ed rozmanitost",
+        "amenity": "pub",
+        "website": "http://pivni-rozmanitost.cz",
+        "opening_hours": "Mo-Th 15:00-22:00; Fr 14:00-23:00; Sa 15:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4736516,
+          50.0915824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 5186334166,
         "hasDetails": true,
@@ -42489,6 +45863,47 @@
         "coordinates": [
           14.4676534,
           50.0891321
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5188088453,
+        "hasDetails": true,
+        "name": "Venda Bar",
+        "amenity": "restaurant",
+        "cuisine": "steak",
+        "address": "Jana \u017delivsk\u00e9ho 27, Praha",
+        "website": "https://www.vendabar.cz/",
+        "opening_hours": "Mo-Fr 15:00-23:00; Sa 18:00-23:00; Su 18:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4690589,
+          50.0876331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5196396124,
+        "hasDetails": true,
+        "name": "B\u00eap Vi\u00eat",
+        "amenity": "restaurant",
+        "cuisine": "vietnamese",
+        "address": "Michelsk\u00e1 2, Praha 4",
+        "opening_hours": "Mo-Fr 10:30-21:00; Sa,Su 11:30-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4526954,
+          50.0544596
         ]
       }
     },
@@ -42990,6 +46405,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 5339935922,
+        "hasDetails": true,
+        "name": "J\u00eddelna Vozovna Pankr\u00e1c",
+        "amenity": "restaurant",
+        "address": "Na Vesel\u00ed",
+        "opening_hours": "Mo-Fr 07:00-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4399831,
+          50.0554794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 5352777233,
         "hasDetails": true,
         "name": "Kafe Francin",
@@ -43159,6 +46593,67 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 5439348631,
+        "hasDetails": true,
+        "name": "Asian restaurant",
+        "amenity": "restaurant",
+        "cuisine": "asian"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4588302,
+          50.1201126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5445273488,
+        "hasDetails": true,
+        "name": "Pizza Company",
+        "amenity": "fast_food",
+        "cuisine": "pizza",
+        "website": "www.pizzacompany.cz",
+        "opening_hours": "Mo-Fr 09:00-23:00; Sa,Su 10:00-23:00",
+        "names": [
+          "Pizza Company",
+          "V\u0161e za 25"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4527907,
+          50.1234811
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5463902650,
+        "hasDetails": true,
+        "name": "Fatfuck Smash Burgers",
+        "amenity": "restaurant",
+        "cuisine": "burger",
+        "address": "B\u011blohorsk\u00e1 158/14, Praha 6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3827534,
+          50.0858638
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 5464643032,
         "hasDetails": true,
         "name": "wingspoint",
@@ -43210,6 +46705,24 @@
         "coordinates": [
           14.4422167,
           50.0747286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5480359081,
+        "hasDetails": true,
+        "name": "Family cafe",
+        "amenity": "cafe",
+        "opening_hours": "Mo-Fr 16:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4595328,
+          50.1210491
         ]
       }
     },
@@ -43289,6 +46802,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 5508618890,
+        "hasDetails": true,
+        "name": "Namaste India",
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "address": "Ronkova 369/12, Praha 8",
+        "website": "https://namasteindia.cz/ronkova/",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4769805,
+          50.105728
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 5508982943,
         "hasDetails": true,
         "name": "Good bar",
@@ -43336,6 +46870,19 @@
         "coordinates": [
           14.393193,
           50.0811693
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4714329,
+          50.0897854
         ]
       }
     },
@@ -43418,6 +46965,24 @@
         "coordinates": [
           14.4471462,
           50.0952592
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5539788281,
+        "hasDetails": true,
+        "name": "Restaurace Bambini",
+        "amenity": "pub",
+        "opening_hours": "11:30-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4708479,
+          50.0899084
         ]
       }
     },
@@ -43944,6 +47509,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4254,
+          50.1174126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 5756730284,
         "hasDetails": true,
@@ -44317,6 +47895,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 5928300610,
+        "hasDetails": true,
+        "name": "Jihlavanka Caf\u00e9",
+        "amenity": "cafe",
+        "address": "Praha 8",
+        "opening_hours": "Mo-Fr 06:30-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4732818,
+          50.10447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 5933190785,
         "hasDetails": true,
         "name": "Divadlo Broadway",
@@ -44451,6 +48048,45 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 5998301256,
+        "hasDetails": true,
+        "name": "Rebels",
+        "amenity": "bar",
+        "cuisine": "italian_pizza;burger;grill",
+        "address": "Hartigova 165",
+        "website": "http://www.facebook.com/rebels165",
+        "opening_hours": "Mo-Sa 16:00-02:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4802205,
+          50.0923409
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6002746243,
+        "hasDetails": true,
+        "name": "Na D\u011bdince",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Fr 09:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4719245,
+          50.1142859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6006888109,
         "hasDetails": true,
         "name": "Fantova kav\u00e1rna",
@@ -44489,6 +48125,24 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 6023133919,
+        "hasDetails": true,
+        "name": "Kafe na schodech",
+        "amenity": "cafe",
+        "opening_hours": "Fr 07:30-15:00; Mo-Th 07:30-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4684795,
+          50.0888147
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -44515,6 +48169,25 @@
         "coordinates": [
           14.4575137,
           50.0916644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6066758524,
+        "hasDetails": true,
+        "name": "Na Kopci",
+        "amenity": "restaurant",
+        "website": "www.nakopci.com",
+        "opening_hours": "Mo-Fr 11:30-14:30, 17:30-23:00; Sa, Su 11:30-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4025689,
+          50.0567124
         ]
       }
     },
@@ -44775,6 +48448,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 6173916285,
+        "hasDetails": true,
+        "name": "Bistro u Gogi",
+        "amenity": "restaurant",
+        "cuisine": "georgian",
+        "address": "5. kv\u011btna 1040/38",
+        "website": "https://facebook.com/bistrougogi/",
+        "opening_hours": "Mo-Sa 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4371791,
+          50.0562485
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6178361466,
         "hasDetails": true,
         "name": "Music pub woodoo",
@@ -44794,6 +48488,31 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 6180881863,
+        "hasDetails": true,
+        "name": "Alf & Bet",
+        "amenity": "cafe",
+        "cuisine": "bakery",
+        "address": "Sv\u011btova 454/2, Praha 8",
+        "website": "https://www.alfabet.coffee/en",
+        "opening_hours": "Mo-Fr 08:00-18:00; Sa-Su 09:00-17:00",
+        "names": [
+          "Alf & Bet",
+          "EMA espresso bar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.473408,
+          50.1057726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6183571086,
         "hasDetails": true,
         "name": "Signor Vino",
@@ -44805,6 +48524,26 @@
         "coordinates": [
           14.4217741,
           50.0867433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6200340518,
+        "hasDetails": true,
+        "name": "U \u0160i\u0161k\u016f",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "website": "https://www.restaurace-u-sisku.cz/",
+        "opening_hours": "Mo-Fr 09:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4358004,
+          50.0556077
         ]
       }
     },
@@ -45323,6 +49062,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 6438333541,
+        "hasDetails": true,
+        "name": "Masami",
+        "amenity": "restaurant",
+        "cuisine": "japanese;sushi",
+        "address": "Nov\u00e1kov\u00fdch 2382/32b, Praha 8",
+        "website": "https://masami.cz/",
+        "opening_hours": "Mo-Fr 11:00-22:00, Sa-Su 16:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4784583,
+          50.1042684
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6440699200,
         "hasDetails": true,
         "name": "U Dlaba\u010d\u016f",
@@ -45368,6 +49128,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 6440707992,
+        "hasDetails": true,
+        "amenity": "fast_food",
+        "cuisine": "hot_dog;pastry",
+        "amenities": [
+          "fast_food",
+          "restaurant"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4114032,
+          50.116817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6447265187,
         "hasDetails": true,
         "name": "Christmas Restaurant",
@@ -45382,6 +49163,26 @@
         "coordinates": [
           14.4441789,
           50.0827233
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6461489708,
+        "hasDetails": true,
+        "name": "Pizza Hut",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "website": "https://pizzahut.cz/restaurants/977-pizza-hut-klapkova",
+        "opening_hours": "Mo-Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.455248,
+          50.1219611
         ]
       }
     },
@@ -45755,6 +49556,45 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 6509564195,
+        "hasDetails": true,
+        "name": "V Ol\u0161in\u00e1ch",
+        "amenity": "pub",
+        "address": "V ol\u0161in\u00e1ch 795/13",
+        "opening_hours": "Mo-Su 13:00-01:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4819948,
+          50.0712549
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6509564198,
+        "hasDetails": true,
+        "name": "Mahir Kebab",
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "address": "Kub\u00e1nsk\u00e9 n\u00e1m\u011bst\u00ed 1284/1",
+        "opening_hours": "Mo-Su 10:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.476845,
+          50.0711343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6509564200,
         "hasDetails": true,
         "name": "J\u00eddelna Vr\u0161ovice",
@@ -46033,6 +49873,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 6575442019,
+        "hasDetails": true,
+        "name": "restaurace Ta\u0161kent",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Sa 10:30-22:30; Su 10:30-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4749609,
+          50.1119944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6575472294,
         "hasDetails": true,
         "name": "Cafe 25",
@@ -46103,6 +49961,25 @@
         "coordinates": [
           14.433158,
           50.1004146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6575480732,
+        "hasDetails": true,
+        "name": "D\u00f6ner kebab",
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "opening_hours": "Mo-Fr 10:00-22:00; Sa,Su 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.472489,
+          50.108454
         ]
       }
     },
@@ -46430,7 +50307,8 @@
         "name": "Veget Caf\u00e8",
         "amenity": "cafe",
         "cuisine": "coffee_shop",
-        "address": "\u0160t\u011bp\u00e1nsk\u00e1 51, Praha"
+        "address": "\u0160t\u011bp\u00e1nsk\u00e1 51, Praha",
+        "opening_hours": "Mo-Fr 08:00-15:00; Sa,Su 09:00-14:00"
       },
       "geometry": {
         "type": "Point",
@@ -46966,6 +50844,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 7017141535,
+        "hasDetails": true,
+        "name": "Vrtule",
+        "amenity": "pub",
+        "opening_hours": "Mo-Su 13:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4725137,
+          50.1152863
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 7019891377,
         "hasDetails": true,
         "name": "S' -\u010cChuan \u010c\u00ednsk\u00e1 restaurace",
@@ -46979,6 +50875,46 @@
         "coordinates": [
           14.441519,
           50.0917329
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 7023219086,
+        "hasDetails": true,
+        "name": "Rice House",
+        "amenity": "restaurant",
+        "cuisine": "asian",
+        "address": "Sokolovsk\u00e1 399/196, Praha 8",
+        "website": "https://ricehouserestaurace.business.site/",
+        "opening_hours": "Mo-Fr 10:30-21:30; Sa 12:00-21:30; Su Off"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4779924,
+          50.102912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 7044819889,
+        "hasDetails": true,
+        "name": "Xin Fu",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "opening_hours": "Mo-Su 10:30-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4737753,
+          50.114236
         ]
       }
     },
@@ -47279,6 +51215,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4703682,
+          50.0563182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 7133226334,
         "hasDetails": true,
@@ -47402,6 +51351,24 @@
         "coordinates": [
           14.4573254,
           50.092064
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 7155868221,
+        "hasDetails": true,
+        "name": "Polo cafe",
+        "amenity": "cafe",
+        "opening_hours": "Mo-Fr 07:00-19:00, Sa 08:00-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4821317,
+          50.0925393
         ]
       }
     },
@@ -47653,6 +51620,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 7261369455,
+        "hasDetails": true,
+        "name": "Paddy's bar",
+        "amenity": "bar",
+        "address": "Mahenova 177/11"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3870493,
+          50.0720087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 7265549938,
         "hasDetails": true,
         "name": "Huong Sen",
@@ -47740,6 +51725,25 @@
         "coordinates": [
           14.4294483,
           50.0786716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 7344503643,
+        "hasDetails": true,
+        "name": "J\u00eddelna U plyn\u00e1rny",
+        "amenity": "restaurant",
+        "cuisine": "european",
+        "website": "http://jidelnauplynarny.cz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4756147,
+          50.0571392
         ]
       }
     },
@@ -47915,6 +51919,48 @@
         "coordinates": [
           14.4320866,
           50.077253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 7640772270,
+        "hasDetails": true,
+        "name": "Kolkovna DOCK",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "address": "Boudn\u00edkova 2506/1, Praha 8",
+        "website": "https://www.kolkovna.cz/cs/kolkovna-dock-25",
+        "opening_hours": "Mo-Su 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4694807,
+          50.1047739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 7640844733,
+        "hasDetails": true,
+        "name": "Noor Kebab",
+        "amenity": "fast_food",
+        "cuisine": "kebab;pizza;salad",
+        "address": "Zenklova 440/40, Praha 8",
+        "website": "https://www.damejidlo.cz/en/restaurant/s6aa/noor-kebab?r=1",
+        "opening_hours": "Mo-Fr 10:00-21:00; Sa,Su 12:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4729005,
+          50.1062964
         ]
       }
     },
@@ -48139,6 +52185,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 7762530613,
+        "hasDetails": true,
+        "name": "Pance & Landi",
+        "amenity": "cafe",
+        "address": "Podlipn\u00e9ho 810/14, Praha",
+        "opening_hours": "Mo-Th 08:00-15:00; Fr-Su off"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4745144,
+          50.1123056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 7807114385,
         "hasDetails": true,
         "name": "Starbucks",
@@ -48281,6 +52346,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4019385,
+          50.1184717
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 7835247285,
         "hasDetails": true,
@@ -48384,6 +52462,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 7893882880,
+        "hasDetails": true,
+        "name": "Bufet Tr\u00f3ja",
+        "amenity": "fast_food",
+        "opening_hours": "Mo-Fr 08:00-15:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4490594,
+          50.114681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 7959371022,
         "hasDetails": true,
         "name": "Mamacita Catalina",
@@ -48442,6 +52538,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4799796,
+          50.0671244
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 8176030198,
         "hasDetails": true,
@@ -48474,6 +52583,38 @@
         "coordinates": [
           14.4203468,
           50.0816113
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.429388,
+          50.1132744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 8207134434,
+        "hasDetails": true,
+        "name": "Sen Viet",
+        "amenity": "restaurant",
+        "cuisine": "vietnamese",
+        "opening_hours": "Mo-Fr 10:00-21:00; Sa 11:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4541903,
+          50.055236
         ]
       }
     },
@@ -48714,6 +52855,19 @@
         "coordinates": [
           14.4419878,
           50.0653858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.462434,
+          50.1190901
         ]
       }
     },
@@ -49226,6 +53380,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 9077204138,
+        "hasDetails": true,
+        "name": "Art&Food Zoona",
+        "amenity": "bar",
+        "website": "https://www.afzoona.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4108321,
+          50.114933
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 9095343859,
         "hasDetails": true,
         "name": "9\u00edtka",
@@ -49313,6 +53485,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 9174284761,
+        "hasDetails": true,
+        "name": "Palmovka Pinseria",
+        "amenity": "restaurant",
+        "address": "Sokolovsk\u00e1 890/125, Praha 8",
+        "website": "http://kavarnapalmovka.cz",
+        "opening_hours": "Mo-Fr 08:30-22:00; Sa 09:30-22:00; Su 09:30-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4738845,
+          50.1018449
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 9196982617,
         "hasDetails": true,
         "name": "Coffee & Waffles",
@@ -49359,6 +53551,24 @@
         "coordinates": [
           14.4208703,
           50.0856164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9293399648,
+        "hasDetails": true,
+        "name": "Mr. Hayer",
+        "amenity": "fast_food",
+        "opening_hours": "Su-Th 11:00-24:00, Fr,Sa 11:00-02:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4590814,
+          50.1172467
         ]
       }
     },
@@ -49491,6 +53701,19 @@
         "coordinates": [
           14.4305682,
           50.0881763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.45334,
+          50.1180913
         ]
       }
     },
@@ -49631,6 +53854,27 @@
         "coordinates": [
           14.4219586,
           50.0903341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9553012433,
+        "hasDetails": true,
+        "name": "kopi",
+        "amenity": "cafe",
+        "cuisine": "brunch;coffee_shop",
+        "address": "Zenklova 2530/23",
+        "website": "https://www.instagram.com/kopi_prg/",
+        "opening_hours": "Mo-Fr 08:00-18:00; Sa,Su 09:00-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.472752,
+          50.1053348
         ]
       }
     },
@@ -49826,6 +54070,27 @@
         "coordinates": [
           14.419116,
           50.0768562
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9621043870,
+        "hasDetails": true,
+        "name": "AIA pol\u00e9vk\u00e1rna",
+        "amenity": "restaurant",
+        "cuisine": "georgian",
+        "address": "Sokolovsk\u00e1 2288/117, Praha 8",
+        "website": "https://aiapolevkarna.cz",
+        "opening_hours": "Mo-Fr 09:00-21:00; Sa 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4692068,
+          50.0995428
         ]
       }
     },
@@ -50871,6 +55136,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 9759593853,
+        "hasDetails": true,
+        "name": "Boti\u010d Restaurant",
+        "amenity": "restaurant",
+        "website": "https://www.boticrestaurant.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4512053,
+          50.0558275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 9761978726,
         "hasDetails": true,
         "name": "Aladin",
@@ -50938,6 +55221,25 @@
         "coordinates": [
           14.4027854,
           50.0685203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9811748788,
+        "hasDetails": true,
+        "name": "Fruitisimo",
+        "amenity": "fast_food",
+        "cuisine": "juice",
+        "opening_hours": "Mo-Su 08:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4185804,
+          50.0751972
         ]
       }
     },
@@ -51035,6 +55337,25 @@
         "coordinates": [
           14.4042374,
           50.0845911
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9873923324,
+        "hasDetails": true,
+        "name": "Bistro Pra\u017eanda",
+        "amenity": "pub",
+        "website": "https://prazacka.cz/grill-park",
+        "opening_hours": "Mo-Su 15:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.475811,
+          50.0934515
         ]
       }
     },
@@ -51377,6 +55698,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 10065096948,
+        "hasDetails": true,
+        "name": "Dobrot\u00e9ka",
+        "amenity": "cafe",
+        "address": "Hartigova 2396/176",
+        "website": "https://www.dobroteka.cz",
+        "opening_hours": "Mo-Fr 08:30-22:00; Sa 09:00-22:00; Su 09:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4799827,
+          50.0919158
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 10098201819,
         "hasDetails": true,
         "name": "House Party",
@@ -51574,6 +55915,43 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 10169052245,
+        "hasDetails": true,
+        "name": "Cafe spirit",
+        "amenity": "cafe",
+        "website": "https://www.facebook.com/cafespiritzizkov",
+        "opening_hours": "Mo-Fr 08:00-20:00; Sa 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4689226,
+          50.0869822
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 10169052249,
+        "hasDetails": true,
+        "name": "D\u011btsk\u00e9 dopravn\u00ed h\u0159i\u0161t\u011b Jilmov\u00e1",
+        "amenity": "cafe",
+        "opening_hours": "April to October"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4744626,
+          50.0880985
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 10171146976,
         "hasDetails": true,
         "name": "Kaf\u00e9 Gar\u00e1\u017e",
@@ -51585,6 +55963,26 @@
         "coordinates": [
           14.4534846,
           50.0905372
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 10182257951,
+        "hasDetails": true,
+        "name": "To\u010dna Dlaba\u010dov",
+        "amenity": "fast_food",
+        "cuisine": "regional",
+        "website": "https://bistro-tocna.webnode.cz/",
+        "opening_hours": "Mo off; Tu-Fr 16:00-21:30; Sa, Su 11:00-21:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3848668,
+          50.0858134
         ]
       }
     },
@@ -51831,6 +56229,37 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4755027,
+          50.1120317
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 10240012092,
+        "hasDetails": true,
+        "name": "Cukrana Amarilis",
+        "amenity": "cafe",
+        "opening_hours": "Mo-Fr 12:00-19:00; Sa,Su 10:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4791783,
+          50.087623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4604196,
           50.0779338
         ]
@@ -51890,6 +56319,24 @@
         "coordinates": [
           14.4057848,
           50.0703641
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 10370224892,
+        "hasDetails": true,
+        "name": "Pizza Al Taglio Gem\u00fcse Kebab",
+        "amenity": "restaurant",
+        "cuisine": "pizza;kebab"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.470358,
+          50.069648
         ]
       }
     },
@@ -52218,6 +56665,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 10741341292,
+        "hasDetails": true,
+        "name": "elp\u00ed\u010dko",
+        "amenity": "bar",
+        "website": "https://www.elpicko.cz/",
+        "opening_hours": "Mo-Sa 16:00-01:00; Su 16:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4729876,
+          50.1038792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 10745305532,
         "hasDetails": true,
         "name": "Letec Espresso Bar",
@@ -52410,6 +56876,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4788335,
+          50.0743088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 10829447834,
         "hasDetails": true,
@@ -52499,6 +56978,19 @@
         "coordinates": [
           14.4476252,
           50.0717752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4422941,
+          50.1123483
         ]
       }
     },
@@ -53383,6 +57875,24 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 11038060122,
+        "hasDetails": true,
+        "name": "Butterfly zone",
+        "amenity": "pub",
+        "address": "Pod \u010certovou skalou 834/3, Praha 8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4706348,
+          50.1156253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -53556,6 +58066,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4507872,
+          50.0565014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 11039890912,
         "hasDetails": true,
@@ -53589,6 +58112,25 @@
         "coordinates": [
           14.4342498,
           50.084118
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11047059854,
+        "hasDetails": true,
+        "name": "2deci",
+        "amenity": "cafe",
+        "address": "Kub\u00e1nsk\u00e9 n\u00e1m\u011bst\u00ed 1391/11",
+        "opening_hours": "Mo-Fr 14:00-21:00; Sa 16:00-21:30; Su 17:00-21:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4811488,
+          50.0713551
         ]
       }
     },
@@ -53674,6 +58216,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 11054335466,
+        "hasDetails": true,
+        "name": "zahrada libe\u0148",
+        "amenity": "pub",
+        "opening_hours": "\"soukrom\u00e1 m\u011bsta\""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4728721,
+          50.1155065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 11059221610,
         "hasDetails": true,
         "name": "Kafe Sme\u010dky",
@@ -53687,6 +58247,25 @@
         "coordinates": [
           14.426588,
           50.07751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11076873489,
+        "hasDetails": true,
+        "name": "Mal\u00fd Eden",
+        "amenity": "cafe",
+        "address": "Rusk\u00e1 1211/138",
+        "opening_hours": "Mo-Th 09:00-21:00; Fr 09:00-15:00; Sa-Su off"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4738379,
+          50.0735719
         ]
       }
     },
@@ -54076,6 +58655,25 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 11213620306,
+        "hasDetails": true,
+        "amenity": "cafe",
+        "address": "U \u010cesk\u00fdch lod\u011bnic 40, Praha 8",
+        "website": "https://www.velkymlyn.cz/kavarna/",
+        "opening_hours": "Mo 13:00-20:00, Tu-Su 09:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4691237,
+          50.1075632
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -54123,6 +58721,63 @@
         "coordinates": [
           14.3995865,
           50.0657603
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11248528294,
+        "hasDetails": true,
+        "name": "Kof\u00ednno",
+        "amenity": "cafe",
+        "address": "Radlick\u00e1 365/154, Praha 5",
+        "website": "https://kofinno.cz/",
+        "opening_hours": "Mo-Fr 08:00-21:00; Sa-Su 09:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3826058,
+          50.0570524
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11250481189,
+        "hasDetails": true,
+        "name": "M\u1ed9\u0309c Qu\u00e1n",
+        "amenity": "restaurant",
+        "cuisine": "vietnamese",
+        "opening_hours": "Mo-Fr 10:30-21:30; Sa,Su 11:30-21:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4723957,
+          50.1099849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11250481190,
+        "hasDetails": true,
+        "name": "Best Kitchen",
+        "amenity": "fast_food",
+        "opening_hours": "Mo-Fr 10:00-22:00; Su 12:00-22:00; Sa off"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.472483,
+          50.1094586
         ]
       }
     },
@@ -54304,6 +58959,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 11315906997,
+        "hasDetails": true,
+        "name": "Bufet Troja",
+        "amenity": "fast_food",
+        "cuisine": "cake;coffee_shop;sandwich",
+        "opening_hours": "Mo-Fr 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4425738,
+          50.1161498
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 11333717815,
         "hasDetails": true,
         "name": "Vietnamsk\u00e1 restaurace moon",
@@ -54372,6 +59046,54 @@
         "coordinates": [
           14.4225285,
           50.1009854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11381096409,
+        "hasDetails": true,
+        "amenity": "cafe",
+        "cuisine": "coffee_shop"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4526016,
+          50.123755
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11383557105,
+        "hasDetails": true,
+        "name": "Viva Billa",
+        "amenity": "cafe",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4457793,
+          50.1118685
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.469957,
+          50.0563057
         ]
       }
     },
@@ -54470,6 +59192,24 @@
         "coordinates": [
           14.4555747,
           50.1034724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11411637238,
+        "hasDetails": true,
+        "name": "Suki",
+        "amenity": "fast_food",
+        "opening_hours": "Mo-Fr 11:00-21:00; Sa 11:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4741229,
+          50.1019223
         ]
       }
     },
@@ -55174,6 +59914,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 11832944994,
+        "hasDetails": true,
+        "name": "Vino Fino",
+        "amenity": "bar",
+        "website": "https://vinofino.cz/",
+        "opening_hours": "Mo-Sa 17:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4791244,
+          50.0879427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 11837708269,
         "hasDetails": true,
         "name": "mazelab.coffee",
@@ -55444,6 +60203,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 11930632333,
+        "hasDetails": true,
+        "name": "Fu Yuan",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "opening_hours": "Mo-Su 10:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.474521,
+          50.1020296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 11958802466,
         "hasDetails": true,
         "name": "M\u2019Roll",
@@ -55664,6 +60442,25 @@
         "coordinates": [
           14.4440583,
           50.0629495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12053906078,
+        "hasDetails": true,
+        "name": "V\u0161e za 25",
+        "amenity": "fast_food",
+        "cuisine": "pizza",
+        "opening_hours": "Mo-Fr 09:00-22:00; Sa-Su 10:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4740446,
+          50.0785034
         ]
       }
     },
@@ -56256,6 +61053,24 @@
         "coordinates": [
           14.4459263,
           50.0912092
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12347719676,
+        "hasDetails": true,
+        "name": "Ginger",
+        "amenity": "restaurant",
+        "cuisine": "asian"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4794989,
+          50.078045
         ]
       }
     },
@@ -57334,6 +62149,65 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 12644082084,
+        "hasDetails": true,
+        "name": "Light roast",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop;breakfast;cake",
+        "address": "Smr\u010dkova 2485/4, Praha",
+        "website": "https://www.light-roast.coffee/kavarna",
+        "opening_hours": "Mo-Fr 08:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4688577,
+          50.1047388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12645270685,
+        "hasDetails": true,
+        "name": "Bistro Hala",
+        "amenity": "restaurant",
+        "address": "Voct\u00e1\u0159ova 2499/20, Praha",
+        "website": "https://www.perfectcanteen.cz/podniky/bistro-hala",
+        "opening_hours": "Mo-Fr 08:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4707172,
+          50.1043064
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12645828984,
+        "hasDetails": true,
+        "name": "Nejpls",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Fr 07:30-20:00; Sa,Su 09:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4694916,
+          50.087784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -57394,6 +62268,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 12657282190,
+        "hasDetails": true,
+        "name": "Kant\u00fdna Metrostav",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "address": "Ko\u017eelu\u017esk\u00e1 2450, Praha",
+        "website": "https://www.manihi.cz/kantyna-metrostav/",
+        "opening_hours": "Mo-Fr 06:30-15:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4712608,
+          50.1050489
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 12658042402,
         "hasDetails": true,
         "name": "McDonald's",
@@ -57406,8 +62301,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4186947,
-          50.0753473
+          14.4186104,
+          50.0753111
         ]
       }
     },
@@ -57867,6 +62762,32 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4270882,
+          50.0539861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4731224,
+          50.0923055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 12856232114,
         "hasDetails": true,
@@ -57914,6 +62835,32 @@
         "coordinates": [
           14.4600649,
           50.0741704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4756378,
+          50.1121459
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4573136,
+          50.1208863
         ]
       }
     },
@@ -58044,6 +62991,26 @@
         "coordinates": [
           14.4340574,
           50.0884855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12920790027,
+        "hasDetails": true,
+        "name": "Pauza Palmovka",
+        "amenity": "cafe",
+        "address": "Zenklova 250/5, Praha 8",
+        "website": "https://www.instagram.com/pauzapalmovka/",
+        "opening_hours": "Mo-Fr 08:00-20:00; Sa-Su 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4719428,
+          50.1025298
         ]
       }
     },
@@ -58396,6 +63363,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 12994544405,
+        "hasDetails": true,
+        "name": "Boba Cotta",
+        "amenity": "cafe",
+        "cuisine": "bubble_tea",
+        "address": "Kub\u00e1nsk\u00e9 n\u00e1m\u011bst\u00ed",
+        "opening_hours": "Mo-Sa 09:30-19:00; Su 12:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4776717,
+          50.0715276
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 12995515870,
         "hasDetails": true,
         "name": "Kristies",
@@ -58582,6 +63569,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 13019755008,
+        "hasDetails": true,
+        "name": "Prazelenina",
+        "amenity": "biergarten",
+        "opening_hours": "Tu-Fr,Su 17:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4494587,
+          50.1120355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 13025369202,
         "hasDetails": true,
         "amenity": "restaurant",
@@ -58594,6 +63599,23 @@
         "coordinates": [
           14.4574614,
           50.06832
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13031959351,
+        "hasDetails": true,
+        "amenity": "cafe",
+        "website": "https://www.utvs.cvut.cz/sportoviste/tenis-praha-6.htmlhttps://www.utvs.cvut.cz/sportoviste/tenis-praha-6.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3839642,
+          50.1060378
         ]
       }
     },
@@ -58692,8 +63714,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4183672,
-          50.0752229
+          14.4183076,
+          50.0752173
         ]
       }
     },
@@ -59244,6 +64266,27 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 13171808701,
+        "hasDetails": true,
+        "name": "Chleb\u00ed\u010dek Store",
+        "amenity": "restaurant",
+        "cuisine": "breakfast;cake;coffee_shop;sandwich",
+        "address": "n\u00e1m\u011bst\u00ed Dr. V\u00e1clava Hol\u00e9ho 1331/3",
+        "website": "https://www.chlebicekstore.cz/",
+        "opening_hours": "Mo-Fr 07:30-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4746003,
+          50.1070681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 13171821801,
         "hasDetails": true,
         "name": "Loving Bistro - OC Flora",
@@ -59500,6 +64543,42 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 13230657029,
+        "hasDetails": true,
+        "name": "GOODLUNCH",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Th 07:30-16:00; Fr 07:30-15:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4400496,
+          50.1110272
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13230657030,
+        "hasDetails": true,
+        "name": "The Miners",
+        "amenity": "cafe",
+        "opening_hours": "Mo-Fr 07:30-18:00; Sa-Su 10:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4397578,
+          50.1110133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 13232410901,
         "hasDetails": true,
         "name": "J\u00eddlovice",
@@ -59672,6 +64751,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4798516,
+          50.1040208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4566397,
           50.0935911
         ]
@@ -59768,6 +64860,19 @@
         "coordinates": [
           14.4090045,
           50.072639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4540409,
+          50.1219494
         ]
       }
     },
@@ -60115,6 +65220,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4678387,
+          50.1148237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 13468165523,
         "hasDetails": true,
@@ -60203,6 +65321,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 13471114676,
+        "hasDetails": true,
+        "name": "Hasu sushi",
+        "amenity": "fast_food",
+        "cuisine": "sushi",
+        "website": "https://hasu-sushi.cz/",
+        "opening_hours": "Mo-Su 10:00-21:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.451342,
+          50.1221482
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 13480007673,
         "hasDetails": true,
         "name": "Centraal",
@@ -60214,6 +65352,24 @@
         "coordinates": [
           14.4146535,
           50.0702528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13483159475,
+        "hasDetails": true,
+        "name": "Bistro Relax",
+        "amenity": "fast_food",
+        "cuisine": "sandwich;coffee_shop;tea;hot_dog;sausage;fries;bistro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3861962,
+          50.1068421
         ]
       }
     },
@@ -60512,6 +65668,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 13584483540,
+        "hasDetails": true,
+        "name": "Pleiku",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop",
+        "address": "Zenklova 1545/39, Praha 8",
+        "opening_hours": "Mo-Su 09:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4722196,
+          50.1090087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 13585589701,
         "hasDetails": true,
         "name": "Slovensk\u00fd institut v Praze",
@@ -60625,6 +65801,25 @@
         "coordinates": [
           14.4039224,
           50.0869584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13606721358,
+        "hasDetails": true,
+        "name": "Deskohub",
+        "amenity": "pub",
+        "website": "https://www.deskohub.cz/",
+        "opening_hours": "Mo-Fr 17:00-23:00; Sa,Su 12:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4791962,
+          50.1031358
         ]
       }
     },
@@ -61069,6 +66264,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 13738258053,
+        "hasDetails": true,
+        "name": "Bar Camp \u017di\u017ekov",
+        "amenity": "bar",
+        "opening_hours": "Mo-Su 13:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4732203,
+          50.0922153
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 13739489101,
         "hasDetails": true,
         "name": "Off",
@@ -61120,6 +66333,24 @@
         "coordinates": [
           14.440866,
           50.0647551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13767259666,
+        "hasDetails": true,
+        "name": "Sensu",
+        "amenity": "restaurant",
+        "opening_hours": "Mo 10:00-19:00; Tu-Su 09:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4706168,
+          50.0861286
         ]
       }
     },
@@ -61298,6 +66529,23 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 13865647201,
+        "hasDetails": true,
+        "amenity": "restaurant",
+        "website": "http://www.pizzazeero.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4815132,
+          50.0708875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 13872319543,
         "hasDetails": true,
         "name": "Bohemian Pot",
@@ -61322,6 +66570,42 @@
         "coordinates": [
           14.416069,
           50.0739424
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13887560533,
+        "hasDetails": true,
+        "name": "Hot-dog Prague",
+        "amenity": "fast_food",
+        "cuisine": "hot_dog"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4187569,
+          50.0751742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13894172071,
+        "hasDetails": true,
+        "name": "Asia box",
+        "amenity": "fast_food",
+        "opening_hours": "Mo-Su 10:30-20:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4024678,
+          50.0725804
         ]
       }
     },
@@ -61514,6 +66798,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4515801,
+          50.1230407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 28552786,
         "hasDetails": true,
@@ -61699,6 +66996,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 30336574,
+        "hasDetails": true,
+        "name": "Stop Cafe",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop;hot_dog",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4797785,
+          50.0971614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 30503740,
         "hasDetails": true,
         "name": "Na Slamn\u00edku",
@@ -61711,6 +67027,25 @@
         "coordinates": [
           14.4084089,
           50.103736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 30545522,
+        "hasDetails": true,
+        "name": "Stop Cafe",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop;hot_dog",
+        "opening_hours": "Mo-Su 06:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4778847,
+          50.0967577
         ]
       }
     },
@@ -61850,6 +67185,23 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 38756593,
+        "hasDetails": true,
+        "amenity": "fast_food",
+        "cuisine": "pizza;ice_cream"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4765976,
+          50.0751561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 42800603,
         "hasDetails": true,
         "name": "Divadlo Na Fidlova\u010dce",
@@ -61884,6 +67236,19 @@
         "coordinates": [
           14.4532498,
           50.0931502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.408454,
+          50.1150557
         ]
       }
     },
@@ -61989,6 +67354,42 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 58618299,
+        "hasDetails": true,
+        "name": "Cantina",
+        "amenity": "fast_food",
+        "opening_hours": "Mo-Su 07:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4433076,
+          50.1144281
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 62147202,
+        "hasDetails": true,
+        "name": "J\u00eddelna U Doktora",
+        "amenity": "restaurant",
+        "opening_hours": "Mo-Fr 07:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4657581,
+          50.1155251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 75322318,
         "hasDetails": true,
         "name": "Albatros",
@@ -62049,6 +67450,42 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 107217817,
+        "hasDetails": true,
+        "amenity": "fast_food",
+        "website": "https://www.botanicka.cz/",
+        "opening_hours": "Apr-Oct 09:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4148602,
+          50.1188891
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 113526107,
+        "hasDetails": true,
+        "name": "U Hrocha",
+        "amenity": "fast_food",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4090947,
+          50.1187367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 127604920,
         "hasDetails": true,
         "name": "U Primas\u016f",
@@ -62061,6 +67498,25 @@
         "coordinates": [
           14.4281004,
           50.1067233
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 149715604,
+        "hasDetails": true,
+        "name": "Emma bistro",
+        "amenity": "fast_food",
+        "cuisine": "hot_dog;ice_cream;sausage",
+        "opening_hours": "Mo-Fr 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4672209,
+          50.1161091
         ]
       }
     },
@@ -62099,6 +67555,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 179636248,
+        "hasDetails": true,
+        "name": "Na pozemn\u00edm hokeji",
+        "amenity": "restaurant",
+        "opening_hours": "Tu-Su 11:00-20:00; Mo 11:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4767307,
+          50.0662341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 233914173,
         "hasDetails": true,
         "name": "Miminoo",
@@ -62119,6 +67593,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4169225,
+          50.1126927
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 274617182,
         "hasDetails": true,
@@ -62131,6 +67618,24 @@
         "coordinates": [
           14.4363506,
           50.0952222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 276717461,
+        "hasDetails": true,
+        "name": "Restaurant Gulab",
+        "amenity": "restaurant",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4075765,
+          50.1189536
         ]
       }
     },
@@ -62259,6 +67764,19 @@
         "coordinates": [
           14.3961622,
           50.1001706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4071716,
+          50.1188276
         ]
       }
     },
@@ -62449,6 +67967,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 486592301,
+        "hasDetails": true,
+        "name": "U Gibona",
+        "amenity": "fast_food",
+        "website": "https://www.zoopraha.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4082491,
+          50.1156696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 486598459,
         "hasDetails": true,
         "name": "McDonald's",
@@ -62574,6 +68110,26 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 490370429,
+        "hasDetails": true,
+        "name": "Fresh Corner",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop;hot_dog;pastry",
+        "website": "https://freshcorner.cz/cz",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.471403,
+          50.0614271
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 494921184,
         "hasDetails": true,
         "name": "Na hradb\u00e1ch",
@@ -62585,6 +68141,26 @@
         "coordinates": [
           14.4225679,
           50.0636722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 539209383,
+        "hasDetails": true,
+        "name": "Fresh Corner",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop;hot_dog;sandwich;pastry",
+        "website": "https://freshcorner.cz/cz",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4760714,
+          50.1212192
         ]
       }
     },
@@ -62740,7 +68316,7 @@
         "cuisine": "coffee_shop",
         "address": "Plze\u0148sk\u00e1 233/8, Praha",
         "website": "https://www.starbuckscoffee.cz/",
-        "opening_hours": "Mo-Fr 07:30-22:00; Sa,Su 08:00-21:30"
+        "opening_hours": "Mo-Fr 06:00-22:00; Sa,Su 07:00-22:00"
       },
       "geometry": {
         "type": "Point",
@@ -63129,6 +68705,38 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 679349415,
+        "hasDetails": true,
+        "name": "Altenburg 1964",
+        "amenity": "bar",
+        "website": "https://www.altenburg1964.cz/",
+        "opening_hours": "Apr-Oct: Mo-Su 17:00-01:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.441655,
+          50.112418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.402052,
+          50.1187374
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 825356419,
         "hasDetails": true,
         "name": "Vanille",
@@ -63205,6 +68813,58 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4148911,
+          50.1192335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192943,
+          50.1227459
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4134109,
+          50.1216497
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243744,
+          50.1133256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4486009,
           50.1078093
         ]
@@ -63220,6 +68880,19 @@
         "coordinates": [
           14.4561741,
           50.0888785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.468205,
+          50.0684979
         ]
       }
     },
@@ -63270,6 +68943,37 @@
         "coordinates": [
           14.4309335,
           50.0670982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1102638747,
+        "hasDetails": true,
+        "name": "Ob\u010derstven\u00ed u Restaurace Oce\u00e1n",
+        "amenity": "fast_food",
+        "address": "Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4109452,
+          50.1162772
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4055067,
+          50.1173797
         ]
       }
     },
@@ -63358,6 +69062,56 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 1286215314,
+        "hasDetails": true,
+        "name": "D\u017eungle BKAO",
+        "amenity": "bar",
+        "website": "https://navystavisti.cz/udalosti/dzungle-bkao/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243074,
+          50.1094639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4161998,
+          50.1118237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1338835822,
+        "hasDetails": true,
+        "name": "Roj Kebab House",
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "opening_hours": "08:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4701423,
+          50.0565105
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -63391,6 +69145,24 @@
         "coordinates": [
           14.4543984,
           50.0821136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1385065735,
+        "hasDetails": true,
+        "name": "Dog in Dock Lihovar",
+        "amenity": "fast_food",
+        "website": "https://www.facebook.com/dogindock.lihovar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.409801,
+          50.05355
         ]
       }
     },

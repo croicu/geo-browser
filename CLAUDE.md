@@ -383,7 +383,11 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 4. **Ready to Submit** — Advance to `Status: Ready to Submit`. Run lint + tests; confirm docs are up to date.
 5. **Done** — Advance to `Status: Done` after merge/close; move the entry to `## Completed Tasks`.
 
-## New Tasks
+## New Task
+- **File**: [User Layer](tasks/user_layer.md)
+- **Status**: Testing.
+- **GitHub Issue**: N/A
+- **Key Context**: End user is able to define points during his/her trip. the points are going to get stored in a dedicated layer.
 
 ## Postponed Tasks
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
