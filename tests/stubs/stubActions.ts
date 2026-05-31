@@ -2,6 +2,8 @@ import type { ControllerActions } from "../../src/contracts";
 
 export class StubActions implements ControllerActions {
     public openedSummary = false;
+    public openedSummaryCenter?: [number, number];
+    public openedSummaryZoom?: number;
     public openedDetailAreaId?: string;
     public openedDetailCenter?: [number, number];
     public openedDetailZoom?: number;
@@ -14,8 +16,10 @@ export class StubActions implements ControllerActions {
     public savedDetailCenter?: [number, number];
     public savedDetailZoom?: number;
 
-    openSummary(): void {
+    openSummary(center?: [number, number], zoom?: number): void {
         this.openedSummary = true;
+        this.openedSummaryCenter = center;
+        this.openedSummaryZoom = zoom;
     }
 
     openDetail(areaId: string, center?: [number, number], zoom?: number): void {

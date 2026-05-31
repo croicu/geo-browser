@@ -245,6 +245,9 @@ export class ImageOverlayWidget {
         const unlockBtn = this.buildIconButton("/icons/img-unlock.svg", "Unlock image from map coordinates", () => this.unlock());
         lockedSection.appendChild(unlockBtn);
 
+        const removeLockedBtn = this.buildIconButton("/icons/img-close.svg", "Remove overlay", () => this.removeOverlay());
+        lockedSection.appendChild(removeLockedBtn);
+
         container.appendChild(lockedSection);
 
         return container;

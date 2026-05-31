@@ -383,12 +383,18 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 4. **Ready to Submit** — Advance to `Status: Ready to Submit`. Run lint + tests; confirm docs are up to date.
 5. **Done** — Advance to `Status: Done` after merge/close; move the entry to `## Completed Tasks`.
 
-## New Tasks
+## New Task
+- **File**: [Stabilization](tasks/stabilization.md)
+- **Status**: Brainstorm.
+- **GitHub Issue**: N/A
+- **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Postponed Tasks
+- **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
 
 ## Completed Tasks
+- **[User Layer](tasks/user_layer.md)**: Status: Done. End-user trip points stored in `__user__` layer. Gestures (long-press / right-click), localStorage + gateway storage, pressure→HSL-lightness colour, incremental rendering, toolbar visibility, synthesis fallback, AreaChanged wiring.
 - **[Zoom out exception](tasks/zoom_out_bug.md)**: Status: Done. Fixed crash in Leaflet's animated zoom (setMinZoom pre-snaps without animation) and bounce-back loop (summary viewport zoom clamped to ≤ 10).
 - **[Blue Dot Detection](tasks/blue_dot_detection.md)**: Canvas pixel scan in `src/vision/blueDotDetector.ts`. Multi-scale sliding window, 3-stage funnel, sector-aware ring scoring with MIN_RING_SECTORS filter. Auto-pins on paste when confidence ≥ threshold; "I feel lucky" button for manual trigger. Image visually snaps detected dot to GPS position immediately.
 - **[3-DOF Editor](tasks/image_overlay.md)**: CSS fixed overlay in detail view (browse mode). Paste/Google/Apple image sources. Translate X/Y via drag, scale via pinch/wheel, opacity slider, geo-lock to map coordinates. Session-level snapshot across view recreations.

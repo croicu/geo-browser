@@ -15,6 +15,20 @@
       "maxRadiusPx": 512,
       "liveMapRadiusPx": 640,
       "manifestUrl": "./areas/redmond/manifest.json"
+    },
+    {
+      "id": "prague",
+      "name": "Prague",
+      "bbox": [
+        14.407947063446045,
+        50.07873569998136,
+        14.435069561004639,
+        50.10043028427842
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/prague/manifest.json"
     }
   ]
 }

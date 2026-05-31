@@ -75,18 +75,22 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
 
     // ControllerActions
 
-    async openSummary(): Promise<void> {
+    async openSummary(center?: [number, number], zoom?: number): Promise<void> {
         if (this._navigating) return;
         this._navigating = true;
 
         try {
             getLogger().info("open summary");
 
+            const viewState = center !== undefined || zoom !== undefined
+                ? new SummaryViewState({ center: center ?? this._summaryViewState.center, zoom: zoom ?? this._summaryViewState.zoom })
+                : this._summaryViewState;
+
             const summaryView: View = new SummaryView(
                 this._app,
                 this,
                 this._catalog,
-                this._summaryViewState,
+                viewState,
                 { gateway: this._gateway }
             );
 

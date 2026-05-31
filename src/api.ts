@@ -129,3 +129,45 @@ export const AreaChanged: EventDef<AreaChangedData, void> = {
     id: "__geo_area_changed__",
     _kind: "event",
 };
+
+// ── GetUserPoints (browser → builder / standalone) ───────────────────────────
+
+export interface GetUserPointsInput {
+    areaId: string;
+}
+
+export interface GetUserPointsOutput {
+    error: number;
+    errorDescription: string | null;
+    geojson: unknown | null;  // GeoJSON FeatureCollection; null when error !== OK
+}
+
+export const GetUserPoints: MethodDef<GetUserPointsInput, GetUserPointsOutput> = {
+    id: "__geo_get_user_points__",
+    _kind: "method",
+};
+
+// ── AddUserPoint (browser → builder / standalone) ────────────────────────────
+
+export interface UserPointData {
+    lat: number;
+    lon: number;
+    timestamp: string;   // ISO 8601
+    pressure: number;    // 0.0–1.0
+    name: string | null;
+}
+
+export interface AddUserPointInput {
+    areaId: string;
+    point: UserPointData;
+}
+
+export interface AddUserPointOutput {
+    error: number;
+    errorDescription: string | null;
+}
+
+export const AddUserPoint: MethodDef<AddUserPointInput, AddUserPointOutput> = {
+    id: "__geo_add_user_point__",
+    _kind: "method",
+};

@@ -45,11 +45,16 @@
     "layerAcquisition": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["provider", "filter", "values"],
+      "required": ["provider", "filters"],
       "properties": {
         "provider": { "type": "string" },
-        "filter":   { "type": "string" },
-        "values":   { "type": "array", "items": { "type": "string" } }
+        "filters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
       }
     },
     "layer": {
@@ -58,7 +63,7 @@
       "additionalProperties": false,
       "properties": {
         "id":          { "type": "string" },
-        "type":        { "type": "string", "enum": ["heatmap", "circle", "__poi__"] },
+        "type":        { "type": "string", "enum": ["heatmap", "circle", "__poi__", "__user__"] },
         "url":         { "$ref": "#/definitions/nullableString" },
         "visible":     { "type": "boolean" },
         "name":        { "type": "string" },

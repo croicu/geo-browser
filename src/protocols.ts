@@ -46,8 +46,7 @@ export interface LayerStyle {
 
 export interface LayerAcquisition {
     provider: string;
-    filter: string;
-    values: string[];
+    filters: { [key: string]: string[] };
 }
 
 export interface Layer {

@@ -13,6 +13,7 @@ import type {
 } from "../../contracts";
 import { GeoCatalog } from "../../catalog/catalog";
 import { SummaryViewState } from "../../state/summaryViewState";
+import { getLogger } from "../../services";
 import { BubbleWidget } from "./bubbleWidget";
 import { DrawAreaInteraction } from "./drawAreaInteraction";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "../detail/leafletFactories";
@@ -40,6 +41,7 @@ export class SummaryView implements View {
     private _map?: MapHandle;
     private _moveEndCleanup?: () => void;
     private _zoomCleanup?: () => void;
+    private _zoomCooldownUntil = 0;
     private readonly _bubbleWidgets: BubbleWidget[] = [];
     private _designToolbar?: WidgetHandle;
     private _drawInteraction?: DrawAreaInteraction;
@@ -85,6 +87,7 @@ export class SummaryView implements View {
         );
 
         this._map = map;
+        this._zoomCooldownUntil = Date.now() + 500;
         this._moveEndCleanup = map.onMoveEnd(() => this.saveViewport());
         this._zoomCleanup = map.onZoom(zoom => this.onZoomChange(zoom));
 
@@ -240,6 +243,13 @@ export class SummaryView implements View {
     }
 
     private onZoomChange(zoom: number): void {
+        const log = getLogger();
+        const center = this._map?.getCenter();
+        log.info("summary.zoom", { zoom, lat: center?.[0], lng: center?.[1] });
+        if (Date.now() < this._zoomCooldownUntil) {
+            log.info("summary.zoom_cooldown", { zoom });
+            return;
+        }
         if (zoom < 11) {
             return;
         }
@@ -249,7 +259,10 @@ export class SummaryView implements View {
         }
         const area = this.findAreaInBounds(map.getBounds(), map.getCenter());
         if (area) {
+            log.info("summary.zoom_to_detail", { areaId: area.id, zoom, lat: center?.[0], lng: center?.[1] });
             this._actions.openDetail(area.id, map.getCenter(), map.getZoom());
+        } else {
+            log.info("summary.zoom_no_area", { zoom, lat: center?.[0], lng: center?.[1] });
         }
     }
 
