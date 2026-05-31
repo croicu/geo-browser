@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { vi, beforeEach, describe, expect, it } from "vitest";
 import { DetailView } from "../../../src/view/detail/detailView";
 import { StubActions } from "../../stubs/stubActions";
 import { StubLogger } from "../../stubs/stubLogger";
@@ -124,7 +124,7 @@ describe("DetailView", () => {
         expect(logger.calls[0].props).toEqual({ lat: 40.8518, lng: 14.2681 });
     });
 
-    it("navigates to summary when zoom reaches minimum", () => {
+    it("navigates to summary when zoom drops below minimum", () => {
         const root = document.createElement("div");
         const mapFactory = new StubMapFactory();
         const actions = new StubActions();
@@ -141,13 +141,18 @@ describe("DetailView", () => {
             }
         );
 
+        vi.useFakeTimers();
         view.render();
-        // StubMap.getBoundsZoom returns 10 → minZoom = floor(10) - 1 = 9
-        mapFactory.map.simulateZoom(9);
+        vi.advanceTimersByTime(500);
+        // StubMap.getBoundsZoom returns 10 → minZoom = Math.max(11, floor(10) - 1) = 11
+        // Exit triggers at zoom strictly below minZoom (< 11), not at exactly minZoom.
+        mapFactory.map.simulateZoom(10);
 
         expect(actions.openedSummary).toBe(true);
-        expect(actions.savedSummaryCenter).toEqual([0, 0]);
-        expect(actions.savedSummaryZoom).toBe(9);
+        expect(actions.openedSummaryCenter).toEqual([0, 0]);
+        expect(actions.openedSummaryZoom).toBe(10);
+
+        vi.useRealTimers();
     });
 
     it("does not navigate to summary when zoom is above minimum", () => {
@@ -168,7 +173,7 @@ describe("DetailView", () => {
         );
 
         view.render();
-        mapFactory.map.simulateZoom(10);
+        mapFactory.map.simulateZoom(12);
 
         expect(actions.openedSummary).toBe(false);
     });

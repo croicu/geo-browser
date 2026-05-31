@@ -39,7 +39,7 @@ export interface Widget {
 }
 
 export interface ControllerActions {
-    openSummary(): void;
+    openSummary(center?: [number, number], zoom?: number): void;
     openDetail(areaId: string, center?: [number, number], zoom?: number): void;
     setLayerVisible(areaId: string, layerId: string, visible: boolean): void;
 
@@ -98,6 +98,7 @@ export interface MapHandle {
     enableDrag(): void;
     setMaxBounds(sw: [number, number], ne: [number, number]): void;
     getBoundsZoom(sw: [number, number], ne: [number, number]): number;
+    setZoom(zoom: number): void;
     setMinZoom(zoom: number): void;
     getBounds(): { sw: [number, number]; ne: [number, number] };
     createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle;

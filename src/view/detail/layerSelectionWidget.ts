@@ -23,7 +23,8 @@ export class LayerSelectionWidget implements WidgetHandle {
         actions: ControllerActions,
         factory: WidgetFactory,
         areaId: string,
-        layers: readonly GeoLayer[]
+        layers: readonly GeoLayer[],
+        getVisible?: (layer: GeoLayer) => boolean
     ) {
         this._map = map;
         this._areaId = areaId;
@@ -37,7 +38,7 @@ export class LayerSelectionWidget implements WidgetHandle {
                 id: layer.id,
                 name: layer.name ?? layer.id,
                 color: layer.style?.color ?? "#888888",
-                visible: layer.isVisible(),
+                visible: getVisible ? getVisible(layer) : layer.isVisible(),
             });
         }
     }

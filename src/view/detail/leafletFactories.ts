@@ -217,6 +217,10 @@ class LeafletMapHandle implements MapHandle {
         return this._map.getBoundsZoom([sw, ne]);
     }
 
+    setZoom(zoom: number): void {
+        this._map.setZoom(zoom, { animate: false });
+    }
+
     setMinZoom(zoom: number): void {
         // Pre-snap to minZoom without animation before calling setMinZoom.
         // If we let Leaflet animate, _onZoomTransitionEnd fires synchronously inside

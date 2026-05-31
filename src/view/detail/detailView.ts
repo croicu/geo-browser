@@ -65,6 +65,7 @@ export class DetailView implements View {
     private _moveEndCleanup?: () => void;
     private _zoomCleanup?: () => void;
     private _minZoom = 0;
+    private _zoomCooldownUntil = 0;
 
     constructor(
         root: HTMLElement,
@@ -124,7 +125,8 @@ export class DetailView implements View {
                 this._actions,
                 this._widgetFactory,
                 this._area.id,
-                this._area.layers.filter(l => l.type !== "__user__")
+                this._area.layers.filter(l => l.type !== "__user__"),
+                layer => this._state.isLayerVisible(layer.id, layer.isVisible())
             );
 
             summaryWidget.render();
@@ -382,15 +384,25 @@ export class DetailView implements View {
     }
 
     private onZoomChange(zoom: number): void {
-        getLogger().info("map.zoom", { zoom, areaId: this._area.id });
-        if (zoom <= this._minZoom) {
-            const map = this._map;
+        const map = this._map;
+        const center = map?.getCenter();
+        getLogger().info("detail.zoom", { zoom, minZoom: this._minZoom, areaId: this._area.id, lat: center?.[0], lng: center?.[1] });
+        if (Date.now() < this._zoomCooldownUntil) {
+            getLogger().info("detail.zoom_cooldown", { zoom });
+            return;
+        }
+        if (zoom < this._minZoom) {
             if (map) {
+                const summaryZoom = Math.min(map.getZoom(), 10);
+                getLogger().info("detail.zoom_to_summary", { zoom, summaryZoom, lat: center?.[0], lng: center?.[1] });
                 // Clamp to 10 so the summary never opens at zoom ≥ 11, which would
                 // immediately re-trigger openDetail and create a bounce loop.
-                this._actions.saveSummaryViewport(map.getCenter(), Math.min(map.getZoom(), 10));
+                // Pass coordinates directly — do not save to storage so the stored
+                // summary position is preserved for toolbar-triggered transitions.
+                this._actions.openSummary(map.getCenter(), summaryZoom);
+            } else {
+                this._actions.openSummary();
             }
-            this._actions.openSummary();
             return;
         }
         this.renderLayerViews();
@@ -425,7 +437,17 @@ export class DetailView implements View {
         }
         const fitZoom = map.getBoundsZoom(sw, ne);
         this._minZoom = Math.max(11, Math.floor(fitZoom) - 1);
-        map.setMinZoom(this._minZoom);
+        this._zoomCooldownUntil = Date.now() + 500;
+        getLogger().info("detail.min_zoom", { fitZoom, minZoom: this._minZoom, areaId: this._area.id });
+        // Snap to minZoom without animation if the current zoom is below it.
+        // This happens when entering from summary at a low zoom (e.g. 11) while
+        // minZoom may be 15. Without the snap, Leaflet fires a zoomend after the
+        // cooldown expires while the map is still at the low zoom, which incorrectly
+        // triggers the zoom-to-summary exit. The snap is safe here because onZoom
+        // is registered after applyMaxBounds returns, so no handler fires.
+        if (map.getZoom() < this._minZoom) {
+            map.setZoom(this._minZoom);
+        }
     }
 
     private addBboxHighlight(): void {
@@ -540,7 +562,8 @@ export class DetailView implements View {
             this._actions,
             this._widgetFactory,
             this._area.id,
-            visibleLayers
+            visibleLayers,
+            layer => this._state.isLayerVisible(layer.id, layer.isVisible())
         );
         layersWidget.render();
         this._layersWidget = layersWidget;

@@ -93,6 +93,7 @@ describe("SummaryView", () => {
     });
 
     it("navigates to detail when zoomed above threshold with area in viewport", async () => {
+        vi.useFakeTimers();
         const catalog = await createCatalog();
         const state = new SummaryViewState({ center: [40.85, 14.27], zoom: 2 });
 
@@ -102,6 +103,7 @@ describe("SummaryView", () => {
         });
 
         view.render();
+        vi.advanceTimersByTime(500);
 
         // Napoli bbox: [west=14.13, south=40.74, east=14.41, north=40.96]
         mapFactory.map.boundsResult = { sw: [40.0, 14.0], ne: [41.5, 15.0] };
@@ -110,6 +112,8 @@ describe("SummaryView", () => {
         expect(actions.openedDetailAreaId).toBe("napoli");
         expect(actions.openedDetailCenter).toEqual([0, 0]);
         expect(actions.openedDetailZoom).toBe(11);
+
+        vi.useRealTimers();
     });
 
     it("does not navigate when no area bbox intersects the viewport", async () => {
