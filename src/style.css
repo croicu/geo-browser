@@ -320,6 +320,29 @@ body,
     to { transform: rotate(360deg); }
 }
 
+.tile-provider-btn {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tile-provider-btn:hover {
+    background: #f4f4f4;
+}
+
+.tile-provider-btn img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
 .geo-location-button {
     width: 40px;
     height: 40px;

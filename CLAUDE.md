@@ -394,6 +394,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - Move the CLAUDE.md entry from `## New Task` to `## Completed Tasks` with a one-line summary.
 - Include these file changes in the same commit as the feature code.
 
+
 ## Postponed Tasks
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
@@ -405,6 +406,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
+- **[Tile Provider](tasks/tile_provider.md)**: Status: Done. `TileProvider` interface in `src/maps/`; `osmTileProvider` and `cartoTileProvider` constants; Carto Voyager set as default in `DefaultLeafletMapFactory`.
 - **[Two-Tap Select](tasks/two_tap_selection.md)**: Status: Done. First tap expands a sliding name label; second tap toggles visibility. Tap elsewhere dismisses. Single-active rule. `TwoTapState` extracted for unit tests; Leaflet `_fakeStop` gotcha documented.
 - **[User Layer](tasks/user_layer.md)**: Status: Done. End-user trip points stored in `__user__` layer. Gestures (long-press / right-click), localStorage + gateway storage, pressure→HSL-lightness colour, incremental rendering, toolbar visibility, synthesis fallback, AreaChanged wiring.
 - **[Zoom out exception](tasks/zoom_out_bug.md)**: Status: Done. Fixed crash in Leaflet's animated zoom (setMinZoom pre-snaps without animation) and bounce-back loop (summary viewport zoom clamped to ≤ 10).

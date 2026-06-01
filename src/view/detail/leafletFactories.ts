@@ -1,6 +1,7 @@
 // view/detail/leafletFactories.ts
 import L from "leaflet";
 import "leaflet.heat"
+import { type TileProvider, osmTileProvider, cartoTileProvider, getActiveTileProvider, setActiveTileProvider } from "../../maps/tileProvider";
 
 declare module "leaflet" {
     export type HeatLatLngTuple = [number, number, number];
@@ -565,6 +566,73 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
 }
 
 
+function buildTileLayer(provider: TileProvider): L.TileLayer {
+    const options: L.TileLayerOptions = {
+        maxZoom: provider.maxZoom,
+        attribution: provider.attribution,
+        className: provider === osmTileProvider ? "dark-osm" : undefined,
+    };
+    if (provider.subdomains !== undefined) {
+        options.subdomains = provider.subdomains;
+    }
+    return L.tileLayer(provider.urlTemplate, options);
+}
+
+class TileProviderControl extends L.Control {
+    private _tileLayer?: L.TileLayer;
+    private _leafletMap?: L.Map;
+    private _button?: HTMLButtonElement;
+
+    constructor() {
+        super({ position: "topright" });
+    }
+
+    onAdd(map: L.Map): HTMLElement {
+        this._leafletMap = map;
+        const provider = getActiveTileProvider();
+        this._tileLayer = buildTileLayer(provider).addTo(map);
+
+        const container = L.DomUtil.create("div", "tile-provider-toggle");
+        this._button = L.DomUtil.create("button", "tile-provider-btn", container) as HTMLButtonElement;
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.on(this._button, "click", this.onButtonClick, this);
+        this.updateButton(provider);
+        return container;
+    }
+
+    onRemove(): void {
+        if (this._button) {
+            L.DomEvent.off(this._button, "click", this.onButtonClick, this);
+        }
+        this._tileLayer?.remove();
+        this._tileLayer = undefined;
+        this._leafletMap = undefined;
+    }
+
+    private onButtonClick(): void {
+        const log = getLogger();
+        log.info("tile_provider.switch.start");
+        const current = getActiveTileProvider();
+        const next = current === cartoTileProvider ? osmTileProvider : cartoTileProvider;
+        setActiveTileProvider(next);
+        this._tileLayer?.remove();
+        if (this._leafletMap) {
+            this._tileLayer = buildTileLayer(next).addTo(this._leafletMap);
+        }
+        this.updateButton(next);
+        log.info("tile_provider.switch.end", { provider: next === cartoTileProvider ? "carto" : "osm" });
+    }
+
+    private updateButton(currentProvider: TileProvider): void {
+        if (!this._button) return;
+        const nextProvider = currentProvider === cartoTileProvider ? osmTileProvider : cartoTileProvider;
+        const nextName = nextProvider === osmTileProvider ? "osm" : "carto";
+        const nextLabel = nextProvider === osmTileProvider ? "OpenStreetMap" : "CARTO";
+        this._button.innerHTML = `<img src="/icons/${nextName}.svg" alt="${nextLabel}" />`;
+        this._button.title = `Switch to ${nextLabel}`;
+    }
+}
+
 export class DefaultLeafletMapFactory implements MapFactory {
     createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle {
         // tap: false — Leaflet's tap handler dispatches a synthetic click AND the browser
@@ -585,14 +653,7 @@ export class DefaultLeafletMapFactory implements MapFactory {
         // for every element inside the map container.
         container.addEventListener("contextmenu", e => e.preventDefault(), { capture: true });
 
-        L.tileLayer(
-            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            {
-                maxZoom: 19,
-                attribution: "&copy; OpenStreetMap contributors",
-                className: "dark-osm"
-            }
-        ).addTo(map);
+        new TileProviderControl().addTo(map);
 
         return new LeafletMapHandle(map);
     }
