@@ -1,6 +1,7 @@
 // view/detail/leafletFactories.ts
 import L from "leaflet";
 import "leaflet.heat"
+import { type TileProvider, osmTileProvider, cartoTileProvider, getActiveTileProvider, setActiveTileProvider } from "../../maps/tileProvider";
 
 declare module "leaflet" {
     export type HeatLatLngTuple = [number, number, number];
@@ -51,6 +52,7 @@ import type {
 
 import type { HeatPoint } from "../../protocols";
 import { getLogger } from "../../services";
+import { TwoTapState } from "./twoTapState";
 
 class LeafletMapHandle implements MapHandle {
     private readonly _map: L.Map;
@@ -437,6 +439,13 @@ class LeafletClickableMapLayerHandle
         });
     }
 
+    onContextMenu(handler: () => void): void {
+        this._marker.on("contextmenu", (e: L.LeafletEvent) => {
+            L.DomEvent.stopPropagation(e as L.LeafletMouseEvent);
+            handler();
+        });
+    }
+
     setRadius(r: number): void {
         this._marker.setRadius(r);
     }
@@ -557,6 +566,73 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
 }
 
 
+function buildTileLayer(provider: TileProvider): L.TileLayer {
+    const options: L.TileLayerOptions = {
+        maxZoom: provider.maxZoom,
+        attribution: provider.attribution,
+        className: provider === osmTileProvider ? "dark-osm" : undefined,
+    };
+    if (provider.subdomains !== undefined) {
+        options.subdomains = provider.subdomains;
+    }
+    return L.tileLayer(provider.urlTemplate, options);
+}
+
+class TileProviderControl extends L.Control {
+    private _tileLayer?: L.TileLayer;
+    private _leafletMap?: L.Map;
+    private _button?: HTMLButtonElement;
+
+    constructor() {
+        super({ position: "topright" });
+    }
+
+    onAdd(map: L.Map): HTMLElement {
+        this._leafletMap = map;
+        const provider = getActiveTileProvider();
+        this._tileLayer = buildTileLayer(provider).addTo(map);
+
+        const container = L.DomUtil.create("div", "tile-provider-toggle");
+        this._button = L.DomUtil.create("button", "tile-provider-btn", container) as HTMLButtonElement;
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.on(this._button, "click", this.onButtonClick, this);
+        this.updateButton(provider);
+        return container;
+    }
+
+    onRemove(): void {
+        if (this._button) {
+            L.DomEvent.off(this._button, "click", this.onButtonClick, this);
+        }
+        this._tileLayer?.remove();
+        this._tileLayer = undefined;
+        this._leafletMap = undefined;
+    }
+
+    private onButtonClick(): void {
+        const log = getLogger();
+        log.info("tile_provider.switch.start");
+        const current = getActiveTileProvider();
+        const next = current === cartoTileProvider ? osmTileProvider : cartoTileProvider;
+        setActiveTileProvider(next);
+        this._tileLayer?.remove();
+        if (this._leafletMap) {
+            this._tileLayer = buildTileLayer(next).addTo(this._leafletMap);
+        }
+        this.updateButton(next);
+        log.info("tile_provider.switch.end", { provider: next === cartoTileProvider ? "carto" : "osm" });
+    }
+
+    private updateButton(currentProvider: TileProvider): void {
+        if (!this._button) return;
+        const nextProvider = currentProvider === cartoTileProvider ? osmTileProvider : cartoTileProvider;
+        const nextName = nextProvider === osmTileProvider ? "osm" : "carto";
+        const nextLabel = nextProvider === osmTileProvider ? "OpenStreetMap" : "CARTO";
+        this._button.innerHTML = `<img src="/icons/${nextName}.svg" alt="${nextLabel}" />`;
+        this._button.title = `Switch to ${nextLabel}`;
+    }
+}
+
 export class DefaultLeafletMapFactory implements MapFactory {
     createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle {
         // tap: false — Leaflet's tap handler dispatches a synthetic click AND the browser
@@ -564,18 +640,20 @@ export class DefaultLeafletMapFactory implements MapFactory {
         // double/triple fires on iOS. Native click synthesis alone is sufficient on iOS 13+
         // with a width=device-width viewport.
         const map = L.map(root, { tap: false, maxBoundsViscosity: 1.0 } as L.MapOptions).setView(center, zoom);
-        // Prevent the iOS native long-press callout (Look Up / Share) from appearing
-        // over the map while the user is initiating a long-press gesture.
-        map.getContainer().style.setProperty("-webkit-touch-callout", "none");
+        // Prevent iOS native long-press callout (Look Up / Share) and text selection
+        // from appearing over the map. -webkit-touch-callout covers link/image callouts;
+        // user-select covers text selection (zoom +/− glyphs, etc.).
+        const container = map.getContainer();
+        container.style.setProperty("-webkit-touch-callout", "none");
+        container.style.setProperty("-webkit-user-select", "none");
+        container.style.setProperty("user-select", "none");
+        // Leaflet only calls preventDefault() on contextmenu events that land on the map
+        // pane. A long-press on a control (zoom buttons) fires contextmenu on the control's
+        // DOM element and bypasses Leaflet — the native iOS menu appears. Suppress it here
+        // for every element inside the map container.
+        container.addEventListener("contextmenu", e => e.preventDefault(), { capture: true });
 
-        L.tileLayer(
-            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            {
-                maxZoom: 19,
-                attribution: "&copy; OpenStreetMap contributors",
-                className: "dark-osm"
-            }
-        ).addTo(map);
+        new TileProviderControl().addTo(map);
 
         return new LeafletMapHandle(map);
     }
@@ -641,9 +719,12 @@ class SummaryControl extends L.Control {
 class LayerControl extends L.Control {
     private readonly _layers: LayerSelectionWidgetItem[];
     private readonly _onToggle: (layerId: string, visible: boolean) => void;
+    private readonly _state = new TwoTapState();
+    private readonly _itemEls = new Map<string, { item: HTMLElement; button: HTMLElement }>();
+    private _mapClickCleanup?: () => void;
 
     constructor(
-        layers: LayerSelectionWidgetItem[], 
+        layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void
     ) {
         super({ position: "topleft" });
@@ -652,12 +733,14 @@ class LayerControl extends L.Control {
         this._onToggle = onToggle;
     }
 
-    onAdd(): HTMLElement {
+    onAdd(map: L.Map): HTMLElement {
         const root = L.DomUtil.create("div", "layer-control");
+        this._itemEls.clear();
 
         for (const layer of this._layers) {
-            const button = L.DomUtil.create("button", "layer-control-button", root);
+            const item = L.DomUtil.create("div", "layer-control-item", root);
 
+            const button = L.DomUtil.create("button", "layer-control-button", item);
             button.type = "button";
             button.title = layer.name;
             button.style.backgroundColor = layer.color;
@@ -667,25 +750,77 @@ class LayerControl extends L.Control {
                 button.classList.add("inactive");
             }
 
-            L.DomEvent.disableClickPropagation(button);
+            const label = L.DomUtil.create("span", "layer-control-label", item);
+            label.textContent = layer.name;
 
-            button.addEventListener("click", () => this.onClick(button, layer));
+            this._itemEls.set(layer.id, { item, button });
+
+            // disableClickPropagation uses Leaflet's _fakeStop for click events — it marks
+            // the event but does not call real stopPropagation, so clicks still bubble from
+            // button to item. Use native e.stopPropagation() in the button listener to
+            // prevent the item's dismiss handler from firing on every button tap.
+            L.DomEvent.disableClickPropagation(item);
+
+            button.addEventListener("click", (e) => {
+                e.stopPropagation();
+                this.onButtonClick(layer);
+            });
+
+            // A click on the label area (pointer-events:none passes it to the item wrapper)
+            // dismisses the expanded label without toggling visibility.
+            item.addEventListener("click", () => this.onItemClick(layer.id));
         }
+
+        const onMapClick = () => this.dismissExpanded();
+        map.on("click", onMapClick);
+        this._mapClickCleanup = () => map.off("click", onMapClick);
 
         return root;
     }
 
-    private onClick(
-        button: HTMLElement,
-        layer: LayerSelectionWidgetItem
-    )
-    {
-        layer.visible = !layer.visible;
+    onRemove(_map: L.Map): void {
+        this._mapClickCleanup?.();
+        this._mapClickCleanup = undefined;
+    }
 
-        button.textContent = layer.visible ? "✓" : "×";
-        button.classList.toggle("inactive", !layer.visible);
+    private onButtonClick(layer: LayerSelectionWidgetItem): void {
+        const log = getLogger();
+        log.info("layer_control.tap.start", { layerId: layer.id });
 
-        this._onToggle(layer.id, layer.visible);
+        const action = this._state.tap(layer.id, layer.visible);
+
+        if (action.kind === "toggle") {
+            layer.visible = action.visible;
+            const els = this._itemEls.get(layer.id);
+            if (els) {
+                els.button.textContent = layer.visible ? "✓" : "×";
+                els.button.classList.toggle("inactive", !layer.visible);
+                els.item.classList.remove("expanded");
+            }
+            this._onToggle(layer.id, layer.visible);
+            log.info("layer_control.tap.toggle", { layerId: layer.id, visible: layer.visible });
+        } else {
+            if (action.previous !== undefined) {
+                this._itemEls.get(action.previous)?.item.classList.remove("expanded");
+            }
+            this._itemEls.get(layer.id)?.item.classList.add("expanded");
+            log.info("layer_control.tap.expand", { layerId: layer.id });
+        }
+    }
+
+    private onItemClick(layerId: string): void {
+        if (this._state.expandedId !== layerId) {
+            return;
+        }
+        this.dismissExpanded();
+        getLogger().info("layer_control.label_tap.dismiss", { layerId });
+    }
+
+    private dismissExpanded(): void {
+        const dismissed = this._state.dismiss();
+        if (dismissed !== undefined) {
+            this._itemEls.get(dismissed)?.item.classList.remove("expanded");
+        }
     }
 }
 

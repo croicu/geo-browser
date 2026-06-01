@@ -155,6 +155,7 @@ export interface UserPointData {
     timestamp: string;   // ISO 8601
     pressure: number;    // 0.0–1.0
     name: string | null;
+    properties?: Record<string, unknown>;  // extra POI properties copied at add-time; absent when no POI matched
 }
 
 export interface AddUserPointInput {
@@ -169,5 +170,23 @@ export interface AddUserPointOutput {
 
 export const AddUserPoint: MethodDef<AddUserPointInput, AddUserPointOutput> = {
     id: "__geo_add_user_point__",
+    _kind: "method",
+};
+
+// ── RemoveUserPoint (browser → builder / standalone) ─────────────────────────
+
+export interface RemoveUserPointInput {
+    areaId: string;
+    lon: number;
+    lat: number;
+}
+
+export interface RemoveUserPointOutput {
+    error: number;
+    errorDescription: string | null;
+}
+
+export const RemoveUserPoint: MethodDef<RemoveUserPointInput, RemoveUserPointOutput> = {
+    id: "__geo_remove_user_point__",
     _kind: "method",
 };

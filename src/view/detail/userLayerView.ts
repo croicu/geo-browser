@@ -49,11 +49,18 @@ function readPressure(props: Record<string, unknown> | undefined): number {
     return typeof p === "number" ? Math.max(0, Math.min(1, p)) : 0.5;
 }
 
+interface UserMarker {
+    handle: ClickableMapLayerHandle;
+    lon: number;
+    lat: number;
+}
+
 export class UserLayerView extends LayerView {
     private readonly _store: UserPointsStore;
     private readonly _areaId: string;
-    private _markers: ClickableMapLayerHandle[] = [];
-    private _featureCount = 0;
+    private readonly _onPointDeleted: (() => void) | undefined;
+    private _markers: UserMarker[] = [];
+    private _visible: boolean;
 
     constructor(
         map: MapHandle,
@@ -61,14 +68,32 @@ export class UserLayerView extends LayerView {
         layerFactory: LayerFactory,
         store: UserPointsStore,
         areaId: string,
+        visible: boolean = true,
+        onPointDeleted?: () => void,
     ) {
         super(map, layer, layerFactory);
         this._store = store;
         this._areaId = areaId;
+        this._visible = visible;
+        this._onPointDeleted = onPointDeleted;
+    }
+
+    setVisible(visible: boolean): void {
+        if (visible === this._visible) {
+            return;
+        }
+        this._visible = visible;
+        for (const m of this._markers) {
+            if (visible) {
+                m.handle.addTo(this._map);
+            } else {
+                m.handle.remove();
+            }
+        }
     }
 
     get featureCount(): number {
-        return this._featureCount;
+        return this._markers.length;
     }
 
     async render(): Promise<void> {
@@ -91,14 +116,12 @@ export class UserLayerView extends LayerView {
             this.placeMarker(feature.geometry.coordinates, pressure);
         }
 
-        this._featureCount = this._markers.length;
-        log.info("user_layer.render.end", { areaId: this._areaId, count: this._featureCount });
+        log.info("user_layer.render.end", { areaId: this._areaId, count: this._markers.length });
     }
 
     addMarker(latLng: [number, number], pressure: number): void {
         // latLng is [lat, lon]; GeoJSON coordinates are [lon, lat]
         this.placeMarker([latLng[1], latLng[0]], pressure);
-        this._featureCount++;
     }
 
     override destroy(): void {
@@ -106,11 +129,12 @@ export class UserLayerView extends LayerView {
     }
 
     private placeMarker(geoJsonCoords: [number, number], pressure: number): void {
-        const latLng = this.geoJsonPointToLatLng(geoJsonCoords);
+        const [lon, lat] = geoJsonCoords;
+        const leafletLatLng = this.geoJsonPointToLatLng(geoJsonCoords);
         const color = pressureToColor(this._layer.style?.color, pressure);
         const radius = this._layer.style?.radius ?? 6;
 
-        const marker = this._layerFactory.createCircleMarker(latLng, {
+        const handle = this._layerFactory.createCircleMarker(leafletLatLng, {
             fillColor: color,
             color,
             opacity: this._layer.style?.opacity ?? 0.85,
@@ -118,13 +142,36 @@ export class UserLayerView extends LayerView {
             weight: 0,
         });
 
-        marker.addTo(this._map);
-        this._markers.push(marker);
+        handle.onContextMenu(() => this.deleteMarker(lon, lat));
+
+        if (this._visible) {
+            handle.addTo(this._map);
+        }
+        this._markers.push({ handle, lon, lat });
+    }
+
+    private deleteMarker(lon: number, lat: number): void {
+        const log = getLogger();
+        log.info("user_layer.delete_point.start", { lon, lat });
+
+        const idx = this._markers.findIndex(m => m.lon === lon && m.lat === lat);
+        if (idx === -1) {
+            log.warning("user_layer.delete_point.not_found", { lon, lat });
+            return;
+        }
+
+        this._markers[idx].handle.remove();
+        this._markers.splice(idx, 1);
+
+        void this._store.removePoint(this._areaId, lon, lat);
+        log.info("user_layer.delete_point.end", { lon, lat, remaining: this._markers.length });
+
+        this._onPointDeleted?.();
     }
 
     private destroyMarkers(): void {
         for (const m of this._markers) {
-            m.remove();
+            m.handle.remove();
         }
         this._markers = [];
     }

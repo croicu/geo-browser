@@ -3,7 +3,8 @@ import type { GeoLayer } from "../../catalog/layer";
 import { LayerView } from "./layerView";
 import { getLogger } from "../../services";
 
-interface PoiBakedFeature {
+export interface PoiBakedFeature {
+    layerId: string;
     latLng: [number, number];
     name?: string;
     amenity?: string;
@@ -15,7 +16,9 @@ interface PoiBakedFeature {
 
 export class PoiLayerView extends LayerView {
     private readonly _sourceLayers: GeoLayer[];
-    private _markers: ClickableMapLayerHandle[] = [];
+    private _features: PoiBakedFeature[] = [];
+    private _markersBySource = new Map<string, ClickableMapLayerHandle[]>();
+    private _sourceVisible = new Map<string, boolean>();
     private _activePopup?: MapPopupHandle;
     private _mapClickCleanup?: () => void;
     private _zoomCleanup?: () => void;
@@ -30,15 +33,24 @@ export class PoiLayerView extends LayerView {
         this._sourceLayers = sourceLayers.filter(l => !l.isVirtual());
     }
 
+    get features(): readonly PoiBakedFeature[] {
+        return this._features;
+    }
+
     async render(): Promise<void> {
-        const features = await this.collectFeatures();
+        this._features = await this.collectFeatures();
+        const features = this._features;
         const style = this._layer.style;
         const opacity = style?.opacity ?? 1;
         const fillColor = style?.color ?? "#7b241c";
-        const strokeColor = style?.strokeColor ?? fillColor;
-        const strokeWidth = style?.strokeWidth ?? 0;
+        const strokeColor = (style as Record<string, unknown>)?.strokeColor as string ?? fillColor;
+        const strokeWidth = (style as Record<string, unknown>)?.strokeWidth as number ?? 0;
 
         for (const feature of features) {
+            if (!this._markersBySource.has(feature.layerId)) {
+                this._markersBySource.set(feature.layerId, []);
+            }
+
             const marker = this._layerFactory.createCircleMarker(feature.latLng, {
                 className: "poi-marker",
                 radius: 5,
@@ -48,14 +60,37 @@ export class PoiLayerView extends LayerView {
                 fillOpacity: opacity,
                 opacity: opacity,
             });
-            marker.addTo(this._map);
+
+            const sourceVisible = this._sourceVisible.get(feature.layerId) !== false;
+            if (sourceVisible) {
+                marker.addTo(this._map);
+            }
+
             marker.onClick(() => this.onMarkerClick(feature));
-            this._markers.push(marker);
+            this._markersBySource.get(feature.layerId)!.push(marker);
         }
 
         this._mapClickCleanup = this._map.onClick(() => this.closePopup());
         this._zoomCleanup = this._map.onZoom(zoom => this.updateRadii(zoom));
         this.updateRadii(this._map.getZoom());
+    }
+
+    setSourceVisible(layerId: string, visible: boolean): void {
+        this._sourceVisible.set(layerId, visible);
+        const markers = this._markersBySource.get(layerId);
+        if (!markers) {
+            return;
+        }
+        for (const marker of markers) {
+            if (visible) {
+                marker.addTo(this._map);
+            } else {
+                marker.remove();
+            }
+        }
+        if (!visible) {
+            this.closePopup();
+        }
     }
 
     override destroy(): void {
@@ -65,16 +100,21 @@ export class PoiLayerView extends LayerView {
         this._mapClickCleanup = undefined;
         this._zoomCleanup?.();
         this._zoomCleanup = undefined;
-        for (const marker of this._markers) {
-            marker.remove();
+        for (const markers of this._markersBySource.values()) {
+            for (const marker of markers) {
+                marker.remove();
+            }
         }
-        this._markers = [];
+        this._markersBySource.clear();
+        this._sourceVisible.clear();
     }
 
     private updateRadii(zoom: number): void {
         const r = zoom <= 12 ? 2 : zoom <= 13 ? 4 : zoom <= 14 ? 6 : 8;
-        for (const marker of this._markers) {
-            marker.setRadius(r);
+        for (const markers of this._markersBySource.values()) {
+            for (const marker of markers) {
+                marker.setRadius(r);
+            }
         }
     }
 
@@ -97,6 +137,7 @@ export class PoiLayerView extends LayerView {
                 if (f.properties?.hasDetails !== true) continue;
 
                 features.push({
+                    layerId: source.id,
                     latLng: this.geoJsonPointToLatLng(f.geometry.coordinates),
                     name: typeof f.properties.name === "string" ? f.properties.name : undefined,
                     amenity: typeof f.properties.amenity === "string" ? f.properties.amenity : undefined,

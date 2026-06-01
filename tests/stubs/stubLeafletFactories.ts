@@ -208,6 +208,10 @@ export class StubMarker implements ClickableMapLayerHandle {
         this.clickHandler = handler;
     }
 
+    onContextMenu(_handler: () => void): void {
+        // no-op in stub
+    }
+
     setRadius(r: number): void {
         this.radius = r;
     }

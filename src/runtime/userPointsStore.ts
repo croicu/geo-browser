@@ -1,9 +1,20 @@
 import type { GatewayService, StorageService, UserPointsStore } from "../contracts";
-import { AddUserPoint, GetUserPoints, OK } from "../api";
+import { AddUserPoint, GetUserPoints, OK, RemoveUserPoint } from "../api";
 import { getLogger } from "../services";
 
 const EMPTY_COLLECTION = { type: "FeatureCollection", features: [] } as const;
 const STORAGE_KEY_PREFIX = "geo-browser.userPoints.";
+
+const POI_INTERNAL_KEYS = new Set(["weight", "hasDetails"]);
+
+function stripInternalPoiFlags(props: Record<string, unknown> | undefined): Record<string, unknown> {
+    if (!props) return {};
+    const result: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(props)) {
+        if (!POI_INTERNAL_KEYS.has(k)) result[k] = v;
+    }
+    return result;
+}
 
 export class LocalStorageUserPointsStore implements UserPointsStore {
     private readonly _storage: StorageService;
@@ -24,7 +35,7 @@ export class LocalStorageUserPointsStore implements UserPointsStore {
         }
     }
 
-    async addPoint(areaId: string, lat: number, lon: number, pressure: number): Promise<void> {
+    async addPoint(areaId: string, lat: number, lon: number, pressure: number, poiProperties?: Record<string, unknown>): Promise<void> {
         const raw = this._storage.getItem(STORAGE_KEY_PREFIX + areaId);
         let collection: { type: string; features: unknown[] };
         try {
@@ -33,16 +44,34 @@ export class LocalStorageUserPointsStore implements UserPointsStore {
             collection = { type: "FeatureCollection", features: [] };
         }
 
+        const safePoiProps = stripInternalPoiFlags(poiProperties);
         collection.features.push({
             type: "Feature",
             geometry: { type: "Point", coordinates: [lon, lat] },
             properties: {
+                ...safePoiProps,
                 timestamp: new Date().toISOString(),
                 pressure,
-                name: null,
+                name: (safePoiProps["name"] as string | null | undefined) ?? null,
             },
         });
 
+        this._storage.setItem(STORAGE_KEY_PREFIX + areaId, JSON.stringify(collection));
+    }
+
+    async removePoint(areaId: string, lon: number, lat: number): Promise<void> {
+        const raw = this._storage.getItem(STORAGE_KEY_PREFIX + areaId);
+        if (!raw) return;
+        let collection: { type: string; features: unknown[] };
+        try {
+            collection = JSON.parse(raw) as typeof collection;
+        } catch {
+            return;
+        }
+        collection.features = collection.features.filter((f) => {
+            const coords = (f as { geometry?: { coordinates?: number[] } }).geometry?.coordinates;
+            return !(Array.isArray(coords) && coords[0] === lon && coords[1] === lat);
+        });
         this._storage.setItem(STORAGE_KEY_PREFIX + areaId, JSON.stringify(collection));
     }
 }
@@ -68,7 +97,7 @@ export class GatewayUserPointsStore implements UserPointsStore {
         });
     }
 
-    addPoint(areaId: string, lat: number, lon: number, pressure: number): Promise<void> {
+    addPoint(areaId: string, lat: number, lon: number, pressure: number, poiProperties?: Record<string, unknown>): Promise<void> {
         return new Promise((resolve) => {
             this._gateway.invoke(AddUserPoint, {
                 areaId,
@@ -77,11 +106,23 @@ export class GatewayUserPointsStore implements UserPointsStore {
                     lon,
                     timestamp: new Date().toISOString(),
                     pressure,
-                    name: null,
+                    name: (poiProperties?.["name"] as string | null | undefined) ?? null,
+                    ...(poiProperties ? { properties: stripInternalPoiFlags(poiProperties) } : {}),
                 },
             }, (response) => {
                 if (response.error !== OK) {
                     this._log.warning("user_points_store.add_point.error", { areaId, error: response.error });
+                }
+                resolve();
+            });
+        });
+    }
+
+    removePoint(areaId: string, lon: number, lat: number): Promise<void> {
+        return new Promise((resolve) => {
+            this._gateway.invoke(RemoveUserPoint, { areaId, lon, lat }, (response) => {
+                if (response.error !== OK) {
+                    this._log.warning("user_points_store.remove_point.error", { areaId, error: response.error });
                 }
                 resolve();
             });

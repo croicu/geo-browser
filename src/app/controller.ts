@@ -12,6 +12,7 @@ import { SummaryView } from "../view/summary/summaryView";
 import { DetailView } from "../view/detail/detailView";
 import { DetailViewState } from "../state/detailViewState";
 import { fail } from "../errors";
+import { initStatusWidget } from "../view/statusWidget";
 
 export interface ControllerOptions {
     catalog: GeoCatalog;
@@ -59,6 +60,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
             fail("app.missing_root", "Missing #app element.");
         }
         this._app = app;
+        initStatusWidget();
 
         await this._catalog.load();
 

@@ -10,6 +10,7 @@ import { LayerView } from "./layerView";
 import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
 import { PointLayerView } from "./pointLayerView";
 import { PoiLayerView } from "./poiLayerView";
+import type { PoiBakedFeature } from "./poiLayerView";
 import { UserLayerView } from "./userLayerView";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
@@ -27,6 +28,17 @@ export interface DetailViewServices {
     gateway?: GatewayService | null;
     geoLocation?: GeoLocationService | null;
     mode?: Mode;
+}
+
+function poiBakedToProperties(f: PoiBakedFeature): Record<string, unknown> {
+    const result: Record<string, unknown> = {};
+    if (f.name !== undefined)         result["name"] = f.name;
+    if (f.amenity !== undefined)      result["amenity"] = f.amenity;
+    if (f.cuisine !== undefined)      result["cuisine"] = f.cuisine;
+    if (f.openingHours !== undefined) result["opening_hours"] = f.openingHours;
+    if (f.address !== undefined)      result["address"] = f.address;
+    if (f.website !== undefined)      result["website"] = f.website;
+    return result;
 }
 
 export class DetailView implements View {
@@ -284,6 +296,9 @@ export class DetailView implements View {
             if (layer.type === "__poi__" && !layer.isVisible()) {
                 continue;
             }
+            if (layer.type === "__user__") {
+                continue;
+            }
 
             const existing = this._layerViews.get(layer.id);
             const minZoom = layer.style?.minZoom;
@@ -312,32 +327,11 @@ export class DetailView implements View {
                         this._area.layers,
                         new DefaultLeafletLayerFactory()
                     );
-                } else if (layer.type === "__user__") {
-                    const userView = new UserLayerView(
-                        this._map,
-                        layer,
-                        new DefaultLeafletLayerFactory(),
-                        this._userPointsStore!,
-                        this._area.id,
-                    );
-                    this._userLayerView = userView;
-                    this._userGeoLayer = layer;
-                    layerView = userView;
                 } else {
                     continue;
                 }
                 this._layerViews.set(layer.id, layerView);
-
-                const renderPromise = layerView.render();
-                if (layer.type === "__user__") {
-                    void renderPromise.then(() => {
-                        if (this._userLayerView && this._userLayerView.featureCount > 0) {
-                            this.rebuildLayersWidget();
-                        }
-                    });
-                } else {
-                    void renderPromise;
-                }
+                void layerView.render();
 
                 continue;
             }
@@ -345,6 +339,58 @@ export class DetailView implements View {
             if (!visible && existing) {
                 existing.destroy();
                 this._layerViews.delete(layer.id);
+            }
+        }
+
+        // User layer: always create regardless of visibility so the toolbar
+        // toggle persists even when hidden; never auto-destroyed by the loop above.
+        for (const layer of this._area.layers) {
+            if (layer.type !== "__user__") {
+                continue;
+            }
+            const minZoom = layer.style?.minZoom;
+            const visible = this._state.isLayerVisible(layer.id, layer.isVisible())
+                && (minZoom === undefined || zoom >= minZoom);
+            const existing = this._layerViews.get(layer.id) as UserLayerView | undefined;
+
+            if (!existing) {
+                const userView = new UserLayerView(
+                    this._map,
+                    layer,
+                    new DefaultLeafletLayerFactory(),
+                    this._userPointsStore!,
+                    this._area.id,
+                    visible,
+                    () => this.onUserPointDeleted(),
+                );
+                this._userLayerView = userView;
+                this._userGeoLayer = layer;
+                this._layerViews.set(layer.id, userView);
+                void userView.render().then(() => {
+                    if (this._userLayerView && this._userLayerView.featureCount > 0) {
+                        this.rebuildLayersWidget();
+                    }
+                });
+            } else {
+                existing.setVisible(visible);
+            }
+            break;
+        }
+
+        this.syncPoiSourceVisibility();
+    }
+
+    private syncPoiSourceVisibility(): void {
+        const poiView = this._layerViews.get("__poi__");
+        if (!(poiView instanceof PoiLayerView)) {
+            return;
+        }
+        for (const layer of this._area.layers) {
+            if (!layer.isVirtual()) {
+                poiView.setSourceVisible(
+                    layer.id,
+                    this._state.isLayerVisible(layer.id, layer.isVisible())
+                );
             }
         }
     }
@@ -499,7 +545,8 @@ export class DetailView implements View {
 
         const wasEmpty = this._userLayerView.featureCount === 0;
 
-        void store.addPoint(this._area.id, latLng[0], latLng[1], pressure);
+        const poiProperties = this.findNearestPoiProperties(latLng[0], latLng[1]);
+        void store.addPoint(this._area.id, latLng[0], latLng[1], pressure, poiProperties);
 
         this._userLayerView.addMarker(latLng, pressure);
         log.info("user_layer.add_point.marker_placed", { featureCount: this._userLayerView.featureCount });
@@ -509,6 +556,36 @@ export class DetailView implements View {
         }
 
         log.info("user_layer.add_point.end", { lat: latLng[0], lng: latLng[1] });
+    }
+
+    private onUserPointDeleted(): void {
+        if (this._userLayerView && this._userLayerView.featureCount === 0) {
+            this.rebuildLayersWidget();
+        }
+    }
+
+    private findNearestPoiProperties(lat: number, lon: number): Record<string, unknown> | undefined {
+        const log = getLogger();
+        const THRESHOLD = 0.0005; // ~55 m in latitude; naive Euclidean degrees
+
+        const poiView = this._layerViews.get("__poi__");
+        if (!(poiView instanceof PoiLayerView)) return undefined;
+
+        let best: { dist: number; feature: PoiBakedFeature } | undefined;
+
+        for (const f of poiView.features) {
+            const dLat = f.latLng[0] - lat;
+            const dLon = f.latLng[1] - lon;
+            const dist = Math.sqrt(dLat * dLat + dLon * dLon);
+            if (dist < THRESHOLD && (!best || dist < best.dist)) {
+                best = { dist, feature: f };
+            }
+        }
+
+        if (!best) return undefined;
+
+        log.info("user_layer.poi_snap", { dist: best.dist, name: best.feature.name });
+        return poiBakedToProperties(best.feature);
     }
 
     private async synthesizeUserLayerView(): Promise<void> {
@@ -529,6 +606,8 @@ export class DetailView implements View {
             new DefaultLeafletLayerFactory(),
             this._userPointsStore,
             this._area.id,
+            true,
+            () => this.onUserPointDeleted(),
         );
 
         this._userLayerView = userView;
