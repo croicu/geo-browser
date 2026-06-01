@@ -437,6 +437,13 @@ class LeafletClickableMapLayerHandle
         });
     }
 
+    onContextMenu(handler: () => void): void {
+        this._marker.on("contextmenu", (e: L.LeafletEvent) => {
+            L.DomEvent.stopPropagation(e as L.LeafletMouseEvent);
+            handler();
+        });
+    }
+
     setRadius(r: number): void {
         this._marker.setRadius(r);
     }

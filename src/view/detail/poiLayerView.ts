@@ -3,7 +3,7 @@ import type { GeoLayer } from "../../catalog/layer";
 import { LayerView } from "./layerView";
 import { getLogger } from "../../services";
 
-interface PoiBakedFeature {
+export interface PoiBakedFeature {
     layerId: string;
     latLng: [number, number];
     name?: string;
@@ -16,6 +16,7 @@ interface PoiBakedFeature {
 
 export class PoiLayerView extends LayerView {
     private readonly _sourceLayers: GeoLayer[];
+    private _features: PoiBakedFeature[] = [];
     private _markersBySource = new Map<string, ClickableMapLayerHandle[]>();
     private _sourceVisible = new Map<string, boolean>();
     private _activePopup?: MapPopupHandle;
@@ -32,8 +33,13 @@ export class PoiLayerView extends LayerView {
         this._sourceLayers = sourceLayers.filter(l => !l.isVirtual());
     }
 
+    get features(): readonly PoiBakedFeature[] {
+        return this._features;
+    }
+
     async render(): Promise<void> {
-        const features = await this.collectFeatures();
+        this._features = await this.collectFeatures();
+        const features = this._features;
         const style = this._layer.style;
         const opacity = style?.opacity ?? 1;
         const fillColor = style?.color ?? "#7b241c";

@@ -184,6 +184,7 @@ export interface DraggableMarkerHandle extends MapLayerHandle {
 
 export interface ClickableMapLayerHandle extends MapLayerHandle {
     onClick: (handler: () => void) => void;
+    onContextMenu: (handler: () => void) => void;
     setRadius(r: number): void;
 }
 
@@ -272,7 +273,8 @@ export interface LayerSelectionWidgetItem {
 
 export interface UserPointsStore {
     getPoints(areaId: string): Promise<unknown>;
-    addPoint(areaId: string, lat: number, lon: number, pressure: number): Promise<void>;
+    addPoint(areaId: string, lat: number, lon: number, pressure: number, poiProperties?: Record<string, unknown>): Promise<void>;
+    removePoint(areaId: string, lon: number, lat: number): Promise<void>;
 }
 
 export interface WidgetFactory {
