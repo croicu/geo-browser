@@ -2,6 +2,8 @@ import googleMapsUrl from "../../../tasks/google_maps.png?url";
 import appleMapsUrl from "../../../tasks/apple_maps.png?url";
 import type { MapHandle, WidgetHandle } from "../../contracts";
 import { getLogger } from "../../services";
+import { getStatusWidget } from "../statusWidget";
+import type { StatusLevel } from "../statusWidget";
 import { Context } from "../../runtime/context";
 import { detectBlueDots, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";
 import type { DetectionResult } from "../../vision/blueDotDetector";
@@ -44,8 +46,6 @@ export class ImageOverlayWidget {
     private _activeLockedSection?: HTMLDivElement;
     private _opacitySlider?: HTMLInputElement;
     private _pinBtn?: HTMLButtonElement;
-    private _pasteStatusLabel?: HTMLSpanElement;
-    private _pasteStatusTimer?: ReturnType<typeof setTimeout>;
     private _luckyHits?: DetectionResult[];
     private _luckyIndex = 0;
     private _currentUrl = "";
@@ -170,6 +170,7 @@ export class ImageOverlayWidget {
         this._toolbarHandle?.remove();
         this._toolbarHandle = undefined;
         this._toolbarEl = undefined;
+
     }
 
     private buildToolbar(): HTMLDivElement {
@@ -194,12 +195,6 @@ export class ImageOverlayWidget {
 
         const pasteBtn = this.buildIconButton("/icons/img-paste.svg", "Paste image from clipboard", () => { void this.handlePaste(); });
         container.appendChild(pasteBtn);
-
-        const statusLabel = document.createElement("span");
-        statusLabel.className = "image-overlay-paste-status";
-        statusLabel.hidden = true;
-        this._pasteStatusLabel = statusLabel;
-        container.appendChild(statusLabel);
 
         // Unlocked section: opacity slider + pin (hidden until pinned) + lock + delete
         const unlockedSection = document.createElement("div");
@@ -271,17 +266,8 @@ export class ImageOverlayWidget {
         return btn;
     }
 
-    private showPasteStatus(message: string): void {
-        const label = this._pasteStatusLabel;
-        if (!label) {
-            return;
-        }
-        label.textContent = message;
-        label.hidden = false;
-        clearTimeout(this._pasteStatusTimer);
-        this._pasteStatusTimer = setTimeout(() => {
-            label.hidden = true;
-        }, 3000);
+    private showPasteStatus(message: string, level: StatusLevel = "error"): void {
+        getStatusWidget()?.show(message, level);
     }
 
     private async handlePaste(): Promise<void> {
@@ -289,7 +275,7 @@ export class ImageOverlayWidget {
 
         if (!navigator.clipboard?.read) {
             getLogger().warning("image_overlay.paste.unsupported");
-            this.showPasteStatus("Clipboard not supported");
+            this.showPasteStatus("Clipboard not supported", "warning");
             return;
         }
 
@@ -306,7 +292,7 @@ export class ImageOverlayWidget {
                 }
             }
             getLogger().warning("image_overlay.paste.no_image");
-            this.showPasteStatus("No image in clipboard");
+            this.showPasteStatus("No image in clipboard", "warning");
         } catch (err) {
             getLogger().error("image_overlay.paste.error", err);
             this.showPasteStatus("Could not read clipboard");
