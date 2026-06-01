@@ -223,6 +223,12 @@ log.error("image_overlay.paste.error", err);
 
 Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-frame events) are exempt to avoid log spam.
 
+## Feature Completeness Rule
+
+Every new feature must have:
+- **Logging**: action start, action end, and action error at key decision points (follow the Logging Rules above).
+- **Unit tests**: cover the core state/logic. Extract pure state classes from Leaflet/DOM code so they can be tested without importing Leaflet.
+
 ## Testing Rules
 
 Use Vitest with `happy-dom` (configured in `vitest.config.ts`).

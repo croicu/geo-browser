@@ -84,6 +84,40 @@ body,
     padding: 2.5px;
 }
 
+.layer-control-item {
+    display: flex;
+    align-items: center;
+}
+
+.layer-control-label {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    padding: 0;
+    margin-left: 5px;
+
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    background: rgba(20, 20, 20, 0.72);
+    border-radius: 10px;
+
+    pointer-events: none;
+
+    transition:
+        max-width 0.18s ease,
+        opacity 0.15s ease,
+        padding 0.18s ease;
+    line-height: 22px;
+}
+
+.layer-control-item.expanded .layer-control-label {
+    max-width: 160px;
+    opacity: 1;
+    padding: 0 7px;
+}
+
 .layer-control-button {
     width: 24px;
     height: 24px;
