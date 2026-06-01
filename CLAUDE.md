@@ -384,14 +384,20 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 5. **Done** — Advance to `Status: Done` after merge/close; move the entry to `## Completed Tasks`.
 
 ## New Task
-- **File**: [Stabilization](tasks/stabilization.md)
+- **File**: [Two-Tap Select](tasks/two_tap_selection.md)
 - **Status**: Brainstorm.
 - **GitHub Issue**: N/A
-- **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
+- **Key Context**: On-device when making layers visible / hidden there is not enough information to make a decision. Change the selection model.
 
 ## Postponed Tasks
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
+
+## Ongoing Tasks
+- **File**: [Stabilization](tasks/stabilization.md)
+- **Status**: Ongoing.
+- **GitHub Issue**: N/A
+- **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
 - **[User Layer](tasks/user_layer.md)**: Status: Done. End-user trip points stored in `__user__` layer. Gestures (long-press / right-click), localStorage + gateway storage, pressure→HSL-lightness colour, incremental rendering, toolbar visibility, synthesis fallback, AreaChanged wiring.

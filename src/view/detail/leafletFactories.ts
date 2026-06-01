@@ -571,9 +571,18 @@ export class DefaultLeafletMapFactory implements MapFactory {
         // double/triple fires on iOS. Native click synthesis alone is sufficient on iOS 13+
         // with a width=device-width viewport.
         const map = L.map(root, { tap: false, maxBoundsViscosity: 1.0 } as L.MapOptions).setView(center, zoom);
-        // Prevent the iOS native long-press callout (Look Up / Share) from appearing
-        // over the map while the user is initiating a long-press gesture.
-        map.getContainer().style.setProperty("-webkit-touch-callout", "none");
+        // Prevent iOS native long-press callout (Look Up / Share) and text selection
+        // from appearing over the map. -webkit-touch-callout covers link/image callouts;
+        // user-select covers text selection (zoom +/− glyphs, etc.).
+        const container = map.getContainer();
+        container.style.setProperty("-webkit-touch-callout", "none");
+        container.style.setProperty("-webkit-user-select", "none");
+        container.style.setProperty("user-select", "none");
+        // Leaflet only calls preventDefault() on contextmenu events that land on the map
+        // pane. A long-press on a control (zoom buttons) fires contextmenu on the control's
+        // DOM element and bypasses Leaflet — the native iOS menu appears. Suppress it here
+        // for every element inside the map container.
+        container.addEventListener("contextmenu", e => e.preventDefault(), { capture: true });
 
         L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",

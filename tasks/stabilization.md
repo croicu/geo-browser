@@ -1,6 +1,6 @@
 # Stabilization
 
-## Status: Brainstorm
+## Status: Ongoing
 
 ## Problem statement
 
@@ -11,3 +11,7 @@ On-device testing of the user layer and related features (image overlay, POI, zo
 - `PRESSURE_L_DELTA = 10` — lightness shift per pressure unit; may need adjustment based on actual touch hardware range.
 - Leaflet renderer guard (`geo_location.position_marker.renderer_not_ready`) — monitor whether the warning fires in practice and how often.
 - Long-press threshold (600 ms) — validate feel on mobile; too short triggers accidentally, too long feels sluggish.
+
+## Applied fixes
+
+- **iOS long-press native menu / text selection** (`leafletFactories.ts` `createMap`): Added `user-select: none` + `-webkit-user-select: none` on the map container (cascades to zoom controls, preventing `+`/`−` glyph selection). Added capture-phase `contextmenu` listener on the container calling `e.preventDefault()` to block the iOS native popup when the touch lands on a Leaflet control rather than the map pane.
