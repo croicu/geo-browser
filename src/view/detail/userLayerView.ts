@@ -54,6 +54,7 @@ export class UserLayerView extends LayerView {
     private readonly _areaId: string;
     private _markers: ClickableMapLayerHandle[] = [];
     private _featureCount = 0;
+    private _visible: boolean;
 
     constructor(
         map: MapHandle,
@@ -61,10 +62,26 @@ export class UserLayerView extends LayerView {
         layerFactory: LayerFactory,
         store: UserPointsStore,
         areaId: string,
+        visible: boolean = true,
     ) {
         super(map, layer, layerFactory);
         this._store = store;
         this._areaId = areaId;
+        this._visible = visible;
+    }
+
+    setVisible(visible: boolean): void {
+        if (visible === this._visible) {
+            return;
+        }
+        this._visible = visible;
+        for (const m of this._markers) {
+            if (visible) {
+                m.addTo(this._map);
+            } else {
+                m.remove();
+            }
+        }
     }
 
     get featureCount(): number {
@@ -118,7 +135,9 @@ export class UserLayerView extends LayerView {
             weight: 0,
         });
 
-        marker.addTo(this._map);
+        if (this._visible) {
+            marker.addTo(this._map);
+        }
         this._markers.push(marker);
     }
 
