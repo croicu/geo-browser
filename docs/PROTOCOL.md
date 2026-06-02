@@ -27,7 +27,7 @@ Everything in `protocols.ts` should be JSON-serializable.
 ```json
 {
   "version": 1,
-  "catalogUrl": "/catalogs/catalog.20260510T120000Z.json"
+  "catalogUrl": "/catalog.json"
 }
 ```
 
@@ -62,17 +62,14 @@ Catalog is discovery only.
 export interface AreaSummary {
     id: string;
     name: string;
-    center: [number, number];
-    radiusMeters: number;
+    bbox: [number, number, number, number];  // [west, south, east, north]
     minRadiusPx: number;
     maxRadiusPx: number;
     liveMapRadiusPx: number;
-    detailUrl: string;
+    manifestUrl: string;
     images: AreaImage[];
 }
 ```
-
-`manifestUrl` was old vocabulary. Prefer `detailUrl` if/when migrating.
 
 AreaSummary must be self-sufficient for summary rendering. Summary mode should not need extra fetches.
 
@@ -115,10 +112,11 @@ interface AreaDetail {
 export interface Layer {
     id: string;
     type: string;
-    url: string;
+    url: string | null;
     visible: boolean;
     name?: string;
     style?: LayerStyle;
+    acquisition?: LayerAcquisition;
 }
 ```
 
@@ -127,32 +125,47 @@ export interface Layer {
 Supported current types:
 
 ```text
-"circle"
-"heatmap"
+"circle"    — circle markers
+"heatmap"   — density heatmap
+"__poi__"   — virtual; tappable POI markers derived from hasDetails features
+"__user__"  — virtual; user trip points stored locally
 ```
 
 ## LayerStyle
 
 ```ts
 export interface LayerStyle {
+    type?: string;
     color?: string;
     opacity?: number;
     radius?: number;
-    radiusScale?: number;
     blur?: number;
-    showPoints?: boolean;
+    radiusScale?: number;
+    minRadius?: number;
+    maxRadius?: number;
+    strokeColor?: string;
+    strokeWidth?: number;
+    enhancedColor?: string;
+    outdoorColor?: string;
+    minZoom?: number;
 }
 ```
 
 Semantics:
 
 ```text
-Point layer radius = marker size
-Heat layer radius  = influence distance in pixels
-blur               = heatmap smoothing
-opacity            = layer opacity
-color              = rendering hint / single-hue gradient
-showPoints         = optional source-point overlay
+color          = rendering hint / single-hue gradient
+opacity        = layer opacity
+radius         = marker size (circle) or influence distance in pixels (heatmap)
+blur           = heatmap smoothing
+radiusScale    = scales rendered radius / heat weight
+minRadius      = minimum rendered radius
+maxRadius      = maximum rendered radius
+strokeColor    = circle marker stroke color
+strokeWidth    = circle marker stroke width
+enhancedColor  = POI ring color for enriched markers (wikipedia/wikidata/stars)
+outdoorColor   = POI ring color for outdoor seating markers
+minZoom        = layer hidden below this zoom level
 ```
 
 ## GeoJSON Input
