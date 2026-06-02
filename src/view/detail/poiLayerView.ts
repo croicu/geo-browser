@@ -362,6 +362,15 @@ export class PoiLayerView extends LayerView {
         googleRow.appendChild(google);
         links.appendChild(googleRow);
 
+        const streetView = document.createElement("a");
+        streetView.href = `https://maps.google.com/maps?layer=c&cbll=${lat},${lng}`;
+        streetView.target = "_blank";
+        streetView.rel = "noopener noreferrer";
+        streetView.textContent = "Street View";
+        const streetViewRow = document.createElement("div");
+        streetViewRow.appendChild(streetView);
+        links.appendChild(streetViewRow);
+
         if (address) {
             const yelp = document.createElement("a");
             yelp.href = `https://www.yelp.com/search?find_desc=${query}&find_loc=${encodeURIComponent(address)}`;

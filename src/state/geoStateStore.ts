@@ -1,10 +1,11 @@
 import type { StorageService } from "../contracts";
-import type { GeoState } from "./geoState";
+import type { GeoState, LastViewData } from "./geoState";
 import { SummaryViewState } from "./summaryViewState";
 import { DetailViewState } from "./detailViewState";
 
 const KEY_SUMMARY = "geo-browser.summaryViewState";
 const KEY_DETAIL = "geo-browser.detailViewState.";
+const KEY_LAST_VIEW = "geo-browser.lastView";
 
 export class GeoStateStore implements GeoState {
     private readonly _storage: StorageService;
@@ -50,5 +51,19 @@ export class GeoStateStore implements GeoState {
             `${KEY_DETAIL}${state.areaId}`,
             JSON.stringify(state.toJSON())
         );
+    }
+
+    loadLastView(): LastViewData | null {
+        const raw = this._storage.getItem(KEY_LAST_VIEW);
+        if (!raw) return null;
+        try {
+            return JSON.parse(raw) as LastViewData;
+        } catch {
+            return null;
+        }
+    }
+
+    saveLastView(data: LastViewData): void {
+        this._storage.setItem(KEY_LAST_VIEW, JSON.stringify(data));
     }
 }
