@@ -5,26 +5,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 144033716,
-        "hasDetails": true,
-        "name": "Bio Oko",
-        "amenity": "cinema",
-        "address": "Franti\u0161ka K\u0159\u00ed\u017eka 460/15, Praha",
-        "website": "https://www.biooko.net/",
-        "opening_hours": "Mo-Su 09:30-01:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4299522,
-          50.0999576
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 290034583,
         "hasDetails": true,
         "name": "Divadlo Komedie",
@@ -83,6 +63,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 296718996,
+        "hasDetails": true,
+        "name": "Vila \u0160tvanice",
+        "amenity": "theatre",
+        "address": "ostrov \u0160tvanice 858"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4360589,
+          50.0955998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 331956704,
         "hasDetails": true,
         "name": "Klub l\u00e1vka",
@@ -115,7 +113,9 @@
         "name": "Studio Ypsilon",
         "amenity": "theatre",
         "address": "Sp\u00e1len\u00e1 75/16, Praha",
-        "website": "https://www.ypsilonka.cz/"
+        "website": "https://www.ypsilonka.cz/",
+        "wikidata": "Q12056755",
+        "wikipedia": "cs:Studio Ypsilon"
       },
       "geometry": {
         "type": "Point",
@@ -134,7 +134,9 @@
         "name": "Divadlo V Dlouh\u00e9",
         "amenity": "theatre",
         "address": "Dlouh\u00e1 727/39, Praha",
-        "website": "https://www.divadlovdlouhe.cz/"
+        "website": "https://www.divadlovdlouhe.cz/",
+        "wikidata": "Q5283800",
+        "wikipedia": "cs:Divadlo v Dlouh\u00e9"
       },
       "geometry": {
         "type": "Point",
@@ -153,13 +155,33 @@
         "name": "ARCHA+",
         "amenity": "theatre",
         "address": "Na Po\u0159\u00ed\u010d\u00ed 1047/26, Praha",
-        "website": "https://www.archa-plus.cz/cz/"
+        "website": "https://www.archa-plus.cz/cz/",
+        "wikidata": "Q15079383"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4341757,
           50.0895078
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 355008196,
+        "hasDetails": true,
+        "name": "Kino MAT",
+        "amenity": "cinema",
+        "website": "www.mat.cz",
+        "wikidata": "Q27978906"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4190486,
+          50.0777515
         ]
       }
     },
@@ -247,7 +269,9 @@
         "name": "Kino Sv\u011btozor",
         "amenity": "cinema",
         "address": "Vodi\u010dkova 41, Praha",
-        "website": "https://www.kinosvetozor.cz/"
+        "website": "https://www.kinosvetozor.cz/",
+        "wikidata": "Q12029229",
+        "wikipedia": "cs:Kino Sv\u011btozor"
       },
       "geometry": {
         "type": "Point",
@@ -267,7 +291,9 @@
         "amenity": "theatre",
         "address": "V\u00e1clavsk\u00e9 n\u00e1m\u011bst\u00ed 794/38, Praha",
         "website": "https://www.mestskadivadlaprazska.cz/",
-        "opening_hours": "Mo-Fr 11:00-19:00; Sa-Su 13:00-19:00"
+        "opening_hours": "Mo-Fr 11:00-19:00; Sa-Su 13:00-19:00",
+        "wikidata": "Q11812428",
+        "wikipedia": "cs:Divadlo Rokoko"
       },
       "geometry": {
         "type": "Point",
@@ -286,7 +312,9 @@
         "name": "Divadlo ABC",
         "amenity": "theatre",
         "address": "Vodi\u010dkova 699/28, Praha",
-        "website": "https://www.mestskadivadlaprazska.cz/"
+        "website": "https://www.mestskadivadlaprazska.cz/",
+        "wikidata": "Q11812404",
+        "wikipedia": "cs:Divadlo ABC"
       },
       "geometry": {
         "type": "Point",
@@ -417,24 +445,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 1237600414,
-        "hasDetails": true,
-        "name": "pidivadlo",
-        "amenity": "theatre",
-        "website": "https://www.pidivadlo.cz"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4254259,
-          50.0982208
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 1240244383,
         "hasDetails": true,
         "name": "All Colours Theatre",
@@ -458,31 +468,14 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 1240249400,
-        "hasDetails": true,
-        "name": "The Bear Theatre",
-        "amenity": "theatre",
-        "address": "Franti\u0161ka K\u0159\u00ed\u017eka",
-        "website": "https://www.thebeartheatre.com/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4305283,
-          50.0978493
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 1252317575,
         "hasDetails": true,
         "name": "Divadlo Disk",
         "amenity": "theatre",
         "address": "Karlova 223/26, Praha",
-        "website": "https://www.divadlodisk.cz/"
+        "website": "https://www.divadlodisk.cz/",
+        "wikidata": "Q11812409",
+        "wikipedia": "cs:Divadlo DISK"
       },
       "geometry": {
         "type": "Point",
@@ -496,12 +489,55 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1253195147,
+        "hasDetails": true,
+        "name": "Divadlo Minor",
+        "amenity": "theatre",
+        "address": "Vodi\u010dkova 674/6, Praha",
+        "website": "https://www.minor.cz/",
+        "wikidata": "Q20064724",
+        "wikipedia": "cs:Divadlo Minor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4218795,
+          50.0785219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1255951468,
+        "hasDetails": true,
+        "name": "Divadlo v \u0158eznick\u00e9",
+        "amenity": "theatre",
+        "address": "\u0158eznick\u00e1 662/17, Praha",
+        "website": "https://www.reznicka.cz/",
+        "wikidata": "Q15290675",
+        "wikipedia": "cs:Divadlo v \u0158eznick\u00e9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4236913,
+          50.0781445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1255973598,
         "hasDetails": true,
         "name": "Divadlo Kalich",
         "amenity": "theatre",
         "address": "Praha",
-        "website": "https://www.divadlokalich.cz/"
+        "website": "https://www.divadlokalich.cz/",
+        "wikidata": "Q46956349"
       },
       "geometry": {
         "type": "Point",
@@ -519,7 +555,8 @@
         "hasDetails": true,
         "name": "Divadlo Kolowrat",
         "amenity": "theatre",
-        "website": "https://www.narodni-divadlo.cz/"
+        "website": "https://www.narodni-divadlo.cz/",
+        "wikidata": "Q19602049"
       },
       "geometry": {
         "type": "Point",
@@ -633,7 +670,8 @@
         "amenity": "theatre",
         "address": "N\u00e1rodn\u00ed 7, Praha",
         "website": "https://www.divadloviola.cz/",
-        "opening_hours": "Mo-Fr 16:00-20:00"
+        "opening_hours": "Mo-Fr 16:00-20:00",
+        "wikidata": "Q22694444"
       },
       "geometry": {
         "type": "Point",
@@ -670,7 +708,9 @@
         "name": "Divadlo Na z\u00e1bradl\u00ed",
         "amenity": "theatre",
         "address": "Anensk\u00e9 n\u00e1m\u011bst\u00ed 5, Praha",
-        "website": "https://www.nazabradli.cz/"
+        "website": "https://www.nazabradli.cz/",
+        "wikidata": "Q919372",
+        "wikipedia": "cs:Divadlo Na z\u00e1bradl\u00ed"
       },
       "geometry": {
         "type": "Point",
@@ -707,7 +747,9 @@
         "hasDetails": true,
         "name": "Divadlo Broadway",
         "amenity": "theatre",
-        "website": "https://www.divadlo-broadway.cz/"
+        "website": "https://www.divadlo-broadway.cz/",
+        "wikidata": "Q15204959",
+        "wikipedia": "en:Broadway Theatre (Prague)"
       },
       "geometry": {
         "type": "Point",
@@ -728,6 +770,8 @@
         "address": "\u017dateck\u00e1 98/1",
         "website": "https://www.mozart.cz/cz/",
         "opening_hours": "Mo-Su 18:00-00:05",
+        "wikidata": "Q6974242",
+        "wikipedia": "en:National Marionette Theatre",
         "names": [
           "N\u00e1rodn\u00ed divadlo Marionet",
           "\u0158\u00ed\u0161e loutek"
@@ -750,7 +794,9 @@
         "name": "Karlovy l\u00e1zn\u011b",
         "amenity": "nightclub",
         "address": "Smetanovo n\u00e1b\u0159e\u017e\u00ed 1, Praha",
-        "website": "https://www.karlovylazne.cz/"
+        "website": "https://www.karlovylazne.cz/",
+        "wikidata": "Q6372564",
+        "wikipedia": "en:Karlovy l\u00e1zn\u011b"
       },
       "geometry": {
         "type": "Point",
@@ -894,7 +940,9 @@
         "hasDetails": true,
         "name": "Divadlo Ungelt",
         "amenity": "theatre",
-        "website": "https://www.divadloungelt.cz/"
+        "website": "https://www.divadloungelt.cz/",
+        "wikidata": "Q11812435",
+        "wikipedia": "cs:Divadlo Ungelt"
       },
       "geometry": {
         "type": "Point",
@@ -912,7 +960,9 @@
         "hasDetails": true,
         "name": "\u010cinohern\u00ed klub",
         "amenity": "theatre",
-        "website": "https://cinoherniklub.cz/"
+        "website": "https://cinoherniklub.cz/",
+        "wikidata": "Q7730881",
+        "wikipedia": "en:The Drama Club"
       },
       "geometry": {
         "type": "Point",
@@ -938,6 +988,26 @@
         "coordinates": [
           14.4295398,
           50.0814566
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1314039386,
+        "hasDetails": true,
+        "name": "Le Clan",
+        "amenity": "nightclub",
+        "address": "Balb\u00ednova 752/23, Praha 2",
+        "website": "https://www.leclan.cz/",
+        "opening_hours": "Th-Sa 23:00-08:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4352957,
+          50.0790847
         ]
       }
     },
@@ -1076,7 +1146,9 @@
         "name": "Lucerna Music Bar",
         "amenity": "nightclub",
         "address": "Vodi\u010dkova 704/36, Praha",
-        "website": "https://www.musicbar.cz/"
+        "website": "https://www.musicbar.cz/",
+        "wikidata": "Q42422181",
+        "wikipedia": "en:Lucerna Music Bar"
       },
       "geometry": {
         "type": "Point",
@@ -1183,11 +1255,32 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 4171120558,
+        "hasDetails": true,
+        "name": "UP & DOWN",
+        "amenity": "nightclub",
+        "address": "Seifertova 3, Praha",
+        "website": "http://www.updownbarprague.cz/",
+        "opening_hours": "Mo-Th 14:00-03:00; Fr-Sa 11:00-06:00; Su 11:00-03:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.439484,
+          50.0859437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 4197680664,
         "hasDetails": true,
         "name": "Happy Day",
         "amenity": "casino",
-        "address": "V\u00e1clavsk\u00e9 n\u00e1m\u011bst\u00ed 35, Praha"
+        "address": "V\u00e1clavsk\u00e9 n\u00e1m\u011bst\u00ed 35, Praha",
+        "wikidata": "Q63053343"
       },
       "geometry": {
         "type": "Point",
@@ -1251,6 +1344,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.431439,
+          50.0772903
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 5720527860,
         "hasDetails": true,
@@ -1290,6 +1396,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 7072966827,
+        "hasDetails": true,
+        "name": "King's Casino Prague",
+        "amenity": "casino",
+        "address": "Pob\u0159e\u017en\u00ed 1, Praha",
+        "website": "https://kings-resort.com/prague"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4398719,
+          50.093077
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 7073049071,
         "hasDetails": true,
         "name": "Casino Ambassador",
@@ -1303,6 +1428,43 @@
         "coordinates": [
           14.4248028,
           50.0838034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9135837493,
+        "hasDetails": true,
+        "name": "Tresor club",
+        "amenity": "nightclub",
+        "address": "Vinohradsk\u00e1 25, Praha 2",
+        "website": "https://www.tresorclub.cz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4360586,
+          50.0783036
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9714387390,
+        "hasDetails": true,
+        "name": "Banco",
+        "amenity": "casino",
+        "opening_hours": "Mo-Su 16:00-02:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4359378,
+          50.0900921
         ]
       }
     },
@@ -1385,6 +1547,26 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 11185625082,
+        "hasDetails": true,
+        "name": "Atlas",
+        "amenity": "cinema",
+        "address": "Ke \u0160tvanici 371/4, Praha 8",
+        "website": "https://www.kinoatlaspraha.cz/",
+        "opening_hours": "Mo-Sa 11:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4384033,
+          50.0914182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -1437,6 +1619,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4151384,
+          50.0785199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 12512931763,
         "hasDetails": true,
@@ -1476,7 +1671,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 12899093794,
+        "hasDetails": true,
+        "name": "Divadlo Na Rejdi\u0161ti",
+        "amenity": "theatre",
+        "wikidata": "Q46994909"
       },
       "geometry": {
         "type": "Point",
@@ -1495,7 +1695,8 @@
         "name": "Slovensk\u00fd institut v Praze",
         "amenity": "arts_centre",
         "address": "Hybernsk\u00e1 1",
-        "website": "https://slovenskyinstitut.cz/"
+        "website": "https://slovenskyinstitut.cz/",
+        "wikidata": "Q138356824"
       },
       "geometry": {
         "type": "Point",
@@ -1544,7 +1745,9 @@
         "hasDetails": true,
         "name": "N\u00e1rodn\u00ed divadlo",
         "amenity": "theatre",
-        "website": "https://www.narodni-divadlo.cz/"
+        "website": "https://www.narodni-divadlo.cz/",
+        "wikidata": "Q23042822",
+        "wikipedia": "cs:N\u00e1rodn\u00ed divadlo"
       },
       "geometry": {
         "type": "Point",
@@ -1564,7 +1767,9 @@
         "amenity": "theatre",
         "address": "N\u00e1rodn\u00ed 4, Praha",
         "website": "https://www.narodni-divadlo.cz/cs/o-divadle",
-        "opening_hours": "Mo-Fr 09:00-18:00; Sa-Su 10:00-18:00"
+        "opening_hours": "Mo-Fr 09:00-18:00; Sa-Su 10:00-18:00",
+        "wikidata": "Q732697",
+        "wikipedia": "cs:Nov\u00e1 sc\u00e9na (Praha)"
       },
       "geometry": {
         "type": "Point",
@@ -1582,7 +1787,9 @@
         "hasDetails": true,
         "name": "svat\u00fd \u0160imon a Juda",
         "amenity": "theatre",
-        "website": "https://www.fok.cz/cs/kostel-sv-simona-judy"
+        "website": "https://www.fok.cz/cs/kostel-sv-simona-judy",
+        "wikidata": "Q2053374",
+        "wikipedia": "cs:Kostel svat\u00e9ho \u0160imona a Judy (Praha)"
       },
       "geometry": {
         "type": "Point",
@@ -1601,7 +1808,9 @@
         "name": "St\u00e1tn\u00ed opera Praha",
         "amenity": "theatre",
         "address": "Legerova 57/75, Praha",
-        "website": "http://www.opera.cz"
+        "website": "http://www.opera.cz",
+        "wikidata": "Q1886083",
+        "wikipedia": "cs:St\u00e1tn\u00ed opera Praha"
       },
       "geometry": {
         "type": "Point",
@@ -1619,13 +1828,50 @@
         "hasDetails": true,
         "name": "Sovovy ml\u00fdny",
         "amenity": "arts_centre",
-        "address": "U Sovov\u00fdch ml\u00fdn\u016f 527"
+        "address": "U Sovov\u00fdch ml\u00fdn\u016f 527",
+        "wikidata": "Q61417293"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4082338,
           50.0837616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 31543003,
+        "hasDetails": true,
+        "name": "cancrie12",
+        "amenity": "arts_centre",
+        "address": "Krakovsk\u00e1 12, Praha 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.42838,
+          50.0784148
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 274617182,
+        "hasDetails": true,
+        "name": "Fuchs 2 / Bike Jesus",
+        "amenity": "nightclub",
+        "address": "Ostrov \u0160tvanice 1125, Praha 7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4363506,
+          50.0952222
         ]
       }
     },
@@ -1669,7 +1915,13 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1348539987,
+        "hasDetails": true,
+        "name": "Smetanova s\u00ed\u0148",
+        "amenity": "theatre",
+        "wikidata": "Q15712623",
+        "wikipedia": "cs:Smetanova s\u00ed\u0148"
       },
       "geometry": {
         "type": "Point",
@@ -1688,7 +1940,9 @@
         "name": "Stavovsk\u00e9 divadlo",
         "amenity": "theatre",
         "address": "Ovocn\u00fd trh 540/1, Praha 1",
-        "website": "http://www.stavovskedivadlo.cz"
+        "website": "http://www.stavovskedivadlo.cz",
+        "wikidata": "Q521155",
+        "wikipedia": "cs:Stavovsk\u00e9 divadlo"
       },
       "geometry": {
         "type": "Point",
