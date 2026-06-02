@@ -21,7 +21,7 @@ class FakeWidgetFactory implements WidgetFactory {
         return new StubWidget();
     }
 
-    createLayerSelectionWidget(
+    createMapLayerFlyout(
         layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle {

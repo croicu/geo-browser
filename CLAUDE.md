@@ -427,6 +427,12 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
 
+## New Task
+- **File**: [Layer Selection](tasks/layer_selection_popup.md)
+- **Status**: Brainstorm.
+- **GitHub Issue**: N/A
+- **Key Context**: Declutter the control widgets area from the map.
+
 ## Ongoing Tasks
 - **File**: [Stabilization](tasks/stabilization.md)
 - **Status**: Ongoing.

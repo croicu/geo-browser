@@ -43,6 +43,7 @@ export class SummaryView implements View {
     private _zoomCleanup?: () => void;
     private _zoomCooldownUntil = 0;
     private readonly _bubbleWidgets: BubbleWidget[] = [];
+    private _layerFlyout?: WidgetHandle;
     private _designToolbar?: WidgetHandle;
     private _drawInteraction?: DrawAreaInteraction;
     private _namePopup?: WidgetHandle;
@@ -93,6 +94,9 @@ export class SummaryView implements View {
 
         this.createBubbleWidgets();
 
+        this._layerFlyout = this._widgetFactory.createMapLayerFlyout([], () => {});
+        this._layerFlyout.addTo(map);
+
         if (this._gateway) {
             this._designToolbar = this._widgetFactory.createDesignToolbar([
                 { iconUrl: "/icons/design-new.svg", title: "New area", onClick: (setActive: (active: boolean) => void) => this.newArea(setActive) },
@@ -125,6 +129,9 @@ export class SummaryView implements View {
 
         this._buildOverlay?.remove();
         this._buildOverlay = undefined;
+
+        this._layerFlyout?.remove();
+        this._layerFlyout = undefined;
 
         this._designToolbar?.remove();
         this._designToolbar = undefined;

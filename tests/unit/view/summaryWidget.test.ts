@@ -23,7 +23,7 @@ class FakeWidgetFactory implements WidgetFactory {
         return this._handle;
     }
 
-    createLayerSelectionWidget(
+    createMapLayerFlyout(
         _layers: LayerSelectionWidgetItem[],
         _onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle {
