@@ -52,7 +52,6 @@ import type {
 
 import type { HeatPoint } from "../../protocols";
 import { getLogger } from "../../services";
-import { TwoTapState } from "./twoTapState";
 
 class LeafletMapHandle implements MapHandle {
     private readonly _map: L.Map;
@@ -719,108 +718,50 @@ class SummaryControl extends L.Control {
 class LayerControl extends L.Control {
     private readonly _layers: LayerSelectionWidgetItem[];
     private readonly _onToggle: (layerId: string, visible: boolean) => void;
-    private readonly _state = new TwoTapState();
-    private readonly _itemEls = new Map<string, { item: HTMLElement; button: HTMLElement }>();
-    private _mapClickCleanup?: () => void;
+    private readonly _buttonEls = new Map<string, HTMLElement>();
 
     constructor(
         layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void
     ) {
         super({ position: "topleft" });
-
         this._layers = layers;
         this._onToggle = onToggle;
     }
 
-    onAdd(map: L.Map): HTMLElement {
+    onAdd(): HTMLElement {
         const root = L.DomUtil.create("div", "layer-control");
-        this._itemEls.clear();
+        this._buttonEls.clear();
 
         for (const layer of this._layers) {
             const item = L.DomUtil.create("div", "layer-control-item", root);
+            L.DomEvent.disableClickPropagation(item);
 
             const button = L.DomUtil.create("button", "layer-control-button", item);
             button.type = "button";
             button.title = layer.name;
             button.style.backgroundColor = layer.color;
             button.textContent = layer.visible ? "✓" : "×";
-
             if (!layer.visible) {
                 button.classList.add("inactive");
             }
 
-            const label = L.DomUtil.create("span", "layer-control-label", item);
-            label.textContent = layer.name;
+            this._buttonEls.set(layer.id, button);
 
-            this._itemEls.set(layer.id, { item, button });
-
-            // disableClickPropagation uses Leaflet's _fakeStop for click events — it marks
-            // the event but does not call real stopPropagation, so clicks still bubble from
-            // button to item. Use native e.stopPropagation() in the button listener to
-            // prevent the item's dismiss handler from firing on every button tap.
-            L.DomEvent.disableClickPropagation(item);
-
-            button.addEventListener("click", (e) => {
-                e.stopPropagation();
-                this.onButtonClick(layer);
-            });
-
-            // A click on the label area (pointer-events:none passes it to the item wrapper)
-            // dismisses the expanded label without toggling visibility.
-            item.addEventListener("click", () => this.onItemClick(layer.id));
+            button.addEventListener("click", () => this.onButtonClick(layer, button));
         }
-
-        const onMapClick = () => this.dismissExpanded();
-        map.on("click", onMapClick);
-        this._mapClickCleanup = () => map.off("click", onMapClick);
 
         return root;
     }
 
-    onRemove(_map: L.Map): void {
-        this._mapClickCleanup?.();
-        this._mapClickCleanup = undefined;
-    }
-
-    private onButtonClick(layer: LayerSelectionWidgetItem): void {
+    private onButtonClick(layer: LayerSelectionWidgetItem, button: HTMLElement): void {
         const log = getLogger();
-        log.info("layer_control.tap.start", { layerId: layer.id });
-
-        const action = this._state.tap(layer.id, layer.visible);
-
-        if (action.kind === "toggle") {
-            layer.visible = action.visible;
-            const els = this._itemEls.get(layer.id);
-            if (els) {
-                els.button.textContent = layer.visible ? "✓" : "×";
-                els.button.classList.toggle("inactive", !layer.visible);
-                els.item.classList.remove("expanded");
-            }
-            this._onToggle(layer.id, layer.visible);
-            log.info("layer_control.tap.toggle", { layerId: layer.id, visible: layer.visible });
-        } else {
-            if (action.previous !== undefined) {
-                this._itemEls.get(action.previous)?.item.classList.remove("expanded");
-            }
-            this._itemEls.get(layer.id)?.item.classList.add("expanded");
-            log.info("layer_control.tap.expand", { layerId: layer.id });
-        }
-    }
-
-    private onItemClick(layerId: string): void {
-        if (this._state.expandedId !== layerId) {
-            return;
-        }
-        this.dismissExpanded();
-        getLogger().info("layer_control.label_tap.dismiss", { layerId });
-    }
-
-    private dismissExpanded(): void {
-        const dismissed = this._state.dismiss();
-        if (dismissed !== undefined) {
-            this._itemEls.get(dismissed)?.item.classList.remove("expanded");
-        }
+        log.info("layer_control.tap", { layerId: layer.id, visible: !layer.visible });
+        layer.visible = !layer.visible;
+        button.textContent = layer.visible ? "✓" : "×";
+        button.classList.toggle("inactive", !layer.visible);
+        this._onToggle(layer.id, layer.visible);
+        log.info("layer_control.tap.end", { layerId: layer.id, visible: layer.visible });
     }
 }
 
