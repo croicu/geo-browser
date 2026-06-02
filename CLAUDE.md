@@ -357,8 +357,10 @@ Default event weight is `1.0`; heatmap density accumulation is handled by the re
 `__poi__` is a reserved builtin virtual layer type with no GeoJSON URL of its own. See `docs/MANIFEST.md` for the full plan of record.
 
 - Features with `hasDetails: true` in the area's existing layers render as interactive circle markers.
-- Popup shows baked name, amenity, cuisine, address, website, opening hours.
-- Review links (Google Maps, Yelp, Foursquare) are computed lazily when the popup opens — not stored in GeoJSON.
+- Popup shows baked name, amenity, cuisine, address, website, opening hours, star rating, outdoor seating, Wikipedia link, Wikidata thumbnail image, and review links (Google Maps, Street View, Yelp, Foursquare, TripAdvisor).
+- Review links and the Wikidata image are computed/fetched lazily when the popup opens — not stored in GeoJSON.
+- **Enhanced markers**: features with `wikipedia`, `wikidata`, `stars`, or `outdoor_seating="yes"` get a visible ring border. Ring color comes from `enhancedColor` (layer style, default `#20b7dd`); outdoor seating features use `outdoorColor` (default `#f5c518`).
+- The ring is a separate `poi-ring-marker` SVG element (`pointer-events: none`) because `.poi-marker` uses a transparent 40px stroke for the touch hit area, which overrides Leaflet's SVG stroke attribute via CSS.
 
 Enriched feature shape:
 
@@ -371,13 +373,40 @@ Enriched feature shape:
     "name": "Bar Ristorante Gaetano",
     "cuisine": "italian",
     "address": "Via Roma 42, Naples",
-    "phone": "+39 081 234 5678",
     "website": "https://...",
-    "opening_hours": "Mo-Su 12:00-23:00"
+    "opening_hours": "Mo-Su 12:00-23:00",
+    "wikidata": "Q12345",
+    "wikipedia": "en:Bar_Gaetano",
+    "stars": "4",
+    "outdoor_seating": "yes"
   },
   "geometry": { "type": "Point", "coordinates": [14.267789, 40.853179] }
 }
 ```
+
+### Tile Provider
+
+`src/maps/tileProvider.ts` holds the `TileProvider` interface, `osmTileProvider` and `cartoTileProvider` constants, and the module-level `getActiveTileProvider`/`setActiveTileProvider` store (survives map recreations). CARTO Voyager is the default.
+
+`TileProviderControl` (in `leafletFactories.ts`) is a Leaflet control at `topright` that manages both the tile layer lifecycle and the toggle button. OSM tiles use the `dark-osm` CSS filter; Carto tiles do not.
+
+### Map Control Positions
+
+All interactive controls are at `topright` (stacked top-to-bottom in render order):
+
+```text
+TileProviderControl   (tile layer + toggle button — added in createMap)
+SummaryControl        (back to summary)
+ImageOverlayWidget    (paste/image toolbar — only when image is active)
+LayerControl          (layer visibility toggles)
+GeoLocationControl    (bottomright)
+```
+
+Zoom buttons are disabled (`zoomControl: false`).
+
+### Last View Persistence
+
+`geo-browser.lastView` in localStorage stores `{ mode: "summary" | "detail", areaId?: string }`. On startup, `Controller.start()` reads this and reopens the last detail area if it still exists in the catalog, otherwise falls back to summary. `LastViewData` lives in `src/state/geoState.ts`; implemented in `GeoStateStore`.
 
 ## Task Workflow
 

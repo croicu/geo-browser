@@ -121,7 +121,7 @@ export class ImageOverlayWidget {
 
         const toolbar = this.buildToolbar();
         this._toolbarEl = toolbar;
-        this._toolbarHandle = this._map.addControl("topleft", toolbar);
+        this._toolbarHandle = this._map.addControl("topright", toolbar);
         this.registerGestureHandlers();
 
         if (_snapshot) {

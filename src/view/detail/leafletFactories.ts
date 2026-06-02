@@ -682,7 +682,7 @@ class SummaryControl extends L.Control {
     private readonly _onClick: () => void;
 
     constructor(label: string, onClick: () => void) {
-        super({ position: "topleft" });
+        super({ position: "topright" });
 
         this._label = label;
         this._onClick = onClick;
@@ -724,7 +724,7 @@ class LayerControl extends L.Control {
         layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void
     ) {
-        super({ position: "topleft" });
+        super({ position: "topright" });
         this._layers = layers;
         this._onToggle = onToggle;
     }
