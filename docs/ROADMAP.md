@@ -91,7 +91,7 @@ Static hosting should use:
 
 ```text
 /catalog.head.json         Cache-Control: no-store
-/catalogs/catalog.*.json   Cache-Control: immutable
+/catalog.json              Cache-Control: no-store
 /areas/**/manifest.json    Cache-Control: immutable if content-addressed/versioned
 /areas/**/*.geojson        Cache-Control: immutable
 /areas/**/images           Cache-Control: immutable

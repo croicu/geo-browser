@@ -52,9 +52,9 @@ HEAD
 Startup resolves the catalog URL via a two-step fetch:
 
 1. Fetch `/catalog.head.json` (`{ version, catalogUrl }`) — bypasses cache.
-2. If that fails, fall back to `/catalogs/catalog.json`.
+2. If that fails, fall back to `/catalog.json`.
 
-Debug mode (`?debug`) uses `/catalog.head.debug.json` → fallback `/catalogs/catalog.debug.json`.
+Debug mode (`?debug`) uses `/catalog.head.debug.json` → fallback `/catalog.debug.json`.
 
 Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches its own GeoJSON URL — all on demand, cache bypassed.
 

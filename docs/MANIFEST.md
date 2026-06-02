@@ -35,8 +35,7 @@
   "style": {
     "color": "#007f00",
     "opacity": 0.3,
-    "radiusScale": 1,
-    "surface": true
+    "radiusScale": 1
   },
   "url": "./layers/1.geojson",
   "acquisition": {
@@ -65,7 +64,6 @@
 | `color` | `string` | — | CSS hex color. |
 | `opacity` | `number` | `0.7` | Layer opacity, 0–1. |
 | `radiusScale` | `number` | `1` | Scales the rendered point radius / heat weight. |
-| `surface` | `boolean` | `false` | `circle` only. When `true`, renders polygons as filled surfaces rather than centroid circles. |
 
 #### Acquisition
 
