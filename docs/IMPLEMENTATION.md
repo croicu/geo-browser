@@ -13,12 +13,17 @@ src/
     layer.ts
     loader.ts
 
+  maps/
+    tileProvider.ts       (TileProvider interface, osmTileProvider, cartoTileProvider, active store)
+
   runtime/
     context.ts
 
   state/
     summaryViewState.ts
     detailViewState.ts
+    geoState.ts           (GeoState interface + LastViewData)
+    geoStateStore.ts
 
   view/
     summary/
@@ -31,9 +36,12 @@ src/
       layerView.ts
       pointLayerView.ts
       heatLayerView.ts
+      poiLayerView.ts
+      userLayerView.ts
       summaryWidget.ts
       layerSelectionWidget.ts
       geoLocationWidget.ts
+      imageOverlayWidget.ts
       leafletFactories.ts
 
   contracts.ts
@@ -161,27 +169,46 @@ renderHints()
 
 Interpretation belongs in `LayerView` subclasses.
 
+## Tile Provider
+
+`src/maps/tileProvider.ts` is the single file for tile configuration. It contains:
+
+- `TileProvider` interface (`urlTemplate`, `maxZoom`, `attribution`, optional `subdomains`)
+- `osmTileProvider` constant — standard OpenStreetMap tiles, uses `dark-osm` CSS filter
+- `cartoTileProvider` constant — CARTO Voyager (default), subdomains `abcd`
+- `getActiveTileProvider()` / `setActiveTileProvider()` — module-level store that persists the selected provider across map recreations (summary ↔ detail transitions)
+
+`TileProviderControl` in `leafletFactories.ts` is a Leaflet control at `topright` that manages the tile layer lifecycle AND renders the toggle button. It shows the icon of the **next** provider (next-state convention). Added by `DefaultLeafletMapFactory.createMap()` — present on every map.
+
+Zoom buttons are disabled (`zoomControl: false` in `createMap()`).
+
+## Last View Persistence
+
+`geo-browser.lastView` in localStorage stores `{ mode: "summary" | "detail", areaId?: string }` (`LastViewData` in `geoState.ts`). `Controller.start()` reads it after catalog load and reopens the last detail area if it still exists, otherwise falls back to summary. Saved in `openSummary()` and `openDetail()` before `switchView()`.
+
 ## DetailView
 
 DetailView owns:
 
 ```text
 Leaflet map handle
-summary/back widget
-layer selection widget
-GeoLocationWidget (optional, only when GeoLocationService is injected)
-BboxWidget (optional, only when GatewayService is injected)
+summary/back widget           (topright)
+layer selection widget        (topright)
+ImageOverlayWidget            (topright, only when image is active)
+GeoLocationWidget             (bottomright, optional)
+BboxWidget                    (optional, only when GatewayService is injected)
 bbox highlight rectangle
 Map<string, LayerView>
 ```
 
 Map creation in `createMap()`:
 
-1. Create Leaflet map via `MapFactory`.
-2. `applyMaxBounds()` — computes padded bounds (half-bbox on each side), sets `maxBounds` with `maxBoundsViscosity: 1.0` (hard stop), computes `minZoom` from `getBoundsZoom(paddedBounds) - 1`.
-3. `addBboxHighlight()` — draws a subtle rectangle over the area bbox.
-4. Attach `onMoveEnd` → `saveViewport()`.
-5. Attach `onZoom` → `onZoomChange()`.
+1. Create Leaflet map via `MapFactory` (zoom control disabled).
+2. `TileProviderControl` added — manages tile layer + toggle button at `topright`.
+3. `applyMaxBounds()` — computes padded bounds (half-bbox on each side), sets `maxBounds` with `maxBoundsViscosity: 1.0` (hard stop), computes `minZoom` from `getBoundsZoom(paddedBounds) - 1`.
+4. `addBboxHighlight()` — draws a subtle rectangle over the area bbox.
+5. Attach `onMoveEnd` → `saveViewport()`.
+6. Attach `onZoom` → `onZoomChange()`.
 
 Auto-navigate to summary:
 
@@ -216,6 +243,8 @@ Concrete classes:
 
 - `PointLayerView`
 - `HeatLayerView`
+- `PoiLayerView`
+- `UserLayerView`
 
 Shared helpers should be protected methods when semantically owned by LayerView.
 
@@ -231,6 +260,18 @@ Do not import `leaflet.heat` outside `leafletFactories.ts`.
 `style.color` means single-hue gradient.
 
 `style.showPoints` may render a source point overlay for debugging/alignment.
+
+## PoiLayerView
+
+POI markers derive from `hasDetails: true` features in existing layers at render time.
+
+Each feature is a `PoiBakedFeature`. Features with `wikipedia`, `wikidata`, `stars`, or `outdoor_seating="yes"` are "enhanced" and receive a ring marker.
+
+**Ring marker pattern**: `.poi-marker` uses `stroke: rgba(0,0,0,0); stroke-width: 40px` (CSS) to create a transparent wide touch hit area, which overrides Leaflet's SVG `stroke` attribute. Enhanced markers therefore get a second SVG element — `poi-ring-marker` (`pointer-events: none`) — whose stroke is not overridden by CSS.
+
+Ring colors: `enhancedColor` from layer style (default `#20b7dd`) for general enrichment; `outdoorColor` (default `#f5c518`) for outdoor seating.
+
+Popup lazy loads a Wikidata thumbnail image via `wbgetentities` P18 claim → Wikimedia Commons `Special:FilePath?width=200`. Wikipedia link routes through `Special:GoToLinkedPage/enwiki/{Q-id}` for the English article.
 
 ## SummaryView
 
@@ -312,6 +353,8 @@ the map off the visible area.
 Layer selection widget owns ephemeral visual state for immediate feedback.
 
 Controller/DetailViewState own durable truth.
+
+Single tap directly toggles layer visibility — no two-tap expand behavior.
 
 Rule:
 

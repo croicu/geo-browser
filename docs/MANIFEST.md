@@ -97,10 +97,12 @@ Virtual layer — `url` is absent. The browser derives POI markers at runtime fr
 
 | Field | Type | Default | Description |
 |---|---|---|---|
-| `color` | `string` | `"#7f0000"` | Marker color. |
+| `color` | `string` | `"#7f0000"` | Marker fill color. |
 | `opacity` | `number` | `0.9` | Marker opacity. |
 | `radius` | `number` | `8` | Marker radius in pixels. |
 | `minZoom` | `number` | `18` | Zoom level below which markers are hidden. |
+| `enhancedColor` | `string` | `"#20b7dd"` | Ring border color for enriched markers (those with `wikipedia`, `wikidata`, `stars`, or `outdoor_seating="yes"`). |
+| `outdoorColor` | `string` | `"#f5c518"` | Ring border color for `outdoor_seating="yes"` markers — overrides `enhancedColor`. |
 
 `visible: true` means enriched POIs exist in the data layers. `visible: false` means none were found but the entry is retained to preserve style across rebuilds.
 

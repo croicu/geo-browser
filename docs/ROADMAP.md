@@ -21,16 +21,16 @@
 - Bbox highlight rectangle — subtle fill overlay showing area extent on detail map.
 - Auto-navigate summary → detail — zoom past threshold (≥ 11) with area bbox on screen opens detail.
 - Auto-navigate detail → summary — zoom out past minZoom returns to summary, preserving map center.
+- POI layer (`__poi__`) — tappable markers from `hasDetails` features; popup with name, amenity, cuisine, address, hours, website, review links (Google Maps, Street View, Yelp, Foursquare, TripAdvisor).
+- Enriched POI markers — `wikipedia`, `wikidata`, `stars`, `outdoor_seating` fields; enhanced ring border (two-element SVG pattern); Wikidata thumbnail image; English Wikipedia via GoToLinkedPage redirect.
+- User trip layer (`__user__`) — long-press/right-click to add points; localStorage + gateway storage; pressure-based HSL color.
+- Image overlay — paste/Google/Apple image sources; 3-DOF editor (translate, scale, opacity); geo-lock pin.
+- Tile provider abstraction — CARTO Voyager default, OSM available; `TileProviderControl` at topright; active provider persists across map recreations.
+- Last view persistence — `geo-browser.lastView` in localStorage; restores last detail area on startup.
+- Single-tap layer visibility toggle — removed two-tap expand behavior.
+- All interactive controls at topright (tile toggle, back button, image toolbar, layer selector).
 
 ## Recommended Next Branches
-
-### 1. POI Layer (`poi`)
-
-Virtual layer type with tappable POI markers derived at runtime from `hasDetails` features in existing layers. Full plan of record in `docs/POI_LAYER.md`.
-
-- `hasDetails: true` features render as interactive circle markers.
-- Popup shows baked name, amenity, cuisine, address, website, opening hours.
-- Review links (Google Maps, Yelp, Foursquare) computed lazily when popup opens.
 
 ### 3. Data Source Abstraction
 
