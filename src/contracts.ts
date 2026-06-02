@@ -283,7 +283,7 @@ export interface WidgetFactory {
         onClick: () => void
     ): WidgetHandle;
 
-    createLayerSelectionWidget(
+    createMapLayerFlyout(
         layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle;

@@ -7,6 +7,7 @@ import { StubLogger } from "../../stubs/stubLogger";
 import {
     StubLayerFactory,
     StubMapFactory,
+    StubWidgetFactory,
 } from "../../stubs/stubLeafletFactories";
 import { setLogger } from "../../../src/services";
 
@@ -15,6 +16,7 @@ describe("SummaryView", () => {
     let actions: StubActions;
     let mapFactory: StubMapFactory;
     let layerFactory: StubLayerFactory;
+    let widgetFactory: StubWidgetFactory;
 
     beforeEach(() => {
         document.body.innerHTML = '<div id="app"></div>';
@@ -28,6 +30,7 @@ describe("SummaryView", () => {
         actions = new StubActions();
         mapFactory = new StubMapFactory();
         layerFactory = new StubLayerFactory();
+        widgetFactory = new StubWidgetFactory();
         setLogger(new StubLogger());
     });
 
@@ -41,6 +44,7 @@ describe("SummaryView", () => {
         const view = new SummaryView(root, actions, catalog, state, {
             mapFactory,
             layerFactory,
+            widgetFactory,
         });
 
         view.create();
@@ -59,6 +63,7 @@ describe("SummaryView", () => {
         const view = new SummaryView(root, actions, catalog, state, {
             mapFactory,
             layerFactory,
+            widgetFactory,
         });
 
         view.render();
@@ -80,6 +85,7 @@ describe("SummaryView", () => {
         const view = new SummaryView(root, actions, catalog, state, {
             mapFactory,
             layerFactory,
+            widgetFactory,
         });
 
         view.render();
@@ -100,6 +106,7 @@ describe("SummaryView", () => {
         const view = new SummaryView(root, actions, catalog, state, {
             mapFactory,
             layerFactory,
+            widgetFactory,
         });
 
         view.render();
@@ -123,6 +130,7 @@ describe("SummaryView", () => {
         const view = new SummaryView(root, actions, catalog, state, {
             mapFactory,
             layerFactory,
+            widgetFactory,
         });
 
         view.render();
@@ -141,6 +149,7 @@ describe("SummaryView", () => {
         const view = new SummaryView(root, actions, catalog, state, {
             mapFactory,
             layerFactory,
+            widgetFactory,
         });
 
         view.render();
@@ -161,6 +170,7 @@ describe("SummaryView", () => {
         const view = new SummaryView(root, actions, catalog, state, {
             mapFactory,
             layerFactory,
+            widgetFactory,
         });
 
         view.render();

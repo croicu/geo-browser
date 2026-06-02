@@ -67,7 +67,7 @@ export class LayerSelectionWidget implements WidgetHandle {
 
     render(): void {
         if (!this._widget) {
-            this._widget = this._factory.createLayerSelectionWidget(
+            this._widget = this._factory.createMapLayerFlyout(
                 this._layers,
                 (layerId: string, visible: boolean) => {
                     this._actions.setLayerVisible(this._areaId, layerId, visible);
