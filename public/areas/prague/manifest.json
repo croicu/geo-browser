@@ -57,7 +57,7 @@
       "style": {
         "opacity": 0.5,
         "radiusScale": 3.0,
-        "color": "#DDBD55"
+        "color": "#FBC02D"
       },
       "url": "./layers/3.geojson",
       "acquisition": {
