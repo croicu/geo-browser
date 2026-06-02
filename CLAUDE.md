@@ -386,19 +386,26 @@ Enriched feature shape:
 
 ### Tile Provider
 
-`src/maps/tileProvider.ts` holds the `TileProvider` interface, `osmTileProvider` and `cartoTileProvider` constants, and the module-level `getActiveTileProvider`/`setActiveTileProvider` store (survives map recreations). CARTO Voyager is the default.
+`src/maps/tileProvider.ts` holds the `TileProvider` interface, `osmTileProvider` and `cartoTileProvider` constants, and the module-level `getActiveTileProvider`/`setActiveTileProvider` store (survives map recreations). CARTO Voyager is the default. OSM tiles use the `dark-osm` CSS filter; CARTO tiles do not.
 
-`TileProviderControl` (in `leafletFactories.ts`) is a Leaflet control at `topright` that manages both the tile layer lifecycle and the toggle button. OSM tiles use the `dark-osm` CSS filter; Carto tiles do not.
+### Map Layer Flyout
+
+`MapLayerFlyoutControl` (in `leafletFactories.ts`) is a Leaflet control at `topright` that:
+- Manages the tile layer lifecycle (replaces the old `TileProviderControl`)
+- Renders a layers icon button that opens a flyout panel on tap
+- **Summary view**: flyout shows Map type section only (CARTO / OSM toggle)
+- **Detail view**: flyout shows Map type + Map Details (layer list with color circles and visibility toggles)
+- Outside-click dismisses the flyout; clicking inside keeps it open
+- Created via `WidgetFactory.createMapLayerFlyout(layers, onToggle)`
 
 ### Map Control Positions
 
 All interactive controls are at `topright` (stacked top-to-bottom in render order):
 
 ```text
-TileProviderControl   (tile layer + toggle button — added in createMap)
-SummaryControl        (back to summary)
+SummaryControl        (back to summary — detail view only)
 ImageOverlayWidget    (paste/image toolbar — only when image is active)
-LayerControl          (layer visibility toggles)
+MapLayerFlyoutControl (tile layer + layer visibility flyout)
 GeoLocationControl    (bottomright)
 ```
 
@@ -427,12 +434,6 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
 
-## New Task
-- **File**: [Layer Selection](tasks/layer_selection_popup.md)
-- **Status**: Brainstorm.
-- **GitHub Issue**: N/A
-- **Key Context**: Declutter the control widgets area from the map.
-
 ## Ongoing Tasks
 - **File**: [Stabilization](tasks/stabilization.md)
 - **Status**: Ongoing.
@@ -440,6 +441,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
+- **[Layer Selection Flyout](tasks/layer_selection_popup.md)**: Status: Done. Replaced `TileProviderControl` + `LayerControl` with `MapLayerFlyoutControl`; layers icon opens flyout with Map type (both views) and Map Details layer list (detail only); blue border on visible layers; outside-click dismiss.
 - **[Enriched POI Features](tasks/enriched_features.md)**: Status: Done. wikipedia, wikidata, stars, outdoor_seating added to `PoiBakedFeature`; enhanced markers get `enhancedColor` border; popup shows star icons, outdoor seating text, Wikipedia/Wikidata links.
 - **[Tile Provider](tasks/tile_provider.md)**: Status: Done. `TileProvider` interface in `src/maps/`; `osmTileProvider` and `cartoTileProvider` constants; Carto Voyager set as default in `DefaultLeafletMapFactory`.
 - **[Two-Tap Select](tasks/two_tap_selection.md)**: Status: Done. First tap expands a sliding name label; second tap toggles visibility. Tap elsewhere dismisses. Single-active rule. `TwoTapState` extracted for unit tests; Leaflet `_fakeStop` gotcha documented.

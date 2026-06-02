@@ -1,6 +1,6 @@
 # Layer Selection Flyout
 
-## Status: Brainstorm
+## Status: Done
 
 ## Problem Statement
 

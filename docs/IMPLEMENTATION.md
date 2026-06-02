@@ -178,7 +178,7 @@ Interpretation belongs in `LayerView` subclasses.
 - `cartoTileProvider` constant — CARTO Voyager (default), subdomains `abcd`
 - `getActiveTileProvider()` / `setActiveTileProvider()` — module-level store that persists the selected provider across map recreations (summary ↔ detail transitions)
 
-`TileProviderControl` in `leafletFactories.ts` is a Leaflet control at `topright` that manages the tile layer lifecycle AND renders the toggle button. It shows the icon of the **next** provider (next-state convention). Added by `DefaultLeafletMapFactory.createMap()` — present on every map.
+`MapLayerFlyoutControl` in `leafletFactories.ts` is a Leaflet control at `topright` that manages the tile layer lifecycle and renders a flyout panel. The flyout shows a Map type section (CARTO / OSM) in both views, plus a Map Details layer list in detail view. Created via `WidgetFactory.createMapLayerFlyout()` — added by `SummaryView` and `LayerSelectionWidget`.
 
 Zoom buttons are disabled (`zoomControl: false` in `createMap()`).
 
@@ -204,7 +204,7 @@ Map<string, LayerView>
 Map creation in `createMap()`:
 
 1. Create Leaflet map via `MapFactory` (zoom control disabled).
-2. `TileProviderControl` added — manages tile layer + toggle button at `topright`.
+2. `MapLayerFlyoutControl` added by `LayerSelectionWidget` after map creation — manages tile layer + flyout at `topright`.
 3. `applyMaxBounds()` — computes padded bounds (half-bbox on each side), sets `maxBounds` with `maxBoundsViscosity: 1.0` (hard stop), computes `minZoom` from `getBoundsZoom(paddedBounds) - 1`.
 4. `addBboxHighlight()` — draws a subtle rectangle over the area bbox.
 5. Attach `onMoveEnd` → `saveViewport()`.
