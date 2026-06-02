@@ -6,13 +6,33 @@
       "properties": {
         "weight": 1.0,
         "area_sqm": 24367.7,
-        "radius_m": 88.1
+        "radius_m": 88.1,
+        "id": 24984378,
+        "hasDetails": true,
+        "name": "Vojanovy sady",
+        "wikidata": "Q11925745",
+        "wikipedia": "cs:Vojanovy sady"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.408079633333333,
           50.088668495238096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1512.8,
+        "radius_m": 21.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.431101458333332,
+          50.077865124999995
         ]
       }
     },
@@ -55,13 +75,30 @@
         "id": 28701632,
         "hasDetails": true,
         "name": "park Holubi\u010dka",
-        "opening_hours": "24/7"
+        "opening_hours": "24/7",
+        "wikidata": "Q109380405",
+        "wikipedia": "cs:Park Holubi\u010dka (Praha)"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.40914994090909,
           50.09192552727273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 3346.4,
+        "radius_m": 32.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.408870227777776,
+          50.07676168888889
         ]
       }
     },
@@ -85,7 +122,11 @@
       "properties": {
         "weight": 1.0,
         "area_sqm": 9339.4,
-        "radius_m": 54.5
+        "radius_m": 54.5,
+        "id": 31518967,
+        "hasDetails": true,
+        "name": "\u010celakovsk\u00e9ho sady",
+        "wikidata": "Q43051668"
       },
       "geometry": {
         "type": "Point",
@@ -255,6 +296,21 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "area_sqm": 22.0,
+        "radius_m": 2.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.41592522,
+          50.0784318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "area_sqm": 1540.2,
         "radius_m": 22.1
       },
@@ -271,7 +327,11 @@
       "properties": {
         "weight": 1.0,
         "area_sqm": 5063.6,
-        "radius_m": 40.1
+        "radius_m": 40.1,
+        "id": 318903085,
+        "hasDetails": true,
+        "name": "park Ciheln\u00e1",
+        "wikidata": "Q138168362"
       },
       "geometry": {
         "type": "Point",
@@ -300,14 +360,69 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "area_sqm": 3752.3,
+        "radius_m": 34.6,
+        "id": 430109513,
+        "hasDetails": true,
+        "name": "Nosticova zahrada",
+        "wikidata": "Q12041089",
+        "wikipedia": "cs:Nosticova zahrada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.407005393103448,
+          50.085148172413795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "area_sqm": 7778.6,
-        "radius_m": 49.8
+        "radius_m": 49.8,
+        "id": 476278705,
+        "hasDetails": true,
+        "name": "Park na Kl\u00e1rov\u011b",
+        "wikidata": "Q109391961",
+        "wikipedia": "cs:Park na Kl\u00e1rov\u011b"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.410759401666667,
           50.09052344
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 1670.1,
+        "radius_m": 23.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4064442375,
+          50.09476065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "area_sqm": 4624.2,
+        "radius_m": 38.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.441399589655173,
+          50.08477734137931
         ]
       }
     },
@@ -330,8 +445,28 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "area_sqm": 83.9,
+        "radius_m": 5.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4211277,
+          50.07798507333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "area_sqm": 320893.7,
-        "radius_m": 319.6
+        "radius_m": 319.6,
+        "id": 903579699,
+        "hasDetails": true,
+        "name": "Letensk\u00e9 sady",
+        "wikidata": "Q3500624",
+        "wikipedia": "cs:Letensk\u00e9 sady"
       },
       "geometry": {
         "type": "Point",
@@ -346,7 +481,12 @@
       "properties": {
         "weight": 1.0,
         "area_sqm": 40846.6,
-        "radius_m": 114.0
+        "radius_m": 114.0,
+        "id": 903579702,
+        "hasDetails": true,
+        "name": "Letensk\u00e9 sady",
+        "wikidata": "Q3500624",
+        "wikipedia": "cs:Letensk\u00e9 sady"
       },
       "geometry": {
         "type": "Point",
@@ -368,24 +508,6 @@
         "coordinates": [
           14.424380358333332,
           50.09496607916666
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "area_sqm": 2038.3,
-        "radius_m": 25.5,
-        "id": 1033954456,
-        "hasDetails": true,
-        "opening_hours": "Apr-Oct 07:00-22:00; Nov-Mar 08:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.435172855479454,
-          50.09871349109589
         ]
       }
     },

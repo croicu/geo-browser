@@ -469,6 +469,51 @@ body,
     cursor: pointer;
 }
 
+.poi-ring-marker {
+    pointer-events: none;
+}
+
+.poi-stars {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    margin-top: 2px;
+}
+
+.poi-star-icon {
+    width: 14px;
+    height: 14px;
+    display: block;
+}
+
+.poi-image-container {
+    margin: 4px 0;
+}
+
+.poi-image {
+    width: 200px;
+    max-width: 100%;
+    display: block;
+    border-radius: 4px;
+}
+
+.poi-popup {
+    min-width: 200px;
+}
+
+.poi-outdoor-seating {
+    font-size: 12px;
+    color: #555;
+    margin-top: 2px;
+}
+
+.poi-wikipedia,
+.poi-wikidata {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 12px;
+}
+
 .manifest-editor-cancel {
     background: transparent;
     border-color: rgba(255, 255, 255, 0.2);

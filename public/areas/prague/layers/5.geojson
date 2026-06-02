@@ -5,23 +5,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 241854989,
-        "hasDetails": true,
-        "name": "Velox Sport",
-        "opening_hours": "Mo-Fr 09:30-12:00,13:00-18:00; Sa-Su,PH off"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4330331,
-          50.0978596
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 282762022,
         "hasDetails": true,
         "name": "Billa",
@@ -254,6 +237,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 296561293,
+        "hasDetails": true,
+        "name": "Siberian Health International",
+        "address": "Vojt\u011b\u0161sk\u00e1 212/8",
+        "website": "http://www.sibvaleo.com",
+        "opening_hours": "Mo-Fr 10:00-22:00; Sa-Su 10:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4151254,
+          50.0781821
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 296571275,
         "hasDetails": true,
         "name": "HardDeCore",
@@ -446,25 +448,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 296676189,
-        "hasDetails": true,
-        "name": "Praha Thrift Store",
-        "address": "Dukelsk\u00fdch hrdin\u016f 359/21, Praha 7",
-        "website": "https://thriftshop.cz/",
-        "opening_hours": "Mo-Fr 10:00-19:00; Sa-Su 10:30-16:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4330017,
-          50.0980885
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 296682837,
         "hasDetails": true,
         "name": "Marc O'Polo",
@@ -504,28 +487,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 296733604,
-        "hasDetails": true,
-        "name": "Ticho p\u0159ed bou\u0159\u00ed",
-        "amenity": "cafe",
-        "address": "Milady Hor\u00e1kov\u00e9 817/48",
-        "names": [
-          "Ticho p\u0159ed bou\u0159\u00ed",
-          "U Modr\u00e9ho slona"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4263902,
-          50.100041
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 296738331,
         "hasDetails": true,
         "name": "Shin Food",
@@ -546,43 +507,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 296750191,
-        "hasDetails": true,
-        "name": "Cruz Panaderia",
-        "address": "Milady Hor\u00e1kov\u00e9 141/70",
-        "opening_hours": "Mo-Su 08:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4218167,
-          50.1000433
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 296757708,
-        "hasDetails": true,
-        "name": "JUN",
-        "address": "Ha\u0161kova 629/7, Praha 7",
-        "website": "http://www.junshop.cz/",
-        "opening_hours": "Mo-Fr 10:00-18:00; Sa 09:00-12:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4281053,
-          50.1002693
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 296759727,
         "hasDetails": true,
         "name": "Zlatnick\u00e9 Polotovary",
@@ -593,37 +517,6 @@
         "coordinates": [
           14.4239931,
           50.0908143
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 296767083,
-        "hasDetails": true,
-        "name": "DV.nails.studio",
-        "address": "Kamenick\u00e1 552/23, Praha 7",
-        "opening_hours": "Mo-Fr 09:00-20:00; Sa,Su 10:00-18:30"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4274015,
-          50.0995469
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4283255,
-          50.0995844
         ]
       }
     },
@@ -728,22 +621,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 309297812,
-        "hasDetails": true,
-        "address": "Dukelsk\u00fdch hrdin\u016f 10, Praha 7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4335303,
-          50.0985182
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 314789609,
         "hasDetails": true,
         "name": "Hras",
@@ -761,16 +638,47 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 317919206,
+        "id": 321689983,
         "hasDetails": true,
-        "name": "dm",
-        "opening_hours": "Mo-Fr 08:00-20:00; Sa,Su 08:00-19:00"
+        "name": "Bene\u0161 N\u00e1bytek",
+        "opening_hours": "Mo-Fr 09:00-19:00; Sa 09:00-13:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4342102,
-          50.0990349
+          14.4395535,
+          50.0772233
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 321699913,
+        "hasDetails": true,
+        "name": "Bolena Tex",
+        "address": "Vinohradsk\u00e1",
+        "opening_hours": "Mo-Fr 09:00-18:00; Sa 09:30-12:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4388825,
+          50.0773495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4365516,
+          50.0775685
         ]
       }
     },
@@ -808,6 +716,32 @@
         "coordinates": [
           14.4297351,
           50.0847244
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4149232,
+          50.0777949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4173024,
+          50.0783714
         ]
       }
     },
@@ -916,25 +850,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 338507449,
-        "hasDetails": true,
-        "name": "HUDYsport",
-        "address": "Strossmayerovo n\u00e1m\u011bst\u00ed 965/10, Praha",
-        "website": "https://www.hudy.cz/",
-        "opening_hours": "Mo-Fr 10:00-18:30; Sa 10:00-13:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4339918,
-          50.0986233
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -1009,6 +924,7 @@
         "hasDetails": true,
         "name": "Dreams",
         "address": "Sp\u00e1len\u00e1 33, Praha",
+        "wikidata": "Q101497076",
         "names": [
           "Dreams",
           "La Azzetta"
@@ -1035,19 +951,6 @@
         "coordinates": [
           14.4138618,
           50.0815371
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4329887,
-          50.0982923
         ]
       }
     },
@@ -1099,6 +1002,106 @@
         "coordinates": [
           14.4280351,
           50.0905319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4359764,
+          50.0904655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 355008183,
+        "hasDetails": true,
+        "name": "Muzeum medoviny",
+        "address": "Na Zderaze 260/14, Praha",
+        "website": "https://www.muzeummedoviny.cz/",
+        "opening_hours": "Tu-Fr 13:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4165986,
+          50.0772848
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 355008186,
+        "hasDetails": true,
+        "name": "Siam travel",
+        "opening_hours": "Mo-Th 08:00-17:00; Fr 08:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4163588,
+          50.0774158
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 355008192,
+        "hasDetails": true,
+        "name": "Rossignol",
+        "opening_hours": "Mo-Fr 10:00-19:00; Sa 10:00-15:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4190154,
+          50.0783326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 355008193,
+        "hasDetails": true,
+        "name": "Gentlemen Brothers",
+        "opening_hours": "Mo-Fr 09:00-20:00; Sa 09:00-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192617,
+          50.0781859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 355008201,
+        "hasDetails": true,
+        "name": "TV products",
+        "opening_hours": "Mo-Fr 09:00-18:00; Sa 09:00-15:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192425,
+          50.0775374
         ]
       }
     },
@@ -1178,6 +1181,75 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 392128057,
+        "hasDetails": true,
+        "name": "Kv\u011btiny Florenc",
+        "website": "http://www.kvetiny-florenc.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4387813,
+          50.0913326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4390187,
+          50.091383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 436620630,
+        "hasDetails": true,
+        "name": "slow",
+        "opening_hours": "Mo-Fr 12:00-19:00",
+        "names": [
+          "slow",
+          "Slow Bazar"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4243658,
+          50.0780446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 436620634,
+        "hasDetails": true,
+        "name": "bra\u0161n\u00e1\u0159stv\u00ed, opravna obuvi, \u00fapravy od\u011bv\u016f Jan Ondr\u00e1\u010dek",
+        "address": "Navr\u00e1tilova 665/12, Praha 1",
+        "opening_hours": "Mo-Th 08:00-18:00; Fr 09:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4236367,
+          50.0785167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 457719602,
         "hasDetails": true,
         "name": "dm",
@@ -1238,38 +1310,6 @@
         "coordinates": [
           14.4215525,
           50.0834548
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4334709,
-          50.0980217
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 524536490,
-        "hasDetails": true,
-        "name": "McPen",
-        "address": "Dukelsk\u00fdch hrdin\u016f 694/39, Praha",
-        "website": "https://www.mcpen.cz/",
-        "opening_hours": "Mo-Fr 07:30-18:00; Sa 09:00-12:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.433141,
-          50.0998521
         ]
       }
     },
@@ -1379,133 +1419,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 669212049,
-        "hasDetails": true,
-        "name": "Letensk\u00e1 drogerie",
-        "opening_hours": "Mo-Fr 08:00-12:00,13:00-18:00; Sa 08:00-12:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4221239,
-          50.0997197
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 669212051,
-        "hasDetails": true,
-        "name": "Zelenkov\u00e1",
-        "address": "Milady Hor\u00e1kov\u00e9 382/75, Praha",
-        "website": "http://papirnictvizelenkova.cz/",
-        "opening_hours": "Jul-Aug,Sep-Jun Mo-Fr 08:00-18:30; Sep-Jun Sa 09:00-12:00",
-        "names": [
-          "Zelenkov\u00e1",
-          "more than nuts",
-          "Kv\u011btin\u00e1\u0159stv\u00ed"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4234732,
-          50.0998618
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 669212052,
-        "hasDetails": true,
-        "name": "Pekarna Kabat",
-        "address": "Milady Hor\u00e1kov\u00e9 611/73, Praha",
-        "website": "https://www.pekarnakabat.cz/",
-        "opening_hours": "Mo-Fr 06:00-20:00",
-        "names": [
-          "Pekarna Kabat",
-          "Zdrav\u00e1 obuv Friedrichovi"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4237134,
-          50.0998892
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 669212053,
-        "hasDetails": true,
-        "name": "Rossmann",
-        "address": "Milady Hor\u00e1kov\u00e9 62",
-        "website": "https://www.rossmann.cz/",
-        "names": [
-          "Rossmann",
-          "dm",
-          "La Formaggeria Gran Moravia"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4249187,
-          50.100123
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 669212064,
-        "hasDetails": true,
-        "name": "\u017babka",
-        "address": "Milady Hor\u00e1kov\u00e9 806/29, Praha",
-        "opening_hours": "Mo-Su 06:00-23:00; PH off",
-        "names": [
-          "\u017babka",
-          "Optika Letn\u00e1"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4290363,
-          50.099466
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 669212372,
-        "hasDetails": true,
-        "name": "FOKUS optik",
-        "address": "Milady Hor\u00e1kov\u00e9 451/13, Praha",
-        "website": "https://fokusoptik.cz/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4311668,
-          50.0991441
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -1526,28 +1439,6 @@
         "coordinates": [
           14.423635,
           50.0807995
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 679184085,
-        "hasDetails": true,
-        "name": "Litex",
-        "address": "Milady Hor\u00e1kov\u00e9 854/78, Praha",
-        "website": "https://www.litex.cz/",
-        "names": [
-          "Litex",
-          "Studio 76"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4200646,
-          50.0997519
         ]
       }
     },
@@ -1578,18 +1469,18 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 718329746,
+        "id": 785999450,
         "hasDetails": true,
-        "name": "Kosmas",
-        "address": "Veverkova 1407/16, Praha",
-        "website": "https://www.kosmas.cz",
-        "opening_hours": "Mo-Fr 09:00-19:00; Sa 10:00-16:00"
+        "name": "Albert",
+        "address": "Sokolovsk\u00e1 17/394, Praha 8",
+        "website": "https://www.albert.cz/",
+        "opening_hours": "Mo-Su 07:00-22:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4320545,
-          50.0989693
+          14.4402835,
+          50.0917688
         ]
       }
     },
@@ -1722,23 +1613,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 997592804,
-        "hasDetails": true,
-        "name": "Movax",
-        "address": "Strossmayerovo n\u00e1m\u011bst\u00ed 965/10, Praha"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4342001,
-          50.0986292
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -1753,70 +1627,17 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 1108740433,
+        "id": 1134865430,
         "hasDetails": true,
-        "name": "\u0158eznictv\u00ed Ve V\u00fdklenku",
-        "website": "https://reznictvivevyklenku.cz/",
-        "opening_hours": "Mo-Fr 07:00-18:00; Sa 08:00-12:00"
+        "name": "Skibi",
+        "website": "https://www.skibi.cz",
+        "opening_hours": "Mo-Fr 09:30-18:30; Sa 10:00-18:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4323675,
-          50.0992356
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4335839,
-          50.0999792
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 1134845608,
-        "hasDetails": true,
-        "name": "Libe\u0159sk\u00e9 lah\u016fdky",
-        "address": "Dukelsk\u00fdch hrdin\u016f 691/33, Praha",
-        "website": "https://liberskelahudky.cz/",
-        "opening_hours": "Mo-Fr 07:00-20:00; Sa,Su 09:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4330863,
-          50.0992141
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 1134845611,
-        "hasDetails": true,
-        "name": "\u00d3cn\u00ec",
-        "opening_hours": "Mo-Th 09:00-18:00; Fr 09:00-16:00",
-        "names": [
-          "\u00d3cn\u00ec",
-          "Textil-Obuv"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4334687,
-          50.0991314
+          14.4192426,
+          50.0785008
         ]
       }
     },
@@ -1830,23 +1651,6 @@
         "coordinates": [
           14.4233605,
           50.0808981
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 1200799883,
-        "hasDetails": true,
-        "name": "Pavelski",
-        "address": "Letohradsk\u00e1 538/26, Praha 7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4275997,
-          50.0985045
         ]
       }
     },
@@ -1907,19 +1711,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4216753,
-          50.1003878
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0,
         "id": 1257276104,
         "hasDetails": true,
@@ -1974,6 +1765,23 @@
         "coordinates": [
           14.4171233,
           50.0806175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1257356272,
+        "hasDetails": true,
+        "name": "inmedio",
+        "opening_hours": "Mo-Fr 06:00-19:00; Sa 07:00-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4185709,
+          50.0781912
         ]
       }
     },
@@ -2089,6 +1897,29 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 1258869800,
+        "hasDetails": true,
+        "name": "Rendl Light Studio",
+        "address": "Masarykovo n\u00e1b\u0159e\u017e\u00ed 10",
+        "website": "https://rendl.cz/",
+        "opening_hours": "Mo-Fr 10:00-18:00",
+        "names": [
+          "Rendl Light Studio",
+          "Minimarket"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4145565,
+          50.0772968
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -2155,6 +1986,44 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1268311860,
+        "hasDetails": true,
+        "name": "Charlott",
+        "opening_hours": "Mo-Fr 07:00-18:00",
+        "names": [
+          "Charlott",
+          "Belgick\u00e9 pralinky"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192851,
+          50.0780846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1268311862,
+        "hasDetails": true,
+        "name": "Au Portal",
+        "opening_hours": "Mo-Fr 09:00-13:00, 13:30-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4192866,
+          50.0779636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 1290539099,
         "hasDetails": true,
         "name": "Desigual",
@@ -2197,6 +2066,23 @@
         "coordinates": [
           14.4188114,
           50.080817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1472901803,
+        "hasDetails": true,
+        "name": "Ocularium Optik",
+        "opening_hours": "Mo-Fr 09:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4408052,
+          50.0917872
         ]
       }
     },
@@ -2302,6 +2188,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4074535,
+          50.0872237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 1946542583,
         "hasDetails": true,
@@ -2393,7 +2292,8 @@
         "name": "Amorino",
         "amenity": "ice_cream",
         "address": "n\u00e1m\u011bst\u00ed Franze Kafky 24/3, Praha",
-        "opening_hours": "Su-Th 10:00-20:00; Fr,Sa 10:00-21:00"
+        "opening_hours": "Su-Th 10:00-20:00; Fr,Sa 10:00-21:00",
+        "outdoor_seating": "pedestrian_zone"
       },
       "geometry": {
         "type": "Point",
@@ -2537,6 +2437,47 @@
         "coordinates": [
           14.418354,
           50.0860397
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1948155780,
+        "hasDetails": true,
+        "name": "Fokus Optik",
+        "opening_hours": "Mo-Fr 09:00-18:00",
+        "names": [
+          "Fokus Optik",
+          "Sv\u011bt o\u0159\u00ed\u0161k\u016f"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4355416,
+          50.0902938
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1948155787,
+        "hasDetails": true,
+        "name": "Arctic Bakehouse",
+        "address": "Na Po\u0159\u00ed\u010d\u00ed 1064/31",
+        "website": "https://www.articbakehouse.cz/",
+        "opening_hours": "07:00-19:30",
+        "outdoor_seating": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4352627,
+          50.0902181
         ]
       }
     },
@@ -2792,6 +2733,58 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2212047633,
+        "hasDetails": true,
+        "name": "Knihy Dobrovsk\u00fd",
+        "opening_hours": "Mo-Fr 08:00-20:00; Sa 09:00-17:00",
+        "names": [
+          "Knihy Dobrovsk\u00fd",
+          "\u0160otek"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4398827,
+          50.0919802
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4399723,
+          50.0921613
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2302181761,
+        "hasDetails": true,
+        "name": "INFOTUR",
+        "address": "Na Florenci 23 23",
+        "website": "https://infobus.eu/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4368796,
+          50.0892324
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2343343315,
         "hasDetails": true,
         "name": "Hairpoint",
@@ -2827,25 +2820,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 2358380972,
-        "hasDetails": true,
-        "name": "Erhartova cukr\u00e1rna",
-        "address": "Milady Hor\u00e1kov\u00e9 387/56, Praha",
-        "website": "https://www.erhartovacukrarna.cz/",
-        "opening_hours": "Mo-Su 10:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4255661,
-          50.100106
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 2414220367,
         "hasDetails": true,
         "name": "Stoklasa",
@@ -2857,6 +2831,37 @@
         "coordinates": [
           14.4312411,
           50.0860522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4395873,
+          50.0784701
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2432824680,
+        "hasDetails": true,
+        "name": "Marine Tour s.r.o.",
+        "address": "Kun\u011btick\u00e1 2534/2, Praha 7 Vinohrady",
+        "website": "https://www.marinetour.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4383792,
+          50.0820327
         ]
       }
     },
@@ -2883,6 +2888,113 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 2494868532,
+        "hasDetails": true,
+        "name": "H\u00e4stens",
+        "website": "www.postele-hastens.cz",
+        "opening_hours": "Mo-Fr 10:00-19:00; Sa 11:00-15:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4376096,
+          50.0778969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2494868535,
+        "hasDetails": true,
+        "name": "Poggenpohl",
+        "website": "https://www.poggenpohl.cz/",
+        "opening_hours": "Mo-Fr 09:00-18:00; Sa 10:00-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.438304,
+          50.0777595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2494868536,
+        "hasDetails": true,
+        "name": "Bernuss",
+        "address": "Vinohradsk\u00e1 1128/47, Praha 2",
+        "website": "https://bernuss.com/en/contact/",
+        "opening_hours": "Mo-Fr 10:00-18:30,Sa 11:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4403546,
+          50.0774225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4387968,
+          50.0776834
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.439108,
+          50.0776303
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4398006,
+          50.0775114
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4385702,
+          50.077718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 2510652500,
         "hasDetails": true,
         "name": "Comics Point",
@@ -2895,45 +3007,6 @@
         "coordinates": [
           14.4293695,
           50.0895162
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 2564490508,
-        "hasDetails": true,
-        "name": "Iris",
-        "opening_hours": "\"Dle objedn\u00e1vek\"",
-        "names": [
-          "Iris",
-          "Pedi od G\u00e1bi"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4281486,
-          50.0986764
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 2677069997,
-        "hasDetails": true,
-        "name": "B\u00e9 FOTO",
-        "website": "https://www.befoto.cz/",
-        "opening_hours": "Mo-Th 10:00-13:00; Sa 10:00-13:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4341309,
-          50.0983459
         ]
       }
     },
@@ -3213,6 +3286,54 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3154280214,
+        "hasDetails": true,
+        "name": "Galerie D-art",
+        "address": "U Lu\u017eick\u00e9ho semin\u00e1\u0159e 7, Praha",
+        "opening_hours": "Mo-Su 11:00-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4078271,
+          50.0872849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3164258613,
+        "hasDetails": true,
+        "name": "Grocery Store Cannabis Point",
+        "address": "Masarykovo n\u00e1b\u0159e\u017e\u00ed 20, Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4144641,
+          50.0783078
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4228703,
+          50.0775388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3183501712,
         "hasDetails": true,
         "name": "Crystal",
@@ -3313,13 +3434,33 @@
         "hasDetails": true,
         "name": "\u010cajov\u00fd kr\u00e1mek",
         "website": "https://www.cajovykramek.cz/",
-        "opening_hours": "Mo-Fr 09:30-11:30, 12:00-19:00; Sa 10:00-11:30, 12:00-19:00"
+        "opening_hours": "Mo-Fr 09:30-11:30, 12:00-19:00; Sa 10:00-11:30, 12:00-19:00",
+        "outdoor_seating": "no"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4184976,
           50.0819927
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3226562265,
+        "hasDetails": true,
+        "name": "V\u010dela\u0159sk\u00e1 prodejna",
+        "address": "K\u0159emencova 177/8, Praha",
+        "website": "http://www.vcelpo.cz/",
+        "opening_hours": "Tu-Fr 09:00-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4174807,
+          50.0784952
         ]
       }
     },
@@ -3399,6 +3540,28 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3268506756,
+        "hasDetails": true,
+        "name": "Rossmann",
+        "website": "https://www.rossmann.cz/",
+        "opening_hours": "Mo-Su 08:00-20:00",
+        "names": [
+          "Rossmann",
+          "Tescoma"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4354318,
+          50.0888942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3268515401,
         "hasDetails": true,
         "name": "Rossmann",
@@ -3428,6 +3591,43 @@
         "coordinates": [
           14.4212343,
           50.0832041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3285422362,
+        "hasDetails": true,
+        "name": "Sony",
+        "address": "Karlovo n\u00e1m\u011bst\u00ed 285/19, Praha",
+        "opening_hours": "Mo-Fr 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4193065,
+          50.0776808
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3285422364,
+        "hasDetails": true,
+        "name": "Terrys Steak",
+        "address": "Italsk\u00e1 209/17, Praha",
+        "website": "http://www.terrys.cz/",
+        "opening_hours": "Mo-Fr 09:30-17:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4358562,
+          50.0777576
         ]
       }
     },
@@ -3571,181 +3771,6 @@
         "coordinates": [
           14.4181107,
           50.0879727
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 3343768361,
-        "hasDetails": true,
-        "name": "Cheesy & Co",
-        "address": "Letensk\u00e9 n\u00e1m\u011bst\u00ed 6",
-        "website": "http://www.cheesyandko.cz/cs/obchody/cheesy-ko-letna/",
-        "opening_hours": "Mo-Fr 10:00-19:00; Sa 09:00-15:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4243957,
-          50.1002331
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 3357460004,
-        "hasDetails": true,
-        "name": "Dogtown",
-        "website": "https://www.dogtown.cz/",
-        "opening_hours": "Mo-Fr 10:00-19:00; Sa 10:00-17:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4228598,
-          50.1002799
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.425212,
-          50.1001215
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 3358202202,
-        "hasDetails": true,
-        "name": "Emil Gaigher",
-        "address": "Milady Hor\u00e1kov\u00e9 54, Praha 7",
-        "website": "https://www.gaigher.cz/",
-        "opening_hours": "Mo-Fr 10:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4257941,
-          50.1000871
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4260013,
-          50.1000661
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4262079,
-          50.1000531
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.426534,
-          50.1000468
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 3358235821,
-        "hasDetails": true,
-        "name": "Royal Clean",
-        "address": "Milady Hor\u00e1kov\u00e9 389/44, Praha",
-        "website": "https://www.royalclean.cz/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4267298,
-          50.1000227
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4270034,
-          50.0999917
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 3361947615,
-        "hasDetails": true,
-        "name": "Tab\u00e1k",
-        "address": "Milady Hor\u00e1kov\u00e9 65, Praha 7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4250107,
-          50.0999179
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 3361947617,
-        "hasDetails": true,
-        "name": "Merhautovo peka\u0159stv\u00ed",
-        "address": "Milady Hor\u00e1kov\u00e9 61, Praha 7",
-        "website": "https://merhautovo.cz/",
-        "opening_hours": "Mo-Fr 07:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4253366,
-          50.0998998
         ]
       }
     },
@@ -4165,6 +4190,7 @@
         "name": "Zegna",
         "address": "Pa\u0159\u00ed\u017esk\u00e1 18, Praha",
         "opening_hours": "Mo-Fr 10:00-19:00; Sa 11:00-18:00",
+        "wikidata": "Q102415334",
         "names": [
           "Zegna",
           "Valentino"
@@ -4388,6 +4414,97 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3458892156,
+        "hasDetails": true,
+        "name": "Husky",
+        "address": "\u017ditn\u00e1 669/1, Praha",
+        "website": "https://www.huskycz.cz/",
+        "opening_hours": "Mo-Fr 10:00-19:00; Sa 09:00-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4215865,
+          50.0776389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3458892158,
+        "hasDetails": true,
+        "name": "RCKING",
+        "address": "\u017ditn\u00e1 1688/3, Praha",
+        "website": "http://www.rcking.eu/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.421868,
+          50.0776001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3458892160,
+        "hasDetails": true,
+        "name": "Tescoma",
+        "address": "\u017ditn\u00e1 606/29, Praha",
+        "website": "https://www.tescoma.cz/",
+        "opening_hours": "Mo-Fr 09:00-19:00; Sa 10:00-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4263145,
+          50.0773799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3458892162,
+        "hasDetails": true,
+        "name": "U\u010dili\u0161tn\u00ed provozovna SOU slu\u017eeb",
+        "website": "https://kadernik-sousluzeb.webnode.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4232668,
+          50.0775478
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3458892163,
+        "hasDetails": true,
+        "name": "Fili's Family Market",
+        "address": "\u017ditn\u00e1 585/31, Praha",
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4265762,
+          50.0773474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3467265670,
         "hasDetails": true,
         "name": "Masna na Koz\u00edm pl\u00e1cku",
@@ -4417,6 +4534,23 @@
         "coordinates": [
           14.423315,
           50.0907269
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3467364401,
+        "hasDetails": true,
+        "name": "PBG studio",
+        "address": "Mysl\u00edkova 4, Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4149804,
+          50.0773307
         ]
       }
     },
@@ -4670,6 +4804,25 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 3475173911,
+        "hasDetails": true,
+        "name": "Kolobok",
+        "address": "\u017ditn\u00e1 16, Praha",
+        "website": "https://www.ruskolobok.cz/",
+        "opening_hours": "Mo-Sa 09:00-21:00; Su 10:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238027,
+          50.0772088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -4677,6 +4830,25 @@
         "coordinates": [
           14.4243956,
           50.0886172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3475173931,
+        "hasDetails": true,
+        "name": "\u017dabka",
+        "address": "Karlovo n\u00e1m\u011bst\u00ed 25, Praha",
+        "website": "https://izabka.cz/",
+        "opening_hours": "Mo-Su 06:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4215574,
+          50.0778762
         ]
       }
     },
@@ -4829,7 +5001,8 @@
         "amenity": "cafe",
         "address": "N\u00e1rodn\u00ed 37/38, Praha",
         "website": "https://www.cukrarna-na-nadvori.cz/",
-        "opening_hours": "Mo-Fr 08:30-19:00; Sa 10:00-19:00"
+        "opening_hours": "Mo-Fr 08:30-19:00; Sa 10:00-19:00",
+        "outdoor_seating": "yes"
       },
       "geometry": {
         "type": "Point",
@@ -4871,6 +5044,7 @@
         "name": "Pho 10",
         "address": "Sp\u00e1len\u00e1 59, Praha",
         "opening_hours": "Mo-Su 10:00-01:30",
+        "wikidata": "Q84141892",
         "names": [
           "Pho 10",
           "Minimarket"
@@ -4938,6 +5112,44 @@
         "coordinates": [
           14.4223187,
           50.0888583
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3597879399,
+        "hasDetails": true,
+        "name": "Boutique Sandra",
+        "address": "Vinohradsk\u00e1 403/17, Praha",
+        "website": "http://axello.eu/",
+        "opening_hours": "Mo-Fr 10:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4350441,
+          50.0787352
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3597879401,
+        "hasDetails": true,
+        "name": "Cool",
+        "address": "Vinohradsk\u00e1 1252/36, Praha",
+        "website": "https://www.coolboutique.cz/",
+        "opening_hours": "Mo-Fr 11:00-18:30; Sa 10:00-13:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4384689,
+          50.0774713
         ]
       }
     },
@@ -5193,19 +5405,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4317634,
-          50.099658
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0,
         "id": 3652631425,
         "hasDetails": true,
@@ -5263,6 +5462,44 @@
         "coordinates": [
           14.4095685,
           50.0950818
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3680305546,
+        "hasDetails": true,
+        "name": "Mersiha mini market",
+        "address": "K\u0159i\u017e\u00edkova 344/6, Praha",
+        "website": "https://www.mersiha-mini-market.cz/",
+        "opening_hours": "Mo-Su 06:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4402277,
+          50.0899823
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3680305549,
+        "hasDetails": true,
+        "name": "Pont",
+        "address": "K\u0159i\u017e\u00edkova 2110/2b, Praha",
+        "website": "https://www.jpservis.com/koncept-pont-to-go",
+        "opening_hours": "Mo-Su 05:30-23:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.439375,
+          50.0894137
         ]
       }
     },
@@ -5383,25 +5620,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 3689826570,
-        "hasDetails": true,
-        "name": "Styltex",
-        "address": "Dukelsk\u00fdch hrdin\u016f 971/22, Praha",
-        "website": "https://www.styltex.cz/",
-        "opening_hours": "Tu-Fr 09:00-18:00; Mo 09:00-12:00,13:30-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4335539,
-          50.1002228
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 3694901788,
         "hasDetails": true,
         "name": "TONAK a.s. - klobouky",
@@ -5500,6 +5718,93 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3724693632,
+        "hasDetails": true,
+        "name": "Zahrada na niti",
+        "website": "http://www.zahradananiti.cz/",
+        "opening_hours": "Mo 10:00-17:00; Tu-Th 11:00-19:00; Fr 10:00-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4241234,
+          50.0782563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4153264,
+          50.077316
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3726736983,
+        "hasDetails": true,
+        "name": "Campanula Flowers",
+        "opening_hours": "Mo-Fr 09:00-18:30; Sa 10:00-15:00",
+        "names": [
+          "Campanula Flowers",
+          "Artic Bakehouse"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4164925,
+          50.0776904
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3726736986,
+        "hasDetails": true,
+        "name": "Petite France",
+        "address": "Mysl\u00edkova 22, Praha",
+        "opening_hours": "Mo-Su 08:00-19:00",
+        "outdoor_seating": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4177917,
+          50.0777541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3726736989,
+        "hasDetails": true,
+        "address": "Odbor\u016f 5, Praha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4186812,
+          50.0776853
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3726743657,
         "hasDetails": true,
         "name": "Galerie Kodl",
@@ -5587,6 +5892,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 3815103389,
+        "hasDetails": true,
+        "name": "Royal clean",
+        "address": "Mysl\u00edkova 1960/17, Praha",
+        "website": "https://www.royalclean.cz/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4173039,
+          50.0778577
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 3841646751,
         "hasDetails": true,
         "name": "Martin Tour",
@@ -5616,6 +5939,24 @@
         "coordinates": [
           14.4202548,
           50.0879189
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3860587258,
+        "hasDetails": true,
+        "name": "Giovanni Becca",
+        "address": "Vinohradsk\u00e1 396/18, Praha",
+        "opening_hours": "We,Th 12:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4356597,
+          50.0781542
         ]
       }
     },
@@ -5729,19 +6070,47 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 3989467082,
-        "hasDetails": true,
-        "name": "Farma Letna",
-        "address": "Milady Hor\u00e1kov\u00e9 390/49, Praha",
-        "website": "http://www.farmaletna.cz/",
-        "opening_hours": "Mo-Fr 09:00-18:30; Sa 09:00-13:00"
+        "weight": 1.0
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4267042,
-          50.0998047
+          14.4403563,
+          50.0914832
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3998646487,
+        "hasDetails": true,
+        "name": "Atlantic",
+        "opening_hours": "Mo-Fr 10:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4405501,
+          50.0915274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3998646488,
+        "hasDetails": true,
+        "name": "Ovocn\u00fd sv\u011btozor",
+        "opening_hours": "Mo-Fr 08:00-19:00; Sa 09:00-19:00; Su,PH 10:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.440813,
+          50.0915584
         ]
       }
     },
@@ -5767,17 +6136,87 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4094945464,
+        "id": 4009231863,
         "hasDetails": true,
-        "name": "Potraviny",
-        "address": "Dobrovsk\u00e9ho 544/1, Praha 7",
-        "opening_hours": "Mo-Su 08:00-22:00"
+        "name": "Madal Bal",
+        "website": "https://madalbal.cz/",
+        "opening_hours": "Mo-Fr 09:00-18:00; Sa 10:00-13:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4274884,
-          50.0993216
+          14.4399258,
+          50.0918367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4009231865,
+        "hasDetails": true,
+        "name": "O2",
+        "opening_hours": "Mo-Fr 08:30-19:00; Sa 08:30-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4400726,
+          50.0916358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4010929846,
+        "hasDetails": true,
+        "name": "Tapety metro Florenc",
+        "website": "https://www.tapetymetroflorenc.cz/",
+        "opening_hours": "Mo-Fr 10:00-18:00; Sa 09:00-13:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4397831,
+          50.0904526
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4023588946,
+        "hasDetails": true,
+        "name": "Alpsport",
+        "website": "http://www.alpsport.cz",
+        "opening_hours": "Mo-Fr 10:00-19:00; Sa 10:00-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4370774,
+          50.090248
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4063183653,
+        "hasDetails": true,
+        "name": "Anti aging showroom",
+        "opening_hours": "Mo-Fr 10:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4384209,
+          50.0916863
         ]
       }
     },
@@ -5802,24 +6241,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4142673895,
-        "hasDetails": true,
-        "name": "Greek Corner",
-        "address": "Milady Hor\u00e1kov\u00e9 27, Praha 7",
-        "opening_hours": "Mo-Fr 09:00-20:00; Sa 10:00-16:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4294198,
-          50.0994033
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 4151743990,
         "hasDetails": true,
         "name": "Husky",
@@ -5836,6 +6257,25 @@
         "coordinates": [
           14.433435,
           50.089718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4171120562,
+        "hasDetails": true,
+        "name": "Moje Kolo",
+        "address": "Seifertova 7, Praha",
+        "website": "https://www.mojekolo.cz/",
+        "opening_hours": "Mo-Fr 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4402792,
+          50.085535
         ]
       }
     },
@@ -5918,6 +6358,32 @@
         "coordinates": [
           14.4242511,
           50.0790455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4227136,
+          50.077275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238535,
+          50.0774747
         ]
       }
     },
@@ -6273,118 +6739,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4210401708,
-        "hasDetails": true,
-        "name": "Elektro Letn\u00e1",
-        "address": "Milady Hor\u00e1kov\u00e9 390/49, Praha",
-        "website": "https://www.elektro-letna.cz/",
-        "opening_hours": "Mo-Fr 09:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4268452,
-          50.0997973
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4210401709,
-        "hasDetails": true,
-        "name": "Gorenje",
-        "website": "https://kuchynskastudia.cz/",
-        "opening_hours": "Mo-Fr 09:30-19:00; Sa 10:00-14:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4285,
-          50.0997658
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4210401710,
-        "hasDetails": true,
-        "name": "Kv\u011btiny Ml\u00e1dek",
-        "address": "Milady Hor\u00e1kov\u00e9 393/36, Praha",
-        "website": "https://www.kvetinymladek.cz/",
-        "opening_hours": "Mo-Fr 08:00-19:00; Sa 08:00-13:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4281982,
-          50.0998324
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4210401712,
-        "hasDetails": true,
-        "name": "Pracovn\u00ed od\u011bvy Brudra",
-        "address": "Milady Hor\u00e1kov\u00e9 550/51, Praha",
-        "website": "https://www.brudra.cz/",
-        "opening_hours": "Mo-Fr 09:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4265053,
-          50.0998211
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4210401713,
-        "hasDetails": true,
-        "name": "Pracovn\u00ed od\u011bvy Ko\u0159\u00ednek",
-        "address": "Milady Hor\u00e1kov\u00e9 548/55, Praha",
-        "website": "https://pracovniodevypraha.com/",
-        "opening_hours": "Mo-Th 08:00-18:00; Fr 08:00-17:30"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4261347,
-          50.0998427
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4210401714,
-        "hasDetails": true,
-        "name": "Running Mall",
-        "address": "Franti\u0161ka K\u0159\u00ed\u017eka 461/11, Praha",
-        "website": "https://www.runningmall.cz/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4303153,
-          50.0995485
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 4214198528,
         "hasDetails": true,
         "name": "Market KLTT",
@@ -6692,7 +7046,8 @@
         "id": 4223445629,
         "hasDetails": true,
         "name": "Aux Merveilleux",
-        "opening_hours": "Mo-Fr 08:00-19:00; Sa,Su 09:00-19:00"
+        "opening_hours": "Mo-Fr 08:00-19:00; Sa,Su 09:00-19:00",
+        "outdoor_seating": "no"
       },
       "geometry": {
         "type": "Point",
@@ -6754,34 +7109,17 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4225959055,
+        "id": 4248784449,
         "hasDetails": true,
-        "name": "Nila",
-        "address": "Milady Hor\u00e1kov\u00e9 690/4, Praha",
-        "website": "https://www.nila.cz/",
-        "opening_hours": "Mo-Su 10:00-19:00"
+        "name": "Antikvari\u00e1t Eva Koz\u00e1kov\u00e1",
+        "address": "Mysl\u00edkova 10",
+        "opening_hours": "Mo-Fr 10:00-18:30; Sa 10:00-14:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4325419,
-          50.0991226
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4225959061,
-        "hasDetails": true,
-        "address": "Milady Hor\u00e1kov\u00e9 533/28, Praha"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4292694,
-          50.0996439
+          14.4160261,
+          50.0774071
         ]
       }
     },
@@ -6799,24 +7137,6 @@
         "coordinates": [
           14.4175586,
           50.0837649
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4273381197,
-        "hasDetails": true,
-        "name": "4camping.cz",
-        "website": "https://www.4camping.cz/stranky/prodejny/praha-dukelskych-hrdinu",
-        "opening_hours": "Mo-Fr 11:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4330709,
-          50.0991107
         ]
       }
     },
@@ -6877,6 +7197,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4072443,
+          50.0872548
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 4316680627,
         "hasDetails": true,
@@ -6887,6 +7220,42 @@
         "coordinates": [
           14.4321398,
           50.0907141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4317684396,
+        "hasDetails": true,
+        "name": "Papelote",
+        "address": "Vojt\u011b\u0161sk\u00e1 241/9",
+        "website": "https://www.papelote.cz/",
+        "opening_hours": "Mo-Fr 11:00-20:00; Sa-Su 12:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4148262,
+          50.0783509
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4318456015,
+        "hasDetails": true,
+        "name": "C+H Market",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4364824,
+          50.0906317
         ]
       }
     },
@@ -6912,17 +7281,17 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4341060707,
+        "id": 4338766490,
         "hasDetails": true,
-        "name": "Bytov\u00fd textil",
-        "address": "Milady Hor\u00e1kov\u00e9 398/30, Praha",
-        "opening_hours": "Mo-Fr 09:00-18:00; Sa,Su 10:00-15:00"
+        "name": "Marta Ko\u0161\u00edkov\u00e1",
+        "website": "https://salonmartakosikova.cz",
+        "opening_hours": "Mo-Fr 08:30-20:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4290125,
-          50.0997051
+          14.4369033,
+          50.0790617
         ]
       }
     },
@@ -6930,18 +7299,18 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4341060708,
+        "id": 4338811690,
         "hasDetails": true,
-        "name": "Moira",
-        "address": "Milady Hor\u00e1kov\u00e9 684/16, Praha",
-        "website": "https://moira.cz/",
-        "opening_hours": "Mo-Fr 10:00-18:00; Sa 09:00-12:00"
+        "name": "ProSp\u00e1nek",
+        "address": "Na Smetance 16, Praha 2",
+        "website": "https://www.prospanek.cz/prodejny/prodejna-praha-vinohrady/",
+        "opening_hours": "Mo-Su 09:00-20:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4308705,
-          50.0993962
+          14.4370854,
+          50.0792763
         ]
       }
     },
@@ -6949,40 +7318,17 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4341060722,
+        "id": 4338849989,
         "hasDetails": true,
-        "name": "Mipe",
-        "address": "Milady Hor\u00e1kov\u00e9 451/13, Praha",
-        "website": "http://www.papirnictvimipe.cz/",
-        "opening_hours": "Mo-Fr 08:30-18:00; Sa 09:00-12:00",
-        "names": [
-          "Mipe",
-          "Freshlabels Sustainable Store"
-        ]
+        "name": "Atelier d'Esth\u00e9tique",
+        "website": "https://www.atelieresthe.cz/",
+        "opening_hours": "Mo-Fr 08:00-21:00; Sa 09:00-19:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4313353,
-          50.0991207
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4341060724,
-        "hasDetails": true,
-        "name": "\u010cesk\u00e9 fusekle",
-        "address": "Ha\u0161kova 1176/4, Praha",
-        "opening_hours": "Mo-Fr 09:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4284306,
-          50.0999559
+          14.4358727,
+          50.0790333
         ]
       }
     },
@@ -7115,23 +7461,6 @@
         "coordinates": [
           14.4219041,
           50.0829835
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4412248090,
-        "hasDetails": true,
-        "name": "Ahava",
-        "opening_hours": "Mo-Fr 10:00-17:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4202969,
-          50.0998167
         ]
       }
     },
@@ -7635,6 +7964,25 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 4534814980,
+        "hasDetails": true,
+        "name": "T-LED - prodejna \u017ditn\u00e1",
+        "address": "\u017ditn\u00e1 23, Praha 1",
+        "website": "https://www.t-led.cz",
+        "opening_hours": "Mo-Fr 08:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4250746,
+          50.0774177
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -7642,44 +7990,6 @@
         "coordinates": [
           14.4213558,
           50.0851864
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4581049292,
-        "hasDetails": true,
-        "name": "PageFive",
-        "address": "Veverkova 5",
-        "website": "https://pagefive.com/",
-        "opening_hours": "Mo-Fr 10:00-19:00; Sa-Su 11:00-16:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4317798,
-          50.0982237
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4585504898,
-        "hasDetails": true,
-        "name": "iphonedoktor.cz",
-        "address": "Nad \u0160tolou 18",
-        "website": "http://iphonedoktor.cz",
-        "opening_hours": "Mo-Th 08:30-18:30; Fr 08:30-16:30"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4221841,
-          50.0994847
         ]
       }
     },
@@ -7764,17 +8074,17 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4603681454,
+        "id": 4605883097,
         "hasDetails": true,
-        "name": "Bazar Technik",
-        "address": "Korunova\u010dn\u00ed 311/4, Praha",
-        "website": "http://bazartechnik.cz/"
+        "name": "Erotic City",
+        "website": "https://www.eroticcity.cz/",
+        "opening_hours": "Mo-Su 09:00-21:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.42095,
-          50.1002138
+          14.4290368,
+          50.0772785
         ]
       }
     },
@@ -7782,17 +8092,19 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4614148785,
+        "id": 4609894852,
         "hasDetails": true,
-        "name": "Caffe Belcredi",
-        "address": "Milady Hor\u00e1kov\u00e9 806/29, Praha",
-        "opening_hours": "Mo-Fr 08:00-19:00; Sa 09:00-19:00; Su 13:00-18:00"
+        "name": "Craft House",
+        "amenity": "bar",
+        "address": "Navr\u00e1tilova 11",
+        "website": "https://www.crafthouse.cz/",
+        "opening_hours": "Mo-Su 17:00-24:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.429163,
-          50.0992095
+          14.4233853,
+          50.0786622
         ]
       }
     },
@@ -8335,24 +8647,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4786105052,
-        "hasDetails": true,
-        "name": "Fanshop Letn\u00e1",
-        "website": "https://www.fnshp.cz/prodejna-letna/",
-        "opening_hours": "Mo,We,Fr 10:00-18:00; Tu 11:00-19:00; Th 12:00-20:00; Sa,Su 12:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4168719,
-          50.0992559
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 4796146121,
         "hasDetails": true,
         "name": "K\u00f6ttner",
@@ -8364,42 +8658,6 @@
         "coordinates": [
           14.4242916,
           50.0860599
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4796864741,
-        "hasDetails": true,
-        "name": "Dvaadvac\u00edtka",
-        "address": "Na v\u00fd\u0161in\u00e1ch 874/22, Praha",
-        "website": "https://www.22.cz/",
-        "opening_hours": "Mo-Fr 11:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4171455,
-          50.1001148
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 4796867921,
-        "hasDetails": true,
-        "name": "Jedu.cz",
-        "address": "Milady Hor\u00e1kov\u00e9 96, Praha 7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4174183,
-          50.0993584
         ]
       }
     },
@@ -8480,24 +8738,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 4813381069,
-        "hasDetails": true,
-        "name": "Mini Market - Potraviny",
-        "address": "Oveneck\u00e1 12, Praha 7",
-        "opening_hours": "Mo-Fr 07:30-22:00; Sa,Su 09:00-22:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4250528,
-          50.0988562
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 4816399493,
         "hasDetails": true,
         "name": "Braun",
@@ -8534,6 +8774,42 @@
         "coordinates": [
           14.4348262,
           50.0904864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4820908914,
+        "hasDetails": true,
+        "name": "My Star",
+        "opening_hours": "Mo-Sa 09:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4228172,
+          50.0779847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4830374604,
+        "hasDetails": true,
+        "name": "OpticLab",
+        "address": "Na Florenci 15, Praha",
+        "website": "https://opticlab.cz/",
+        "opening_hours": "Mo-Fr 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4352449,
+          50.0887779
         ]
       }
     },
@@ -8823,6 +9099,7 @@
         "address": "V\u00e1clavsk\u00e9 n\u00e1m\u011bst\u00ed 42, Praha",
         "website": "https://www.paul-cz.com/en/",
         "opening_hours": "Mo-Su 07:00-21:00",
+        "outdoor_seating": "no",
         "names": [
           "Paul",
           "Bergold s.r.o."
@@ -8833,6 +9110,19 @@
         "coordinates": [
           14.4274391,
           50.0809232
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4397233,
+          50.0909044
         ]
       }
     },
@@ -8937,6 +9227,19 @@
         "coordinates": [
           14.4226591,
           50.0907767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4213983,
+          50.0772689
         ]
       }
     },
@@ -9058,6 +9361,25 @@
         "coordinates": [
           14.4246511,
           50.084736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5174858621,
+        "hasDetails": true,
+        "name": "Kuchy\u0148sk\u00e9 pot\u0159eby-bytov\u00e9 dopl\u0148ky",
+        "address": "Mysl\u00edkova 1960/17, Praha",
+        "website": "http://www.kuchynskepotreby-praha.cz/",
+        "opening_hours": "Mo 10:00-18:00; Tu-Fr 09:00-18:00; Sa 10:00-15:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4171392,
+          50.0778372
         ]
       }
     },
@@ -9267,28 +9589,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 5565876821,
-        "hasDetails": true,
-        "name": "e-kytky.cz",
-        "address": "Oveneck\u00e1 22",
-        "opening_hours": "Mo-Fr 08:00-19:00; Sa 08:00-17:00; Su 09:00-17:00",
-        "names": [
-          "e-kytky.cz",
-          "M0ST N\u00e1poje / Beverages"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.424749,
-          50.0995704
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -9390,25 +9690,6 @@
         "coordinates": [
           14.4204604,
           50.0892997
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 5621368172,
-        "hasDetails": true,
-        "name": "Country Life",
-        "address": "Korunova\u010dn\u00ed 310/2, Praha 7",
-        "website": "https://www.countrylife.cz/nove-prodejna-country-life-letna",
-        "opening_hours": "Mo-Th 07:00-19:00; Fr 07:30-18:00; Su 10:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4212631,
-          50.1000757
         ]
       }
     },
@@ -9655,41 +9936,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 5780430905,
-        "hasDetails": true,
-        "name": "Babylon",
-        "opening_hours": "Mo-Fr 09:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4334479,
-          50.0984096
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 5780430906,
-        "hasDetails": true,
-        "name": "Madal Bal",
-        "website": "https://madalbal.cz/cs/prodejny/detail/7/",
-        "opening_hours": "Mo-Fr 09:00-18:00; Sa 10:00-14:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4334493,
-          50.0983106
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 5797451521,
         "hasDetails": true,
         "name": "\u010cist\u00edrna Daja",
@@ -9700,6 +9946,19 @@
         "coordinates": [
           14.4304381,
           50.0884658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4393001,
+          50.09073
         ]
       }
     },
@@ -9819,25 +10078,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 6225998385,
-        "hasDetails": true,
-        "name": "Voala - grafick\u00e9 studio",
-        "address": "Dobrovsk\u00e9ho 8",
-        "website": "https://www.voala.cz/",
-        "opening_hours": "Mo-Fr 9:30-17:30"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4267157,
-          50.0993877
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 6378204278,
         "hasDetails": true,
         "name": "Turistico Praga Tour",
@@ -9928,6 +10168,32 @@
         "coordinates": [
           14.4245613,
           50.0900268
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4248145,
+          50.0778825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4246099,
+          50.0779004
         ]
       }
     },
@@ -10048,135 +10314,19 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.434202,
-          50.0995966
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0,
-        "id": 6575445646,
+        "id": 6547752084,
         "hasDetails": true,
-        "name": "Henzl fashion",
-        "opening_hours": "Mo-Fr 10:00-17:00"
+        "name": "Radiot\u00e9ka",
+        "address": "Vinohradsk\u00e1 1409/12, Praha 1",
+        "website": "https://www.radioteka.cz/info/prodejna/",
+        "opening_hours": "Mo-Fr 09:00-12:00,12:30-18:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4330492,
-          50.0984636
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4340483,
-          50.0996024
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 6575462930,
-        "hasDetails": true,
-        "name": "Kuzmarkt",
-        "opening_hours": "Mo-Fr 12:00-19:00; Sa 13:00-17:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4343146,
-          50.0991777
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4343758,
-          50.099481
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4335034,
-          50.0999043
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4334357,
-          50.0986077
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 6575475394,
-        "hasDetails": true,
-        "name": "Carry optik",
-        "opening_hours": "Mo-Fr 10:00-18:00; Sa 10:00-13:30"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4335684,
-          50.1003698
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 6575477949,
-        "hasDetails": true,
-        "name": "BezPotisku",
-        "address": "Dukelsk\u00fdch hrdin\u016f 471/29, Praha 7",
-        "website": "https://www.bezpotisku.cz/prodejna/stross",
-        "opening_hours": "Mo-Fr 09:00-19:00; Sa 10:00-17:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4330769,
-          50.0986826
+          14.4346017,
+          50.0785635
         ]
       }
     },
@@ -10225,7 +10375,8 @@
         "id": 6644392010,
         "hasDetails": true,
         "name": "Paul",
-        "opening_hours": "Mo-Fr 07:30-21:00; Sa,Su 08:00-21:00"
+        "opening_hours": "Mo-Fr 07:30-21:00; Sa,Su 08:00-21:00",
+        "outdoor_seating": "no"
       },
       "geometry": {
         "type": "Point",
@@ -10296,6 +10447,23 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 6644534615,
+        "hasDetails": true,
+        "name": "Lool therapy",
+        "website": "lolltherapy.cz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4075989,
+          50.0868717
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6700615685,
         "hasDetails": true,
         "name": "Bershka",
@@ -10317,11 +10485,31 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 6703332090,
+        "hasDetails": true,
+        "name": "Baz\u00e1r 22",
+        "address": "\u0158\u00edmsk\u00e1 22, Praha 2",
+        "website": "https://www.bazar22.cz/",
+        "opening_hours": "Mo-Fr 10:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4348777,
+          50.0772039
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 6774863944,
         "hasDetails": true,
         "name": "Clock Gallery Mozarteum",
         "website": "https://clockgallery.cz/",
         "opening_hours": "Mo-Sa 10:00-19:00; PH off",
+        "wikidata": "Q86438629",
         "names": [
           "Clock Gallery Mozarteum",
           "Le Patio",
@@ -10333,24 +10521,6 @@
         "coordinates": [
           14.4224622,
           50.0822396
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 6801517892,
-        "hasDetails": true,
-        "name": "U Dvo\u0159\u00e1k\u016f",
-        "address": "Jankovsk\u00e9ho 10, Praha 7",
-        "opening_hours": "Mo-Fr 08:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4347449,
-          50.099844
         ]
       }
     },
@@ -10370,6 +10540,19 @@
         "coordinates": [
           14.42462,
           50.0837962
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4400277,
+          50.0908195
         ]
       }
     },
@@ -10458,6 +10641,25 @@
         "coordinates": [
           14.4147533,
           50.0822401
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 7080135626,
+        "hasDetails": true,
+        "name": "Bylink\u00e1\u0159stv\u00ed Praha",
+        "address": "Navr\u00e1tilova 1334/16, Praha 1",
+        "website": "https://www.bylinarstvipraha.cz",
+        "opening_hours": "Mo-Fr 11:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4241906,
+          50.078506
         ]
       }
     },
@@ -10557,6 +10759,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 7241719036,
+        "hasDetails": true,
+        "name": "Journal",
+        "website": "https://www.journal-kadernictvi.cz",
+        "opening_hours": "Mo-Fr 08:00-21:00; Sa 09:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4400184,
+          50.0917623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 7298535885,
         "hasDetails": true,
         "name": "Mape",
@@ -10574,46 +10794,18 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 7591232866,
+        "id": 7371484987,
         "hasDetails": true,
-        "name": "Gramo desky",
-        "opening_hours": "Mo-Fr 13:00-18:00"
+        "name": "Prefere Fleur - Kv\u011btin\u00e1\u0159stv\u00ed s rozvozem kv\u011btin",
+        "address": "\u017ditn\u00e1 30",
+        "website": "https://preferefleur.com/",
+        "opening_hours": "Mo-Fr 10:00-18:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4289325,
-          50.1003236
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4283548,
-          50.1001867
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 7823280352,
-        "hasDetails": true,
-        "name": "Pra\u017esk\u00e1 r\u016f\u017ee",
-        "address": "Franti\u0161ka K\u0159\u00ed\u017eka 434/12, Praha 7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4307478,
-          50.0985579
+          14.4272744,
+          50.0771151
         ]
       }
     },
@@ -10647,11 +10839,29 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 7847804806,
+        "hasDetails": true,
+        "name": "Lidl",
+        "opening_hours": "Mo-Sa 07:00-22:00; Su 08:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4400866,
+          50.0847991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 8022238844,
         "hasDetails": true,
         "name": "Footshop",
         "address": "Na P\u0159\u00edkop\u011b 858/100, Praha",
         "opening_hours": "Mo-Th 11:00-19:00; Fr-Su 10:00-20:00",
+        "wikidata": "Q67815209",
         "names": [
           "Footshop",
           "Fielmann"
@@ -10704,6 +10914,24 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 8388177317,
+        "hasDetails": true,
+        "name": "Matoka",
+        "address": "Anglick\u00e1 1",
+        "opening_hours": "Mo-Su 08:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4306759,
+          50.0772273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 8841786433,
         "hasDetails": true,
         "name": "Primark",
@@ -10734,6 +10962,19 @@
         "coordinates": [
           14.422451,
           50.0798386
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4074366,
+          50.097403
         ]
       }
     },
@@ -10806,6 +11047,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4229331,
+          50.0772615
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 9332467912,
         "hasDetails": true,
@@ -10826,15 +11080,17 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 9507224135,
+        "id": 9394053927,
         "hasDetails": true,
-        "address": "Podplukovn\u00edka Sochora 23, Praha 7"
+        "name": "S\u00fdr\u00e1rna",
+        "website": "https://www.cheesehouse.cz/",
+        "opening_hours": "Mo-Fr 09:00-18:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4330474,
-          50.0996197
+          14.4359312,
+          50.0778664
         ]
       }
     },
@@ -10983,13 +11239,21 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 9620513624,
+        "hasDetails": true,
+        "name": "Liu. xi colour",
+        "opening_hours": "Mo-Fr 10:00-19:00",
+        "names": [
+          "Liu. xi colour",
+          "Na\u0161e Farma"
+        ]
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4348259,
-          50.0983854
+          14.4192244,
+          50.077338
         ]
       }
     },
@@ -11007,6 +11271,23 @@
         "coordinates": [
           14.4194022,
           50.0791408
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9620574227,
+        "hasDetails": true,
+        "name": "Cosmopole Market",
+        "opening_hours": "Mo-Su 10:00-03:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4193609,
+          50.0786541
         ]
       }
     },
@@ -11867,6 +12148,23 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 9714329385,
+        "hasDetails": true,
+        "name": "Mamba Gold s.r.o.",
+        "opening_hours": "Mo-Fr 09:00-20:00; Sa, Su 11:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4351984,
+          50.0899029
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 9714333661,
         "hasDetails": true,
         "name": "Intimissimi",
@@ -11911,6 +12209,27 @@
         "coordinates": [
           14.4303525,
           50.0797641
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9714357899,
+        "hasDetails": true,
+        "name": "Deto",
+        "opening_hours": "Mo-Fr 09:00-19:00; Sa,Su 11:00-17:00",
+        "names": [
+          "Deto",
+          "Anatolia"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4354283,
+          50.0899458
         ]
       }
     },
@@ -12082,6 +12401,23 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 9714377494,
+        "hasDetails": true,
+        "name": "Meety",
+        "opening_hours": "Mo-Fr 09:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4362408,
+          50.0902059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 9714379829,
         "hasDetails": true,
         "name": "Green Yard",
@@ -12143,23 +12479,6 @@
         "coordinates": [
           14.4268599,
           50.0865355
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 9714386188,
-        "hasDetails": true,
-        "name": "Van Graaf",
-        "opening_hours": "Mo-Su 10:00-20:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4258342,
-          50.0829896
         ]
       }
     },
@@ -13279,42 +13598,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 9780214534,
-        "hasDetails": true,
-        "name": "Frans\u00fdr",
-        "website": "https://fransyr.cz/",
-        "opening_hours": "Mo-Sa 10:00-20:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4296515,
-          50.0993627
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 9801438978,
-        "hasDetails": true,
-        "name": "Knihobot",
-        "website": "https://knihobot.cz",
-        "opening_hours": "08:00-20:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4324476,
-          50.0981212
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 9822597108,
         "hasDetails": true,
         "name": "Alenka",
@@ -13558,7 +13841,8 @@
         "hasDetails": true,
         "name": "Gallery Of Steel Figures",
         "address": "Celetn\u00e1 15, Praha",
-        "website": "https://www.galerieocelovychfigurin.cz/en/"
+        "website": "https://www.galerieocelovychfigurin.cz/en/",
+        "outdoor_seating": "no"
       },
       "geometry": {
         "type": "Point",
@@ -13585,6 +13869,55 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 10173425707,
+        "hasDetails": true,
+        "name": "TALPRESS spol. s r.o.",
+        "address": "\u0158eznick\u00e1 1374/12, Praha 1",
+        "website": "https://talpress.cz",
+        "opening_hours": "Mo 10:00-18:00, Tu 10:00-19:00, We 10:00-18:00, Th 10:00-18:00, Fr 10:00-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4233982,
+          50.0779865
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 10221190492,
+        "hasDetails": true,
+        "name": "Rossmann",
+        "opening_hours": "Mo-Fr 08:00-20:00; Sa,Su 09:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4401572,
+          50.0850938
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4164316,
+          50.0778173
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 10553924723,
         "hasDetails": true,
         "name": "Nanu nana",
@@ -13601,19 +13934,13 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 10554442109,
-        "hasDetails": true,
-        "name": "Sutu",
-        "address": "Veverkova 28",
-        "website": "https://tvorbastore.cz/",
-        "opening_hours": "Mo-Fr 12:00-18:00; Sa 11:00-16:00"
+        "weight": 1.0
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4319543,
-          50.1003537
+          14.4396891,
+          50.089318
         ]
       }
     },
@@ -13640,51 +13967,6 @@
         "coordinates": [
           14.4099018,
           50.089961
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4326559,
-          50.0981029
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4327235,
-          50.0978555
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 10732956646,
-        "hasDetails": true,
-        "name": "Bageterie Boulevard",
-        "amenity": "fast_food",
-        "cuisine": "sandwich",
-        "opening_hours": "Mo-Fr 07:00-22:00; Sa,Su 09:00-22:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4334979,
-          50.0996082
         ]
       }
     },
@@ -13858,7 +14140,8 @@
         "name": "Defidu Croissanterie",
         "address": "Vinohradsk\u00e1 17",
         "website": "https://www.defiducakes.com/",
-        "opening_hours": "Mo-Su 08:00-17:00"
+        "opening_hours": "Mo-Su 08:00-17:00",
+        "outdoor_seating": "yes"
       },
       "geometry": {
         "type": "Point",
@@ -13885,17 +14168,18 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 10982136905,
+        "id": 10992131069,
         "hasDetails": true,
-        "name": "Popcorn Skate Shop",
-        "website": "https://popcornshop.cz/",
-        "opening_hours": "Mo-Su 09:30-20:00"
+        "name": "Erotic - tantra massage Coccinelle",
+        "address": "P\u0159\u00ed\u010dn\u00e1 4, Praha 1",
+        "website": "https://www.coccinelle-erotic-tantra-massage.cz/",
+        "opening_hours": "24/7"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4287974,
-          50.0997371
+          14.4231569,
+          50.0777696
         ]
       }
     },
@@ -13908,7 +14192,8 @@
         "name": "Bo\u017esk\u00e1 Lahvice",
         "amenity": "cafe",
         "website": "https://www.bozskalahvice.cz/",
-        "opening_hours": "Mo-Fr 09:00-22:00; Sa 11:00-22:00"
+        "opening_hours": "Mo-Fr 09:00-22:00; Sa 11:00-22:00",
+        "outdoor_seating": "no"
       },
       "geometry": {
         "type": "Point",
@@ -13958,18 +14243,30 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 11083869133,
-        "hasDetails": true,
-        "name": "Ultimo",
-        "website": "https://www.ultimo.cz",
-        "opening_hours": "Mo,We,Fr 12:00-19:00; Tu 13:00-19:00; Th 13:00-18:00"
+        "weight": 1.0
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4228825,
-          50.0980765
+          14.4231762,
+          50.0781207
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11085314140,
+        "hasDetails": true,
+        "name": "Relay",
+        "opening_hours": "Mo-Fr 05:30-20:00; Sa 07:00-19:00; Su 08:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.439543,
+          50.0910929
         ]
       }
     },
@@ -13988,6 +14285,44 @@
         "coordinates": [
           14.4286777,
           50.0907496
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11174948955,
+        "hasDetails": true,
+        "name": "Starbucks",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop",
+        "opening_hours": "Mo-Su 06:30-20:00",
+        "outdoor_seating": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4407305,
+          50.0897095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11245297335,
+        "hasDetails": true,
+        "name": "Pek\u00e1rna Kab\u00e1t",
+        "opening_hours": "Mo-Fr 06:00-19:00",
+        "outdoor_seating": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.439199,
+          50.0910945
         ]
       }
     },
@@ -14027,37 +14362,17 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 11304478069,
+        "id": 11333134265,
         "hasDetails": true,
-        "name": "Dobro\u010dinn\u00fd obchod Sue Ryder",
-        "address": "He\u0159manova 596/59",
-        "website": "https://www.sue-ryder.cz",
-        "opening_hours": "Mo-Th 10:00-18:00; Fr 10:00-17:00; Sa 10:00-14:00"
+        "name": "Elis Dance Sport",
+        "address": "Na Smetance 20, Praha 2",
+        "opening_hours": "Mo-Th 10:00-12:30,13:00-18:00; Fr 10:00-12:30,13:00-14:00; Sa 10:00-13:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4278062,
-          50.1003371
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 11407719035,
-        "hasDetails": true,
-        "name": "Bio Letn\u00e1",
-        "address": "Milady Hor\u00e1kov\u00e9 22",
-        "website": "https://bioletna.cz",
-        "opening_hours": "Mo-Fr 10:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4299824,
-          50.0995939
+          14.437682,
+          50.0790983
         ]
       }
     },
@@ -14075,6 +14390,19 @@
         "coordinates": [
           14.4159066,
           50.0884846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4274452,
+          50.0771073
         ]
       }
     },
@@ -14247,7 +14575,8 @@
         "hasDetails": true,
         "name": "Peka\u0159stv\u00ed Je\u010dm\u00ednek",
         "address": "Kaprova 19/5, Praha 1",
-        "opening_hours": "Mo-Fr 07:00-19:00; Sa 10:00-18:00; Su 10:00-19:00"
+        "opening_hours": "Mo-Fr 07:00-19:00; Sa 10:00-18:00; Su 10:00-19:00",
+        "outdoor_seating": "sidewalk"
       },
       "geometry": {
         "type": "Point",
@@ -14290,6 +14619,25 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 11703593178,
+        "hasDetails": true,
+        "name": "Knihynahory.cz",
+        "address": "Masarykovo n\u00e1b\u0159e\u017e\u00ed 239/22, Praha 1",
+        "website": "https://www.knihynahory.cz/mapykiwi/",
+        "opening_hours": "Mo-Fr 09:00-18:30; Sa 10:00-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4144084,
+          50.0784985
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -14297,37 +14645,6 @@
         "coordinates": [
           14.4098657,
           50.0916797
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 11878824531,
-        "hasDetails": true,
-        "name": "La Vineria",
-        "address": "Milady Hor\u00e1kov\u00e9 687/10",
-        "opening_hours": "12-22"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4315687,
-          50.0992749
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4192353,
-          50.0996185
         ]
       }
     },
@@ -14347,62 +14664,6 @@
         "coordinates": [
           14.4307876,
           50.090611
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 11930250469,
-        "hasDetails": true,
-        "name": "Pohrebni sluzba Atropos s.r.o.",
-        "address": "Oveneck\u00e1 3",
-        "website": "https://pohrebni-sluzbapraha.cz/",
-        "opening_hours": "Mo-Fr 08:30-16:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4249751,
-          50.0982987
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 11930258269,
-        "hasDetails": true,
-        "name": "Pradelna Letna",
-        "address": "Oveneck\u00e1 7",
-        "website": "https://www.pradelnaletna.com/",
-        "opening_hours": "Mo-Tu 08:00-18:00; We-Fr 08:00-16:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4248344,
-          50.098613
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 11930299769,
-        "hasDetails": true,
-        "name": "Mia Studio",
-        "address": "Oveneck\u00e1 4",
-        "opening_hours": "Mo-Fr 09:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4252091,
-          50.0984892
         ]
       }
     },
@@ -14505,24 +14766,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 11987285574,
-        "hasDetails": true,
-        "name": "Bezmasna",
-        "address": "Milady Hor\u00e1kov\u00e9 600/38",
-        "website": "https://bezmasna.com/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4278676,
-          50.0998488
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -14530,6 +14773,22 @@
         "coordinates": [
           14.4182414,
           50.0892895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12055269719,
+        "hasDetails": true,
+        "opening_hours": "Tu-Fr 13:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4139357,
+          50.0774472
         ]
       }
     },
@@ -14579,25 +14838,6 @@
         "coordinates": [
           14.4198681,
           50.0809772
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12080288869,
-        "hasDetails": true,
-        "name": "Choux Choux Prague",
-        "address": "Milady Hor\u00e1kov\u00e9 68",
-        "website": "http://instagram.com/chouxchouxprague",
-        "opening_hours": "Mo-Su 09:00-19:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4220011,
-          50.1000442
         ]
       }
     },
@@ -14689,6 +14929,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 12243660905,
+        "hasDetails": true,
+        "name": "Albert",
+        "address": "Wilsonova 80, Praha 2",
+        "website": "https://www.albert.cz/",
+        "opening_hours": "Mo-Su 06:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4357591,
+          50.0837463
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 12269068355,
         "hasDetails": true,
         "name": "Optika Alensa v Praze",
@@ -14763,25 +15022,6 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 12450952644,
-        "hasDetails": true,
-        "name": "Tchibo",
-        "address": "Milady Hor\u00e1kov\u00e9 1071/71, Praha 7",
-        "website": "https://www.tchibo.cz/service/storefinder/store/100008210",
-        "opening_hours": "Mo-Fr 07:30-19:00; Sa-Su 09:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4238678,
-          50.0998936
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 12465001743,
         "hasDetails": true,
         "name": "Stefano boutique",
@@ -14818,6 +15058,74 @@
         "coordinates": [
           14.4146003,
           50.086073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12565546595,
+        "hasDetails": true,
+        "name": "SOU kade\u0159nick\u00e9 - p\u00e1nsk\u00e9",
+        "opening_hours": "Mo-Fr 07:15-12:45,13:00-18:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4238773,
+          50.0780773
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12565573144,
+        "hasDetails": true,
+        "opening_hours": "Mo-Fr 09:30-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4252172,
+          50.0774194
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12565573201,
+        "hasDetails": true,
+        "name": "shoedaism",
+        "opening_hours": "Tu-Fr 13:00-22:00; Sa 13:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4250434,
+          50.0775549
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12567459446,
+        "hasDetails": true,
+        "name": "Jedna bedna",
+        "website": "https://jednabedna.cz/co-nabizime/nas-obchod",
+        "opening_hours": "Mo-Fr 10:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4253828,
+          50.077412
         ]
       }
     },
@@ -14913,156 +15221,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 12636984001,
-        "hasDetails": true,
-        "name": "Trafika - N\u00e1poje",
-        "address": "Milady Hor\u00e1kov\u00e9 396/33",
-        "opening_hours": "Mo-Fr 08:30-00:00; Sa-Su 09:30-00:00",
-        "names": [
-          "Trafika - N\u00e1poje",
-          "Zlatnictv\u00ed"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4286392,
-          50.0995432
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12637055901,
-        "hasDetails": true,
-        "name": "Ko\u017een\u00e1 galanterie",
-        "address": "Milady Hor\u00e1kov\u00e9 807/31",
-        "opening_hours": "Mo-Fr 08:30-19:00; Sa 09:00-17:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4288046,
-          50.0995098
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12637055902,
-        "hasDetails": true,
-        "name": "Antistresov\u00e1 obuv",
-        "address": "Milady Hor\u00e1kov\u00e9 395/35",
-        "opening_hours": "Mo-Fr 09:30-18:30; Sa 09:00-13:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4284795,
-          50.0995629
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12637055904,
-        "hasDetails": true,
-        "name": "La Gazzetta",
-        "address": "Milady Hor\u00e1kov\u00e9 602/43"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4278767,
-          50.0996546
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12637056301,
-        "hasDetails": true,
-        "name": "V\u00edna srdcem",
-        "address": "Milady Hor\u00e1kov\u00e9 601/41",
-        "opening_hours": "Mo-Sa 13:00-21:00; Su 14:00-20:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4280854,
-          50.0996245
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12637079101,
-        "hasDetails": true,
-        "name": "Holandsk\u00e9 s\u00fdry S.\u00dd.R.",
-        "address": "Milady Hor\u00e1kov\u00e9 400/23",
-        "opening_hours": "Mo-Fr 10:00-19:00; Sa 10:00-13:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4299243,
-          50.0993339
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12637079601,
-        "hasDetails": true,
-        "name": "Potraviny Mini Market",
-        "address": "Milady Hor\u00e1kov\u00e9 685/14"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4312035,
-          50.0993439
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12639564201,
-        "hasDetails": true,
-        "name": "Tab\u00e1k - Tisk",
-        "address": "Milady Hor\u00e1kov\u00e9 476/1",
-        "opening_hours": "Mo-Fr 06:00-19:30; Sa 07:00-17:00; Su 09:00-16:00",
-        "names": [
-          "Tab\u00e1k - Tisk",
-          "Quickeah - \u010cist\u00edrna od\u011bv\u016f, pr\u00e1delna"
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4328144,
-          50.098869
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -15070,6 +15228,42 @@
         "coordinates": [
           14.4301562,
           50.0854214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12643056703,
+        "hasDetails": true,
+        "name": "Thomas's Barbershop",
+        "address": "Navr\u00e1tilova 16, Praha 1",
+        "website": "https://www.thomasbarbershop.com",
+        "opening_hours": "Mo-Sa 09:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4239303,
+          50.0785124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12643056708,
+        "hasDetails": true,
+        "name": "SOU kade\u0159nick\u00e9 - D\u00e1msk\u00e9",
+        "opening_hours": "Mo-Fr 07:15-12:45,13:00-18:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.424062,
+          50.0781138
         ]
       }
     },
@@ -15201,17 +15395,16 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 12705789704,
+        "id": 12736290067,
         "hasDetails": true,
-        "name": "\u017dabka",
-        "address": "Letohradsk\u00e1 680/11",
-        "opening_hours": "Mo-Su 06:00-23:00"
+        "name": "Dobrod\u011bjna",
+        "opening_hours": "Mo,We 17:00-19:30; Fr 15:00-17:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4281606,
-          50.0983897
+          14.407032,
+          50.0974683
         ]
       }
     },
@@ -15347,6 +15540,19 @@
         "coordinates": [
           14.4197377,
           50.0902285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4175248,
+          50.0780301
         ]
       }
     },
@@ -15662,6 +15868,25 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 12837254104,
+        "hasDetails": true,
+        "name": "Showroom Dreambeds Praha",
+        "address": "Vinohradsk\u00e1 19, Praha 2",
+        "website": "https://www.dreambeds.cz/",
+        "opening_hours": "Mo-Fr 10:00-19:00; Sa 11:00-15:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4354266,
+          50.0786073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 12865900911,
         "hasDetails": true,
         "name": "Outlet",
@@ -15672,6 +15897,49 @@
         "coordinates": [
           14.4209265,
           50.0825861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4188188,
+          50.0780463
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4167063,
+          50.077724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12873369186,
+        "hasDetails": true,
+        "name": "Vinmart",
+        "opening_hours": "Mo-Su,PH 09:00-02:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4161992,
+          50.0776535
         ]
       }
     },
@@ -15770,24 +16038,6 @@
         "coordinates": [
           14.4260034,
           50.0905084
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
-        "id": 12994544403,
-        "hasDetails": true,
-        "name": "papelote shop",
-        "address": "Milady Hor\u00e1kov\u00e9 11",
-        "website": "https://www.papelote.cz/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4315371,
-          50.09909
         ]
       }
     },
@@ -16258,6 +16508,44 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 13286742990,
+        "hasDetails": true,
+        "name": "Sue Ryder",
+        "address": "Italsk\u00e1 710/23, Praha 2",
+        "website": "https://www.sue-ryder.cz/clanky/navstivte-nas",
+        "opening_hours": "Mo-Th 10:00-18:00, Fr 10:00-17:00 Sa 10:00-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4364329,
+          50.078493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13286748133,
+        "hasDetails": true,
+        "name": "Maison Gabriella Delicatessen & Palmier Bakery",
+        "address": "\u0158\u00edmsk\u00e1 1196/29, Praha 2",
+        "website": "https://www.foodhall.cz/",
+        "outdoor_seating": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4361493,
+          50.0771094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 13294929458,
         "hasDetails": true,
         "name": "pokladna N\u00e1rodn\u00edho divadla",
@@ -16313,7 +16601,8 @@
         "id": 13324962103,
         "hasDetails": true,
         "name": "minit",
-        "opening_hours": "Mo-Fr 06:00-20:00; Sa,Su 07:00-18:00"
+        "opening_hours": "Mo-Fr 06:00-20:00; Sa,Su 07:00-18:00",
+        "outdoor_seating": "no"
       },
       "geometry": {
         "type": "Point",
@@ -16551,13 +16840,17 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13580323996,
+        "hasDetails": true,
+        "name": "Super Market",
+        "opening_hours": "Mo-Su 07:00-02:00"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4272217,
-          50.0921961
+          14.429246,
+          50.0783243
         ]
       }
     },
@@ -16569,8 +16862,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4260325,
-          50.0988861
+          14.4272217,
+          50.0921961
         ]
       }
     },
@@ -16873,13 +17166,18 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13872622701,
+        "hasDetails": true,
+        "name": "Salon Golden Palms",
+        "address": "\u0160kr\u00e9tova 45/8",
+        "website": "https://www.goldenpalms.cz/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4321177,
-          50.0980752
+          14.431691,
+          50.0779576
         ]
       }
     },
@@ -16890,7 +17188,9 @@
         "id": 27916535,
         "hasDetails": true,
         "name": "My\u0161\u00e1k Gallery",
-        "address": "Vodi\u010dkova 710/31, Praha"
+        "address": "Vodi\u010dkova 710/31, Praha",
+        "wikidata": "Q18042764",
+        "wikipedia": "cs:My\u0161\u00e1k Gallery"
       },
       "geometry": {
         "type": "Point",
@@ -16904,30 +17204,12 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 30613792,
-        "hasDetails": true,
-        "name": "Billa",
-        "address": "Letensk\u00e9 n\u00e1m\u011bst\u00ed 38/7, Praha",
-        "website": "https://www.billa.cz/",
-        "opening_hours": "Mo-Sa 06:00-23:00; Su 08:00-23:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4237238,
-          50.1002208
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 31776865,
         "hasDetails": true,
         "name": "\u010cern\u00e1 r\u016f\u017ee",
         "website": "http://www.cernaruze.cz/",
-        "opening_hours": "Mo-Fr 10:00-20:00; Sa,Su 10:00-19:00"
+        "opening_hours": "Mo-Fr 10:00-20:00; Sa,Su 10:00-19:00",
+        "wikidata": "Q31831703"
       },
       "geometry": {
         "type": "Point",
@@ -16945,7 +17227,9 @@
         "hasDetails": true,
         "name": "B\u00edl\u00e1 labu\u0165",
         "website": "https://www.bilalabut.cz/",
-        "opening_hours": "Mo-Fr 09:00-20:00; Sa 09:00-18:00; Su 10:00-18:00"
+        "opening_hours": "Mo-Fr 09:00-20:00; Sa 09:00-18:00; Su 10:00-18:00",
+        "wikidata": "Q11706516",
+        "wikipedia": "cs:B\u00edl\u00e1 labu\u0165"
       },
       "geometry": {
         "type": "Point",
@@ -16964,7 +17248,9 @@
         "name": "Slovansk\u00fd d\u016fm",
         "address": "Na P\u0159\u00edkop\u011b 22",
         "website": "https://www.slovanskydum.cz/",
-        "opening_hours": "Fr-We 08:00-00:00; Th 08:00-20:00"
+        "opening_hours": "Fr-We 08:00-00:00; Th 08:00-20:00",
+        "wikidata": "Q18042645",
+        "wikipedia": "cs:Slovansk\u00fd d\u016fm"
       },
       "geometry": {
         "type": "Point",
@@ -16981,7 +17267,9 @@
         "id": 335537717,
         "hasDetails": true,
         "name": "Kubistick\u00fd kiosek",
-        "address": "Praha"
+        "address": "Praha",
+        "wikidata": "Q12031821",
+        "wikipedia": "cs:Kubistick\u00fd kiosek ve Vrchlick\u00e9ho sadech"
       },
       "geometry": {
         "type": "Point",
@@ -17136,6 +17424,23 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 431095590,
+        "hasDetails": true,
+        "name": "Biopoint",
+        "opening_hours": "Mo-Fr 07:00-20:00; Sa,Su 07:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.435353,
+          50.0836346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 431095593,
         "hasDetails": true,
         "name": "claire's",
@@ -17146,6 +17451,23 @@
         "coordinates": [
           14.435176,
           50.0833897
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 431095594,
+        "hasDetails": true,
+        "name": "Peka\u0159stv\u00ed",
+        "opening_hours": "Mo-Fr 06:00-21:30; Sa,Su 07:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4354571,
+          50.0837548
         ]
       }
     },
@@ -17295,7 +17617,9 @@
         "name": "Kotva",
         "address": "n\u00e1m\u011bst\u00ed Republiky 656/8, Praha",
         "website": "https://www.od-kotva.cz/",
-        "opening_hours": "Mo-Fr 09:00-20:00; Sa 10:00-19:00; Su 10:00-18:00"
+        "opening_hours": "Mo-Fr 09:00-20:00; Sa 10:00-19:00; Su 10:00-18:00",
+        "wikidata": "Q11744412",
+        "wikipedia": "cs:Kotva (obchodn\u00ed d\u016fm)"
       },
       "geometry": {
         "type": "Point",
@@ -17308,7 +17632,29 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 6437889,
+        "hasDetails": true,
+        "name": "Billa",
+        "opening_hours": "Mo-Fr 06:00-23:00; Sa 07:00-23:00; Su 08:00-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4400432,
+          50.091144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12549503,
+        "hasDetails": true,
+        "name": "pal\u00e1c Myslbek",
+        "wikidata": "Q12043595",
+        "wikipedia": "cs:Pal\u00e1c Myslbek"
       },
       "geometry": {
         "type": "Point",

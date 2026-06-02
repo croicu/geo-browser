@@ -12,12 +12,25 @@ export interface PoiBakedFeature {
     openingHours?: string;
     address?: string;
     website?: string;
+    wikipedia?: string;
+    wikidata?: string;
+    stars?: string;
+    outdoorSeating?: boolean;
+}
+
+function isEnhanced(feature: PoiBakedFeature): boolean {
+    return !!(feature.wikipedia || feature.wikidata || feature.stars || feature.outdoorSeating);
+}
+
+interface PoiMarker {
+    dot: ClickableMapLayerHandle;
+    ring?: ClickableMapLayerHandle;
 }
 
 export class PoiLayerView extends LayerView {
     private readonly _sourceLayers: GeoLayer[];
     private _features: PoiBakedFeature[] = [];
-    private _markersBySource = new Map<string, ClickableMapLayerHandle[]>();
+    private _markersBySource = new Map<string, PoiMarker[]>();
     private _sourceVisible = new Map<string, boolean>();
     private _activePopup?: MapPopupHandle;
     private _mapClickCleanup?: () => void;
@@ -43,15 +56,18 @@ export class PoiLayerView extends LayerView {
         const style = this._layer.style;
         const opacity = style?.opacity ?? 1;
         const fillColor = style?.color ?? "#7b241c";
-        const strokeColor = (style as Record<string, unknown>)?.strokeColor as string ?? fillColor;
-        const strokeWidth = (style as Record<string, unknown>)?.strokeWidth as number ?? 0;
+        const strokeColor = style?.strokeColor ?? fillColor;
+        const strokeWidth = style?.strokeWidth ?? 0;
+        const enhancedColor = style?.enhancedColor ?? "#20b7dd";
+        const outdoorColor = style?.outdoorColor ?? "#f5c518";
 
         for (const feature of features) {
             if (!this._markersBySource.has(feature.layerId)) {
                 this._markersBySource.set(feature.layerId, []);
             }
 
-            const marker = this._layerFactory.createCircleMarker(feature.latLng, {
+            const enhanced = isEnhanced(feature);
+            const dot = this._layerFactory.createCircleMarker(feature.latLng, {
                 className: "poi-marker",
                 radius: 5,
                 color: strokeColor,
@@ -61,13 +77,27 @@ export class PoiLayerView extends LayerView {
                 opacity: opacity,
             });
 
-            const sourceVisible = this._sourceVisible.get(feature.layerId) !== false;
-            if (sourceVisible) {
-                marker.addTo(this._map);
+            let ring: ClickableMapLayerHandle | undefined;
+            if (enhanced) {
+                ring = this._layerFactory.createCircleMarker(feature.latLng, {
+                    className: "poi-ring-marker",
+                    radius: 5,
+                    color: feature.outdoorSeating ? outdoorColor : enhancedColor,
+                    weight: 10,
+                    fillColor: fillColor,
+                    fillOpacity: 0,
+                    opacity: 1,
+                });
             }
 
-            marker.onClick(() => this.onMarkerClick(feature));
-            this._markersBySource.get(feature.layerId)!.push(marker);
+            const sourceVisible = this._sourceVisible.get(feature.layerId) !== false;
+            if (sourceVisible) {
+                ring?.addTo(this._map);
+                dot.addTo(this._map);
+            }
+
+            dot.onClick(() => this.onMarkerClick(feature));
+            this._markersBySource.get(feature.layerId)!.push({ dot, ring });
         }
 
         this._mapClickCleanup = this._map.onClick(() => this.closePopup());
@@ -81,11 +111,13 @@ export class PoiLayerView extends LayerView {
         if (!markers) {
             return;
         }
-        for (const marker of markers) {
+        for (const { dot, ring } of markers) {
             if (visible) {
-                marker.addTo(this._map);
+                ring?.addTo(this._map);
+                dot.addTo(this._map);
             } else {
-                marker.remove();
+                ring?.remove();
+                dot.remove();
             }
         }
         if (!visible) {
@@ -101,8 +133,9 @@ export class PoiLayerView extends LayerView {
         this._zoomCleanup?.();
         this._zoomCleanup = undefined;
         for (const markers of this._markersBySource.values()) {
-            for (const marker of markers) {
-                marker.remove();
+            for (const { dot, ring } of markers) {
+                ring?.remove();
+                dot.remove();
             }
         }
         this._markersBySource.clear();
@@ -112,8 +145,9 @@ export class PoiLayerView extends LayerView {
     private updateRadii(zoom: number): void {
         const r = zoom <= 12 ? 2 : zoom <= 13 ? 4 : zoom <= 14 ? 6 : 8;
         for (const markers of this._markersBySource.values()) {
-            for (const marker of markers) {
-                marker.setRadius(r);
+            for (const { dot, ring } of markers) {
+                dot.setRadius(r);
+                ring?.setRadius(r);
             }
         }
     }
@@ -136,15 +170,20 @@ export class PoiLayerView extends LayerView {
                 if (!this.isPointFeature(f)) continue;
                 if (f.properties?.hasDetails !== true) continue;
 
+                const p = f.properties;
                 features.push({
                     layerId: source.id,
                     latLng: this.geoJsonPointToLatLng(f.geometry.coordinates),
-                    name: typeof f.properties.name === "string" ? f.properties.name : undefined,
-                    amenity: typeof f.properties.amenity === "string" ? f.properties.amenity : undefined,
-                    cuisine: typeof f.properties.cuisine === "string" ? f.properties.cuisine : undefined,
-                    openingHours: typeof f.properties.opening_hours === "string" ? f.properties.opening_hours : undefined,
-                    address: typeof f.properties.address === "string" ? f.properties.address : undefined,
-                    website: typeof f.properties.website === "string" ? f.properties.website : undefined,
+                    name: typeof p.name === "string" ? p.name : undefined,
+                    amenity: typeof p.amenity === "string" ? p.amenity : undefined,
+                    cuisine: typeof p.cuisine === "string" ? p.cuisine : undefined,
+                    openingHours: typeof p.opening_hours === "string" ? p.opening_hours : undefined,
+                    address: typeof p.address === "string" ? p.address : undefined,
+                    website: typeof p.website === "string" ? p.website : undefined,
+                    wikipedia: typeof p.wikipedia === "string" ? p.wikipedia : undefined,
+                    wikidata: typeof p.wikidata === "string" ? p.wikidata : undefined,
+                    stars: typeof p.stars === "string" ? p.stars : undefined,
+                    outdoorSeating: p.outdoor_seating === "yes",
                 });
             }
         }
@@ -154,8 +193,11 @@ export class PoiLayerView extends LayerView {
 
     private onMarkerClick(feature: PoiBakedFeature): void {
         this.closePopup();
-        const element = this.buildPopupElement(feature);
-        this._activePopup = this._map.createPopup(feature.latLng, element);
+        const { root, imageContainer } = this.buildPopupElement(feature);
+        this._activePopup = this._map.createPopup(feature.latLng, root);
+        if (feature.wikidata && imageContainer) {
+            void this.loadWikidataImage(feature.wikidata, imageContainer);
+        }
     }
 
     private closePopup(): void {
@@ -163,7 +205,7 @@ export class PoiLayerView extends LayerView {
         this._activePopup = undefined;
     }
 
-    private buildPopupElement(feature: PoiBakedFeature): HTMLElement {
+    private buildPopupElement(feature: PoiBakedFeature): { root: HTMLElement; imageContainer?: HTMLElement } {
         const root = document.createElement("div");
         root.className = "poi-popup";
 
@@ -172,6 +214,13 @@ export class PoiLayerView extends LayerView {
             el.className = "poi-name";
             el.textContent = feature.name.replace(/\|/g, " / ");
             root.appendChild(el);
+        }
+
+        let imageContainer: HTMLElement | undefined;
+        if (feature.wikidata) {
+            imageContainer = document.createElement("div");
+            imageContainer.className = "poi-image-container";
+            root.appendChild(imageContainer);
         }
 
         if (feature.amenity) {
@@ -202,6 +251,18 @@ export class PoiLayerView extends LayerView {
             root.appendChild(el);
         }
 
+        if (feature.stars) {
+            root.appendChild(document.createElement("br"));
+            root.appendChild(this.buildStars(feature.stars));
+        }
+
+        if (feature.outdoorSeating) {
+            const el = document.createElement("div");
+            el.className = "poi-outdoor-seating";
+            el.textContent = "Outdoor seating";
+            root.appendChild(el);
+        }
+
         if (feature.website) {
             root.appendChild(document.createElement("br"));
             const a = document.createElement("a");
@@ -213,12 +274,76 @@ export class PoiLayerView extends LayerView {
             root.appendChild(a);
         }
 
+        if (feature.wikipedia) {
+            const href = feature.wikidata
+                ? `https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/${feature.wikidata}`
+                : this.buildWikipediaUrl(feature.wikipedia);
+            if (href) {
+                root.appendChild(document.createElement("br"));
+                const a = document.createElement("a");
+                a.className = "poi-wikipedia";
+                a.href = href;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                a.textContent = "Wikipedia";
+                root.appendChild(a);
+            }
+        }
+
         if (feature.name) {
             root.appendChild(document.createElement("br"));
             root.appendChild(this.buildReviewLinks(feature.name, feature.latLng, feature.address));
         }
 
-        return root;
+        return { root, imageContainer };
+    }
+
+    private async loadWikidataImage(wikidataId: string, container: HTMLElement): Promise<void> {
+        const log = getLogger();
+        log.info("poi.wikidata_image.start", { wikidataId });
+        try {
+            const url = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${encodeURIComponent(wikidataId)}&props=claims&format=json&origin=*`;
+            const response = await fetch(url);
+            const data = await response.json() as { entities?: Record<string, { claims?: Record<string, Array<{ mainsnak?: { datavalue?: { value?: unknown } } }>> }> };
+            const filename = data?.entities?.[wikidataId]?.claims?.["P18"]?.[0]?.mainsnak?.datavalue?.value;
+            if (typeof filename !== "string" || !filename) {
+                log.info("poi.wikidata_image.no_image", { wikidataId });
+                return;
+            }
+            if (!container.isConnected) {
+                return;
+            }
+            const img = document.createElement("img");
+            img.className = "poi-image";
+            img.src = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=200`;
+            img.alt = "";
+            container.appendChild(img);
+            log.info("poi.wikidata_image.end", { wikidataId, filename });
+        } catch (err) {
+            log.error("poi.wikidata_image.error", err);
+        }
+    }
+
+    private buildStars(stars: string): HTMLElement {
+        const count = Math.min(Math.max(parseInt(stars, 10), 0), 5);
+        const el = document.createElement("div");
+        el.className = "poi-stars";
+        for (let i = 0; i < count; i++) {
+            const img = document.createElement("img");
+            img.src = "/icons/star.svg";
+            img.alt = "★";
+            img.className = "poi-star-icon";
+            el.appendChild(img);
+        }
+        return el;
+    }
+
+    private buildWikipediaUrl(raw: string): string | null {
+        const sep = raw.indexOf(":");
+        if (sep < 1) return null;
+        const lang = raw.slice(0, sep);
+        const title = raw.slice(sep + 1).replace(/ /g, "_");
+        return `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(title)}`;
     }
 
     private buildReviewLinks(name: string, latLng: [number, number], address?: string): HTMLElement {

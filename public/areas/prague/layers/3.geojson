@@ -89,7 +89,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 306384977,
+        "hasDetails": true,
+        "wikidata": "Q94443272"
       },
       "geometry": {
         "type": "Point",
@@ -163,7 +166,9 @@
         "hasDetails": true,
         "name": "N\u00e1prstkovo muzeum",
         "address": "Betl\u00e9msk\u00e9 n\u00e1m\u011bst\u00ed 269/1, Praha",
-        "website": "https://www.nm.cz/"
+        "website": "https://www.nm.cz/",
+        "wikidata": "Q631349",
+        "wikipedia": "cs:N\u00e1prstkovo muzeum asijsk\u00fdch, africk\u00fdch a americk\u00fdch kultur"
       },
       "geometry": {
         "type": "Point",
@@ -213,13 +218,28 @@
         "name": "Kafka Museum",
         "address": "Ciheln\u00e1 2b",
         "website": "https://kafkamuseum.cz/",
-        "opening_hours": "Mo-Su 10:00-18:00"
+        "opening_hours": "Mo-Su 10:00-18:00",
+        "wikidata": "Q4306202",
+        "wikipedia": "en:Franz Kafka Museum"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4105113,
           50.0879841
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4402075,
+          50.0796654
         ]
       }
     },
@@ -239,7 +259,13 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 994661403,
+        "hasDetails": true,
+        "name": "Terezka",
+        "amenity": "fountain",
+        "wikidata": "Q12029083",
+        "wikipedia": "cs:Ka\u0161na Terezka"
       },
       "geometry": {
         "type": "Point",
@@ -258,7 +284,9 @@
         "name": "Museum Kampa",
         "address": "U Sovov\u00fdch ml\u00fdn\u016f 503/2, Praha",
         "website": "https://www.museumkampa.cz/",
-        "opening_hours": "Mo off; Tu-Su 10:00-18:00"
+        "opening_hours": "Mo off; Tu-Su 10:00-18:00",
+        "wikidata": "Q2139553",
+        "wikipedia": "cs:Museum Kampa"
       },
       "geometry": {
         "type": "Point",
@@ -275,7 +303,8 @@
         "id": 1185943005,
         "hasDetails": true,
         "name": "Miminka",
-        "website": "https://davidcerny.cz/53/babies/"
+        "website": "https://davidcerny.cz/53/babies/",
+        "wikidata": "Q64683319"
       },
       "geometry": {
         "type": "Point",
@@ -288,7 +317,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1200250404,
+        "hasDetails": true,
+        "name": "Franz Kafka",
+        "wikidata": "Q943385",
+        "wikipedia": "cs:Pomn\u00edk Franze Kafky"
       },
       "geometry": {
         "type": "Point",
@@ -301,7 +335,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1200893176,
+        "hasDetails": true,
+        "name": "Tajemn\u00e1 lavi\u010dka",
+        "wikidata": "Q64815483"
       },
       "geometry": {
         "type": "Point",
@@ -319,7 +357,9 @@
         "hasDetails": true,
         "name": "Muzeum Bed\u0159icha Smetany",
         "website": "https://www.nm.cz/navstivte-nas/objekty/muzeum-bedricha-smetany",
-        "opening_hours": "Mo-Su 10:00-17:00"
+        "opening_hours": "Mo-Su 10:00-17:00",
+        "wikidata": "Q813969",
+        "wikipedia": "cs:Muzeum Bed\u0159icha Smetany"
       },
       "geometry": {
         "type": "Point",
@@ -351,7 +391,8 @@
         "name": "Muzeum Karlova mostu",
         "address": "K\u0159i\u017eovnick\u00e9 n\u00e1m\u011bst\u00ed 191/3, Praha",
         "website": "https://www.muzeumkarlovamostu.cz/",
-        "opening_hours": "May-Sep 10:00-19:00; Oct-Apr 10:00-18:00"
+        "opening_hours": "May-Sep 10:00-19:00; Oct-Apr 10:00-18:00",
+        "wikidata": "Q44100532"
       },
       "geometry": {
         "type": "Point",
@@ -369,7 +410,9 @@
         "hasDetails": true,
         "name": "\u017didovsk\u00e9 muzeum",
         "address": "U star\u00e9 \u0161koly 141/1, Praha",
-        "website": "https://www.jewishmuseum.cz/"
+        "website": "https://www.jewishmuseum.cz/",
+        "wikidata": "Q707850",
+        "wikipedia": "cs:\u017didovsk\u00e9 muzeum v Praze"
       },
       "geometry": {
         "type": "Point",
@@ -478,7 +521,9 @@
         "name": "Galerie V\u00e1clava \u0160p\u00e1ly",
         "address": "N\u00e1rodn\u00ed 30, Praha",
         "website": "https://www.galerievaclavaspaly.cz/",
-        "opening_hours": "Mo-Su 11:00-19:00"
+        "opening_hours": "Mo-Su 11:00-19:00",
+        "wikidata": "Q12018046",
+        "wikipedia": "en:V\u00e1clav \u0160p\u00e1la Gallery"
       },
       "geometry": {
         "type": "Point",
@@ -496,7 +541,8 @@
         "hasDetails": true,
         "name": "Galerie Sme\u010dky",
         "website": "https://www.galeriesmecky.cz/",
-        "opening_hours": "Tu-Sa 11:00-18:30"
+        "opening_hours": "Tu-Sa 11:00-18:30",
+        "wikidata": "Q12018043"
       },
       "geometry": {
         "type": "Point",
@@ -514,7 +560,9 @@
         "hasDetails": true,
         "name": "Galerie Rudolfinum",
         "website": "https://www.galerierudolfinum.cz/",
-        "opening_hours": "Tu-We,Fr-Su 10:00-18:00; Th 10:00-20:00"
+        "opening_hours": "Tu-We,Fr-Su 10:00-18:00; Th 10:00-20:00",
+        "wikidata": "Q3500594",
+        "wikipedia": "cs:Galerie Rudolfinum"
       },
       "geometry": {
         "type": "Point",
@@ -527,7 +575,45 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1490233946,
+        "hasDetails": true,
+        "name": "Pr\u00e1ce",
+        "wikidata": "Q64816291"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4365512,
+          50.0973658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1490233951,
+        "hasDetails": true,
+        "name": "Humanita",
+        "wikidata": "Q64816317"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4376837,
+          50.0976227
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1782548472,
+        "hasDetails": true,
+        "name": "Sloup se sochou G\u00e9nia",
+        "wikidata": "Q94444856"
       },
       "geometry": {
         "type": "Point",
@@ -540,7 +626,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1782548476,
+        "hasDetails": true,
+        "name": "Sloup se sochou G\u00e9nia",
+        "wikidata": "Q123726889"
       },
       "geometry": {
         "type": "Point",
@@ -553,7 +643,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1782548524,
+        "hasDetails": true,
+        "name": "Sloup se sochou G\u00e9nia",
+        "wikidata": "Q123726891"
       },
       "geometry": {
         "type": "Point",
@@ -566,7 +660,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1782548531,
+        "hasDetails": true,
+        "name": "Sloup se sochou G\u00e9nia",
+        "wikidata": "Q123726890"
       },
       "geometry": {
         "type": "Point",
@@ -605,7 +703,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1964321167,
+        "hasDetails": true,
+        "name": "Souzvuk",
+        "wikidata": "Q38037068"
       },
       "geometry": {
         "type": "Point",
@@ -678,7 +780,9 @@
         "name": "Sex Machines Museum",
         "address": "Melantrichova 18, Praha",
         "website": "https://www.sexmachinesmuseum.com/",
-        "opening_hours": "Mo-Su 10:00-23:00"
+        "opening_hours": "Mo-Su 10:00-23:00",
+        "wikidata": "Q3480881",
+        "wikipedia": "en:Sex Machines Museum"
       },
       "geometry": {
         "type": "Point",
@@ -708,7 +812,9 @@
         "id": 3105116588,
         "hasDetails": true,
         "name": "Tu\u010d\u0148\u00e1ci",
-        "website": "https://www.crackingart.com/"
+        "website": "https://www.crackingart.com/",
+        "wikidata": "Q64800581",
+        "wikipedia": "cs:\u017dlut\u00ed tu\u010d\u0148\u00e1ci na Vltav\u011b"
       },
       "geometry": {
         "type": "Point",
@@ -721,7 +827,28 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 3143998088,
+        "hasDetails": true,
+        "name": "vodn\u00edk Kabourek",
+        "wikidata": "Q105969528"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4076284,
+          50.0863127
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3159424649,
+        "hasDetails": true,
+        "name": "\u010cas un\u00e1\u0161\u00ed kr\u00e1su",
+        "wikidata": "Q64816313"
       },
       "geometry": {
         "type": "Point",
@@ -739,7 +866,9 @@
         "hasDetails": true,
         "name": "Franz Kafka",
         "website": "https://www.quadrio.cz/socha-franze-kafky",
-        "opening_hours": "08:00-21:00"
+        "opening_hours": "08:00-21:00",
+        "wikidata": "Q29169058",
+        "wikipedia": "cs:Hlava Franze Kafky"
       },
       "geometry": {
         "type": "Point",
@@ -770,6 +899,23 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4074736,
+          50.0936445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3219842498,
+        "hasDetails": true,
+        "name": "Vltava",
+        "wikidata": "Q38097033"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4085817,
           50.0806809
         ]
@@ -778,7 +924,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 3226506714,
+        "hasDetails": true,
+        "name": "svat\u00fd V\u00e1clav",
+        "wikidata": "Q38137233",
+        "wikipedia": "cs:Vina\u0159sk\u00fd sloup (K\u0159i\u017eovnick\u00e9 n\u00e1m\u011bst\u00ed)"
       },
       "geometry": {
         "type": "Point",
@@ -797,7 +948,9 @@
         "name": "Mucha museum",
         "address": "Pansk\u00e1 890/7, Praha",
         "website": "https://www.mucha.cz/",
-        "opening_hours": "Mo-Su 10:00-18:00"
+        "opening_hours": "Mo-Su 10:00-18:00",
+        "wikidata": "Q959038",
+        "wikipedia": "cs:Muchovo muzeum"
       },
       "geometry": {
         "type": "Point",
@@ -851,7 +1004,9 @@
         "id": 3292370900,
         "hasDetails": true,
         "name": "N\u00e1rodn\u00ed galerie v Praze - Pal\u00e1c Kinsk\u00fdch",
-        "website": "https://www.ngprague.cz/"
+        "website": "https://www.ngprague.cz/",
+        "wikidata": "Q1419555",
+        "wikipedia": "cs:N\u00e1rodn\u00ed galerie v Praze"
       },
       "geometry": {
         "type": "Point",
@@ -870,7 +1025,9 @@
         "name": "Po\u0161tovn\u00ed muzeum",
         "address": "Nov\u00e9 ml\u00fdny 1239/2, Praha",
         "website": "https://www.postovnimuzeum.cz/",
-        "opening_hours": "Tu-Su 09:00-12:00, 13:00-17:00"
+        "opening_hours": "Tu-Su 09:00-12:00, 13:00-17:00",
+        "wikidata": "Q11787128",
+        "wikipedia": "cs:Po\u0161tovn\u00ed muzeum Praha"
       },
       "geometry": {
         "type": "Point",
@@ -883,7 +1040,31 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 3342148521,
+        "hasDetails": true,
+        "name": "Muzeum Karla Zemana",
+        "address": "Sask\u00e1 520/3, Praha",
+        "website": "https://www.muzeumkarlazemana.cz/",
+        "wikidata": "Q30339431",
+        "wikipedia": "cs:Muzeum Karla Zemana"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4076385,
+          50.0868024
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3470944145,
+        "hasDetails": true,
+        "name": "Josef Hl\u00e1vek",
+        "wikidata": "Q64816008"
       },
       "geometry": {
         "type": "Point",
@@ -917,13 +1098,33 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 3753283505,
+        "hasDetails": true,
+        "wikidata": "Q64712086"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4237076,
           50.0820915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 3790699768,
+        "hasDetails": true,
+        "name": "Nik\u00e9 89",
+        "wikidata": "Q64167593"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4075777,
+          50.0942134
         ]
       }
     },
@@ -966,7 +1167,9 @@
         "name": "N\u00e1rodn\u00ed galerie v Praze - Kl\u00e1\u0161ter sv. Ane\u017eky \u010cesk\u00e9",
         "address": "U Milosrdn\u00fdch 17",
         "website": "https://www.ngprague.cz/",
-        "opening_hours": "Tu-Su 10:00-18:00"
+        "opening_hours": "Tu-Su 10:00-18:00",
+        "wikidata": "Q1419555",
+        "wikipedia": "cs:N\u00e1rodn\u00ed galerie v Praze"
       },
       "geometry": {
         "type": "Point",
@@ -979,7 +1182,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 3932093213,
+        "hasDetails": true,
+        "name": "R\u00e9va",
+        "wikidata": "Q37817946",
+        "wikipedia": "en:R\u00e9va (sculpture)"
       },
       "geometry": {
         "type": "Point",
@@ -997,7 +1205,9 @@
         "hasDetails": true,
         "name": "Galerie Roberta Guttmanna",
         "address": "U star\u00e9 \u0161koly 153/3, Praha",
-        "website": "https://www.jewishmuseum.cz/"
+        "website": "https://www.jewishmuseum.cz/",
+        "wikidata": "Q3094615",
+        "wikipedia": "cs:Galerie Roberta Guttmanna"
       },
       "geometry": {
         "type": "Point",
@@ -1010,7 +1220,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 4039234202,
+        "hasDetails": true,
+        "name": "st\u0159edov\u011bk\u00fd hradebn\u00ed m\u016fstek",
+        "wikidata": "Q12039461",
+        "wikipedia": "cs:M\u016fstek"
       },
       "geometry": {
         "type": "Point",
@@ -1036,7 +1251,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 4240005359,
+        "hasDetails": true,
+        "name": "K\u016f\u0148",
+        "wikidata": "Q3201346"
       },
       "geometry": {
         "type": "Point",
@@ -1049,7 +1268,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 4243114760,
+        "hasDetails": true,
+        "name": "D\u00edvka s holubic\u00ed",
+        "wikidata": "Q53709905"
       },
       "geometry": {
         "type": "Point",
@@ -1090,13 +1313,44 @@
         "name": "D\u016fm fotografie",
         "address": "Revolu\u010dn\u00ed 5, Praha 1",
         "website": "https://www.ghmp.cz/dum-fotografie/",
-        "opening_hours": "Tu-We 10:00-18:00, Th 10:00-20:00, Fr-Su 10:00-18:00"
+        "opening_hours": "Tu-We 10:00-18:00, Th 10:00-20:00, Fr-Su 10:00-18:00",
+        "wikidata": "Q136786837"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4277026,
           50.0900139
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4377406590,
+        "hasDetails": true,
+        "name": "Hled\u00e1n\u00ed \u0161t\u011bst\u00ed",
+        "wikidata": "Q94440105"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4181202,
+          50.0776252
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4389934,
+          50.0895058
         ]
       }
     },
@@ -1180,7 +1434,9 @@
         "name": "N\u00e1rodn\u00ed zem\u011bd\u011blsk\u00e9 muzeum",
         "address": "Kosteln\u00ed 1300/44, Praha 7",
         "website": "https://nzm.cz/",
-        "opening_hours": "Tu-Su 09:00-17:00"
+        "opening_hours": "Tu-Su 09:00-17:00",
+        "wikidata": "Q12041679",
+        "wikipedia": "cs:N\u00e1rodn\u00ed zem\u011bd\u011blsk\u00e9 muzeum"
       },
       "geometry": {
         "type": "Point",
@@ -1200,6 +1456,19 @@
         "coordinates": [
           14.4246229,
           50.0882744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4180159,
+          50.0777619
         ]
       }
     },
@@ -1261,13 +1530,31 @@
         "name": "Galerie Leica",
         "address": "\u0160kolsk\u00e1 693/28",
         "website": "https://www.lgp.cz/",
-        "opening_hours": "Mo-Fr 10:00-20:00; Sa-Su 11:00-18:00"
+        "opening_hours": "Mo-Fr 10:00-20:00; Sa-Su 11:00-18:00",
+        "wikidata": "Q12032899"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4242764,
           50.0793623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4730349455,
+        "hasDetails": true,
+        "name": "Sed\u00edc\u00ed d\u00edvka",
+        "wikidata": "Q64815416"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4075468,
+          50.0836094
         ]
       }
     },
@@ -1319,6 +1606,8 @@
         "name": "Starom\u011bstsk\u00fd orloj",
         "amenity": "clock",
         "opening_hours": "Mo 11:00-22:00; Tu-Su 09:00-22:00",
+        "wikidata": "Q729370",
+        "wikipedia": "cs:Starom\u011bstsk\u00fd orloj",
         "names": [
           "Starom\u011bstsk\u00fd orloj",
           "Radni\u010dn\u00ed v\u011b\u017e"
@@ -1369,8 +1658,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4179212,
+          50.0775457
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.434628,
           50.0823428
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4358792,
+          50.0840413
         ]
       }
     },
@@ -1390,6 +1705,19 @@
         "coordinates": [
           14.4281018,
           50.0958059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4392527,
+          50.0900768
         ]
       }
     },
@@ -1510,7 +1838,9 @@
         "name": "Muzeum komunismu",
         "address": "V Celnici 1031/4, Praha 1",
         "website": "https://muzeumkomunismu.cz",
-        "opening_hours": "Mo-Su, PH 09:00-20:00; Dec 24 off"
+        "opening_hours": "Mo-Su, PH 09:00-20:00; Dec 24 off",
+        "wikidata": "Q2571867",
+        "wikipedia": "en:Museum of Communism, Czech Republic"
       },
       "geometry": {
         "type": "Point",
@@ -1541,6 +1871,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4406479,
+          50.092823
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.430064,
           50.0851765
         ]
@@ -1549,7 +1892,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 5257640398,
+        "hasDetails": true,
+        "name": "Den a Noc",
+        "wikidata": "Q64816285"
       },
       "geometry": {
         "type": "Point",
@@ -1563,10 +1910,28 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 5283460904,
+        "hasDetails": true,
+        "name": "D\u00edvka s amf\u00f3rou",
+        "wikidata": "Q64532119"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4071831,
+          50.0850285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 5291923221,
         "hasDetails": true,
         "name": "Vlasta",
-        "website": "http://www.vlnaladislav.cz/cz/231-vlasta-praha"
+        "website": "http://www.vlnaladislav.cz/cz/231-vlasta-praha",
+        "wikidata": "Q64815992"
       },
       "geometry": {
         "type": "Point",
@@ -1579,7 +1944,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 5428404513,
+        "hasDetails": true,
+        "name": "Znovuzrozen\u00ed",
+        "wikidata": "Q64816307",
+        "wikipedia": "en:Znovuzrozen\u00ed"
       },
       "geometry": {
         "type": "Point",
@@ -1596,7 +1966,8 @@
         "id": 5604764821,
         "hasDetails": true,
         "name": "\u010cern\u00e1 labu\u0165",
-        "website": "https://www.cernalabut.cz/"
+        "website": "https://www.cernalabut.cz/",
+        "wikidata": "Q86528115"
       },
       "geometry": {
         "type": "Point",
@@ -1615,7 +1986,9 @@
         "name": "Muzeum hlavn\u00edho m\u011bsta Prahy - D\u016fm U Zlat\u00e9ho prstenu",
         "address": "Praha",
         "website": "https://www.muzeumprahy.cz/",
-        "opening_hours": "Tu-Su 09:00-20:00"
+        "opening_hours": "Tu-Su 09:00-20:00",
+        "wikidata": "Q12039018",
+        "wikipedia": "cs:Muzeum hlavn\u00edho m\u011bsta Prahy"
       },
       "geometry": {
         "type": "Point",
@@ -1823,6 +2196,42 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0,
+        "id": 6700000685,
+        "hasDetails": true,
+        "name": "Invisible exhibition",
+        "address": "Karlovo n\u00e1m\u011bst\u00ed 1/23, Praha 2",
+        "website": "https://neviditelna.cz",
+        "opening_hours": "Mo-Fr 12:00-20:00; Sa-Su,PH 10:00-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4213617,
+          50.078408
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6734411585,
+        "hasDetails": true,
+        "name": "Novom\u011bstsk\u00e1 radnice",
+        "opening_hours": "Mar-Oct Tu-Su 10:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4213121,
+          50.0781525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0
       },
       "geometry": {
@@ -1836,7 +2245,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 6842774246,
+        "hasDetails": true,
+        "name": "\u010cern\u00e1 Matka Bo\u017e\u00ed",
+        "wikidata": "Q64815645"
       },
       "geometry": {
         "type": "Point",
@@ -1862,7 +2275,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 6842774248,
+        "hasDetails": true,
+        "name": "Madona s Je\u017e\u00ed\u0161kem",
+        "wikidata": "Q64815647"
       },
       "geometry": {
         "type": "Point",
@@ -1888,7 +2305,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 6937344579,
+        "hasDetails": true,
+        "name": "Vla\u0161tovka",
+        "wikidata": "Q64815485"
       },
       "geometry": {
         "type": "Point",
@@ -1905,7 +2326,8 @@
         "id": 6937344582,
         "hasDetails": true,
         "name": "svat\u00fd V\u00e1clav",
-        "website": "http://www.konvikt.cz/historie/socha-sv-vaclava"
+        "website": "http://www.konvikt.cz/historie/socha-sv-vaclava",
+        "wikidata": "Q94448207"
       },
       "geometry": {
         "type": "Point",
@@ -1918,7 +2340,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 6956022980,
+        "hasDetails": true,
+        "name": "Schoulen\u00e1",
+        "wikidata": "Q64816311"
       },
       "geometry": {
         "type": "Point",
@@ -1931,7 +2357,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 6957567206,
+        "hasDetails": true,
+        "name": "Strom",
+        "wikidata": "Q74650087"
       },
       "geometry": {
         "type": "Point",
@@ -1983,7 +2413,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 7128000954,
+        "hasDetails": true,
+        "name": "Nad\u011bje",
+        "wikidata": "Q94430861"
       },
       "geometry": {
         "type": "Point",
@@ -2009,7 +2443,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 7176060508,
+        "hasDetails": true,
+        "name": "Galerie Jakubsk\u00e1",
+        "wikidata": "Q64995804"
       },
       "geometry": {
         "type": "Point",
@@ -2022,7 +2460,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 7188218468,
+        "hasDetails": true,
+        "name": "Skromnost",
+        "wikidata": "Q94430863"
       },
       "geometry": {
         "type": "Point",
@@ -2035,7 +2477,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 7707283194,
+        "hasDetails": true,
+        "name": "King Kong Balls",
+        "wikidata": "Q108457331"
       },
       "geometry": {
         "type": "Point",
@@ -2066,7 +2512,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 8397083520,
+        "hasDetails": true,
+        "name": "Drak",
+        "wikidata": "Q123723701"
       },
       "geometry": {
         "type": "Point",
@@ -2079,7 +2529,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 8397083530,
+        "hasDetails": true,
+        "name": "Drak",
+        "wikidata": "Q123723702"
       },
       "geometry": {
         "type": "Point",
@@ -2092,7 +2546,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 8397083542,
+        "hasDetails": true,
+        "name": "Sv\u011btlono\u0161ka",
+        "wikidata": "Q123723698"
       },
       "geometry": {
         "type": "Point",
@@ -2105,7 +2563,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 8397083551,
+        "hasDetails": true,
+        "name": "Sv\u011btlono\u0161ka",
+        "wikidata": "Q123723699"
       },
       "geometry": {
         "type": "Point",
@@ -2125,6 +2587,52 @@
         "coordinates": [
           14.4099852,
           50.0833638
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 8517995897,
+        "hasDetails": true,
+        "name": "Tenista",
+        "wikidata": "Q64815882"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4391684,
+          50.0963347
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.437481,
+          50.0953338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 8587285187,
+        "hasDetails": true,
+        "website": "https://www.legal-walls.net/wall/365"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.437186,
+          50.0925968
         ]
       }
     },
@@ -2157,7 +2665,27 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 9048473533,
+        "hasDetails": true,
+        "name": "Faun",
+        "wikidata": "Q94446040"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4071093,
+          50.0840828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 9101407674,
+        "hasDetails": true,
+        "wikidata": "Q107161385"
       },
       "geometry": {
         "type": "Point",
@@ -2251,7 +2779,8 @@
         "id": 9721323355,
         "hasDetails": true,
         "name": "Museum of Torture",
-        "opening_hours": "Mo-Su 10:00-20:00"
+        "opening_hours": "Mo-Su 10:00-20:00",
+        "wikidata": "Q64221198"
       },
       "geometry": {
         "type": "Point",
@@ -2341,6 +2870,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4364006,
+          50.0972942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 9957497352,
         "hasDetails": true,
@@ -2399,7 +2941,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 10135588917,
+        "hasDetails": true,
+        "wikidata": "Q123721519"
       },
       "geometry": {
         "type": "Point",
@@ -2412,7 +2957,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 10135588918,
+        "hasDetails": true,
+        "wikidata": "Q123721520"
       },
       "geometry": {
         "type": "Point",
@@ -2438,52 +2986,17 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 10182484551,
+        "hasDetails": true,
+        "name": "Ok\u0159\u00eddlen\u00ed jeleni",
+        "wikidata": "Q111745035"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4307012,
           50.0881579
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4081559,
-          50.0989413
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.408055,
-          50.0992046
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4082575,
-          50.0992403
         ]
       }
     },
@@ -2504,18 +3017,17 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 11128494530,
+        "id": 11288692973,
         "hasDetails": true,
-        "name": "Krist\u00fdna Saidl Restaur\u00e1torka & Konzerv\u00e1torka",
-        "address": "Letohradsk\u00e1 18, Praha",
-        "website": "https://saidl.art",
-        "opening_hours": "Mo-Fr 09:00-19:00"
+        "name": "\u010cas",
+        "amenity": "clock",
+        "wikidata": "Q64816287"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4286387,
-          50.0987098
+          14.4389542,
+          50.0909341
         ]
       }
     },
@@ -2539,7 +3051,8 @@
         "id": 11398833460,
         "hasDetails": true,
         "name": "Idiom",
-        "website": "https://mlp.cz/idiom"
+        "website": "https://mlp.cz/idiom",
+        "wikidata": "Q135409635"
       },
       "geometry": {
         "type": "Point",
@@ -2592,45 +3105,6 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4293348,
-          50.1003779
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4302423,
-          50.1000692
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4185853,
-          50.0995122
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "weight": 1.0,
         "id": 11925998365,
         "hasDetails": true,
@@ -2644,6 +3118,19 @@
         "coordinates": [
           14.4266726,
           50.0859275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4392605,
+          50.0844075
         ]
       }
     },
@@ -2676,6 +3163,19 @@
         "coordinates": [
           14.4177749,
           50.0840718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4366545,
+          50.0872723
         ]
       }
     },
@@ -2731,6 +3231,32 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4388842,
+          50.0899732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4352839,
+          50.0878266
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4079795,
           50.0835528
         ]
@@ -2765,7 +3291,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 12759769806,
+        "hasDetails": true,
+        "name": "Hlasy z podzem\u00ed",
+        "wikidata": "Q123720041"
       },
       "geometry": {
         "type": "Point",
@@ -2778,13 +3308,34 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 12794248210,
+        "hasDetails": true,
+        "name": "T\u0159i pylony",
+        "wikidata": "Q64311123"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4080597,
           50.0962063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12811404174,
+        "hasDetails": true,
+        "name": "Oblak",
+        "wikidata": "Q64311185"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4074605,
+          50.0964583
         ]
       }
     },
@@ -2804,7 +3355,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 12839674143,
+        "hasDetails": true,
+        "name": "\u0160t\u011bdrost",
+        "wikidata": "Q64816272"
       },
       "geometry": {
         "type": "Point",
@@ -2822,6 +3377,23 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.4079365,
+          50.0800609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12846493591,
+        "hasDetails": true,
+        "name": "Sto t\u0159icet sedm",
+        "wikidata": "Q136078860"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4084913,
           50.0834986
         ]
@@ -2835,25 +3407,21 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4082821,
-          50.0839109
+          14.4079189,
+          50.0855659
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0,
-        "id": 12882541268,
-        "hasDetails": true,
-        "name": "Mur\u00e1l Milady Hor\u00e1kov\u00e9",
-        "website": "https://muralmilada.cz/"
+        "weight": 1.0
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          14.4325071,
-          50.099154
+          14.4082821,
+          50.0839109
         ]
       }
     },
@@ -2878,6 +3446,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          14.436764,
+          50.0871075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           14.4126768,
           50.0916845
         ]
@@ -2890,7 +3471,8 @@
         "id": 13078214780,
         "hasDetails": true,
         "name": "Socha vl\u010dice a lva",
-        "website": "https://vlada.gov.cz/cz/media-centrum/aktualne/zahradu-strakovy-akademie-ozdobila-socha-cesko-italskeho-pratelstvi-188854/"
+        "website": "https://vlada.gov.cz/cz/media-centrum/aktualne/zahradu-strakovy-akademie-ozdobila-socha-cesko-italskeho-pratelstvi-188854/",
+        "wikidata": "Q123724265"
       },
       "geometry": {
         "type": "Point",
@@ -2935,6 +3517,19 @@
     {
       "type": "Feature",
       "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4390274,
+          50.0839758
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "weight": 1.0,
         "id": 13398440625,
         "hasDetails": true,
@@ -2952,7 +3547,42 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482791104,
+        "hasDetails": true,
+        "wikidata": "Q17347238"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.435408,
+          50.089179
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13482791105,
+        "hasDetails": true,
+        "wikidata": "Q64816314"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.439498,
+          50.094142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13482791209,
+        "hasDetails": true,
+        "wikidata": "Q64816042"
       },
       "geometry": {
         "type": "Point",
@@ -2965,7 +3595,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482791284,
+        "hasDetails": true,
+        "wikidata": "Q64815926"
       },
       "geometry": {
         "type": "Point",
@@ -2978,7 +3611,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482791285,
+        "hasDetails": true,
+        "wikidata": "Q64815921"
       },
       "geometry": {
         "type": "Point",
@@ -2991,7 +3627,27 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482791290,
+        "hasDetails": true,
+        "wikidata": "Q64514533"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.435869,
+          50.085686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13482791461,
+        "hasDetails": true,
+        "name": "Subtile",
+        "wikidata": "Q94433489"
       },
       "geometry": {
         "type": "Point",
@@ -3004,7 +3660,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482791473,
+        "hasDetails": true,
+        "wikidata": "Q94443266"
       },
       "geometry": {
         "type": "Point",
@@ -3017,7 +3676,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482791474,
+        "hasDetails": true,
+        "wikidata": "Q94443278"
       },
       "geometry": {
         "type": "Point",
@@ -3030,7 +3692,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482791505,
+        "hasDetails": true,
+        "wikidata": "Q94443209"
       },
       "geometry": {
         "type": "Point",
@@ -3043,7 +3708,26 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482791814,
+        "hasDetails": true,
+        "wikidata": "Q112213353"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.439785,
+          50.092742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13482792013,
+        "hasDetails": true,
+        "wikidata": "Q123721075"
       },
       "geometry": {
         "type": "Point",
@@ -3056,7 +3740,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482792385,
+        "hasDetails": true,
+        "wikidata": "Q123721661"
       },
       "geometry": {
         "type": "Point",
@@ -3069,7 +3756,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13482816901,
+        "hasDetails": true,
+        "wikidata": "Q64815600"
       },
       "geometry": {
         "type": "Point",
@@ -3082,7 +3772,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544150187,
+        "hasDetails": true,
+        "wikidata": "Q64816277"
       },
       "geometry": {
         "type": "Point",
@@ -3095,7 +3788,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544150810,
+        "hasDetails": true,
+        "wikidata": "Q64167831"
       },
       "geometry": {
         "type": "Point",
@@ -3108,7 +3804,26 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544151147,
+        "hasDetails": true,
+        "wikidata": "Q64815392"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.440774,
+          50.081745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 13544151229,
+        "hasDetails": true,
+        "wikidata": "Q66050042"
       },
       "geometry": {
         "type": "Point",
@@ -3121,7 +3836,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544151437,
+        "hasDetails": true,
+        "wikidata": "Q94447243"
       },
       "geometry": {
         "type": "Point",
@@ -3134,7 +3852,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544151489,
+        "hasDetails": true,
+        "wikidata": "Q94446056"
       },
       "geometry": {
         "type": "Point",
@@ -3147,7 +3868,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544151493,
+        "hasDetails": true,
+        "wikidata": "Q94433381"
       },
       "geometry": {
         "type": "Point",
@@ -3160,7 +3884,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544151498,
+        "hasDetails": true,
+        "wikidata": "Q94447471"
       },
       "geometry": {
         "type": "Point",
@@ -3173,7 +3900,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544151565,
+        "hasDetails": true,
+        "wikidata": "Q94447254"
       },
       "geometry": {
         "type": "Point",
@@ -3186,7 +3916,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544151566,
+        "hasDetails": true,
+        "wikidata": "Q94447251"
       },
       "geometry": {
         "type": "Point",
@@ -3199,7 +3932,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13544153921,
+        "hasDetails": true,
+        "wikidata": "Q94446031"
       },
       "geometry": {
         "type": "Point",
@@ -3225,7 +3961,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13606094807,
+        "hasDetails": true,
+        "wikidata": "Q125544914"
       },
       "geometry": {
         "type": "Point",
@@ -3238,7 +3977,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13606094808,
+        "hasDetails": true,
+        "name": "Mercurius",
+        "wikidata": "Q94447202"
       },
       "geometry": {
         "type": "Point",
@@ -3251,7 +3994,10 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 13644422538,
+        "hasDetails": true,
+        "wikidata": "Q111842734"
       },
       "geometry": {
         "type": "Point",
@@ -3277,7 +4023,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 4053134,
+        "hasDetails": true,
+        "name": "Karl\u016fv most",
+        "wikidata": "Q204871",
+        "wikipedia": "cs:Karl\u016fv most"
       },
       "geometry": {
         "type": "Point",
@@ -3290,7 +4041,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 4643624,
+        "hasDetails": true,
+        "name": "Celetn\u00e1",
+        "wikidata": "Q2452427",
+        "wikipedia": "cs:Celetn\u00e1"
       },
       "geometry": {
         "type": "Point",
@@ -3303,7 +4059,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 24580556,
+        "hasDetails": true,
+        "name": "Na P\u0159\u00edkop\u011b",
+        "wikidata": "Q1841356"
       },
       "geometry": {
         "type": "Point",
@@ -3316,7 +4076,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 24984375,
+        "hasDetails": true,
+        "name": "Star\u00e9 z\u00e1meck\u00e9 schody",
+        "wikidata": "Q12056224",
+        "wikipedia": "cs:Star\u00e9 z\u00e1meck\u00e9 schody"
       },
       "geometry": {
         "type": "Point",
@@ -3335,7 +4100,9 @@
         "name": "N\u00e1rodn\u00ed technick\u00e9 muzeum",
         "address": "Kosteln\u00ed 1320/42",
         "website": "https://ntm.cz/",
-        "opening_hours": "Tu-Su 09:00-18:00"
+        "opening_hours": "Tu-Su 09:00-18:00",
+        "wikidata": "Q1789383",
+        "wikipedia": "cs:N\u00e1rodn\u00ed technick\u00e9 muzeum v Praze"
       },
       "geometry": {
         "type": "Point",
@@ -3353,7 +4120,13 @@
         "hasDetails": true,
         "name": "Pra\u0161n\u00e1 br\u00e1na",
         "website": "https://www.muzeumprahy.cz/",
-        "opening_hours": "Nov-Feb 10:00-18:00; Mar,Oct 10:00-20:00; Apr-Sep 10:00-22:00"
+        "opening_hours": "Nov-Feb 10:00-18:00; Mar,Oct 10:00-20:00; Apr-Sep 10:00-22:00",
+        "wikidata": "Q1488700",
+        "wikipedia": "cs:Pra\u0161n\u00e1 br\u00e1na",
+        "names": [
+          "Pra\u0161n\u00e1 br\u00e1na",
+          "Celetn\u00e1"
+        ]
       },
       "geometry": {
         "type": "Point",
@@ -3371,7 +4144,9 @@
         "hasDetails": true,
         "name": "Star\u00fd \u017eidovsk\u00fd h\u0159bitov",
         "website": "https://www.jewishmuseum.cz/",
-        "opening_hours": "Jan 01 11:00-16:30; Jan 02-Mar 31,Oct 19-Dec 31 09:00-16:30; Apr 01-30,Sep 01-Oct 18 09:00-18:00; May 01-Aug 31 09:00-19:00; Dec 24 09:00-14:00; JH off"
+        "opening_hours": "Jan 01 11:00-16:30; Jan 02-Mar 31,Oct 19-Dec 31 09:00-16:30; Apr 01-30,Sep 01-Oct 18 09:00-18:00; May 01-Aug 31 09:00-19:00; Dec 24 09:00-14:00; JH off",
+        "wikidata": "Q438026",
+        "wikipedia": "cs:Star\u00fd \u017eidovsk\u00fd h\u0159bitov v Praze-Josefov\u011b"
       },
       "geometry": {
         "type": "Point",
@@ -3384,7 +4159,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 27437431,
+        "hasDetails": true,
+        "name": "Celetn\u00e1",
+        "wikidata": "Q2452427",
+        "wikipedia": "cs:Celetn\u00e1"
       },
       "geometry": {
         "type": "Point",
@@ -3397,13 +4177,31 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 27589421,
+        "hasDetails": true,
+        "name": "K\u0159i\u017eovnick\u00e9 n\u00e1m\u011bst\u00ed",
+        "wikidata": "Q3511566",
+        "wikipedia": "cs:K\u0159i\u017eovnick\u00e9 n\u00e1m\u011bst\u00ed"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4142004,
           50.0861863
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4076224,
+          50.0861619
         ]
       }
     },
@@ -3417,13 +4215,35 @@
         "amenity": "place_of_worship",
         "address": "V\u011bze\u0148sk\u00e1 1, Praha",
         "website": "https://www.jewishmuseum.cz/",
-        "opening_hours": "Jan 01 11:00-16:30; Jan 02-Mar 31,Oct 19-Dec 31 09:00-16:30; Apr 01-30,Sep 01-Oct 18 09:00-18:00; May 01-Aug 31 09:00-19:00; Dec 24 09:00-14:00; \"Jewish holidays\" off"
+        "opening_hours": "Jan 01 11:00-16:30; Jan 02-Mar 31,Oct 19-Dec 31 09:00-16:30; Apr 01-30,Sep 01-Oct 18 09:00-18:00; May 01-Aug 31 09:00-19:00; Dec 24 09:00-14:00; \"Jewish holidays\" off",
+        "wikidata": "Q990003",
+        "wikipedia": "cs:\u0160pan\u011blsk\u00e1 synagoga"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           14.4208199,
           50.0903713
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 28552866,
+        "hasDetails": true,
+        "name": "Muzeum Prahy",
+        "website": "https://www.muzeumprahy.cz/",
+        "opening_hours": "Tu-Su 09:00-18:00",
+        "wikidata": "Q12039018",
+        "wikipedia": "cs:Muzeum hlavn\u00edho m\u011bsta Prahy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4384972,
+          50.0899703
         ]
       }
     },
@@ -3448,7 +4268,9 @@
         "hasDetails": true,
         "name": "Um\u011bleckopr\u016fmyslov\u00e9 muzeum v Praze",
         "website": "https://www.upm.cz/",
-        "opening_hours": "Tu 10:00-20:00; We-Su 10:00-18:00"
+        "opening_hours": "Tu 10:00-20:00; We-Su 10:00-18:00",
+        "wikidata": "Q1349747",
+        "wikipedia": "cs:Um\u011bleckopr\u016fmyslov\u00e9 museum v Praze"
       },
       "geometry": {
         "type": "Point",
@@ -3480,29 +4302,11 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
-        "id": 32073006,
-        "hasDetails": true,
-        "name": "Pell\u00e9ova vila",
-        "address": "Pell\u00e9ova 91/10",
-        "website": "https://villapelle.cz/",
-        "opening_hours": "Mo-Su 13:00-18:00"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          14.4077905,
-          50.0990196
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "weight": 1.0,
         "id": 39481040,
         "hasDetails": true,
         "name": "Expo 58",
-        "website": "https://aloos.cz/en/expo-58-gallery"
+        "website": "https://aloos.cz/en/expo-58-gallery",
+        "wikidata": "Q12781259"
       },
       "geometry": {
         "type": "Point",
@@ -3515,7 +4319,13 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 44585815,
+        "hasDetails": true,
+        "name": "Tan\u010d\u00edc\u00ed font\u00e1na",
+        "amenity": "fountain",
+        "wikidata": "Q64168432",
+        "wikipedia": "cs:\u010ce\u0161t\u00ed muzikanti"
       },
       "geometry": {
         "type": "Point",
@@ -3528,7 +4338,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 119016167,
+        "hasDetails": true,
+        "name": "Karl\u016fv most",
+        "wikidata": "Q204871",
+        "wikipedia": "cs:Karl\u016fv most"
       },
       "geometry": {
         "type": "Point",
@@ -3541,7 +4356,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 132415117,
+        "hasDetails": true,
+        "name": "Karl\u016fv most",
+        "wikidata": "Q204871",
+        "wikipedia": "cs:Karl\u016fv most"
       },
       "geometry": {
         "type": "Point",
@@ -3554,7 +4374,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 172997075,
+        "hasDetails": true,
+        "name": "Pomn\u00edk svat\u00e9ho V\u00e1clava",
+        "wikidata": "Q3497632",
+        "wikipedia": "cs:Pomn\u00edk svat\u00e9ho V\u00e1clava"
       },
       "geometry": {
         "type": "Point",
@@ -3574,7 +4399,9 @@
         "amenity": "place_of_worship",
         "address": "U Star\u00e9 \u0160koly 141/1, Praha",
         "website": "https://www.jewishmuseum.cz/",
-        "opening_hours": "Jan 01 11:00-16:30; Jan 02-Mar 31,Oct 19-Dec 31 09:00-16:30; Apr 01-30,Sep 01-Oct 18 09:00-18:00; May 01-Aug 31 09:00-19:00; Dec 24 09:00-14:00; \"Jewish holidays\" off"
+        "opening_hours": "Jan 01 11:00-16:30; Jan 02-Mar 31,Oct 19-Dec 31 09:00-16:30; Apr 01-30,Sep 01-Oct 18 09:00-18:00; May 01-Aug 31 09:00-19:00; Dec 24 09:00-14:00; \"Jewish holidays\" off",
+        "wikidata": "Q599211",
+        "wikipedia": "cs:Pinkasova synagoga"
       },
       "geometry": {
         "type": "Point",
@@ -3592,7 +4419,9 @@
         "hasDetails": true,
         "name": "\u010c\u016fraj\u00edc\u00ed postavy",
         "amenity": "fountain",
-        "website": "https://www.davidcerny.cz/EN/piss.html"
+        "website": "https://www.davidcerny.cz/EN/piss.html",
+        "wikidata": "Q9336836",
+        "wikipedia": "cs:\u010c\u016fraj\u00edc\u00ed postavy"
       },
       "geometry": {
         "type": "Point",
@@ -3605,7 +4434,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 214371826,
+        "hasDetails": true,
+        "name": "Nejmen\u0161\u00ed d\u016fm v\u00a0Praze",
+        "wikidata": "Q33519547"
       },
       "geometry": {
         "type": "Point",
@@ -3623,7 +4456,9 @@
         "hasDetails": true,
         "name": "Starom\u011bstsk\u00e1 radnice",
         "address": "Praha",
-        "opening_hours": "Mo 11:00-22:00; Tu-Su 09:00-22:00"
+        "opening_hours": "Mo 11:00-22:00; Tu-Su 09:00-22:00",
+        "wikidata": "Q2332231",
+        "wikipedia": "cs:Starom\u011bstsk\u00e1 radnice"
       },
       "geometry": {
         "type": "Point",
@@ -3640,7 +4475,9 @@
         "id": 295285613,
         "hasDetails": true,
         "name": "Ob\u0159adn\u00ed s\u00ed\u0148",
-        "website": "https://www.jewishmuseum.cz/"
+        "website": "https://www.jewishmuseum.cz/",
+        "wikidata": "Q474468",
+        "wikipedia": "cs:Nov\u00e1 ob\u0159adn\u00ed s\u00ed\u0148 u Star\u00e9ho \u017eidovsk\u00e9ho h\u0159bitova v Praze-Josefov\u011b"
       },
       "geometry": {
         "type": "Point",
@@ -3653,7 +4490,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 320963007,
+        "hasDetails": true,
+        "name": "\u017delezn\u00fd mu\u017e",
+        "wikidata": "Q64815669"
       },
       "geometry": {
         "type": "Point",
@@ -3666,7 +4507,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 340086966,
+        "hasDetails": true,
+        "name": "Pra\u017esk\u00fd poledn\u00edk",
+        "wikidata": "Q22694906",
+        "wikipedia": "cs:Pra\u017esk\u00fd poledn\u00edk"
       },
       "geometry": {
         "type": "Point",
@@ -3686,7 +4532,9 @@
         "amenity": "place_of_worship",
         "address": "Starom\u011bstsk\u00e9 n\u00e1m\u011bst\u00ed 110, Praha",
         "website": "http://www.tyn.cz/",
-        "opening_hours": "Mo off; Tu-Sa 10:00-13:00, 15:00-17:00; Su 10:30-12:00"
+        "opening_hours": "Mo off; Tu-Sa 10:00-13:00, 15:00-17:00; Su 10:30-12:00",
+        "wikidata": "Q1453427",
+        "wikipedia": "cs:Kostel Panny Marie p\u0159ed T\u00fdnem"
       },
       "geometry": {
         "type": "Point",
@@ -3699,7 +4547,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 481770654,
+        "hasDetails": true,
+        "name": "N\u00e1vrat \u017eidle \u2161",
+        "wikidata": "Q98085202"
       },
       "geometry": {
         "type": "Point",
@@ -3712,7 +4564,31 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 629201841,
+        "hasDetails": true,
+        "name": "Lennonova ze\u010f",
+        "opening_hours": "24/7",
+        "wikidata": "Q1630131",
+        "wikipedia": "cs:Lennonova ze\u010f"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4068151,
+          50.0862393
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 927050063,
+        "hasDetails": true,
+        "name": "Celetn\u00e1",
+        "wikidata": "Q2452427",
+        "wikipedia": "cs:Celetn\u00e1"
       },
       "geometry": {
         "type": "Point",
@@ -3725,7 +4601,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 936906389,
+        "hasDetails": true,
+        "name": "Celetn\u00e1",
+        "wikidata": "Q2452427",
+        "wikipedia": "cs:Celetn\u00e1"
       },
       "geometry": {
         "type": "Point",
@@ -3738,7 +4619,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1026639304,
+        "hasDetails": true,
+        "name": "Juditin most",
+        "wikidata": "Q897419"
       },
       "geometry": {
         "type": "Point",
@@ -3751,7 +4636,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1156890539,
+        "hasDetails": true,
+        "name": "Na P\u0159\u00edkop\u011b",
+        "wikidata": "Q1841356"
       },
       "geometry": {
         "type": "Point",
@@ -3764,7 +4653,12 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1234073376,
+        "hasDetails": true,
+        "name": "Karl\u016fv most",
+        "wikidata": "Q204871",
+        "wikipedia": "cs:Karl\u016fv most"
       },
       "geometry": {
         "type": "Point",
@@ -3777,7 +4671,13 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1296022796,
+        "hasDetails": true,
+        "name": "Zrcadlov\u00e1 kaple",
+        "amenity": "place_of_worship",
+        "wikidata": "Q27869562",
+        "wikipedia": "cs:Zrcadlov\u00e1 kaple (Praha)"
       },
       "geometry": {
         "type": "Point",
@@ -3790,7 +4690,16 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1377787726,
+        "hasDetails": true,
+        "name": "D\u016fm syna",
+        "wikidata": "Q21854829",
+        "wikipedia": "cs:D\u016fm sebevraha a D\u016fm matky sebevraha",
+        "names": [
+          "D\u016fm syna",
+          "D\u016fm matky"
+        ]
       },
       "geometry": {
         "type": "Point",
@@ -3817,11 +4726,31 @@
       "type": "Feature",
       "properties": {
         "weight": 1.0,
+        "id": 1473734451,
+        "hasDetails": true,
+        "name": "Ver\u0161omat",
+        "amenity": "shelter",
+        "wikidata": "Q114623513"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.407801,
+          50.0823186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
         "id": 85291,
         "hasDetails": true,
         "name": "N\u00e1rodn\u00ed muzeum",
         "address": "V\u00e1clavsk\u00e9 n\u00e1m\u011bst\u00ed 68, Praha",
-        "website": "http://www.nm.cz"
+        "website": "http://www.nm.cz",
+        "wikidata": "Q188112",
+        "wikipedia": "cs:N\u00e1rodn\u00ed muzeum"
       },
       "geometry": {
         "type": "Point",
@@ -3834,7 +4763,11 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 1951784,
+        "hasDetails": true,
+        "name": "Karl\u016fv most",
+        "wikidata": "Q204871"
       },
       "geometry": {
         "type": "Point",
@@ -3852,7 +4785,9 @@
         "hasDetails": true,
         "name": "Klementinum",
         "website": "https://www.klementinum.com/",
-        "opening_hours": "Mar 15-Nov 30: Mo-Su 10:00-18:00; Dec 01-Dec 15: Su-Th 10:00-17:30; Fr,Sa 10:00-18:00; Dec 16-Jan 10: Mo-Su 10:00-18:00; Jan 11-Mar 14: Su-Th 10:00-17:30; Fr,Sa 10:00-18:00"
+        "opening_hours": "Mar 15-Nov 30: Mo-Su 10:00-18:00; Dec 01-Dec 15: Su-Th 10:00-17:30; Fr,Sa 10:00-18:00; Dec 16-Jan 10: Mo-Su 10:00-18:00; Jan 11-Mar 14: Su-Th 10:00-17:30; Fr,Sa 10:00-18:00",
+        "wikidata": "Q1100429",
+        "wikipedia": "cs:Klementinum"
       },
       "geometry": {
         "type": "Point",
@@ -3865,7 +4800,13 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 1.0
+        "weight": 1.0,
+        "id": 14460907,
+        "hasDetails": true,
+        "name": "Krannerova ka\u0161na",
+        "amenity": "fountain",
+        "wikidata": "Q12031424",
+        "wikipedia": "cs:Krannerova ka\u0161na"
       },
       "geometry": {
         "type": "Point",

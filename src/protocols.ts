@@ -41,6 +41,8 @@ export interface LayerStyle {
     maxRadius?: number;
     strokeColor?: string;
     strokeWidth?: number;
+    enhancedColor?: string;
+    outdoorColor?: string;
     minZoom?: number;
 }
 
