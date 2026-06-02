@@ -3,7 +3,7 @@ import { GeoCatalog } from "../catalog/catalog";
 import { Context } from "../runtime/context";
 import type { ControllerActions, ControllerState, GatewayService, StorageService, View } from "../contracts";
 import type { LatLng } from "../protocols";
-import type { GeoState } from "../state/geoState";
+import type { GeoState, LastViewData } from "../state/geoState";
 import { AddArea, OK } from "../api";
 
 import { GeoStateStore } from "../state/geoStateStore";
@@ -68,6 +68,15 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
             areaCount: this._catalog.areas.length,
         });
 
+        const lastView = this._geoStateStore.loadLastView();
+        if (lastView?.mode === "detail" && lastView.areaId) {
+            const exists = this._catalog.areas.some(a => a.id === lastView.areaId);
+            if (exists) {
+                await this.openDetail(lastView.areaId);
+                return;
+            }
+        }
+
         this.openSummary();
     }
 
@@ -96,6 +105,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
                 { gateway: this._gateway }
             );
 
+            this._geoStateStore.saveLastView({ mode: "summary" });
             this.switchView(summaryView);
         } finally {
             this._navigating = false;
@@ -137,6 +147,7 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
                 { gateway: this._gateway, geoLocation: Context.Instance.geoLocation, mode: Context.Instance.mode }
             );
 
+            this._geoStateStore.saveLastView({ mode: "detail", areaId });
             this.switchView(detailView);
         } finally {
             this._navigating = false;
@@ -261,6 +272,14 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
 
     saveDetailViewState(state: DetailViewState): void {
         this._geoStateStore.saveDetailViewState(state);
+    }
+
+    loadLastView(): LastViewData | null {
+        return this._geoStateStore.loadLastView();
+    }
+
+    saveLastView(data: LastViewData): void {
+        this._geoStateStore.saveLastView(data);
     }
 
     // Private
