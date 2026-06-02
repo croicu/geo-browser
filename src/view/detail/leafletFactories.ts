@@ -639,7 +639,7 @@ export class DefaultLeafletMapFactory implements MapFactory {
         // synthesises a native click (with pointer-events: auto on the SVG layer), causing
         // double/triple fires on iOS. Native click synthesis alone is sufficient on iOS 13+
         // with a width=device-width viewport.
-        const map = L.map(root, { tap: false, maxBoundsViscosity: 1.0 } as L.MapOptions).setView(center, zoom);
+        const map = L.map(root, { tap: false, maxBoundsViscosity: 1.0, zoomControl: false } as L.MapOptions).setView(center, zoom);
         // Prevent iOS native long-press callout (Look Up / Share) and text selection
         // from appearing over the map. -webkit-touch-callout covers link/image callouts;
         // user-select covers text selection (zoom +/− glyphs, etc.).
