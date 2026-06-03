@@ -441,6 +441,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
+- **[Mundane (Void) Layer](tasks/void_layer.md)**: Status: Done. `__void__` virtual layer; brute-force effective-distance grid; three progressive passes (100m→50m→25m); `radius_m`/`area_sqm` exclusion circles; `MultiPolygon` exclusion rings; custom near-solid gradient; restarts on sibling layer visibility change.
 - **[Layer Selection Flyout](tasks/layer_selection_popup.md)**: Status: Done. Replaced `TileProviderControl` + `LayerControl` with `MapLayerFlyoutControl`; layers icon opens flyout with Map type (both views) and Map Details layer list (detail only); blue border on visible layers; outside-click dismiss.
 - **[Enriched POI Features](tasks/enriched_features.md)**: Status: Done. wikipedia, wikidata, stars, outdoor_seating added to `PoiBakedFeature`; enhanced markers get `enhancedColor` border; popup shows star icons, outdoor seating text, Wikipedia/Wikidata links.
 - **[Tile Provider](tasks/tile_provider.md)**: Status: Done. `TileProvider` interface in `src/maps/`; `osmTileProvider` and `cartoTileProvider` constants; Carto Voyager set as default in `DefaultLeafletMapFactory`.
