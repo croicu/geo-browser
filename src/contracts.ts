@@ -212,6 +212,7 @@ export interface HeatLayerOptions {
     blur: number;
     opacity: number;
     color?: string;
+    gradient?: Record<number, string>;
 }
 
 export interface LayerFactory {

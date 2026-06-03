@@ -12,6 +12,7 @@ import { PointLayerView } from "./pointLayerView";
 import { PoiLayerView } from "./poiLayerView";
 import type { PoiBakedFeature } from "./poiLayerView";
 import { UserLayerView } from "./userLayerView";
+import { VoidLayerView } from "./voidLayerView";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
 import { GeoLocationWidget } from "./geoLocationWidget";
@@ -299,6 +300,9 @@ export class DetailView implements View {
             if (layer.type === "__user__") {
                 continue;
             }
+            if (layer.type === "__void__") {
+                continue;
+            }
 
             const existing = this._layerViews.get(layer.id);
             const minZoom = layer.style?.minZoom;
@@ -373,6 +377,39 @@ export class DetailView implements View {
                 });
             } else {
                 existing.setVisible(visible);
+            }
+            break;
+        }
+
+        // Void layer: recreate when first made visible or when sibling visibility changes.
+        for (const layer of this._area.layers) {
+            if (layer.type !== "__void__") continue;
+
+            const visible = this._state.isLayerVisible(layer.id, layer.isVisible());
+            const existing = this._layerViews.get(layer.id) as VoidLayerView | undefined;
+            const visibleSources = this._area.layers.filter(
+                l => !l.isVirtual() && this._state.isLayerVisible(l.id, l.isVisible())
+            );
+
+            if (visible) {
+                if (!existing || existing.sourcesChanged(visibleSources)) {
+                    if (existing) {
+                        existing.destroy();
+                        this._layerViews.delete(layer.id);
+                    }
+                    const voidView = new VoidLayerView(
+                        this._map,
+                        layer,
+                        visibleSources,
+                        this._area.bbox,
+                        new DefaultLeafletLayerFactory()
+                    );
+                    this._layerViews.set(layer.id, voidView);
+                    void voidView.render();
+                }
+            } else if (existing) {
+                existing.destroy();
+                this._layerViews.delete(layer.id);
             }
             break;
         }

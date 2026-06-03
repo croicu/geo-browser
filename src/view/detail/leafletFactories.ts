@@ -549,15 +549,17 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
                 point.weight,
             ]);
         }
+        const color = options.color ?? "#ff0000";
+        const gradient = options.gradient ?? {
+            0.0: "rgba(0,0,0,0)",
+            0.4: color,
+            1.0: color,
+        };
         const layer = L.heatLayer(heatPoints, {
             radius: options.radius,
             blur: options.blur,
             max: 1.0,
-            gradient: {
-                0.0: "rgba(0,0,0,0)",
-                0.4: options.color ?? "#ff0000",
-                1.0: options.color ?? "#ff0000",
-            },
+            gradient,
         });
 
         return new LeafletHeatLayerHandle(layer, options.opacity);

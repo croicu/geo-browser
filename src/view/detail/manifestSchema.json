@@ -63,7 +63,7 @@
       "additionalProperties": false,
       "properties": {
         "id":          { "type": "string" },
-        "type":        { "type": "string", "enum": ["heatmap", "circle", "__poi__", "__user__"] },
+        "type":        { "type": "string", "enum": ["heatmap", "circle", "__poi__", "__void__", "__user__"] },
         "url":         { "$ref": "#/definitions/nullableString" },
         "visible":     { "type": "boolean" },
         "name":        { "type": "string" },
