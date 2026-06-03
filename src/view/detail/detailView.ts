@@ -12,6 +12,7 @@ import { PointLayerView } from "./pointLayerView";
 import { PoiLayerView } from "./poiLayerView";
 import type { PoiBakedFeature } from "./poiLayerView";
 import { UserLayerView } from "./userLayerView";
+import { VoidLayerView } from "./voidLayerView";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
 import { GeoLocationWidget } from "./geoLocationWidget";
@@ -249,7 +250,7 @@ export class DetailView implements View {
         this.applyMaxBounds();
         this._zoomCleanup = this._map.onZoom(zoom => this.onZoomChange(zoom));
         this.addBboxHighlight();
-        this._moveEndCleanup = this._map.onMoveEnd(() => this.saveViewport());
+        this._moveEndCleanup = this._map.onMoveEnd(() => this.onMapMoveEnd());
 
         if (this._gateway) {
             const bboxWidget = new BboxWidget(
@@ -297,6 +298,9 @@ export class DetailView implements View {
                 continue;
             }
             if (layer.type === "__user__") {
+                continue;
+            }
+            if (layer.type === "__void__") {
                 continue;
             }
 
@@ -377,6 +381,39 @@ export class DetailView implements View {
             break;
         }
 
+        // Void layer: recreate when first made visible or when sibling visibility changes.
+        for (const layer of this._area.layers) {
+            if (layer.type !== "__void__") continue;
+
+            const visible = this._state.isLayerVisible(layer.id, layer.isVisible());
+            const existing = this._layerViews.get(layer.id) as VoidLayerView | undefined;
+            const visibleSources = this._area.layers.filter(
+                l => !l.isVirtual() && this._state.isLayerVisible(l.id, l.isVisible())
+            );
+
+            if (visible) {
+                if (!existing || existing.sourcesChanged(visibleSources)) {
+                    if (existing) {
+                        existing.destroy();
+                        this._layerViews.delete(layer.id);
+                    }
+                    const voidView = new VoidLayerView(
+                        this._map,
+                        layer,
+                        visibleSources,
+                        this._area.bbox,
+                        new DefaultLeafletLayerFactory()
+                    );
+                    this._layerViews.set(layer.id, voidView);
+                    void voidView.render();
+                }
+            } else if (existing) {
+                existing.destroy();
+                this._layerViews.delete(layer.id);
+            }
+            break;
+        }
+
         this.syncPoiSourceVisibility();
     }
 
@@ -432,26 +469,37 @@ export class DetailView implements View {
     private onZoomChange(zoom: number): void {
         const map = this._map;
         const center = map?.getCenter();
-        getLogger().info("detail.zoom", { zoom, minZoom: this._minZoom, areaId: this._area.id, lat: center?.[0], lng: center?.[1] });
+        getLogger().info("detail.zoom", { zoom, areaId: this._area.id, lat: center?.[0], lng: center?.[1] });
         if (Date.now() < this._zoomCooldownUntil) {
             getLogger().info("detail.zoom_cooldown", { zoom });
             return;
         }
-        if (zoom < this._minZoom) {
+        this.renderLayerViews();
+    }
+
+    private onMapMoveEnd(): void {
+        this.saveViewport();
+        if (this._hasImageOverlay || this._mode === "design") {
+            return;
+        }
+        if (!this.isBboxVisible()) {
+            const map = this._map;
+            getLogger().info("detail.pan_to_summary", { areaId: this._area.id });
             if (map) {
-                const summaryZoom = Math.min(map.getZoom(), 10);
-                getLogger().info("detail.zoom_to_summary", { zoom, summaryZoom, lat: center?.[0], lng: center?.[1] });
-                // Clamp to 10 so the summary never opens at zoom ≥ 11, which would
-                // immediately re-trigger openDetail and create a bounce loop.
-                // Pass coordinates directly — do not save to storage so the stored
-                // summary position is preserved for toolbar-triggered transitions.
-                this._actions.openSummary(map.getCenter(), summaryZoom);
+                this._actions.openSummary(map.getCenter(), map.getZoom());
             } else {
                 this._actions.openSummary();
             }
-            return;
         }
-        this.renderLayerViews();
+    }
+
+    private isBboxVisible(): boolean {
+        const map = this._map;
+        if (!map) return true;
+        const [bboxWest, bboxSouth, bboxEast, bboxNorth] = this._area.bbox;
+        const vp = map.getBounds();
+        return bboxWest < vp.ne[1] && bboxEast > vp.sw[1] &&
+               bboxSouth < vp.ne[0] && bboxNorth > vp.sw[0];
     }
 
     private relaxBoundsForOverlay(): void {
@@ -459,7 +507,6 @@ export class DetailView implements View {
         if (!map) {
             return;
         }
-        map.setMaxBounds([-90, -180], [90, 180]);
         map.setMinZoom(1);
     }
 
@@ -478,9 +525,6 @@ export class DetailView implements View {
         const sw: [number, number] = [south - padLat, west - padLng];
         const ne: [number, number] = [north + padLat, east + padLng];
         this._paddedBounds = { sw, ne };
-        if (this._mode !== "design") {
-            map.setMaxBounds(sw, ne);
-        }
         const fitZoom = map.getBoundsZoom(sw, ne);
         this._minZoom = Math.max(11, Math.floor(fitZoom) - 1);
         this._zoomCooldownUntil = Date.now() + 500;

@@ -389,7 +389,7 @@ export class StubWidgetFactory implements WidgetFactory {
         return new StubWidget();
     }
 
-    createLayerSelectionWidget(
+    createMapLayerFlyout(
         _layers: LayerSelectionWidgetItem[],
         _onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle {

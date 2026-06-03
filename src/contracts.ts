@@ -212,6 +212,7 @@ export interface HeatLayerOptions {
     blur: number;
     opacity: number;
     color?: string;
+    gradient?: Record<number, string>;
 }
 
 export interface LayerFactory {
@@ -283,7 +284,7 @@ export interface WidgetFactory {
         onClick: () => void
     ): WidgetHandle;
 
-    createLayerSelectionWidget(
+    createMapLayerFlyout(
         layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle;

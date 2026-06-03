@@ -549,15 +549,17 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
                 point.weight,
             ]);
         }
+        const color = options.color ?? "#ff0000";
+        const gradient = options.gradient ?? {
+            0.0: "rgba(0,0,0,0)",
+            0.4: color,
+            1.0: color,
+        };
         const layer = L.heatLayer(heatPoints, {
             radius: options.radius,
             blur: options.blur,
             max: 1.0,
-            gradient: {
-                0.0: "rgba(0,0,0,0)",
-                0.4: options.color ?? "#ff0000",
-                1.0: options.color ?? "#ff0000",
-            },
+            gradient,
         });
 
         return new LeafletHeatLayerHandle(layer, options.opacity);
@@ -577,58 +579,170 @@ function buildTileLayer(provider: TileProvider): L.TileLayer {
     return L.tileLayer(provider.urlTemplate, options);
 }
 
-class TileProviderControl extends L.Control {
-    private _tileLayer?: L.TileLayer;
-    private _leafletMap?: L.Map;
-    private _button?: HTMLButtonElement;
+class MapLayerFlyoutControl extends L.Control {
+    private readonly _layers: LayerSelectionWidgetItem[];
+    private readonly _onToggle: (layerId: string, visible: boolean) => void;
 
-    constructor() {
+    private _leafletMap?: L.Map;
+    private _tileLayer?: L.TileLayer;
+    private _container?: HTMLElement;
+    private _panel?: HTMLElement;
+    private _isOpen = false;
+    private _outsideClickHandler?: (e: MouseEvent) => void;
+    private _cartoBtnEl?: HTMLButtonElement;
+    private _osmBtnEl?: HTMLButtonElement;
+
+    constructor(
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void
+    ) {
         super({ position: "topright" });
+        this._layers = layers;
+        this._onToggle = onToggle;
     }
 
     onAdd(map: L.Map): HTMLElement {
         this._leafletMap = map;
-        const provider = getActiveTileProvider();
-        this._tileLayer = buildTileLayer(provider).addTo(map);
+        this._tileLayer = buildTileLayer(getActiveTileProvider()).addTo(map);
 
-        const container = L.DomUtil.create("div", "tile-provider-toggle");
-        this._button = L.DomUtil.create("button", "tile-provider-btn", container) as HTMLButtonElement;
-        L.DomEvent.disableClickPropagation(container);
-        L.DomEvent.on(this._button, "click", this.onButtonClick, this);
-        this.updateButton(provider);
-        return container;
+        this._container = L.DomUtil.create("div", "map-layer-flyout");
+        L.DomEvent.disableClickPropagation(this._container);
+
+        const btn = L.DomUtil.create("button", "map-layer-btn", this._container) as HTMLButtonElement;
+        btn.type = "button";
+        btn.title = "Map layers";
+        btn.innerHTML = `<img src="/icons/layers.svg" alt="Layers" />`;
+        btn.addEventListener("click", (e) => { e.stopPropagation(); this.onTriggerClick(); });
+
+        this._panel = L.DomUtil.create("div", "map-layer-panel hidden", this._container);
+        this.buildPanel();
+
+        return this._container;
     }
 
     onRemove(): void {
-        if (this._button) {
-            L.DomEvent.off(this._button, "click", this.onButtonClick, this);
-        }
+        this.closePanel();
         this._tileLayer?.remove();
         this._tileLayer = undefined;
         this._leafletMap = undefined;
     }
 
-    private onButtonClick(): void {
-        const log = getLogger();
-        log.info("tile_provider.switch.start");
-        const current = getActiveTileProvider();
-        const next = current === cartoTileProvider ? osmTileProvider : cartoTileProvider;
-        setActiveTileProvider(next);
-        this._tileLayer?.remove();
-        if (this._leafletMap) {
-            this._tileLayer = buildTileLayer(next).addTo(this._leafletMap);
+    private onTriggerClick(): void {
+        getLogger().info("map_layer_flyout.trigger.click");
+        if (this._isOpen) {
+            this.closePanel();
+        } else {
+            this.openPanel();
         }
-        this.updateButton(next);
-        log.info("tile_provider.switch.end", { provider: next === cartoTileProvider ? "carto" : "osm" });
     }
 
-    private updateButton(currentProvider: TileProvider): void {
-        if (!this._button) return;
-        const nextProvider = currentProvider === cartoTileProvider ? osmTileProvider : cartoTileProvider;
-        const nextName = nextProvider === osmTileProvider ? "osm" : "carto";
-        const nextLabel = nextProvider === osmTileProvider ? "OpenStreetMap" : "CARTO";
-        this._button.innerHTML = `<img src="/icons/${nextName}.svg" alt="${nextLabel}" />`;
-        this._button.title = `Switch to ${nextLabel}`;
+    private openPanel(): void {
+        this._panel?.classList.remove("hidden");
+        this._isOpen = true;
+        getLogger().info("map_layer_flyout.open");
+        this._outsideClickHandler = (e: MouseEvent) => {
+            if (this._container && !this._container.contains(e.target as Node)) {
+                this.closePanel();
+            }
+        };
+        document.addEventListener("click", this._outsideClickHandler);
+    }
+
+    private closePanel(): void {
+        this._panel?.classList.add("hidden");
+        this._isOpen = false;
+        if (this._outsideClickHandler) {
+            document.removeEventListener("click", this._outsideClickHandler);
+            this._outsideClickHandler = undefined;
+        }
+    }
+
+    private buildPanel(): void {
+        if (!this._panel) {
+            return;
+        }
+
+        const typeSection = L.DomUtil.create("div", "flyout-section", this._panel);
+        L.DomUtil.create("div", "flyout-section-label", typeSection).textContent = "Map type";
+
+        const tileOptions = L.DomUtil.create("div", "flyout-tile-options", typeSection);
+        this._cartoBtnEl = this.createTileBtn(tileOptions, cartoTileProvider, "carto", "CARTO");
+        this._osmBtnEl = this.createTileBtn(tileOptions, osmTileProvider, "osm", "OSM");
+        this.updateTileButtons(getActiveTileProvider());
+
+        if (this._layers.length > 0) {
+            L.DomUtil.create("div", "flyout-divider", this._panel);
+
+            const layerSection = L.DomUtil.create("div", "flyout-section", this._panel);
+            L.DomUtil.create("div", "flyout-section-label", layerSection).textContent = "Map Details";
+
+            const layerOptions = L.DomUtil.create("div", "flyout-layer-options", layerSection);
+            for (const layer of this._layers) {
+                this.createLayerBtn(layerOptions, layer);
+            }
+        }
+    }
+
+    private createTileBtn(
+        parent: HTMLElement,
+        provider: TileProvider,
+        iconName: string,
+        label: string
+    ): HTMLButtonElement {
+        const btn = L.DomUtil.create("button", "flyout-tile-btn", parent) as HTMLButtonElement;
+        btn.type = "button";
+        btn.title = label;
+        btn.innerHTML = `<img src="/icons/${iconName}.svg" alt="${label}" /><span>${label}</span>`;
+        btn.addEventListener("click", () => this.onTileProviderClick(provider));
+        return btn;
+    }
+
+    private onTileProviderClick(provider: TileProvider): void {
+        const log = getLogger();
+        const name = provider === cartoTileProvider ? "carto" : "osm";
+        log.info("map_layer_flyout.tile_provider.start", { provider: name });
+        if (getActiveTileProvider() === provider) {
+            log.info("map_layer_flyout.tile_provider.end", { provider: name, changed: false });
+            return;
+        }
+        setActiveTileProvider(provider);
+        this._tileLayer?.remove();
+        if (this._leafletMap) {
+            this._tileLayer = buildTileLayer(provider).addTo(this._leafletMap);
+        }
+        this.updateTileButtons(provider);
+        log.info("map_layer_flyout.tile_provider.end", { provider: name, changed: true });
+    }
+
+    private updateTileButtons(active: TileProvider): void {
+        this._cartoBtnEl?.classList.toggle("active", active === cartoTileProvider);
+        this._osmBtnEl?.classList.toggle("active", active === osmTileProvider);
+    }
+
+    private createLayerBtn(parent: HTMLElement, layer: LayerSelectionWidgetItem): void {
+        const btn = L.DomUtil.create("button", "flyout-layer-btn", parent) as HTMLButtonElement;
+        btn.type = "button";
+        btn.title = layer.name;
+        if (!layer.visible) {
+            btn.classList.add("inactive");
+        }
+
+        const icon = L.DomUtil.create("span", "flyout-layer-icon", btn);
+        icon.style.backgroundColor = layer.color;
+
+        const name = L.DomUtil.create("span", "flyout-layer-name", btn);
+        name.textContent = layer.name;
+
+        btn.addEventListener("click", () => this.onLayerClick(layer, btn));
+    }
+
+    private onLayerClick(layer: LayerSelectionWidgetItem, btn: HTMLButtonElement): void {
+        const log = getLogger();
+        log.info("map_layer_flyout.layer.tap", { layerId: layer.id, visible: !layer.visible });
+        layer.visible = !layer.visible;
+        btn.classList.toggle("inactive", !layer.visible);
+        this._onToggle(layer.id, layer.visible);
+        log.info("map_layer_flyout.layer.tap.end", { layerId: layer.id, visible: layer.visible });
     }
 }
 
@@ -651,8 +765,6 @@ export class DefaultLeafletMapFactory implements MapFactory {
         // DOM element and bypasses Leaflet — the native iOS menu appears. Suppress it here
         // for every element inside the map container.
         container.addEventListener("contextmenu", e => e.preventDefault(), { capture: true });
-
-        new TileProviderControl().addTo(map);
 
         return new LeafletMapHandle(map);
     }
@@ -715,55 +827,6 @@ class SummaryControl extends L.Control {
     }
 }
 
-class LayerControl extends L.Control {
-    private readonly _layers: LayerSelectionWidgetItem[];
-    private readonly _onToggle: (layerId: string, visible: boolean) => void;
-    private readonly _buttonEls = new Map<string, HTMLElement>();
-
-    constructor(
-        layers: LayerSelectionWidgetItem[],
-        onToggle: (layerId: string, visible: boolean) => void
-    ) {
-        super({ position: "topright" });
-        this._layers = layers;
-        this._onToggle = onToggle;
-    }
-
-    onAdd(): HTMLElement {
-        const root = L.DomUtil.create("div", "layer-control");
-        this._buttonEls.clear();
-
-        for (const layer of this._layers) {
-            const item = L.DomUtil.create("div", "layer-control-item", root);
-            L.DomEvent.disableClickPropagation(item);
-
-            const button = L.DomUtil.create("button", "layer-control-button", item);
-            button.type = "button";
-            button.title = layer.name;
-            button.style.backgroundColor = layer.color;
-            button.textContent = layer.visible ? "✓" : "×";
-            if (!layer.visible) {
-                button.classList.add("inactive");
-            }
-
-            this._buttonEls.set(layer.id, button);
-
-            button.addEventListener("click", () => this.onButtonClick(layer, button));
-        }
-
-        return root;
-    }
-
-    private onButtonClick(layer: LayerSelectionWidgetItem, button: HTMLElement): void {
-        const log = getLogger();
-        log.info("layer_control.tap", { layerId: layer.id, visible: !layer.visible });
-        layer.visible = !layer.visible;
-        button.textContent = layer.visible ? "✓" : "×";
-        button.classList.toggle("inactive", !layer.visible);
-        this._onToggle(layer.id, layer.visible);
-        log.info("layer_control.tap.end", { layerId: layer.id, visible: layer.visible });
-    }
-}
 
 class DesignToolbarControl extends L.Control {
     private readonly _buttons: DesignToolbarButton[];
@@ -923,11 +986,11 @@ export class DefaultLeafletWidgetFactory implements WidgetFactory {
         return new LeafletWidgetHandle(new SummaryControl(label, onClick));
     }
 
-    createLayerSelectionWidget(
+    createMapLayerFlyout(
         layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void
     ): WidgetHandle {
-        return new LeafletWidgetHandle(new LayerControl(layers, onToggle));
+        return new LeafletWidgetHandle(new MapLayerFlyoutControl(layers, onToggle));
     }
 
     createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle {

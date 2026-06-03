@@ -71,8 +71,8 @@ The `geocode` parameter contains a proprietary binary encoding (not raw IEEE 754
 
 Two real captures from a device, stored as JSON:
 
-- [`tests/fixtures/share_target/home_depot.json`](../tests/fixtures/share_target/home_depot.json) — destination: The Home Depot, Bellevue
-- [`tests/fixtures/share_target/bellevue_office.json`](../tests/fixtures/share_target/bellevue_office.json) — destination: 1810 116th Ave NE #100, Bellevue
+- [`home_depot.json`](home_depot.json) — destination: The Home Depot, Bellevue
+- [`bellevue_office.json`](bellevue_office.json) — destination: 1810 116th Ave NE #100, Bellevue
 
 Each fixture contains `shortUrl`, the raw `redirect.location`, and the `parsed` expected output.
 

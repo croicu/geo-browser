@@ -76,82 +76,167 @@ body,
     display: block;
 }
 
-.layer-control {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    padding: 2.5px;
+.map-layer-flyout {
+    position: relative;
 }
 
-.layer-control-item {
-    display: flex;
-    align-items: center;
-}
-
-.layer-control-label {
-    max-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    opacity: 0;
+.map-layer-btn {
+    width: 34px;
+    height: 34px;
     padding: 0;
-    margin-left: 5px;
-
-    font-size: 12px;
-    font-weight: 600;
-    color: white;
-    background: rgba(20, 20, 20, 0.72);
-    border-radius: 10px;
-
-    pointer-events: none;
-
-    transition:
-        max-width 0.18s ease,
-        opacity 0.15s ease,
-        padding 0.18s ease;
-    line-height: 22px;
-}
-
-.layer-control-item.expanded .layer-control-label {
-    max-width: 160px;
-    opacity: 1;
-    padding: 0 7px;
-}
-
-.layer-control-button {
-    width: 24px;
-    height: 24px;
-
-    border: 2px solid rgba(255, 255, 255, 0.85);
-    border-radius: 50%;
-
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-
-    cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-
-    transition:
-        transform 0.12s ease,
-        opacity 0.12s ease;
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.layer-control-button:hover {
-    transform: scale(1.08);
+.map-layer-btn:hover {
+    background: #f4f4f4;
 }
 
-.layer-control-button:active {
-    transform: scale(0.96);
+.map-layer-btn img {
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
-.layer-control-button.inactive {
-    opacity: 0.45;
+.map-layer-panel {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 8px;
+    padding: 12px;
+    min-width: 180px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.map-layer-panel.hidden {
+    display: none;
+}
+
+.flyout-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.flyout-section-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.flyout-tile-options {
+    display: flex;
+    gap: 8px;
+}
+
+.flyout-tile-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #f5f5f5;
+    font-size: 11px;
+    color: #333;
+}
+
+.flyout-tile-btn:hover {
+    background: #ebebeb;
+}
+
+.flyout-tile-btn.active {
+    border-color: #1a73e8;
+    background: #e8f0fe;
+    color: #1a73e8;
+}
+
+.flyout-tile-btn img {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    display: block;
+}
+
+.flyout-divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 4px 0;
+}
+
+.flyout-layer-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.flyout-layer-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 6px;
+    border: 2px solid #1a73e8;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #e8f0fe;
+    width: 82px;
+    transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.flyout-layer-btn:hover {
+    background: #d2e3fc;
+}
+
+.flyout-layer-btn.inactive {
+    border-color: transparent;
+    background: transparent;
+}
+
+.flyout-layer-btn.inactive:hover {
+    background: #f5f5f5;
+}
+
+.flyout-layer-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: block;
+    opacity: 1;
+    transition: opacity 0.12s ease;
+}
+
+.flyout-layer-btn.inactive .flyout-layer-icon {
+    opacity: 0.35;
+}
+
+.flyout-layer-name {
+    font-size: 10px;
+    color: #333;
+    text-align: center;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-width: 78px;
+    transition: color 0.12s ease;
+}
+
+.flyout-layer-btn.inactive .flyout-layer-name {
+    color: #aaa;
 }
 
 /* Override Leaflet's SVG pointer-events="visiblePainted" attribute.
@@ -320,28 +405,6 @@ body,
     to { transform: rotate(360deg); }
 }
 
-.tile-provider-btn {
-    width: 34px;
-    height: 34px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    border: 2px solid rgba(0, 0, 0, 0.4);
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.tile-provider-btn:hover {
-    background: #f4f4f4;
-}
-
-.tile-provider-btn img {
-    width: 24px;
-    height: 24px;
-    display: block;
-}
 
 .geo-location-button {
     width: 40px;

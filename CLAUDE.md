@@ -52,9 +52,9 @@ HEAD
 Startup resolves the catalog URL via a two-step fetch:
 
 1. Fetch `/catalog.head.json` (`{ version, catalogUrl }`) — bypasses cache.
-2. If that fails, fall back to `/catalogs/catalog.json`.
+2. If that fails, fall back to `/catalog.json`.
 
-Debug mode (`?debug`) uses `/catalog.head.debug.json` → fallback `/catalogs/catalog.debug.json`.
+Debug mode (`?debug`) uses `/catalog.head.debug.json` → fallback `/catalog.debug.json`.
 
 Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches its own GeoJSON URL — all on demand, cache bypassed.
 
@@ -386,19 +386,26 @@ Enriched feature shape:
 
 ### Tile Provider
 
-`src/maps/tileProvider.ts` holds the `TileProvider` interface, `osmTileProvider` and `cartoTileProvider` constants, and the module-level `getActiveTileProvider`/`setActiveTileProvider` store (survives map recreations). CARTO Voyager is the default.
+`src/maps/tileProvider.ts` holds the `TileProvider` interface, `osmTileProvider` and `cartoTileProvider` constants, and the module-level `getActiveTileProvider`/`setActiveTileProvider` store (survives map recreations). CARTO Voyager is the default. OSM tiles use the `dark-osm` CSS filter; CARTO tiles do not.
 
-`TileProviderControl` (in `leafletFactories.ts`) is a Leaflet control at `topright` that manages both the tile layer lifecycle and the toggle button. OSM tiles use the `dark-osm` CSS filter; Carto tiles do not.
+### Map Layer Flyout
+
+`MapLayerFlyoutControl` (in `leafletFactories.ts`) is a Leaflet control at `topright` that:
+- Manages the tile layer lifecycle (replaces the old `TileProviderControl`)
+- Renders a layers icon button that opens a flyout panel on tap
+- **Summary view**: flyout shows Map type section only (CARTO / OSM toggle)
+- **Detail view**: flyout shows Map type + Map Details (layer list with color circles and visibility toggles)
+- Outside-click dismisses the flyout; clicking inside keeps it open
+- Created via `WidgetFactory.createMapLayerFlyout(layers, onToggle)`
 
 ### Map Control Positions
 
 All interactive controls are at `topright` (stacked top-to-bottom in render order):
 
 ```text
-TileProviderControl   (tile layer + toggle button — added in createMap)
-SummaryControl        (back to summary)
+SummaryControl        (back to summary — detail view only)
 ImageOverlayWidget    (paste/image toolbar — only when image is active)
-LayerControl          (layer visibility toggles)
+MapLayerFlyoutControl (tile layer + layer visibility flyout)
 GeoLocationControl    (bottomright)
 ```
 
@@ -434,6 +441,8 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
+- **[Mundane (Void) Layer](tasks/void_layer.md)**: Status: Done. `__void__` virtual layer; brute-force effective-distance grid; three progressive passes (100m→50m→25m); `radius_m`/`area_sqm` exclusion circles; `MultiPolygon` exclusion rings; custom near-solid gradient; restarts on sibling layer visibility change.
+- **[Layer Selection Flyout](tasks/layer_selection_popup.md)**: Status: Done. Replaced `TileProviderControl` + `LayerControl` with `MapLayerFlyoutControl`; layers icon opens flyout with Map type (both views) and Map Details layer list (detail only); blue border on visible layers; outside-click dismiss.
 - **[Enriched POI Features](tasks/enriched_features.md)**: Status: Done. wikipedia, wikidata, stars, outdoor_seating added to `PoiBakedFeature`; enhanced markers get `enhancedColor` border; popup shows star icons, outdoor seating text, Wikipedia/Wikidata links.
 - **[Tile Provider](tasks/tile_provider.md)**: Status: Done. `TileProvider` interface in `src/maps/`; `osmTileProvider` and `cartoTileProvider` constants; Carto Voyager set as default in `DefaultLeafletMapFactory`.
 - **[Two-Tap Select](tasks/two_tap_selection.md)**: Status: Done. First tap expands a sliding name label; second tap toggles visibility. Tap elsewhere dismisses. Single-active rule. `TwoTapState` extracted for unit tests; Leaflet `_fakeStop` gotcha documented.
