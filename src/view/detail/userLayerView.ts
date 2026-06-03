@@ -45,7 +45,7 @@ function pressureToColor(baseColor: string | undefined, pressure: number): strin
 }
 
 function readPressure(props: Record<string, unknown> | undefined): number {
-    const p = props?.pressure;
+    const p = props?.pressure ?? props?.weight;
     return typeof p === "number" ? Math.max(0, Math.min(1, p)) : 0.5;
 }
 
@@ -61,6 +61,7 @@ export class UserLayerView extends LayerView {
     private readonly _onPointDeleted: (() => void) | undefined;
     private _markers: UserMarker[] = [];
     private _visible: boolean;
+    private _lastPayload: unknown = null;
 
     constructor(
         map: MapHandle,
@@ -96,11 +97,16 @@ export class UserLayerView extends LayerView {
         return this._markers.length;
     }
 
+    get lastPayload(): unknown {
+        return this._lastPayload;
+    }
+
     async render(): Promise<void> {
         const log = getLogger();
         log.info("user_layer.render.start", { areaId: this._areaId, color: this._layer.style?.color ?? "(none — will use default)" });
 
         const payload = await this._store.getPoints(this._areaId);
+        this._lastPayload = payload;
 
         if (!this.isFeatureCollection(payload)) {
             fail("user_layer.invalid_payload", "UserPointsStore returned invalid FeatureCollection.", undefined, {

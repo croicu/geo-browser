@@ -384,6 +384,7 @@ export class StubGeoLocationWidgetHandle implements GeoLocationWidgetHandle {
 
 export class StubWidgetFactory implements WidgetFactory {
     public lastGeoLocationWidget?: StubGeoLocationWidgetHandle;
+    public lastExportUserPoints?: () => void;
 
     createSummaryWidget(_label: string, _onClick: () => void): WidgetHandle {
         return new StubWidget();
@@ -391,8 +392,10 @@ export class StubWidgetFactory implements WidgetFactory {
 
     createMapLayerFlyout(
         _layers: LayerSelectionWidgetItem[],
-        _onToggle: (layerId: string, visible: boolean) => void
+        _onToggle: (layerId: string, visible: boolean) => void,
+        onExportUserPoints?: () => void
     ): WidgetHandle {
+        this.lastExportUserPoints = onExportUserPoints;
         return new StubWidget();
     }
 

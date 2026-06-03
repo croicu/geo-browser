@@ -28,6 +28,7 @@ export interface DetailViewServices {
     widgetFactory?: WidgetFactory;
     gateway?: GatewayService | null;
     geoLocation?: GeoLocationService | null;
+    userPointsStore?: UserPointsStore;
     mode?: Mode;
 }
 
@@ -98,9 +99,10 @@ export class DetailView implements View {
         this._geoLocation = services.geoLocation ?? null;
         this._mode = services.mode ?? "browse";
 
-        this._userPointsStore = this._gateway
-            ? new GatewayUserPointsStore(this._gateway)
-            : new LocalStorageUserPointsStore(Context.Instance.storage);
+        this._userPointsStore = services.userPointsStore
+            ?? (this._gateway
+                ? new GatewayUserPointsStore(this._gateway)
+                : new LocalStorageUserPointsStore(Context.Instance.storage));
 
         void this._actions;
     }
@@ -361,7 +363,7 @@ export class DetailView implements View {
                 const userView = new UserLayerView(
                     this._map,
                     layer,
-                    new DefaultLeafletLayerFactory(),
+                    this._layerFactory,
                     this._userPointsStore!,
                     this._area.id,
                     visible,
@@ -371,9 +373,7 @@ export class DetailView implements View {
                 this._userGeoLayer = layer;
                 this._layerViews.set(layer.id, userView);
                 void userView.render().then(() => {
-                    if (this._userLayerView && this._userLayerView.featureCount > 0) {
-                        this.rebuildLayersWidget();
-                    }
+                    this.rebuildLayersWidget();
                 });
             } else {
                 existing.setVisible(visible);
@@ -561,6 +561,58 @@ export class DetailView implements View {
         this._actions.saveDetailViewport(this._area.id, this._map.getCenter(), this._map.getZoom());
     }
 
+    private exportUserPoints(): void {
+        const log = getLogger();
+        log.info("user_layer.export.start", { areaId: this._area.id });
+        try {
+            // Prefer synchronous read (localStorage) so navigator.share() is called
+            // within the same call stack as the user gesture. Fall back to the
+            // last-rendered payload for gateway-backed stores that have no sync path.
+            const payload = this._userPointsStore?.getPointsSync?.(this._area.id)
+                ?? this._userLayerView?.lastPayload;
+            if (!payload) {
+                log.info("user_layer.export.empty", { areaId: this._area.id });
+                return;
+            }
+            const collection = payload as { type: string; features: unknown[] };
+            if (!Array.isArray(collection.features) || collection.features.length === 0) {
+                log.info("user_layer.export.empty", { areaId: this._area.id });
+                return;
+            }
+            const filename = `${this._area.id}-user-points.geojson`;
+            const json = JSON.stringify(payload, null, 2);
+            const file = new File([json], filename, { type: "application/geo+json" });
+            const nav = navigator as Navigator & { share?: (data: object) => Promise<void>; canShare?: (data: object) => boolean };
+            if (nav.share) {
+                // navigator.share() must be called synchronously on the click call stack.
+                // iOS Safari revokes user gesture activation at the first await boundary,
+                // so this method is intentionally not async.
+                log.info("user_layer.export.share", { areaId: this._area.id, count: collection.features.length });
+                const shareData = nav.canShare?.({ files: [file] })
+                    ? { files: [file], title: "My Trip" }
+                    : { text: json, title: "My Trip" };
+                nav.share(shareData).catch((err) => {
+                    log.warning("user_layer.export.share_failed", { error: String(err) });
+                    this.downloadFile(file, filename);
+                });
+            } else {
+                this.downloadFile(file, filename);
+            }
+            log.info("user_layer.export.end", { areaId: this._area.id, count: collection.features.length });
+        } catch (err) {
+            log.error("user_layer.export.error", err);
+        }
+    }
+
+    private downloadFile(file: File, filename: string): void {
+        const url = URL.createObjectURL(file);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
     private onUserPoint(latLng: [number, number], pressure: number): void {
         void this.doOnUserPoint(latLng, pressure);
     }
@@ -686,7 +738,8 @@ export class DetailView implements View {
             this._widgetFactory,
             this._area.id,
             visibleLayers,
-            layer => this._state.isLayerVisible(layer.id, layer.isVisible())
+            layer => this._state.isLayerVisible(layer.id, layer.isVisible()),
+            hasUserPoints ? () => this.exportUserPoints() : undefined
         );
         layersWidget.render();
         this._layersWidget = layersWidget;

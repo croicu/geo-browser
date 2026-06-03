@@ -582,6 +582,7 @@ function buildTileLayer(provider: TileProvider): L.TileLayer {
 class MapLayerFlyoutControl extends L.Control {
     private readonly _layers: LayerSelectionWidgetItem[];
     private readonly _onToggle: (layerId: string, visible: boolean) => void;
+    private readonly _onExportUserPoints?: () => void;
 
     private _leafletMap?: L.Map;
     private _tileLayer?: L.TileLayer;
@@ -594,11 +595,13 @@ class MapLayerFlyoutControl extends L.Control {
 
     constructor(
         layers: LayerSelectionWidgetItem[],
-        onToggle: (layerId: string, visible: boolean) => void
+        onToggle: (layerId: string, visible: boolean) => void,
+        onExportUserPoints?: () => void
     ) {
         super({ position: "topright" });
         this._layers = layers;
         this._onToggle = onToggle;
+        this._onExportUserPoints = onExportUserPoints;
     }
 
     onAdd(map: L.Map): HTMLElement {
@@ -680,6 +683,21 @@ class MapLayerFlyoutControl extends L.Control {
             for (const layer of this._layers) {
                 this.createLayerBtn(layerOptions, layer);
             }
+        }
+
+        if (this._onExportUserPoints) {
+            const mobile = isMobileDevice();
+            const label = mobile ? "Share My Trip" : "Download My Trip";
+            const icon = mobile ? "share" : "download";
+            L.DomUtil.create("div", "flyout-divider", this._panel);
+            const btn = L.DomUtil.create("button", "flyout-export-btn", this._panel) as HTMLButtonElement;
+            btn.type = "button";
+            btn.title = label;
+            btn.innerHTML = `<img src="/icons/${icon}.svg" alt="${label}" /><span>${label}</span>`;
+            btn.addEventListener("click", () => {
+                getLogger().info("map_layer_flyout.export.click", { mobile });
+                this._onExportUserPoints!();
+            });
         }
     }
 
@@ -887,6 +905,10 @@ function isPwa(): boolean {
         || (navigator as unknown as { standalone?: boolean }).standalone === true;
 }
 
+function isMobileDevice(): boolean {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
 class GeoLocationControl extends L.Control {
     private readonly _onToggle: () => void;
     private _button?: HTMLButtonElement;
@@ -988,9 +1010,10 @@ export class DefaultLeafletWidgetFactory implements WidgetFactory {
 
     createMapLayerFlyout(
         layers: LayerSelectionWidgetItem[],
-        onToggle: (layerId: string, visible: boolean) => void
+        onToggle: (layerId: string, visible: boolean) => void,
+        onExportUserPoints?: () => void
     ): WidgetHandle {
-        return new LeafletWidgetHandle(new MapLayerFlyoutControl(layers, onToggle));
+        return new LeafletWidgetHandle(new MapLayerFlyoutControl(layers, onToggle, onExportUserPoints));
     }
 
     createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle {

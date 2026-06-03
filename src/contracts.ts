@@ -274,6 +274,7 @@ export interface LayerSelectionWidgetItem {
 
 export interface UserPointsStore {
     getPoints(areaId: string): Promise<unknown>;
+    getPointsSync?(areaId: string): unknown;
     addPoint(areaId: string, lat: number, lon: number, pressure: number, poiProperties?: Record<string, unknown>): Promise<void>;
     removePoint(areaId: string, lon: number, lat: number): Promise<void>;
 }
@@ -286,7 +287,8 @@ export interface WidgetFactory {
 
     createMapLayerFlyout(
         layers: LayerSelectionWidgetItem[],
-        onToggle: (layerId: string, visible: boolean) => void
+        onToggle: (layerId: string, visible: boolean) => void,
+        onExportUserPoints?: () => void
     ): WidgetHandle;
 
     createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle;
