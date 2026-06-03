@@ -23,16 +23,14 @@ export class LocalStorageUserPointsStore implements UserPointsStore {
         this._storage = storage;
     }
 
-    async getPoints(areaId: string): Promise<unknown> {
+    getPointsSync(areaId: string): unknown {
         const raw = this._storage.getItem(STORAGE_KEY_PREFIX + areaId);
-        if (!raw) {
-            return EMPTY_COLLECTION;
-        }
-        try {
-            return JSON.parse(raw) as unknown;
-        } catch {
-            return EMPTY_COLLECTION;
-        }
+        if (!raw) return EMPTY_COLLECTION;
+        try { return JSON.parse(raw) as unknown; } catch { return EMPTY_COLLECTION; }
+    }
+
+    async getPoints(areaId: string): Promise<unknown> {
+        return this.getPointsSync(areaId);
     }
 
     async addPoint(areaId: string, lat: number, lon: number, pressure: number, poiProperties?: Record<string, unknown>): Promise<void> {
@@ -52,6 +50,7 @@ export class LocalStorageUserPointsStore implements UserPointsStore {
                 ...safePoiProps,
                 timestamp: new Date().toISOString(),
                 pressure,
+                weight: pressure,
                 name: (safePoiProps["name"] as string | null | undefined) ?? null,
             },
         });

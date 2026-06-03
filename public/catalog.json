@@ -29,6 +29,34 @@
       "maxRadiusPx": 512,
       "liveMapRadiusPx": 640,
       "manifestUrl": "./areas/berlin/manifest.json"
+    },
+    {
+      "id": "algarve",
+      "name": "Algarve",
+      "bbox": [
+        -8.817901611328125,
+        36.98743385368387,
+        -7.587432861328125,
+        37.31026312729192
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/algarve/manifest.json"
+    },
+    {
+      "id": "seattle",
+      "name": "Seattle",
+      "bbox": [
+        -122.50854492187501,
+        47.41179672628239,
+        -121.98944091796876,
+        47.72859456739693
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/seattle/manifest.json"
     }
   ]
 }

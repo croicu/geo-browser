@@ -1,9 +1,31 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DetailView } from "../../../src/view/detail/detailView";
+import type { UserPointsStore } from "../../../src/contracts";
 import { StubActions } from "../../stubs/stubActions";
 import { StubLogger } from "../../stubs/stubLogger";
 import { StubLayerFactory, StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories";
 import { setLogger } from "../../../src/services";
+
+class StubUserPointsStore implements UserPointsStore {
+    public getPointsCallCount = 0;
+    private _points: unknown[] = [];
+
+    setPoints(points: unknown[]): void {
+        this._points = points;
+    }
+
+    getPointsSync(_areaId: string): unknown {
+        return { type: "FeatureCollection", features: this._points };
+    }
+
+    async getPoints(_areaId: string): Promise<unknown> {
+        this.getPointsCallCount++;
+        return this.getPointsSync(_areaId);
+    }
+
+    async addPoint(): Promise<void> {}
+    async removePoint(): Promise<void> {}
+}
 
 const fakeArea = {
     id: "napoli",
@@ -26,11 +48,17 @@ const fakeArea = {
 const fakeState = {
     center: [40.8518, 14.2681],
     zoom: 13,
+    isLayerVisible: (_id: string, def: boolean) => def ?? true,
+    setLayerVisible: (_id: string, _visible: boolean) => {},
 };
 
 describe("DetailView", () => {
     beforeEach(() => {
         setLogger(new StubLogger());
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it("renders detail map root", () => {
@@ -173,5 +201,83 @@ describe("DetailView", () => {
         mapFactory.map.simulateMoveEnd();
 
         expect(actions.openedSummary).toBe(false);
+    });
+
+    const fakeUserLayer = {
+        id: "__user__",
+        type: "__user__",
+        name: "My Trip",
+        isVisible: () => true,
+        isVirtual: () => true,
+        style: { color: "#ff6600" },
+    };
+
+    const fakeAreaWithUser = { ...fakeArea, layers: [fakeUserLayer] };
+
+    it("export calls getPoints on the user points store", async () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const widgetFactory = new StubWidgetFactory();
+        const store = new StubUserPointsStore();
+        store.setPoints([{ type: "Feature", geometry: { type: "Point", coordinates: [14.27, 40.85] }, properties: {} }]);
+
+        vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:fake");
+        vi.spyOn(URL, "revokeObjectURL").mockReturnValue(undefined);
+
+        const view = new DetailView(
+            root,
+            new StubActions(),
+            fakeAreaWithUser as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory,
+                userPointsStore: store,
+            }
+        );
+
+        view.render();
+        await Promise.resolve(); // user layer getPoints resolves
+        await Promise.resolve(); // .then → rebuildLayersWidget fires
+
+        widgetFactory.lastExportUserPoints?.();
+        await Promise.resolve();
+
+        // export uses cached payload — store called once (by render), createObjectURL once (by download)
+        expect(store.getPointsCallCount).toBe(1);
+        expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
+    });
+
+    it("export button is hidden when store is empty", async () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const widgetFactory = new StubWidgetFactory();
+        const store = new StubUserPointsStore();
+        const createObjectURL = vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:fake");
+        vi.spyOn(URL, "revokeObjectURL").mockReturnValue(undefined);
+
+        const view = new DetailView(
+            root,
+            new StubActions(),
+            fakeAreaWithUser as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory,
+                userPointsStore: store,
+            }
+        );
+
+        view.render();
+        await Promise.resolve(); // user layer getPoints resolves
+        await Promise.resolve(); // .then → rebuildLayersWidget fires (hasUserPoints = false)
+
+        // callback not set — button is hidden
+        expect(widgetFactory.lastExportUserPoints).toBeUndefined();
+        widgetFactory.lastExportUserPoints?.();
+
+        expect(createObjectURL).not.toHaveBeenCalled();
     });
 });

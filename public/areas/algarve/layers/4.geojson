@@ -1,0 +1,962 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 344615810,
+        "hasDetails": true,
+        "name": "Teatro Lethes",
+        "amenity": "theatre",
+        "address": "Rua de Portugal 58",
+        "website": "https://teatrolethes.com",
+        "opening_hours": "Tu-Fr 14:00-18:00; Sa 16:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9317333,
+          37.0182913
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4585199,
+          37.1371321
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.675364,
+          37.0993939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.1687876,
+          37.2386238
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.2807568,
+          37.1274808
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.2869946,
+          37.2534972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 1520369075,
+        "hasDetails": true,
+        "name": "Cine Teatro Ant\u00f3nio Pinheiro",
+        "amenity": "cinema",
+        "wikidata": "Q60383084"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.6488543,
+          37.1249735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8404402,
+          37.0353388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.7650926,
+          37.158054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.1214055,
+          37.0742842
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.946189,
+          37.0292529
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2319755268,
+        "hasDetails": true,
+        "name": "Laborat\u00f3rio de Actividades Criativas",
+        "amenity": "arts_centre",
+        "website": "https://www.lac.org.pt/categoria/destaques/",
+        "opening_hours": "Mo-Sa 10:00-13:00,14:00-18:00; Su off"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.677931,
+          37.105676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4424081,
+          37.1878082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 2394945896,
+        "hasDetails": true,
+        "name": "Teatro Marcarenhas Greg\u00f3rio",
+        "amenity": "theatre",
+        "wikidata": "Q60382519"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4366717,
+          37.1897924
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.1160575,
+          37.0758032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 4275692395,
+        "hasDetails": true,
+        "name": "Estoi",
+        "amenity": "cinema",
+        "address": "Rua Joao de Deus"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8925076,
+          37.0949983
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.7714937,
+          37.0562386
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.6365495,
+          37.1318087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.5371833,
+          37.1190937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.5345693,
+          37.118422
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.5393436,
+          37.1190106
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5127168696,
+        "hasDetails": true,
+        "name": "Casa das Artes de Tavira",
+        "amenity": "arts_centre",
+        "address": "Rua Jo\u00e3o Vaz Corte Real 98, Tavira",
+        "website": "https://www.acasadasartes.org/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.6522987,
+          37.1288944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5262784121,
+        "hasDetails": true,
+        "name": "Algarcine - Cinema de Lagos",
+        "amenity": "cinema",
+        "address": "Rua C\u00e2ndido dos Reis",
+        "website": "https://filmspot.pt/cinema/algarcine-cinemas-de-lagos-84/",
+        "wikidata": "Q37813089"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.6728539,
+          37.100516
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5267668386,
+        "hasDetails": true,
+        "name": "Teatro Municipal de Portim\u00e3o",
+        "amenity": "theatre",
+        "address": "Largo 1\u00b0 dezembro 34",
+        "website": "https://teatromunicipaldeportimao.pt/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.5359634,
+          37.138214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9355658,
+          37.017463
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9359079,
+          37.01781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 5852302830,
+        "hasDetails": true,
+        "name": "Prestige Dance Club",
+        "amenity": "nightclub",
+        "opening_hours": "Th-Sa 23:00-04:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9369366,
+          37.0179142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.6422315,
+          37.1277137
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8439781,
+          37.0528417
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8886027,
+          37.1530338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8839231,
+          37.1518815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6669994342,
+        "hasDetails": true,
+        "name": "Audit\u00f3rio Municipal de Olh\u00e3o",
+        "amenity": "theatre",
+        "address": "Rua Doutor Mendon\u00e7a Corte Real 1",
+        "website": "https://auditoriomunicipal.cm-olhao.pt",
+        "opening_hours": "Mo,Sa-Su off; Tu-Fr 13:30-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8371413,
+          37.0272905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6813755088,
+        "hasDetails": true,
+        "name": "Call In",
+        "amenity": "nightclub",
+        "opening_hours": "Mo-Su 22:30-04:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9363544,
+          37.017936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 6972079331,
+        "hasDetails": true,
+        "name": "Katedral",
+        "amenity": "nightclub",
+        "opening_hours": "everyday 18:00-04:00",
+        "names": [
+          "Katedral",
+          "Mixx"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.5389062,
+          37.1189125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0234288,
+          37.1392112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0232199,
+          37.1415222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 10000734376,
+        "hasDetails": true,
+        "name": "Atelier ZEA",
+        "amenity": "arts_centre",
+        "address": "Largo F\u00e1brica Velha 5",
+        "opening_hours": "Mo-Fr 09:30-12:00,16:00-19:00; Sa 09:30-13:00; Su off"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8388398,
+          37.0245742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.5444758,
+          37.1338633
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9254894,
+          37.0507199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 11862357435,
+        "hasDetails": true,
+        "name": "Associa\u00e7\u00e3o Cultural Re-Criativa Rep\u00fablica 14",
+        "amenity": "arts_centre",
+        "website": "https://republica14.pt/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8399354,
+          37.0267952
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.987748,
+          37.198719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9215104,
+          37.0180242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12506891261,
+        "hasDetails": true,
+        "name": "The Loft",
+        "amenity": "nightclub",
+        "address": "Rua Oliven\u00e7a 5B, Portim\u00e3o",
+        "website": "https://www.theloftgaybar.com/",
+        "opening_hours": "Fr-Sa 23:00-04:00; Tu 23:00-04:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.5380847,
+          37.1410951
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 12506935581,
+        "hasDetails": true,
+        "name": "Festa Fant\u00e1stica",
+        "amenity": "theatre",
+        "address": "Rua do Bispo Dom Ant\u00f3nio Castelo Branco 12, Portim\u00e3o",
+        "website": "https://festafantastica.wixsite.com/palhacos",
+        "opening_hours": "Tu-Su 10:30-20:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.5363942,
+          37.1397183
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.924317,
+          37.1226515
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9273,
+          37.0163517
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.6718449,
+          37.0996545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 95278991,
+        "hasDetails": true,
+        "name": "Teatro das Figuras",
+        "amenity": "theatre",
+        "address": "Rua Jo\u00e3o de Brito Vargas",
+        "website": "https://www.teatrodasfiguras.pt/",
+        "opening_hours": "Tu-Sa 13:00-19:30",
+        "wikidata": "Q10378956",
+        "wikipedia": "pt:Teatro das Figuras"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9445472,
+          37.0249855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.1514659,
+          37.1156195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.1159948,
+          37.0732495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.3146511,
+          37.1255584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.2310675,
+          37.0869121
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.6772839,
+          37.0940186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9477224,
+          37.0266225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.3146636,
+          37.1231767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0399017,
+          37.064846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8868947,
+          37.1507898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0,
+        "id": 805132972,
+        "hasDetails": true,
+        "name": "Cine-Teatro Louletano",
+        "amenity": "cinema",
+        "address": "Avenida Jos\u00e9 da Costa Mealha, Loul\u00e9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.020547,
+          37.1378478
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.8872093,
+          37.1555905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9971357,
+          37.0991304
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4859806,
+          37.1623435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.6829865,
+          37.1019255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0516454,
+          37.0878381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9220298,
+          37.028307
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "weight": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.3155794,
+          37.1262895
+        ]
+      }
+    }
+  ]
+}

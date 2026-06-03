@@ -239,6 +239,31 @@ body,
     color: #aaa;
 }
 
+.flyout-export-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: transparent;
+    font-size: 13px;
+    color: #333;
+    text-align: left;
+}
+
+.flyout-export-btn:hover {
+    background: #f5f5f5;
+}
+
+.flyout-export-btn img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+}
+
 /* Override Leaflet's SVG pointer-events="visiblePainted" attribute.
    iOS Safari doesn't recognize the SVG-specific value for elementFromPoint,
    so Leaflet's tap handler can't find the element. "auto" is the standard

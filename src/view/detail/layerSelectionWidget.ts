@@ -15,6 +15,7 @@ export class LayerSelectionWidget implements WidgetHandle {
     private readonly _layers: LayerSelectionWidgetItem[];
     private readonly _actions: ControllerActions;
     private readonly _factory: WidgetFactory;
+    private readonly _onExportUserPoints?: () => void;
 
     private _widget?: WidgetHandle;
 
@@ -24,12 +25,14 @@ export class LayerSelectionWidget implements WidgetHandle {
         factory: WidgetFactory,
         areaId: string,
         layers: readonly GeoLayer[],
-        getVisible?: (layer: GeoLayer) => boolean
+        getVisible?: (layer: GeoLayer) => boolean,
+        onExportUserPoints?: () => void
     ) {
         this._map = map;
         this._areaId = areaId;
         this._actions = actions;
         this._factory = factory;
+        this._onExportUserPoints = onExportUserPoints;
 
         this._layers = [];
 
@@ -71,7 +74,8 @@ export class LayerSelectionWidget implements WidgetHandle {
                 this._layers,
                 (layerId: string, visible: boolean) => {
                     this._actions.setLayerVisible(this._areaId, layerId, visible);
-                }
+                },
+                this._onExportUserPoints
             );
 
             this._widget.addTo(this._map);
