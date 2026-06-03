@@ -5,7 +5,7 @@
       "id": "1",
       "name": "Parks",
       "type": "circle",
-      "visible": false,
+      "visible": true,
       "style": {
         "opacity": 0.3,
         "radiusScale": 1.0,
@@ -26,7 +26,7 @@
       "id": "2",
       "name": "Restaurants, Food",
       "type": "heatmap",
-      "visible": false,
+      "visible": true,
       "style": {
         "opacity": 0.5,
         "radiusScale": 1.5,
@@ -53,7 +53,7 @@
       "id": "3",
       "name": "Attractions, Tourism",
       "type": "heatmap",
-      "visible": false,
+      "visible": true,
       "style": {
         "opacity": 0.5,
         "radiusScale": 3.0,
