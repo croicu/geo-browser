@@ -6,15 +6,29 @@
       "id": "prague",
       "name": "Prague",
       "bbox": [
-        14.407024383544922,
-        50.07709818181584,
-        14.440841674804688,
-        50.09769092379103
+        14.369430541992188,
+        50.0410540621467,
+        14.532852172851562,
+        50.124096021346126
       ],
       "minRadiusPx": 32,
       "maxRadiusPx": 512,
       "liveMapRadiusPx": 640,
       "manifestUrl": "./areas/prague/manifest.json"
+    },
+    {
+      "id": "berlin",
+      "name": "Berlin",
+      "bbox": [
+        13.195266723632812,
+        52.391208085528824,
+        13.627853393554688,
+        52.63685446339952
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/berlin/manifest.json"
     }
   ]
 }
