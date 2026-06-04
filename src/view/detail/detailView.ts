@@ -750,8 +750,12 @@ export class DetailView implements View {
 
     private onMapClick(latLng: [number, number]): void {
         const log = getLogger();
+        if (this._emptySpacePopup) {
+            log.info("map.empty_tap.dismiss");
+            this.closeEmptySpacePopup();
+            return;
+        }
         log.info("map.empty_tap.start", { lat: latLng[0], lng: latLng[1] });
-        this.closeEmptySpacePopup();
         if (!this._map) return;
         const el = this.buildEmptySpacePopupElement(latLng);
         this._emptySpacePopup = this._map.createPopup(latLng, el);
@@ -769,7 +773,7 @@ export class DetailView implements View {
 
         const coords = document.createElement("div");
         coords.className = "poi-coords";
-        coords.textContent = `${latLng[0].toFixed(5)}, ${latLng[1].toFixed(5)}`;
+        coords.textContent = `${latLng[0].toFixed(4)}, ${latLng[1].toFixed(4)}`;
         root.appendChild(coords);
 
         root.appendChild(this.buildMapLink(

@@ -155,6 +155,35 @@ describe("DetailView", () => {
         expect(mapFactory.map.lastPopup?.latLng).toEqual([40.8518, 14.2681]);
     });
 
+    it("dismisses empty-space callout on second tap outside", () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const logger = new StubLogger();
+
+        setLogger(logger);
+
+        const view = new DetailView(
+            root,
+            new StubActions(),
+            fakeArea as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory: new StubWidgetFactory(),
+            }
+        );
+
+        view.render();
+        mapFactory.map.simulateClick([40.8518, 14.2681]);
+        const popup = mapFactory.map.lastPopup!;
+
+        mapFactory.map.simulateClick([40.9000, 14.3000]);
+
+        expect(popup.removed).toBe(true);
+        expect(logger.infoCalls.find(c => c.message === "map.empty_tap.dismiss")).toBeDefined();
+    });
+
     it("navigates to summary when bbox pans off screen", () => {
         const root = document.createElement("div");
         const mapFactory = new StubMapFactory();
