@@ -62,6 +62,7 @@ export class UserLayerView extends LayerView {
     private _markers: UserMarker[] = [];
     private _visible: boolean;
     private _lastPayload: unknown = null;
+    private _stopWatchingZoom?: () => void;
 
     constructor(
         map: MapHandle,
@@ -104,6 +105,9 @@ export class UserLayerView extends LayerView {
     async render(): Promise<void> {
         const log = getLogger();
         log.info("user_layer.render.start", { areaId: this._areaId, color: this._layer.style?.color ?? "(none — will use default)" });
+        if (!this._stopWatchingZoom) {
+            this._stopWatchingZoom = this._map.onZoom(zoom => this.onZoom(zoom));
+        }
 
         const payload = await this._store.getPoints(this._areaId);
         this._lastPayload = payload;
@@ -131,14 +135,28 @@ export class UserLayerView extends LayerView {
     }
 
     override destroy(): void {
+        this._stopWatchingZoom?.();
+        this._stopWatchingZoom = undefined;
         this.destroyMarkers();
+    }
+
+    private effectiveRadius(zoom: number): number {
+        const config = this._layer.style?.radius ?? 6;
+        return Math.min(config, Math.max(2, zoom - 6));
+    }
+
+    private onZoom(zoom: number): void {
+        const r = this.effectiveRadius(zoom);
+        for (const m of this._markers) {
+            m.handle.setRadius(r);
+        }
     }
 
     private placeMarker(geoJsonCoords: [number, number], pressure: number): void {
         const [lon, lat] = geoJsonCoords;
         const leafletLatLng = this.geoJsonPointToLatLng(geoJsonCoords);
         const color = pressureToColor(this._layer.style?.color, pressure);
-        const radius = this._layer.style?.radius ?? 6;
+        const radius = this.effectiveRadius(this._map.getZoom());
 
         const handle = this._layerFactory.createCircleMarker(leafletLatLng, {
             fillColor: color,

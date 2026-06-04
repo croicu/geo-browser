@@ -367,25 +367,34 @@ class LeafletAccuracyRingHandle extends LeafletMapLayerHandle implements Accurac
     }
 }
 
-class LeafletPositionMarkerHandle extends LeafletMapLayerHandle implements PositionMarkerHandle {
-    private readonly _marker: L.CircleMarker;
+class LeafletPositionMarkerHandle implements PositionMarkerHandle {
+    private readonly _marker: L.Marker;
 
-    constructor(marker: L.CircleMarker) {
-        super(marker);
+    constructor(marker: L.Marker) {
         this._marker = marker;
     }
 
+    addTo(map: MapHandle): void {
+        this._marker.addTo(unwrapMap(map));
+    }
+
+    remove(): void {
+        this._marker.remove();
+    }
+
     setLatLng(latLng: [number, number]): void {
-        // Leaflet's CircleMarker._empty() accesses _renderer._bounds which can be
-        // undefined when the SVG renderer is being recycled during a layer reload.
-        // Guard: skip the update; the next position fix will catch up.
-        type Internal = { _renderer?: { _bounds?: unknown } };
-        const internal = this._marker as unknown as Internal;
-        if (!internal._renderer?._bounds) {
-            getLogger().warning("geo_location.position_marker.renderer_not_ready", {});
-            return;
-        }
         this._marker.setLatLng(latLng);
+    }
+
+    setHeading(heading: number | null): void {
+        const cone = this._marker.getElement()?.querySelector<SVGGElement>(".heading-cone");
+        if (!cone) return;
+        if (heading === null) {
+            cone.style.visibility = "hidden";
+        } else {
+            cone.style.visibility = "visible";
+            cone.style.transform = `rotate(${heading}deg)`;
+        }
     }
 }
 
@@ -517,14 +526,20 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
     }
 
     createPositionMarker(latLng: [number, number]): PositionMarkerHandle {
-        const marker = L.circleMarker(latLng, {
-            radius: 8,
-            color: "#ffffff",
-            weight: 2,
-            fillColor: "#1a73e8",
-            fillOpacity: 1,
-            opacity: 1,
+        const html =
+            `<svg width="80" height="80" viewBox="0 0 80 80" style="overflow:visible;pointer-events:none">` +
+            `<g class="heading-cone" style="visibility:hidden;transform-origin:40px 40px">` +
+            `<polygon points="40,30 27,5 53,5" fill="#1a73e8" fill-opacity="0.55" stroke="none"/>` +
+            `</g>` +
+            `<circle cx="40" cy="40" r="8" fill="#1a73e8" stroke="white" stroke-width="2.5"/>` +
+            `</svg>`;
+        const icon = L.divIcon({
+            className: "",
+            html,
+            iconSize: [80, 80],
+            iconAnchor: [40, 40],
         });
+        const marker = L.marker(latLng, { icon, interactive: false, keyboard: false });
         return new LeafletPositionMarkerHandle(marker);
     }
 

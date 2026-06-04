@@ -1,6 +1,6 @@
 # Feature Spec: Empty-Space Tap → Google Maps Callout
 
-## Status: Implementation
+## Status: Done
 
 ## Problem statement
 - When tapping (or click) to a space on the map which is not POI open a callout with a link to Google Maps.

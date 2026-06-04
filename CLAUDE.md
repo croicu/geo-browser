@@ -434,12 +434,6 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
 
-## New Task
-- **File**: [text](tasks/empty_space_tap.md)
-- **Status**: Implementation.
-- **GitHub Issue**: N/A
-- **Key Context**: When tapping to a space on the map which is not POI open a callout with a link to Google Maps.
-
 ## Ongoing Tasks
 - **File**: [Stabilization](tasks/stabilization.md)
 - **Status**: Ongoing.
@@ -447,6 +441,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
+- **[Empty Space Tap](tasks/empty_space_tap.md)**: Status: Done. Tapping empty map space opens a callout with lat/lng and links to Google Maps, Apple Maps, and Street View. Second tap outside dismisses it.
 - **[User Data Share](tasks/user_data_share.md)**: Status: Done. GeoJSON export of `__user__` points via "Download My Trip" / "Share My Trip" button in the layer flyout. `navigator.share()` on mobile (text fallback if file share fails), `<a download>` on desktop. `getPointsSync` reads fresh data from localStorage synchronously to preserve the user gesture. Button hidden when no points.
 - **[Mundane (Void) Layer](tasks/void_layer.md)**: Status: Done. `__void__` virtual layer; brute-force effective-distance grid; three progressive passes (100m→50m→25m); `radius_m`/`area_sqm` exclusion circles; `MultiPolygon` exclusion rings; custom near-solid gradient; restarts on sibling layer visibility change.
 - **[Layer Selection Flyout](tasks/layer_selection_popup.md)**: Status: Done. Replaced `TileProviderControl` + `LayerControl` with `MapLayerFlyoutControl`; layers icon opens flyout with Map type (both views) and Map Details layer list (detail only); blue border on visible layers; outside-click dismiss.

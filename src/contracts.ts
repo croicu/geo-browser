@@ -143,6 +143,7 @@ export interface HostService {
 export interface GeoPosition {
     latLng: [number, number];
     accuracy: number;
+    heading: number | null;
 }
 
 export interface GeoLocationService {
@@ -169,6 +170,7 @@ export interface RectangleHandle extends MapLayerHandle {
 
 export interface PositionMarkerHandle extends MapLayerHandle {
     setLatLng(latLng: [number, number]): void;
+    setHeading(heading: number | null): void;
 }
 
 export interface AccuracyRingHandle extends MapLayerHandle {

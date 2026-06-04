@@ -15,6 +15,7 @@ export class GeoLocationWidget {
     private readonly _widgetFactory: WidgetFactory;
     private readonly _layerFactory: LayerFactory;
     private readonly _bounds?: { sw: [number, number]; ne: [number, number] };
+    private readonly _debug: boolean;
 
     private _handle?: GeoLocationWidgetHandle;
     private _accuracyRing?: AccuracyRingHandle;
@@ -25,19 +26,23 @@ export class GeoLocationWidget {
     private _following = false;
     private _programmaticMove = false;
     private _lastPosition?: GeoPosition;
+    private _debugHeading = 0;
+    private _debugInterval?: ReturnType<typeof setInterval>;
 
     constructor(
         map: MapHandle,
         service: GeoLocationService,
         widgetFactory: WidgetFactory,
         layerFactory: LayerFactory,
-        bounds?: { sw: [number, number]; ne: [number, number] }
+        bounds?: { sw: [number, number]; ne: [number, number] },
+        debug = false
     ) {
         this._map = map;
         this._service = service;
         this._widgetFactory = widgetFactory;
         this._layerFactory = layerFactory;
         this._bounds = bounds;
+        this._debug = debug;
     }
 
     render(): void {
@@ -70,6 +75,9 @@ export class GeoLocationWidget {
         this._stopWatchingMove = undefined;
         this._stopWatchingZoom?.();
         this._stopWatchingZoom = undefined;
+
+        clearInterval(this._debugInterval);
+        this._debugInterval = undefined;
 
         this._accuracyRing?.remove();
         this._accuracyRing = undefined;
@@ -117,15 +125,26 @@ export class GeoLocationWidget {
 
         if (this._positionMarker) {
             this._positionMarker.setLatLng(position.latLng);
+            this._positionMarker.setHeading(position.heading);
         } else {
             this._positionMarker = this._layerFactory.createPositionMarker(position.latLng);
             this._positionMarker.addTo(this._map);
+            this._positionMarker.setHeading(position.heading);
+        }
+
+        if (this._debug && position.heading === null && !this._debugInterval) {
+            this._debugInterval = setInterval(() => this.tickDebugHeading(), 50);
         }
 
         if (this._following) {
             this._programmaticMove = true;
             this._map.panTo(position.latLng);
         }
+    }
+
+    private tickDebugHeading(): void {
+        this._debugHeading = (this._debugHeading + 2) % 360;
+        this._positionMarker?.setHeading(this._debugHeading);
     }
 
     private isInBounds(latLng: [number, number]): boolean {
@@ -153,6 +172,8 @@ export class GeoLocationWidget {
 
     private onDenied(): void {
         this._following = false;
+        clearInterval(this._debugInterval);
+        this._debugInterval = undefined;
         this._accuracyRing?.remove();
         this._accuracyRing = undefined;
         this._positionMarker?.remove();
