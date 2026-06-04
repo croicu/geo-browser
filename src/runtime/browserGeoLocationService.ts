@@ -22,9 +22,11 @@ export class BrowserGeoLocationService implements GeoLocationService {
         const startWatch = () => {
             watchId = navigator.geolocation.watchPosition(
                 (pos) => {
+                    const raw = pos.coords.heading;
                     onPosition({
                         latLng: [pos.coords.latitude, pos.coords.longitude],
                         accuracy: pos.coords.accuracy,
+                        heading: (raw !== null && !isNaN(raw)) ? raw : null,
                     });
                 },
                 (error) => {

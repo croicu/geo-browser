@@ -27,8 +27,8 @@ export class StubGeoLocationService implements GeoLocationService {
         };
     }
 
-    simulatePosition(latLng: [number, number], accuracy = 50): void {
-        this._onPosition?.({ latLng, accuracy });
+    simulatePosition(latLng: [number, number], accuracy = 50, heading: number | null = null): void {
+        this._onPosition?.({ latLng, accuracy, heading });
     }
 
     simulateDenied(): void {

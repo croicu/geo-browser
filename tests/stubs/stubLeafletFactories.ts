@@ -332,6 +332,7 @@ export class StubPositionMarkerHandle implements PositionMarkerHandle {
     public addedTo?: MapHandle;
     public removed = false;
     public latLng?: [number, number];
+    public heading: number | null = null;
 
     addTo(map: MapHandle): void {
         this.addedTo = map;
@@ -343,6 +344,10 @@ export class StubPositionMarkerHandle implements PositionMarkerHandle {
 
     setLatLng(latLng: [number, number]): void {
         this.latLng = latLng;
+    }
+
+    setHeading(heading: number | null): void {
+        this.heading = heading;
     }
 }
 

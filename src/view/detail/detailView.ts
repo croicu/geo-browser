@@ -160,7 +160,8 @@ export class DetailView implements View {
                     this._geoLocation,
                     this._widgetFactory,
                     this._layerFactory,
-                    this._paddedBounds
+                    this._paddedBounds,
+                    Context.Instance.debug
                 );
                 geoWidget.render();
                 this._geoLocationWidget = geoWidget;
