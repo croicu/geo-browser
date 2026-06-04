@@ -155,6 +155,12 @@ export interface GeoLocationService {
     ): () => void;
 }
 
+export interface HeadingService {
+    readonly isAvailable: boolean;
+    requestPermission(): Promise<boolean>;
+    watch(onHeading: (heading: number | null) => void): () => void;
+}
+
 export interface MapFactory {
     createMap(root: HTMLElement, center: [number, number], zoom: number): MapHandle;
 }

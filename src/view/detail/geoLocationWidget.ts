@@ -3,6 +3,7 @@ import type {
     GeoLocationService,
     GeoLocationWidgetHandle,
     GeoPosition,
+    HeadingService,
     LayerFactory,
     MapHandle,
     PositionMarkerHandle,
@@ -16,6 +17,7 @@ export class GeoLocationWidget {
     private readonly _layerFactory: LayerFactory;
     private readonly _bounds?: { sw: [number, number]; ne: [number, number] };
     private readonly _debug: boolean;
+    private readonly _headingService?: HeadingService;
 
     private _handle?: GeoLocationWidgetHandle;
     private _accuracyRing?: AccuracyRingHandle;
@@ -23,9 +25,12 @@ export class GeoLocationWidget {
     private _stopWatching?: () => void;
     private _stopWatchingMove?: () => void;
     private _stopWatchingZoom?: () => void;
+    private _stopWatchingHeading?: () => void;
     private _following = false;
     private _programmaticMove = false;
     private _lastPosition?: GeoPosition;
+    private _sensorHeading: number | null = null;
+    private _headingPermissionRequested = false;
     private _debugHeading = 0;
     private _debugInterval?: ReturnType<typeof setInterval>;
 
@@ -35,7 +40,8 @@ export class GeoLocationWidget {
         widgetFactory: WidgetFactory,
         layerFactory: LayerFactory,
         bounds?: { sw: [number, number]; ne: [number, number] },
-        debug = false
+        debug = false,
+        headingService?: HeadingService
     ) {
         this._map = map;
         this._service = service;
@@ -43,6 +49,7 @@ export class GeoLocationWidget {
         this._layerFactory = layerFactory;
         this._bounds = bounds;
         this._debug = debug;
+        this._headingService = headingService;
     }
 
     render(): void {
@@ -64,6 +71,10 @@ export class GeoLocationWidget {
             );
         }
 
+        if (this._headingService?.isAvailable) {
+            this._stopWatchingHeading = this._headingService.watch(h => this.onSensorHeading(h));
+        }
+
         this._stopWatchingMove = this._map.onMoveEnd(() => this.onMapMoved());
         this._stopWatchingZoom = this._map.onZoom(() => this.cancelFollowing());
     }
@@ -75,6 +86,8 @@ export class GeoLocationWidget {
         this._stopWatchingMove = undefined;
         this._stopWatchingZoom?.();
         this._stopWatchingZoom = undefined;
+        this._stopWatchingHeading?.();
+        this._stopWatchingHeading = undefined;
 
         clearInterval(this._debugInterval);
         this._debugInterval = undefined;
@@ -90,15 +103,28 @@ export class GeoLocationWidget {
 
         this._following = false;
         this._lastPosition = undefined;
+        this._sensorHeading = null;
     }
 
     private onToggle(): void {
         this._following = !this._following;
         this._handle?.setFollowing(this._following);
 
+        if (this._following && !this._headingPermissionRequested && this._headingService) {
+            this._headingPermissionRequested = true;
+            void this._headingService.requestPermission();
+        }
+
         if (this._following && this._lastPosition) {
             this._programmaticMove = true;
             this._map.panTo(this._lastPosition.latLng);
+        }
+    }
+
+    private onSensorHeading(heading: number | null): void {
+        this._sensorHeading = heading;
+        if (heading !== null) {
+            this._positionMarker?.setHeading(heading);
         }
     }
 
@@ -125,14 +151,17 @@ export class GeoLocationWidget {
 
         if (this._positionMarker) {
             this._positionMarker.setLatLng(position.latLng);
-            this._positionMarker.setHeading(position.heading);
         } else {
             this._positionMarker = this._layerFactory.createPositionMarker(position.latLng);
             this._positionMarker.addTo(this._map);
+        }
+
+        if (this._sensorHeading === null) {
             this._positionMarker.setHeading(position.heading);
         }
 
-        if (this._debug && position.heading === null && !this._debugInterval) {
+        const noHeading = this._sensorHeading === null && position.heading === null;
+        if (this._debug && noHeading && !this._debugInterval) {
             this._debugInterval = setInterval(() => this.tickDebugHeading(), 50);
         }
 
