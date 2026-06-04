@@ -1,6 +1,6 @@
 import type { GeoArea } from "../../catalog/area";
 import type { Mode } from "../../runtime/context";
-import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
+import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
 import { getLogger } from "../../services";
 import { LocalStorageUserPointsStore, GatewayUserPointsStore } from "../../runtime/userPointsStore";
@@ -72,6 +72,7 @@ export class DetailView implements View {
     private _userLayerView?: UserLayerView;
     private _userGeoLayer?: GeoLayer;
     private _hasImageOverlay = false;
+    private _emptySpacePopup?: MapPopupHandle;
 
     private _clickCleanup?: () => void;
     private _contextMenuCleanup?: () => void;
@@ -213,6 +214,8 @@ export class DetailView implements View {
 
             this._bboxHighlight?.remove();
             this._bboxHighlight = undefined;
+
+            this.closeEmptySpacePopup();
 
             this._map.remove();
             this._map = undefined;
@@ -592,7 +595,7 @@ export class DetailView implements View {
                     ? { files: [file], title: "My Trip" }
                     : { text: json, title: "My Trip" };
                 nav.share(shareData).catch((err) => {
-                    log.warning("user_layer.export.share_failed", { error: String(err) });
+                    log.info("user_layer.export.share_failed", { error: String(err) });
                     this.downloadFile(file, filename);
                 });
             } else {
@@ -746,6 +749,37 @@ export class DetailView implements View {
     }
 
     private onMapClick(latLng: [number, number]): void {
-        getLogger().diagnostic("map.click", { lat: latLng[0], lng: latLng[1] });
+        const log = getLogger();
+        log.info("map.empty_tap.start", { lat: latLng[0], lng: latLng[1] });
+        this.closeEmptySpacePopup();
+        if (!this._map) return;
+        const el = this.buildEmptySpacePopupElement(latLng);
+        this._emptySpacePopup = this._map.createPopup(latLng, el);
+        log.info("map.empty_tap.end");
+    }
+
+    private closeEmptySpacePopup(): void {
+        this._emptySpacePopup?.remove();
+        this._emptySpacePopup = undefined;
+    }
+
+    private buildEmptySpacePopupElement(latLng: [number, number]): HTMLElement {
+        const root = document.createElement("div");
+        root.className = "poi-popup";
+
+        const coords = document.createElement("div");
+        coords.className = "poi-coords";
+        coords.textContent = `${latLng[0].toFixed(5)}, ${latLng[1].toFixed(5)}`;
+        root.appendChild(coords);
+
+        const a = document.createElement("a");
+        a.className = "poi-website";
+        a.href = `https://maps.google.com/?q=${latLng[0]},${latLng[1]}`;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = "Open in Google Maps";
+        root.appendChild(a);
+
+        return root;
     }
 }

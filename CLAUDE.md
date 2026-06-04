@@ -434,6 +434,12 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
 
+## New Task
+- **File**: [text](tasks/empty_space_tap.md)
+- **Status**: Implementation.
+- **GitHub Issue**: N/A
+- **Key Context**: When tapping to a space on the map which is not POI open a callout with a link to Google Maps.
+
 ## Ongoing Tasks
 - **File**: [Stabilization](tasks/stabilization.md)
 - **Status**: Ongoing.

@@ -125,7 +125,7 @@ describe("DetailView", () => {
         expect(root.querySelectorAll(".detail-map").length).toBe(1);
     });
 
-    it("logs GPS coordinates on map click", () => {
+    it("opens empty-space callout on map click", () => {
         const root = document.createElement("div");
         const mapFactory = new StubMapFactory();
         const logger = new StubLogger();
@@ -147,9 +147,12 @@ describe("DetailView", () => {
         view.render();
         mapFactory.map.simulateClick([40.8518, 14.2681]);
 
-        expect(logger.calls).toHaveLength(1);
-        expect(logger.calls[0].message).toBe("map.click");
-        expect(logger.calls[0].props).toEqual({ lat: 40.8518, lng: 14.2681 });
+        const startCall = logger.infoCalls.find(c => c.message === "map.empty_tap.start");
+        expect(startCall).toBeDefined();
+        expect(startCall?.props).toEqual({ lat: 40.8518, lng: 14.2681 });
+
+        expect(mapFactory.map.lastPopup).toBeDefined();
+        expect(mapFactory.map.lastPopup?.latLng).toEqual([40.8518, 14.2681]);
     });
 
     it("navigates to summary when bbox pans off screen", () => {

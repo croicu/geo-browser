@@ -589,6 +589,12 @@ body,
     min-width: 200px;
 }
 
+.poi-coords {
+    font-size: 0.75em;
+    color: #888;
+    margin-bottom: 6px;
+}
+
 .poi-outdoor-seating {
     font-size: 12px;
     color: #555;

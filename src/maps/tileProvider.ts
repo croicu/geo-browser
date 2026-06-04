@@ -20,7 +20,7 @@ export const cartoTileProvider: TileProvider = {
     subdomains: "abcd",
 };
 
-let _active: TileProvider = cartoTileProvider;
+let _active: TileProvider = osmTileProvider;
 
 export function getActiveTileProvider(): TileProvider {
     return _active;
