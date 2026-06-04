@@ -776,14 +776,17 @@ export class DetailView implements View {
         coords.textContent = `${latLng[0].toFixed(4)}, ${latLng[1].toFixed(4)}`;
         root.appendChild(coords);
 
+        root.appendChild(document.createElement("br"));
         root.appendChild(this.buildMapLink(
             `https://maps.google.com/?q=${latLng[0]},${latLng[1]}`,
             "Open in Google Maps"
         ));
+        root.appendChild(document.createElement("br"));
         root.appendChild(this.buildMapLink(
             `https://maps.apple.com/?q=${latLng[0]},${latLng[1]}`,
             "Open in Apple Maps"
         ));
+        root.appendChild(document.createElement("br"));
         root.appendChild(this.buildMapLink(
             `https://maps.google.com/maps?q=&layer=c&cbll=${latLng[0]},${latLng[1]}`,
             "Open in Street View"
