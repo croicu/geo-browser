@@ -772,14 +772,29 @@ export class DetailView implements View {
         coords.textContent = `${latLng[0].toFixed(5)}, ${latLng[1].toFixed(5)}`;
         root.appendChild(coords);
 
-        const a = document.createElement("a");
-        a.className = "poi-website";
-        a.href = `https://maps.google.com/?q=${latLng[0]},${latLng[1]}`;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.textContent = "Open in Google Maps";
-        root.appendChild(a);
+        root.appendChild(this.buildMapLink(
+            `https://maps.google.com/?q=${latLng[0]},${latLng[1]}`,
+            "Open in Google Maps"
+        ));
+        root.appendChild(this.buildMapLink(
+            `https://maps.apple.com/?q=${latLng[0]},${latLng[1]}`,
+            "Open in Apple Maps"
+        ));
+        root.appendChild(this.buildMapLink(
+            `https://maps.google.com/maps?q=&layer=c&cbll=${latLng[0]},${latLng[1]}`,
+            "Open in Street View"
+        ));
 
         return root;
+    }
+
+    private buildMapLink(href: string, label: string): HTMLElement {
+        const a = document.createElement("a");
+        a.className = "poi-website";
+        a.href = href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = label;
+        return a;
     }
 }
