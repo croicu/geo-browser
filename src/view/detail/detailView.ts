@@ -77,7 +77,6 @@ export class DetailView implements View {
     private _hasImageOverlay = false;
     private _emptySpacePopup?: MapPopupHandle;
     private _emptyCalloutLatLng?: [number, number];
-    private _pendingLongPress?: { latLng: [number, number]; pressure: number; poiProperties?: Record<string, unknown> };
     private _pendingBookmark = false;
 
     private _clickCleanup?: () => void;
@@ -659,35 +658,17 @@ export class DetailView implements View {
         const wasEmpty = this._userLayerView.featureCount === 0;
         const poiProperties = this.findNearestPoiProperties(latLng[0], latLng[1]);
 
-        // Save immediately so a page refresh never loses the point.
-        // _pendingLongPress tracks a potential star upgrade; star selection will remove+re-add.
         log.info("user_layer.store.add_start", { areaId: this._area.id, lat: latLng[0], lng: latLng[1] });
         void store.addPoint(this._area.id, latLng[0], latLng[1], pressure, poiProperties);
         this._userLayerView.addMarker(latLng, pressure);
-        log.info("user_layer.add_point.marker_placed", { featureCount: this._userLayerView.featureCount });
+        log.info("user_layer.add_point.end", { featureCount: this._userLayerView.featureCount });
 
         if (wasEmpty) {
             this.rebuildLayersWidget();
         }
-
-        // openStarCallout flushes any previous pending first, so set the new pending after.
-        this.openStarCallout(latLng);
-        this._pendingLongPress = { latLng, pressure, poiProperties };
-        log.info("user_layer.add_point.callout_open", { lat: latLng[0], lng: latLng[1] });
     }
 
-    private onUserPointDeleted(latLng: [number, number]): void {
-        const log = getLogger();
-        if (this._pendingLongPress) {
-            const [pLat, pLon] = this._pendingLongPress.latLng;
-            if (Math.abs(pLat - latLng[0]) < 1e-8 && Math.abs(pLon - latLng[1]) < 1e-8) {
-                log.info("user_layer.delete_point.dismiss_callout", { lat: latLng[0], lng: latLng[1] });
-                this._pendingLongPress = undefined;
-                this._emptySpacePopup?.remove();
-                this._emptySpacePopup = undefined;
-                this._emptyCalloutLatLng = undefined;
-            }
-        }
+    private onUserPointDeleted(_latLng: [number, number]): void {
         if (this._userLayerView && this._userLayerView.featureCount === 0) {
             this.rebuildLayersWidget();
         }
@@ -806,13 +787,9 @@ export class DetailView implements View {
     }
 
     private closeEmptySpacePopup(): void {
-        if (this._pendingLongPress) {
-            // Point already saved in doOnUserPoint — just clear the pending star upgrade.
-            this._pendingLongPress = undefined;
-        } else if (this._pendingBookmark && this._emptyCalloutLatLng) {
+        if (this._pendingBookmark && this._emptyCalloutLatLng) {
             // Empty-space callout dismissed with bookmark toggled on — create the bookmarked point.
-            const latLng = this._emptyCalloutLatLng;
-            void this.doAddBookmarkedUserPoint(latLng);
+            void this.doAddBookmarkedUserPoint(this._emptyCalloutLatLng);
         }
         this._pendingBookmark = false;
         this._emptySpacePopup?.remove();
@@ -823,26 +800,10 @@ export class DetailView implements View {
     private onEmptyStarSelected(stars: StarCount): void {
         const log = getLogger();
         log.info("user_layer.star_selected.start", { stars });
-        this._pendingBookmark = false; // starring removes bookmark
-
-        if (this._pendingLongPress) {
-            // Long press: point was already saved without stars — upgrade it via remove + re-add.
-            const { latLng, pressure, poiProperties } = this._pendingLongPress;
-            this._pendingLongPress = undefined;
-            const store = this._userPointsStore;
-            if (store) {
-                log.info("user_layer.store.upgrade_start", { areaId: this._area.id, lat: latLng[0], lng: latLng[1], stars });
-                void store.removePoint(this._area.id, latLng[1], latLng[0]);
-                void store.addPoint(this._area.id, latLng[0], latLng[1], pressure, { ...poiProperties, stars });
-            } else {
-                log.warning("user_layer.store.upgrade_no_store", { lat: latLng[0], lng: latLng[1] });
-            }
-            this._userLayerView?.addMarkerRing(latLng, stars);
-        } else if (this._emptyCalloutLatLng) {
-            // Short tap on empty space: create user point with stars.
+        this._pendingBookmark = false;
+        if (this._emptyCalloutLatLng) {
             void this.doAddStarredUserPoint(this._emptyCalloutLatLng, stars);
         }
-
         this.closeEmptySpacePopup();
         log.info("user_layer.star_selected.end", { stars });
     }
@@ -956,14 +917,7 @@ export class DetailView implements View {
     private onCalloutBookmarkToggled(latLng: [number, number], bookmarked: boolean): void {
         const log = getLogger();
         log.info("user_layer.callout_bookmark_toggled.start", { lat: latLng[0], lng: latLng[1], bookmarked });
-        if (this._pendingLongPress) {
-            // Point already saved — update store and ring immediately.
-            void this._userPointsStore?.setBookmarked?.(this._area.id, latLng[1], latLng[0], bookmarked);
-            this._userLayerView?.addMarkerBookmark(latLng, bookmarked);
-        } else {
-            // Empty-space callout — defer: save only if dismissed without selecting stars.
-            this._pendingBookmark = bookmarked;
-        }
+        this._pendingBookmark = bookmarked;
         log.info("user_layer.callout_bookmark_toggled.end", { bookmarked });
         this.closeEmptySpacePopup();
     }
