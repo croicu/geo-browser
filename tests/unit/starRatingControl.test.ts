@@ -45,7 +45,7 @@ describe("StarRatingControl", () => {
 
     describe("interactive mode", () => {
         it("calls onChange with the clicked star count", () => {
-            const onChange = vi.fn<[StarCount], void>();
+            const onChange = vi.fn<(stars: StarCount) => void>();
             const ctrl = new StarRatingControl({ mode: "interactive", onChange });
             const el = ctrl.render();
 
@@ -69,7 +69,7 @@ describe("StarRatingControl", () => {
         });
 
         it("re-fires onChange on a second click with the new value", () => {
-            const onChange = vi.fn<[StarCount], void>();
+            const onChange = vi.fn<(stars: StarCount) => void>();
             const ctrl = new StarRatingControl({ mode: "interactive", onChange });
             const el = ctrl.render();
 

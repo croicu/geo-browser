@@ -102,6 +102,44 @@ export class LocalStorageUserPointsStore implements UserPointsStore {
         this._storage.setItem(key, JSON.stringify(collection));
         log.info("store.remove", { key, removed, remaining: collection.features.length, lon, lat });
     }
+
+    async setBookmarked(areaId: string, lon: number, lat: number, bookmarked: boolean): Promise<void> {
+        const log = getLogger();
+        const key = STORAGE_KEY_PREFIX + areaId;
+        const raw = this._storage.getItem(key);
+        if (!raw) {
+            log.warning("store.set_bookmarked.key_missing", { key, lon, lat });
+            return;
+        }
+        let collection: { type: string; features: unknown[] };
+        try {
+            collection = JSON.parse(raw) as typeof collection;
+        } catch {
+            log.warning("store.set_bookmarked.parse_error", { key });
+            return;
+        }
+        let found = false;
+        for (const f of collection.features) {
+            const feature = f as { geometry?: { coordinates?: number[] }; properties?: Record<string, unknown> };
+            const coords = feature.geometry?.coordinates;
+            if (Array.isArray(coords) && coords[0] === lon && coords[1] === lat) {
+                if (!feature.properties) feature.properties = {};
+                if (bookmarked) {
+                    feature.properties["bookmarked"] = true;
+                } else {
+                    delete feature.properties["bookmarked"];
+                }
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            log.warning("store.set_bookmarked.not_found", { key, lon, lat });
+            return;
+        }
+        this._storage.setItem(key, JSON.stringify(collection));
+        log.info("store.set_bookmarked", { key, lon, lat, bookmarked });
+    }
 }
 
 export class GatewayUserPointsStore implements UserPointsStore {

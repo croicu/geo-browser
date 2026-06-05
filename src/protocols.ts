@@ -44,6 +44,7 @@ export interface LayerStyle {
     enhancedColor?: string;
     outdoorColor?: string;
     highlightColor?: string;
+    bookmarkColor?: string;
     minZoom?: number;
 }
 

@@ -75,7 +75,7 @@ describe("EmptyCalloutWidget", () => {
         });
 
         it("fires onStarSelected when an interactive star is clicked", () => {
-            const onStarSelected = vi.fn<[StarCount], void>();
+            const onStarSelected = vi.fn<(stars: StarCount) => void>();
             const widget = new EmptyCalloutWidget({ latLng, onStarSelected });
             const el = widget.render();
 
@@ -84,6 +84,66 @@ describe("EmptyCalloutWidget", () => {
 
             expect(onStarSelected).toHaveBeenCalledOnce();
             expect(onStarSelected).toHaveBeenCalledWith(3);
+        });
+    });
+
+    describe("bookmark toggle", () => {
+        it("shows no bookmark button when onBookmarkToggled is not provided", () => {
+            const widget = new EmptyCalloutWidget({ latLng });
+            const el = widget.render();
+            expect(el.querySelector(".callout-bookmark-btn")).toBeNull();
+        });
+
+        it("shows bookmark button when onBookmarkToggled is provided", () => {
+            const widget = new EmptyCalloutWidget({ latLng, onBookmarkToggled: vi.fn() });
+            const el = widget.render();
+            expect(el.querySelector(".callout-bookmark-btn")).not.toBeNull();
+        });
+
+        it("shows empty bookmark icon when isBookmarked is false", () => {
+            const widget = new EmptyCalloutWidget({ latLng, isBookmarked: false, onBookmarkToggled: vi.fn() });
+            const el = widget.render();
+            const img = el.querySelector<HTMLImageElement>(".callout-bookmark-icon");
+            expect(img?.src).toContain("bookmark.svg");
+            expect(img?.src).not.toContain("solid_bookmark.svg");
+        });
+
+        it("shows solid bookmark icon when isBookmarked is true", () => {
+            const widget = new EmptyCalloutWidget({ latLng, isBookmarked: true, onBookmarkToggled: vi.fn() });
+            const el = widget.render();
+            const img = el.querySelector<HTMLImageElement>(".callout-bookmark-icon");
+            expect(img?.src).toContain("solid_bookmark.svg");
+        });
+
+        it("calls onBookmarkToggled with true on first click", () => {
+            const onBookmarkToggled = vi.fn<(bookmarked: boolean) => void>();
+            const widget = new EmptyCalloutWidget({ latLng, isBookmarked: false, onBookmarkToggled });
+            const el = widget.render();
+            (el.querySelector(".callout-bookmark-btn") as HTMLButtonElement).click();
+            expect(onBookmarkToggled).toHaveBeenCalledWith(true);
+        });
+
+        it("calls onBookmarkToggled with false on second click", () => {
+            const onBookmarkToggled = vi.fn<(bookmarked: boolean) => void>();
+            const widget = new EmptyCalloutWidget({ latLng, isBookmarked: false, onBookmarkToggled });
+            const el = widget.render();
+            const btn = el.querySelector(".callout-bookmark-btn") as HTMLButtonElement;
+            btn.click();
+            btn.click();
+            expect(onBookmarkToggled).toHaveBeenCalledTimes(2);
+            expect(onBookmarkToggled).toHaveBeenLastCalledWith(false);
+        });
+
+        it("toggles icon src on click", () => {
+            const widget = new EmptyCalloutWidget({ latLng, isBookmarked: false, onBookmarkToggled: vi.fn() });
+            const el = widget.render();
+            const btn = el.querySelector(".callout-bookmark-btn") as HTMLButtonElement;
+            const img = el.querySelector<HTMLImageElement>(".callout-bookmark-icon")!;
+            btn.click();
+            expect(img.src).toContain("solid_bookmark.svg");
+            btn.click();
+            expect(img.src).toContain("bookmark.svg");
+            expect(img.src).not.toContain("solid_bookmark.svg");
         });
     });
 });

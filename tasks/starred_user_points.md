@@ -2,7 +2,7 @@
 
 Feature spec for Claude Code. PM sign-off: complete.
 
-**Status**: Implementation
+**Status**: Done
 
 ## Implementation Plan
 

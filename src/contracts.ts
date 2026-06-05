@@ -285,6 +285,7 @@ export interface UserPointsStore {
     getPointsSync?(areaId: string): unknown;
     addPoint(areaId: string, lat: number, lon: number, pressure: number, poiProperties?: Record<string, unknown>): Promise<void>;
     removePoint(areaId: string, lon: number, lat: number): Promise<void>;
+    setBookmarked?(areaId: string, lon: number, lat: number, bookmarked: boolean): Promise<void>;
 }
 
 export interface WidgetFactory {

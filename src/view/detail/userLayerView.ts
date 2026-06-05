@@ -8,6 +8,7 @@ import type { StarCount } from "./starRatingControl";
 
 const DEFAULT_COLOR = "#6c757d";
 const DEFAULT_HIGHLIGHT_COLOR = "#cfba44";
+const DEFAULT_BOOKMARK_COLOR = "#5AB5DA";
 const PRESSURE_L_DELTA = 10;
  // max lightness shift; pressure=0.5 → no shift, 0 → +10, 1 → -10
 
@@ -70,12 +71,17 @@ function readStars(props: Record<string, unknown> | undefined): StarCount | unde
     return s as StarCount;
 }
 
+function readBookmarked(props: Record<string, unknown> | undefined): boolean {
+    return props?.bookmarked === true;
+}
+
 interface UserMarker {
     handle: ClickableMapLayerHandle;
     ring?: ClickableMapLayerHandle;
     lon: number;
     lat: number;
     stars?: StarCount;
+    bookmarked?: boolean;
 }
 
 export class UserLayerView extends LayerView {
@@ -130,12 +136,12 @@ export class UserLayerView extends LayerView {
         return this._lastPayload;
     }
 
-    getPointAtLatLng(lat: number, lon: number): { stars?: StarCount } | null {
+    getPointAtLatLng(lat: number, lon: number): { stars?: StarCount; bookmarked?: boolean } | null {
         const m = this._markers.find(
             m => Math.abs(m.lat - lat) < 1e-8 && Math.abs(m.lon - lon) < 1e-8
         );
         if (!m) return null;
-        return { stars: m.stars };
+        return { stars: m.stars, bookmarked: m.bookmarked };
     }
 
     async render(): Promise<void> {
@@ -160,15 +166,16 @@ export class UserLayerView extends LayerView {
             if (!this.isPointFeature(feature)) continue;
             const pressure = readPressure(feature.properties);
             const stars = readStars(feature.properties);
-            this.placeMarker(feature.geometry.coordinates, pressure, stars);
+            const bookmarked = readBookmarked(feature.properties);
+            this.placeMarker(feature.geometry.coordinates, pressure, stars, bookmarked);
         }
 
         log.info("user_layer.render.end", { areaId: this._areaId, count: this._markers.length });
     }
 
-    addMarker(latLng: [number, number], pressure: number, stars?: StarCount): void {
+    addMarker(latLng: [number, number], pressure: number, stars?: StarCount, bookmarked = false): void {
         // latLng is [lat, lon]; GeoJSON coordinates are [lon, lat]
-        this.placeMarker([latLng[1], latLng[0]], pressure, stars);
+        this.placeMarker([latLng[1], latLng[0]], pressure, stars, bookmarked);
     }
 
     addMarkerRing(latLng: [number, number], stars: StarCount): void {
@@ -178,19 +185,18 @@ export class UserLayerView extends LayerView {
         );
         if (idx === -1) return;
 
-        this._markers[idx].ring?.remove();
+        this._markers[idx].stars = stars;
 
+        if (this._markers[idx].bookmarked) return;
+
+        this._markers[idx].ring?.remove();
         const leafletLatLng = this.geoJsonPointToLatLng([lon, lat]);
         const radius = this.effectiveRadius(this._map.getZoom());
         const ring = this.createRingMarker(leafletLatLng, radius, stars);
         ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
         ring.onContextMenu(() => this.deleteMarker(lon, lat));
-
-        if (this._visible) {
-            ring.addTo(this._map);
-        }
+        if (this._visible) ring.addTo(this._map);
         this._markers[idx].ring = ring;
-        this._markers[idx].stars = stars;
     }
 
     override destroy(): void {
@@ -212,7 +218,38 @@ export class UserLayerView extends LayerView {
         }
     }
 
-    private placeMarker(geoJsonCoords: [number, number], pressure: number, stars?: StarCount): void {
+    addMarkerBookmark(latLng: [number, number], bookmarked: boolean): void {
+        const [lat, lon] = latLng;
+        const idx = this._markers.findIndex(
+            m => Math.abs(m.lat - lat) < 1e-8 && Math.abs(m.lon - lon) < 1e-8
+        );
+        if (idx === -1) return;
+
+        this._markers[idx].ring?.remove();
+        this._markers[idx].bookmarked = bookmarked;
+
+        const leafletLatLng = this.geoJsonPointToLatLng([lon, lat]);
+        const radius = this.effectiveRadius(this._map.getZoom());
+        const stars = this._markers[idx].stars;
+
+        if (bookmarked) {
+            const ring = this.createBookmarkRingMarker(leafletLatLng, radius);
+            ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
+            ring.onContextMenu(() => this.deleteMarker(lon, lat));
+            if (this._visible) ring.addTo(this._map);
+            this._markers[idx].ring = ring;
+        } else if (stars !== undefined) {
+            const ring = this.createRingMarker(leafletLatLng, radius, stars);
+            ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
+            ring.onContextMenu(() => this.deleteMarker(lon, lat));
+            if (this._visible) ring.addTo(this._map);
+            this._markers[idx].ring = ring;
+        } else {
+            this._markers[idx].ring = undefined;
+        }
+    }
+
+    private placeMarker(geoJsonCoords: [number, number], pressure: number, stars?: StarCount, bookmarked?: boolean): void {
         const [lon, lat] = geoJsonCoords;
         const leafletLatLng = this.geoJsonPointToLatLng(geoJsonCoords);
         const color = pressureToColor(this._layer.style?.color, pressure);
@@ -234,16 +271,19 @@ export class UserLayerView extends LayerView {
         }
 
         let ring: ClickableMapLayerHandle | undefined;
-        if (stars !== undefined) {
+        if (bookmarked) {
+            ring = this.createBookmarkRingMarker(leafletLatLng, radius);
+            ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
+            ring.onContextMenu(() => this.deleteMarker(lon, lat));
+            if (this._visible) ring.addTo(this._map);
+        } else if (stars !== undefined) {
             ring = this.createRingMarker(leafletLatLng, radius, stars);
             ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
             ring.onContextMenu(() => this.deleteMarker(lon, lat));
-            if (this._visible) {
-                ring.addTo(this._map);
-            }
+            if (this._visible) ring.addTo(this._map);
         }
 
-        this._markers.push({ handle, ring, lon, lat, stars });
+        this._markers.push({ handle, ring, lon, lat, stars, bookmarked });
     }
 
     private createRingMarker(
@@ -257,6 +297,21 @@ export class UserLayerView extends LayerView {
             className: "user-ring-marker",
             radius: dotRadius,
             color: ringColor,
+            weight: 3,
+            fillOpacity: 0,
+            opacity: 1,
+        });
+    }
+
+    private createBookmarkRingMarker(
+        leafletLatLng: [number, number],
+        dotRadius: number
+    ): ClickableMapLayerHandle {
+        const bookmarkColor = this._layer.style?.bookmarkColor ?? DEFAULT_BOOKMARK_COLOR;
+        return this._layerFactory.createCircleMarker(leafletLatLng, {
+            className: "user-bookmark-ring-marker",
+            radius: dotRadius,
+            color: bookmarkColor,
             weight: 3,
             fillOpacity: 0,
             opacity: 1,
