@@ -24,9 +24,22 @@ export class LocalStorageUserPointsStore implements UserPointsStore {
     }
 
     getPointsSync(areaId: string): unknown {
-        const raw = this._storage.getItem(STORAGE_KEY_PREFIX + areaId);
-        if (!raw) return EMPTY_COLLECTION;
-        try { return JSON.parse(raw) as unknown; } catch { return EMPTY_COLLECTION; }
+        const log = getLogger();
+        const key = STORAGE_KEY_PREFIX + areaId;
+        const raw = this._storage.getItem(key);
+        if (!raw) {
+            log.info("store.read", { key, found: 0 });
+            return EMPTY_COLLECTION;
+        }
+        try {
+            const parsed = JSON.parse(raw) as unknown;
+            const count = (parsed as { features?: unknown[] }).features?.length ?? "?";
+            log.info("store.read", { key, found: count });
+            return parsed;
+        } catch {
+            log.warning("store.read.parse_error", { key });
+            return EMPTY_COLLECTION;
+        }
     }
 
     async getPoints(areaId: string): Promise<unknown> {
@@ -34,7 +47,9 @@ export class LocalStorageUserPointsStore implements UserPointsStore {
     }
 
     async addPoint(areaId: string, lat: number, lon: number, pressure: number, poiProperties?: Record<string, unknown>): Promise<void> {
-        const raw = this._storage.getItem(STORAGE_KEY_PREFIX + areaId);
+        const log = getLogger();
+        const key = STORAGE_KEY_PREFIX + areaId;
+        const raw = this._storage.getItem(key);
         let collection: { type: string; features: unknown[] };
         try {
             collection = raw ? (JSON.parse(raw) as typeof collection) : { type: "FeatureCollection", features: [] };
@@ -55,23 +70,37 @@ export class LocalStorageUserPointsStore implements UserPointsStore {
             },
         });
 
-        this._storage.setItem(STORAGE_KEY_PREFIX + areaId, JSON.stringify(collection));
+        try {
+            this._storage.setItem(key, JSON.stringify(collection));
+            log.info("store.add", { key, count: collection.features.length, lat, lon, stars: safePoiProps["stars"] ?? null });
+        } catch (err) {
+            log.error("store.add.error", err);
+        }
     }
 
     async removePoint(areaId: string, lon: number, lat: number): Promise<void> {
-        const raw = this._storage.getItem(STORAGE_KEY_PREFIX + areaId);
-        if (!raw) return;
+        const log = getLogger();
+        const key = STORAGE_KEY_PREFIX + areaId;
+        const raw = this._storage.getItem(key);
+        if (!raw) {
+            log.warning("store.remove.key_missing", { key, lon, lat });
+            return;
+        }
         let collection: { type: string; features: unknown[] };
         try {
             collection = JSON.parse(raw) as typeof collection;
         } catch {
+            log.warning("store.remove.parse_error", { key });
             return;
         }
+        const before = collection.features.length;
         collection.features = collection.features.filter((f) => {
             const coords = (f as { geometry?: { coordinates?: number[] } }).geometry?.coordinates;
             return !(Array.isArray(coords) && coords[0] === lon && coords[1] === lat);
         });
-        this._storage.setItem(STORAGE_KEY_PREFIX + areaId, JSON.stringify(collection));
+        const removed = before - collection.features.length;
+        this._storage.setItem(key, JSON.stringify(collection));
+        log.info("store.remove", { key, removed, remaining: collection.features.length, lon, lat });
     }
 }
 

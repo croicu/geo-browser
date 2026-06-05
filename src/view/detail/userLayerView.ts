@@ -4,9 +4,12 @@ import { GeoLayer } from "../../catalog/layer";
 import { fail } from "../../errors";
 import { getLogger } from "../../services";
 import { LayerView } from "./layerView";
+import type { StarCount } from "./starRatingControl";
 
 const DEFAULT_COLOR = "#6c757d";
-const PRESSURE_L_DELTA = 10; // max lightness shift; pressure=0.5 → no shift, 0 → +10, 1 → -10
+const DEFAULT_HIGHLIGHT_COLOR = "#cfba44";
+const PRESSURE_L_DELTA = 10;
+ // max lightness shift; pressure=0.5 → no shift, 0 → +10, 1 → -10
 
 function hexToHsl(hex: string): [number, number, number] | undefined {
     const clean = hex.startsWith("#") ? hex.slice(1) : hex;
@@ -44,21 +47,42 @@ function pressureToColor(baseColor: string | undefined, pressure: number): strin
     return `hsl(${h}, ${s}%, ${newL}%)`;
 }
 
+function starRingColor(highlightColor: string, stars: StarCount): string {
+    const hsl = hexToHsl(highlightColor);
+    if (!hsl) return highlightColor;
+    const [h, s, l] = hsl;
+    // Atan curve: rises quickly then flattens, so 3- and 4-star read as nearly full color
+    // while 1-star still bottoms out at black. k controls steepness.
+    const ATAN_K = 3;
+    const linear = (stars - 1) / 4;
+    const t = Math.atan(ATAN_K * linear) / Math.atan(ATAN_K);
+    return `hsl(${h}, ${Math.round(s * t)}%, ${Math.round(l * t)}%)`;
+}
+
 function readPressure(props: Record<string, unknown> | undefined): number {
     const p = props?.pressure ?? props?.weight;
     return typeof p === "number" ? Math.max(0, Math.min(1, p)) : 0.5;
 }
 
+function readStars(props: Record<string, unknown> | undefined): StarCount | undefined {
+    const s = props?.stars;
+    if (typeof s !== "number" || !Number.isInteger(s) || s < 1 || s > 5) return undefined;
+    return s as StarCount;
+}
+
 interface UserMarker {
     handle: ClickableMapLayerHandle;
+    ring?: ClickableMapLayerHandle;
     lon: number;
     lat: number;
+    stars?: StarCount;
 }
 
 export class UserLayerView extends LayerView {
     private readonly _store: UserPointsStore;
     private readonly _areaId: string;
-    private readonly _onPointDeleted: (() => void) | undefined;
+    private readonly _onPointDeleted: ((latLng: [number, number]) => void) | undefined;
+    private readonly _onMarkerTapped: ((latLng: [number, number], stars?: StarCount) => void) | undefined;
     private _markers: UserMarker[] = [];
     private _visible: boolean;
     private _lastPayload: unknown = null;
@@ -71,13 +95,15 @@ export class UserLayerView extends LayerView {
         store: UserPointsStore,
         areaId: string,
         visible: boolean = true,
-        onPointDeleted?: () => void,
+        onPointDeleted?: (latLng: [number, number]) => void,
+        onMarkerTapped?: (latLng: [number, number], stars?: StarCount) => void,
     ) {
         super(map, layer, layerFactory);
         this._store = store;
         this._areaId = areaId;
         this._visible = visible;
         this._onPointDeleted = onPointDeleted;
+        this._onMarkerTapped = onMarkerTapped;
     }
 
     setVisible(visible: boolean): void {
@@ -88,8 +114,10 @@ export class UserLayerView extends LayerView {
         for (const m of this._markers) {
             if (visible) {
                 m.handle.addTo(this._map);
+                m.ring?.addTo(this._map);
             } else {
                 m.handle.remove();
+                m.ring?.remove();
             }
         }
     }
@@ -100,6 +128,14 @@ export class UserLayerView extends LayerView {
 
     get lastPayload(): unknown {
         return this._lastPayload;
+    }
+
+    getPointAtLatLng(lat: number, lon: number): { stars?: StarCount } | null {
+        const m = this._markers.find(
+            m => Math.abs(m.lat - lat) < 1e-8 && Math.abs(m.lon - lon) < 1e-8
+        );
+        if (!m) return null;
+        return { stars: m.stars };
     }
 
     async render(): Promise<void> {
@@ -123,15 +159,38 @@ export class UserLayerView extends LayerView {
         for (const feature of payload.features) {
             if (!this.isPointFeature(feature)) continue;
             const pressure = readPressure(feature.properties);
-            this.placeMarker(feature.geometry.coordinates, pressure);
+            const stars = readStars(feature.properties);
+            this.placeMarker(feature.geometry.coordinates, pressure, stars);
         }
 
         log.info("user_layer.render.end", { areaId: this._areaId, count: this._markers.length });
     }
 
-    addMarker(latLng: [number, number], pressure: number): void {
+    addMarker(latLng: [number, number], pressure: number, stars?: StarCount): void {
         // latLng is [lat, lon]; GeoJSON coordinates are [lon, lat]
-        this.placeMarker([latLng[1], latLng[0]], pressure);
+        this.placeMarker([latLng[1], latLng[0]], pressure, stars);
+    }
+
+    addMarkerRing(latLng: [number, number], stars: StarCount): void {
+        const [lat, lon] = latLng;
+        const idx = this._markers.findIndex(
+            m => Math.abs(m.lat - lat) < 1e-8 && Math.abs(m.lon - lon) < 1e-8
+        );
+        if (idx === -1) return;
+
+        this._markers[idx].ring?.remove();
+
+        const leafletLatLng = this.geoJsonPointToLatLng([lon, lat]);
+        const radius = this.effectiveRadius(this._map.getZoom());
+        const ring = this.createRingMarker(leafletLatLng, radius, stars);
+        ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
+        ring.onContextMenu(() => this.deleteMarker(lon, lat));
+
+        if (this._visible) {
+            ring.addTo(this._map);
+        }
+        this._markers[idx].ring = ring;
+        this._markers[idx].stars = stars;
     }
 
     override destroy(): void {
@@ -142,17 +201,18 @@ export class UserLayerView extends LayerView {
 
     private effectiveRadius(zoom: number): number {
         const config = this._layer.style?.radius ?? 6;
-        return Math.min(config, Math.max(2, zoom - 6));
+        return Math.min(config, Math.max(2, zoom - 6)) * 1.5;
     }
 
     private onZoom(zoom: number): void {
         const r = this.effectiveRadius(zoom);
         for (const m of this._markers) {
             m.handle.setRadius(r);
+            m.ring?.setRadius(r);
         }
     }
 
-    private placeMarker(geoJsonCoords: [number, number], pressure: number): void {
+    private placeMarker(geoJsonCoords: [number, number], pressure: number, stars?: StarCount): void {
         const [lon, lat] = geoJsonCoords;
         const leafletLatLng = this.geoJsonPointToLatLng(geoJsonCoords);
         const color = pressureToColor(this._layer.style?.color, pressure);
@@ -167,11 +227,40 @@ export class UserLayerView extends LayerView {
         });
 
         handle.onContextMenu(() => this.deleteMarker(lon, lat));
+        handle.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
 
         if (this._visible) {
             handle.addTo(this._map);
         }
-        this._markers.push({ handle, lon, lat });
+
+        let ring: ClickableMapLayerHandle | undefined;
+        if (stars !== undefined) {
+            ring = this.createRingMarker(leafletLatLng, radius, stars);
+            ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
+            ring.onContextMenu(() => this.deleteMarker(lon, lat));
+            if (this._visible) {
+                ring.addTo(this._map);
+            }
+        }
+
+        this._markers.push({ handle, ring, lon, lat, stars });
+    }
+
+    private createRingMarker(
+        leafletLatLng: [number, number],
+        dotRadius: number,
+        stars: StarCount
+    ): ClickableMapLayerHandle {
+        const highlightColor = this._layer.style?.highlightColor ?? DEFAULT_HIGHLIGHT_COLOR;
+        const ringColor = starRingColor(highlightColor, stars);
+        return this._layerFactory.createCircleMarker(leafletLatLng, {
+            className: "user-ring-marker",
+            radius: dotRadius,
+            color: ringColor,
+            weight: 3,
+            fillOpacity: 0,
+            opacity: 1,
+        });
     }
 
     private deleteMarker(lon: number, lat: number): void {
@@ -185,17 +274,19 @@ export class UserLayerView extends LayerView {
         }
 
         this._markers[idx].handle.remove();
+        this._markers[idx].ring?.remove();
         this._markers.splice(idx, 1);
 
         void this._store.removePoint(this._areaId, lon, lat);
         log.info("user_layer.delete_point.end", { lon, lat, remaining: this._markers.length });
 
-        this._onPointDeleted?.();
+        this._onPointDeleted?.([lat, lon]);
     }
 
     private destroyMarkers(): void {
         for (const m of this._markers) {
             m.handle.remove();
+            m.ring?.remove();
         }
         this._markers = [];
     }

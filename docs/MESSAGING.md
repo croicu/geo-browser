@@ -362,6 +362,7 @@ The `catalogUrl` is a relative URL resolved against the head file's location. Th
 | `style.strokeWidth` | `number` | Border width in pixels; `0` = no border |
 | `style.enhancedColor` | `string` | `__poi__` only — border color for enriched POI markers (those with `wikipedia`, `wikidata`, `stars`, or `outdoor_seating="yes"`); defaults to `"#003380"` |
 | `style.outdoorColor` | `string` | `__poi__` only — border color for POI markers with `outdoor_seating="yes"`; overrides `enhancedColor` for those markers; defaults to `"#f5c518"` |
+| `style.highlightColor` | `string` | `__user__` only — ring border color for user points that carry a star rating; saturation and luminosity scale with star count (5 = full color, 1 = black); absent = `"#FFE343"` |
 | `style.surface` | `boolean` | `circle` only — treat feature as an area rather than a point |
 | `style.minZoom` | `number` | Layer is visible only when the map zoom level is ≥ this value; absent = always shown |
 

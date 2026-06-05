@@ -430,6 +430,12 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - Move the CLAUDE.md entry from `## New Task` to `## Completed Tasks` with a one-line summary.
 - Include these file changes in the same commit as the feature code.
 
+## New Task
+- **File**: [User Star Ratings](tasks/starred_user_points.md)
+- **Status**: Implementation.
+- **GitHub Issue**: N/A
+- **Key Context**: User can assign a star rating to the defined points.
+
 ## Postponed Tasks
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
 - **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).

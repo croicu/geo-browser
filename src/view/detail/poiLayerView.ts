@@ -2,6 +2,8 @@ import type { ClickableMapLayerHandle, LayerFactory, MapHandle, MapPopupHandle }
 import type { GeoLayer } from "../../catalog/layer";
 import { LayerView } from "./layerView";
 import { getLogger } from "../../services";
+import { StarRatingControl } from "./starRatingControl";
+import type { StarCount } from "./starRatingControl";
 
 export interface PoiBakedFeature {
     layerId: string;
@@ -18,6 +20,11 @@ export interface PoiBakedFeature {
     outdoorSeating?: boolean;
 }
 
+export interface PoiLayerViewOptions {
+    getUserPoint?: (lat: number, lon: number) => { stars?: StarCount } | null;
+    onPoiStarSelected?: (latLng: [number, number], stars: StarCount) => void;
+}
+
 function isEnhanced(feature: PoiBakedFeature): boolean {
     return !!(feature.wikipedia || feature.wikidata || feature.stars || feature.outdoorSeating);
 }
@@ -29,6 +36,7 @@ interface PoiMarker {
 
 export class PoiLayerView extends LayerView {
     private readonly _sourceLayers: GeoLayer[];
+    private readonly _options: PoiLayerViewOptions;
     private _features: PoiBakedFeature[] = [];
     private _markersBySource = new Map<string, PoiMarker[]>();
     private _sourceVisible = new Map<string, boolean>();
@@ -40,10 +48,12 @@ export class PoiLayerView extends LayerView {
         map: MapHandle,
         layer: GeoLayer,
         sourceLayers: readonly GeoLayer[],
-        layerFactory: LayerFactory
+        layerFactory: LayerFactory,
+        options?: PoiLayerViewOptions
     ) {
         super(map, layer, layerFactory);
         this._sourceLayers = sourceLayers.filter(l => !l.isVirtual());
+        this._options = options ?? {};
     }
 
     get features(): readonly PoiBakedFeature[] {
@@ -192,12 +202,36 @@ export class PoiLayerView extends LayerView {
     }
 
     private onMarkerClick(feature: PoiBakedFeature): void {
+        const log = getLogger();
+        log.info("poi.tap.start", { name: feature.name });
         this.closePopup();
         const { root, imageContainer } = this.buildPopupElement(feature);
+        root.appendChild(document.createElement("br"));
+        root.appendChild(this.buildPoiStarRow(feature));
         this._activePopup = this._map.createPopup(feature.latLng, root);
         if (feature.wikidata && imageContainer) {
             void this.loadWikidataImage(feature.wikidata, imageContainer);
         }
+        log.info("poi.tap.end");
+    }
+
+    private buildPoiStarRow(feature: PoiBakedFeature): HTMLElement {
+        const existingPoint = this._options.getUserPoint?.(feature.latLng[0], feature.latLng[1]);
+        if (existingPoint?.stars !== undefined) {
+            return new StarRatingControl({ mode: "readonly", value: existingPoint.stars }).render();
+        }
+        return new StarRatingControl({
+            mode: "interactive",
+            onChange: stars => this.onPoiStarClick(feature, stars),
+        }).render();
+    }
+
+    private onPoiStarClick(feature: PoiBakedFeature, stars: StarCount): void {
+        const log = getLogger();
+        log.info("poi.star_selected.start", { name: feature.name, stars });
+        this._options.onPoiStarSelected?.(feature.latLng, stars);
+        this.closePopup();
+        log.info("poi.star_selected.end");
     }
 
     private closePopup(): void {

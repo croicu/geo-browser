@@ -65,7 +65,9 @@ export class Context {
     public setStorage(impl: StorageService): void {
         this._storageGuard.set(impl);
 
-        if (this.debug || this.mode === "design") {
+        const willNuke = this.debug || this.mode === "design";
+        this._logger.info("context.set_storage", { debug: this.debug, mode: this.mode, willNuke });
+        if (willNuke) {
             this._storageGuard.nuke();
         }
     }
