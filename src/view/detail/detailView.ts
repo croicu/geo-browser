@@ -346,6 +346,7 @@ export class DetailView implements View {
                             getUserPoint: (lat, lon) => this.getUserPointAtLatLng(lat, lon),
                             onPoiStarSelected: (latLng, stars) => this.onPoiStarSelected(latLng, stars),
                             onPoiBookmarkToggled: latLng => this.onPoiBookmarkToggled(latLng),
+                            onPopupOpening: () => this.closeEmptySpacePopup(),
                         }
                     );
                 } else {

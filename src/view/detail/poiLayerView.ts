@@ -24,6 +24,7 @@ export interface PoiLayerViewOptions {
     getUserPoint?: (lat: number, lon: number) => { stars?: StarCount; bookmarked?: boolean } | null;
     onPoiStarSelected?: (latLng: [number, number], stars: StarCount) => void;
     onPoiBookmarkToggled?: (latLng: [number, number]) => void;
+    onPopupOpening?: () => void;
 }
 
 function isEnhanced(feature: PoiBakedFeature): boolean {
@@ -205,6 +206,7 @@ export class PoiLayerView extends LayerView {
     private onMarkerClick(feature: PoiBakedFeature): void {
         const log = getLogger();
         log.info("poi.tap.start", { name: feature.name });
+        this._options.onPopupOpening?.();
         this.closePopup();
         const existingPoint = this._options.getUserPoint?.(feature.latLng[0], feature.latLng[1]) ?? null;
         const { root, imageContainer } = this.buildPopupElement(feature);
