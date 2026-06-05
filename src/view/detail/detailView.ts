@@ -20,6 +20,7 @@ import { ManifestEditorWidget } from "./manifestEditorWidget";
 import { CodeMirrorJsonEditorFactory } from "./codeMirrorJsonEditorFactory";
 import { ImageOverlayWidget } from "./imageOverlayWidget";
 import { EmptyCalloutWidget } from "./emptyCalloutWidget";
+import type { EmptyCalloutWidgetOptions } from "./emptyCalloutWidget";
 import type { StarCount } from "./starRatingControl";
 import { Context } from "../../runtime/context";
 import { GeoLayer } from "../../catalog/layer";
@@ -345,6 +346,7 @@ export class DetailView implements View {
                         {
                             getUserPoint: (lat, lon) => this.getUserPointAtLatLng(lat, lon),
                             onPoiStarSelected: (latLng, stars) => this.onPoiStarSelected(latLng, stars),
+                            onPoiBookmarkToggled: latLng => this.onPoiBookmarkToggled(latLng),
                         }
                     );
                 } else {
@@ -868,10 +870,30 @@ export class DetailView implements View {
     }
 
     private onPoiStarSelected(latLng: [number, number], stars: StarCount): void {
-        void this.doAddStarredUserPoint(latLng, stars);
+        const log = getLogger();
+        log.info("poi.star_selected.start", { lat: latLng[0], lng: latLng[1], stars });
+        const existing = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
+        if (existing) {
+            void this.doRateExistingUserPoint(latLng, stars, existing.bookmarked ?? false);
+        } else {
+            void this.doAddStarredUserPoint(latLng, stars);
+        }
+        log.info("poi.star_selected.end", { stars });
     }
 
-    private getUserPointAtLatLng(lat: number, lon: number): { stars?: StarCount } | null {
+    private onPoiBookmarkToggled(latLng: [number, number]): void {
+        const log = getLogger();
+        log.info("poi.bookmark_toggled.start", { lat: latLng[0], lng: latLng[1] });
+        const existing = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
+        if (existing?.bookmarked) {
+            this._userLayerView?.removePoint(latLng);
+        } else if (!existing) {
+            void this.doAddBookmarkedUserPoint(latLng);
+        }
+        log.info("poi.bookmark_toggled.end");
+    }
+
+    private getUserPointAtLatLng(lat: number, lon: number): { stars?: StarCount; bookmarked?: boolean } | null {
         if (!this._userLayerView) return null;
         return this._userLayerView.getPointAtLatLng(lat, lon);
     }
@@ -882,22 +904,53 @@ export class DetailView implements View {
         this.closeEmptySpacePopup();
         if (!this._map) return;
         const point = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
-        const widget = new EmptyCalloutWidget({
+
+        const opts: EmptyCalloutWidgetOptions = {
             latLng,
             showCoords: true,
             showMapLinks: true,
-            existingStars: stars,
-            isBookmarked: point?.bookmarked ?? false,
-            onBookmarkToggled: bookmarked => {
-                getLogger().info("user_layer.marker_bookmark_toggled", { lat: latLng[0], lng: latLng[1], bookmarked });
-                void this._userPointsStore?.setBookmarked?.(this._area.id, latLng[1], latLng[0], bookmarked);
-                this._userLayerView?.addMarkerBookmark(latLng, bookmarked);
+        };
+
+        if (stars !== undefined) {
+            opts.existingStars = stars;
+        } else {
+            opts.onStarSelected = selectedStars => {
+                log.info("user_layer.marker_rate.start", { lat: latLng[0], lng: latLng[1], stars: selectedStars });
+                void this.doRateExistingUserPoint(latLng, selectedStars, point?.bookmarked ?? false);
                 this.closeEmptySpacePopup();
-            },
-        });
+                log.info("user_layer.marker_rate.end");
+            };
+            opts.isBookmarked = point?.bookmarked ?? false;
+            opts.onBookmarkToggled = bookmarked => {
+                log.info("user_layer.marker_bookmark_toggled", { lat: latLng[0], lng: latLng[1], bookmarked });
+                if (bookmarked) {
+                    void this._userPointsStore?.setBookmarked?.(this._area.id, latLng[1], latLng[0], true);
+                    this._userLayerView?.addMarkerBookmark(latLng, true);
+                } else {
+                    this._userLayerView?.removePoint(latLng);
+                }
+                this.closeEmptySpacePopup();
+            };
+        }
+
+        const widget = new EmptyCalloutWidget(opts);
         this._emptyCalloutLatLng = latLng;
         this._emptySpacePopup = this._map.createPopup(latLng, widget.render());
         log.info("user_layer.marker_tapped.end");
+    }
+
+    private async doRateExistingUserPoint(latLng: [number, number], stars: StarCount, wasBookmarked: boolean): Promise<void> {
+        const log = getLogger();
+        log.info("user_layer.rate_existing.start", { lat: latLng[0], lng: latLng[1], stars, wasBookmarked });
+        const store = this._userPointsStore;
+        if (!store) return;
+        void store.removePoint(this._area.id, latLng[1], latLng[0]);
+        void store.addPoint(this._area.id, latLng[0], latLng[1], 0.5, { stars });
+        if (wasBookmarked) {
+            this._userLayerView?.addMarkerBookmark(latLng, false);
+        }
+        this._userLayerView?.addMarkerRing(latLng, stars);
+        log.info("user_layer.rate_existing.end", { stars });
     }
 
     private onCalloutBookmarkToggled(latLng: [number, number], bookmarked: boolean): void {

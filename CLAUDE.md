@@ -431,7 +431,10 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - Include these file changes in the same commit as the feature code.
 
 ## New Task
-- None currently.
+- **Addendum**: [User Bookmarks Addendum](tasks/user_points_addendum.md)
+- **Status**: Testing.
+- **GitHub Issue**: N/A
+- **Key Context**: Gap 1 (bookmark on POI callout), Gap 2/3 (interactive stars on unrated/bookmarked points, auto-remove bookmark on rate), bookmark-off on existing unrated = delete.
 
 ## Postponed Tasks
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
