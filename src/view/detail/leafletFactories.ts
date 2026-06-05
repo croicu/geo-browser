@@ -52,6 +52,7 @@ import type {
 
 import type { HeatPoint } from "../../protocols";
 import { getLogger } from "../../services";
+import { queryNominatim, type NominatimResult } from "../../maps/nominatim";
 
 class LeafletMapHandle implements MapHandle {
     private readonly _map: L.Map;
@@ -1011,6 +1012,195 @@ class LeafletGeoLocationWidgetHandle implements GeoLocationWidgetHandle {
     }
 }
 
+class SearchControl extends L.Control {
+    private readonly _bbox: [number, number, number, number];
+    private readonly _onResult: (latLng: [number, number], displayName: string) => void;
+
+    private _container?: HTMLElement;
+    private _searchBtn?: HTMLButtonElement;
+    private _inputBar?: HTMLElement;
+    private _input?: HTMLInputElement;
+    private _results?: HTMLElement;
+    private _isLoading = false;
+    private _outsideClickHandler?: (e: MouseEvent) => void;
+
+    constructor(
+        bbox: [number, number, number, number],
+        onResult: (latLng: [number, number], displayName: string) => void
+    ) {
+        super({ position: "topright" });
+        this._bbox = bbox;
+        this._onResult = onResult;
+    }
+
+    onAdd(): HTMLElement {
+        this._container = L.DomUtil.create("div", "search-control");
+        L.DomEvent.disableClickPropagation(this._container);
+
+        this._searchBtn = L.DomUtil.create("button", "search-btn", this._container) as HTMLButtonElement;
+        this._searchBtn.type = "button";
+        this._searchBtn.title = "Search in this area";
+        this._searchBtn.innerHTML = `<img src="/icons/search.svg" alt="Search" />`;
+        this._searchBtn.addEventListener("click", (e) => {
+            getLogger().info("search_control.btn.click");
+            e.stopPropagation();
+            this.expand();
+        });
+
+        this._inputBar = L.DomUtil.create("div", "search-input-bar hidden", this._container);
+
+        const online = navigator.onLine;
+        this._input = L.DomUtil.create("input", "search-input", this._inputBar) as HTMLInputElement;
+        this._input.type = "search";
+        this._input.placeholder = online ? "Search in this area…" : "Search requires a connection.";
+        this._input.disabled = !online;
+        this._input.addEventListener("keydown", (e: KeyboardEvent) => {
+            if (e.key === "Enter") { void this.doSearch(); }
+            else if (e.key === "Escape") { this.collapse(); }
+        });
+
+        const goBtn = L.DomUtil.create("button", "search-go-btn", this._inputBar) as HTMLButtonElement;
+        goBtn.type = "button";
+        goBtn.title = "Go";
+        goBtn.disabled = !online;
+        goBtn.innerHTML = `<img src="/icons/go.svg" alt="Go" />`;
+        goBtn.addEventListener("click", () => {
+            getLogger().info("search_control.go.click");
+            void this.doSearch();
+        });
+
+        const closeBtn = L.DomUtil.create("button", "search-close-btn", this._inputBar) as HTMLButtonElement;
+        closeBtn.type = "button";
+        closeBtn.title = "Close search";
+        closeBtn.textContent = "×";
+        closeBtn.addEventListener("click", () => {
+            getLogger().info("search_control.close.click");
+            this.collapse();
+        });
+
+        // Results panel is appended to document.body so it floats above all
+        // Leaflet control stacking contexts — position: fixed, placed via JS.
+        this._results = document.createElement("div");
+        this._results.className = "search-results hidden";
+        L.DomEvent.disableClickPropagation(this._results);
+        document.body.appendChild(this._results);
+
+        return this._container;
+    }
+
+    onRemove(): void {
+        this.removeOutsideClickHandler();
+        this._results?.remove();
+        this._container = undefined;
+        this._searchBtn = undefined;
+        this._inputBar = undefined;
+        this._input = undefined;
+        this._results = undefined;
+    }
+
+    private expand(): void {
+        if (!this._inputBar || !this._searchBtn) return;
+        this._searchBtn.classList.add("hidden");
+        this._inputBar.classList.remove("hidden");
+        this._input?.focus();
+        this._outsideClickHandler = (e: MouseEvent) => {
+            const inContainer = this._container?.contains(e.target as Node) ?? false;
+            const inResults = this._results?.contains(e.target as Node) ?? false;
+            if (!inContainer && !inResults) {
+                this.collapse();
+            }
+        };
+        document.addEventListener("click", this._outsideClickHandler);
+        getLogger().info("search_control.expand");
+    }
+
+    private collapse(): void {
+        if (!this._inputBar || !this._searchBtn || !this._results) return;
+        this._inputBar.classList.add("hidden");
+        this._results.classList.add("hidden");
+        this._searchBtn.classList.remove("hidden");
+        if (this._input) this._input.value = "";
+        this.removeOutsideClickHandler();
+        getLogger().info("search_control.collapse");
+    }
+
+    private removeOutsideClickHandler(): void {
+        if (this._outsideClickHandler) {
+            document.removeEventListener("click", this._outsideClickHandler);
+            this._outsideClickHandler = undefined;
+        }
+    }
+
+    private async doSearch(): Promise<void> {
+        const log = getLogger();
+        if (!this._input || !this._results) return;
+        const q = this._input.value.trim();
+        if (!q || this._isLoading) return;
+
+        log.info("search_control.search.start", { q });
+        this._isLoading = true;
+
+        try {
+            const results = await queryNominatim(q, this._bbox);
+            log.info("search_control.search.end", { q, count: results.length });
+            this.showResults(results);
+        } catch (err) {
+            log.error("search_control.search.error", err, { q });
+            this.showError();
+        } finally {
+            this._isLoading = false;
+        }
+    }
+
+    private positionResults(): void {
+        if (!this._container || !this._results) return;
+        const rect = this._container.getBoundingClientRect();
+        this._results.style.top = `${rect.bottom + 4}px`;
+        this._results.style.right = `${window.innerWidth - rect.right}px`;
+    }
+
+    private showResults(results: NominatimResult[]): void {
+        if (!this._results) return;
+        this._results.innerHTML = "";
+        this.positionResults();
+        this._results.classList.remove("hidden");
+
+        if (results.length === 0) {
+            const empty = L.DomUtil.create("div", "search-no-results", this._results);
+            empty.textContent = "No results found.";
+            return;
+        }
+
+        for (const result of results) {
+            const row = L.DomUtil.create("button", "search-result-row", this._results) as HTMLButtonElement;
+            row.type = "button";
+
+            const primary = L.DomUtil.create("span", "search-result-primary", row);
+            const name = result.display_name.length > 60
+                ? result.display_name.slice(0, 60) + "…"
+                : result.display_name;
+            primary.textContent = name;
+
+            const secondary = L.DomUtil.create("span", "search-result-secondary", row);
+            secondary.textContent = result.type || result.class;
+
+            row.addEventListener("click", () => {
+                getLogger().info("search_control.result.tap", { displayName: result.display_name });
+                this._onResult([parseFloat(result.lat), parseFloat(result.lon)], result.display_name);
+            });
+        }
+    }
+
+    private showError(): void {
+        if (!this._results) return;
+        this._results.innerHTML = "";
+        this.positionResults();
+        this._results.classList.remove("hidden");
+        const msg = L.DomUtil.create("div", "search-no-results", this._results);
+        msg.textContent = "Search failed. Check your connection.";
+    }
+}
+
 export class DefaultLeafletWidgetFactory implements WidgetFactory {
 
     createSummaryWidget(
@@ -1037,6 +1227,13 @@ export class DefaultLeafletWidgetFactory implements WidgetFactory {
         onToggle: () => void
     ): GeoLocationWidgetHandle {
         return new LeafletGeoLocationWidgetHandle(new GeoLocationControl(available, onToggle));
+    }
+
+    createSearchControl(
+        bbox: [number, number, number, number],
+        onResult: (latLng: [number, number], displayName: string) => void
+    ): WidgetHandle {
+        return new LeafletWidgetHandle(new SearchControl(bbox, onResult));
     }
 
     createNamePromptPopup(

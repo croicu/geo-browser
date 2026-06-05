@@ -312,4 +312,9 @@ export interface WidgetFactory {
         available: boolean,
         onToggle: () => void
     ): GeoLocationWidgetHandle;
+
+    createSearchControl(
+        bbox: [number, number, number, number],
+        onResult: (latLng: [number, number], displayName: string) => void
+    ): WidgetHandle;
 }

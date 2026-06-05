@@ -425,4 +425,11 @@ export class StubWidgetFactory implements WidgetFactory {
         this.lastGeoLocationWidget = handle;
         return handle;
     }
+
+    createSearchControl(
+        _bbox: [number, number, number, number],
+        _onResult: (latLng: [number, number], displayName: string) => void
+    ): WidgetHandle {
+        return new StubWidget();
+    }
 }
