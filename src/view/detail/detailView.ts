@@ -19,6 +19,8 @@ import { GeoLocationWidget } from "./geoLocationWidget";
 import { ManifestEditorWidget } from "./manifestEditorWidget";
 import { CodeMirrorJsonEditorFactory } from "./codeMirrorJsonEditorFactory";
 import { ImageOverlayWidget } from "./imageOverlayWidget";
+import { EmptyCalloutWidget } from "./emptyCalloutWidget";
+import type { StarCount } from "./starRatingControl";
 import { Context } from "../../runtime/context";
 import { GeoLayer } from "../../catalog/layer";
 
@@ -73,6 +75,9 @@ export class DetailView implements View {
     private _userGeoLayer?: GeoLayer;
     private _hasImageOverlay = false;
     private _emptySpacePopup?: MapPopupHandle;
+    private _emptyCalloutLatLng?: [number, number];
+    private _pendingLongPress?: { latLng: [number, number]; pressure: number; poiProperties?: Record<string, unknown> };
+    private _pendingBookmark = false;
 
     private _clickCleanup?: () => void;
     private _contextMenuCleanup?: () => void;
@@ -336,7 +341,11 @@ export class DetailView implements View {
                         this._map,
                         layer,
                         this._area.layers,
-                        new DefaultLeafletLayerFactory()
+                        new DefaultLeafletLayerFactory(),
+                        {
+                            getUserPoint: (lat, lon) => this.getUserPointAtLatLng(lat, lon),
+                            onPoiStarSelected: (latLng, stars) => this.onPoiStarSelected(latLng, stars),
+                        }
                     );
                 } else {
                     continue;
@@ -372,7 +381,8 @@ export class DetailView implements View {
                     this._userPointsStore!,
                     this._area.id,
                     visible,
-                    () => this.onUserPointDeleted(),
+                    (latLng) => this.onUserPointDeleted(latLng),
+                    (latLng, stars) => this.onUserMarkerTapped(latLng, stars),
                 );
                 this._userLayerView = userView;
                 this._userGeoLayer = layer;
@@ -645,10 +655,12 @@ export class DetailView implements View {
         if (!store) return;
 
         const wasEmpty = this._userLayerView.featureCount === 0;
-
         const poiProperties = this.findNearestPoiProperties(latLng[0], latLng[1]);
-        void store.addPoint(this._area.id, latLng[0], latLng[1], pressure, poiProperties);
 
+        // Save immediately so a page refresh never loses the point.
+        // _pendingLongPress tracks a potential star upgrade; star selection will remove+re-add.
+        log.info("user_layer.store.add_start", { areaId: this._area.id, lat: latLng[0], lng: latLng[1] });
+        void store.addPoint(this._area.id, latLng[0], latLng[1], pressure, poiProperties);
         this._userLayerView.addMarker(latLng, pressure);
         log.info("user_layer.add_point.marker_placed", { featureCount: this._userLayerView.featureCount });
 
@@ -656,10 +668,24 @@ export class DetailView implements View {
             this.rebuildLayersWidget();
         }
 
-        log.info("user_layer.add_point.end", { lat: latLng[0], lng: latLng[1] });
+        // openStarCallout flushes any previous pending first, so set the new pending after.
+        this.openStarCallout(latLng);
+        this._pendingLongPress = { latLng, pressure, poiProperties };
+        log.info("user_layer.add_point.callout_open", { lat: latLng[0], lng: latLng[1] });
     }
 
-    private onUserPointDeleted(): void {
+    private onUserPointDeleted(latLng: [number, number]): void {
+        const log = getLogger();
+        if (this._pendingLongPress) {
+            const [pLat, pLon] = this._pendingLongPress.latLng;
+            if (Math.abs(pLat - latLng[0]) < 1e-8 && Math.abs(pLon - latLng[1]) < 1e-8) {
+                log.info("user_layer.delete_point.dismiss_callout", { lat: latLng[0], lng: latLng[1] });
+                this._pendingLongPress = undefined;
+                this._emptySpacePopup?.remove();
+                this._emptySpacePopup = undefined;
+                this._emptyCalloutLatLng = undefined;
+            }
+        }
         if (this._userLayerView && this._userLayerView.featureCount === 0) {
             this.rebuildLayersWidget();
         }
@@ -708,7 +734,8 @@ export class DetailView implements View {
             this._userPointsStore,
             this._area.id,
             true,
-            () => this.onUserPointDeleted(),
+            (latLng) => this.onUserPointDeleted(latLng),
+            (latLng, stars) => this.onUserMarkerTapped(latLng, stars),
         );
 
         this._userLayerView = userView;
@@ -758,52 +785,155 @@ export class DetailView implements View {
             return;
         }
         log.info("map.empty_tap.start", { lat: latLng[0], lng: latLng[1] });
-        if (!this._map) return;
-        const el = this.buildEmptySpacePopupElement(latLng);
-        this._emptySpacePopup = this._map.createPopup(latLng, el);
+        this.openStarCallout(latLng);
         log.info("map.empty_tap.end");
     }
 
+    private openStarCallout(latLng: [number, number]): void {
+        this.closeEmptySpacePopup();
+        if (!this._map) return;
+        const widget = new EmptyCalloutWidget({
+            latLng,
+            showCoords: true,
+            showMapLinks: true,
+            onStarSelected: stars => this.onEmptyStarSelected(stars),
+            onBookmarkToggled: bookmarked => this.onCalloutBookmarkToggled(latLng, bookmarked),
+        });
+        this._emptyCalloutLatLng = latLng;
+        this._emptySpacePopup = this._map.createPopup(latLng, widget.render());
+    }
+
     private closeEmptySpacePopup(): void {
+        if (this._pendingLongPress) {
+            // Point already saved in doOnUserPoint — just clear the pending star upgrade.
+            this._pendingLongPress = undefined;
+        } else if (this._pendingBookmark && this._emptyCalloutLatLng) {
+            // Empty-space callout dismissed with bookmark toggled on — create the bookmarked point.
+            const latLng = this._emptyCalloutLatLng;
+            void this.doAddBookmarkedUserPoint(latLng);
+        }
+        this._pendingBookmark = false;
         this._emptySpacePopup?.remove();
         this._emptySpacePopup = undefined;
+        this._emptyCalloutLatLng = undefined;
     }
 
-    private buildEmptySpacePopupElement(latLng: [number, number]): HTMLElement {
-        const root = document.createElement("div");
-        root.className = "poi-popup";
+    private onEmptyStarSelected(stars: StarCount): void {
+        const log = getLogger();
+        log.info("user_layer.star_selected.start", { stars });
+        this._pendingBookmark = false; // starring removes bookmark
 
-        const coords = document.createElement("div");
-        coords.className = "poi-coords";
-        coords.textContent = `${latLng[0].toFixed(4)}, ${latLng[1].toFixed(4)}`;
-        root.appendChild(coords);
+        if (this._pendingLongPress) {
+            // Long press: point was already saved without stars — upgrade it via remove + re-add.
+            const { latLng, pressure, poiProperties } = this._pendingLongPress;
+            this._pendingLongPress = undefined;
+            const store = this._userPointsStore;
+            if (store) {
+                log.info("user_layer.store.upgrade_start", { areaId: this._area.id, lat: latLng[0], lng: latLng[1], stars });
+                void store.removePoint(this._area.id, latLng[1], latLng[0]);
+                void store.addPoint(this._area.id, latLng[0], latLng[1], pressure, { ...poiProperties, stars });
+            } else {
+                log.warning("user_layer.store.upgrade_no_store", { lat: latLng[0], lng: latLng[1] });
+            }
+            this._userLayerView?.addMarkerRing(latLng, stars);
+        } else if (this._emptyCalloutLatLng) {
+            // Short tap on empty space: create user point with stars.
+            void this.doAddStarredUserPoint(this._emptyCalloutLatLng, stars);
+        }
 
-        root.appendChild(document.createElement("br"));
-        root.appendChild(this.buildMapLink(
-            `https://maps.google.com/?q=${latLng[0]},${latLng[1]}`,
-            "Open in Google Maps"
-        ));
-        root.appendChild(document.createElement("br"));
-        root.appendChild(this.buildMapLink(
-            `https://maps.apple.com/?q=${latLng[0]},${latLng[1]}`,
-            "Open in Apple Maps"
-        ));
-        root.appendChild(document.createElement("br"));
-        root.appendChild(this.buildMapLink(
-            `https://maps.google.com/maps?q=&layer=c&cbll=${latLng[0]},${latLng[1]}`,
-            "Open in Street View"
-        ));
-
-        return root;
+        this.closeEmptySpacePopup();
+        log.info("user_layer.star_selected.end", { stars });
     }
 
-    private buildMapLink(href: string, label: string): HTMLElement {
-        const a = document.createElement("a");
-        a.className = "poi-website";
-        a.href = href;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.textContent = label;
-        return a;
+    private async doAddStarredUserPoint(latLng: [number, number], stars: StarCount): Promise<void> {
+        const log = getLogger();
+        log.info("user_layer.add_starred_point.start", { lat: latLng[0], lng: latLng[1], stars });
+
+        if (!this._userLayerView) {
+            await this.synthesizeUserLayerView();
+        }
+        if (!this._userLayerView || !this._map) return;
+        const store = this._userPointsStore;
+        if (!store) return;
+
+        const wasEmpty = this._userLayerView.featureCount === 0;
+        const poiProperties = this.findNearestPoiProperties(latLng[0], latLng[1]);
+
+        log.info("user_layer.store.add_starred_start", { areaId: this._area.id, lat: latLng[0], lng: latLng[1], stars });
+        void store.addPoint(this._area.id, latLng[0], latLng[1], 0.5, { ...poiProperties, stars });
+        this._userLayerView.addMarker(latLng, 0.5, stars);
+
+        if (wasEmpty) this.rebuildLayersWidget();
+        log.info("user_layer.add_starred_point.end", { stars });
+    }
+
+    private onPoiStarSelected(latLng: [number, number], stars: StarCount): void {
+        void this.doAddStarredUserPoint(latLng, stars);
+    }
+
+    private getUserPointAtLatLng(lat: number, lon: number): { stars?: StarCount } | null {
+        if (!this._userLayerView) return null;
+        return this._userLayerView.getPointAtLatLng(lat, lon);
+    }
+
+    private onUserMarkerTapped(latLng: [number, number], stars?: StarCount): void {
+        const log = getLogger();
+        log.info("user_layer.marker_tapped.start", { lat: latLng[0], lng: latLng[1], stars });
+        this.closeEmptySpacePopup();
+        if (!this._map) return;
+        const point = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
+        const widget = new EmptyCalloutWidget({
+            latLng,
+            showCoords: true,
+            showMapLinks: true,
+            existingStars: stars,
+            isBookmarked: point?.bookmarked ?? false,
+            onBookmarkToggled: bookmarked => {
+                getLogger().info("user_layer.marker_bookmark_toggled", { lat: latLng[0], lng: latLng[1], bookmarked });
+                void this._userPointsStore?.setBookmarked?.(this._area.id, latLng[1], latLng[0], bookmarked);
+                this._userLayerView?.addMarkerBookmark(latLng, bookmarked);
+                this.closeEmptySpacePopup();
+            },
+        });
+        this._emptyCalloutLatLng = latLng;
+        this._emptySpacePopup = this._map.createPopup(latLng, widget.render());
+        log.info("user_layer.marker_tapped.end");
+    }
+
+    private onCalloutBookmarkToggled(latLng: [number, number], bookmarked: boolean): void {
+        const log = getLogger();
+        log.info("user_layer.callout_bookmark_toggled.start", { lat: latLng[0], lng: latLng[1], bookmarked });
+        if (this._pendingLongPress) {
+            // Point already saved — update store and ring immediately.
+            void this._userPointsStore?.setBookmarked?.(this._area.id, latLng[1], latLng[0], bookmarked);
+            this._userLayerView?.addMarkerBookmark(latLng, bookmarked);
+        } else {
+            // Empty-space callout — defer: save only if dismissed without selecting stars.
+            this._pendingBookmark = bookmarked;
+        }
+        log.info("user_layer.callout_bookmark_toggled.end", { bookmarked });
+        this.closeEmptySpacePopup();
+    }
+
+    private async doAddBookmarkedUserPoint(latLng: [number, number]): Promise<void> {
+        const log = getLogger();
+        log.info("user_layer.add_bookmarked_point.start", { lat: latLng[0], lng: latLng[1] });
+
+        if (!this._userLayerView) {
+            await this.synthesizeUserLayerView();
+        }
+        if (!this._userLayerView || !this._map) return;
+        const store = this._userPointsStore;
+        if (!store) return;
+
+        const wasEmpty = this._userLayerView.featureCount === 0;
+        const poiProperties = this.findNearestPoiProperties(latLng[0], latLng[1]);
+
+        log.info("user_layer.store.add_bookmarked_start", { areaId: this._area.id, lat: latLng[0], lng: latLng[1] });
+        void store.addPoint(this._area.id, latLng[0], latLng[1], 0.5, { ...poiProperties, bookmarked: true });
+        this._userLayerView.addMarker(latLng, 0.5, undefined, true);
+
+        if (wasEmpty) this.rebuildLayersWidget();
+        log.info("user_layer.add_bookmarked_point.end");
     }
 }

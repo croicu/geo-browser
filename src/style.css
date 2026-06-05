@@ -561,6 +561,49 @@ body,
     pointer-events: none;
 }
 
+.user-ring-marker {
+    cursor: pointer;
+}
+
+.callout-bottom-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.callout-bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.callout-bookmark-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.star-rating-star {
+    width: 22px;
+    height: 22px;
+}
+
+.star-rating--interactive .star-rating-star {
+    cursor: pointer;
+}
+
 .poi-stars {
     display: flex;
     flex-direction: row;

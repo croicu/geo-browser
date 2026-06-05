@@ -119,7 +119,7 @@ export class StubMap implements MapHandle {
         return new StubWidget();
     }
 
-    latLngToContainerPoint(_latLng: [number, number]): [number, number] {
+latLngToContainerPoint(_latLng: [number, number]): [number, number] {
         return [0, 0];
     }
 
@@ -215,6 +215,7 @@ export class StubMarker implements ClickableMapLayerHandle {
     setRadius(r: number): void {
         this.radius = r;
     }
+
 }
 
 export class StubRectangle extends StubMapLayerHandle implements RectangleHandle {
