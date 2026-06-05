@@ -26,7 +26,7 @@ export class GeoLayer {
     }
 
     isVirtual(): boolean {
-        return this._data.url === null;
+        return this._data.url == null;
     }
 
     get style(): LayerStyle | undefined {

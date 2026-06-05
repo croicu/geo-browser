@@ -264,6 +264,167 @@ body,
     opacity: 0.7;
 }
 
+/* Search control */
+
+.search-control {
+    position: relative;
+}
+
+.search-btn {
+    width: 34px;
+    height: 34px;
+    background: white;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn.hidden {
+    display: none;
+}
+
+.search-btn:hover {
+    background: #f4f4f4;
+}
+
+.search-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.search-input-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    padding: 5px 8px;
+    width: 260px;
+}
+
+.search-input-bar.hidden {
+    display: none;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    min-width: 0;
+    background: transparent;
+}
+
+.search-go-btn {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 4px;
+    padding: 0;
+}
+
+.search-go-btn:hover {
+    background: #f4f4f4;
+}
+
+.search-go-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.search-go-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.search-results {
+    position: fixed;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    width: 280px;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.search-results.hidden {
+    display: none;
+}
+
+.search-result-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+}
+
+.search-result-row:last-child {
+    border-bottom: none;
+}
+
+.search-result-row:hover {
+    background: #f5f5f5;
+}
+
+.search-result-primary {
+    font-size: 13px;
+    color: #202124;
+    line-height: 1.4;
+}
+
+.search-result-secondary {
+    font-size: 11px;
+    color: #70757a;
+    margin-top: 2px;
+    text-transform: capitalize;
+}
+
+.search-close-btn {
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #70757a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 4px;
+    padding: 0;
+    line-height: 1;
+}
+
+.search-close-btn:hover {
+    background: #f4f4f4;
+    color: #202124;
+}
+
+.search-no-results {
+    padding: 12px;
+    font-size: 13px;
+    color: #70757a;
+    text-align: center;
+}
+
 /* Override Leaflet's SVG pointer-events="visiblePainted" attribute.
    iOS Safari doesn't recognize the SVG-specific value for elementFromPoint,
    so Leaflet's tap handler can't find the element. "auto" is the standard

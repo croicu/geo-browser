@@ -19,6 +19,7 @@ import { GeoLocationWidget } from "./geoLocationWidget";
 import { ManifestEditorWidget } from "./manifestEditorWidget";
 import { CodeMirrorJsonEditorFactory } from "./codeMirrorJsonEditorFactory";
 import { ImageOverlayWidget } from "./imageOverlayWidget";
+import { SearchLayerView } from "./searchLayerView";
 import { EmptyCalloutWidget } from "./emptyCalloutWidget";
 import type { EmptyCalloutWidgetOptions } from "./emptyCalloutWidget";
 import type { StarCount } from "./starRatingControl";
@@ -75,6 +76,8 @@ export class DetailView implements View {
     private _userLayerView?: UserLayerView;
     private _userGeoLayer?: GeoLayer;
     private _hasImageOverlay = false;
+    private _searchWidget?: WidgetHandle;
+    private _searchLayerView?: SearchLayerView;
     private _emptySpacePopup?: MapPopupHandle;
     private _emptyCalloutLatLng?: [number, number];
     private _pendingBookmark = false;
@@ -146,7 +149,7 @@ export class DetailView implements View {
                 this._actions,
                 this._widgetFactory,
                 this._area.id,
-                this._area.layers.filter(l => l.type !== "__user__"),
+                this._area.layers.filter(l => l.type !== "__user__" && l.type !== "__search__"),
                 layer => this._state.isLayerVisible(layer.id, layer.isVisible())
             );
 
@@ -181,6 +184,24 @@ export class DetailView implements View {
             });
             imageOverlay.render();
             this._imageOverlayWidget = imageOverlay;
+
+            const searchLayer = this._area.layers.find(l => l.type === "__search__");
+            if (searchLayer) {
+                const searchLayerView = new SearchLayerView(
+                    map,
+                    this._layerFactory,
+                    searchLayer.style?.color ?? "#00007f",
+                    (latLng, displayName) => this.onSearchMarkerTap(latLng, displayName)
+                );
+                this._searchLayerView = searchLayerView;
+
+                const searchWidget = this._widgetFactory.createSearchControl(
+                    this._area.bbox,
+                    (latLng, displayName) => this.onSearchResultSelected(latLng, displayName)
+                );
+                searchWidget.addTo(map);
+                this._searchWidget = searchWidget;
+            }
         }
 
         this.renderLayerViews();
@@ -203,6 +224,12 @@ export class DetailView implements View {
 
             this._imageOverlayWidget?.destroy();
             this._imageOverlayWidget = undefined;
+
+            this._searchLayerView?.destroy();
+            this._searchLayerView = undefined;
+
+            this._searchWidget?.remove();
+            this._searchWidget = undefined;
 
             this._clickCleanup?.();
             this._clickCleanup = undefined;
@@ -313,6 +340,9 @@ export class DetailView implements View {
                 continue;
             }
             if (layer.type === "__void__") {
+                continue;
+            }
+            if (layer.type === "__search__") {
                 continue;
             }
 
@@ -675,6 +705,22 @@ export class DetailView implements View {
         }
     }
 
+    private onSearchResultSelected(latLng: [number, number], displayName: string): void {
+        const log = getLogger();
+        log.info("search.result_selected.start", { displayName });
+        this._map?.panTo(latLng);
+        this._searchLayerView?.setResult(latLng, displayName);
+        log.info("search.result_selected.end", { displayName });
+    }
+
+    private onSearchMarkerTap(latLng: [number, number], _displayName: string): void {
+        const log = getLogger();
+        log.info("search.marker_tap.start", { lat: latLng[0], lng: latLng[1] });
+        this._searchLayerView?.clear();
+        this.onUserPoint(latLng, 0.5);
+        log.info("search.marker_tap.end");
+    }
+
     private findNearestPoiProperties(lat: number, lon: number): Record<string, unknown> | undefined {
         const log = getLogger();
         const THRESHOLD = 0.0005; // ~55 m in latitude; naive Euclidean degrees
@@ -745,6 +791,7 @@ export class DetailView implements View {
         const visibleLayers = sourceLayers.filter(layer => {
             if (layer.type === "__user__") return hasUserPoints;
             if (layer.type === "__poi__") return layer.isVisible();
+            if (layer.type === "__search__") return false;
             return true;
         });
 
