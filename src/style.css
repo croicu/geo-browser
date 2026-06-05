@@ -632,6 +632,11 @@ body,
     min-width: 200px;
 }
 
+.poi-name {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
 .poi-coords {
     font-size: 0.75em;
     color: #888;

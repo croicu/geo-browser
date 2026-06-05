@@ -199,6 +199,10 @@ export class UserLayerView extends LayerView {
         this._markers[idx].ring = ring;
     }
 
+    removePoint(latLng: [number, number]): void {
+        this.deleteMarker(latLng[1], latLng[0]);
+    }
+
     override destroy(): void {
         this._stopWatchingZoom?.();
         this._stopWatchingZoom = undefined;

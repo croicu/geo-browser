@@ -21,8 +21,10 @@ export interface PoiBakedFeature {
 }
 
 export interface PoiLayerViewOptions {
-    getUserPoint?: (lat: number, lon: number) => { stars?: StarCount } | null;
+    getUserPoint?: (lat: number, lon: number) => { stars?: StarCount; bookmarked?: boolean } | null;
     onPoiStarSelected?: (latLng: [number, number], stars: StarCount) => void;
+    onPoiBookmarkToggled?: (latLng: [number, number]) => void;
+    onPopupOpening?: () => void;
 }
 
 function isEnhanced(feature: PoiBakedFeature): boolean {
@@ -204,10 +206,12 @@ export class PoiLayerView extends LayerView {
     private onMarkerClick(feature: PoiBakedFeature): void {
         const log = getLogger();
         log.info("poi.tap.start", { name: feature.name });
+        this._options.onPopupOpening?.();
         this.closePopup();
+        const existingPoint = this._options.getUserPoint?.(feature.latLng[0], feature.latLng[1]) ?? null;
         const { root, imageContainer } = this.buildPopupElement(feature);
         root.appendChild(document.createElement("br"));
-        root.appendChild(this.buildPoiStarRow(feature));
+        root.appendChild(this.buildPoiBottomRow(feature, existingPoint));
         this._activePopup = this._map.createPopup(feature.latLng, root);
         if (feature.wikidata && imageContainer) {
             void this.loadWikidataImage(feature.wikidata, imageContainer);
@@ -215,15 +219,43 @@ export class PoiLayerView extends LayerView {
         log.info("poi.tap.end");
     }
 
-    private buildPoiStarRow(feature: PoiBakedFeature): HTMLElement {
-        const existingPoint = this._options.getUserPoint?.(feature.latLng[0], feature.latLng[1]);
+    private buildPoiBottomRow(
+        feature: PoiBakedFeature,
+        existingPoint: { stars?: StarCount; bookmarked?: boolean } | null
+    ): HTMLElement {
+        const row = document.createElement("div");
+        row.className = "callout-bottom-row";
+
         if (existingPoint?.stars !== undefined) {
-            return new StarRatingControl({ mode: "readonly", value: existingPoint.stars }).render();
+            row.appendChild(new StarRatingControl({ mode: "readonly", value: existingPoint.stars }).render());
+        } else {
+            row.appendChild(new StarRatingControl({
+                mode: "interactive",
+                onChange: stars => this.onPoiStarClick(feature, stars),
+            }).render());
+
+            if (this._options.onPoiBookmarkToggled) {
+                const isBookmarked = existingPoint?.bookmarked ?? false;
+                row.appendChild(this.buildPoiBookmarkButton(isBookmarked, () => this.onPoiBookmarkClick(feature)));
+            }
         }
-        return new StarRatingControl({
-            mode: "interactive",
-            onChange: stars => this.onPoiStarClick(feature, stars),
-        }).render();
+
+        return row;
+    }
+
+    private buildPoiBookmarkButton(isBookmarked: boolean, onClick: () => void): HTMLElement {
+        const btn = document.createElement("button");
+        btn.className = "callout-bookmark-btn";
+        const img = document.createElement("img");
+        img.className = "callout-bookmark-icon";
+        img.alt = "Bookmark";
+        img.src = isBookmarked ? "/icons/solid_bookmark.svg" : "/icons/bookmark.svg";
+        btn.appendChild(img);
+        btn.addEventListener("click", () => {
+            getLogger().info("poi.bookmark_toggle.click");
+            onClick();
+        });
+        return btn;
     }
 
     private onPoiStarClick(feature: PoiBakedFeature, stars: StarCount): void {
@@ -232,6 +264,14 @@ export class PoiLayerView extends LayerView {
         this._options.onPoiStarSelected?.(feature.latLng, stars);
         this.closePopup();
         log.info("poi.star_selected.end");
+    }
+
+    private onPoiBookmarkClick(feature: PoiBakedFeature): void {
+        const log = getLogger();
+        log.info("poi.bookmark_toggle.start", { name: feature.name });
+        this._options.onPoiBookmarkToggled?.(feature.latLng);
+        this.closePopup();
+        log.info("poi.bookmark_toggle.end");
     }
 
     private closePopup(): void {
