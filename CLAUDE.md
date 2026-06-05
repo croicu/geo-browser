@@ -431,10 +431,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - Include these file changes in the same commit as the feature code.
 
 ## New Task
-- **Addendum**: [User Bookmarks Addendum](tasks/user_points_addendum.md)
-- **Status**: Testing.
-- **GitHub Issue**: N/A
-- **Key Context**: Gap 1 (bookmark on POI callout), Gap 2/3 (interactive stars on unrated/bookmarked points, auto-remove bookmark on rate), bookmark-off on existing unrated = delete.
+- None currently.
 
 ## Postponed Tasks
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
@@ -447,6 +444,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
+- **[User Bookmarks Addendum](tasks/user_points_addendum.md)**: Status: Done. Bookmark on POI callout; interactive stars on unrated/bookmarked points; rating auto-removes bookmark; bookmark-off on unrated = delete; long press creates point silently.
 - **[User Bookmarks](tasks/user_bookmarks.md)**: Status: Done. Bookmark toggle on user points; blue ring overlay (`bookmarkColor`); `solid_bookmark.svg`; `setBookmarked` in store; bookmark ring takes visual priority over star ring; long-press callout exposes toggle.
 - **[User Star Ratings](tasks/starred_user_points.md)**: Status: Done. Star rating (1–5) on user trip points; ring overlay with atan color curve; interactive and readonly `StarRatingControl`; `EmptyCalloutWidget` star UI; ring weight reduced to 3.
 - **[Empty Space Tap](tasks/empty_space_tap.md)**: Status: Done. Tapping empty map space opens a callout with lat/lng and links to Google Maps, Apple Maps, and Street View. Second tap outside dismisses it.

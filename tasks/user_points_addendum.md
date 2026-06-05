@@ -2,6 +2,8 @@
 
 Correction spec for Claude Code. Based on day-trip scenario review. PM sign-off: complete.
 
+**Status: Done**
+
 -----
 
 ## Context
