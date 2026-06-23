@@ -26,7 +26,7 @@ import type { StarCount } from "./starRatingControl";
 import { Context } from "../../runtime/context";
 import { GeoLayer } from "../../catalog/layer";
 
-const POI_MIN_ZOOM_DEFAULT = 18;
+const POI_MIN_ZOOM_DEFAULT = 16;
 
 export interface DetailViewServices {
     mapFactory?: MapFactory;

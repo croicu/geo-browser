@@ -36,7 +36,8 @@ star rating or bookmark**, and **deleted only via an explicit delete button in t
   gesture, not the long-press/double-click path being removed here.
 - The new-location callout is now gated by zoom, same threshold as the `__poi__` layer: tapping
   empty space below that zoom is a noop (no popup). `DetailView.poiMinZoom()` reads the area's
-  `__poi__` layer `style.minZoom`, defaulting to 18 if the layer or that field is absent.
+  `__poi__` layer `style.minZoom`, defaulting to 16 if the layer or that field is absent. All
+  shipped manifests set `__poi__` `minZoom` to 16.
 
 ## Testing
 

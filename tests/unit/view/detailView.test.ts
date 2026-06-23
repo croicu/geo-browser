@@ -178,7 +178,7 @@ describe("DetailView", () => {
         );
 
         view.render();
-        mapFactory.map.setZoom(17);
+        mapFactory.map.setZoom(15);
         mapFactory.map.simulateClick([40.8518, 14.2681]);
 
         expect(logger.infoCalls.find(c => c.message === "map.empty_tap.noop")).toBeDefined();
@@ -215,7 +215,7 @@ describe("DetailView", () => {
         mapFactory.map.setZoom(15);
         mapFactory.map.simulateClick([40.8518, 14.2681]);
 
-        // zoom 15 is below the default 18 but above this area's configured minZoom of 14
+        // zoom 15 is below the default 16 but above this area's configured minZoom of 14
         expect(logger.infoCalls.find(c => c.message === "map.empty_tap.start")).toBeDefined();
         expect(mapFactory.map.lastPopup).toBeDefined();
     });
