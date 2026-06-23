@@ -270,6 +270,8 @@ catalog.head.json
 
 All relative URLs in the payload are resolved relative to the file that contains them (same rule as HTML `<base>`).
 
+> **Open issue for geo-browser team:** in local dev (`localhost:5173` via Vite), catalog updates produced by geo-builder were observed not to reach the browser at all. Root-caused on the geo-builder side by instrumenting every WebView2 request (`host.py`'s `WebResourceRequested` filter intercepts 100% of outgoing requests, logged via `DataPipeline._resolve`): across a full session there was **no request whatsoever** for `catalog.head.json` / `catalog.head.debug.json` / `catalog.json` / `catalog.debug.json` — confirming the page never issued the fetch described in the loading chain above. Manually copying the updated file into geo-browser's `public/` folder made it appear immediately. This points to the catalog being loaded via a static import (`import catalog from './public/catalog.json'`) rather than a runtime `fetch()` against the loading chain — bundlers inline statically-imported JSON at build/transform time, independent of dev vs. production and independent of host/port. If a static import is in fact happening anywhere in the catalog-loading path, it should be replaced with a runtime fetch per the contract above, otherwise rebuilt catalogs will never be reflected without a manual file copy.
+
 ### `catalog.head.json`
 
 Entry point. Tells the browser where the catalog file lives.
@@ -362,8 +364,6 @@ The `catalogUrl` is a relative URL resolved against the head file's location. Th
 | `style.strokeWidth` | `number` | Border width in pixels; `0` = no border |
 | `style.enhancedColor` | `string` | `__poi__` only — border color for enriched POI markers (those with `wikipedia`, `wikidata`, `stars`, or `outdoor_seating="yes"`); defaults to `"#003380"` |
 | `style.outdoorColor` | `string` | `__poi__` only — border color for POI markers with `outdoor_seating="yes"`; overrides `enhancedColor` for those markers; defaults to `"#f5c518"` |
-| `style.highlightColor` | `string` | `__user__` only — ring border color for user points that carry a star rating; saturation and luminosity scale with star count (5 = full color, 1 = black); absent = `"#FFE343"` |
-| `style.bookmarkColor` | `string` | `__user__` only — ring border color for bookmarked user points; absent = `"#5AB5DA"` |
 | `style.surface` | `boolean` | `circle` only — treat feature as an area rather than a point |
 | `style.minZoom` | `number` | Layer is visible only when the map zoom level is ≥ this value; absent = always shown |
 
