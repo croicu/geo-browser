@@ -26,6 +26,8 @@ import type { StarCount } from "./starRatingControl";
 import { Context } from "../../runtime/context";
 import { GeoLayer } from "../../catalog/layer";
 
+const POI_MIN_ZOOM_DEFAULT = 18;
+
 export interface DetailViewServices {
     mapFactory?: MapFactory;
     layerFactory?: LayerFactory;
@@ -813,9 +815,20 @@ export class DetailView implements View {
             this.closeEmptySpacePopup();
             return;
         }
+        const zoom = this._map?.getZoom();
+        const minZoom = this.poiMinZoom();
+        if (zoom !== undefined && zoom < minZoom) {
+            log.info("map.empty_tap.noop", { zoom, minZoom });
+            return;
+        }
         log.info("map.empty_tap.start", { lat: latLng[0], lng: latLng[1] });
         this.openStarCallout(latLng);
         log.info("map.empty_tap.end");
+    }
+
+    private poiMinZoom(): number {
+        const poiLayer = this._area.layers.find(l => l.type === "__poi__");
+        return poiLayer?.style?.minZoom ?? POI_MIN_ZOOM_DEFAULT;
     }
 
     private openStarCallout(latLng: [number, number]): void {

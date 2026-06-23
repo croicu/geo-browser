@@ -34,6 +34,9 @@ star rating or bookmark**, and **deleted only via an explicit delete button in t
 - New-point creation (single tap on empty space) is unchanged: stars or bookmark, as before.
 - Search-marker-tap-to-promote (`onSearchMarkerTap`) is unchanged — it's a deliberate single-tap
   gesture, not the long-press/double-click path being removed here.
+- The new-location callout is now gated by zoom, same threshold as the `__poi__` layer: tapping
+  empty space below that zoom is a noop (no popup). `DetailView.poiMinZoom()` reads the area's
+  `__poi__` layer `style.minZoom`, defaulting to 18 if the layer or that field is absent.
 
 ## Testing
 

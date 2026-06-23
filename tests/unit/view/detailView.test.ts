@@ -147,6 +147,7 @@ describe("DetailView", () => {
         );
 
         view.render();
+        mapFactory.map.setZoom(18);
         mapFactory.map.simulateClick([40.8518, 14.2681]);
 
         const startCall = logger.infoCalls.find(c => c.message === "map.empty_tap.start");
@@ -155,6 +156,68 @@ describe("DetailView", () => {
 
         expect(mapFactory.map.lastPopup).toBeDefined();
         expect(mapFactory.map.lastPopup?.latLng).toEqual([40.8518, 14.2681]);
+    });
+
+    it("does not open the empty-space callout when below the POI min zoom", () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const logger = new StubLogger();
+
+        setLogger(logger);
+
+        const view = new DetailView(
+            root,
+            new StubActions(),
+            fakeArea as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory: new StubWidgetFactory(),
+            }
+        );
+
+        view.render();
+        mapFactory.map.setZoom(17);
+        mapFactory.map.simulateClick([40.8518, 14.2681]);
+
+        expect(logger.infoCalls.find(c => c.message === "map.empty_tap.noop")).toBeDefined();
+        expect(logger.infoCalls.find(c => c.message === "map.empty_tap.start")).toBeUndefined();
+        expect(mapFactory.map.lastPopup).toBeUndefined();
+    });
+
+    it("uses the area's __poi__ layer minZoom instead of the default when present", () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const logger = new StubLogger();
+
+        setLogger(logger);
+
+        // visible: false so renderLayerViews skips instantiating a real PoiLayerView
+        // (it always uses the real Leaflet factory, which StubMap can't satisfy);
+        // poiMinZoom() only needs to find the layer config, not render it.
+        const poiLayer = new GeoLayer({ id: "__poi__", name: "POI", type: "__poi__", url: null, visible: false, style: { minZoom: 14 } });
+        const area = { ...fakeArea, layers: [poiLayer] };
+
+        const view = new DetailView(
+            root,
+            new StubActions(),
+            area as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory: new StubWidgetFactory(),
+            }
+        );
+
+        view.render();
+        mapFactory.map.setZoom(15);
+        mapFactory.map.simulateClick([40.8518, 14.2681]);
+
+        // zoom 15 is below the default 18 but above this area's configured minZoom of 14
+        expect(logger.infoCalls.find(c => c.message === "map.empty_tap.start")).toBeDefined();
+        expect(mapFactory.map.lastPopup).toBeDefined();
     });
 
     it("dismisses empty-space callout on second tap outside", () => {
@@ -177,6 +240,7 @@ describe("DetailView", () => {
         );
 
         view.render();
+        mapFactory.map.setZoom(18);
         mapFactory.map.simulateClick([40.8518, 14.2681]);
         const popup = mapFactory.map.lastPopup!;
 
@@ -206,6 +270,7 @@ describe("DetailView", () => {
         );
 
         view.render();
+        mapFactory.map.setZoom(18);
 
         // PoiLayerView.render() always uses the real Leaflet-backed factory (not the
         // injected one), so it can't be exercised against StubMap in a unit test.
