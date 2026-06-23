@@ -146,4 +146,38 @@ describe("EmptyCalloutWidget", () => {
             expect(img.src).not.toContain("solid_bookmark.svg");
         });
     });
+
+    describe("delete button", () => {
+        it("shows no delete button when onDeleteRequested is not provided", () => {
+            const widget = new EmptyCalloutWidget({ latLng });
+            const el = widget.render();
+            expect(el.querySelector(".callout-delete-btn")).toBeNull();
+        });
+
+        it("shows delete button when onDeleteRequested is provided", () => {
+            const widget = new EmptyCalloutWidget({ latLng, onDeleteRequested: vi.fn() });
+            const el = widget.render();
+            const img = el.querySelector<HTMLImageElement>(".callout-delete-icon");
+            expect(img?.src).toContain("delete.svg");
+        });
+
+        it("fires onDeleteRequested when clicked", () => {
+            const onDeleteRequested = vi.fn();
+            const widget = new EmptyCalloutWidget({ latLng, onDeleteRequested });
+            const el = widget.render();
+            (el.querySelector(".callout-delete-btn") as HTMLButtonElement).click();
+            expect(onDeleteRequested).toHaveBeenCalledOnce();
+        });
+
+        it("takes priority over the bookmark toggle when both are provided", () => {
+            const widget = new EmptyCalloutWidget({
+                latLng,
+                onDeleteRequested: vi.fn(),
+                onBookmarkToggled: vi.fn(),
+            });
+            const el = widget.render();
+            expect(el.querySelector(".callout-delete-btn")).not.toBeNull();
+            expect(el.querySelector(".callout-bookmark-btn")).toBeNull();
+        });
+    });
 });

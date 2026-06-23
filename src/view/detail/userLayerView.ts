@@ -194,7 +194,6 @@ export class UserLayerView extends LayerView {
         const radius = this.effectiveRadius(this._map.getZoom());
         const ring = this.createRingMarker(leafletLatLng, radius, stars);
         ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
-        ring.onContextMenu(() => this.deleteMarker(lon, lat));
         if (this._visible) ring.addTo(this._map);
         this._markers[idx].ring = ring;
     }
@@ -239,13 +238,11 @@ export class UserLayerView extends LayerView {
         if (bookmarked) {
             const ring = this.createBookmarkRingMarker(leafletLatLng, radius);
             ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
-            ring.onContextMenu(() => this.deleteMarker(lon, lat));
             if (this._visible) ring.addTo(this._map);
             this._markers[idx].ring = ring;
         } else if (stars !== undefined) {
             const ring = this.createRingMarker(leafletLatLng, radius, stars);
             ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
-            ring.onContextMenu(() => this.deleteMarker(lon, lat));
             if (this._visible) ring.addTo(this._map);
             this._markers[idx].ring = ring;
         } else {
@@ -267,7 +264,6 @@ export class UserLayerView extends LayerView {
             weight: 0,
         });
 
-        handle.onContextMenu(() => this.deleteMarker(lon, lat));
         handle.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
 
         if (this._visible) {
@@ -278,12 +274,10 @@ export class UserLayerView extends LayerView {
         if (bookmarked) {
             ring = this.createBookmarkRingMarker(leafletLatLng, radius);
             ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
-            ring.onContextMenu(() => this.deleteMarker(lon, lat));
             if (this._visible) ring.addTo(this._map);
         } else if (stars !== undefined) {
             ring = this.createRingMarker(leafletLatLng, radius, stars);
             ring.onClick(() => this._onMarkerTapped?.([lat, lon], stars));
-            ring.onContextMenu(() => this.deleteMarker(lon, lat));
             if (this._visible) ring.addTo(this._map);
         }
 

@@ -360,4 +360,48 @@ describe("DetailView", () => {
 
         expect(createObjectURL).not.toHaveBeenCalled();
     });
+
+    it("deletes an existing user point via the callout's delete button", async () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const layerFactory = new StubLayerFactory();
+        const logger = new StubLogger();
+        const store = new StubUserPointsStore();
+        store.setPoints([
+            { type: "Feature", geometry: { type: "Point", coordinates: [14.2681, 40.8518] }, properties: {} },
+        ]);
+
+        setLogger(logger);
+
+        const view = new DetailView(
+            root,
+            new StubActions(),
+            fakeAreaWithUser as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory,
+                widgetFactory: new StubWidgetFactory(),
+                userPointsStore: store,
+            }
+        );
+
+        view.render();
+        await Promise.resolve(); // user layer getPoints resolves
+        await Promise.resolve(); // .then → rebuildLayersWidget fires
+
+        expect(layerFactory.markers.length).toBe(1);
+        layerFactory.markers[0].clickHandler?.();
+
+        const popup = mapFactory.map.lastPopup!;
+        const deleteBtn = popup.element.querySelector(".callout-delete-btn") as HTMLButtonElement | null;
+        expect(deleteBtn).not.toBeNull();
+        expect(popup.element.querySelector(".callout-bookmark-btn")).toBeNull();
+
+        deleteBtn!.click();
+
+        expect(layerFactory.markers[0].removeCalled).toBe(true);
+        expect(popup.removed).toBe(true);
+        expect(logger.infoCalls.find(c => c.message === "user_layer.marker_delete.end")).toBeDefined();
+    });
 });

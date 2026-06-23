@@ -140,47 +140,6 @@ class LeafletMapHandle implements MapHandle {
         return () => this._map.off("click", listener);
     }
 
-    onContextMenu(handler: (latLng: [number, number]) => void): () => void {
-        const listener = (e: L.LeafletMouseEvent) => handler([e.latlng.lat, e.latlng.lng]);
-        this._map.on("contextmenu", listener);
-        return () => this._map.off("contextmenu", listener);
-    }
-
-    onLongPress(handler: (latLng: [number, number], pressure: number) => void): () => void {
-        let timer: ReturnType<typeof setTimeout> | undefined;
-        let downLatLng: [number, number] | undefined;
-        let downPressure = 0.5;
-
-        const onDown = (e: L.LeafletMouseEvent) => {
-            downLatLng = [e.latlng.lat, e.latlng.lng];
-            const pe = e.originalEvent as PointerEvent;
-            downPressure = typeof pe.pressure === "number" && pe.pressure > 0 ? pe.pressure : 0.5;
-            timer = setTimeout(() => {
-                if (downLatLng) {
-                    handler(downLatLng, downPressure);
-                }
-                downLatLng = undefined;
-            }, 600);
-        };
-
-        const cancel = () => {
-            clearTimeout(timer);
-            timer = undefined;
-            downLatLng = undefined;
-        };
-
-        this._map.on("mousedown", onDown);
-        this._map.on("mousemove", cancel);
-        this._map.on("mouseup", cancel);
-
-        return () => {
-            this._map.off("mousedown", onDown);
-            this._map.off("mousemove", cancel);
-            this._map.off("mouseup", cancel);
-            clearTimeout(timer);
-        };
-    }
-
     setCursor(cursor: string): void {
         this._map.getContainer().style.cursor = cursor;
     }
@@ -443,13 +402,6 @@ class LeafletClickableMapLayerHandle
 
     onClick(handler: () => void): void {
         this._marker.on("click", (e: L.LeafletEvent) => {
-            L.DomEvent.stopPropagation(e as L.LeafletMouseEvent);
-            handler();
-        });
-    }
-
-    onContextMenu(handler: () => void): void {
-        this._marker.on("contextmenu", (e: L.LeafletEvent) => {
             L.DomEvent.stopPropagation(e as L.LeafletMouseEvent);
             handler();
         });

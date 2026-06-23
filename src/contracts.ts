@@ -88,8 +88,6 @@ export interface MapHandle {
     latLngToContainerPoint(latLng: [number, number]): [number, number];
     containerPointToLatLng(point: [number, number]): [number, number];
     onClick(handler: (latLng: [number, number]) => void): () => void;
-    onContextMenu(handler: (latLng: [number, number]) => void): () => void;
-    onLongPress(handler: (latLng: [number, number], pressure: number) => void): () => void;
     setCursor(cursor: string): void;
     onMouseDown(handler: (latLng: [number, number]) => void): () => void;
     onMouseMove(handler: (latLng: [number, number]) => void): () => void;
@@ -192,7 +190,6 @@ export interface DraggableMarkerHandle extends MapLayerHandle {
 
 export interface ClickableMapLayerHandle extends MapLayerHandle {
     onClick: (handler: () => void) => void;
-    onContextMenu: (handler: () => void) => void;
     setRadius(r: number): void;
 }
 
