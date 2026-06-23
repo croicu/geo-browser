@@ -42,7 +42,7 @@ export class StubMap implements MapHandle {
     public removeCalled = false;
     private _zoom = 8;
     private readonly _container = document.createElement("div");
-    private _clickHandler?: (latLng: [number, number]) => void;
+    private readonly _clickHandlers: ((latLng: [number, number]) => void)[] = [];
     private _moveEndHandler?: () => void;
     private readonly _zoomHandlers: ((zoom: number) => void)[] = [];
 
@@ -72,8 +72,11 @@ export class StubMap implements MapHandle {
     }
 
     onClick(handler: (latLng: [number, number]) => void): () => void {
-        this._clickHandler = handler;
-        return () => { this._clickHandler = undefined; };
+        this._clickHandlers.push(handler);
+        return () => {
+            const idx = this._clickHandlers.indexOf(handler);
+            if (idx >= 0) { this._clickHandlers.splice(idx, 1); }
+        };
     }
 
     getContainer(): HTMLElement {
@@ -127,32 +130,12 @@ latLngToContainerPoint(_latLng: [number, number]): [number, number] {
         return [0, 0];
     }
 
-    private _contextMenuHandler?: (latLng: [number, number]) => void;
-    private _longPressHandler?: (latLng: [number, number], pressure: number) => void;
     public lastPopup?: StubMapPopupHandle;
-
-    onContextMenu(handler: (latLng: [number, number]) => void): () => void {
-        this._contextMenuHandler = handler;
-        return () => { this._contextMenuHandler = undefined; };
-    }
-
-    onLongPress(handler: (latLng: [number, number], pressure: number) => void): () => void {
-        this._longPressHandler = handler;
-        return () => { this._longPressHandler = undefined; };
-    }
 
     createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle {
         const popup = new StubMapPopupHandle(latLng, element);
         this.lastPopup = popup;
         return popup;
-    }
-
-    simulateContextMenu(latLng: [number, number]): void {
-        this._contextMenuHandler?.(latLng);
-    }
-
-    simulateLongPress(latLng: [number, number], pressure = 0.5): void {
-        this._longPressHandler?.(latLng, pressure);
     }
 
     simulateZoom(zoom: number): void {
@@ -161,7 +144,7 @@ latLngToContainerPoint(_latLng: [number, number]): [number, number] {
     }
 
     simulateClick(latLng: [number, number]): void {
-        this._clickHandler?.(latLng);
+        for (const h of [...this._clickHandlers]) { h(latLng); }
     }
 
     simulateMoveEnd(): void {
@@ -206,10 +189,6 @@ export class StubMarker implements ClickableMapLayerHandle {
 
     onClick(handler: () => void): void {
         this.clickHandler = handler;
-    }
-
-    onContextMenu(_handler: () => void): void {
-        // no-op in stub
     }
 
     setRadius(r: number): void {

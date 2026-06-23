@@ -57,6 +57,20 @@
       "maxRadiusPx": 512,
       "liveMapRadiusPx": 640,
       "manifestUrl": "./areas/seattle/manifest.json"
+    },
+    {
+      "id": "stockholm",
+      "name": "Stockholm",
+      "bbox": [
+        18.022019226966336,
+        59.297853109032935,
+        18.129896614626773,
+        59.345878213144985
+      ],
+      "minRadiusPx": 32,
+      "maxRadiusPx": 512,
+      "liveMapRadiusPx": 640,
+      "manifestUrl": "./areas/stockholm/manifest.json"
     }
   ]
 }

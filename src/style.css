@@ -734,7 +734,8 @@ body,
     gap: 8px;
 }
 
-.callout-bookmark-btn {
+.callout-bookmark-btn,
+.callout-delete-btn {
     background: none;
     border: none;
     cursor: pointer;
@@ -743,7 +744,8 @@ body,
     line-height: 0;
 }
 
-.callout-bookmark-icon {
+.callout-bookmark-icon,
+.callout-delete-icon {
     width: 22px;
     height: 22px;
     display: block;

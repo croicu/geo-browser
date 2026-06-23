@@ -10,6 +10,7 @@ export interface EmptyCalloutWidgetOptions {
     isBookmarked?: boolean;
     onStarSelected?: (stars: StarCount) => void;
     onBookmarkToggled?: (bookmarked: boolean) => void;
+    onDeleteRequested?: () => void;
 }
 
 export class EmptyCalloutWidget {
@@ -23,7 +24,7 @@ export class EmptyCalloutWidget {
         const log = getLogger();
         log.info("empty_callout.render.start");
 
-        const { latLng, showCoords, showMapLinks, existingStars, isBookmarked, onStarSelected, onBookmarkToggled } = this._options;
+        const { latLng, showCoords, showMapLinks, existingStars, isBookmarked, onStarSelected, onBookmarkToggled, onDeleteRequested } = this._options;
 
         const lat = latLng[0].toFixed(4);
         const lng = latLng[1].toFixed(4);
@@ -62,12 +63,14 @@ export class EmptyCalloutWidget {
         }
 
         const starRow = this.buildStarRow(existingStars, onStarSelected);
-        if (starRow !== null || onBookmarkToggled !== undefined) {
+        if (starRow !== null || onBookmarkToggled !== undefined || onDeleteRequested !== undefined) {
             root.appendChild(document.createElement("br"));
             const bottomRow = document.createElement("div");
             bottomRow.className = "callout-bottom-row";
             if (starRow) bottomRow.appendChild(starRow);
-            if (onBookmarkToggled !== undefined) {
+            if (onDeleteRequested !== undefined) {
+                bottomRow.appendChild(this.buildDeleteButton(onDeleteRequested));
+            } else if (onBookmarkToggled !== undefined) {
                 bottomRow.appendChild(this.buildBookmarkToggle(isBookmarked ?? false, onBookmarkToggled));
             }
             root.appendChild(bottomRow);
@@ -97,6 +100,25 @@ export class EmptyCalloutWidget {
             active = !active;
             img.src = active ? "/icons/solid_bookmark.svg" : "/icons/bookmark.svg";
             onBookmarkToggled(active);
+        });
+
+        return btn;
+    }
+
+    private buildDeleteButton(onDeleteRequested: () => void): HTMLElement {
+        const log = getLogger();
+        const btn = document.createElement("button");
+        btn.className = "callout-delete-btn";
+
+        const img = document.createElement("img");
+        img.className = "callout-delete-icon";
+        img.alt = "Delete";
+        img.src = "/icons/delete.svg";
+        btn.appendChild(img);
+
+        btn.addEventListener("click", () => {
+            log.info("empty_callout.delete.click");
+            onDeleteRequested();
         });
 
         return btn;

@@ -26,6 +26,8 @@ import type { StarCount } from "./starRatingControl";
 import { Context } from "../../runtime/context";
 import { GeoLayer } from "../../catalog/layer";
 
+const POI_MIN_ZOOM_DEFAULT = 16;
+
 export interface DetailViewServices {
     mapFactory?: MapFactory;
     layerFactory?: LayerFactory;
@@ -83,8 +85,6 @@ export class DetailView implements View {
     private _pendingBookmark = false;
 
     private _clickCleanup?: () => void;
-    private _contextMenuCleanup?: () => void;
-    private _longPressCleanup?: () => void;
     private _moveEndCleanup?: () => void;
     private _zoomCleanup?: () => void;
     private _minZoom = 0;
@@ -159,8 +159,6 @@ export class DetailView implements View {
             this._summaryWidget = summaryWidget;
             this._layersWidget = layersWidget;
             this._clickCleanup = map.onClick(latLng => this.onMapClick(latLng));
-            this._contextMenuCleanup = map.onContextMenu(latLng => this.onUserPoint(latLng, 0.5));
-            this._longPressCleanup = map.onLongPress((latLng, pressure) => this.onUserPoint(latLng, pressure));
 
             if (this._geoLocation) {
                 const geoWidget = new GeoLocationWidget(
@@ -233,12 +231,6 @@ export class DetailView implements View {
 
             this._clickCleanup?.();
             this._clickCleanup = undefined;
-
-            this._contextMenuCleanup?.();
-            this._contextMenuCleanup = undefined;
-
-            this._longPressCleanup?.();
-            this._longPressCleanup = undefined;
 
             this._moveEndCleanup?.();
             this._moveEndCleanup = undefined;
@@ -810,14 +802,33 @@ export class DetailView implements View {
 
     private onMapClick(latLng: [number, number]): void {
         const log = getLogger();
+        const poiView = this._layerViews.get("__poi__");
+        if (poiView instanceof PoiLayerView && poiView.hasActivePopup) {
+            // PoiLayerView's own map click handler (registered after this one)
+            // closes its popup; this click should only dismiss it, not also
+            // open the user-point callout underneath.
+            log.info("map.poi_popup.dismiss_only");
+            return;
+        }
         if (this._emptySpacePopup) {
             log.info("map.empty_tap.dismiss");
             this.closeEmptySpacePopup();
             return;
         }
+        const zoom = this._map?.getZoom();
+        const minZoom = this.poiMinZoom();
+        if (zoom !== undefined && zoom < minZoom) {
+            log.info("map.empty_tap.noop", { zoom, minZoom });
+            return;
+        }
         log.info("map.empty_tap.start", { lat: latLng[0], lng: latLng[1] });
         this.openStarCallout(latLng);
         log.info("map.empty_tap.end");
+    }
+
+    private poiMinZoom(): number {
+        const poiLayer = this._area.layers.find(l => l.type === "__poi__");
+        return poiLayer?.style?.minZoom ?? POI_MIN_ZOOM_DEFAULT;
     }
 
     private openStarCallout(latLng: [number, number]): void {
@@ -918,6 +929,12 @@ export class DetailView implements View {
             latLng,
             showCoords: true,
             showMapLinks: true,
+            onDeleteRequested: () => {
+                log.info("user_layer.marker_delete.start", { lat: latLng[0], lng: latLng[1] });
+                this._userLayerView?.removePoint(latLng);
+                this.closeEmptySpacePopup();
+                log.info("user_layer.marker_delete.end");
+            },
         };
 
         if (stars !== undefined) {
@@ -928,17 +945,6 @@ export class DetailView implements View {
                 void this.doRateExistingUserPoint(latLng, selectedStars, point?.bookmarked ?? false);
                 this.closeEmptySpacePopup();
                 log.info("user_layer.marker_rate.end");
-            };
-            opts.isBookmarked = point?.bookmarked ?? false;
-            opts.onBookmarkToggled = bookmarked => {
-                log.info("user_layer.marker_bookmark_toggled", { lat: latLng[0], lng: latLng[1], bookmarked });
-                if (bookmarked) {
-                    void this._userPointsStore?.setBookmarked?.(this._area.id, latLng[1], latLng[0], true);
-                    this._userLayerView?.addMarkerBookmark(latLng, true);
-                } else {
-                    this._userLayerView?.removePoint(latLng);
-                }
-                this.closeEmptySpacePopup();
             };
         }
 
