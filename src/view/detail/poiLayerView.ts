@@ -62,6 +62,10 @@ export class PoiLayerView extends LayerView {
         return this._features;
     }
 
+    get hasActivePopup(): boolean {
+        return this._activePopup !== undefined;
+    }
+
     async render(): Promise<void> {
         this._features = await this.collectFeatures();
         const features = this._features;

@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DetailView } from "../../../src/view/detail/detailView";
 import type { UserPointsStore } from "../../../src/contracts";
+import { GeoLayer } from "../../../src/catalog/layer";
+import { PoiLayerView } from "../../../src/view/detail/poiLayerView";
 import { StubActions } from "../../stubs/stubActions";
 import { StubLogger } from "../../stubs/stubLogger";
 import { StubLayerFactory, StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories";
@@ -182,6 +184,52 @@ describe("DetailView", () => {
 
         expect(popup.removed).toBe(true);
         expect(logger.infoCalls.find(c => c.message === "map.empty_tap.dismiss")).toBeDefined();
+    });
+
+    it("dismisses an open POI popup on next map click without opening the user-point callout", () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const logger = new StubLogger();
+
+        setLogger(logger);
+
+        const view = new DetailView(
+            root,
+            new StubActions(),
+            fakeArea as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory: new StubWidgetFactory(),
+            }
+        );
+
+        view.render();
+
+        // PoiLayerView.render() always uses the real Leaflet-backed factory (not the
+        // injected one), so it can't be exercised against StubMap in a unit test.
+        // Construct it directly (without calling render()) and poke its private
+        // popup field to simulate "a POI popup is currently open" — this is the
+        // condition DetailView.onMapClick must react to.
+        const poiLayer = new GeoLayer({ id: "__poi__", name: "POI", type: "__poi__", url: null, visible: true });
+        const poiView = new PoiLayerView(mapFactory.map, poiLayer, [], new StubLayerFactory());
+        (poiView as any)._activePopup = mapFactory.map.createPopup([40.8518, 14.2681], document.createElement("div"));
+        const poiPopup = mapFactory.map.lastPopup!;
+
+        (view as any)._layerViews.set("__poi__", poiView);
+
+        (view as any).onMapClick([40.9000, 14.3000]);
+
+        expect(logger.infoCalls.find(c => c.message === "map.poi_popup.dismiss_only")).toBeDefined();
+        expect(logger.infoCalls.find(c => c.message === "map.empty_tap.start")).toBeUndefined();
+        expect(poiPopup.removed).toBe(false); // dismissal of the actual popup is PoiLayerView's own click handler's job
+
+        (poiView as any)._activePopup = undefined;
+        (view as any).onMapClick([40.9000, 14.3000]);
+
+        expect(logger.infoCalls.find(c => c.message === "map.empty_tap.start")).toBeDefined();
+        expect(mapFactory.map.lastPopup).not.toBe(poiPopup);
     });
 
     it("navigates to summary when bbox pans off screen", () => {

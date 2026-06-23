@@ -810,6 +810,14 @@ export class DetailView implements View {
 
     private onMapClick(latLng: [number, number]): void {
         const log = getLogger();
+        const poiView = this._layerViews.get("__poi__");
+        if (poiView instanceof PoiLayerView && poiView.hasActivePopup) {
+            // PoiLayerView's own map click handler (registered after this one)
+            // closes its popup; this click should only dismiss it, not also
+            // open the user-point callout underneath.
+            log.info("map.poi_popup.dismiss_only");
+            return;
+        }
         if (this._emptySpacePopup) {
             log.info("map.empty_tap.dismiss");
             this.closeEmptySpacePopup();

@@ -42,7 +42,7 @@ export class StubMap implements MapHandle {
     public removeCalled = false;
     private _zoom = 8;
     private readonly _container = document.createElement("div");
-    private _clickHandler?: (latLng: [number, number]) => void;
+    private readonly _clickHandlers: ((latLng: [number, number]) => void)[] = [];
     private _moveEndHandler?: () => void;
     private readonly _zoomHandlers: ((zoom: number) => void)[] = [];
 
@@ -72,8 +72,11 @@ export class StubMap implements MapHandle {
     }
 
     onClick(handler: (latLng: [number, number]) => void): () => void {
-        this._clickHandler = handler;
-        return () => { this._clickHandler = undefined; };
+        this._clickHandlers.push(handler);
+        return () => {
+            const idx = this._clickHandlers.indexOf(handler);
+            if (idx >= 0) { this._clickHandlers.splice(idx, 1); }
+        };
     }
 
     getContainer(): HTMLElement {
@@ -161,7 +164,7 @@ latLngToContainerPoint(_latLng: [number, number]): [number, number] {
     }
 
     simulateClick(latLng: [number, number]): void {
-        this._clickHandler?.(latLng);
+        for (const h of [...this._clickHandlers]) { h(latLng); }
     }
 
     simulateMoveEnd(): void {
