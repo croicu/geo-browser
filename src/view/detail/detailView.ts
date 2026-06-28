@@ -183,23 +183,21 @@ export class DetailView implements View {
             imageOverlay.render();
             this._imageOverlayWidget = imageOverlay;
 
-            const searchLayer = this._area.layers.find(l => l.type === "__search__");
-            if (searchLayer) {
-                const searchLayerView = new SearchLayerView(
-                    map,
-                    this._layerFactory,
-                    searchLayer.style?.color ?? "#00007f",
-                    (latLng, displayName) => this.onSearchMarkerTap(latLng, displayName)
-                );
-                this._searchLayerView = searchLayerView;
+            const searchLayer = this._area.layers.find(l => l.type === "__search__") ?? this.synthesizeSearchLayer();
+            const searchLayerView = new SearchLayerView(
+                map,
+                this._layerFactory,
+                searchLayer.style?.color ?? "#00007f",
+                (latLng, displayName) => this.onSearchMarkerTap(latLng, displayName)
+            );
+            this._searchLayerView = searchLayerView;
 
-                const searchWidget = this._widgetFactory.createSearchControl(
-                    this._area.bbox,
-                    (latLng, displayName) => this.onSearchResultSelected(latLng, displayName)
-                );
-                searchWidget.addTo(map);
-                this._searchWidget = searchWidget;
-            }
+            const searchWidget = this._widgetFactory.createSearchControl(
+                this._area.bbox,
+                (latLng, displayName) => this.onSearchResultSelected(latLng, displayName)
+            );
+            searchWidget.addTo(map);
+            this._searchWidget = searchWidget;
         }
 
         this.renderLayerViews();
@@ -735,6 +733,21 @@ export class DetailView implements View {
 
         log.info("user_layer.poi_snap", { dist: best.dist, name: best.feature.name });
         return poiBakedToProperties(best.feature);
+    }
+
+    private synthesizeSearchLayer(): GeoLayer {
+        getLogger().warning("search_layer.synthesize", {
+            reason: "__search__ layer missing from manifest — synthesizing defaults",
+            areaId: this._area.id,
+        });
+        return new GeoLayer({
+            id: "__search__",
+            name: "Search Results",
+            type: "__search__",
+            url: null,
+            visible: false,
+            style: { opacity: 0.3, color: "#00007f" },
+        });
     }
 
     private async synthesizeUserLayerView(): Promise<void> {

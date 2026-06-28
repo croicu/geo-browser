@@ -127,6 +127,35 @@ describe("DetailView", () => {
         expect(root.querySelectorAll(".detail-map").length).toBe(1);
     });
 
+    it("synthesizes the search control when the manifest has no __search__ layer", () => {
+        const root = document.createElement("div");
+        const mapFactory = new StubMapFactory();
+        const widgetFactory = new StubWidgetFactory();
+        const logger = new StubLogger();
+
+        setLogger(logger);
+
+        // fakeArea.layers is [] — no __search__ layer, same as an area created
+        // by geo-builder's AddArea pipeline, which has no knowledge of __search__.
+        const view = new DetailView(
+            root,
+            new StubActions(),
+            fakeArea as any,
+            fakeState as any,
+            {
+                mapFactory,
+                layerFactory: new StubLayerFactory(),
+                widgetFactory,
+            }
+        );
+
+        view.render();
+
+        expect(widgetFactory.lastSearchControl).toBeDefined();
+        expect(widgetFactory.lastSearchControl?.addedTo).toBe(mapFactory.map);
+        expect(logger.warningCalls.find(c => c.message === "search_layer.synthesize")).toBeDefined();
+    });
+
     it("opens empty-space callout on map click", () => {
         const root = document.createElement("div");
         const mapFactory = new StubMapFactory();

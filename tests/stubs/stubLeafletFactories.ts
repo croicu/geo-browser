@@ -405,10 +405,14 @@ export class StubWidgetFactory implements WidgetFactory {
         return handle;
     }
 
+    public lastSearchControl?: StubWidget;
+
     createSearchControl(
         _bbox: [number, number, number, number],
         _onResult: (latLng: [number, number], displayName: string) => void
     ): WidgetHandle {
-        return new StubWidget();
+        const widget = new StubWidget();
+        this.lastSearchControl = widget;
+        return widget;
     }
 }
