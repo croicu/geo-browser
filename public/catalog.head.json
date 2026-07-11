@@ -1,4 +1,4 @@
 {
   "version": 1,
-  "catalogUrl": "./catalog.json"
+  "catalogUrl": "https://geo-places.croicu.com/catalog.json"
 }
