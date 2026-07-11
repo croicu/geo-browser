@@ -17,6 +17,7 @@ export class Context {
     private readonly _mode: Mode;
     private readonly _debug: boolean;
     private readonly _design: boolean;
+    private readonly _assetsBase: string | undefined;
     private readonly _initialCenter?: LatLng;
     private readonly _initialZoom?: number;
 
@@ -46,6 +47,8 @@ export class Context {
         this._debug = this.hasValue(params, "debug");
         this._design = this.hasValue(params, "design");
         this._mode = this._design ? "design" : "browse";
+        const assetsBaseRaw = params.get("assetsBase");
+        this._assetsBase = assetsBaseRaw ? this.normalizeBase(assetsBaseRaw) : undefined;
 
         if (this._design) {
             this._initialCenter = this.parseCenter(params);
@@ -125,7 +128,7 @@ export class Context {
     }
 
     private getCatalogOptions(): ResolveCatalogUrlOptions {
-        const base = import.meta.env.BASE_URL;
+        const base = this._assetsBase ?? import.meta.env.BASE_URL;
 
         if (this._debug) {
             return {
@@ -134,7 +137,18 @@ export class Context {
             };
         }
 
+        if (this._assetsBase) {
+            return {
+                headUrl: `${base}catalog.head.json`,
+                fallbackUrl: `${base}catalog.json`,
+            };
+        }
+
         return {};
+    }
+
+    private normalizeBase(base: string): string {
+        return base.endsWith("/") ? base : `${base}/`;
     }
 
     get initialCenter(): LatLng | undefined {
