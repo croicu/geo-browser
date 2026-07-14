@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "geo-browser",
+      "name": "geo-browser (local)",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:5173",
@@ -10,7 +10,7 @@
       "sourceMaps": true
     },
     {
-      "name": "geo-browser (debug)",
+      "name": "geo-browser (local, debug)",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:5173?debug=1",
@@ -24,6 +24,22 @@
       "port": 9222,
       "webRoot": "${workspaceFolder}",
       "urlFilter": "http://localhost:5173/*"
+    },
+    {
+      "name": "geo-browser (production)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://geo-browser.croicu.com",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
+    },
+    {
+      "name": "geo-browser (production, debug)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://geo-browser.croicu.com?debug=1",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
     },
     {
       "name": "Vitest (run)",

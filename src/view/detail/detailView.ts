@@ -13,6 +13,8 @@ import { PoiLayerView } from "./poiLayerView";
 import type { PoiBakedFeature } from "./poiLayerView";
 import { UserLayerView } from "./userLayerView";
 import { VoidLayerView } from "./voidLayerView";
+import { VoidVariantResolver } from "./voidVariantResolver";
+import type { VoidVariant } from "./voidVariantResolver";
 import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
 import { GeoLocationWidget } from "./geoLocationWidget";
@@ -418,40 +420,58 @@ export class DetailView implements View {
             break;
         }
 
-        // Void layer: recreate when first made visible or when sibling visibility changes.
-        for (const layer of this._area.layers) {
-            if (layer.type !== "__void__") continue;
+        this.renderVoidLayer();
+        this.syncPoiSourceVisibility();
+    }
 
-            const visible = this._state.isLayerVisible(layer.id, layer.isVisible());
-            const existing = this._layerViews.get(layer.id) as VoidLayerView | undefined;
-            const visibleSources = this._area.layers.filter(
-                l => !l.isVirtual() && this._state.isLayerVisible(l.id, l.isVisible())
-            );
+    // Single synthesized "Mundane" toggle regardless of how many precomputed __void__*
+    // variants exist in the manifest. Toggle on/off state is always keyed by the bare
+    // "__void__" id; VoidVariantResolver picks which variant actually renders based on
+    // which non-virtual sibling layers are currently visible. See
+    // docs/LAYERS.md for the full contract.
+    private renderVoidLayer(): void {
+        const map = this._map;
+        if (!map) return;
 
-            if (visible) {
-                if (!existing || existing.sourcesChanged(visibleSources)) {
-                    if (existing) {
-                        existing.destroy();
-                        this._layerViews.delete(layer.id);
-                    }
-                    const voidView = new VoidLayerView(
-                        this._map,
-                        layer,
-                        visibleSources,
-                        this._area.bbox,
-                        new DefaultLeafletLayerFactory()
-                    );
-                    this._layerViews.set(layer.id, voidView);
-                    void voidView.render();
-                }
-            } else if (existing) {
+        const voidLayers = this._area.layers.filter(l => l.type === "__void__");
+        const bareVoid = voidLayers.find(l => l.id === VoidVariantResolver.BARE_ID);
+        if (!bareVoid) return;
+
+        const visible = this._state.isLayerVisible(bareVoid.id, bareVoid.isVisible());
+        const existing = this._layerViews.get(VoidVariantResolver.BARE_ID) as VoidLayerView | undefined;
+
+        if (!visible) {
+            if (existing) {
                 existing.destroy();
-                this._layerViews.delete(layer.id);
+                this._layerViews.delete(VoidVariantResolver.BARE_ID);
             }
-            break;
+            return;
         }
 
-        this.syncPoiSourceVisibility();
+        const sourceLayers = this._area.layers.filter(l => l.isSourceData());
+        const allSourceIds = sourceLayers.map(l => l.id);
+        const visibleIds = sourceLayers
+            .filter(l => this._state.isLayerVisible(l.id, l.isVisible()))
+            .map(l => l.id);
+
+        const variants: VoidVariant[] = [];
+        for (const layer of voidLayers) {
+            const effectiveIds = VoidVariantResolver.parseEffectiveIds(layer.id, allSourceIds);
+            if (effectiveIds) {
+                variants.push({ id: layer.id, effectiveIds });
+            }
+        }
+
+        const resolvedId = VoidVariantResolver.resolve(variants, visibleIds);
+        const resolvedLayer = voidLayers.find(l => l.id === resolvedId);
+
+        if (resolvedLayer && resolvedLayer.id !== existing?.layerId) {
+            existing?.destroy();
+            const voidView = new VoidLayerView(map, resolvedLayer, new DefaultLeafletLayerFactory());
+            this._layerViews.set(VoidVariantResolver.BARE_ID, voidView);
+            void voidView.render();
+            this.rebuildLayersWidget();
+        }
     }
 
     private syncPoiSourceVisibility(): void {
@@ -460,7 +480,7 @@ export class DetailView implements View {
             return;
         }
         for (const layer of this._area.layers) {
-            if (!layer.isVirtual()) {
+            if (layer.isSourceData()) {
                 poiView.setSourceVisible(
                     layer.id,
                     this._state.isLayerVisible(layer.id, layer.isVisible())
@@ -793,12 +813,7 @@ export class DetailView implements View {
             sourceLayers.push(this._userGeoLayer);
         }
 
-        const visibleLayers = sourceLayers.filter(layer => {
-            if (layer.type === "__user__") return hasUserPoints;
-            if (layer.type === "__poi__") return layer.isVisible();
-            if (layer.type === "__search__") return false;
-            return true;
-        });
+        const visibleLayers = this.buildFlyoutLayers(sourceLayers, hasUserPoints);
 
         const layersWidget = new LayerSelectionWidget(
             this._map,
@@ -811,6 +826,54 @@ export class DetailView implements View {
         );
         layersWidget.render();
         this._layersWidget = layersWidget;
+    }
+
+    private buildFlyoutLayers(sourceLayers: readonly GeoLayer[], hasUserPoints: boolean): GeoLayer[] {
+        const result: GeoLayer[] = [];
+
+        for (const layer of sourceLayers) {
+            if (layer.type === "__user__") {
+                if (hasUserPoints) result.push(layer);
+                continue;
+            }
+            if (layer.type === "__poi__") {
+                if (layer.isVisible()) result.push(layer);
+                continue;
+            }
+            if (layer.type === "__search__") {
+                continue;
+            }
+            if (layer.type === "__void__") {
+                if (layer.id !== VoidVariantResolver.BARE_ID) continue;
+                result.push(this.buildVoidFlyoutLayer(layer, sourceLayers));
+                continue;
+            }
+            result.push(layer);
+        }
+
+        return result;
+    }
+
+    // The flyout always shows the bare "__void__" id (so the toggle's on/off state and
+    // click callback stay keyed correctly), but its displayed name/style should follow
+    // whichever precomputed variant is currently active (e.g. "No Restaurants, Food").
+    private buildVoidFlyoutLayer(bareVoid: GeoLayer, sourceLayers: readonly GeoLayer[]): GeoLayer {
+        const activeVoidView = this._layerViews.get(VoidVariantResolver.BARE_ID);
+        const activeId = activeVoidView instanceof VoidLayerView ? activeVoidView.layerId : undefined;
+        const active = activeId ? sourceLayers.find(l => l.id === activeId) : undefined;
+
+        if (!active || active.id === bareVoid.id) {
+            return bareVoid;
+        }
+
+        return new GeoLayer({
+            id: bareVoid.id,
+            name: active.name ?? bareVoid.name,
+            type: "__void__",
+            url: bareVoid.url,
+            visible: bareVoid.isVisible(),
+            style: active.style ?? bareVoid.style,
+        });
     }
 
     private onMapClick(latLng: [number, number]): void {

@@ -54,7 +54,7 @@ export class PoiLayerView extends LayerView {
         options?: PoiLayerViewOptions
     ) {
         super(map, layer, layerFactory);
-        this._sourceLayers = sourceLayers.filter(l => !l.isVirtual());
+        this._sourceLayers = sourceLayers.filter(l => l.isSourceData());
         this._options = options ?? {};
     }
 
