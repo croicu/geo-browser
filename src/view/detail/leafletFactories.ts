@@ -39,6 +39,7 @@ import type {
     MapFactory,
     MapPopupHandle,
     PositionMarkerHandle,
+    PolygonOptions,
     RectangleHandle,
     RectangleOptions,
     WidgetFactory,
@@ -225,6 +226,10 @@ class LeafletMapHandle implements MapHandle {
                 popup.remove();
             },
         };
+    }
+
+    createPane(name: string): HTMLElement {
+        return this._map.getPane(name) ?? this._map.createPane(name);
     }
 
     unwrap(): L.Map {
@@ -463,6 +468,20 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
             interactive: false,
         });
         return new LeafletRectangleHandle(rect);
+    }
+
+    createGeoJsonPolygon(geojson: unknown, options: PolygonOptions): MapLayerHandle {
+        const layer = L.geoJSON(geojson as GeoJSON.GeoJsonObject, {
+            pane: options.pane,
+            style: () => ({
+                color: options.fillColor,
+                weight: 0,
+                fillColor: options.fillColor,
+                fillOpacity: options.fillOpacity,
+            }),
+            interactive: false,
+        });
+        return new LeafletMapLayerHandle(layer);
     }
 
     createAccuracyRing(latLng: [number, number], radiusMeters: number): AccuracyRingHandle {

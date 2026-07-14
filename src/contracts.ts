@@ -101,6 +101,7 @@ export interface MapHandle {
     getBounds(): { sw: [number, number]; ne: [number, number] };
     createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle;
     addControl(position: ControlPosition, element: HTMLElement): WidgetHandle;
+    createPane(name: string): HTMLElement;
 }
 
 export interface GeoDataService {
@@ -220,6 +221,12 @@ export interface HeatLayerOptions {
     gradient?: Record<number, string>;
 }
 
+export interface PolygonOptions {
+    fillColor: string;
+    fillOpacity: number;
+    pane?: string;
+}
+
 export interface LayerFactory {
     createLayerGroup(): MapLayerHandle;
     createCircleMarker(
@@ -239,6 +246,7 @@ export interface LayerFactory {
         bounds: [[number, number], [number, number]],
         options: RectangleOptions
     ): RectangleHandle;
+    createGeoJsonPolygon(geojson: unknown, options: PolygonOptions): MapLayerHandle;
     createDraggableMarker(latLng: [number, number]): DraggableMarkerHandle;
     createPositionMarker(latLng: [number, number]): PositionMarkerHandle;
     createAccuracyRing(latLng: [number, number], radiusMeters: number): AccuracyRingHandle;

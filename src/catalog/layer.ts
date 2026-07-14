@@ -49,6 +49,13 @@ export class GeoLayer {
         return this._data.type === "heatmap";
     }
 
+    // True for real acquired data layers ("heatmap"/"circle"), as opposed to virtual/derived
+    // layer types (__poi__, __void__, __user__, __search__) — distinct from isVirtual(), since
+    // a virtual type can still carry a url (e.g. precomputed __void__ variants).
+    isSourceData(): boolean {
+        return this._data.type === "heatmap" || this._data.type === "circle";
+    }
+
     isLoaded(): boolean {
         return this._payload !== undefined;
     }

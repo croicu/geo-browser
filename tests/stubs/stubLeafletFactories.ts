@@ -11,6 +11,7 @@ import type {
     MapHandle,
     MapLayerHandle,
     MapPopupHandle,
+    PolygonOptions,
     PositionMarkerHandle,
     RectangleHandle,
     RectangleOptions,
@@ -136,6 +137,17 @@ latLngToContainerPoint(_latLng: [number, number]): [number, number] {
         const popup = new StubMapPopupHandle(latLng, element);
         this.lastPopup = popup;
         return popup;
+    }
+
+    private readonly _panes = new Map<string, HTMLElement>();
+
+    createPane(name: string): HTMLElement {
+        let pane = this._panes.get(name);
+        if (!pane) {
+            pane = document.createElement("div");
+            this._panes.set(name, pane);
+        }
+        return pane;
     }
 
     simulateZoom(zoom: number): void {
@@ -264,6 +276,13 @@ export class StubLayerFactory implements LayerFactory {
         const rect = new StubRectangle();
         this.rectangles.push(rect);
         return rect;
+    }
+
+    public readonly polygons: { geojson: unknown; options: PolygonOptions }[] = [];
+
+    createGeoJsonPolygon(geojson: unknown, options: PolygonOptions): MapLayerHandle {
+        this.polygons.push({ geojson, options });
+        return new StubMapLayerHandle();
     }
 
     createDraggableMarker(_latLng: [number, number]): DraggableMarkerHandle {

@@ -272,19 +272,25 @@ All relative URLs in the payload are resolved relative to the file that contains
 
 ### Design mode: overriding the asset origin
 
-In design mode the browser fetches geo assets from geo-builder's local static server, which runs on a different port than the Vite dev server. Pass the asset origin as a query parameter when opening the WebView:
+In design mode the browser fetches geo assets from a different origin than the Vite dev server (e.g. geo-places.croicu.com in production, or a local static server during development). The asset base URL is configured via `assetsUrl` in `settings.json` and appended as a query parameter when geo-builder opens the WebView:
+
+```json
+// settings.json
+{ "settings": { "assetsUrl": "http://localhost:5174/" } }
+```
 
 ```
-http://localhost:5173/?design=1&assetsBase=http://localhost:8000/
+// resulting designUrl (geo-builder appends assetsBase automatically)
+http://localhost:5173/?design=1&assetsBase=http://localhost:5174/
 ```
 
-| Parameter | Example | Description |
-|-----------|---------|-------------|
-| `assetsBase` | `http://localhost:8000/` | Base URL for all geo asset fetches. Overrides `import.meta.env.BASE_URL` for the entire loading chain (head → catalog → manifests → geojson). Trailing slash is optional — the browser normalizes it. |
+| settings.json field | Query parameter | Example value | Description |
+|---------------------|-----------------|---------------|-------------|
+| `assetsUrl` | `assetsBase` | `http://localhost:5174/` | Base URL for all geo asset fetches. Overrides the default origin for the entire loading chain (head → catalog → manifests → geojson). Trailing slash is optional — the browser normalizes it. |
 
-When `assetsBase` is set the browser resolves the head URL as `{assetsBase}catalog.head.json` (or the debug variant when `?debug` is also present). All downstream URLs inherit the override automatically because they are resolved relative to the head URL via the standard `resolveUrl` chain.
+When `assetsUrl` is set the browser resolves the head URL as `{assetsUrl}catalog.head.json` (or the debug variant when `?debug` is also present). All downstream URLs inherit the override automatically because they are resolved relative to the head URL via the standard `resolveUrl` chain.
 
-Omit `assetsBase` in production — the browser defaults to the Vite/CDN origin.
+Omit `assetsUrl` from settings.json in production builds — the browser defaults to its own origin.
 
 > **Open issue for geo-browser team:** in local dev (`localhost:5173` via Vite), catalog updates produced by geo-builder were observed not to reach the browser at all. Root-caused on the geo-builder side by instrumenting every WebView2 request (`host.py`'s `WebResourceRequested` filter intercepts 100% of outgoing requests, logged via `DataPipeline._resolve`): across a full session there was **no request whatsoever** for `catalog.head.json` / `catalog.head.debug.json` / `catalog.json` / `catalog.debug.json` — confirming the page never issued the fetch described in the loading chain above. Manually copying the updated file into geo-browser's `public/` folder made it appear immediately. This points to the catalog being loaded via a static import (`import catalog from './public/catalog.json'`) rather than a runtime `fetch()` against the loading chain — bundlers inline statically-imported JSON at build/transform time, independent of dev vs. production and independent of host/port. If a static import is in fact happening anywhere in the catalog-loading path, it should be replaced with a runtime fetch per the contract above, otherwise rebuilt catalogs will never be reflected without a manual file copy.
 
@@ -402,22 +408,27 @@ A reserved builtin virtual layer with `url: null`. The browser derives its conte
 
 #### `__void__` layer
 
-A reserved builtin virtual layer with `url: null`. The browser populates it at runtime with a density grid derived from loaded feature data — no builder content, pure client-side computation. Always present in the manifest; `visible` is always `false` on write (the builder never has data to show).
+A reserved builtin virtual layer type. Precomputed by the builder (`VoidWorker`) and shipped as
+one or more ordinary `Layer` entries with a real `url`, distinguished by an `id` naming
+convention (`__void__`, `__void__2__`, `__void__2_3__`, ...) — see `docs/LAYERS.md` for the full
+contract. The browser resolves which variant to show at runtime and renders it as a plain
+GeoJSON polygon; no client-side geometry computation. `visible` is always `false` on write —
+the browser decides when to show it and which variant backs the single "Mundane" toggle.
 
 ```jsonc
 {
-  "id": "__void__",
-  "name": "Mundane",
+  "id": "__void__2__",
+  "name": "No Restaurants, Food",
   "type": "__void__",
-  "url": null,
+  "url": "./void/layer-2.geojson",
   "visible": false,
-  "style": { "opacity": 0.9, "color": "#000000" }
+  "style": { "opacity": 0.80, "color": "#4a5568" }
 }
 ```
 
 #### `__search__` layer
 
-A reserved builtin virtual layer with `url: null`. Holds ephemeral search results (Nominatim) rendered as temporary markers. The browser synthesizes this layer at runtime if it is absent from the manifest — geo-builder pipelines are not required to emit it. `visible` is always `false` on write; the layer is never shown until a search result arrives.
+A reserved builtin virtual layer with `url: null`. Holds ephemeral search results (Nominatim) rendered as temporary markers. `geo-builder` now emits this layer by default (`SearchWorker`, a static stub copied from `template.json` — no computation). The browser should still synthesize it at runtime if it is absent from the manifest (older/hand-authored data), since emission was never a hard requirement. `visible` is always `false` on write; the layer is never shown until a search result arrives.
 
 ```jsonc
 {

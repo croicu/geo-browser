@@ -57,17 +57,30 @@
         }
       }
     },
+    "layerGeometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "__void__ only (bare entry). Affects the computed shape, not presentation — kept separate from style for that reason.",
+      "properties": {
+        "radius": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Exclusion radius in meters for source points without their own radius_m. Applies to every __void__* variant computed for the area."
+        }
+      }
+    },
     "layer": {
       "type": "object",
       "required": ["id", "type", "visible"],
       "additionalProperties": false,
       "properties": {
         "id":          { "type": "string" },
-        "type":        { "type": "string", "enum": ["heatmap", "circle", "__poi__", "__void__", "__user__"] },
+        "type":        { "type": "string", "enum": ["heatmap", "circle", "__poi__", "__void__", "__user__", "__search__"] },
         "url":         { "$ref": "#/definitions/nullableString" },
         "visible":     { "type": "boolean" },
         "name":        { "type": "string" },
         "style":       { "$ref": "#/definitions/layerStyle" },
+        "geometry":    { "$ref": "#/definitions/layerGeometry" },
         "acquisition": { "$ref": "#/definitions/layerAcquisition" }
       }
     }
