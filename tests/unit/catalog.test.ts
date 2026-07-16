@@ -123,11 +123,12 @@ describe("GeoCatalog", () => {
             .toBe("http://localhost:3000/areas/napoli/manifest.json");
     });
 
-    it("includes all areas when groupFilter is null (default)", async () => {
+    it("includes ungrouped/other areas but hides debug-tagged ones when groupFilter is null (default)", async () => {
         const payload: Catalog = {
             ...catalogPayload,
             areas: [
                 { ...catalogPayload.areas[0], id: "ungrouped" },
+                { ...catalogPayload.areas[0], id: "europe-area", group: ["Europe"] },
                 { ...catalogPayload.areas[0], id: "debug-area", group: ["debug"] },
             ],
         };
@@ -141,7 +142,7 @@ describe("GeoCatalog", () => {
 
         await catalog.load();
 
-        expect(catalog.areas.map((a) => a.id)).toEqual(["ungrouped", "debug-area"]);
+        expect(catalog.areas.map((a) => a.id)).toEqual(["ungrouped", "europe-area"]);
     });
 
     it("filters areas by groupFilter", async () => {
@@ -164,6 +165,27 @@ describe("GeoCatalog", () => {
         await catalog.load();
 
         expect(catalog.areas.map((a) => a.id)).toEqual(["debug-area"]);
+    });
+
+    it("hides debug-tagged areas under an unrelated explicit filter", async () => {
+        const payload: Catalog = {
+            ...catalogPayload,
+            areas: [
+                { ...catalogPayload.areas[0], id: "europe-area", group: ["Europe"] },
+                { ...catalogPayload.areas[0], id: "debug-and-europe", group: ["debug", "Europe"] },
+            ],
+        };
+
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+            ok: true,
+            json: async () => payload,
+        }));
+
+        const catalog = new GeoCatalog("/catalog.json", { groupFilter: ["Europe"] });
+
+        await catalog.load();
+
+        expect(catalog.areas.map((a) => a.id)).toEqual(["europe-area"]);
     });
 
     it("requires all filter groups to match (AND, not OR)", async () => {
