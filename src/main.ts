@@ -10,7 +10,7 @@ const context = Context.Instance;
 context.setStorage(new LocalStorageService());
 
 const catalogUrl = await context.resolveCatalogUrl();
-const catalog = new GeoCatalog(catalogUrl);
+const catalog = new GeoCatalog(catalogUrl, { groupFilter: context.groupFilter });
 
 const controller = new Controller({
     catalog,

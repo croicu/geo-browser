@@ -31,7 +31,7 @@ describe("GeoCatalog", () => {
     });
 
     it("starts unloaded", () => {
-        const catalog = new GeoCatalog("/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.json");
 
         expect(catalog.isLoaded()).toBe(false);
     });
@@ -42,7 +42,7 @@ describe("GeoCatalog", () => {
             json: async () => catalogPayload,
         }));
 
-        const catalog = new GeoCatalog("/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.json");
 
         await catalog.load();
 
@@ -60,12 +60,12 @@ describe("GeoCatalog", () => {
 
         vi.stubGlobal("fetch", fetchMock);
 
-        const catalog = new GeoCatalog("/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.json");
 
         await catalog.load();
 
         expect(fetchMock).toHaveBeenCalledWith(
-            "/catalog.debug.json",
+            "/catalog.json",
             { cache: "no-store" },
         );
     });
@@ -78,7 +78,7 @@ describe("GeoCatalog", () => {
 
         vi.stubGlobal("fetch", fetchMock);
 
-        const catalog = new GeoCatalog("/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.json");
 
         await catalog.load();
         await catalog.load();
@@ -91,13 +91,13 @@ describe("GeoCatalog", () => {
             ok: false,
         }));
 
-        const catalog = new GeoCatalog("/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.json");
 
         await expect(catalog.load()).rejects.toThrow();
     });
 
     it("throws if accessing areas before load", () => {
-        const catalog = new GeoCatalog("/catalog.debug.json");
+        const catalog = new GeoCatalog("/catalog.json");
 
         expect(() => catalog.areas).toThrow();
     });
@@ -121,5 +121,69 @@ describe("GeoCatalog", () => {
 
         expect(catalog.areas[0].summary.manifestUrl)
             .toBe("http://localhost:3000/areas/napoli/manifest.json");
+    });
+
+    it("includes all areas when groupFilter is null (default)", async () => {
+        const payload: Catalog = {
+            ...catalogPayload,
+            areas: [
+                { ...catalogPayload.areas[0], id: "ungrouped" },
+                { ...catalogPayload.areas[0], id: "debug-area", group: ["debug"] },
+            ],
+        };
+
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+            ok: true,
+            json: async () => payload,
+        }));
+
+        const catalog = new GeoCatalog("/catalog.json");
+
+        await catalog.load();
+
+        expect(catalog.areas.map((a) => a.id)).toEqual(["ungrouped", "debug-area"]);
+    });
+
+    it("filters areas by groupFilter", async () => {
+        const payload: Catalog = {
+            ...catalogPayload,
+            areas: [
+                { ...catalogPayload.areas[0], id: "ungrouped" },
+                { ...catalogPayload.areas[0], id: "debug-area", group: ["debug"] },
+                { ...catalogPayload.areas[0], id: "europe-area", group: ["Europe"] },
+            ],
+        };
+
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+            ok: true,
+            json: async () => payload,
+        }));
+
+        const catalog = new GeoCatalog("/catalog.json", { groupFilter: ["debug"] });
+
+        await catalog.load();
+
+        expect(catalog.areas.map((a) => a.id)).toEqual(["debug-area"]);
+    });
+
+    it("requires all filter groups to match (AND, not OR)", async () => {
+        const payload: Catalog = {
+            ...catalogPayload,
+            areas: [
+                { ...catalogPayload.areas[0], id: "debug-only", group: ["debug"] },
+                { ...catalogPayload.areas[0], id: "debug-and-europe", group: ["debug", "Europe"] },
+            ],
+        };
+
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+            ok: true,
+            json: async () => payload,
+        }));
+
+        const catalog = new GeoCatalog("/catalog.json", { groupFilter: ["debug", "Europe"] });
+
+        await catalog.load();
+
+        expect(catalog.areas.map((a) => a.id)).toEqual(["debug-and-europe"]);
     });
 });

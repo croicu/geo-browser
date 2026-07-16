@@ -2,16 +2,23 @@ import { fail } from "../errors";
 import type { AreaSummary, Catalog } from "../protocols";
 import { getLogger } from "../services";
 import { GeoArea } from "./area";
+import { matchesGroupFilter } from "./groupFilter";
 import { resolveUrl } from "./loader";
+
+export interface GeoCatalogOptions {
+    groupFilter?: string[] | null;
+}
 
 export class GeoCatalog {
     private readonly catalogUrl: string;
+    private readonly _groupFilter: string[] | null;
     _version?: number;
     _createdAt?: string;
     private _areas: GeoArea[] | undefined;
 
-    constructor(catalogUrl: string) {
+    constructor(catalogUrl: string, options: GeoCatalogOptions = {}) {
         this.catalogUrl = catalogUrl;
+        this._groupFilter = options.groupFilter ?? null;
     }
 
     async load(): Promise<void> {
@@ -36,7 +43,18 @@ export class GeoCatalog {
 
         this._version = catalog.version;
         this._createdAt = catalog.createdAt;
-        this._areas = catalog.areas.map((area: AreaSummary) => {
+
+        const matchedAreas = catalog.areas.filter((area) => matchesGroupFilter(area.group, this._groupFilter));
+
+        if (this._groupFilter !== null) {
+            getLogger().info("catalog.group_filter.applied", {
+                groupFilter: this._groupFilter,
+                totalAreas: catalog.areas.length,
+                matchedAreas: matchedAreas.length,
+            });
+        }
+
+        this._areas = matchedAreas.map((area: AreaSummary) => {
             const manifestUrl = resolveUrl(area.manifestUrl, this.catalogUrl);
             return new GeoArea({ ...area, manifestUrl });
         });

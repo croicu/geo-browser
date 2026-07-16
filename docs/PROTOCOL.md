@@ -68,10 +68,14 @@ export interface AreaSummary {
     liveMapRadiusPx: number;
     manifestUrl: string;
     images: AreaImage[];
+    group?: string[];  // omitted/empty = ungrouped; "debug" is a convention, not a special type
 }
 ```
 
 AreaSummary must be self-sufficient for summary rendering. Summary mode should not need extra fetches.
+
+`group` drives client-side area filtering in Summary via `?group=` / `?debug=` query params — see
+`docs/MESSAGING.md` for the query-string contract and `Context.groupFilter`.
 
 ## AreaImage
 
