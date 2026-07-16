@@ -56,6 +56,43 @@ describe("Context", () => {
 
         expect(context.mode).toBe("browse");
     });
+
+    it("defaults groupFilter to null with no query string", () => {
+        setSearch("");
+
+        expect(Context.Instance.groupFilter).toBeNull();
+    });
+
+    it("parses a single ?group value", () => {
+        setSearch("?group=debug");
+
+        expect(Context.Instance.groupFilter).toEqual(["debug"]);
+    });
+
+    it("parses a comma-separated ?group value", () => {
+        setSearch("?group=debug,Europe");
+
+        expect(Context.Instance.groupFilter).toEqual(["debug", "Europe"]);
+    });
+
+    it("falls back to [\"debug\"] when only ?debug is present", () => {
+        setSearch("?debug=1");
+
+        expect(Context.Instance.groupFilter).toEqual(["debug"]);
+    });
+
+    it("prefers ?group over ?debug when both are present", () => {
+        setSearch("?group=Europe&debug=1");
+
+        expect(Context.Instance.groupFilter).toEqual(["Europe"]);
+        expect(Context.Instance.debug).toBe(true);
+    });
+
+    it("ignores empty ?group value", () => {
+        setSearch("?group=");
+
+        expect(Context.Instance.groupFilter).toBeNull();
+    });
 });
 
 function setSearch(search: string): void {

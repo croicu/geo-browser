@@ -16,6 +16,7 @@ export class Context {
 
     private readonly _mode: Mode;
     private readonly _debug: boolean;
+    private readonly _groupFilter: string[] | null;
     private readonly _design: boolean;
     private readonly _assetsBase: string | undefined;
     private readonly _initialCenter?: LatLng;
@@ -45,6 +46,7 @@ export class Context {
         const params = new URLSearchParams(window.location.search);
 
         this._debug = this.hasValue(params, "debug");
+        this._groupFilter = this.parseGroupFilter(params);
         this._design = this.hasValue(params, "design");
         this._mode = this._design ? "design" : "browse";
         const assetsBaseRaw = params.get("assetsBase");
@@ -107,6 +109,10 @@ export class Context {
         return this._debug;
     }
 
+    public get groupFilter(): string[] | null {
+        return this._groupFilter;
+    }
+
     public get design(): boolean {
         return this._design;
     }
@@ -128,23 +134,14 @@ export class Context {
     }
 
     private getCatalogOptions(): ResolveCatalogUrlOptions {
-        const base = this._assetsBase ?? import.meta.env.BASE_URL;
-
-        if (this._debug) {
-            return {
-                headUrl: `${base}catalog.head.debug.json`,
-                fallbackUrl: `${base}catalog.debug.json`,
-            };
+        if (!this._assetsBase) {
+            return {};
         }
 
-        if (this._assetsBase) {
-            return {
-                headUrl: `${base}catalog.head.json`,
-                fallbackUrl: `${base}catalog.json`,
-            };
-        }
-
-        return {};
+        return {
+            headUrl: `${this._assetsBase}catalog.head.json`,
+            fallbackUrl: `${this._assetsBase}catalog.json`,
+        };
     }
 
     private normalizeBase(base: string): string {
@@ -184,5 +181,23 @@ export class Context {
         const value = params.get(name);
 
         return value !== null && value !== "";
+    }
+
+    // "debug" -> ["debug"] is a back-compat shorthand, only applied when ?group= is absent.
+    // ?group=<present>, in any form, wins outright and disables the shorthand -- it is never
+    // merged in, so ?debug=1&group=Europe yields ["Europe"], not ["debug", "Europe"].
+    // Context.debug (the diagnostics flag) is unaffected either way -- see docs/MESSAGING.md.
+    private parseGroupFilter(params: URLSearchParams): string[] | null {
+        const groupRaw = params.get("group");
+        if (groupRaw) {
+            const groups = groupRaw.split(",").map((g) => g.trim()).filter((g) => g.length > 0);
+            return groups.length > 0 ? groups : null;
+        }
+
+        if (this.hasValue(params, "debug")) {
+            return ["debug"];
+        }
+
+        return null;
     }
 }

@@ -17,6 +17,9 @@ export interface AreaSummary {
     manifestUrl: string;
 
     images: AreaImage[];
+
+    // Omitted or empty = ungrouped. "debug" is a convention, not a special type.
+    group?: string[];
 }
 
 export interface AreaImage {
