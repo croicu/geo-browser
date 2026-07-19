@@ -132,7 +132,9 @@ Supported current types:
 "circle"    — circle markers
 "heatmap"   — density heatmap
 "__poi__"   — virtual; tappable POI markers derived from hasDetails features
-"__user__"  — virtual; user trip points stored locally
+"__user__"  — virtual; user trip points, stored via UserPointsStore (localStorage or gateway)
+"__void__"  — virtual; precomputed "Mundane" fog-of-war polygon (see docs/LAYERS.md)
+"__search__"— virtual; ephemeral Nominatim search result marker
 ```
 
 ## LayerStyle

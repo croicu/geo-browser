@@ -1,9 +1,10 @@
 # Void Layer — Move to Precompute (geo-builder ↔ geo-browser contract)
 
-Status: **implemented on the geo-builder side** (`VoidWorker`, see `tasks/void_layer_precompute.md`
-for the algorithm). Still a proposal on the `geo-browser` side — the runtime changes in the
-"`geo-browser` runtime changes" section below (minimal-superset resolution, deleting the live
-grid computation) have not shipped there yet. Kept in sync the same way `MESSAGING.md` is.
+Status: **shipped on both sides.** `geo-builder` precomputes the polygons (`VoidWorker`, see
+`tasks/void_layer_precompute.md` for the algorithm); `geo-browser` renders them via the runtime
+changes in the "`geo-browser` runtime changes" section below (minimal-superset resolution via
+`VoidVariantResolver`, live grid computation deleted). See CLAUDE.md's "Mundane (Void) Layer"
+completed-task entry. Kept in sync the same way `MESSAGING.md` is.
 
 geo-builder's v1 coverage (see "What geo-builder produces" below): the bare `__void__` plus one
 `__void__<id>__` per non-virtual point-bearing layer — no curated multi-layer combinations yet
@@ -13,7 +14,7 @@ marching squares (no external geometry library) — full design detail in
 
 ## Why
 
-`__void__` is currently computed live in `geo-browser` as a progressive rectangle grid
+`__void__` used to be computed live in `geo-browser` as a progressive rectangle grid
 (`voidLayerView.ts` / `voidSpatialIndex.ts`, see `tasks/void_layer.md`). Two problems surfaced
 testing against real data (Berlin, 35,642 points):
 
@@ -76,11 +77,12 @@ for `__void__2__`, `"Mundane"` for the bare `__void__`).
 Algorithm is `geo-builder`'s choice (marching squares / isoline extraction + simplification is
 the expected approach) — the contract here is only the output shape, not the method.
 
-## `geo-browser` runtime changes (once this ships)
+## `geo-browser` runtime changes (shipped)
 
-- Delete: the live grid computation (`VoidLayerView`'s `compute`/`runPass`, `VoidSpatialIndex`,
-  the dedicated canvas pane/renderer plumbing added in `contracts.ts` / `leafletFactories.ts`
-  for this). All of it becomes dead code under this design.
+- Deleted: the live grid computation (`VoidLayerView`'s old `compute`/`runPass`, `VoidSpatialIndex`,
+  the dedicated canvas pane/renderer plumbing that had been added in `contracts.ts` / `leafletFactories.ts`
+  for it). None of it remains — `VoidLayerView` is now a thin fetch-and-render of a precomputed
+  GeoJSON polygon.
 - All manifest layers matching `__void__` or `__void__<ids>__` are treated as one internal
   group, never surfaced individually in the layer flyout — only a single synthesized "Mundane"
   toggle appears, same as today's single entry.

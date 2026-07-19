@@ -72,8 +72,9 @@ more objectively, and fully offline.
 
 - Working heatmap live at geo-browser.croicu.com
 - Naples fully mapped and validated
-- GPS location tracking live (blue dot, accuracy ring, follow toggle)
+- GPS location tracking live (blue dot with heading cone, accuracy ring, follow toggle)
 - Auto-navigation between overview and street-level view
-- PWA (installable, offline-capable) in progress
+- PWA (installable, offline-capable) — shipped
+- Trip recording (star ratings, bookmarks), place search, and paste-a-screenshot overlay with automatic GPS alignment also shipped
 - Prague, Dresden, Berlin next
 - Open source, MIT license: github.com/croicu/geo-browser

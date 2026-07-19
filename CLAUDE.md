@@ -228,6 +228,7 @@ Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-fr
 Every new feature must have:
 - **Logging**: action start, action end, and action error at key decision points (follow the Logging Rules above).
 - **Unit tests**: cover the core state/logic. Extract pure state classes from Leaflet/DOM code so they can be tested without importing Leaflet.
+- **Public docs**: before commit, update every doc a future implementer or user would expect to reflect this feature — `README.md` if it's user-facing, and any affected file under `docs/` (`IMPLEMENTATION.md`, `MANIFEST.md`, `MESSAGING.md`, `PROTOCOL.md`, `LAYERS.md`, `ROADMAP.md`, etc.). A feature isn't done while it leaves docs describing the old behavior, or silent on the new one. See [Documentation Audit](tasks/docs_audit.md) for the kind of drift this prevents.
 
 ## Testing Rules
 
@@ -384,6 +385,32 @@ Enriched feature shape:
 }
 ```
 
+**POI callout actions** (`PoiLayerView.buildPoiBottomRow` in `poiLayerView.ts`, shared `StarRatingControl` widget): the popup's action row is separate from the baked metadata above.
+- Star (1–5): if the tapped POI has no matching `__user__` point yet, selecting a star creates one (`onPoiStarSelected` → `Controller.doAddStarredUserPoint`); if one exists, it re-rates it. Rendered read-only once a rating exists.
+- Bookmark toggle: only shown when there's no existing rating (mutually exclusive with the star control in the same row). Tapping it on an unbookmarked point creates a bookmarked `__user__` point at that location; tapping it again on an already-bookmarked point deletes that point outright (`onPoiBookmarkToggled`, not a plain unset).
+- `EmptyCalloutWidget` (`emptyCalloutWidget.ts`) is the shared callout shell used for both POI popups' bottom row layout and empty-space/existing-point taps — see **User Points / Bookmarks** below.
+
+### Virtual Layers — Ownership Summary
+
+Three reserved `type` values besides `__poi__`, each owned by one `LayerView` subclass, synthesized into the manifest at runtime if `geo-builder` didn't emit one (`DetailView.synthesize*` methods):
+
+| type | View class | File | Backing store |
+|------|-----------|------|----------------|
+| `__user__` | `UserLayerView` | `view/detail/userLayerView.ts` | `UserPointsStore` (DI — `LocalStorageUserPointsStore` in browse mode, `GatewayUserPointsStore` in design mode; see `runtime/userPointsStore.ts`) |
+| `__search__` | `SearchLayerView` | `view/detail/searchLayerView.ts` | none — ephemeral, single in-memory marker, no persistence |
+| `__void__` | `VoidLayerView` | `view/detail/voidLayerView.ts` | precomputed GeoJSON from `geo-builder`; variant picked by `VoidVariantResolver` (see [Mundane (Void) Layer](tasks/void_layer.md), `docs/LAYERS.md`) |
+
+`DetailView` injects the store/service dependencies into each view's constructor (DI, not module imports) and filters these three `type`s out of the regular manifest-driven layer list (`_area.layers.filter(l => l.type !== ...)`) so they don't get double-rendered through the generic layer pipeline.
+
+### User Points / Bookmarks
+
+`__user__` points are end-user trip markers, distinct from the live GPS position (see **Live Location & Heading** below).
+
+- **Creation**: single tap on empty map space opens `EmptyCalloutWidget` (coords + map links + star row + bookmark toggle). Selecting a star, or toggling the bookmark and then dismissing the callout, persists a new point via `UserPointsStore.addPoint`. There is no bare "drop a point" gesture — a point always carries either a rating or a bookmark from creation.
+- **Deletion**: tapping an *existing* point's marker reopens the callout, this time with a delete button (`onDeleteRequested`) in place of the bookmark toggle. Long-press/right-click creation and instant right-click delete were removed — see [Explicit Point Delete](tasks/explicit_point_delete.md).
+- **Bookmark storage**: `bookmarked: true` on the GeoJSON feature's `properties`, alongside `stars` when both are present. Rendered as a ring overlay (`bookmarkColor`, default `#5AB5DA`) that takes visual priority over the star rating ring — a bookmarked point's ring never reflects its stars.
+- **Storage backend**: `LocalStorageUserPointsStore` (key `geo-browser.userPoints.<areaId>`) in browse mode; `GatewayUserPointsStore` (via `AddUserPoint`/`RemoveUserPoint`/`GetUserPoints`) in design mode. Selected by `Context.mode` at composition time, not by the view.
+
 ### Tile Provider
 
 `src/maps/tileProvider.ts` holds the `TileProvider` interface, `osmTileProvider` and `cartoTileProvider` constants, and the module-level `getActiveTileProvider`/`setActiveTileProvider` store (survives map recreations). CARTO Voyager is the default. OSM tiles use the `dark-osm` CSS filter; CARTO tiles do not.
@@ -411,6 +438,15 @@ GeoLocationControl    (bottomright)
 
 Zoom buttons are disabled (`zoomControl: false`).
 
+### Live Location & Heading (GPS Blue Dot)
+
+The blue GPS dot with its heading cone is **not** a manifest layer — it's `GeoLocationWidget` (`view/detail/geoLocationWidget.ts`), a standing `bottomright` control always present in Detail view. Do not confuse it with `__user__` (trip points); they are unrelated features that happen to both render markers.
+
+- **Position**: `Context.geoLocation` (`GeoLocationService`, real impl `BrowserGeoLocationService`) via the browser Geolocation API.
+- **Heading**: `Context.headingService` (`HeadingService`, real impl `BrowserHeadingService`, `runtime/browserHeadingService.ts`) wraps `DeviceOrientationEvent` — `webkitCompassHeading` where available (iOS), else `360 - alpha` for the standards-track `absolute` orientation event.
+- **iOS permission gotcha**: Safari on iOS requires `DeviceOrientationEvent.requestPermission()` to be called from inside a user gesture handler, and only prompts once per session. `GeoLocationWidget.onToggle()` (the "follow me" tap) is that gesture — `_headingPermissionRequested` guards it to fire only once. If heading support is ever wired into a new entry point (e.g. a future destination-cone feature), the permission request must likewise originate from a real click/tap handler, not from `render()`/`watch()` setup, or iOS silently denies it.
+- Both services are constructed directly in `Context`'s constructor (`runtime/context.ts`), not behind `HostService` — they're a Web Platform API boundary, independent of `browse`/`design` mode.
+
 ### Last View Persistence
 
 `geo-browser.lastView` in localStorage stores `{ mode: "summary" | "detail", areaId?: string }`. On startup, `Controller.start()` reads this and reopens the last detail area if it still exists in the catalog, otherwise falls back to summary. `LastViewData` lives in `src/state/geoState.ts`; implemented in `GeoStateStore`.
@@ -428,6 +464,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 ### Check-in chores (include in every feature commit)
 - Set `Status: Done` in the task file.
 - Move the CLAUDE.md entry from `## New Task` to `## Completed Tasks` with a one-line summary.
+- Update `README.md` and any affected `docs/*.md` file so they describe this feature's actual shipped behavior (see the Feature Completeness Rule above) — do this in the same commit, not as a follow-up.
 - Include these file changes in the same commit as the feature code.
 
 
@@ -442,6 +479,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
+- **[Documentation Audit](tasks/docs_audit.md)**: Status: Done. Doc-only pass, no code changes. README: fixed the `__user__` row and "Trip Recording"/"POI Actions" sections to describe the actual tap-callout creation flow (the long-press/right-click gesture they still described was removed by Explicit Point Delete); clarified the GPS blue dot/heading cone is not a manifest layer. CLAUDE.md: added "Virtual Layers — Ownership Summary", "User Points / Bookmarks", and "Live Location & Heading" architecture sections, including the iOS `DeviceOrientationEvent.requestPermission()` user-gesture gotcha. Second pass cross-referenced the full `docs/` directory against this Completed Tasks list and fixed stale "not yet shipped" status headers on the void layer (LAYERS.md, MANIFEST.md — it shipped), a wrong `enhancedColor` default in MESSAGING.md, a missing `stars`/`bookmarked` schema in MANIFEST.md, an incomplete layer-type list in PROTOCOL.md, a stale/incomplete directory tree and missing Void/Search/UserLayerView subsections in IMPLEMENTATION.md, a stale foundation list in ROADMAP.md, and stale "future work" framing for the (shipped) image-overlay feature in OVERVIEW.md and PITCH.md.
 - **[Area Grouping](tasks/area_grouping.md)**: Status: Done. Replaced `catalog.head.debug.json`/`catalog.debug.json` with a single `catalog.json`; `AreaSummary.group?: string[]` drives client-side Summary filtering via `Context.groupFilter` (`?group=a,b`, AND semantics, `?debug=1` back-compat shorthand). `"debug"` is opt-in-only — hidden unless explicitly requested, even under an unrelated `?group=` filter the area also matches. `Context.debug` kept as an independent diagnostics flag (synthetic heading, debug-only toolbar buttons), not replaced by `groupFilter`.
 - **[Mundane (Void) Layer — precompute](tasks/void_layer.md)**: Status: Done. Computation moved to `geo-builder`: precomputed smooth void polygons per area, selected at runtime via an `__void__`/`__void__2__`/`__void__2_3__` naming convention resolved by minimal-superset search (`VoidVariantResolver`). All prior client-side computation deleted (`voidLayerComputer.ts`, `voidSpatialIndex.ts`, canvas-pane/renderer plumbing) — `VoidLayerView` is now a thin fetch-and-render of a `GeoLayer`'s precomputed GeoJSON via new `LayerFactory.createGeoJsonPolygon`. Single synthesized "Mundane" toggle in the flyout regardless of variant count; label follows whichever variant is active. Contract: [docs/LAYERS.md](docs/LAYERS.md); schema in `docs/MANIFEST.md`. Verified in browser against `geo-builder`'s real output for the local `redmond` debug area.
 - **[Explicit Point Delete](tasks/explicit_point_delete.md)**: Status: Done. Removed long-press/right-click silent point creation and instant right-click marker delete; points are created only via single tap + star/bookmark; existing points are deleted via a `delete.svg` button in the tap callout (same slot the bookmark toggle uses on the creation callout).

@@ -23,12 +23,22 @@
 - Auto-navigate detail → summary — zoom out past minZoom returns to summary, preserving map center.
 - POI layer (`__poi__`) — tappable markers from `hasDetails` features; popup with name, amenity, cuisine, address, hours, website, review links (Google Maps, Street View, Yelp, Foursquare, TripAdvisor).
 - Enriched POI markers — `wikipedia`, `wikidata`, `stars`, `outdoor_seating` fields; enhanced ring border (two-element SVG pattern); Wikidata thumbnail image; English Wikipedia via GoToLinkedPage redirect.
-- User trip layer (`__user__`) — long-press/right-click to add points; localStorage + gateway storage; pressure-based HSL color.
-- Image overlay — paste/Google/Apple image sources; 3-DOF editor (translate, scale, opacity); geo-lock pin.
-- Tile provider abstraction — CARTO Voyager default, OSM available; `TileProviderControl` at topright; active provider persists across map recreations.
+- User trip layer (`__user__`) — points created via tap-callout star rating or bookmark toggle (long-press/right-click creation and instant right-click delete removed, see [Explicit Point Delete](../tasks/explicit_point_delete.md)); localStorage + gateway storage; pressure-based HSL color.
+- Image overlay — paste/Google/Apple image sources; 3-DOF editor (translate, scale, opacity); geo-lock pin; 1-DOF anchor pin variant.
+- Blue dot detection — canvas pixel scan auto-aligns a pasted map image to the GPS position; "I feel lucky" manual trigger.
+- Tile provider abstraction — CARTO Voyager default, OSM available; active provider persists across map recreations.
+- Map layer flyout — `MapLayerFlyoutControl` replaced the old `TileProviderControl` + `LayerControl`; single topright control with Map type + (detail-only) Map Details layer list.
 - Last view persistence — `geo-browser.lastView` in localStorage; restores last detail area on startup.
 - Single-tap layer visibility toggle — removed two-tap expand behavior.
-- All interactive controls at topright (tile toggle, back button, image toolbar, layer selector).
+- All interactive controls at topright (map layer flyout, back button, image toolbar), geolocation at bottomright.
+- Nominatim place search (`__search__`) — bounded to area bbox; ephemeral result marker; promote to trip point on tap.
+- Empty-space tap callout — lat/lng + Google/Apple Maps/Street View links; second tap dismisses.
+- User star ratings (1–5) and bookmarks on trip points — ring overlays, mutually exclusive, POI callout can create either directly.
+- User trip data export — GeoJSON download/share from the layer flyout.
+- Void ("Mundane") layer — precomputed in `geo-builder`, minimal-superset variant resolution in `geo-browser`; replaced the earlier live client-side grid computation.
+- Area grouping — `group`-based Summary filtering via `?group=`/`?debug=`; `"debug"` group is opt-in-only.
+- Pan restriction fix — detail view exits to summary when the area bbox is fully off-screen, no `maxBounds` wall.
+- Zoom transition fixes — animated-zoom crash and bounce-back loop at the summary/detail boundary.
 
 ## Recommended Next Branches
 
