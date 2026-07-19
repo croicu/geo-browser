@@ -2,6 +2,7 @@ import type {
     AccuracyRingHandle,
     ClickableMapLayerHandle,
     DesignToolbarButton,
+    DestinationMarkerHandle,
     DraggableMarkerHandle,
     GeoLocationWidgetHandle,
     HeatLayerOptions,
@@ -251,6 +252,8 @@ export class StubLayerFactory implements LayerFactory {
     public readonly draggableMarkers: StubDraggableMarker[] = [];
     public readonly positionMarkers: StubPositionMarkerHandle[] = [];
     public readonly accuracyRings: StubAccuracyRingHandle[] = [];
+    public readonly destinationMarkers: StubDestinationMarkerHandle[] = [];
+    public readonly destinationCones: StubPositionMarkerHandle[] = [];
 
     createLayerGroup(): MapLayerHandle {
         return new StubMapLayerHandle();
@@ -301,6 +304,36 @@ export class StubLayerFactory implements LayerFactory {
         const ring = new StubAccuracyRingHandle();
         this.accuracyRings.push(ring);
         return ring;
+    }
+
+    createDestinationMarker(_latLng: [number, number], _pane: string): DestinationMarkerHandle {
+        const marker = new StubDestinationMarkerHandle();
+        this.destinationMarkers.push(marker);
+        return marker;
+    }
+
+    createDestinationCone(_latLng: [number, number], _pane: string): PositionMarkerHandle {
+        const cone = new StubPositionMarkerHandle();
+        this.destinationCones.push(cone);
+        return cone;
+    }
+}
+
+export class StubDestinationMarkerHandle implements DestinationMarkerHandle {
+    public addedTo?: MapHandle;
+    public removed = false;
+    public clickHandler?: () => void;
+
+    addTo(map: MapHandle): void {
+        this.addedTo = map;
+    }
+
+    remove(): void {
+        this.removed = true;
+    }
+
+    onClick(handler: () => void): void {
+        this.clickHandler = handler;
     }
 }
 

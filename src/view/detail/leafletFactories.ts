@@ -33,6 +33,7 @@ import type {
     CircleMarkerOptions,
     ControlPosition,
     DesignToolbarButton,
+    DestinationMarkerHandle,
     DraggableMarkerHandle,
     GeoLocationWidgetHandle,
     LayerFactory,
@@ -363,6 +364,22 @@ class LeafletPositionMarkerHandle implements PositionMarkerHandle {
     }
 }
 
+class LeafletDestinationMarkerHandle extends LeafletMapLayerHandle implements DestinationMarkerHandle {
+    private readonly _marker: L.Marker;
+
+    constructor(marker: L.Marker) {
+        super(marker);
+        this._marker = marker;
+    }
+
+    onClick(handler: () => void): void {
+        this._marker.on("click", (e: L.LeafletEvent) => {
+            L.DomEvent.stopPropagation(e as L.LeafletMouseEvent);
+            handler();
+        });
+    }
+}
+
 class LeafletDraggableMarkerHandle extends LeafletMapLayerHandle implements DraggableMarkerHandle {
     private readonly _marker: L.Marker;
 
@@ -512,6 +529,42 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
             iconAnchor: [40, 40],
         });
         const marker = L.marker(latLng, { icon, interactive: false, keyboard: false });
+        return new LeafletPositionMarkerHandle(marker);
+    }
+
+    // Fixed pin at the destination's lat/lng. Rendered into `pane` (destination-pane, kept
+    // below the default markerPane so it never draws over the blue GPS indicator — see
+    // tasks/destination_marker.md).
+    createDestinationMarker(latLng: [number, number], pane: string): DestinationMarkerHandle {
+        const icon = L.divIcon({
+            className: "",
+            html: `<img src="/icons/destination.svg" width="32" height="32" style="display:block" alt="Destination"/>`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+        });
+        const marker = L.marker(latLng, { icon, pane, keyboard: false });
+        return new LeafletDestinationMarkerHandle(marker);
+    }
+
+    // Same cone shape/rendering as the blue heading cone (createPositionMarker), red instead
+    // of blue and with no center dot — the blue dot already exists via GeoLocationWidget.
+    // Rotation source is bearing math (setHeading(bearingDegrees)), not compass heading, but
+    // the mechanism (rotate an SVG polygon, hide via null) is identical, hence reusing
+    // PositionMarkerHandle rather than a parallel type.
+    createDestinationCone(latLng: [number, number], pane: string): PositionMarkerHandle {
+        const html =
+            `<svg width="80" height="80" viewBox="0 0 80 80" style="overflow:visible;pointer-events:none">` +
+            `<g class="heading-cone" style="visibility:hidden;transform-origin:40px 40px">` +
+            `<polygon points="40,30 27,5 53,5" fill="#ED4231" fill-opacity="0.55" stroke="none"/>` +
+            `</g>` +
+            `</svg>`;
+        const icon = L.divIcon({
+            className: "",
+            html,
+            iconSize: [80, 80],
+            iconAnchor: [40, 40],
+        });
+        const marker = L.marker(latLng, { icon, pane, interactive: false, keyboard: false });
         return new LeafletPositionMarkerHandle(marker);
     }
 

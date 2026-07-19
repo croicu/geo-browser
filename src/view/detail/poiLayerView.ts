@@ -25,6 +25,8 @@ export interface PoiLayerViewOptions {
     onPoiStarSelected?: (latLng: [number, number], stars: StarCount) => void;
     onPoiBookmarkToggled?: (latLng: [number, number]) => void;
     onPopupOpening?: () => void;
+    isDestination?: (latLng: [number, number]) => boolean;
+    onPoiDestinationToggled?: (latLng: [number, number], label: string | undefined) => void;
 }
 
 function isEnhanced(feature: PoiBakedFeature): boolean {
@@ -230,6 +232,9 @@ export class PoiLayerView extends LayerView {
         const row = document.createElement("div");
         row.className = "callout-bottom-row";
 
+        const actions = document.createElement("div");
+        actions.className = "callout-actions-right";
+
         if (existingPoint?.stars !== undefined) {
             row.appendChild(new StarRatingControl({ mode: "readonly", value: existingPoint.stars }).render());
         } else {
@@ -240,9 +245,18 @@ export class PoiLayerView extends LayerView {
 
             if (this._options.onPoiBookmarkToggled) {
                 const isBookmarked = existingPoint?.bookmarked ?? false;
-                row.appendChild(this.buildPoiBookmarkButton(isBookmarked, () => this.onPoiBookmarkClick(feature)));
+                actions.appendChild(this.buildPoiBookmarkButton(isBookmarked, () => this.onPoiBookmarkClick(feature)));
             }
         }
+
+        // Independent of star/bookmark/delete above — a point can be starred/bookmarked
+        // *and* be the destination at the same time.
+        if (this._options.onPoiDestinationToggled) {
+            const isDest = this._options.isDestination?.(feature.latLng) ?? false;
+            actions.appendChild(this.buildPoiDestinationButton(isDest, () => this.onPoiDestinationClick(feature)));
+        }
+
+        if (actions.childElementCount > 0) row.appendChild(actions);
 
         return row;
     }
@@ -260,6 +274,30 @@ export class PoiLayerView extends LayerView {
             onClick();
         });
         return btn;
+    }
+
+    private buildPoiDestinationButton(isDestination: boolean, onClick: () => void): HTMLElement {
+        const btn = document.createElement("button");
+        btn.className = isDestination ? "callout-destination-btn active" : "callout-destination-btn";
+        btn.title = isDestination ? "Remove destination" : "Set as destination";
+        const img = document.createElement("img");
+        img.className = "callout-destination-icon";
+        img.alt = btn.title;
+        img.src = isDestination ? "/icons/remove_destination.svg" : "/icons/destination.svg";
+        btn.appendChild(img);
+        btn.addEventListener("click", () => {
+            getLogger().info("poi.destination_toggle.click", { isDestination });
+            onClick();
+        });
+        return btn;
+    }
+
+    private onPoiDestinationClick(feature: PoiBakedFeature): void {
+        const log = getLogger();
+        log.info("poi.destination_toggle.start", { name: feature.name });
+        this._options.onPoiDestinationToggled?.(feature.latLng, feature.name);
+        this.closePopup();
+        log.info("poi.destination_toggle.end");
     }
 
     private onPoiStarClick(feature: PoiBakedFeature, stars: StarCount): void {

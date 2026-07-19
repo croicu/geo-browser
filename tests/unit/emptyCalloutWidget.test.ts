@@ -180,4 +180,98 @@ describe("EmptyCalloutWidget", () => {
             expect(el.querySelector(".callout-bookmark-btn")).toBeNull();
         });
     });
+
+    describe("destination toggle", () => {
+        it("shows no destination button when onDestinationToggled is not provided", () => {
+            const widget = new EmptyCalloutWidget({ latLng });
+            const el = widget.render();
+            expect(el.querySelector(".callout-destination-btn")).toBeNull();
+        });
+
+        it("shows destination button when onDestinationToggled is provided", () => {
+            const widget = new EmptyCalloutWidget({ latLng, onDestinationToggled: vi.fn() });
+            const el = widget.render();
+            const img = el.querySelector<HTMLImageElement>(".callout-destination-icon");
+            expect(img?.src).toContain("destination.svg");
+        });
+
+        it("is not marked active when isDestination is false", () => {
+            const widget = new EmptyCalloutWidget({ latLng, isDestination: false, onDestinationToggled: vi.fn() });
+            const el = widget.render();
+            expect(el.querySelector(".callout-destination-btn")?.classList.contains("active")).toBe(false);
+        });
+
+        it("is marked active when isDestination is true", () => {
+            const widget = new EmptyCalloutWidget({ latLng, isDestination: true, onDestinationToggled: vi.fn() });
+            const el = widget.render();
+            expect(el.querySelector(".callout-destination-btn")?.classList.contains("active")).toBe(true);
+        });
+
+        it("shows the plain destination icon when isDestination is false", () => {
+            const widget = new EmptyCalloutWidget({ latLng, isDestination: false, onDestinationToggled: vi.fn() });
+            const el = widget.render();
+            const img = el.querySelector<HTMLImageElement>(".callout-destination-icon");
+            expect(img?.src).toContain("/icons/destination.svg");
+            expect(img?.src).not.toContain("remove_destination.svg");
+        });
+
+        it("shows the remove_destination icon when isDestination is true", () => {
+            const widget = new EmptyCalloutWidget({ latLng, isDestination: true, onDestinationToggled: vi.fn() });
+            const el = widget.render();
+            const img = el.querySelector<HTMLImageElement>(".callout-destination-icon");
+            expect(img?.src).toContain("/icons/remove_destination.svg");
+        });
+
+        it("fires onDestinationToggled when clicked", () => {
+            const onDestinationToggled = vi.fn();
+            const widget = new EmptyCalloutWidget({ latLng, onDestinationToggled });
+            const el = widget.render();
+            (el.querySelector(".callout-destination-btn") as HTMLButtonElement).click();
+            expect(onDestinationToggled).toHaveBeenCalledOnce();
+        });
+
+        it("renders independently alongside the delete button (no mutual exclusivity)", () => {
+            const widget = new EmptyCalloutWidget({
+                latLng,
+                onDeleteRequested: vi.fn(),
+                onDestinationToggled: vi.fn(),
+            });
+            const el = widget.render();
+            expect(el.querySelector(".callout-delete-btn")).not.toBeNull();
+            expect(el.querySelector(".callout-destination-btn")).not.toBeNull();
+        });
+
+        it("renders independently alongside the bookmark toggle (no mutual exclusivity)", () => {
+            const widget = new EmptyCalloutWidget({
+                latLng,
+                onBookmarkToggled: vi.fn(),
+                onDestinationToggled: vi.fn(),
+            });
+            const el = widget.render();
+            expect(el.querySelector(".callout-bookmark-btn")).not.toBeNull();
+            expect(el.querySelector(".callout-destination-btn")).not.toBeNull();
+        });
+
+        it("groups bookmark and destination together in the right-aligned actions wrapper", () => {
+            const widget = new EmptyCalloutWidget({
+                latLng,
+                onBookmarkToggled: vi.fn(),
+                onDestinationToggled: vi.fn(),
+            });
+            const el = widget.render();
+            const actions = el.querySelector(".callout-actions-right");
+            expect(actions).not.toBeNull();
+            expect(actions!.querySelector(".callout-bookmark-btn")).not.toBeNull();
+            expect(actions!.querySelector(".callout-destination-btn")).not.toBeNull();
+        });
+
+        it("right-aligns the destination button even with no star row (bare destination pin callout)", () => {
+            const widget = new EmptyCalloutWidget({ latLng, isDestination: true, onDestinationToggled: vi.fn() });
+            const el = widget.render();
+            const actions = el.querySelector(".callout-actions-right");
+            expect(actions).not.toBeNull();
+            expect(actions!.querySelector(".callout-destination-btn")).not.toBeNull();
+            expect(el.querySelector(".star-rating")).toBeNull();
+        });
+    });
 });
