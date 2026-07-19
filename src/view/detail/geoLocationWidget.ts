@@ -33,6 +33,7 @@ export class GeoLocationWidget {
     private _headingPermissionRequested = false;
     private _debugHeading = 0;
     private _debugInterval?: ReturnType<typeof setInterval>;
+    private _positionListeners: Array<(latLng: [number, number] | null) => void> = [];
 
     constructor(
         map: MapHandle,
@@ -169,6 +170,8 @@ export class GeoLocationWidget {
             this._programmaticMove = true;
             this._map.panTo(position.latLng);
         }
+
+        this.notifyPositionListeners(position.latLng);
     }
 
     private tickDebugHeading(): void {
@@ -209,10 +212,27 @@ export class GeoLocationWidget {
         this._positionMarker = undefined;
         this._handle?.setAvailable(false);
         this._handle?.setFollowing(false);
+        this.notifyPositionListeners(null);
     }
 
     getLastPosition(): [number, number] | undefined {
         return this._lastPosition?.latLng;
+    }
+
+    // Passive subscription for other widgets (e.g. DestinationWidget) that need live position
+    // updates but must not start their own GPS watch — this widget owns the single watch.
+    onPositionUpdate(listener: (latLng: [number, number] | null) => void): () => void {
+        this._positionListeners.push(listener);
+        return () => {
+            const idx = this._positionListeners.indexOf(listener);
+            if (idx >= 0) this._positionListeners.splice(idx, 1);
+        };
+    }
+
+    private notifyPositionListeners(latLng: [number, number] | null): void {
+        for (const listener of this._positionListeners) {
+            listener(latLng);
+        }
     }
 
     private onRecovered(): void {

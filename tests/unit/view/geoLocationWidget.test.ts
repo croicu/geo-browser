@@ -355,6 +355,53 @@ describe("GeoLocationWidget", () => {
         expect(factory.lastGeoLocationWidget?.available).toBe(true);
     });
 
+    it("notifies onPositionUpdate listeners with the live position", () => {
+        const map = new StubMap();
+        const service = new StubGeoLocationService();
+        const factory = new StubWidgetFactory();
+
+        const widget = makeWidget(map, service, factory);
+        widget.render();
+
+        const positions: Array<[number, number] | null> = [];
+        widget.onPositionUpdate(latLng => positions.push(latLng));
+        service.simulatePosition([47.674, -122.121]);
+
+        expect(positions).toEqual([[47.674, -122.121]]);
+    });
+
+    it("notifies onPositionUpdate listeners with null on denial", () => {
+        const map = new StubMap();
+        const service = new StubGeoLocationService();
+        const factory = new StubWidgetFactory();
+
+        const widget = makeWidget(map, service, factory);
+        widget.render();
+
+        const positions: Array<[number, number] | null> = [];
+        widget.onPositionUpdate(latLng => positions.push(latLng));
+        service.simulatePosition([47.674, -122.121]);
+        service.simulateDenied();
+
+        expect(positions).toEqual([[47.674, -122.121], null]);
+    });
+
+    it("onPositionUpdate unsubscribe stops further notifications", () => {
+        const map = new StubMap();
+        const service = new StubGeoLocationService();
+        const factory = new StubWidgetFactory();
+
+        const widget = makeWidget(map, service, factory);
+        widget.render();
+
+        const positions: Array<[number, number] | null> = [];
+        const unsubscribe = widget.onPositionUpdate(latLng => positions.push(latLng));
+        unsubscribe();
+        service.simulatePosition([47.674, -122.121]);
+
+        expect(positions).toEqual([]);
+    });
+
     it("stops following when position goes outside bounds", () => {
         const map = new StubMap();
         const service = new StubGeoLocationService();

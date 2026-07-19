@@ -6,6 +6,7 @@ import { PoiLayerView } from "../../../src/view/detail/poiLayerView";
 import { StubActions } from "../../stubs/stubActions";
 import { StubLogger } from "../../stubs/stubLogger";
 import { StubLayerFactory, StubMapFactory, StubWidgetFactory } from "../../stubs/stubLeafletFactories";
+import { StubDestinationStore } from "../../stubs/stubDestinationStore";
 import { setLogger } from "../../../src/services";
 
 class StubUserPointsStore implements UserPointsStore {
@@ -497,5 +498,247 @@ describe("DetailView", () => {
         expect(layerFactory.markers[0].removeCalled).toBe(true);
         expect(popup.removed).toBe(true);
         expect(logger.infoCalls.find(c => c.message === "user_layer.marker_delete.end")).toBeDefined();
+    });
+
+    describe("destination", () => {
+        it("sets a destination via the empty-space callout's destination button", () => {
+            const root = document.createElement("div");
+            const mapFactory = new StubMapFactory();
+            const layerFactory = new StubLayerFactory();
+            const store = new StubDestinationStore();
+
+            setLogger(new StubLogger());
+
+            const view = new DetailView(
+                root,
+                new StubActions(),
+                fakeArea as any,
+                fakeState as any,
+                {
+                    mapFactory,
+                    layerFactory,
+                    widgetFactory: new StubWidgetFactory(),
+                    destinationStore: store,
+                }
+            );
+
+            view.render();
+            mapFactory.map.setZoom(18);
+            mapFactory.map.simulateClick([40.8518, 14.2681]);
+
+            const popup = mapFactory.map.lastPopup!;
+            const destBtn = popup.element.querySelector(".callout-destination-btn") as HTMLButtonElement | null;
+            expect(destBtn).not.toBeNull();
+            expect(destBtn!.classList.contains("active")).toBe(false);
+
+            destBtn!.click();
+
+            expect(store.get()).toEqual({ lat: 40.8518, lng: 14.2681, label: null });
+            expect(layerFactory.destinationMarkers).toHaveLength(1);
+            expect(layerFactory.destinationMarkers[0].removed).toBe(false);
+        });
+
+        it("shows the destination button as active when re-tapping the exact destination coordinates", () => {
+            const root = document.createElement("div");
+            const mapFactory = new StubMapFactory();
+            const layerFactory = new StubLayerFactory();
+            const store = new StubDestinationStore();
+            store.set({ lat: 40.8518, lng: 14.2681 });
+
+            setLogger(new StubLogger());
+
+            const view = new DetailView(
+                root,
+                new StubActions(),
+                fakeArea as any,
+                fakeState as any,
+                {
+                    mapFactory,
+                    layerFactory,
+                    widgetFactory: new StubWidgetFactory(),
+                    destinationStore: store,
+                }
+            );
+
+            view.render();
+            mapFactory.map.setZoom(18);
+            mapFactory.map.simulateClick([40.8518, 14.2681]);
+
+            const popup = mapFactory.map.lastPopup!;
+            const destBtn = popup.element.querySelector(".callout-destination-btn") as HTMLButtonElement;
+            expect(destBtn.classList.contains("active")).toBe(true);
+
+            destBtn.click();
+
+            expect(store.get()).toBeNull();
+        });
+
+        it("renders a tappable destination pin, kept below the GPS marker's pane", () => {
+            const root = document.createElement("div");
+            const mapFactory = new StubMapFactory();
+            const layerFactory = new StubLayerFactory();
+            const store = new StubDestinationStore();
+            store.set({ lat: 40.8518, lng: 14.2681, label: "Ithaca, Royal Palace, Front Entrance" });
+
+            setLogger(new StubLogger());
+
+            const view = new DetailView(
+                root,
+                new StubActions(),
+                fakeArea as any,
+                fakeState as any,
+                {
+                    mapFactory,
+                    layerFactory,
+                    widgetFactory: new StubWidgetFactory(),
+                    destinationStore: store,
+                }
+            );
+
+            view.render();
+
+            expect(layerFactory.destinationMarkers).toHaveLength(1);
+            expect(layerFactory.destinationMarkers[0].addedTo).toBe(mapFactory.map);
+        });
+
+        it("tapping the destination pin reuses the empty-space callout, keeping star and bookmark actions", () => {
+            const root = document.createElement("div");
+            const mapFactory = new StubMapFactory();
+            const layerFactory = new StubLayerFactory();
+            const store = new StubDestinationStore();
+            store.set({ lat: 40.8518, lng: 14.2681 });
+
+            setLogger(new StubLogger());
+
+            const view = new DetailView(
+                root,
+                new StubActions(),
+                fakeArea as any,
+                fakeState as any,
+                {
+                    mapFactory,
+                    layerFactory,
+                    widgetFactory: new StubWidgetFactory(),
+                    destinationStore: store,
+                }
+            );
+
+            view.render();
+            layerFactory.destinationMarkers[0].clickHandler?.();
+
+            const popup = mapFactory.map.lastPopup!;
+            expect(popup.latLng).toEqual([40.8518, 14.2681]);
+            const destBtn = popup.element.querySelector(".callout-destination-btn");
+            expect(destBtn).not.toBeNull();
+            expect(destBtn?.classList.contains("active")).toBe(true);
+            expect(popup.element.querySelector(".star-rating--interactive")).not.toBeNull();
+            expect(popup.element.querySelector(".callout-bookmark-btn")).not.toBeNull();
+            expect(popup.element.querySelector(".callout-delete-btn")).toBeNull();
+        });
+
+        it("rating the destination point from the pin's callout clears its destination status", () => {
+            const root = document.createElement("div");
+            const mapFactory = new StubMapFactory();
+            const layerFactory = new StubLayerFactory();
+            const store = new StubDestinationStore();
+            store.set({ lat: 40.8518, lng: 14.2681 });
+
+            setLogger(new StubLogger());
+
+            const view = new DetailView(
+                root,
+                new StubActions(),
+                fakeArea as any,
+                fakeState as any,
+                {
+                    mapFactory,
+                    layerFactory,
+                    widgetFactory: new StubWidgetFactory(),
+                    destinationStore: store,
+                }
+            );
+
+            view.render();
+            layerFactory.destinationMarkers[0].clickHandler?.();
+
+            const popup = mapFactory.map.lastPopup!;
+            const stars = popup.element.querySelectorAll<HTMLImageElement>(".star-rating-star");
+            stars[2].click(); // 3rd star
+
+            expect(store.get()).toBeNull();
+        });
+
+        it("tapping the destination pin at an existing __user__ point shows that point's own callout (delete, not bookmark)", async () => {
+            const root = document.createElement("div");
+            const mapFactory = new StubMapFactory();
+            const layerFactory = new StubLayerFactory();
+            const userStore = new StubUserPointsStore();
+            userStore.setPoints([
+                { type: "Feature", geometry: { type: "Point", coordinates: [14.2681, 40.8518] }, properties: { stars: 4 } },
+            ]);
+            const destinationStore = new StubDestinationStore();
+            destinationStore.set({ lat: 40.8518, lng: 14.2681 });
+
+            setLogger(new StubLogger());
+
+            const view = new DetailView(
+                root,
+                new StubActions(),
+                fakeAreaWithUser as any,
+                fakeState as any,
+                {
+                    mapFactory,
+                    layerFactory,
+                    widgetFactory: new StubWidgetFactory(),
+                    userPointsStore: userStore,
+                    destinationStore,
+                }
+            );
+
+            view.render();
+            await Promise.resolve();
+            await Promise.resolve();
+
+            layerFactory.destinationMarkers[0].clickHandler?.();
+
+            const popup = mapFactory.map.lastPopup!;
+            expect(popup.element.querySelector(".callout-delete-btn")).not.toBeNull();
+            expect(popup.element.querySelector(".callout-bookmark-btn")).toBeNull();
+            expect(popup.element.querySelector(".star-rating--interactive")).toBeNull();
+        });
+
+        it("removes the destination when the pin's own callout button is clicked", () => {
+            const root = document.createElement("div");
+            const mapFactory = new StubMapFactory();
+            const layerFactory = new StubLayerFactory();
+            const store = new StubDestinationStore();
+            store.set({ lat: 40.8518, lng: 14.2681 });
+
+            setLogger(new StubLogger());
+
+            const view = new DetailView(
+                root,
+                new StubActions(),
+                fakeArea as any,
+                fakeState as any,
+                {
+                    mapFactory,
+                    layerFactory,
+                    widgetFactory: new StubWidgetFactory(),
+                    destinationStore: store,
+                }
+            );
+
+            view.render();
+            layerFactory.destinationMarkers[0].clickHandler?.();
+
+            const popup = mapFactory.map.lastPopup!;
+            const destBtn = popup.element.querySelector(".callout-destination-btn") as HTMLButtonElement;
+            destBtn.click();
+
+            expect(store.get()).toBeNull();
+            expect(layerFactory.destinationMarkers[0].removed).toBe(true);
+            expect(popup.removed).toBe(true);
+        });
     });
 });

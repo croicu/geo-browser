@@ -8,9 +8,11 @@ export interface EmptyCalloutWidgetOptions {
     showMapLinks?: boolean;
     existingStars?: StarCount;
     isBookmarked?: boolean;
+    isDestination?: boolean;
     onStarSelected?: (stars: StarCount) => void;
     onBookmarkToggled?: (bookmarked: boolean) => void;
     onDeleteRequested?: () => void;
+    onDestinationToggled?: () => void;
 }
 
 export class EmptyCalloutWidget {
@@ -24,7 +26,10 @@ export class EmptyCalloutWidget {
         const log = getLogger();
         log.info("empty_callout.render.start");
 
-        const { latLng, showCoords, showMapLinks, existingStars, isBookmarked, onStarSelected, onBookmarkToggled, onDeleteRequested } = this._options;
+        const {
+            latLng, showCoords, showMapLinks, existingStars, isBookmarked, isDestination,
+            onStarSelected, onBookmarkToggled, onDeleteRequested, onDestinationToggled,
+        } = this._options;
 
         const lat = latLng[0].toFixed(4);
         const lng = latLng[1].toFixed(4);
@@ -63,16 +68,24 @@ export class EmptyCalloutWidget {
         }
 
         const starRow = this.buildStarRow(existingStars, onStarSelected);
-        if (starRow !== null || onBookmarkToggled !== undefined || onDeleteRequested !== undefined) {
+        if (starRow !== null || onBookmarkToggled !== undefined || onDeleteRequested !== undefined || onDestinationToggled !== undefined) {
             root.appendChild(document.createElement("br"));
             const bottomRow = document.createElement("div");
             bottomRow.className = "callout-bottom-row";
             if (starRow) bottomRow.appendChild(starRow);
+
+            const actions = document.createElement("div");
+            actions.className = "callout-actions-right";
             if (onDeleteRequested !== undefined) {
-                bottomRow.appendChild(this.buildDeleteButton(onDeleteRequested));
+                actions.appendChild(this.buildDeleteButton(onDeleteRequested));
             } else if (onBookmarkToggled !== undefined) {
-                bottomRow.appendChild(this.buildBookmarkToggle(isBookmarked ?? false, onBookmarkToggled));
+                actions.appendChild(this.buildBookmarkToggle(isBookmarked ?? false, onBookmarkToggled));
             }
+            if (onDestinationToggled !== undefined) {
+                actions.appendChild(this.buildDestinationButton(isDestination ?? false, onDestinationToggled));
+            }
+            if (actions.childElementCount > 0) bottomRow.appendChild(actions);
+
             root.appendChild(bottomRow);
         }
 
@@ -100,6 +113,29 @@ export class EmptyCalloutWidget {
             active = !active;
             img.src = active ? "/icons/solid_bookmark.svg" : "/icons/bookmark.svg";
             onBookmarkToggled(active);
+        });
+
+        return btn;
+    }
+
+    private buildDestinationButton(
+        isDestination: boolean,
+        onDestinationToggled: () => void
+    ): HTMLElement {
+        const log = getLogger();
+        const btn = document.createElement("button");
+        btn.className = isDestination ? "callout-destination-btn active" : "callout-destination-btn";
+        btn.title = isDestination ? "Remove destination" : "Set as destination";
+
+        const img = document.createElement("img");
+        img.className = "callout-destination-icon";
+        img.alt = btn.title;
+        img.src = isDestination ? "/icons/remove_destination.svg" : "/icons/destination.svg";
+        btn.appendChild(img);
+
+        btn.addEventListener("click", () => {
+            log.info("empty_callout.destination_toggle.click", { isDestination });
+            onDestinationToggled();
         });
 
         return btn;

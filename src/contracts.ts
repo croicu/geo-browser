@@ -183,6 +183,10 @@ export interface AccuracyRingHandle extends MapLayerHandle {
     setRadius(radiusMeters: number): void;
 }
 
+export interface DestinationMarkerHandle extends MapLayerHandle {
+    onClick(handler: () => void): void;
+}
+
 export interface DraggableMarkerHandle extends MapLayerHandle {
     setLatLng(latLng: [number, number]): void;
     onDrag(handler: (latLng: [number, number]) => void): () => void;
@@ -250,6 +254,8 @@ export interface LayerFactory {
     createDraggableMarker(latLng: [number, number]): DraggableMarkerHandle;
     createPositionMarker(latLng: [number, number]): PositionMarkerHandle;
     createAccuracyRing(latLng: [number, number], radiusMeters: number): AccuracyRingHandle;
+    createDestinationMarker(latLng: [number, number], pane: string): DestinationMarkerHandle;
+    createDestinationCone(latLng: [number, number], pane: string): PositionMarkerHandle;
 }
 
 
@@ -291,6 +297,20 @@ export interface UserPointsStore {
     addPoint(areaId: string, lat: number, lon: number, pressure: number, poiProperties?: Record<string, unknown>): Promise<void>;
     removePoint(areaId: string, lon: number, lat: number): Promise<void>;
     setBookmarked?(areaId: string, lon: number, lat: number, bookmarked: boolean): Promise<void>;
+}
+
+export interface DestinationPoint {
+    lat: number;
+    lng: number;
+    label?: string | null;
+}
+
+// Pure client runtime concept — no geo-builder/gateway variant. Global (not scoped per area),
+// unlike UserPointsStore. See tasks/destination_marker.md.
+export interface DestinationStore {
+    get(): DestinationPoint | null;
+    set(point: DestinationPoint): void;
+    clear(): void;
 }
 
 export interface WidgetFactory {

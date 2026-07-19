@@ -730,12 +730,23 @@ body,
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 8px;
 }
 
+.callout-actions-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
 .callout-bookmark-btn,
-.callout-delete-btn {
+.callout-delete-btn,
+.callout-destination-btn {
+    appearance: none;
+    -webkit-appearance: none;
     background: none;
     border: none;
     cursor: pointer;
@@ -745,11 +756,14 @@ body,
 }
 
 .callout-bookmark-icon,
-.callout-delete-icon {
+.callout-delete-icon,
+.callout-destination-icon {
     width: 22px;
     height: 22px;
     display: block;
+    background: none;
 }
+
 
 .star-rating {
     display: flex;

@@ -1,9 +1,11 @@
 import type { GeoArea } from "../../catalog/area";
 import type { Mode } from "../../runtime/context";
-import type { ControllerActions, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
+import type { ControllerActions, DestinationPoint, DestinationStore, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
 import type { DetailViewState } from "../../state/detailViewState";
 import { getLogger } from "../../services";
 import { LocalStorageUserPointsStore, GatewayUserPointsStore } from "../../runtime/userPointsStore";
+import { LocalStorageDestinationStore } from "../../runtime/destinationStore";
+import { DestinationWidget } from "./destinationWidget";
 import { HeatLayerView } from "./heatLayerView";
 import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
@@ -37,6 +39,7 @@ export interface DetailViewServices {
     gateway?: GatewayService | null;
     geoLocation?: GeoLocationService | null;
     userPointsStore?: UserPointsStore;
+    destinationStore?: DestinationStore;
     mode?: Mode;
 }
 
@@ -79,6 +82,8 @@ export class DetailView implements View {
     private _userPointsStore?: UserPointsStore;
     private _userLayerView?: UserLayerView;
     private _userGeoLayer?: GeoLayer;
+    private readonly _destinationStore: DestinationStore;
+    private _destinationWidget?: DestinationWidget;
     private _hasImageOverlay = false;
     private _searchWidget?: WidgetHandle;
     private _searchLayerView?: SearchLayerView;
@@ -114,6 +119,10 @@ export class DetailView implements View {
             ?? (this._gateway
                 ? new GatewayUserPointsStore(this._gateway)
                 : new LocalStorageUserPointsStore(Context.Instance.storage));
+
+        // Pure client runtime — no gateway/design-mode variant, unlike UserPointsStore above.
+        this._destinationStore = services.destinationStore
+            ?? new LocalStorageDestinationStore(Context.Instance.storage);
 
         void this._actions;
     }
@@ -176,6 +185,19 @@ export class DetailView implements View {
                 this._geoLocationWidget = geoWidget;
             }
 
+            const destinationWidget = new DestinationWidget(
+                map,
+                this._layerFactory,
+                this._destinationStore,
+                { onMarkerTapped: point => this.onDestinationMarkerTapped(point) }
+            );
+            destinationWidget.render();
+            this._destinationWidget = destinationWidget;
+
+            if (this._geoLocationWidget) {
+                this._geoLocationWidget.onPositionUpdate(latLng => this._destinationWidget?.onPosition(latLng));
+            }
+
             const imageOverlay = new ImageOverlayWidget(map, {
                 areaBbox: this._area.bbox,
                 onImageLoaded: () => { this._hasImageOverlay = true; this.relaxBoundsForOverlay(); },
@@ -219,6 +241,9 @@ export class DetailView implements View {
 
             this._geoLocationWidget?.destroy();
             this._geoLocationWidget = undefined;
+
+            this._destinationWidget?.destroy();
+            this._destinationWidget = undefined;
 
             this._imageOverlayWidget?.destroy();
             this._imageOverlayWidget = undefined;
@@ -369,6 +394,8 @@ export class DetailView implements View {
                             onPoiStarSelected: (latLng, stars) => this.onPoiStarSelected(latLng, stars),
                             onPoiBookmarkToggled: latLng => this.onPoiBookmarkToggled(latLng),
                             onPopupOpening: () => this.closeEmptySpacePopup(),
+                            isDestination: latLng => this.isCurrentDestination(latLng),
+                            onPoiDestinationToggled: (latLng, label) => this.onPoiDestinationToggled(latLng, label),
                         }
                     );
                 } else {
@@ -785,7 +812,7 @@ export class DetailView implements View {
         const userView = new UserLayerView(
             this._map,
             syntheticLayer,
-            new DefaultLeafletLayerFactory(),
+            this._layerFactory,
             this._userPointsStore,
             this._area.id,
             true,
@@ -910,12 +937,15 @@ export class DetailView implements View {
     private openStarCallout(latLng: [number, number]): void {
         this.closeEmptySpacePopup();
         if (!this._map) return;
+        const isDest = this.isCurrentDestination(latLng);
         const widget = new EmptyCalloutWidget({
             latLng,
             showCoords: true,
             showMapLinks: true,
             onStarSelected: stars => this.onEmptyStarSelected(stars),
             onBookmarkToggled: bookmarked => this.onCalloutBookmarkToggled(latLng, bookmarked),
+            isDestination: isDest,
+            onDestinationToggled: () => this.onEmptyDestinationToggled(latLng, isDest),
         });
         this._emptyCalloutLatLng = latLng;
         this._emptySpacePopup = this._map.createPopup(latLng, widget.render());
@@ -925,6 +955,7 @@ export class DetailView implements View {
         if (this._pendingBookmark && this._emptyCalloutLatLng) {
             // Empty-space callout dismissed with bookmark toggled on — create the bookmarked point.
             void this.doAddBookmarkedUserPoint(this._emptyCalloutLatLng);
+            this.maybeClearDestination(this._emptyCalloutLatLng);
         }
         this._pendingBookmark = false;
         this._emptySpacePopup?.remove();
@@ -938,6 +969,7 @@ export class DetailView implements View {
         this._pendingBookmark = false;
         if (this._emptyCalloutLatLng) {
             void this.doAddStarredUserPoint(this._emptyCalloutLatLng, stars);
+            this.maybeClearDestination(this._emptyCalloutLatLng);
         }
         this.closeEmptySpacePopup();
         log.info("user_layer.star_selected.end", { stars });
@@ -974,6 +1006,7 @@ export class DetailView implements View {
         } else {
             void this.doAddStarredUserPoint(latLng, stars);
         }
+        this.maybeClearDestination(latLng);
         log.info("poi.star_selected.end", { stars });
     }
 
@@ -986,6 +1019,7 @@ export class DetailView implements View {
         } else if (!existing) {
             void this.doAddBookmarkedUserPoint(latLng);
         }
+        this.maybeClearDestination(latLng);
         log.info("poi.bookmark_toggled.end");
     }
 
@@ -994,23 +1028,90 @@ export class DetailView implements View {
         return this._userLayerView.getPointAtLatLng(lat, lon);
     }
 
+    private isCurrentDestination(latLng: [number, number]): boolean {
+        const dest = this._destinationStore.get();
+        if (!dest) return false;
+        return Math.abs(dest.lat - latLng[0]) < 1e-8 && Math.abs(dest.lng - latLng[1]) < 1e-8;
+    }
+
+    // Rating or bookmarking a point clears its destination status — once you've acted on it
+    // as a saved place, it's no longer just a pending nav target.
+    private maybeClearDestination(latLng: [number, number]): void {
+        if (this.isCurrentDestination(latLng)) {
+            this.doRemoveDestination();
+        }
+    }
+
+    private doSetDestination(latLng: [number, number], label?: string): void {
+        const log = getLogger();
+        log.info("destination.set.start", { lat: latLng[0], lng: latLng[1] });
+        const point: DestinationPoint = { lat: latLng[0], lng: latLng[1], label: label ?? null };
+        this._destinationStore.set(point);
+        this._destinationWidget?.setDestination(point);
+        log.info("destination.set.end");
+    }
+
+    private doRemoveDestination(): void {
+        const log = getLogger();
+        log.info("destination.remove.start");
+        this._destinationStore.clear();
+        this._destinationWidget?.setDestination(null);
+        log.info("destination.remove.end");
+    }
+
+    private onPoiDestinationToggled(latLng: [number, number], label: string | undefined): void {
+        if (this.isCurrentDestination(latLng)) {
+            this.doRemoveDestination();
+        } else {
+            this.doSetDestination(latLng, label);
+        }
+    }
+
+    private onEmptyDestinationToggled(latLng: [number, number], wasDestination: boolean): void {
+        if (wasDestination) {
+            this.doRemoveDestination();
+        } else {
+            this.doSetDestination(latLng);
+        }
+        this.closeEmptySpacePopup();
+    }
+
+    // Tapping the destination pin reuses the same callout as tapping the point directly
+    // (empty-space or existing __user__ point) — a destination is independent of star/bookmark
+    // state, so both should stay visible and actionable here, not just a bare "Remove" button.
+    private onDestinationMarkerTapped(point: DestinationPoint): void {
+        const log = getLogger();
+        log.info("destination.marker_tapped.start");
+        const latLng: [number, number] = [point.lat, point.lng];
+        const existing = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
+        if (existing) {
+            this.onUserMarkerTapped(latLng, existing.stars);
+        } else {
+            this.openStarCallout(latLng);
+        }
+        log.info("destination.marker_tapped.end");
+    }
+
     private onUserMarkerTapped(latLng: [number, number], stars?: StarCount): void {
         const log = getLogger();
         log.info("user_layer.marker_tapped.start", { lat: latLng[0], lng: latLng[1], stars });
         this.closeEmptySpacePopup();
         if (!this._map) return;
         const point = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
+        const isDest = this.isCurrentDestination(latLng);
 
         const opts: EmptyCalloutWidgetOptions = {
             latLng,
             showCoords: true,
             showMapLinks: true,
+            isDestination: isDest,
             onDeleteRequested: () => {
                 log.info("user_layer.marker_delete.start", { lat: latLng[0], lng: latLng[1] });
                 this._userLayerView?.removePoint(latLng);
                 this.closeEmptySpacePopup();
                 log.info("user_layer.marker_delete.end");
             },
+            onDestinationToggled: () => this.onEmptyDestinationToggled(latLng, isDest),
         };
 
         if (stars !== undefined) {
@@ -1019,6 +1120,7 @@ export class DetailView implements View {
             opts.onStarSelected = selectedStars => {
                 log.info("user_layer.marker_rate.start", { lat: latLng[0], lng: latLng[1], stars: selectedStars });
                 void this.doRateExistingUserPoint(latLng, selectedStars, point?.bookmarked ?? false);
+                this.maybeClearDestination(latLng);
                 this.closeEmptySpacePopup();
                 log.info("user_layer.marker_rate.end");
             };

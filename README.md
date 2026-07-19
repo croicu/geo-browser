@@ -20,6 +20,9 @@ A lightweight, static, browser-based geographic renderer and trip companion.
 ![POI popup](docs/screenshots/poi.png)
 *POI popup — enriched place details*
 
+![Destination marker](docs/screenshots/destination.png)
+*Destination marker — red pin and bearing cone pointing toward your destination*
+
 ![Place search](docs/screenshots/search.png)
 *Place search — Nominatim results bounded to the area*
 
@@ -45,7 +48,7 @@ Tapping a POI marker or an empty patch of map opens a callout. Its action row is
 - **Star rating** — tap 1–5 stars; for a POI, this saves a new trip point at that location with the rating attached (or re-rates an existing one). For empty-space taps, it creates a starred trip point there.
 - **Bookmark toggle** — available when creating a new point (POI callout or empty-space callout); saves a bookmarked trip point. Tapping the toggle again on an already-bookmarked POI removes the point.
 - **Delete** — shown instead of the bookmark toggle when the callout is for an *existing* trip point; removes it.
-- *(Upcoming, separate task)* Set as destination.
+- **Set/Remove destination** — independent of star/bookmark/delete; see [Destination](#destination) below.
 
 ### Trip Recording
 - **User points (`__user__` layer)** — tap empty map space to open a callout, then tap a star or the bookmark toggle to save a point there; tapping an existing point's marker reopens the callout with a delete button instead
@@ -53,6 +56,14 @@ Tapping a POI marker or an empty patch of map opens a callout. Its action row is
 - **Bookmarks** — blue ring overlay distinguishes bookmarked points; ring is set at creation time and takes visual priority over the star ring
 - **Storage** — points are stored per-area as a GeoJSON `FeatureCollection`, either in `localStorage` (browse mode) or via the `geo-builder` gateway (design mode)
 - **Trip export** — share or download your trip points as GeoJSON from the layer flyout
+
+### Destination
+A single "which way is it, roughly" indicator — not routing, just a fixed pin plus a bearing cone on your live position.
+- **Set/remove** — the POI/empty-space callout's action row has a destination toggle (independent of star/bookmark/delete — a point can be starred *and* be the destination). Tapping the destination pin itself also opens a callout with a "Remove destination" action, since re-tapping the exact original coordinates of a non-POI destination isn't practical.
+- **Singular** — only one destination at a time; setting a new one silently replaces the old one.
+- **Pin** — a fixed red marker at the destination's location, shown whenever it's in the viewport, independent of GPS.
+- **Bearing cone** — anchored at your live GPS position (same point as the blue heading cone), pointing along the great-circle bearing to the destination — pure geometry, not compass heading, so it needs no extra permissions. Only shown while a position is available; the pin stays either way.
+- **Storage** — global (not per-area) in `localStorage`, entirely client-side; no `geo-builder` involvement.
 
 ### Place Search
 - **Nominatim search** — type a place name and find it within the current area
