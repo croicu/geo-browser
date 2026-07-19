@@ -12,12 +12,23 @@ src/
     area.ts
     layer.ts
     loader.ts
+    groupFilter.ts
+
+  designer/
+    gateway.ts
 
   maps/
     tileProvider.ts       (TileProvider interface, osmTileProvider, cartoTileProvider, active store)
+    nominatim.ts           (Nominatim search client, __search__ layer's data source)
 
   runtime/
     context.ts
+    browserGeoLocationService.ts
+    browserHeadingService.ts   (DeviceOrientationEvent wrapper — see GeoLocationWidget below)
+    userPointsStore.ts     (LocalStorageUserPointsStore, GatewayUserPointsStore)
+    localStorageService.ts
+    storageGuard.ts
+    webViewHostService.ts
 
   state/
     summaryViewState.ts
@@ -25,11 +36,15 @@ src/
     geoState.ts           (GeoState interface + LastViewData)
     geoStateStore.ts
 
+  vision/
+    blueDotDetector.ts     (canvas pixel scan for GPS-dot auto-alignment; see tasks/blue_dot_detection.md)
+
   view/
     summary/
       summaryView.ts
       bubbleWidget.ts
       bboxWidget.ts
+      drawAreaInteraction.ts
 
     detail/
       detailView.ts
@@ -38,14 +53,24 @@ src/
       heatLayerView.ts
       poiLayerView.ts
       userLayerView.ts
+      voidLayerView.ts
+      voidVariantResolver.ts
+      searchLayerView.ts
+      starRatingControl.ts
+      emptyCalloutWidget.ts
+      twoTapState.ts
       summaryWidget.ts
       layerSelectionWidget.ts
       geoLocationWidget.ts
       imageOverlayWidget.ts
+      manifestEditorWidget.ts    (design mode only — see tasks/... manifest editor)
+      codeMirrorJsonEditorFactory.ts
+      jsonColorPicker.ts
       leafletFactories.ts
 
   contracts.ts
   protocols.ts
+  api.ts                 (Gateway wire protocol — mirrors geo-builder's api.py, see docs/MESSAGING.md)
   logging.ts
   services.ts
   errors.ts
@@ -245,6 +270,9 @@ Concrete classes:
 - `HeatLayerView`
 - `PoiLayerView`
 - `UserLayerView`
+- `VoidLayerView`
+
+`SearchLayerView` does **not** extend `LayerView` — it's a standalone class with a single ephemeral marker and no fetch/reconciliation lifecycle to share.
 
 Shared helpers should be protected methods when semantically owned by LayerView.
 
@@ -272,6 +300,26 @@ Each feature is a `PoiBakedFeature`. Features with `wikipedia`, `wikidata`, `sta
 Ring colors: `enhancedColor` from layer style (default `#20b7dd`) for general enrichment; `outdoorColor` (default `#f5c518`) for outdoor seating.
 
 Popup lazy loads a Wikidata thumbnail image via `wbgetentities` P18 claim → Wikimedia Commons `Special:FilePath?width=200`. Wikipedia link routes through `Special:GoToLinkedPage/enwiki/{Q-id}` for the English article.
+
+Popup action row (star/bookmark) is built by `buildPoiBottomRow` and is shared visually with `EmptyCalloutWidget` — see **UserLayerView** below for the full creation/deletion flow it drives.
+
+## VoidLayerView
+
+Thin fetch-and-render of a precomputed GeoJSON polygon — no client-side geometry computation. Which manifest `__void__*` entry to render is decided by `VoidVariantResolver` (minimal-superset search over currently-visible non-virtual layer ids; see `docs/LAYERS.md` for the full algorithm and naming convention).
+
+Renders into a dedicated `void-pane` Leaflet pane with a CSS `blur(5px)` on the pane's SVG element (applied to the SVG child, not the zero-size pane div — a filter on the pane div clips the overflowing SVG entirely). `DetailView` synthesizes exactly one "Mundane" toggle in the layer flyout regardless of how many `__void__*` variants exist in the manifest.
+
+## SearchLayerView
+
+Renders the single ephemeral marker for the active Nominatim search result (`src/maps/nominatim.ts` is the query client). No persistence — the marker is destroyed/replaced on each new search and cleared when the search UI closes. Tapping the marker promotes it to a permanent `__user__` point via the same creation path as `UserLayerView.addMarker`.
+
+## UserLayerView
+
+Owns `__user__` trip-point markers. Points are always created through `EmptyCalloutWidget`'s action row (star rating and/or bookmark toggle) — there is no gesture that drops an unrated, unbookmarked point. Long-press/right-click creation and instant right-click delete were removed; see [Explicit Point Delete](../tasks/explicit_point_delete.md).
+
+- **Rings**: a bookmark ring (`bookmarkColor`, default `#5AB5DA`) and a star-rating ring (`highlightColor` run through an atan color curve, see `starRatingControl.ts`) are mutually exclusive on the same marker — bookmark takes visual priority; `addMarkerBookmark`/`addMarkerRing` in `userLayerView.ts` enforce this.
+- **Deletion**: tapping an existing marker reopens `EmptyCalloutWidget` with a delete button (`onDeleteRequested`) in place of the bookmark toggle.
+- **Persistence**: `UserPointsStore` (DI) — `LocalStorageUserPointsStore` in browse mode, `GatewayUserPointsStore` in design mode (`runtime/userPointsStore.ts`). `UserPointsStore.setBookmarked` is declared but currently unused — bookmark state is only ever written as part of `addPoint`'s initial properties, never patched onto an existing point.
 
 ## SummaryView
 

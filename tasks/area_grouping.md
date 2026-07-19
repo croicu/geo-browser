@@ -1,10 +1,9 @@
 # Area Grouping
 
-**Status: Ready to Submit** (geo-browser side implemented and verified — `tsc --noEmit`
-clean, `npm run build` clean, all 199 unit tests pass, end-to-end browser check against
-the real `public/catalog.json` confirms all three filter cases; geo-builder side was
-already done when this task file was created in this repo — see Acceptance Checklist
-below).
+**Status: Done** (geo-browser side implemented, tested, and committed —
+`a8a2c22` for the core feature, `8fa92aa` for the "debug" opt-in-only follow-up;
+geo-builder side was already done when this task file was created in this repo —
+see Acceptance Checklist below).
 
 ## Summary
 
@@ -245,4 +244,12 @@ existing non-filtering purposes.
       query-string cases), `tests/unit/catalog.groupFilter.test.ts`
       (`matchesGroupFilter` pure logic), `tests/unit/catalog.test.ts`
       (`GeoCatalog` filtering integration). `npx tsc --noEmit` clean, all
-      199 tests pass.
+      203 tests pass (199 + 4 added for the opt-in-only follow-up below).
+- [x] **Follow-up (2026-07-15, commit `8fa92aa`):** `"debug"` made opt-in-only —
+      hidden by default (`groupFilter === null`) and hidden under any *other*
+      explicit `?group=` filter that doesn't itself request `"debug"`, even if
+      the area also matches that filter (e.g. `?group=Europe` hides an area
+      tagged `["debug", "Europe"]`). Every other group name is unaffected —
+      still visible unless an explicit filter excludes it. See the Superseded
+      note in Summary above and `docs/MESSAGING.md`'s "opt-in-only" paragraph
+      for the full rule.

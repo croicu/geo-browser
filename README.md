@@ -8,19 +8,19 @@ A lightweight, static, browser-based geographic renderer and trip companion.
 
 ## Screenshots
 
-![Summary view](docs/summary.png)
+![Summary view](docs/screenshots/summary.png)
 *Summary view — world overview with area bubbles*
 
-![Heatmap view](docs/heatmap.png)
+![Heatmap view](docs/screenshots/heatmap.png)
 *Heatmap view — data density across the area*
 
-![Detail view](docs/detail.png)
+![Detail view](docs/screenshots/detail.png)
 *Detail view — area map with layers*
 
-![POI popup](docs/poi.png)
+![POI popup](docs/screenshots/poi.png)
 *POI popup — enriched place details*
 
-![Place search](docs/search.png)
+![Place search](docs/screenshots/search.png)
 *Place search — Nominatim results bounded to the area*
 
 ---
@@ -31,7 +31,7 @@ A lightweight, static, browser-based geographic renderer and trip companion.
 - **Summary view** — world overview with one bubble per area; tap to enter
 - **Detail view** — immersive area map with layers, POIs, and controls
 - **Tile providers** — CARTO Voyager (default) or OpenStreetMap, switchable from the layer flyout
-- **Geolocation** — live GPS blue dot with heading cone
+- **Geolocation** — live GPS blue dot with heading cone; heading comes from the device compass (`DeviceOrientationEvent`), requested on first use — iOS shows a one-time permission prompt
 - **Last view persistence** — reopens the last visited area on startup
 
 ### Layers & Data
@@ -40,10 +40,18 @@ A lightweight, static, browser-based geographic renderer and trip companion.
 - **POI layer** — tappable markers for enriched places; popup shows name, cuisine, address, opening hours, star rating, outdoor seating, Wikipedia/Wikidata links, and a Wikidata thumbnail
 - **Layer flyout** — per-layer visibility toggles and tile provider switch, accessible from the map toolbar
 
+### POI Actions
+Tapping a POI marker or an empty patch of map opens a callout. Its action row is separate from the metadata shown above:
+- **Star rating** — tap 1–5 stars; for a POI, this saves a new trip point at that location with the rating attached (or re-rates an existing one). For empty-space taps, it creates a starred trip point there.
+- **Bookmark toggle** — available when creating a new point (POI callout or empty-space callout); saves a bookmarked trip point. Tapping the toggle again on an already-bookmarked POI removes the point.
+- **Delete** — shown instead of the bookmark toggle when the callout is for an *existing* trip point; removes it.
+- *(Upcoming, separate task)* Set as destination.
+
 ### Trip Recording
-- **User points** — long-press (or right-click on desktop) anywhere on the map to drop a trip point
+- **User points (`__user__` layer)** — tap empty map space to open a callout, then tap a star or the bookmark toggle to save a point there; tapping an existing point's marker reopens the callout with a delete button instead
 - **Star ratings** — rate any point 1–5 stars; ring color reflects the rating
-- **Bookmarks** — bookmark points for later; blue ring overlay distinguishes them
+- **Bookmarks** — blue ring overlay distinguishes bookmarked points; ring is set at creation time and takes visual priority over the star ring
+- **Storage** — points are stored per-area as a GeoJSON `FeatureCollection`, either in `localStorage` (browse mode) or via the `geo-builder` gateway (design mode)
 - **Trip export** — share or download your trip points as GeoJSON from the layer flyout
 
 ### Place Search
@@ -96,11 +104,13 @@ Startup fetches `/catalog.head.json` (cache-busted) to find the catalog URL, the
 | `heatmap` | Density heatmap from weighted GeoJSON points |
 | `circle` | Circle markers from GeoJSON points |
 | `__poi__` | Virtual — tappable POI markers from features with `hasDetails: true` |
-| `__user__` | Virtual — user-recorded trip points (long-press / right-click) |
+| `__user__` | Virtual — user-recorded trip points, created via callout tap (see [Trip Recording](#trip-recording)) |
 | `__void__` | Virtual — mundane zone overlay, highlights low-density areas |
 | `__search__` | Virtual — ephemeral Nominatim search result marker |
 
-POI popups show baked metadata: name, cuisine, address, opening hours, star rating, outdoor seating, Wikipedia/Wikidata links, and a Wikidata thumbnail image.
+POI popups show baked metadata: name, cuisine, address, opening hours, star rating, outdoor seating, Wikipedia/Wikidata links, and a Wikidata thumbnail image. POI *action* buttons (star, bookmark) are separate — see [POI Actions](#poi-actions).
+
+The live GPS position (blue dot + heading cone) is **not** a layer — it's a standing map control (`GeoLocationWidget`) that's always available in Detail view, independent of the catalog/manifest.
 
 ---
 

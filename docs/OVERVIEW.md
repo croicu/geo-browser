@@ -4,7 +4,7 @@
 
 - **Claude (this conversation)**: PM and marketing voice — product decisions, feature prioritization, launch copy, README, announcements.
 - **Claude Code**: Developer voice — implementation, architecture, code.
-- **John**: Engineer, and founder. Occasionally patronizing toward PMs. Justified. Ships. 😄
+- **Ody**: Engineer, and founder. Occasionally patronizing toward PMs. Justified. Ships. 😄
 
 Paste these two URLs at the start of any new conversation to restore full context:
 
@@ -17,7 +17,7 @@ https://raw.githubusercontent.com/croicu/geo-browser/main/docs/OVERVIEW.md
 
 ## Origin Story
 
-John and his wife were visiting Naples. Google Maps routed them from Capodimonte
+Ody and his wife were visiting Naples. Google Maps routed them from Capodimonte
 down through Rione Sanità — one of Naples’ most notorious neighborhoods — on a narrow,
 deserted, rundown street. His wife nearly had a panic attack.
 
@@ -45,7 +45,7 @@ life — and the presence of risk — without ever using the word “dangerous.�
 **Two scenarios**:
 
 1. **Pre-walk planning** (at home, at a café):
-- “I want to go to Microsoft Headquarters”
+- “I want to go to Ithaca, Royal Palace, Front Entrance”
 - Google Maps shows 3 route options
 - Open City Life, zoom in on the heatmap
 - Trace each corridor visually
@@ -119,8 +119,8 @@ immediate visual assessment.
 
 **Stretch goals** (post-launch):
 
-- Screenshot overlay (paste Google Maps route, auto-detect landmarks, overlay on heatmap)
-- Integration with Google Maps URLs for pre-computed route comparison
+- ~~Screenshot overlay (paste Google Maps route, auto-detect landmarks, overlay on heatmap)~~ — **shipped**: paste a Google/Apple Maps screenshot, 3-DOF editor (translate/scale/opacity), geo-lock to GPS coordinates, and automatic blue-dot detection for instant alignment.
+- Integration with Google Maps URLs for pre-computed route comparison (postponed — see [Share Target](../tasks/share_target.md), blocked on a CORS wall for resolving short URLs)
 
 -----
 
@@ -202,7 +202,7 @@ GPS location tracking is **optional and user-controlled**:
 
 - “Show my location” toggle in the app
 - User grants permission (standard iOS/Android flow)
-- Blue dot appears on current map view
+- Blue dot appears on current map view, with a heading cone from the device compass (iOS shows its own one-time compass permission prompt, triggered on first toggle)
 - Updates as user walks (reasonable update frequency, battery-conscious)
 - All computation local — no network calls
 - Works offline after initial load
@@ -217,7 +217,7 @@ Suggested: 5-10 second updates when actively being used.
 
 ## The Early Adopter
 
-John’s wife. Her UX reactions are a reliable product signal.
+Ody’s wife. Her UX reactions are a reliable product signal.
 
 - The Capodimonte panic attack → motivated the entire product
 - Tapping heatmap dots and expecting information → drove the decision to bake
@@ -254,9 +254,10 @@ address, phone, hours) from Overpass into GeoJSON at build time. See `docs/POI_L
 Irrelevant anyway — the composite signal (high photos + low amenities) identifies
 the same areas without needing crime data, without liability, and without controversy.
 
-**Screenshot overlay** — considered for route comparison pre-walk. Deferred to V1.1
-(post-launch) due to technical risk (OCR fragility) and time constraints. GPS location
-tracking is the safer, higher-impact V1 feature.
+**Screenshot overlay** — considered for route comparison pre-walk, deferred to V1.1 due to
+technical risk (OCR fragility) and time constraints at the time. Since shipped: paste/Google/Apple
+image sources, a 3-DOF editor (translate/scale/opacity), geo-lock to a GPS coordinate, and
+canvas-based blue-dot detection for automatic alignment on paste.
 
 -----
 
@@ -275,7 +276,7 @@ Two separate repos, two separate tools:
 
 **geo-builder** (separate repo, in development)
 
-- Local desktop tool John runs before a trip
+- Local desktop tool Ody runs before a trip
 - Python + pywebview
 - Opens a browser UI — drag a rectangle over a city on the map
 - Rectangle coordinates sent via pywebview JS bridge to Python
@@ -286,7 +287,7 @@ Two separate repos, two separate tools:
 **The flow**:
 
 ```
-John draws rectangle in builder
+Ody draws rectangle in builder
   → Overpass query for OSM POIs
   → POI details baked in (name, cuisine, address, phone, hours)
   → hasDetails flag set on enriched features
@@ -317,12 +318,12 @@ uses it to make real-time decisions while walking.
 
 ## Misc Notes
 
-- John has been at Microsoft for 27 years as a developer
+- Ody has been at Microsoft for 27 years as a developer
 - Based in Seattle
 - Uses swipe typing on iPhone — autocomplete errors should be interpreted charitably
 - Can be self-admittedly patronizing toward PM-style thinking
 - The product is MIT licensed and open source
-- Personal tool first — John and his wife are the target users
+- Personal tool first — Ody and his wife are the target users
 - “Freshness is not a concern” — Rione Sanità has been sketchy since the 17th century
 - Cities planned: Naples (done), Prague, Dresden, Berlin
 - Cloudflare free plan: 20,000 files max, 25MB per file — not a concern for personal use
