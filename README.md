@@ -20,6 +20,9 @@ A lightweight, static, browser-based geographic renderer and trip companion.
 ![POI popup](docs/screenshots/poi.png)
 *POI popup — enriched place details*
 
+![Destination marker](docs/screenshots/destination.png)
+*Destination marker — red pin and bearing cone pointing toward your destination*
+
 ![Place search](docs/screenshots/search.png)
 *Place search — Nominatim results bounded to the area*
 
