@@ -20,6 +20,7 @@ import { MapViewState } from "../../state/mapViewState";
 import { AreaViewState } from "../../state/areaViewState";
 import { Context } from "../../runtime/context";
 import { getLogger } from "../../services";
+import { LogCategory } from "../../logging";
 import { AreaLifecycleTracker } from "./areaLifecycleTracker";
 import type { BundleAction } from "./areaLifecycleTracker";
 import { AreaMarkerView } from "./areaMarkerView";
@@ -269,7 +270,7 @@ export class MapView implements View {
         if (!map) {
             return;
         }
-        getLogger().info("map_view.jump_to_area.start", { areaId: area.id });
+        getLogger().info("map_view.jump_to_area.start", { areaId: area.id }, LogCategory.AreaLifecycle);
         const [west, south, east, north] = area.bbox;
         const zoom = map.getBoundsZoom([south, west], [north, east]);
         // Atomic — see MapHandle.setView's doc comment: separate setZoom()+
@@ -283,7 +284,7 @@ export class MapView implements View {
         // routes to handleViewportChange() — call it directly too so this is
         // deterministic under test stubs (and a no-op change still recomputes).
         this.handleViewportChange();
-        getLogger().info("map_view.jump_to_area.end", { areaId: area.id, zoom });
+        getLogger().info("map_view.jump_to_area.end", { areaId: area.id, zoom }, LogCategory.AreaLifecycle);
     }
 
     private handleViewportChange(): void {
@@ -307,7 +308,7 @@ export class MapView implements View {
                 pinnedAreaId: transitions.pinnedAreaId,
                 bundle: transitions.bundle,
                 currentAreaId: this._tracker.currentAreaId,
-            });
+            }, LogCategory.AreaLifecycle);
         }
 
         for (const [areaId, kind] of transitions.renderKinds) {

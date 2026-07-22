@@ -8,14 +8,14 @@ A lightweight, static, browser-based geographic renderer and trip companion.
 
 ## Screenshots
 
-![Summary view](docs/screenshots/summary.png)
-*Summary view — world overview with area bubbles*
+![World overview](docs/screenshots/summary.png)
+*World overview — every area rendered as a circle or bbox outline until it's zoomed into*
 
 ![Heatmap view](docs/screenshots/heatmap.png)
 *Heatmap view — data density across the area*
 
-![Detail view](docs/screenshots/detail.png)
-*Detail view — area map with layers*
+![Loaded area](docs/screenshots/detail.png)
+*A loaded area — layers, POIs, and controls once it becomes the current area*
 
 ![POI popup](docs/screenshots/poi.png)
 *POI popup — enriched place details*
@@ -31,11 +31,12 @@ A lightweight, static, browser-based geographic renderer and trip companion.
 ## Features
 
 ### Map & Navigation
-- **Summary view** — world overview with one bubble per area; tap to enter
-- **Detail view** — immersive area map with layers, POIs, and controls
+- **One continuous map** — no separate "world" and "area" screens; zoom and pan freely and areas smoothly grow from a circle to a bbox outline to fully loaded layers as you get closer
+- **Tap to jump** — tap any area's circle or outline to pan/zoom straight to it
+- **Multiple areas at once** — any number of nearby areas can be loaded simultaneously; only the one you're centered on gets its POI/trip/search layers and toolbox
 - **Tile providers** — CARTO Voyager (default) or OpenStreetMap, switchable from the layer flyout
 - **Geolocation** — live GPS blue dot with heading cone; heading comes from the device compass (`DeviceOrientationEvent`), requested on first use — iOS shows a one-time permission prompt
-- **Last view persistence** — reopens the last visited area on startup
+- **Viewport persistence** — the map reopens at the same position and zoom on startup, and each area remembers its own layer visibility
 
 ### Layers & Data
 - **Heatmaps** — density overlays from weighted GeoJSON points
@@ -93,10 +94,11 @@ All features except place search work without a network connection. Data is fetc
 
 ## How It Works
 
-The app has two modes:
+There's a single shared map, not separate modes. Each area independently tracks its own on-screen size and the current zoom to decide how it renders:
 
-- **Summary** — world overview; one bubble per area
-- **Detail** — immersive area view with layers, POIs, and controls
+- **Circle** — too small on screen to be worth more detail
+- **Outline** — big enough to show its extent, not yet loaded (or the zoom is too far out for any area to load)
+- **Loaded** — layers rendered; any number of areas can be loaded at once, but only the one nearest the viewport center becomes "current" and gets its POI/trip/search layers and toolbox
 
 Data loads in stages:
 
@@ -121,7 +123,7 @@ Startup fetches `/catalog.head.json` (cache-busted) to find the catalog URL, the
 
 POI popups show baked metadata: name, cuisine, address, opening hours, star rating, outdoor seating, Wikipedia/Wikidata links, and a Wikidata thumbnail image. POI *action* buttons (star, bookmark) are separate — see [POI Actions](#poi-actions).
 
-The live GPS position (blue dot + heading cone) is **not** a layer — it's a standing map control (`GeoLocationWidget`) that's always available in Detail view, independent of the catalog/manifest.
+The live GPS position (blue dot + heading cone) is **not** a layer — it's a standing map control (`GeoLocationWidget`) that's always available, independent of the catalog/manifest or which area (if any) is currently loaded.
 
 ---
 

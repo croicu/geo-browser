@@ -26,28 +26,41 @@ src/
     browserGeoLocationService.ts
     browserHeadingService.ts   (DeviceOrientationEvent wrapper — see GeoLocationWidget below)
     userPointsStore.ts     (LocalStorageUserPointsStore, GatewayUserPointsStore)
+    destinationStore.ts    (LocalStorageDestinationStore — see tasks/destination_marker.md)
     localStorageService.ts
     storageGuard.ts
     webViewHostService.ts
 
   state/
-    summaryViewState.ts
-    detailViewState.ts
-    geoState.ts           (GeoState interface + LastViewData)
+    mapViewState.ts        (shared map center/zoom)
+    areaViewState.ts       (per-area visibleLayers)
+    geoState.ts            (GeoState interface)
     geoStateStore.ts
+
+  geo/
+    mercator.ts             (metersPerPixel, bboxPixelSize, boundsIntersectBbox — see areaRenderClassifier/areaLifecycleTracker)
+    bearing.ts               (great-circle initial bearing — see destinationWidget)
 
   vision/
     blueDotDetector.ts     (canvas pixel scan for GPS-dot auto-alignment; see tasks/blue_dot_detection.md)
 
   view/
+    statusWidget.ts
+
+    map/                    (unified map — see tasks/layer_lifecycle.md)
+      mapView.ts
+      areaLifecycleTracker.ts     (pure state machine — no Leaflet/DOM)
+      areaRenderClassifier.ts     (bbox-area-vs-fixed-circle + MIN_LOADED_ZOOM checks)
+      currentAreaSelector.ts
+      areaMarkerView.ts           (circle/outline render kinds, successor of BubbleWidget)
+      areaBaseLayerRenderer.ts    (base points/heatmap layers, one per resident area)
+
     summary/
-      summaryView.ts
-      bubbleWidget.ts
-      bboxWidget.ts
-      drawAreaInteraction.ts
+      bboxWidget.ts          (design-mode bbox edit widget, current area only)
+      drawAreaInteraction.ts (design-mode "draw new area" drag interaction)
 
     detail/
-      detailView.ts
+      currentAreaBundle.ts   (renamed/slimmed from detailView.ts — singleton virtual-layer bundle + toolbox)
       layerView.ts
       pointLayerView.ts
       heatLayerView.ts
@@ -59,9 +72,9 @@ src/
       starRatingControl.ts
       emptyCalloutWidget.ts
       twoTapState.ts
-      summaryWidget.ts
       layerSelectionWidget.ts
       geoLocationWidget.ts
+      destinationWidget.ts
       imageOverlayWidget.ts
       manifestEditorWidget.ts    (design mode only — see tasks/... manifest editor)
       codeMirrorJsonEditorFactory.ts
@@ -71,7 +84,7 @@ src/
   contracts.ts
   protocols.ts
   api.ts                 (Gateway wire protocol — mirrors geo-builder's api.py, see docs/MESSAGING.md)
-  logging.ts
+  logging.ts              (Logger, DefaultLogger, LogCategory)
   services.ts
   errors.ts
   validate.ts
@@ -201,54 +214,53 @@ Interpretation belongs in `LayerView` subclasses.
 - `TileProvider` interface (`urlTemplate`, `maxZoom`, `attribution`, optional `subdomains`)
 - `osmTileProvider` constant — standard OpenStreetMap tiles, uses `dark-osm` CSS filter
 - `cartoTileProvider` constant — CARTO Voyager (default), subdomains `abcd`
-- `getActiveTileProvider()` / `setActiveTileProvider()` — module-level store that persists the selected provider across map recreations (summary ↔ detail transitions)
+- `getActiveTileProvider()` / `setActiveTileProvider()` — module-level store for the selected provider; there's only ever one map now, so this mainly matters across a full page reload (it is not itself localStorage-backed, so it does not survive a reload — only in-memory recreation)
 
-`MapLayerFlyoutControl` in `leafletFactories.ts` is a Leaflet control at `topright` that manages the tile layer lifecycle and renders a flyout panel. The flyout shows a Map type section (CARTO / OSM) in both views, plus a Map Details layer list in detail view. Created via `WidgetFactory.createMapLayerFlyout()` — added by `SummaryView` and `LayerSelectionWidget`.
+`MapLayerFlyoutControl` in `leafletFactories.ts` is a Leaflet control at `topright`, created once by `MapView.render()` and kept for the whole session (recreating it would tear down and rebuild the tile layer it owns). It manages the tile layer lifecycle and renders a flyout panel. The flyout shows a Map type section (CARTO / OSM) always; a Map Details layer list is added only while a current area exists, via `MapLayerFlyoutHandle.setLayers()` (content swap, not control recreation) — see `LayerSelectionWidget`.
 
 Zoom buttons are disabled (`zoomControl: false` in `createMap()`).
 
-## Last View Persistence
+## Viewport & Per-Area State Persistence
 
-`geo-browser.lastView` in localStorage stores `{ mode: "summary" | "detail", areaId?: string }` (`LastViewData` in `geoState.ts`). `Controller.start()` reads it after catalog load and reopens the last detail area if it still exists, otherwise falls back to summary. Saved in `openSummary()` and `openDetail()` before `switchView()`.
+No more "last view"/mode to restore — see CLAUDE.md's "Viewport & Per-Area State Persistence" section for the current `MapViewState`/`AreaViewState` persistence (`geo-browser.mapViewState`, `geo-browser.areaViewState.<areaId>`).
 
-## DetailView
+## MapView
 
-DetailView owns:
+`MapView` (`view/map/mapView.ts`) is the session-lifetime orchestrator. It owns:
 
 ```text
-Leaflet map handle
-summary/back widget           (topright)
-layer selection widget        (topright)
-ImageOverlayWidget            (topright, only when image is active)
-GeoLocationWidget             (bottomright, optional)
-BboxWidget                    (optional, only when GatewayService is injected)
-bbox highlight rectangle
-Map<string, LayerView>
+Leaflet map handle (created once, never destroyed until MapView.destroy())
+AreaLifecycleTracker              (pure state machine — see tasks/layer_lifecycle.md)
+Map<string, AreaMarkerView>       (one per catalog area — circle/outline)
+Map<string, AreaBaseLayerRenderer> (one per resident area — base points/heatmap)
+0-or-1 CurrentAreaBundle          (singleton — virtual layers + toolbox for the current area)
+MapLayerFlyoutHandle              (persistent, topright)
+GeoLocationWidget, DestinationWidget (session-level, bottomright/destination-pane)
+DesignToolbarControl              (topleft, gateway-gated design mode only)
 ```
 
-Map creation in `createMap()`:
+Map creation in `render()`:
 
-1. Create Leaflet map via `MapFactory` (zoom control disabled).
-2. `MapLayerFlyoutControl` added by `LayerSelectionWidget` after map creation — manages tile layer + flyout at `topright`.
-3. `applyMaxBounds()` — computes padded bounds (half-bbox on each side), sets `maxBounds` with `maxBoundsViscosity: 1.0` (hard stop), computes `minZoom` from `getBoundsZoom(paddedBounds) - 1`.
-4. `addBboxHighlight()` — draws a subtle rectangle over the area bbox.
-5. Attach `onMoveEnd` → `saveViewport()`.
-6. Attach `onZoom` → `onZoomChange()`.
+1. Create the Leaflet map via `MapFactory` (zoom control disabled).
+2. Attach `onMoveEnd`/`onZoom` → `handleViewportChange()`.
+3. Create one `AreaMarkerView` per catalog area, registering each with `AreaLifecycleTracker`.
+4. Create the persistent `MapLayerFlyoutHandle`.
+5. If a gateway is injected (design mode), create `DesignToolbarControl`.
+6. If a geolocation service is injected, create `GeoLocationWidget`.
+7. Create `DestinationWidget`, wired to `GeoLocationWidget.onPositionUpdate`.
+8. Run one initial `handleViewportChange()` to seed render kinds/residency.
 
-Auto-navigate to summary:
+There is no more per-area `maxBounds`/hard pan-zoom restriction, no auto-navigate
+zoom threshold, and no `switchView()` — every area's own on-screen size and the shared
+zoom decide its render kind independently on every `handleViewportChange()`
+(`AreaLifecycleTracker.recompute()`; see CLAUDE.md's Unified Map / Render Kinds &
+Current Area sections and [tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md)).
+
+Base-layer reconciliation for one resident area (`AreaBaseLayerRenderer.sync()`):
 
 ```text
-onZoomChange(zoom)
-    if zoom <= minZoom:
-        saveSummaryViewport(center, zoom)
-        openSummary()
-```
-
-Layer reconciliation:
-
-```text
-for each GeoLayer:
-    visible = state.isLayerVisible(layer.id)
+for each GeoLayer in that area:
+    visible = state.isLayerVisible(layer.id) && zoom >= (layer.style.minZoom ?? -Infinity)
     existing = layerViews.get(layer.id)
 
     if visible and no existing:
@@ -258,7 +270,10 @@ for each GeoLayer:
         destroy LayerView
 ```
 
-Full cleanup happens in `destroy()` only.
+Full cleanup for one area happens in `AreaBaseLayerRenderer.destroy()`
+(`GeoLayer.invalidate()` on every layer, including virtual ones) — only ever triggered
+as a side effect of a genuinely new area's `toLoad`, never merely on losing current
+status.
 
 ## LayerView
 
@@ -307,7 +322,7 @@ Popup action row (star/bookmark) is built by `buildPoiBottomRow` and is shared v
 
 Thin fetch-and-render of a precomputed GeoJSON polygon — no client-side geometry computation. Which manifest `__void__*` entry to render is decided by `VoidVariantResolver` (minimal-superset search over currently-visible non-virtual layer ids; see `docs/LAYERS.md` for the full algorithm and naming convention).
 
-Renders into a dedicated `void-pane` Leaflet pane with a CSS `blur(5px)` on the pane's SVG element (applied to the SVG child, not the zero-size pane div — a filter on the pane div clips the overflowing SVG entirely). `DetailView` synthesizes exactly one "Mundane" toggle in the layer flyout regardless of how many `__void__*` variants exist in the manifest.
+Renders into a dedicated `void-pane` Leaflet pane with a CSS `blur(5px)` on the pane's SVG element (applied to the SVG child, not the zero-size pane div — a filter on the pane div clips the overflowing SVG entirely). `CurrentAreaBundle` synthesizes exactly one "Mundane" toggle in the layer flyout regardless of how many `__void__*` variants exist in the manifest.
 
 ## SearchLayerView
 
@@ -321,49 +336,24 @@ Owns `__user__` trip-point markers. Points are always created through `EmptyCall
 - **Deletion**: tapping an existing marker reopens `EmptyCalloutWidget` with a delete button (`onDeleteRequested`) in place of the bookmark toggle.
 - **Persistence**: `UserPointsStore` (DI) — `LocalStorageUserPointsStore` in browse mode, `GatewayUserPointsStore` in design mode (`runtime/userPointsStore.ts`). `UserPointsStore.setBookmarked` is declared but currently unused — bookmark state is only ever written as part of `addPoint`'s initial properties, never patched onto an existing point.
 
-## SummaryView
+## AreaMarkerView
 
-SummaryView uses Leaflet.
-
-It owns:
+Successor of `BubbleWidget` — one instance per catalog area, created eagerly by `MapView.createMarker()` for every area in the catalog (not just resident ones). Renders exactly one of `{circle, outline, nothing}` per `MapView.render(kind)` call, driven by `AreaLifecycleTracker`'s render kind for that area (`AreaRenderKind`, see CLAUDE.md's Render Kinds & Current Area). `loaded` renders nothing here — `AreaBaseLayerRenderer` takes over the visual space once real data is shown.
 
 ```text
-summary-view root
-summary-map container
-map handle
-BubbleWidget[]
+circle:  fixed 48px-diameter unfilled circumference, never rescaled on zoom
+outline: L.rectangle over the area bbox, no fill, same stroke color as the circle
 ```
 
-It creates BubbleWidgets for catalog areas.
+Both are tappable (`onSelected` callback → `MapView.jumpToArea()`, tap-to-jump): tapping pans/zooms the shared map to fit that area's bbox, letting `AreaLifecycleTracker` naturally promote it through outline → loaded → current on the next `handleViewportChange()` — there is no separate "open detail" method to call.
 
-Auto-navigate to detail:
+## AreaLifecycleTracker & CurrentAreaSelector
 
-```text
-onZoomChange(zoom)
-    if zoom < 11: return
-    bounds = map.getBounds()
-    area = findAreaInBounds(bounds, map.getCenter())
-    if area:
-        openDetail(area.id, center, zoom)
-```
-
-`findAreaInBounds` picks the area whose bbox intersects the current viewport, closest to the map center (by squared distance). If multiple areas are visible it picks the nearest one.
-
-## BubbleWidget
-
-BubbleWidget is Leaflet marker-based now.
-
-It owns one clickable marker and emits:
-
-```ts
-ControllerActions.openDetail(areaId)
-```
-
-It should not load areas or make navigation decisions.
+`AreaLifecycleTracker` (`view/map/areaLifecycleTracker.ts`) is the pure state machine behind every rendering/residency/current-area decision — no Leaflet, no `GeoArea`/`GeoLayer` references, only plain `{id, bbox, center}` tuples in and a diff out via `recompute(viewport)`. `CurrentAreaSelector.selectNearest()` (`currentAreaSelector.ts`) picks the nearest-to-viewport-center candidate among intersecting, resident areas — reused both for "which loaded area is current" and for the empty-viewport fallback pin. Full design, state table, and the two-phase Hide/Destroy discard lifecycle: [tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md).
 
 ## GeoLocationWidget
 
-`GeoLocationWidget` lives in `DetailView`.
+`GeoLocationWidget` lives in `MapView` now — a session-level singleton, not scoped to any one area.
 
 It owns:
 
@@ -375,32 +365,24 @@ accuracy ring (circle, drawn before marker so marker renders on top)
 
 Lifecycle:
 
-- Created in `DetailView.render()` only when a `GeoLocationService` is injected.
-- Passed the padded bounds computed in `applyMaxBounds()`.
+- Created in `MapView.render()` only when a `GeoLocationService` is injected.
+- No bounds gate is passed (`undefined`) — the old per-area padded-bbox gate that disabled the widget outside the current area's bounds was dropped when the map stopped being scoped to one area at a time. Confirmed, intentional behavior change: see [tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md)'s Confirmed Behavior Changes.
 
 Position handling:
 
 ```text
 onPosition(position):
-    if outside padded bounds:
-        disable widget
-        clear following
-    else:
-        enable widget
-        update marker and accuracy ring
-        if following: pan map to position
+    update marker and accuracy ring
+    if following: pan map to position
 ```
 
-Out-of-bounds rule: the widget is disabled (greyed out, non-interactive) when the GPS
-position is outside the padded area bounds. It re-enables automatically when the
-position returns inside bounds. This prevents the "follow" mode from silently panning
-the map off the visible area.
+The out-of-bounds disable/re-enable behavior described in older revisions of this doc no longer applies — the widget is always available regardless of which area (if any) is current.
 
 ## LayerSelectionWidget
 
 Layer selection widget owns ephemeral visual state for immediate feedback.
 
-Controller/DetailViewState own durable truth.
+`Controller`/`AreaViewState` own durable truth.
 
 Single tap directly toggles layer visibility — no two-tap expand behavior.
 
@@ -439,10 +421,12 @@ if (this.debug || this.mode === "design") { ... }
 When constructor DI grows, use options objects:
 
 ```ts
-new DetailView(root, actions, area, state, {
+new MapView(root, actions, geoState, catalog, state, {
     mapFactory,
     layerFactory,
     widgetFactory,
+    userPointsStore,
+    destinationStore,
 });
 ```
 
@@ -463,13 +447,13 @@ body,
     margin: 0;
 }
 
-.summary-view,
-.summary-map,
-.detail-view,
-.detail-map {
+.map-view,
+.shared-map {
     width: 100%;
     height: 100%;
 }
 ```
 
-Without this, Leaflet may create a blank map container.
+Without this, Leaflet may create a blank map container — this bit the layer_lifecycle
+cutover once: renaming `.summary-view`/`.summary-map`/`.detail-view`/`.detail-map` to
+`.map-view`/`.shared-map` needs a CSS grep pass, not just a code grep pass.

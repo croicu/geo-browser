@@ -28,10 +28,7 @@ npx vitest run tests/unit/catalog.test.ts
 
 ## Current Product Shape
 
-The app has two UI modes:
-
-- **Summary**: discovery/world overview using Leaflet, displaying one bubble/marker per learned area.
-- **Detail**: immersive selected-area view using Leaflet, rendering layers such as points and heatmaps.
+`geo-browser` renders every area on one shared, session-lifetime Leaflet map (`MapView`) — there is no separate discovery/detail mode split. Each catalog area independently renders as a `circle`, `outline`, or `loaded` layer based on its on-screen bbox size and the current zoom (`AreaLifecycleTracker`, `tasks/layer_lifecycle.md`); any number of areas can be `loaded` (base points/heatmap data) concurrently, but only one — whichever the viewport currently centers on — is "current" and owns the virtual layers (`__poi__`/`__user__`/`__void__`/`__search__`) and toolbox at a time (`CurrentAreaBundle`, singleton).
 
 Core pipeline:
 
@@ -54,7 +51,7 @@ Startup resolves the catalog URL via a two-step fetch:
 1. Fetch `/catalog.head.json` (`{ version, catalogUrl }`) — bypasses cache.
 2. If that fails, fall back to `/catalog.json`.
 
-Debug mode (`?debug`) uses `/catalog.head.debug.json` → fallback `/catalog.debug.json`.
+There is a single `catalog.json`, not a separate debug variant — `?debug`/`?group=` filtering (see Area Grouping in Completed Tasks below) happens client-side against the same catalog data via `Context.groupFilter`, not by fetching a different file.
 
 Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches its own GeoJSON URL — all on demand, cache bypassed.
 
@@ -99,27 +96,29 @@ Rules:
 - Views and widgets emit intent only.
 - Controller owns behavior.
 - Unit tests must not import Leaflet or hit the network.
-- Only `view/detail/leafletFactories.ts` imports Leaflet and Leaflet plugins. Both `SummaryView` and `DetailView` import from this file — the cross-folder import is intentional to keep Leaflet confined to one file.
+- Only `view/detail/leafletFactories.ts` imports Leaflet and Leaflet plugins. `view/map/mapView.ts` and `view/detail/currentAreaBundle.ts` both import from this file — the cross-folder import is intentional to keep Leaflet confined to one file.
 
 ## Naming Rules
 
 Files are camelCase:
 
 ```text
-summaryView.ts
-detailView.ts
-summaryViewState.ts
-detailViewState.ts
+mapView.ts
+currentAreaBundle.ts
+mapViewState.ts
+areaViewState.ts
+areaLifecycleTracker.ts
 leafletFactories.ts
 ```
 
 Classes and interfaces are PascalCase:
 
 ```ts
-SummaryView
-DetailView
-SummaryViewState
-DetailViewState
+MapView
+CurrentAreaBundle
+MapViewState
+AreaViewState
+AreaLifecycleTracker
 GeoCatalog
 GeoArea
 GeoLayer
@@ -142,17 +141,19 @@ Folder provides namespace. Class uses the simplest meaningful name.
 Use these terms consistently:
 
 ```text
-Summary   = discovery/world overview mode
-Detail    = selected-area immersive mode
-Area      = domain concept
-Bubble    = summary UI widget concept
-Layer     = protocol/data concept
-GeoLayer  = runtime wrapper/cache
-__poi__  = reserved builtin virtual layer type: tappable POI markers derived at runtime from hasDetails features in existing layers
-hasDetails = GeoJSON feature flag: point carries baked POI metadata and is tappable
+Area          = domain concept
+Render kind   = an area's per-frame rendering state: circle | outline | loaded
+Current area  = whichever one area the viewport currently centers on; owns the virtual-layer bundle/toolbox
+Loaded        = base-layer residency state (points/heatmap data resident, any number concurrent)
+Layer         = protocol/data concept
+GeoLayer      = runtime wrapper/cache
+__poi__       = reserved builtin virtual layer type: tappable POI markers derived at runtime from hasDetails features in existing layers
+hasDetails    = GeoJSON feature flag: point carries baked POI metadata and is tappable
 ```
 
-Do not reintroduce `intro` vocabulary unless explicitly requested. The project settled on `summary/detail`.
+`Summary`/`Detail` as UI *modes* are retired vocabulary — see [Layer Lifecycle](tasks/layer_lifecycle.md) in Completed Tasks below. `AreaSummary`/`AreaDetail` still exist as unrelated protocol/data type names (`protocols.ts`, the manifest wire format from `geo-builder`) and are unaffected. `Bubble`/`BubbleWidget` is retired too — the circle-marker render kind is owned by `AreaMarkerView` now.
+
+Do not reintroduce `intro` or mode-based `summary/detail` vocabulary unless explicitly requested — the project settled on the unified render-kind/current-area model above.
 
 ## TypeScript Style
 
@@ -201,7 +202,7 @@ Use `fail()` from `src/errors.ts` for non-recoverable internal errors. It logs, 
 
 ```ts
 import { fail } from "../errors";
-fail("detail_state.missing", "DetailViewState is not available.");
+fail("area_state.missing", "AreaViewState is not available.");
 ```
 
 ### Global Logger Singleton
@@ -224,6 +225,16 @@ log.error("image_overlay.paste.error", err);
 Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-frame events) are exempt to avoid log spam — but only for the no-op case. If the handler produces a state change (a layer loads/hides/destroys, a mode/current-area switch, anything a bug report would need to reconstruct), log that transition, gated on "did anything actually change" rather than firing every tick. A pan/zoom handler that never logs is exactly as undiagnosable as one with no logging at all — this bit us once already (`tasks/layer_lifecycle.md`'s viewport-driven state machine shipped with zero visibility into its own transitions, and a real bug took a live repro + guesswork to chase down before diagnostic logging was retrofitted after the fact).
 
 New code is not exempt from this just because it doesn't look like a user-facing "feature" — internal orchestration/state-machine classes (trackers, controllers, view coordinators) need this exactly as much as UI-facing ones, arguably more, since they're the hardest to inspect by just looking at the screen.
+
+### Log Categories
+
+Every `Logger` call (`info`/`warning`/`diagnostic`/`error`/`fatal`) takes an optional trailing `category?: string`, defaulting to `DEFAULT_LOG_CATEGORY` (`"general"`) when omitted. A normal run only shows `"general"` — `?debug` in the query string (the existing `Context.debug` flag, reused here rather than adding a second flag) switches `DefaultLogger` to show every category, no matter what it's called (`DefaultLogger.showAllCategories`, wired from `Context.debug` at construction). `?logCategory=a,b` is also available as a manual allow-list independent of `?debug`, for isolating exactly one category's noise without full debug verbosity (`Context.parseLogCategories()`).
+
+The canonical set of category names lives in one place, `src/logging.ts`'s `LogCategory` const object (`LogCategory.General`, `LogCategory.AreaLifecycle`, ...) — a plain `const ... as const` object plus a derived union type, **not** a real TypeScript `enum`: `erasableSyntaxOnly` (see TypeScript Style below) forbids `enum` declarations because they emit runtime code beyond simple erasure. `Logger`'s `category` parameter itself stays a plain `string` (categories are an open set — tests and ad-hoc debugging exercise arbitrary names not in this list), so `LogCategory` is only the known/canonical list call sites should reference instead of retyping string literals. Add a new category here, in `logging.ts`, not scattered next to whichever class happens to use it first.
+
+Use a category for a class of high-volume diagnostic logging that's only useful when actively chasing a specific bug — noisy enough that always showing it would bury the "general" signal, but valuable enough to be worth a name so `?debug` (or `?logCategory=<name>`) can pull it back up on demand. `LogCategory.AreaLifecycle` is the existing example — `MapView`'s viewport-transition trace (`map_view.viewport_change`, `map_view.jump_to_area.*`) and `AreaBaseLayerRenderer`'s hide/show/destroy logs. Genuine anomalies (a defensive guard firing, something a bug report would need regardless of what's being actively debugged) stay on the default `"general"` category rather than being tagged — category is for expected-but-verbose diagnostic *volume*, not for hiding real problems.
+
+Every new component — and existing components picking up meaningfully new code — is **entitled and encouraged** to add its own `LogCategory` entry and log verbosely under it: per-step state, intermediate values, anything useful while actively debugging that class but too noisy for a normal run. This is a standing invitation, not something to ask permission for each time. Verbose category logging is cheap to add while writing the code and expensive to retrofit later once a live bug forces the question — see `tasks/layer_lifecycle.md`'s viewport-driven state machine, which shipped with no visibility into its own transitions and took a live repro plus guesswork before `LogCategory.AreaLifecycle` was retrofitted after the fact. Default to adding the category up front instead of waiting for that to happen again.
 
 ## Feature Completeness Rule
 
@@ -314,24 +325,23 @@ Repos stay separate:
 - `geo-browser`: rendering/client UI.
 - `geo-builder`: Python host, data pipeline, project persistence, artifact generation.
 
-### Leaflet Summary View
+### Unified Map (MapView)
 
-Summary now uses Leaflet too. The old static `world.svg` approach was replaced.
-
-Current model:
+One shared, session-lifetime Leaflet map replaces the old Summary/Detail two-map split (full design: [tasks/layer_lifecycle.md](tasks/layer_lifecycle.md)).
 
 ```text
-SummaryView
-  owns Leaflet map
-  owns BubbleWidget[]
-
-DetailView
-  owns Leaflet map
-  owns widgets
-  owns LayerView map
+MapView (session-lifetime, one shared L.Map)
+  owns AreaLifecycleTracker (pure state machine, no Leaflet — recompute() drives everything below)
+  owns one AreaMarkerView per catalog area (circle/outline render kinds, eager)
+  owns one AreaBaseLayerRenderer per currently-resident area (points/heatmap, lazy, N-concurrent)
+  owns 0-or-1 CurrentAreaBundle (virtual layers + toolbox + search + image overlay, singleton)
+  owns session-level GeoLocationWidget / DestinationWidget / design-mode toolbar
+  owns one persistent MapLayerFlyoutHandle (tile layer, content swapped via setLayers())
 ```
 
-Summary = discovery mode, not non-Leaflet mode.
+`AreaLifecycleTracker.recompute(viewport)` is the single entry point: given the current bounds/zoom, it returns a diff (`toLoad`/`toShow`/`toHide`/`toDestroy`/render kinds/bundle action) that `MapView.handleViewportChange()` applies mechanically. Nothing else independently decides whether an area should be visible/loaded/current.
+
+Two-phase discard: **Hide** (instant, Leaflet-only detach, `AreaBaseLayerRenderer.hide()`/`show()`) keeps a de-prioritized area's parsed GeoJSON resident for cheap re-entry; **Destroy** (deferred, `GeoLayer.invalidate()`) only fires as a side effect of a genuinely new area's `toLoad` in the same tick, per the "revisiting the same neighborhood never destroys" rule.
 
 ### Heatmaps
 
@@ -394,7 +404,7 @@ Enriched feature shape:
 
 ### Virtual Layers — Ownership Summary
 
-Three reserved `type` values besides `__poi__`, each owned by one `LayerView` subclass, synthesized into the manifest at runtime if `geo-builder` didn't emit one (`DetailView.synthesize*` methods):
+Three reserved `type` values besides `__poi__`, each owned by one `LayerView` subclass, synthesized into the manifest at runtime if `geo-builder` didn't emit one (`CurrentAreaBundle.synthesize*` methods):
 
 | type | View class | File | Backing store |
 |------|-----------|------|----------------|
@@ -402,7 +412,7 @@ Three reserved `type` values besides `__poi__`, each owned by one `LayerView` su
 | `__search__` | `SearchLayerView` | `view/detail/searchLayerView.ts` | none — ephemeral, single in-memory marker, no persistence |
 | `__void__` | `VoidLayerView` | `view/detail/voidLayerView.ts` | precomputed GeoJSON from `geo-builder`; variant picked by `VoidVariantResolver` (see [Mundane (Void) Layer](tasks/void_layer.md), `docs/LAYERS.md`) |
 
-`DetailView` injects the store/service dependencies into each view's constructor (DI, not module imports) and filters these three `type`s out of the regular manifest-driven layer list (`_area.layers.filter(l => l.type !== ...)`) so they don't get double-rendered through the generic layer pipeline.
+`CurrentAreaBundle` injects the store/service dependencies into each view's constructor (DI, not module imports) and filters these three `type`s out of the regular manifest-driven layer list (`_area.layers.filter(l => l.type !== ...)`) so they don't get double-rendered through the generic layer pipeline.
 
 ### User Points / Bookmarks
 
@@ -419,30 +429,30 @@ Three reserved `type` values besides `__poi__`, each owned by one `LayerView` su
 
 ### Map Layer Flyout
 
-`MapLayerFlyoutControl` (in `leafletFactories.ts`) is a Leaflet control at `topright` that:
+`MapLayerFlyoutControl` (in `leafletFactories.ts`) is a Leaflet control at `topright`, created once by `MapView.render()` and never torn down for the rest of the session (see Unified Map above — recreating it would tear down and rebuild the tile layer it owns). It:
 - Manages the tile layer lifecycle (replaces the old `TileProviderControl`)
 - Renders a layers icon button that opens a flyout panel on tap
-- **Summary view**: flyout shows Map type section only (CARTO / OSM toggle)
-- **Detail view**: flyout shows Map type + Map Details (layer list with color circles and visibility toggles)
+- **No current area**: flyout shows Map type section only (CARTO / OSM toggle)
+- **A current area exists**: flyout also shows Map Details (layer list with color circles and visibility toggles) — `CurrentAreaBundle`'s `LayerSelectionWidget` swaps this content in/out via `MapLayerFlyoutHandle.setLayers()`, never by recreating the control
 - Outside-click dismisses the flyout; clicking inside keeps it open
 - Created via `WidgetFactory.createMapLayerFlyout(layers, onToggle)`
 
 ### Map Control Positions
 
-All interactive controls are at `topright` (stacked top-to-bottom in render order):
+All interactive controls are at `topright` (stacked top-to-bottom in render order). `MapLayerFlyoutControl` is session-level (`MapView`, always present); `SearchControl` and `ImageOverlayWidget` are area-scoped (`CurrentAreaBundle`, only exist while a current area is attached):
 
 ```text
-SummaryControl        (back to summary — detail view only)
-ImageOverlayWidget    (paste/image toolbar — only when image is active)
-MapLayerFlyoutControl (tile layer + layer visibility flyout)
-GeoLocationControl    (bottomright)
+MapLayerFlyoutControl (tile layer + layer visibility flyout — session-level)
+SearchControl         (Nominatim place search — current area only)
+ImageOverlayWidget    (paste/image toolbar — current area only, only when image is active)
+GeoLocationControl    (bottomright, session-level)
 ```
 
 Zoom buttons are disabled (`zoomControl: false`).
 
 ### Live Location & Heading (GPS Blue Dot)
 
-The blue GPS dot with its heading cone is **not** a manifest layer — it's `GeoLocationWidget` (`view/detail/geoLocationWidget.ts`), a standing `bottomright` control always present in Detail view. Do not confuse it with `__user__` (trip points); they are unrelated features that happen to both render markers.
+The blue GPS dot with its heading cone is **not** a manifest layer — it's `GeoLocationWidget` (`view/detail/geoLocationWidget.ts`), a standing `bottomright` control owned by `MapView`, session-level (always present, independent of any current area). Do not confuse it with `__user__` (trip points); they are unrelated features that happen to both render markers.
 
 - **Position**: `Context.geoLocation` (`GeoLocationService`, real impl `BrowserGeoLocationService`) via the browser Geolocation API.
 - **Heading**: `Context.headingService` (`HeadingService`, real impl `BrowserHeadingService`, `runtime/browserHeadingService.ts`) wraps `DeviceOrientationEvent` — `webkitCompassHeading` where available (iOS), else `360 - alpha` for the standards-track `absolute` orientation event.
@@ -453,20 +463,25 @@ The blue GPS dot with its heading cone is **not** a manifest layer — it's `Geo
 
 A single "which way is it, roughly" indicator — not routing. Pure client runtime, no `geo-builder`/gateway involvement at all (unlike `__user__`); global, not scoped per area. Full design: [tasks/destination_marker.md](tasks/destination_marker.md).
 
-- **Store**: `DestinationStore` (`contracts.ts`) has exactly one implementation, `LocalStorageDestinationStore` (`runtime/destinationStore.ts`, key `geo-browser.destination`). No `Context.mode` branching, no design-mode variant — constructed directly in `DetailView`'s constructor, same spot as `_userPointsStore` but without the gateway branch.
+- **Store**: `DestinationStore` (`contracts.ts`) has exactly one implementation, `LocalStorageDestinationStore` (`runtime/destinationStore.ts`, key `geo-browser.destination`). No `Context.mode` branching, no design-mode variant — constructed in `Controller.start()` alongside `userPointsStore`, threaded down through `MapView`'s constructor options into `CurrentAreaBundle`.
 - **Rendering**: `DestinationWidget` (`view/detail/destinationWidget.ts`), a sibling to `GeoLocationWidget`, not a merge into it. Owns two Leaflet elements, both rendered into a dedicated `destination-pane` (via `MapHandle.createPane`, same technique as `VoidLayerView`'s `void-pane`) with `zIndex` explicitly set below the default `markerPane` (600) — this guarantees the blue GPS dot/heading cone always draws on top, regardless of widget creation order:
   - **Pin** (`LayerFactory.createDestinationMarker`) — fixed at the destination's lat/lng, shown whenever a destination exists, independent of GPS. Directly tappable (`DestinationMarkerHandle.onClick`).
   - **Cone** (`LayerFactory.createDestinationCone`) — anchored at the *live GPS position* (not the destination), rotated by `computeBearing()` (`geo/bearing.ts`, pure great-circle initial-bearing math, unit-testable without Leaflet). Reuses `PositionMarkerHandle`'s existing `setLatLng`/`setHeading` shape rather than a parallel type — mechanically identical to the blue heading cone (rotate an SVG polygon, hide via `setHeading(null)`), just red (`#ED4231`) and dot-less.
-- **Position feed**: `DestinationWidget` never starts its own GPS watch. `GeoLocationWidget.onPositionUpdate(listener)` is a passive subscription (fires from the same `onPosition`/`onDenied` callbacks the blue dot already uses) that `DetailView` wires into `DestinationWidget.onPosition()`. This is the one new piece of surface `GeoLocationWidget` exposes for this feature.
+- **Position feed**: `DestinationWidget` never starts its own GPS watch. `GeoLocationWidget.onPositionUpdate(listener)` is a passive subscription (fires from the same `onPosition`/`onDenied` callbacks the blue dot already uses) that `MapView` wires into `DestinationWidget.onPosition()`. This is the one new piece of surface `GeoLocationWidget` exposes for this feature.
 - **Callout wiring**: a 4th action alongside star/bookmark/delete in both `EmptyCalloutWidget` (`onDestinationToggled`/`isDestination`) and `PoiLayerView.buildPoiBottomRow` (`onPoiDestinationToggled`/`isDestination` options) — independent of the other three, so a point can be starred *and* be the destination. Icon swaps between `public/icons/destination.svg` (solid fill, `#ED4231`, "Set") and `public/icons/remove_destination.svg` (same path, transparent fill, `#ED4231` outline stroke, "Remove") — same pattern as `bookmark.svg`/`solid_bookmark.svg`, icon-swap only, no background treatment (an `.active` background was tried and dropped — looked wrong, visible as an unwanted box around the icon). Set/remove is immediate on tap (unlike the empty-space bookmark flow, which defers to popup-dismiss) since a destination never creates a `__user__` point.
-- **Tapping the destination pin** (`DetailView.onDestinationMarkerTapped`) delegates to whichever callout the point would normally get — `onUserMarkerTapped` if a `__user__` point already exists there, else `openStarCallout` — with the destination toggle layered on top either way. It deliberately does **not** show a stripped-down "remove only" popup: star/bookmark/delete stay available, since the destination toggle is independent of them. This is also the reliable removal path for a destination set from empty space, since re-tapping the exact original coordinates isn't realistic.
-- **Rating/bookmarking clears destination**: `DetailView.maybeClearDestination(latLng)` is called from every star/bookmark commit site (`onEmptyStarSelected`, `onPoiStarSelected`, `onPoiBookmarkToggled`, the deferred bookmark commit in `closeEmptySpacePopup`, and the re-rate handler in `onUserMarkerTapped`) — if the acted-on point is the current destination, it's cleared. Applies regardless of which UI path triggered the action.
-- **Gotcha this surfaced**: `synthesizeUserLayerView` hardcoded `new DefaultLeafletLayerFactory()` instead of `this._layerFactory`, so any code path that lazily creates the `__user__` layer under a stub factory (i.e. in tests) crashed. Fixed at that call site. The same hardcoded-factory pattern exists in a few other spots in `DetailView`/`VoidLayerView` — harmless in production (the real composition root always injects `DefaultLeafletLayerFactory` anyway) but will bite the next test that exercises one of them under a stub.
-- **Behavior lives in `DetailView`** (`doSetDestination`/`doRemoveDestination`/`onDestinationMarkerTapped`), not `Controller` — matches the established pattern for `__user__` star/bookmark actions (`doAddStarredUserPoint` etc.), despite the general architecture rule naming `Controller` as behavior owner; these actions are tightly coupled to `DetailView`'s own map/popup state.
+- **Tapping the destination pin**: `DestinationWidget` is constructed by `MapView` with an `onMarkerTapped` callback that forwards straight to `CurrentAreaBundle.onDestinationMarkerTapped` (the current bundle, if any) — delegates to whichever callout the point would normally get — `onUserMarkerTapped` if a `__user__` point already exists there, else `openStarCallout` — with the destination toggle layered on top either way. It deliberately does **not** show a stripped-down "remove only" popup: star/bookmark/delete stay available, since the destination toggle is independent of them. This is also the reliable removal path for a destination set from empty space, since re-tapping the exact original coordinates isn't realistic.
+- **Rating/bookmarking clears destination**: `CurrentAreaBundle.maybeClearDestination(latLng)` is called from every star/bookmark commit site (`onEmptyStarSelected`, `onPoiStarSelected`, `onPoiBookmarkToggled`, the deferred bookmark commit in `closeEmptySpacePopup`, and the re-rate handler in `onUserMarkerTapped`) — if the acted-on point is the current destination, it's cleared. Applies regardless of which UI path triggered the action.
+- **Gotcha this surfaced**: `synthesizeUserLayerView` hardcoded `new DefaultLeafletLayerFactory()` instead of `this._layerFactory`, so any code path that lazily creates the `__user__` layer under a stub factory (i.e. in tests) crashed. Fixed at that call site. The same hardcoded-factory pattern exists in a few other spots in `CurrentAreaBundle`/`VoidLayerView` — harmless in production (the real composition root always injects `DefaultLeafletLayerFactory` anyway) but will bite the next test that exercises one of them under a stub.
+- **Behavior lives in `CurrentAreaBundle`** (`doSetDestination`/`doRemoveDestination`/`onDestinationMarkerTapped`), not `Controller` — matches the established pattern for `__user__` star/bookmark actions (`doAddStarredUserPoint` etc.), despite the general architecture rule naming `Controller` as behavior owner; these actions are tightly coupled to `CurrentAreaBundle`'s own map/popup state.
 
-### Last View Persistence
+### Viewport & Per-Area State Persistence
 
-`geo-browser.lastView` in localStorage stores `{ mode: "summary" | "detail", areaId?: string }`. On startup, `Controller.start()` reads this and reopens the last detail area if it still exists in the catalog, otherwise falls back to summary. `LastViewData` lives in `src/state/geoState.ts`; implemented in `GeoStateStore`.
+There is no more "last view" concept to restore (one shared map, no mode to reopen into). `GeoStateStore` (`src/state/geoStateStore.ts`) persists two things independently, both in localStorage:
+
+- `geo-browser.mapViewState` — the shared map's `center`/`zoom` (`MapViewState`, `src/state/mapViewState.ts`). Saved on every `handleViewportChange()`, loaded once by `Controller.start()` and passed into `MapView`'s constructor.
+- `geo-browser.areaViewState.<areaId>` — one entry per area actually visited, holding `visibleLayers` (`AreaViewState`, `src/state/areaViewState.ts`). `MapView.getOrLoadAreaState()` loads it lazily the first time an area becomes resident/current; it is *not* eagerly loaded for every catalog area.
+
+Since `MapView` itself is a single session-lifetime object, "restoring the last view" is really just "the map opens wherever `MapViewState` says" — no explicit reopen-last-area step exists or is needed.
 
 ## Task Workflow
 
@@ -486,7 +501,6 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 
 
 ## New Tasks
-- **[Layer Lifecycle](tasks/layer_lifecycle.md)**: Status: Implementation. Eliminates the Summary/Detail two-map mode split in favor of one unified Leaflet map: per-area circle/outline/loaded rendering states driven by on-screen bbox pixel size (N=48px) and viewport intersection, two-phase Hide(instant)/Destroy(deferred) discard, and a singleton "current area" bundle for virtual layers (`__poi__`/`__user__`/`__void__`/`__search__`) + toolbox. Breaking vocabulary change vs. this doc's Summary/Detail terminology — doc rewrite deferred to a follow-up commit after implementation (see task file's Phase 6). Implementation plan: `C:\Users\Croicu\.claude\plans\vivid-tumbling-brook.md`.
 
 ## Postponed Tasks
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
@@ -499,6 +513,7 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
+- **[Layer Lifecycle](tasks/layer_lifecycle.md)**: Status: Done. Eliminated the Summary/Detail two-map mode split in favor of one unified, session-lifetime Leaflet map (`MapView`). Each area independently renders `circle`/`outline`/`loaded` based on on-screen bbox pixel *area* vs. a fixed 48px-diameter reference circle (`AreaRenderClassifier`) and a global `MIN_LOADED_ZOOM=10` floor, both driven by `AreaLifecycleTracker`'s pure `recompute()` state machine; any number of areas can be concurrently `loaded`, with a two-phase Hide(instant)/Destroy(deferred) discard lifecycle, while a singleton `CurrentAreaBundle` (renamed/slimmed from the old `DetailView`) owns the virtual layers (`__poi__`/`__user__`/`__void__`/`__search__`) and toolbox for whichever one area is current. `AreaMarkerView` (successor of `BubbleWidget`) renders the circle/outline markers as a fixed-diameter, unfilled circumference matching the bbox outline's style; tap-to-jump preserved. Five real bugs found and fixed post-cutover during live device testing (CSS class rename gap, `leaflet.heat`'s uncancelled `requestAnimFrame`, non-atomic `setZoom`+`panTo`, a hidden area's own zoom listener bypassing `hide()`, `MapLayerFlyoutControl` tile-layer ownership) plus three more found via this session's new `?logCategory`/`?debug` categorized logging (a missing global zoom floor causing a peripheral area to silently steal "current" status while zooming out — the "ghost heatmap" bug; `createRectangle()` hardcoding `interactive:false` and silently breaking the outline's tap-to-jump; a pinch-zoom-specific `leaflet.heat` freeze, ultimately deferred to [geo-builder#40](https://github.com/croicu/geo-builder/issues/40) as a design-time-precompute follow-up rather than further live-plugin patching). Shipped alongside a new logging-category system (`LogCategory` const object in `src/logging.ts`, `?debug` shows every category, default run shows only `"general"`) built specifically to diagnose this feature's bugs, now a standing project convention (see Log Categories above). Full doc rewrite (this commit): CLAUDE.md, README.md, `docs/ARCHITECTURE.md`, `docs/IMPLEMENTATION.md`, `docs/CODING.md`, `docs/PROTOCOL.md`, `docs/ROADMAP.md`.
 - **[Destination Marker + Bearing Cone](tasks/destination_marker.md)**: Status: Done. Fixed `#ED4231` red destination pin (`public/icons/destination.svg`, tappable) + red bearing cone (`geo/bearing.ts` great-circle math, not compass) anchored on the live GPS position, both rendered into a `destination-pane` kept below the default `markerPane` so the blue GPS indicator always draws on top. `DestinationWidget` (`view/detail/destinationWidget.ts`) is passive w.r.t. GPS — reacts to `GeoLocationWidget.onPositionUpdate`, never starts its own watch. Set/remove via a 4th, independent action on the POI/empty-space callout (`EmptyCalloutWidget`/`PoiLayerView`), plus a direct tap on the pin itself — which delegates to the point's normal callout (keeping star/bookmark/delete alongside the destination toggle) rather than a stripped-down view; rating or bookmarking a point clears its destination status. Icon swaps between `destination.svg`/`remove_destination.svg` (solid vs. transparent-fill stroke outline, same shape and color). Pure client runtime — `LocalStorageDestinationStore` only, no `geo-builder`/gateway involvement, no `Context.mode` branching, global (not per-area) persistence. Typecheck/full test suite/production build all clean; **not** visually verified in a live browser (no display/GPS spoofing in this environment) — flagged in the task file for a manual pass.
 - **[Documentation Audit](tasks/docs_audit.md)**: Status: Done. Doc-only pass, no code changes. README: fixed the `__user__` row and "Trip Recording"/"POI Actions" sections to describe the actual tap-callout creation flow (the long-press/right-click gesture they still described was removed by Explicit Point Delete); clarified the GPS blue dot/heading cone is not a manifest layer. CLAUDE.md: added "Virtual Layers — Ownership Summary", "User Points / Bookmarks", and "Live Location & Heading" architecture sections, including the iOS `DeviceOrientationEvent.requestPermission()` user-gesture gotcha. Second pass cross-referenced the full `docs/` directory against this Completed Tasks list and fixed stale "not yet shipped" status headers on the void layer (LAYERS.md, MANIFEST.md — it shipped), a wrong `enhancedColor` default in MESSAGING.md, a missing `stars`/`bookmarked` schema in MANIFEST.md, an incomplete layer-type list in PROTOCOL.md, a stale/incomplete directory tree and missing Void/Search/UserLayerView subsections in IMPLEMENTATION.md, a stale foundation list in ROADMAP.md, and stale "future work" framing for the (shipped) image-overlay feature in OVERVIEW.md and PITCH.md.
 - **[Area Grouping](tasks/area_grouping.md)**: Status: Done. Replaced `catalog.head.debug.json`/`catalog.debug.json` with a single `catalog.json`; `AreaSummary.group?: string[]` drives client-side Summary filtering via `Context.groupFilter` (`?group=a,b`, AND semantics, `?debug=1` back-compat shorthand). `"debug"` is opt-in-only — hidden unless explicitly requested, even under an unrelated `?group=` filter the area also matches. `Context.debug` kept as an independent diagnostics flag (synthetic heading, debug-only toolbar buttons), not replaced by `groupFilter`.

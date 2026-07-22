@@ -72,9 +72,9 @@ export interface AreaSummary {
 }
 ```
 
-AreaSummary must be self-sufficient for summary rendering. Summary mode should not need extra fetches.
+AreaSummary must be self-sufficient for circle/outline rendering (`AreaMarkerView`) — no extra fetches needed before an area becomes resident.
 
-`group` drives client-side area filtering in Summary via `?group=` / `?debug=` query params — see
+`group` drives client-side area filtering via `?group=` / `?debug=` query params — see
 `docs/MESSAGING.md` for the query-string contract and `Context.groupFilter`.
 
 ## AreaImage
@@ -124,7 +124,7 @@ export interface Layer {
 }
 ```
 
-`visible` is manifest default only. Runtime visibility belongs to `DetailViewState`.
+`visible` is manifest default only. Runtime visibility belongs to `AreaViewState`.
 
 Supported current types:
 
