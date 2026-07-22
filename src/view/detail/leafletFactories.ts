@@ -50,6 +50,7 @@ import type {
     LayerSelectionWidgetItem,
     HeatLayerOptions,
     ClickableMapLayerHandle,
+    MapLayerFlyoutHandle,
 } from "../../contracts";
 
 import type { HeatPoint } from "../../protocols";
@@ -184,16 +185,8 @@ class LeafletMapHandle implements MapHandle {
         this._map.setZoom(zoom, { animate: false });
     }
 
-    setMinZoom(zoom: number): void {
-        // Pre-snap to minZoom without animation before calling setMinZoom.
-        // If we let Leaflet animate, _onZoomTransitionEnd fires synchronously inside
-        // the zoomanim handler (same-transform workaround), which emits zoomend,
-        // which can trigger openSummary while _animateZoom still holds the call stack.
-        // That destroys the map before _move runs, crashing with _mapPane undefined.
-        if (this._map.getZoom() < zoom) {
-            this._map.setZoom(zoom, { animate: false });
-        }
-        this._map.setMinZoom(zoom);
+    setView(center: [number, number], zoom: number): void {
+        this._map.setView(center, zoom, { animate: false });
     }
 
     getBounds(): { sw: [number, number]; ne: [number, number] } {
@@ -292,6 +285,19 @@ class LeafletHeatLayerHandle extends LeafletMapLayerHandle {
         }
         this._leafletMap = undefined;
         this._zoomEndListener = undefined;
+
+        // leaflet.heat's redraw() schedules a requestAnimFrame(this._redraw)
+        // but never cancels it in onRemove() — with several areas' heat
+        // layers now able to share one map, a zoomend that hides/destroys
+        // this layer can fire *after* redraw() already queued a frame for
+        // this same event. When that frame later runs, Leaflet's own
+        // Layer.remove() has already nulled the heat layer's _map, so
+        // _redraw()'s this._map.getSize() throws. Cancel defensively.
+        const pendingFrame = (this._heatLayer as unknown as { _frame?: number })._frame;
+        if (pendingFrame !== undefined) {
+            L.Util.cancelAnimFrame(pendingFrame);
+        }
+
         super.remove();
     }
 
@@ -313,6 +319,10 @@ class LeafletRectangleHandle extends LeafletMapLayerHandle implements RectangleH
 
     setBounds(bounds: [[number, number], [number, number]]): void {
         this._rect.setBounds(bounds);
+    }
+
+    onClick(handler: () => void): void {
+        this._rect.on("click", () => handler());
     }
 }
 
@@ -482,7 +492,7 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
             weight: options.weight,
             fillColor: options.fillColor,
             fillOpacity: options.fillOpacity,
-            interactive: false,
+            interactive: options.interactive ?? true,
         });
         return new LeafletRectangleHandle(rect);
     }
@@ -620,9 +630,9 @@ function buildTileLayer(provider: TileProvider): L.TileLayer {
 }
 
 class MapLayerFlyoutControl extends L.Control {
-    private readonly _layers: LayerSelectionWidgetItem[];
-    private readonly _onToggle: (layerId: string, visible: boolean) => void;
-    private readonly _onExportUserPoints?: () => void;
+    private _layers: LayerSelectionWidgetItem[];
+    private _onToggle: (layerId: string, visible: boolean) => void;
+    private _onExportUserPoints?: () => void;
 
     private _leafletMap?: L.Map;
     private _tileLayer?: L.TileLayer;
@@ -670,6 +680,25 @@ class MapLayerFlyoutControl extends L.Control {
         this._leafletMap = undefined;
     }
 
+    // Rebuilds only the panel's DOM content (tile-type buttons, Map Details
+    // layer list, export button) — deliberately does not touch _tileLayer or
+    // the control's own container/trigger button, so swapping the layer list
+    // (e.g. current-area attach/hide) never flashes the base map tiles.
+    setLayers(
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void,
+        onExportUserPoints?: () => void
+    ): void {
+        this._layers = layers;
+        this._onToggle = onToggle;
+        this._onExportUserPoints = onExportUserPoints;
+        if (!this._panel) {
+            return;
+        }
+        this._panel.innerHTML = "";
+        this.buildPanel();
+    }
+
     private onTriggerClick(): void {
         getLogger().info("map_layer_flyout.trigger.click");
         if (this._isOpen) {
@@ -709,8 +738,8 @@ class MapLayerFlyoutControl extends L.Control {
         L.DomUtil.create("div", "flyout-section-label", typeSection).textContent = "Map type";
 
         const tileOptions = L.DomUtil.create("div", "flyout-tile-options", typeSection);
-        this._cartoBtnEl = this.createTileBtn(tileOptions, cartoTileProvider, "carto", "CARTO");
         this._osmBtnEl = this.createTileBtn(tileOptions, osmTileProvider, "osm", "OSM");
+        this._cartoBtnEl = this.createTileBtn(tileOptions, cartoTileProvider, "carto", "CARTO");
         this.updateTileButtons(getActiveTileProvider());
 
         if (this._layers.length > 0) {
@@ -846,45 +875,6 @@ class LeafletWidgetHandle implements WidgetHandle {
     render(): void {
     }
 }
-
-class SummaryControl extends L.Control {
-    private readonly _label: string;
-    private readonly _onClick: () => void;
-
-    constructor(label: string, onClick: () => void) {
-        super({ position: "topright" });
-
-        this._label = label;
-        this._onClick = onClick;
-
-        void this._label;
-    }
-
-    onAdd(): HTMLElement {
-        const button = document.createElement("button");
-
-        button.className = "leaflet-summary-widget";
-        button.type = "button";
-        button.title = "Back to summary";
-
-        const image = document.createElement("img");
-
-        image.src = "/icons/browse-back.svg";
-        image.alt = "Back";
-
-        button.appendChild(image);
-
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            this._onClick();
-        });
-
-        return button;
-    }
-}
-
 
 class DesignToolbarControl extends L.Control {
     private readonly _buttons: DesignToolbarButton[];
@@ -1225,21 +1215,31 @@ class SearchControl extends L.Control {
     }
 }
 
-export class DefaultLeafletWidgetFactory implements WidgetFactory {
+class LeafletMapLayerFlyoutHandle extends LeafletWidgetHandle implements MapLayerFlyoutHandle {
+    private readonly _flyout: MapLayerFlyoutControl;
 
-    createSummaryWidget(
-        label: string,
-        onClick: () => void
-    ): WidgetHandle {
-        return new LeafletWidgetHandle(new SummaryControl(label, onClick));
+    constructor(flyout: MapLayerFlyoutControl) {
+        super(flyout);
+        this._flyout = flyout;
     }
+
+    setLayers(
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void,
+        onExportUserPoints?: () => void
+    ): void {
+        this._flyout.setLayers(layers, onToggle, onExportUserPoints);
+    }
+}
+
+export class DefaultLeafletWidgetFactory implements WidgetFactory {
 
     createMapLayerFlyout(
         layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void,
         onExportUserPoints?: () => void
-    ): WidgetHandle {
-        return new LeafletWidgetHandle(new MapLayerFlyoutControl(layers, onToggle, onExportUserPoints));
+    ): MapLayerFlyoutHandle {
+        return new LeafletMapLayerFlyoutHandle(new MapLayerFlyoutControl(layers, onToggle, onExportUserPoints));
     }
 
     createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle {

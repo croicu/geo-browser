@@ -221,7 +221,9 @@ log.info("image_overlay.paste.end");
 log.error("image_overlay.paste.error", err);
 ```
 
-Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-frame events) are exempt to avoid log spam.
+Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-frame events) are exempt to avoid log spam — but only for the no-op case. If the handler produces a state change (a layer loads/hides/destroys, a mode/current-area switch, anything a bug report would need to reconstruct), log that transition, gated on "did anything actually change" rather than firing every tick. A pan/zoom handler that never logs is exactly as undiagnosable as one with no logging at all — this bit us once already (`tasks/layer_lifecycle.md`'s viewport-driven state machine shipped with zero visibility into its own transitions, and a real bug took a live repro + guesswork to chase down before diagnostic logging was retrofitted after the fact).
+
+New code is not exempt from this just because it doesn't look like a user-facing "feature" — internal orchestration/state-machine classes (trackers, controllers, view coordinators) need this exactly as much as UI-facing ones, arguably more, since they're the hardest to inspect by just looking at the screen.
 
 ## Feature Completeness Rule
 
@@ -482,6 +484,9 @@ Every task moves through these statuses in order. Update the `Status:` field in 
 - Update `README.md` and any affected `docs/*.md` file so they describe this feature's actual shipped behavior (see the Feature Completeness Rule above) — do this in the same commit, not as a follow-up.
 - Include these file changes in the same commit as the feature code.
 
+
+## New Tasks
+- **[Layer Lifecycle](tasks/layer_lifecycle.md)**: Status: Implementation. Eliminates the Summary/Detail two-map mode split in favor of one unified Leaflet map: per-area circle/outline/loaded rendering states driven by on-screen bbox pixel size (N=48px) and viewport intersection, two-phase Hide(instant)/Destroy(deferred) discard, and a singleton "current area" bundle for virtual layers (`__poi__`/`__user__`/`__void__`/`__search__`) + toolbox. Breaking vocabulary change vs. this doc's Summary/Detail terminology — doc rewrite deferred to a follow-up commit after implementation (see task file's Phase 6). Implementation plan: `C:\Users\Croicu\.claude\plans\vivid-tumbling-brook.md`.
 
 ## Postponed Tasks
 - **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.

@@ -208,6 +208,17 @@ export class UserLayerView extends LayerView {
         this.destroyMarkers();
     }
 
+    // Viewport-residency hide/show (tasks/layer_lifecycle.md) — thin aliases
+    // over the existing toolbar-visibility toggle, which already does exactly
+    // this (detach/reattach, no rebuild) and already ignores redundant calls.
+    override hide(): void {
+        this.setVisible(false);
+    }
+
+    override show(): void {
+        this.setVisible(true);
+    }
+
     private effectiveRadius(zoom: number): number {
         const config = this._layer.style?.radius ?? 6;
         return Math.min(config, Math.max(2, zoom - 6)) * 1.5;

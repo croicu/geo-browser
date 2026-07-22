@@ -74,16 +74,12 @@ export interface HeatPoint {
     weight: number;
 }
 
-export interface SummaryViewStateData {
+export interface MapViewStateData {
     center: LatLng;
     zoom: number;
-    selectedAreaId?: string;
-    hoveredAreaId?: string;
 }
 
-export interface DetailViewStateData {
+export interface AreaViewStateData {
     areaId: string;
-    center?: LatLng;
-    zoom?: number;
     visibleLayers?: Record<string, boolean>;
 }

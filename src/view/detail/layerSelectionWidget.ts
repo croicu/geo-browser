@@ -1,37 +1,34 @@
 import type { GeoLayer } from "../../catalog/layer";
 import {
     type ControllerActions,
-    type WidgetHandle,
-    type WidgetFactory,
-    type MapHandle,
+    type MapLayerFlyoutHandle,
     type LayerSelectionWidgetItem,
 } from "../../contracts";
 
-import { fail } from "../../errors";
-
-export class LayerSelectionWidget implements WidgetHandle {
-    private readonly _map: MapHandle;
+// Thin adapter over an injected, session-persistent MapLayerFlyoutHandle
+// (owned by MapView) — never creates or destroys the flyout control itself,
+// only swaps its "Map Details" layer list via setLayers(). The flyout's tile
+// layer must survive current-area attach/hide transitions; recreating the
+// control on every transition was flashing the whole map's tiles (see
+// MapLayerFlyoutHandle's doc comment in contracts.ts).
+export class LayerSelectionWidget {
+    private readonly _flyout: MapLayerFlyoutHandle;
     private readonly _areaId: string;
     private readonly _layers: LayerSelectionWidgetItem[];
     private readonly _actions: ControllerActions;
-    private readonly _factory: WidgetFactory;
     private readonly _onExportUserPoints?: () => void;
 
-    private _widget?: WidgetHandle;
-
     constructor(
-        map: MapHandle,
+        flyout: MapLayerFlyoutHandle,
         actions: ControllerActions,
-        factory: WidgetFactory,
         areaId: string,
         layers: readonly GeoLayer[],
         getVisible?: (layer: GeoLayer) => boolean,
         onExportUserPoints?: () => void
     ) {
-        this._map = map;
+        this._flyout = flyout;
         this._areaId = areaId;
         this._actions = actions;
-        this._factory = factory;
         this._onExportUserPoints = onExportUserPoints;
 
         this._layers = [];
@@ -46,51 +43,18 @@ export class LayerSelectionWidget implements WidgetHandle {
         }
     }
 
-    addTo(map: MapHandle): void {
-        if (!this._widget) {
-            fail(
-                "layerSelection_widget.not_created",
-                "LayerSelectionWidget has not been created."
-            );
-        }
-
-        this._widget.addTo(map);
-    }
-
-    remove(): void {
-        if (!this._widget) {
-            fail(
-                "layerSelection_widget.not_created",
-                "LayerSelectionWidget has not been created."
-            );
-        }
-
-        this._widget.remove();
-    }
-
     render(): void {
-        if (!this._widget) {
-            this._widget = this._factory.createMapLayerFlyout(
-                this._layers,
-                (layerId: string, visible: boolean) => {
-                    this._actions.setLayerVisible(this._areaId, layerId, visible);
-                },
-                this._onExportUserPoints
-            );
-
-            this._widget.addTo(this._map);
-        }
+        this._flyout.setLayers(
+            this._layers,
+            (layerId: string, visible: boolean) => {
+                this._actions.setLayerVisible(this._areaId, layerId, visible);
+            },
+            this._onExportUserPoints
+        );
     }
 
+    // Reverts the shared flyout to its map-type-only panel.
     destroy(): void {
-        if (!this._widget) {
-            fail(
-                "layerSelection_widget.not_created",
-                "LayerSelectionWidget has not been created."
-            );
-        }
-
-        this._widget.remove();
-        this._widget = undefined;
+        this._flyout.setLayers([], () => {});
     }
 }

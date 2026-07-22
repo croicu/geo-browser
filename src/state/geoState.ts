@@ -1,18 +1,10 @@
-import type { SummaryViewState } from "./summaryViewState";
-import type { DetailViewState } from "./detailViewState";
-
-export interface LastViewData {
-    mode: "summary" | "detail";
-    areaId?: string;
-}
+import type { MapViewState } from "./mapViewState";
+import type { AreaViewState } from "./areaViewState";
 
 export interface GeoState {
-    loadSummaryViewState(): SummaryViewState;
-    saveSummaryViewState(state: SummaryViewState): void;
+    loadMapViewState(): MapViewState;
+    saveMapViewState(state: MapViewState): void;
 
-    loadDetailViewState(areaId: string): DetailViewState | undefined;
-    saveDetailViewState(state: DetailViewState): void;
-
-    loadLastView(): LastViewData | null;
-    saveLastView(data: LastViewData): void;
+    loadAreaViewState(areaId: string): AreaViewState | undefined;
+    saveAreaViewState(state: AreaViewState): void;
 }

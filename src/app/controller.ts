@@ -1,16 +1,15 @@
 import { getLogger } from "../services";
 import { GeoCatalog } from "../catalog/catalog";
 import { Context } from "../runtime/context";
-import type { ControllerActions, ControllerState, GatewayService, StorageService, View } from "../contracts";
+import type { ControllerActions, GatewayService, StorageService } from "../contracts";
 import type { LatLng } from "../protocols";
-import type { GeoState, LastViewData } from "../state/geoState";
 import { AddArea, OK } from "../api";
 
 import { GeoStateStore } from "../state/geoStateStore";
-import { SummaryViewState } from "../state/summaryViewState";
-import { SummaryView } from "../view/summary/summaryView";
-import { DetailView } from "../view/detail/detailView";
-import { DetailViewState } from "../state/detailViewState";
+import { MapViewState } from "../state/mapViewState";
+import { MapView } from "../view/map/mapView";
+import { LocalStorageUserPointsStore, GatewayUserPointsStore } from "../runtime/userPointsStore";
+import { LocalStorageDestinationStore } from "../runtime/destinationStore";
 import { fail } from "../errors";
 import { initStatusWidget } from "../view/statusWidget";
 
@@ -22,28 +21,25 @@ export interface ControllerOptions {
     initialZoom?: number;
 }
 
-export class Controller implements ControllerActions, ControllerState, GeoState {
+export class Controller implements ControllerActions {
     private readonly _catalog: GeoCatalog;
     private readonly _gateway: GatewayService | null;
     private readonly _geoStateStore: GeoStateStore;
-    private readonly _summaryViewState: SummaryViewState;
-    private _detailViewState?: DetailViewState;
+    private readonly _viewportState: MapViewState;
     private _app!: HTMLElement;
-    private _view?: View;
-    private _navigating = false;
-    private _zoomLevel: number = 12;
+    private _mapView?: MapView;
 
     constructor(options: ControllerOptions) {
         this._catalog = options.catalog;
         this._gateway = options.gateway;
         this._geoStateStore = new GeoStateStore(options.storage);
-        this._summaryViewState = this._geoStateStore.loadSummaryViewState();
+        this._viewportState = this._geoStateStore.loadMapViewState();
 
         if (options.initialCenter !== undefined) {
-            this._summaryViewState.center = options.initialCenter;
+            this._viewportState.center = options.initialCenter;
         }
         if (options.initialZoom !== undefined) {
-            this._summaryViewState.zoom = options.initialZoom;
+            this._viewportState.zoom = options.initialZoom;
         }
     }
 
@@ -51,8 +47,8 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
         const logger = getLogger();
 
         logger.info("geo-browser starting", {
-            center: this._summaryViewState.center,
-            zoom: this._summaryViewState.zoom,
+            center: this._viewportState.center,
+            zoom: this._viewportState.zoom,
         });
 
         const app = document.querySelector<HTMLDivElement>("#app");
@@ -68,16 +64,25 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
             areaCount: this._catalog.areas.length,
         });
 
-        const lastView = this._geoStateStore.loadLastView();
-        if (lastView?.mode === "detail" && lastView.areaId) {
-            const exists = this._catalog.areas.some(a => a.id === lastView.areaId);
-            if (exists) {
-                await this.openDetail(lastView.areaId);
-                return;
-            }
-        }
+        const userPointsStore = this._gateway
+            ? new GatewayUserPointsStore(this._gateway)
+            : new LocalStorageUserPointsStore(Context.Instance.storage);
+        const destinationStore = new LocalStorageDestinationStore(Context.Instance.storage);
 
-        this.openSummary();
+        this._mapView = new MapView(
+            this._app,
+            this,
+            this._geoStateStore,
+            this._catalog,
+            this._viewportState,
+            {
+                gateway: this._gateway,
+                geoLocation: Context.Instance.geoLocation,
+                userPointsStore,
+                destinationStore,
+            }
+        );
+        this._mapView.render();
     }
 
     get catalog(): GeoCatalog | undefined {
@@ -86,104 +91,12 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
 
     // ControllerActions
 
-    async openSummary(center?: [number, number], zoom?: number): Promise<void> {
-        if (this._navigating) return;
-        this._navigating = true;
-
-        try {
-            getLogger().info("open summary");
-
-            const viewState = center !== undefined || zoom !== undefined
-                ? new SummaryViewState({ center: center ?? this._summaryViewState.center, zoom: zoom ?? this._summaryViewState.zoom })
-                : this._summaryViewState;
-
-            const summaryView: View = new SummaryView(
-                this._app,
-                this,
-                this._catalog,
-                viewState,
-                { gateway: this._gateway }
-            );
-
-            this._geoStateStore.saveLastView({ mode: "summary" });
-            this.switchView(summaryView);
-        } finally {
-            this._navigating = false;
-        }
-    }
-
-    async openDetail(areaId: string, center?: [number, number], zoom?: number): Promise<void> {
-        if (this._navigating) return;
-        this._navigating = true;
-
-        getLogger().info("open detail", { areaId });
-
-        try {
-            const area = this._catalog.getArea(areaId);
-
-            await area.load();
-
-            const saved = this.loadDetailViewState(areaId);
-
-            const visibleLayers: Record<string, boolean> = {};
-            for (const layer of area.layers) {
-                visibleLayers[layer.id] = saved
-                    ? saved.isLayerVisible(layer.id, layer.isVisible())
-                    : layer.isVisible();
-            }
-
-            this._detailViewState = new DetailViewState({
-                areaId: area.id,
-                center: center ?? saved?.center ?? area.center,
-                zoom: zoom ?? saved?.zoom ?? this._zoomLevel,
-                visibleLayers,
-            });
-
-            const detailView: View = new DetailView(
-                this._app,
-                this,
-                area,
-                this._detailViewState,
-                { gateway: this._gateway, geoLocation: Context.Instance.geoLocation, mode: Context.Instance.mode }
-            );
-
-            this._geoStateStore.saveLastView({ mode: "detail", areaId });
-            this.switchView(detailView);
-        } finally {
-            this._navigating = false;
-        }
-    }
-
     setLayerVisible(
         areaId: string,
         layerId: string,
         visible: boolean
     ): void {
-        this._catalog.getArea(areaId);
-
-        if (!this._detailViewState) {
-            fail("detail_state.missing", "DetailViewState is not available.");
-        }
-
-        this._detailViewState.setLayerVisible(layerId, visible);
-        this.saveDetailViewState(this._detailViewState);
-
-        this._view?.render();
-    }
-
-    saveSummaryViewport(center: [number, number], zoom: number): void {
-        this._summaryViewState.center = center;
-        this._summaryViewState.zoom = zoom;
-        this.saveSummaryViewState(this._summaryViewState);
-    }
-
-    saveDetailViewport(areaId: string, center: [number, number], zoom: number): void {
-        if (!this._detailViewState || this._detailViewState.areaId !== areaId) {
-            return;
-        }
-        this._detailViewState.center = center;
-        this._detailViewState.zoom = zoom;
-        this.saveDetailViewState(this._detailViewState);
+        this.mapView.setLayerVisible(areaId, layerId, visible);
     }
 
     newArea(): void {
@@ -205,18 +118,16 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
                     error: response.error,
                     errorDescription: response.errorDescription,
                 });
-                // Defer so any in-flight click events from the name-prompt OK button
-                // settle before the new summary view mounts its bubble markers.
-                setTimeout(() => this.openSummary(), 0);
                 return;
             }
 
             if (response.area) {
                 this._catalog.addArea(response.area);
+                const areaId = response.area.id;
+                // Defer so any in-flight click events from the name-prompt OK
+                // button settle before panning/zooming to the new area.
+                setTimeout(() => this.mapView.addAreaAndFocus(areaId), 0);
             }
-
-            const areaId = response.area?.id;
-            setTimeout(() => areaId ? this.openDetail(areaId) : this.openSummary(), 0);
         });
     }
 
@@ -224,72 +135,12 @@ export class Controller implements ControllerActions, ControllerState, GeoState 
         getLogger().info("discard area");
     }
 
-    zoomIn(): void {
-        this.setZoom(this._zoomLevel + 1);
-    }
-
-    zoomOut(): void {
-        this.setZoom(this._zoomLevel - 1);
-    }
-
-    setZoom(zoomLevel: number): void {
-        const clamped = Math.max(this.minZoom, Math.min(this.maxZoom, zoomLevel));
-
-        if (clamped === this._zoomLevel) {
-            return;
-        }
-
-        this._zoomLevel = clamped;
-    }
-
-    // ControllerState
-
-    get zoom(): number {
-        return this._zoomLevel;
-    }
-
-    get minZoom(): number {
-        return 3;
-    }
-
-    get maxZoom(): number {
-        return 18;
-    }
-
-    // GeoState
-
-    loadSummaryViewState(): SummaryViewState {
-        return this._geoStateStore.loadSummaryViewState();
-    }
-
-    saveSummaryViewState(state: SummaryViewState): void {
-        this._geoStateStore.saveSummaryViewState(state);
-    }
-
-    loadDetailViewState(areaId: string): DetailViewState | undefined {
-        return this._geoStateStore.loadDetailViewState(areaId);
-    }
-
-    saveDetailViewState(state: DetailViewState): void {
-        this._geoStateStore.saveDetailViewState(state);
-    }
-
-    loadLastView(): LastViewData | null {
-        return this._geoStateStore.loadLastView();
-    }
-
-    saveLastView(data: LastViewData): void {
-        this._geoStateStore.saveLastView(data);
-    }
-
     // Private
 
-    private switchView(nextView: View): void {
-        const previousView = this._view;
-
-        this._view = nextView;
-        this._view.render();
-
-        previousView?.destroy();
+    private get mapView(): MapView {
+        if (!this._mapView) {
+            fail("map_view.missing", "MapView is not available.");
+        }
+        return this._mapView;
     }
 }

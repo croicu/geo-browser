@@ -10,6 +10,7 @@ import type {
     LayerSelectionWidgetItem,
     MapFactory,
     MapHandle,
+    MapLayerFlyoutHandle,
     MapLayerHandle,
     MapPopupHandle,
     PolygonOptions,
@@ -92,7 +93,7 @@ export class StubMap implements MapHandle {
     setMaxBounds(_sw: [number, number], _ne: [number, number]): void {}
     getBoundsZoom(_sw: [number, number], _ne: [number, number]): number { return 10; }
     setZoom(zoom: number): void { this._zoom = zoom; }
-    setMinZoom(_zoom: number): void {}
+    setView(_center: [number, number], zoom: number): void { this._zoom = zoom; }
     public boundsResult = { sw: [0, 0] as [number, number], ne: [1, 1] as [number, number] };
     getBounds(): { sw: [number, number]; ne: [number, number] } { return this.boundsResult; }
 
@@ -212,9 +213,15 @@ export class StubMarker implements ClickableMapLayerHandle {
 
 export class StubRectangle extends StubMapLayerHandle implements RectangleHandle {
     public lastBounds?: [[number, number], [number, number]];
+    public clickHandler?: () => void;
+    public options?: RectangleOptions;
 
     setBounds(bounds: [[number, number], [number, number]]): void {
         this.lastBounds = bounds;
+    }
+
+    onClick(handler: () => void): void {
+        this.clickHandler = handler;
     }
 }
 
@@ -275,8 +282,9 @@ export class StubLayerFactory implements LayerFactory {
         return new StubMapLayerHandle();
     }
 
-    createRectangle(_bounds: [[number, number], [number, number]], _options: RectangleOptions): RectangleHandle {
+    createRectangle(_bounds: [[number, number], [number, number]], options: RectangleOptions): RectangleHandle {
         const rect = new StubRectangle();
+        rect.options = options;
         this.rectangles.push(rect);
         return rect;
     }
@@ -419,21 +427,41 @@ export class StubGeoLocationWidgetHandle implements GeoLocationWidgetHandle {
     }
 }
 
+// Real MapLayerFlyoutControl exposes setLayers() to swap its layer list
+// without tearing down (and re-adding) the tile layer it owns — this stub
+// mirrors that: one instance persists, setLayers() just records the latest
+// call rather than returning a fresh handle each time.
+export class StubMapLayerFlyoutHandle extends StubWidget implements MapLayerFlyoutHandle {
+    public layers: LayerSelectionWidgetItem[] = [];
+    public onToggle: (layerId: string, visible: boolean) => void = () => {};
+    public onExportUserPoints?: () => void;
+
+    setLayers(
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void,
+        onExportUserPoints?: () => void
+    ): void {
+        this.layers = layers;
+        this.onToggle = onToggle;
+        this.onExportUserPoints = onExportUserPoints;
+    }
+}
+
 export class StubWidgetFactory implements WidgetFactory {
     public lastGeoLocationWidget?: StubGeoLocationWidgetHandle;
-    public lastExportUserPoints?: () => void;
+    public readonly flyout = new StubMapLayerFlyoutHandle();
 
-    createSummaryWidget(_label: string, _onClick: () => void): WidgetHandle {
-        return new StubWidget();
+    get lastExportUserPoints(): (() => void) | undefined {
+        return this.flyout.onExportUserPoints;
     }
 
     createMapLayerFlyout(
-        _layers: LayerSelectionWidgetItem[],
-        _onToggle: (layerId: string, visible: boolean) => void,
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void,
         onExportUserPoints?: () => void
-    ): WidgetHandle {
-        this.lastExportUserPoints = onExportUserPoints;
-        return new StubWidget();
+    ): MapLayerFlyoutHandle {
+        this.flyout.setLayers(layers, onToggle, onExportUserPoints);
+        return this.flyout;
     }
 
     createDesignToolbar(_buttons: DesignToolbarButton[]): WidgetHandle {

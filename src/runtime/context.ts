@@ -57,7 +57,7 @@ export class Context {
             this._initialZoom = this.parseZoom(params);
         }
 
-        this._logger = new DefaultLogger(new ConsoleTelemetrySink());
+        this._logger = new DefaultLogger(new ConsoleTelemetrySink(), this.parseLogCategories(params));
         this._dataSource = {} as GeoDataService;
         this._storageGuard = new StorageGuard();
         this._host = new WebViewHostService(this._mode);
@@ -199,5 +199,19 @@ export class Context {
         }
 
         return null;
+    }
+
+    // ?logCategory=a,b enables only those log categories (a log call's category
+    // defaults to "generic" -- see DEFAULT_LOG_CATEGORY in src/logging.ts). Absent,
+    // DefaultLogger falls back to enabling only "generic" itself. No shorthand/merge
+    // with ?debug or ?group -- this is a separate axis (console verbosity, not data).
+    private parseLogCategories(params: URLSearchParams): string[] | null {
+        const raw = params.get("logCategory");
+        if (!raw) {
+            return null;
+        }
+
+        const categories = raw.split(",").map((c) => c.trim()).filter((c) => c.length > 0);
+        return categories.length > 0 ? categories : null;
     }
 }

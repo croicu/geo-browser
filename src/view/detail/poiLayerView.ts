@@ -47,6 +47,7 @@ export class PoiLayerView extends LayerView {
     private _activePopup?: MapPopupHandle;
     private _mapClickCleanup?: () => void;
     private _zoomCleanup?: () => void;
+    private _attached = true;
 
     constructor(
         map: MapHandle,
@@ -158,6 +159,40 @@ export class PoiLayerView extends LayerView {
         }
         this._markersBySource.clear();
         this._sourceVisible.clear();
+    }
+
+    // Viewport-residency hide/show (tasks/layer_lifecycle.md) — detaches/reattaches
+    // every currently-source-visible marker, preserving per-source visibility
+    // (setSourceVisible) across the cycle. Distinct from destroy(): no data is
+    // dropped, nothing needs re-fetching or re-scanning on show().
+    override hide(): void {
+        if (!this._attached) {
+            return;
+        }
+        this._attached = false;
+        for (const markers of this._markersBySource.values()) {
+            for (const { dot, ring } of markers) {
+                ring?.remove();
+                dot.remove();
+            }
+        }
+        this.closePopup();
+    }
+
+    override show(): void {
+        if (this._attached) {
+            return;
+        }
+        this._attached = true;
+        for (const [layerId, markers] of this._markersBySource) {
+            if (this._sourceVisible.get(layerId) === false) {
+                continue;
+            }
+            for (const { dot, ring } of markers) {
+                ring?.addTo(this._map);
+                dot.addTo(this._map);
+            }
+        }
     }
 
     private updateRadii(zoom: number): void {

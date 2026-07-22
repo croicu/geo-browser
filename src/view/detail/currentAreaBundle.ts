@@ -1,46 +1,43 @@
 import type { GeoArea } from "../../catalog/area";
-import type { Mode } from "../../runtime/context";
-import type { ControllerActions, DestinationPoint, DestinationStore, GatewayService, GeoLocationService, LayerFactory, MapFactory, MapLayerHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, View } from "../../contracts";
-import type { DetailViewState } from "../../state/detailViewState";
+import type { ControllerActions, DestinationPoint, DestinationStore, GatewayService, LayerFactory, MapLayerFlyoutHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle } from "../../contracts";
+import type { AreaViewState } from "../../state/areaViewState";
 import { getLogger } from "../../services";
-import { LocalStorageUserPointsStore, GatewayUserPointsStore } from "../../runtime/userPointsStore";
-import { LocalStorageDestinationStore } from "../../runtime/destinationStore";
 import { DestinationWidget } from "./destinationWidget";
-import { HeatLayerView } from "./heatLayerView";
+import { ImageOverlayWidget } from "./imageOverlayWidget";
 import { LayerSelectionWidget } from "./layerSelectionWidget";
 import { LayerView } from "./layerView";
-import { DefaultLeafletLayerFactory, DefaultLeafletMapFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
-import { PointLayerView } from "./pointLayerView";
+import { DefaultLeafletLayerFactory, DefaultLeafletWidgetFactory } from "./leafletFactories";
 import { PoiLayerView } from "./poiLayerView";
 import type { PoiBakedFeature } from "./poiLayerView";
 import { UserLayerView } from "./userLayerView";
 import { VoidLayerView } from "./voidLayerView";
 import { VoidVariantResolver } from "./voidVariantResolver";
 import type { VoidVariant } from "./voidVariantResolver";
-import { SummaryWidget } from "./summaryWidget";
 import { BboxWidget } from "../summary/bboxWidget";
-import { GeoLocationWidget } from "./geoLocationWidget";
 import { ManifestEditorWidget } from "./manifestEditorWidget";
 import { CodeMirrorJsonEditorFactory } from "./codeMirrorJsonEditorFactory";
-import { ImageOverlayWidget } from "./imageOverlayWidget";
 import { SearchLayerView } from "./searchLayerView";
 import { EmptyCalloutWidget } from "./emptyCalloutWidget";
 import type { EmptyCalloutWidgetOptions } from "./emptyCalloutWidget";
 import type { StarCount } from "./starRatingControl";
-import { Context } from "../../runtime/context";
 import { GeoLayer } from "../../catalog/layer";
 
 const POI_MIN_ZOOM_DEFAULT = 16;
 
-export interface DetailViewServices {
-    mapFactory?: MapFactory;
+export interface CurrentAreaBundleOptions {
     layerFactory?: LayerFactory;
     widgetFactory?: WidgetFactory;
     gateway?: GatewayService | null;
-    geoLocation?: GeoLocationService | null;
-    userPointsStore?: UserPointsStore;
-    destinationStore?: DestinationStore;
-    mode?: Mode;
+    // Session-persistent flyout owned by MapView — see LayerSelectionWidget's
+    // doc comment for why this must be injected rather than created here.
+    flyout: MapLayerFlyoutHandle;
+    userPointsStore: UserPointsStore;
+    destinationStore: DestinationStore;
+    destinationWidget: DestinationWidget;
+    // GeoLocationWidget itself stays a MapView-owned session singleton (GPS
+    // position doesn't depend on the current area); this is the one thing
+    // ImageOverlayWidget needs from it. Defaults to "no position available".
+    getCurrentLatLng?: () => [number, number] | undefined;
 }
 
 function poiBakedToProperties(f: PoiBakedFeature): Record<string, unknown> {
@@ -54,259 +51,122 @@ function poiBakedToProperties(f: PoiBakedFeature): Record<string, unknown> {
     return result;
 }
 
-export class DetailView implements View {
-    private readonly _root: HTMLElement;
+// The singleton "current area" virtual-layer bundle (tasks/layer_lifecycle.md):
+// __poi__/__user__/__void__/__search__ views, the detail toolbox, the search
+// control, and the image-overlay toolbar, for whichever one area is current.
+// Renamed/slimmed from the old DetailView — map ownership, GeoLocationWidget/
+// DestinationWidget construction, and viewport persistence all moved to
+// MapView (session-level singletons / single shared viewport), since exactly
+// one shared Leaflet map now exists instead of one per area. ImageOverlayWidget
+// stays here (not hoisted to MapView) specifically so its paste/image toolbar
+// only exists while an area is current — it briefly lived at the MapView
+// level and showed up with no current area at all, which is wrong: the
+// feature is inherently area-scoped (areaBbox gates its pin/lucky-detect
+// checks), even though its session-level snapshot mechanism already lets it
+// survive attach/hide/show/rebuild cycles unchanged. Base data layers
+// (heatmap/circle) moved to AreaBaseLayerRenderer, which can have many
+// concurrent instances (one per resident area) — this class handles only the
+// parts that stay exclusive to the current area.
+export class CurrentAreaBundle {
+    private readonly _map: MapHandle;
     private readonly _actions: ControllerActions;
     private readonly _area: GeoArea;
-    private readonly _state: DetailViewState;
-    private readonly _mapFactory: MapFactory;
+    private readonly _state: AreaViewState;
     private readonly _layerFactory: LayerFactory;
     private readonly _widgetFactory: WidgetFactory;
+    private readonly _flyout: MapLayerFlyoutHandle;
     private readonly _layerViews = new Map<string, LayerView>();
 
     private readonly _gateway: GatewayService | null;
-    private readonly _geoLocation: GeoLocationService | null;
-    private readonly _mode: Mode;
+    private readonly _userPointsStore: UserPointsStore;
+    private readonly _destinationStore: DestinationStore;
+    private readonly _destinationWidget: DestinationWidget;
+    private readonly _getCurrentLatLng: () => [number, number] | undefined;
 
-    private _element?: HTMLElement;
-    private _mapRoot?: HTMLElement;
-    private _map?: MapHandle;
-    private _paddedBounds?: { sw: [number, number]; ne: [number, number] };
+    private _attached = false;
     private _bboxWidget?: BboxWidget;
     private _manifestEditorWidget?: ManifestEditorWidget;
-    private _bboxHighlight?: MapLayerHandle;
-    private _summaryWidget?: WidgetHandle;
     private _layersWidget?: LayerSelectionWidget;
-    private _geoLocationWidget?: GeoLocationWidget;
-    private _imageOverlayWidget?: ImageOverlayWidget;
-    private _userPointsStore?: UserPointsStore;
     private _userLayerView?: UserLayerView;
     private _userGeoLayer?: GeoLayer;
-    private readonly _destinationStore: DestinationStore;
-    private _destinationWidget?: DestinationWidget;
-    private _hasImageOverlay = false;
     private _searchWidget?: WidgetHandle;
     private _searchLayerView?: SearchLayerView;
+    private _imageOverlayWidget?: ImageOverlayWidget;
+    private _hasImageOverlay = false;
     private _emptySpacePopup?: MapPopupHandle;
     private _emptyCalloutLatLng?: [number, number];
     private _pendingBookmark = false;
 
     private _clickCleanup?: () => void;
-    private _moveEndCleanup?: () => void;
     private _zoomCleanup?: () => void;
-    private _minZoom = 0;
-    private _zoomCooldownUntil = 0;
 
     constructor(
-        root: HTMLElement,
+        map: MapHandle,
         actions: ControllerActions,
         area: GeoArea,
-        state: DetailViewState,
-        services: DetailViewServices = {}
+        state: AreaViewState,
+        options: CurrentAreaBundleOptions
     ) {
-        this._root = root;
+        this._map = map;
         this._actions = actions;
         this._area = area;
         this._state = state;
-        this._mapFactory = services.mapFactory ?? new DefaultLeafletMapFactory();
-        this._layerFactory = services.layerFactory ?? new DefaultLeafletLayerFactory();
-        this._widgetFactory = services.widgetFactory ?? new DefaultLeafletWidgetFactory();
-        this._gateway = services.gateway ?? null;
-        this._geoLocation = services.geoLocation ?? null;
-        this._mode = services.mode ?? "browse";
-
-        this._userPointsStore = services.userPointsStore
-            ?? (this._gateway
-                ? new GatewayUserPointsStore(this._gateway)
-                : new LocalStorageUserPointsStore(Context.Instance.storage));
-
-        // Pure client runtime — no gateway/design-mode variant, unlike UserPointsStore above.
-        this._destinationStore = services.destinationStore
-            ?? new LocalStorageDestinationStore(Context.Instance.storage);
-
-        void this._actions;
+        this._layerFactory = options.layerFactory ?? new DefaultLeafletLayerFactory();
+        this._widgetFactory = options.widgetFactory ?? new DefaultLeafletWidgetFactory();
+        this._flyout = options.flyout;
+        this._gateway = options.gateway ?? null;
+        this._userPointsStore = options.userPointsStore;
+        this._destinationStore = options.destinationStore;
+        this._destinationWidget = options.destinationWidget;
+        this._getCurrentLatLng = options.getCurrentLatLng ?? (() => undefined);
     }
 
-    create(): void {
-        this._element = document.createElement("div");
-        this._element.className = "detail-view";
-
-        this._mapRoot = document.createElement("div");
-        this._mapRoot.className = "detail-map";
-
-        this._element.appendChild(this._mapRoot);
-        this._root.appendChild(this._element);
+    get areaId(): string {
+        return this._area.id;
     }
 
-    render(): void {
-        if (!this._mapRoot) {
-            this.create();
-        }
+    // Builds every widget/listener for this area and attaches to the shared
+    // map. Called once by MapView on the "build" bundle action.
+    attach(): void {
+        this._attached = true;
 
-        if (!this._map) {
-            this.createMap();
-        }
+        const layersWidget = new LayerSelectionWidget(
+            this._flyout,
+            this._actions,
+            this._area.id,
+            this._area.layers.filter(l => l.type !== "__user__" && l.type !== "__search__"),
+            layer => this._state.isLayerVisible(layer.id, layer.isVisible())
+        );
+        layersWidget.render();
+        this._layersWidget = layersWidget;
 
-        const map = this._map;
+        this._clickCleanup = this._map.onClick(latLng => this.onMapClick(latLng));
+        this._zoomCleanup = this._map.onZoom(() => this.renderLayerViews());
 
-        if (!map) {
-            return;
-        }
+        const searchLayer = this._area.layers.find(l => l.type === "__search__") ?? this.synthesizeSearchLayer();
+        const searchLayerView = new SearchLayerView(
+            this._map,
+            this._layerFactory,
+            searchLayer.style?.color ?? "#00007f",
+            (latLng, displayName) => this.onSearchMarkerTap(latLng, displayName)
+        );
+        this._searchLayerView = searchLayerView;
 
-        if (!this._summaryWidget) {
-            const summaryWidget = new SummaryWidget(map, this._actions, this._widgetFactory);
-            const layersWidget = new LayerSelectionWidget(
-                map,
-                this._actions,
-                this._widgetFactory,
-                this._area.id,
-                this._area.layers.filter(l => l.type !== "__user__" && l.type !== "__search__"),
-                layer => this._state.isLayerVisible(layer.id, layer.isVisible())
-            );
+        const searchWidget = this._widgetFactory.createSearchControl(
+            this._area.bbox,
+            (latLng, displayName) => this.onSearchResultSelected(latLng, displayName)
+        );
+        searchWidget.addTo(this._map);
+        this._searchWidget = searchWidget;
 
-            summaryWidget.render();
-            layersWidget.render();
-
-            this._summaryWidget = summaryWidget;
-            this._layersWidget = layersWidget;
-            this._clickCleanup = map.onClick(latLng => this.onMapClick(latLng));
-
-            if (this._geoLocation) {
-                const geoWidget = new GeoLocationWidget(
-                    map,
-                    this._geoLocation,
-                    this._widgetFactory,
-                    this._layerFactory,
-                    this._paddedBounds,
-                    Context.Instance.debug,
-                    Context.Instance.headingService
-                );
-                geoWidget.render();
-                this._geoLocationWidget = geoWidget;
-            }
-
-            const destinationWidget = new DestinationWidget(
-                map,
-                this._layerFactory,
-                this._destinationStore,
-                { onMarkerTapped: point => this.onDestinationMarkerTapped(point) }
-            );
-            destinationWidget.render();
-            this._destinationWidget = destinationWidget;
-
-            if (this._geoLocationWidget) {
-                this._geoLocationWidget.onPositionUpdate(latLng => this._destinationWidget?.onPosition(latLng));
-            }
-
-            const imageOverlay = new ImageOverlayWidget(map, {
-                areaBbox: this._area.bbox,
-                onImageLoaded: () => { this._hasImageOverlay = true; this.relaxBoundsForOverlay(); },
-                onImageRemoved: () => { this._hasImageOverlay = false; this.restoreBoundsAfterOverlay(); },
-                getCurrentLatLng: () => this._geoLocationWidget?.getLastPosition(),
-            });
-            imageOverlay.render();
-            this._imageOverlayWidget = imageOverlay;
-
-            const searchLayer = this._area.layers.find(l => l.type === "__search__") ?? this.synthesizeSearchLayer();
-            const searchLayerView = new SearchLayerView(
-                map,
-                this._layerFactory,
-                searchLayer.style?.color ?? "#00007f",
-                (latLng, displayName) => this.onSearchMarkerTap(latLng, displayName)
-            );
-            this._searchLayerView = searchLayerView;
-
-            const searchWidget = this._widgetFactory.createSearchControl(
-                this._area.bbox,
-                (latLng, displayName) => this.onSearchResultSelected(latLng, displayName)
-            );
-            searchWidget.addTo(map);
-            this._searchWidget = searchWidget;
-        }
-
-        this.renderLayerViews();
-    }
-
-    destroy(): void {
-        this.destroyLayerViews();
-
-        if (this._map) {
-            this.saveViewport();
-
-            this._bboxWidget?.destroy();
-            this._bboxWidget = undefined;
-
-            this._manifestEditorWidget?.destroy();
-            this._manifestEditorWidget = undefined;
-
-            this._geoLocationWidget?.destroy();
-            this._geoLocationWidget = undefined;
-
-            this._destinationWidget?.destroy();
-            this._destinationWidget = undefined;
-
-            this._imageOverlayWidget?.destroy();
-            this._imageOverlayWidget = undefined;
-
-            this._searchLayerView?.destroy();
-            this._searchLayerView = undefined;
-
-            this._searchWidget?.remove();
-            this._searchWidget = undefined;
-
-            this._clickCleanup?.();
-            this._clickCleanup = undefined;
-
-            this._moveEndCleanup?.();
-            this._moveEndCleanup = undefined;
-
-            this._zoomCleanup?.();
-            this._zoomCleanup = undefined;
-
-            this._bboxHighlight?.remove();
-            this._bboxHighlight = undefined;
-
-            this.closeEmptySpacePopup();
-
-            this._map.remove();
-            this._map = undefined;
-
-            this._summaryWidget?.remove();
-            this._layersWidget?.remove();
-
-            this._summaryWidget = undefined;
-            this._layersWidget = undefined;
-        }
-
-        if (this._element) {
-            this._element.remove();
-            this._element = undefined;
-        }
-
-        this._mapRoot = undefined;
-    }
-
-    private createMap(): void {
-        let center;
-        let zoom;
-
-        if (!this._mapRoot) {
-            return;
-        }
-
-        if (this._state) {
-            center = this._state.center;
-            zoom = this._state.zoom;
-        } else {
-            center = this._area.center;
-            zoom = 12;
-        }
-
-        this._map = this._mapFactory.createMap(this._mapRoot, center, zoom);
-        this.applyMaxBounds();
-        this._zoomCleanup = this._map.onZoom(zoom => this.onZoomChange(zoom));
-        this.addBboxHighlight();
-        this._moveEndCleanup = this._map.onMoveEnd(() => this.onMapMoveEnd());
+        const imageOverlay = new ImageOverlayWidget(this._map, {
+            areaBbox: this._area.bbox,
+            onImageLoaded: () => { this._hasImageOverlay = true; },
+            onImageRemoved: () => { this._hasImageOverlay = false; },
+            getCurrentLatLng: () => this._getCurrentLatLng(),
+        });
+        imageOverlay.render();
+        this._imageOverlayWidget = imageOverlay;
 
         if (this._gateway) {
             const bboxWidget = new BboxWidget(
@@ -340,26 +200,146 @@ export class DetailView implements View {
             manifestEditor.render();
             this._manifestEditorWidget = manifestEditor;
         }
+
+        this.renderLayerViews();
+    }
+
+    // Viewport-residency hide/show (Discard Lifecycle) — instant, keeps every
+    // LayerView and its parsed GeoJSON fully resident. The lightweight
+    // toolbox/search controls are cheap DOM widgets, safe to fully tear down
+    // and rebuild on show() rather than threading hide/show through them too.
+    hide(): void {
+        if (!this._attached) {
+            return;
+        }
+        this._attached = false;
+
+        this.closeEmptySpacePopup();
+
+        this._clickCleanup?.();
+        this._clickCleanup = undefined;
+        this._zoomCleanup?.();
+        this._zoomCleanup = undefined;
+
+        for (const layerView of this._layerViews.values()) {
+            layerView.hide();
+        }
+
+        this._layersWidget?.destroy();
+        this._layersWidget = undefined;
+        this._searchWidget?.remove();
+        this._searchWidget = undefined;
+
+        // Saves its snapshot on destroy() (position/scale/opacity/lock/pin
+        // state) and restores it automatically the next time it's rendered —
+        // this hide/show cycle is exactly the same recreation the snapshot
+        // mechanism was already built to survive.
+        this._imageOverlayWidget?.destroy();
+        this._imageOverlayWidget = undefined;
+    }
+
+    show(): void {
+        if (this._attached) {
+            return;
+        }
+        this._attached = true;
+
+        this._clickCleanup = this._map.onClick(latLng => this.onMapClick(latLng));
+        this._zoomCleanup = this._map.onZoom(() => this.renderLayerViews());
+
+        for (const layerView of this._layerViews.values()) {
+            layerView.show();
+        }
+
+        const searchWidget = this._widgetFactory.createSearchControl(
+            this._area.bbox,
+            (latLng, displayName) => this.onSearchResultSelected(latLng, displayName)
+        );
+        searchWidget.addTo(this._map);
+        this._searchWidget = searchWidget;
+
+        const imageOverlay = new ImageOverlayWidget(this._map, {
+            areaBbox: this._area.bbox,
+            onImageLoaded: () => { this._hasImageOverlay = true; },
+            onImageRemoved: () => { this._hasImageOverlay = false; },
+            getCurrentLatLng: () => this._getCurrentLatLng(),
+        });
+        imageOverlay.render();
+        this._imageOverlayWidget = imageOverlay;
+
+        this.rebuildLayersWidget();
+        this.renderLayerViews(); // pick up any visibility changes made while hidden
+    }
+
+    // Full teardown — only called by MapView as a side effect of a different
+    // area becoming current (the "build" bundle action's previousAreaId).
+    destroy(): void {
+        this.destroyLayerViews();
+
+        this._bboxWidget?.destroy();
+        this._bboxWidget = undefined;
+
+        this._manifestEditorWidget?.destroy();
+        this._manifestEditorWidget = undefined;
+
+        this._searchLayerView?.destroy();
+        this._searchLayerView = undefined;
+
+        this._searchWidget?.remove();
+        this._searchWidget = undefined;
+
+        this._imageOverlayWidget?.destroy();
+        this._imageOverlayWidget = undefined;
+
+        this._clickCleanup?.();
+        this._clickCleanup = undefined;
+
+        this._zoomCleanup?.();
+        this._zoomCleanup = undefined;
+
+        this.closeEmptySpacePopup();
+
+        this._layersWidget?.destroy();
+        this._layersWidget = undefined;
+
+        this._attached = false;
+    }
+
+    // Called by MapView after Controller has mutated+persisted this area's
+    // layer-visibility state (the setLayerVisible round-trip) — re-evaluates
+    // the virtual-layer set against the new state.
+    resync(): void {
+        this.renderLayerViews();
+    }
+
+    // Delegate target for MapView's session-level DestinationWidget: tapping
+    // the destination pin reuses this area's normal point callout (keeping
+    // star/bookmark/delete alongside the destination toggle) rather than a
+    // stripped-down view.
+    onDestinationMarkerTapped(point: DestinationPoint): void {
+        const log = getLogger();
+        log.info("destination.marker_tapped.start");
+        const latLng: [number, number] = [point.lat, point.lng];
+        const existing = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
+        if (existing) {
+            this.onUserMarkerTapped(latLng, existing.stars);
+        } else {
+            this.openStarCallout(latLng);
+        }
+        log.info("destination.marker_tapped.end");
     }
 
     private renderLayerViews(): void {
-        if (!this._map) {
-            return;
-        }
-
         const zoom = this._map.getZoom();
 
+        // Only __poi__ is handled by this loop — heatmap/circle base data is
+        // AreaBaseLayerRenderer's concern, and __user__/__void__/__search__
+        // each have their own dedicated handling below.
         for (const layer of this._area.layers) {
-            if (layer.type === "__poi__" && !layer.isVisible()) {
+            if (layer.type !== "__poi__") {
                 continue;
             }
-            if (layer.type === "__user__") {
-                continue;
-            }
-            if (layer.type === "__void__") {
-                continue;
-            }
-            if (layer.type === "__search__") {
+            if (!layer.isVisible()) {
                 continue;
             }
 
@@ -369,41 +349,22 @@ export class DetailView implements View {
                 && (minZoom === undefined || zoom >= minZoom);
 
             if (visible && !existing) {
-                let layerView: LayerView;
-
-                if (layer.type === "heatmap") {
-                    layerView = new HeatLayerView(
-                        this._map,
-                        layer,
-                        new DefaultLeafletLayerFactory()
-                    );
-                } else if (layer.type === "circle") {
-                    layerView = new PointLayerView(
-                        this._map,
-                        layer,
-                        new DefaultLeafletLayerFactory()
-                    );
-                } else if (layer.type === "__poi__") {
-                    layerView = new PoiLayerView(
-                        this._map,
-                        layer,
-                        this._area.layers,
-                        new DefaultLeafletLayerFactory(),
-                        {
-                            getUserPoint: (lat, lon) => this.getUserPointAtLatLng(lat, lon),
-                            onPoiStarSelected: (latLng, stars) => this.onPoiStarSelected(latLng, stars),
-                            onPoiBookmarkToggled: latLng => this.onPoiBookmarkToggled(latLng),
-                            onPopupOpening: () => this.closeEmptySpacePopup(),
-                            isDestination: latLng => this.isCurrentDestination(latLng),
-                            onPoiDestinationToggled: (latLng, label) => this.onPoiDestinationToggled(latLng, label),
-                        }
-                    );
-                } else {
-                    continue;
-                }
+                const layerView = new PoiLayerView(
+                    this._map,
+                    layer,
+                    this._area.layers,
+                    this._layerFactory,
+                    {
+                        getUserPoint: (lat, lon) => this.getUserPointAtLatLng(lat, lon),
+                        onPoiStarSelected: (latLng, stars) => this.onPoiStarSelected(latLng, stars),
+                        onPoiBookmarkToggled: latLng => this.onPoiBookmarkToggled(latLng),
+                        onPopupOpening: () => this.closeEmptySpacePopup(),
+                        isDestination: latLng => this.isCurrentDestination(latLng),
+                        onPoiDestinationToggled: (latLng, label) => this.onPoiDestinationToggled(latLng, label),
+                    }
+                );
                 this._layerViews.set(layer.id, layerView);
                 void layerView.render();
-
                 continue;
             }
 
@@ -429,7 +390,7 @@ export class DetailView implements View {
                     this._map,
                     layer,
                     this._layerFactory,
-                    this._userPointsStore!,
+                    this._userPointsStore,
                     this._area.id,
                     visible,
                     (latLng) => this.onUserPointDeleted(latLng),
@@ -457,9 +418,6 @@ export class DetailView implements View {
     // which non-virtual sibling layers are currently visible. See
     // docs/LAYERS.md for the full contract.
     private renderVoidLayer(): void {
-        const map = this._map;
-        if (!map) return;
-
         const voidLayers = this._area.layers.filter(l => l.type === "__void__");
         const bareVoid = voidLayers.find(l => l.id === VoidVariantResolver.BARE_ID);
         if (!bareVoid) return;
@@ -494,7 +452,7 @@ export class DetailView implements View {
 
         if (resolvedLayer && resolvedLayer.id !== existing?.layerId) {
             existing?.destroy();
-            const voidView = new VoidLayerView(map, resolvedLayer, new DefaultLeafletLayerFactory());
+            const voidView = new VoidLayerView(this._map, resolvedLayer, this._layerFactory);
             this._layerViews.set(VoidVariantResolver.BARE_ID, voidView);
             void voidView.render();
             this.rebuildLayersWidget();
@@ -550,101 +508,6 @@ export class DetailView implements View {
         this._layerViews.clear();
     }
 
-    private onZoomChange(zoom: number): void {
-        const map = this._map;
-        const center = map?.getCenter();
-        getLogger().info("detail.zoom", { zoom, areaId: this._area.id, lat: center?.[0], lng: center?.[1] });
-        if (Date.now() < this._zoomCooldownUntil) {
-            getLogger().info("detail.zoom_cooldown", { zoom });
-            return;
-        }
-        this.renderLayerViews();
-    }
-
-    private onMapMoveEnd(): void {
-        this.saveViewport();
-        if (this._hasImageOverlay || this._mode === "design") {
-            return;
-        }
-        if (!this.isBboxVisible()) {
-            const map = this._map;
-            getLogger().info("detail.pan_to_summary", { areaId: this._area.id });
-            if (map) {
-                this._actions.openSummary(map.getCenter(), map.getZoom());
-            } else {
-                this._actions.openSummary();
-            }
-        }
-    }
-
-    private isBboxVisible(): boolean {
-        const map = this._map;
-        if (!map) return true;
-        const [bboxWest, bboxSouth, bboxEast, bboxNorth] = this._area.bbox;
-        const vp = map.getBounds();
-        return bboxWest < vp.ne[1] && bboxEast > vp.sw[1] &&
-               bboxSouth < vp.ne[0] && bboxNorth > vp.sw[0];
-    }
-
-    private relaxBoundsForOverlay(): void {
-        const map = this._map;
-        if (!map) {
-            return;
-        }
-        map.setMinZoom(1);
-    }
-
-    private restoreBoundsAfterOverlay(): void {
-        this.applyMaxBounds();
-    }
-
-    private applyMaxBounds(): void {
-        const map = this._map;
-        if (!map) {
-            return;
-        }
-        const [west, south, east, north] = this._area.bbox;
-        const padLat = (north - south) / 2;
-        const padLng = (east - west) / 2;
-        const sw: [number, number] = [south - padLat, west - padLng];
-        const ne: [number, number] = [north + padLat, east + padLng];
-        this._paddedBounds = { sw, ne };
-        const fitZoom = map.getBoundsZoom(sw, ne);
-        this._minZoom = Math.max(11, Math.floor(fitZoom) - 1);
-        this._zoomCooldownUntil = Date.now() + 500;
-        getLogger().info("detail.min_zoom", { fitZoom, minZoom: this._minZoom, areaId: this._area.id });
-        // Snap to minZoom without animation if the current zoom is below it.
-        // This happens when entering from summary at a low zoom (e.g. 11) while
-        // minZoom may be 15. Without the snap, Leaflet fires a zoomend after the
-        // cooldown expires while the map is still at the low zoom, which incorrectly
-        // triggers the zoom-to-summary exit. The snap is safe here because onZoom
-        // is registered after applyMaxBounds returns, so no handler fires.
-        if (map.getZoom() < this._minZoom) {
-            map.setZoom(this._minZoom);
-        }
-    }
-
-    private addBboxHighlight(): void {
-        const map = this._map;
-        if (!map) {
-            return;
-        }
-        const [west, south, east, north] = this._area.bbox;
-        const highlight = this._layerFactory.createRectangle(
-            [[south, west], [north, east]],
-            { color: "#3388ff", weight: 1, fillColor: "#3388ff", fillOpacity: 0.05 }
-        );
-        highlight.addTo(map);
-        this._bboxHighlight = highlight;
-    }
-
-    private saveViewport(): void {
-        if (!this._map) {
-            return;
-        }
-        this._actions.saveDetailViewport(this._area.id, this._map.getCenter(), this._map.getZoom());
-    }
-
     private exportUserPoints(): void {
         const log = getLogger();
         log.info("user_layer.export.start", { areaId: this._area.id });
@@ -652,7 +515,7 @@ export class DetailView implements View {
             // Prefer synchronous read (localStorage) so navigator.share() is called
             // within the same call stack as the user gesture. Fall back to the
             // last-rendered payload for gateway-backed stores that have no sync path.
-            const payload = this._userPointsStore?.getPointsSync?.(this._area.id)
+            const payload = this._userPointsStore.getPointsSync?.(this._area.id)
                 ?? this._userLayerView?.lastPayload;
             if (!payload) {
                 log.info("user_layer.export.empty", { areaId: this._area.id });
@@ -718,10 +581,9 @@ export class DetailView implements View {
             await this.synthesizeUserLayerView();
         }
 
-        if (!this._userLayerView || !this._map) return;
+        if (!this._userLayerView) return;
 
         const store = this._userPointsStore;
-        if (!store) return;
 
         const wasEmpty = this._userLayerView.featureCount === 0;
         const poiProperties = this.findNearestPoiProperties(latLng[0], latLng[1]);
@@ -745,7 +607,7 @@ export class DetailView implements View {
     private onSearchResultSelected(latLng: [number, number], displayName: string): void {
         const log = getLogger();
         log.info("search.result_selected.start", { displayName });
-        this._map?.panTo(latLng);
+        this._map.panTo(latLng);
         this._searchLayerView?.setResult(latLng, displayName);
         log.info("search.result_selected.end", { displayName });
     }
@@ -798,8 +660,6 @@ export class DetailView implements View {
     }
 
     private async synthesizeUserLayerView(): Promise<void> {
-        if (!this._map || !this._userPointsStore) return;
-
         const syntheticLayer = new GeoLayer({
             id: "__user__",
             name: "My Trip",
@@ -827,11 +687,6 @@ export class DetailView implements View {
     }
 
     private rebuildLayersWidget(): void {
-        if (!this._map) return;
-
-        this._layersWidget?.remove();
-        this._layersWidget = undefined;
-
         const hasUserPoints = this._userLayerView !== undefined && this._userLayerView.featureCount > 0;
 
         const sourceLayers = [...this._area.layers];
@@ -842,10 +697,11 @@ export class DetailView implements View {
 
         const visibleLayers = this.buildFlyoutLayers(sourceLayers, hasUserPoints);
 
+        // render() just calls flyout.setLayers() — overwrites the panel
+        // content directly, no need to destroy() the previous widget first.
         const layersWidget = new LayerSelectionWidget(
-            this._map,
+            this._flyout,
             this._actions,
-            this._widgetFactory,
             this._area.id,
             visibleLayers,
             layer => this._state.isLayerVisible(layer.id, layer.isVisible()),
@@ -918,9 +774,9 @@ export class DetailView implements View {
             this.closeEmptySpacePopup();
             return;
         }
-        const zoom = this._map?.getZoom();
+        const zoom = this._map.getZoom();
         const minZoom = this.poiMinZoom();
-        if (zoom !== undefined && zoom < minZoom) {
+        if (zoom < minZoom) {
             log.info("map.empty_tap.noop", { zoom, minZoom });
             return;
         }
@@ -936,7 +792,6 @@ export class DetailView implements View {
 
     private openStarCallout(latLng: [number, number]): void {
         this.closeEmptySpacePopup();
-        if (!this._map) return;
         const isDest = this.isCurrentDestination(latLng);
         const widget = new EmptyCalloutWidget({
             latLng,
@@ -982,9 +837,8 @@ export class DetailView implements View {
         if (!this._userLayerView) {
             await this.synthesizeUserLayerView();
         }
-        if (!this._userLayerView || !this._map) return;
+        if (!this._userLayerView) return;
         const store = this._userPointsStore;
-        if (!store) return;
 
         const wasEmpty = this._userLayerView.featureCount === 0;
         const poiProperties = this.findNearestPoiProperties(latLng[0], latLng[1]);
@@ -1047,7 +901,7 @@ export class DetailView implements View {
         log.info("destination.set.start", { lat: latLng[0], lng: latLng[1] });
         const point: DestinationPoint = { lat: latLng[0], lng: latLng[1], label: label ?? null };
         this._destinationStore.set(point);
-        this._destinationWidget?.setDestination(point);
+        this._destinationWidget.setDestination(point);
         log.info("destination.set.end");
     }
 
@@ -1055,7 +909,7 @@ export class DetailView implements View {
         const log = getLogger();
         log.info("destination.remove.start");
         this._destinationStore.clear();
-        this._destinationWidget?.setDestination(null);
+        this._destinationWidget.setDestination(null);
         log.info("destination.remove.end");
     }
 
@@ -1076,27 +930,10 @@ export class DetailView implements View {
         this.closeEmptySpacePopup();
     }
 
-    // Tapping the destination pin reuses the same callout as tapping the point directly
-    // (empty-space or existing __user__ point) — a destination is independent of star/bookmark
-    // state, so both should stay visible and actionable here, not just a bare "Remove" button.
-    private onDestinationMarkerTapped(point: DestinationPoint): void {
-        const log = getLogger();
-        log.info("destination.marker_tapped.start");
-        const latLng: [number, number] = [point.lat, point.lng];
-        const existing = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
-        if (existing) {
-            this.onUserMarkerTapped(latLng, existing.stars);
-        } else {
-            this.openStarCallout(latLng);
-        }
-        log.info("destination.marker_tapped.end");
-    }
-
     private onUserMarkerTapped(latLng: [number, number], stars?: StarCount): void {
         const log = getLogger();
         log.info("user_layer.marker_tapped.start", { lat: latLng[0], lng: latLng[1], stars });
         this.closeEmptySpacePopup();
-        if (!this._map) return;
         const point = this._userLayerView?.getPointAtLatLng(latLng[0], latLng[1]);
         const isDest = this.isCurrentDestination(latLng);
 
@@ -1136,7 +973,6 @@ export class DetailView implements View {
         const log = getLogger();
         log.info("user_layer.rate_existing.start", { lat: latLng[0], lng: latLng[1], stars, wasBookmarked });
         const store = this._userPointsStore;
-        if (!store) return;
         void store.removePoint(this._area.id, latLng[1], latLng[0]);
         void store.addPoint(this._area.id, latLng[0], latLng[1], 0.5, { stars });
         if (wasBookmarked) {
@@ -1161,9 +997,8 @@ export class DetailView implements View {
         if (!this._userLayerView) {
             await this.synthesizeUserLayerView();
         }
-        if (!this._userLayerView || !this._map) return;
+        if (!this._userLayerView) return;
         const store = this._userPointsStore;
-        if (!store) return;
 
         const wasEmpty = this._userLayerView.featureCount === 0;
         const poiProperties = this.findNearestPoiProperties(latLng[0], latLng[1]);

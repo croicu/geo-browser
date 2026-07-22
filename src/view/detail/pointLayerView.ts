@@ -67,4 +67,19 @@ export class PointLayerView extends LayerView {
         }
         this._markers = [];
     }
+
+    // Markers aren't routed through a single MapLayerHandle group (each is its
+    // own addTo/remove-able handle), so the base class's _group-based hide/show
+    // doesn't apply — iterate directly. Still Leaflet-only, no rebuild.
+    override hide(): void {
+        for (const marker of this._markers) {
+            marker.remove();
+        }
+    }
+
+    override show(): void {
+        for (const marker of this._markers) {
+            marker.addTo(this._map);
+        }
+    }
 }
