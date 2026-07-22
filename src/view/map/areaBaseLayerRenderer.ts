@@ -1,6 +1,7 @@
 import type { GeoArea } from "../../catalog/area";
 import type { LayerFactory, MapHandle } from "../../contracts";
 import { getLogger } from "../../services";
+import { LogCategory } from "../../logging";
 import { HeatLayerView } from "../detail/heatLayerView";
 import type { LayerView } from "../detail/layerView";
 import { PointLayerView } from "../detail/pointLayerView";
@@ -94,7 +95,7 @@ export class AreaBaseLayerRenderer {
     // keeps every LayerView and its parsed GeoJSON fully resident. Distinct
     // from destroy() below.
     hide(): void {
-        getLogger().info("area_base_layers.hide", { areaId: this._area.id, layerIds: [...this._layerViews.keys()] });
+        getLogger().info("area_base_layers.hide", { areaId: this._area.id, layerIds: [...this._layerViews.keys()] }, LogCategory.AreaLifecycle);
         this._isHidden = true;
         for (const layerView of this._layerViews.values()) {
             layerView.hide();
@@ -102,7 +103,7 @@ export class AreaBaseLayerRenderer {
     }
 
     show(): void {
-        getLogger().info("area_base_layers.show", { areaId: this._area.id, layerIds: [...this._layerViews.keys()] });
+        getLogger().info("area_base_layers.show", { areaId: this._area.id, layerIds: [...this._layerViews.keys()] }, LogCategory.AreaLifecycle);
         this._isHidden = false;
         for (const layerView of this._layerViews.values()) {
             layerView.show();
@@ -114,7 +115,7 @@ export class AreaBaseLayerRenderer {
     // GeoLayer.invalidate() and tears down every LayerView. Only ever called
     // by MapView as a side effect of loading a genuinely new area.
     destroy(): void {
-        getLogger().info("area_base_layers.destroy", { areaId: this._area.id, layerIds: [...this._layerViews.keys()] });
+        getLogger().info("area_base_layers.destroy", { areaId: this._area.id, layerIds: [...this._layerViews.keys()] }, LogCategory.AreaLifecycle);
         this._zoomCleanup?.();
         this._zoomCleanup = undefined;
 

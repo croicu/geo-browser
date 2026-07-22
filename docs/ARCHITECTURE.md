@@ -47,11 +47,13 @@ Meaning:
 ```text
 HEAD        = mutable pointer
 Catalog     = discovery
-AreaSummary = summary/discovery UI model
-AreaDetail  = detail composition
+AreaSummary = catalog-level area descriptor (id, bbox, center — enough to render circle/outline)
+AreaDetail  = area manifest (layers, images) fetched once an area becomes resident
 Layer       = renderer input metadata
 GeoJSON     = actual data payload
 ```
+
+`AreaSummary`/`AreaDetail` are protocol/data type names only (`protocols.ts`) — unrelated to the retired Summary/Detail UI-mode vocabulary below.
 
 ## Runtime Flow
 
@@ -64,65 +66,57 @@ main.ts
 
 Controller
   → loads catalog
-  → creates SummaryView
-  → responds to widget intents
-  → switches to DetailView
+  → constructs MapView once (session-lifetime)
+  → responds to widget intents (ControllerActions)
 ```
+
+`Controller` no longer switches between two views — `MapView` is constructed exactly
+once per session and never torn down until the app itself unloads. Full design:
+[tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md).
 
 ## UI Flow
 
-```text
-SummaryView
-  → Leaflet map
-  → BubbleWidget[]
-  → click bubble → ControllerActions.openDetail(areaId)
-  → zoom ≥ 11 and area bbox on screen
-      → ControllerActions.openDetail(areaId, center, zoom)
-
-Controller
-  → GeoArea.load()
-  → switchView(DetailView)
-
-DetailView
-  → Leaflet map with maxBounds + minZoom (hard pan/zoom restriction)
-  → bbox highlight rectangle
-  → GeoLocationWidget (if geolocation service injected)
-  → BboxWidget (if gateway service injected)
-  → widgets
-  → LayerView reconciliation
-  → zoom ≤ minZoom
-      → saveSummaryViewport(center, zoom)
-      → ControllerActions.openSummary()
-```
-
-Center synchronization: both transitions carry the current map center and zoom so the
-receiving view opens at the same position, providing a fluid experience.
-
-Summary → Detail: `openDetail(areaId, center, zoom)` — `DetailViewState` prefers these
-over saved state.
-
-Detail → Summary: `saveSummaryViewport(center, zoom)` mutates `_summaryViewState` in
-the controller before `openSummary()` is called, so the new center is picked up
-immediately without any additional API surface.
-
-## Summary vs Detail
+One shared Leaflet map (`MapView`), driven entirely by `AreaLifecycleTracker`, a pure
+state machine with no Leaflet/DOM dependency:
 
 ```text
-Summary = discovery/world overview
-Detail  = selected-area immersive rendering
+MapView.render()
+  → creates the one Leaflet map (session-lifetime)
+  → registers onZoom/onMoveEnd → handleViewportChange()
+  → creates one AreaMarkerView per catalog area (circle/outline)
+  → creates session-level GeoLocationWidget / DestinationWidget / MapLayerFlyoutHandle
+
+handleViewportChange()
+  → AreaLifecycleTracker.recompute({ bounds, zoom })
+  → returns a diff: renderKinds, toLoad, toShow, toHide, toDestroy, bundle action
+  → MapView applies the diff mechanically:
+      renderKinds  → AreaMarkerView.update(kind)     (circle/outline)
+      toLoad       → loadBaseLayers(areaId)           (new AreaBaseLayerRenderer, async)
+      toShow/toHide→ AreaBaseLayerRenderer.show()/hide()  (instant, Leaflet-only)
+      toDestroy    → destroyBaseLayers(areaId)         (GeoLayer.invalidate(), deferred)
+      bundle       → build/show/hide the singleton CurrentAreaBundle
 ```
 
-Both are Leaflet-backed.
+Tapping a circle/outline marker (`AreaMarkerView.onSelected`) calls `MapView.jumpToArea()`,
+which pans/zooms the shared map atomically (`MapHandle.setView`) to fit that area's bbox —
+the same `handleViewportChange()` path then naturally promotes it through
+outline → loaded → current, with no separate "open detail" code path.
 
-The important split is not SVG vs Leaflet. The split is:
+## Render Kinds & Current Area
 
 ```text
-Summary = cheap discovery, world zoom, area bubbles
-Detail  = heavy layer rendering, constrained to area bbox
+circle  = bbox screen area < the area of a fixed 48px-diameter circle
+outline = bbox big enough, but zoom < MIN_LOADED_ZOOM or not yet resident
+loaded  = bbox big enough, zoom ≥ MIN_LOADED_ZOOM, and residency == "visible"
 ```
 
-Transitions between the two are automatic based on zoom level, in addition to
-explicit user gestures (bubble tap, back button).
+Any number of areas can be `loaded` concurrently — there is no exclusivity. Only one
+area is ever "current" (nearest to viewport center among `loaded` candidates) and owns
+the virtual-layer bundle (`CurrentAreaBundle`) and toolbox; losing current status does
+not hide or destroy that area's base layers, it only detaches the bundle.
+
+Full state table, the two-phase Hide/Destroy discard lifecycle, and the empty-viewport
+fallback pin: [tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md).
 
 ## Protocols vs Runtime Models
 
@@ -239,17 +233,17 @@ This preserves:
 
 ## Layer Rendering
 
-DetailView owns:
+Base (manifest-declared) layers and virtual layers have different owners and different
+lifetimes now that any number of areas can be concurrently resident:
 
 ```text
-map
-widgets
-Map<string, LayerView>
+AreaBaseLayerRenderer  — one instance per resident area, owns Map<string, LayerView>
+                         for that area's "circle"/"heatmap" layers only
+CurrentAreaBundle      — 0-or-1 instance (singleton, the current area only), owns the
+                         virtual layers (__poi__/__user__/__void__/__search__) + toolbox
 ```
 
-LayerView owns one logical rendered layer.
-
-Concrete subclasses:
+`LayerView` owns one logical rendered layer. Concrete subclasses:
 
 ```text
 PointLayerView
@@ -265,19 +259,17 @@ Layer type mapping:
 
 ## Incremental Reconciliation
 
-DetailView renders layers by reconciling desired state with existing runtime views:
+`AreaBaseLayerRenderer.sync()` reconciles desired state with existing runtime views for
+its one area, same shape as before:
 
 ```text
 visible && !existing → create LayerView
 !visible && existing → destroy LayerView
 ```
 
-Important distinction:
-
-```text
-switchView() = mode transition
-render()     = state refresh / reconciliation
-```
+Distinct from this manual-toggle reconciliation is the viewport-residency
+Hide/Show/Destroy lifecycle (`AreaLifecycleTracker`, see Render Kinds & Current Area
+above) — Hide/Show never rebuild a `LayerView`, they only detach/reattach it.
 
 ## Visibility Ownership
 
@@ -286,7 +278,7 @@ Manifest layer visibility is only an initial/default value.
 Runtime visibility belongs to:
 
 ```text
-DetailViewState.visibleLayers
+AreaViewState.visibleLayers
 ```
 
 Rule:

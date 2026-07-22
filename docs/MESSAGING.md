@@ -164,9 +164,9 @@ interface AreaSummary {
   id: string;
   name: string;
   bbox: [number, number, number, number];  // [west, south, east, north]
-  minRadiusPx: number;
-  maxRadiusPx: number;
-  liveMapRadiusPx: number;
+  minRadiusPx: number;      // still part of the wire format; unused by geo-browser's
+  maxRadiusPx: number;      // current circle-marker rendering, which uses a fixed
+  liveMapRadiusPx: number;  // 48px diameter instead — see geo-browser's AreaMarkerView
   manifestUrl: string;
   group: string[];  // omitted or empty = ungrouped; "debug" is a convention, not a special type
 }

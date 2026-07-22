@@ -258,7 +258,6 @@ class LeafletHeatLayerHandle extends LeafletMapLayerHandle {
     private readonly _heatLayer: L.HeatLayer;
     private readonly _opacity: number;
     private _leafletMap?: L.Map;
-    private _zoomListener?: () => void;
     private _zoomEndListener?: () => void;
 
     constructor(layer: L.HeatLayer, opacity: number) {
@@ -273,26 +272,6 @@ class LeafletHeatLayerHandle extends LeafletMapLayerHandle {
 
         const leafletMap = unwrapMap(map);
         this._leafletMap = leafletMap;
-
-        // leaflet.heat only repositions its canvas on 'zoomanim' (the
-        // discrete/button zoom path) and does a full recompute on 'moveend'.
-        // A live touch pinch-zoom never fires 'zoomanim' at all — Leaflet's
-        // TouchZoom handler drives the map via repeated map._move() calls,
-        // which only fire 'zoom'/'move' (see Map.TouchZoom._onTouchMove in
-        // leaflet-src.js) — so without this, the heat canvas stays frozen at
-        // its pre-gesture position/scale for the entire gesture and only
-        // snaps to the correct place once fingers lift and 'moveend' fires.
-        // Every other renderer (SVG paths, markers) already listens to
-        // 'zoom' for exactly this reason; mirror that here by driving the
-        // plugin's own (cheap, CSS-transform-only) _animateZoom from it.
-        this._zoomListener = () => {
-            const heat = this._heatLayer as unknown as {
-                _animateZoom?: (e: { center: L.LatLng; zoom: number }) => void;
-            };
-            heat._animateZoom?.({ center: leafletMap.getCenter(), zoom: leafletMap.getZoom() });
-        };
-        leafletMap.on("zoom", this._zoomListener);
-
         this._zoomEndListener = () => {
             this._heatLayer.redraw();
             this.applyOpacity();
@@ -301,14 +280,10 @@ class LeafletHeatLayerHandle extends LeafletMapLayerHandle {
     }
 
     remove(): void {
-        if (this._leafletMap && this._zoomListener) {
-            this._leafletMap.off("zoom", this._zoomListener);
-        }
         if (this._leafletMap && this._zoomEndListener) {
             this._leafletMap.off("zoomend", this._zoomEndListener);
         }
         this._leafletMap = undefined;
-        this._zoomListener = undefined;
         this._zoomEndListener = undefined;
 
         // leaflet.heat's redraw() schedules a requestAnimFrame(this._redraw)

@@ -1,6 +1,6 @@
 # layer_lifecycle.md
 
-Status: Implementation
+Status: Done
 
 ## Summary
 
@@ -9,10 +9,10 @@ circle, bbox outline, or fully loaded layer depending on screen-pixel size
 and viewport position. Replaces `SummaryView`/`DetailView` with a single
 unified view.
 
-This is a **breaking vocabulary change** relative to `CLAUDE.md`. That doc's
-Summary/Detail terminology, and the "do not reintroduce intro vocabulary"
-rule, are now stale and need a rewrite once this ships. Not blocking for
-this branch, but CC should know going in.
+This was a **breaking vocabulary change** relative to `CLAUDE.md`. That doc's
+Summary/Detail terminology and the "do not reintroduce intro vocabulary" rule
+have been rewritten to match — see CLAUDE.md's Vocabulary section and
+Completed Tasks entry for this feature.
 
 ## Motivation
 
@@ -216,10 +216,15 @@ area/layer data; there is nothing to add for this feature.
   never receive duplicate features in the first place — no live join logic
   belongs here.
 
-## Open Items for CC
+## Open Items for CC — resolved
 
-- N starts at 48px (above) — needs on-device confirmation, may get
-  retuned.
+- N=48px and `MIN_LOADED_ZOOM=10` (the latter added after the fact, see
+  `tasks/stabilization.md`'s "ghost heatmap" entry) both shipped and have
+  been exercised across several rounds of live device testing this session
+  without further complaint — treated as workable starting values, not
+  formally "tuned." Either remains a one-line change
+  (`AreaRenderClassifier.LOAD_THRESHOLD_PX`/`MIN_LOADED_ZOOM`) if further
+  on-device feedback calls for it.
 - Offline behavior: area/layer fetches are always network, never SW-cached
   (above), so going offline mid-session just fails the fetch — same as
   today's single-current-area behavior. No special handling identified;

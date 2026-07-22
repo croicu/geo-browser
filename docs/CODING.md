@@ -17,16 +17,16 @@ This project values:
 Files are camelCase:
 
 ```text
-summaryView.ts
-detailViewState.ts
+mapView.ts
+areaViewState.ts
 leafletFactories.ts
 ```
 
 Types/classes/interfaces are PascalCase:
 
 ```ts
-SummaryView
-DetailViewState
+MapView
+AreaViewState
 MapFactory
 GeoLayer
 ```
