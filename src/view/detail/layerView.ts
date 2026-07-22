@@ -45,6 +45,23 @@ export abstract class LayerView implements View {
         this._group = undefined;
     }
 
+    // Detach/reattach without dropping any resident state (parsed data, markers,
+    // listeners) — instant, Leaflet-only. Distinct from destroy()'s full teardown
+    // and from the manual-toggle destroy()/recreate path in DetailView's
+    // renderLayerViews(); this is the viewport-residency hide/show path from
+    // tasks/layer_lifecycle.md's Discard Lifecycle. Subclasses that don't route
+    // rendering through setGroup() (PointLayerView, PoiLayerView, UserLayerView)
+    // override both.
+    hide(): void {
+        this._group?.remove();
+    }
+
+    show(): void {
+        if (this._group) {
+            this._group.addTo(this._map);
+        }
+    }
+
     protected setGroup(group: MapLayerHandle): void {
         this.destroy();
         this._group = group;

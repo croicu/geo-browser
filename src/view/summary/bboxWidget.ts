@@ -69,7 +69,7 @@ export class BboxWidget {
 
         this._rect = this._layerFactory.createRectangle(
             [[south, west], [north, east]],
-            { color: "#595959", weight: 5, fillColor: "#cccccc", fillOpacity: 0 }
+            { color: "#595959", weight: 5, fillColor: "#cccccc", fillOpacity: 0, interactive: false }
         );
 
         const corners: [number, number][] = [

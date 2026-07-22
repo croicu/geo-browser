@@ -58,7 +58,7 @@ export class DrawAreaInteraction {
         if (!this._rect) {
             this._rect = this._layerFactory.createRectangle(
                 [[south, west], [north, east]],
-                { color: "#3388ff", weight: 2, fillColor: "#3388ff", fillOpacity: 0.1 }
+                { color: "#3388ff", weight: 2, fillColor: "#3388ff", fillOpacity: 0.1, interactive: false }
             );
             this._rect.addTo(this._map);
         } else {

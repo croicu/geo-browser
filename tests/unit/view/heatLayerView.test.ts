@@ -211,4 +211,27 @@ describe("HeatLayerView", () => {
 
         expect(factory.heatLayer.removed).toBe(true);
     });
+
+    it("hides and re-shows the heat layer without rebuilding", async () => {
+        const payload = { type: "FeatureCollection", features: [] };
+        stubFetch(payload);
+
+        const map = new StubMap();
+        const factory = new FakeHeatLayerFactory();
+        const layer = new GeoLayer({
+            id: "debug-heat",
+            type: "heatmap",
+            url: "/areas/napoli/layers/flickr.geojson",
+            visible: true,
+        });
+
+        const view = new HeatLayerView(map, layer, factory);
+        await view.render();
+
+        view.hide();
+        expect(factory.heatLayer.removed).toBe(true);
+
+        view.show();
+        expect(factory.heatLayer.addedTo).toBe(map);
+    });
 });

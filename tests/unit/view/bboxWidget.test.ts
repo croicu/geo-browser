@@ -36,6 +36,13 @@ describe("BboxWidget", () => {
         expect(layerFactory.draggableMarkers.length).toBe(4);
     });
 
+    it("renders the rectangle as non-interactive so it never intercepts drags meant for the corner handles", () => {
+        const widget = makeWidget();
+        widget.render();
+
+        expect(layerFactory.rectangles[0].options?.interactive).toBe(false);
+    });
+
     it("adds rectangle and handles to the map", () => {
         const widget = makeWidget();
         widget.render();

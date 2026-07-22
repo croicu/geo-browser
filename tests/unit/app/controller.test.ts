@@ -22,6 +22,39 @@ const napoliSummary: AreaSummary = {
     ],
 };
 
+function fakeArea(load: () => Promise<void> = async () => {}) {
+    return {
+        id: "napoli",
+        name: "Napoli",
+        summary: napoliSummary,
+        bbox: napoliSummary.bbox,
+        center: [40.85, 14.27] as [number, number],
+        radiusMeters: 12000,
+        minRadiusPx: napoliSummary.minRadiusPx,
+        layers: [],
+        load,
+    };
+}
+
+// A single-area catalog always satisfies the empty-viewport fallback pin
+// (tasks/layer_lifecycle.md) — the one area is always "nearest" — so its
+// GeoArea.load() legitimately fires even at a maximally zoomed-out viewport.
+// This is intentional new behavior (something is always kept warm so the map
+// is never fully inert), not eager over-fetching: it's a single manifest
+// fetch for the whole catalog, not per-layer GeoJSON.
+function fakeCatalog(areas: ReturnType<typeof fakeArea>[]) {
+    const catalog = {
+        load: vi.fn(async () => {}),
+        areas,
+        getArea: (id: string) => {
+            const area = areas.find(a => a.id === id);
+            if (!area) throw new Error(`area not found: ${id}`);
+            return area;
+        },
+    };
+    return catalog;
+}
+
 describe("Controller", () => {
     const logger = {
         info: vi.fn(),
@@ -36,19 +69,8 @@ describe("Controller", () => {
         document.body.innerHTML = `<div id="app"></div>`;
     });
 
-    it("loads catalog and renders summary UI", async () => {
-        const catalog = {
-            load: vi.fn(async () => {}),
-            areas: [
-                {
-                    id: "napoli",
-                    name: "Napoli",
-                    summary: napoliSummary,
-                    center: [40.85, 14.27] as [number, number],
-                    radiusMeters: 12000,
-                },
-            ],
-        };
+    it("loads catalog and renders the unified map view", async () => {
+        const catalog = fakeCatalog([fakeArea()]);
 
         const controller = new Controller({
             catalog: catalog as any,
@@ -59,17 +81,14 @@ describe("Controller", () => {
 
         expect(catalog.load).toHaveBeenCalledTimes(1);
 
-        expect(document.querySelector(".summary-view")).not.toBeNull();
-        expect(document.querySelector(".summary-map")).not.toBeNull();
+        expect(document.querySelector(".map-view")).not.toBeNull();
+        expect(document.querySelector(".shared-map")).not.toBeNull();
     });
 
     it("throws if #app is missing", async () => {
         document.body.innerHTML = "";
 
-        const catalog = {
-            load: vi.fn(async () => {}),
-            areas: [],
-        };
+        const catalog = fakeCatalog([]);
 
         const controller = new Controller({
             catalog: catalog as any,
@@ -79,22 +98,9 @@ describe("Controller", () => {
         await expect(controller.start()).rejects.toThrow("Missing #app element.");
     });
 
-    it("does not eagerly load area detail", async () => {
+    it("fetches the sole catalog area's manifest via the empty-viewport fallback pin, not per-layer GeoJSON", async () => {
         const areaLoad = vi.fn(async () => {});
-
-        const catalog = {
-            load: vi.fn(async () => {}),
-            areas: [
-                {
-                    id: "napoli",
-                    name: "Napoli",
-                    summary: napoliSummary,
-                    center: [40.85, 14.27] as [number, number],
-                    radiusMeters: 12000,
-                    load: areaLoad,
-                },
-            ],
-        };
+        const catalog = fakeCatalog([fakeArea(areaLoad)]);
 
         const controller = new Controller({
             catalog: catalog as any,
@@ -104,6 +110,10 @@ describe("Controller", () => {
         await controller.start();
 
         expect(catalog.load).toHaveBeenCalledTimes(1);
-        expect(areaLoad).not.toHaveBeenCalled();
+        // The fallback pin means the area's own manifest legitimately loads —
+        // MapView dedupes the base-layer toLoad path and the current-area
+        // bundle build path (both want the same area loaded in the same
+        // tick) down to a single GeoArea.load() call.
+        expect(areaLoad).toHaveBeenCalledTimes(1);
     });
 });

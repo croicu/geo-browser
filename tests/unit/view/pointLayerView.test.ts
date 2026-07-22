@@ -174,4 +174,25 @@ describe("LayerView", () => {
         expect(factory.markers[0].removeCalled).toBe(true);
         expect(factory.markers[1].removeCalled).toBe(true);
     });
+
+    it("hides and re-shows markers without rebuilding", async () => {
+        stubFetch(two_points);
+
+        const map = new StubMap();
+        const layer = new GeoLayer(layer_data);
+        const factory = new FakeLeafletLayerFactory();
+
+        const view = new PointLayerView(map, layer, factory);
+        await view.render();
+
+        view.hide();
+        expect(factory.markers[0].removeCalled).toBe(true);
+        expect(factory.markers[1].removeCalled).toBe(true);
+
+        view.show();
+        expect(factory.markers[0].addToMap).toBe(map);
+        expect(factory.markers[1].addToMap).toBe(map);
+        // No re-fetch/re-scan: still exactly the two markers built by render().
+        expect(factory.markers.length).toBe(2);
+    });
 });

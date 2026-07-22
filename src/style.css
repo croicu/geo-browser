@@ -28,52 +28,15 @@ body,
   inset: 0;
 }
 
-.summary-view {
+.map-view {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.summary-map {
+.shared-map {
     width: 100%;
     height: 100%;
-}
-
-.detail-view {
-    width: 100%;
-    height: 100%;
-}
-
-.detail-map {
-    width: 100%;
-    height: 100%;
-}
-
-.leaflet-summary-widget {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: white;
-    border: 2px solid rgba(50, 50, 50, 0.3);
-    border-radius: 4px;
-
-    cursor: pointer;
-}
-
-.leaflet-summary-widget:hover {
-    background: #f4f4f4;
-}
-
-.leaflet-summary-widget img {
-    width: 24px;
-    height: 24px;
-
-    display: block;
 }
 
 .map-layer-flyout {

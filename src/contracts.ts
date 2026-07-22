@@ -11,6 +11,7 @@ export type LogLevel =
 export interface TelemetryRecord {
     timestamp: string;
     level: LogLevel;
+    category: string;
     message: string;
     props?: Record<string, unknown>;
     error?: unknown;
@@ -21,11 +22,11 @@ export interface TelemetrySink {
 }
 
 export interface Logger {
-    diagnostic(message: string, props?: Record<string, unknown>): void;
-    info(message: string, props?: Record<string, unknown>): void;
-    warning(message: string, props?: Record<string, unknown>): void;
-    error(message: string, error?: unknown, props?: Record<string, unknown>): void;
-    fatal(message: string, error?: unknown, props?: Record<string, unknown>): void;
+    diagnostic(message: string, props?: Record<string, unknown>, category?: string): void;
+    info(message: string, props?: Record<string, unknown>, category?: string): void;
+    warning(message: string, props?: Record<string, unknown>, category?: string): void;
+    error(message: string, error?: unknown, props?: Record<string, unknown>, category?: string): void;
+    fatal(message: string, error?: unknown, props?: Record<string, unknown>, category?: string): void;
 }
 
 export interface View {
@@ -39,16 +40,7 @@ export interface Widget {
 }
 
 export interface ControllerActions {
-    openSummary(center?: [number, number], zoom?: number): void;
-    openDetail(areaId: string, center?: [number, number], zoom?: number): void;
     setLayerVisible(areaId: string, layerId: string, visible: boolean): void;
-
-    saveSummaryViewport(center: [number, number], zoom: number): void;
-    saveDetailViewport(areaId: string, center: [number, number], zoom: number): void;
-
-    zoomIn(): void;
-    zoomOut(): void;
-    setZoom(zoomLevel: number): void;
 
     newArea(): void;
     commitArea(bbox: [number, number, number, number], name: string): void;
@@ -59,12 +51,6 @@ export interface GatewayService {
     invoke<TIn, TOut>(def: MethodDef<TIn, TOut>, data: TIn, callback?: (response: TOut) => void): void;
     subscribe<TIn, TOut>(def: EventDef<TIn, TOut>, fn: (data: TIn) => TOut | void): Cookie;
     unsubscribe(cookie: Cookie): void;
-}
-
-export interface ControllerState {
-    get zoom(): number;
-    get minZoom(): number;
-    get maxZoom(): number;
 }
 
 export interface MapPopupHandle {
@@ -97,7 +83,11 @@ export interface MapHandle {
     setMaxBounds(sw: [number, number], ne: [number, number]): void;
     getBoundsZoom(sw: [number, number], ne: [number, number]): number;
     setZoom(zoom: number): void;
-    setMinZoom(zoom: number): void;
+    // Atomically re-centers and re-zooms in one operation — unlike separate
+    // setZoom()+panTo() calls, this avoids a transient intermediate viewport
+    // (new zoom, stale center) that could otherwise spuriously satisfy or
+    // fail the empty-viewport fallback pin for the wrong area.
+    setView(center: [number, number], zoom: number): void;
     getBounds(): { sw: [number, number]; ne: [number, number] };
     createPopup(latLng: [number, number], element: HTMLElement): MapPopupHandle;
     addControl(position: ControlPosition, element: HTMLElement): WidgetHandle;
@@ -171,6 +161,7 @@ export interface MapLayerHandle {
 
 export interface RectangleHandle extends MapLayerHandle {
     setBounds(bounds: [[number, number], [number, number]]): void;
+    onClick(handler: () => void): void;
 }
 
 export interface PositionMarkerHandle extends MapLayerHandle {
@@ -215,6 +206,11 @@ export interface RectangleOptions {
     weight: number;
     fillColor: string;
     fillOpacity: number;
+    // Defaults to true. Design-mode preview/drag rectangles (drawn area
+    // preview, bbox edit widget) explicitly pass false — clicks on those
+    // should fall through to the map/drag handles underneath, not be
+    // intercepted by the rectangle itself.
+    interactive?: boolean;
 }
 
 export interface HeatLayerOptions {
@@ -313,17 +309,25 @@ export interface DestinationStore {
     clear(): void;
 }
 
-export interface WidgetFactory {
-    createSummaryWidget(
-        label: string,
-        onClick: () => void
-    ): WidgetHandle;
+// The flyout owns the tile layer's lifecycle (see MapLayerFlyoutControl), which
+// must survive across current-area transitions — swapping the layer list via
+// setLayers() must never tear down/rebuild the control itself (that would
+// remove+re-add the tile layer, flashing the whole map). One instance is
+// created for the session; setLayers([]) reverts to the map-type-only panel.
+export interface MapLayerFlyoutHandle extends WidgetHandle {
+    setLayers(
+        layers: LayerSelectionWidgetItem[],
+        onToggle: (layerId: string, visible: boolean) => void,
+        onExportUserPoints?: () => void
+    ): void;
+}
 
+export interface WidgetFactory {
     createMapLayerFlyout(
         layers: LayerSelectionWidgetItem[],
         onToggle: (layerId: string, visible: boolean) => void,
         onExportUserPoints?: () => void
-    ): WidgetHandle;
+    ): MapLayerFlyoutHandle;
 
     createDesignToolbar(buttons: DesignToolbarButton[]): WidgetHandle;
 
