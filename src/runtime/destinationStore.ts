@@ -3,7 +3,7 @@ import { getLogger } from "../services";
 
 const STORAGE_KEY = "geo-browser.destination";
 
-// Pure client runtime — no geo-builder/gateway variant. See tasks/destination_marker.md.
+// Pure client runtime — no geo-builder/gateway variant. See geo-browser#74.
 export class LocalStorageDestinationStore implements DestinationStore {
     private readonly _storage: StorageService;
 

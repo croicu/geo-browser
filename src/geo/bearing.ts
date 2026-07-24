@@ -7,7 +7,7 @@ function toDegrees(rad: number): number {
 }
 
 // Standard great-circle initial bearing between two lat/lng pairs, in degrees [0, 360).
-// Pure geometry — not compass heading. See tasks/destination_marker.md.
+// Pure geometry — not compass heading. See geo-browser#74.
 export function computeBearing(from: [number, number], to: [number, number]): number {
     const lat1 = toRadians(from[0]);
     const lat2 = toRadians(to[0]);

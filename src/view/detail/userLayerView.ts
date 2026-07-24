@@ -208,7 +208,7 @@ export class UserLayerView extends LayerView {
         this.destroyMarkers();
     }
 
-    // Viewport-residency hide/show (tasks/layer_lifecycle.md) — thin aliases
+    // Viewport-residency hide/show (geo-browser#73) — thin aliases
     // over the existing toolbar-visibility toggle, which already does exactly
     // this (detach/reattach, no rebuild) and already ignores redundant calls.
     override hide(): void {

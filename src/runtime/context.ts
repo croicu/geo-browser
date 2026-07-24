@@ -98,7 +98,7 @@ export class Context {
     }
 
     // Catches exceptions/rejections that escape every try/catch in the app -- previously
-    // invisible to Logger entirely (see tasks/logging_api.md). Always installed, in both
+    // invisible to Logger entirely (see geo-browser#72). Always installed, in both
     // modes; only whether GatewayTelemetrySink is in the sink list (above) depends on mode.
     private installGlobalErrorHandlers(): void {
         window.addEventListener("error", this._onWindowError);

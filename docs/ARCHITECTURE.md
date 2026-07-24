@@ -72,7 +72,7 @@ Controller
 
 `Controller` no longer switches between two views — `MapView` is constructed exactly
 once per session and never torn down until the app itself unloads. Full design:
-[tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md).
+[geo-browser#73](https://github.com/croicu/geo-browser/issues/73).
 
 ## UI Flow
 
@@ -116,7 +116,7 @@ the virtual-layer bundle (`CurrentAreaBundle`) and toolbox; losing current statu
 not hide or destroy that area's base layers, it only detaches the bundle.
 
 Full state table, the two-phase Hide/Destroy discard lifecycle, and the empty-viewport
-fallback pin: [tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md).
+fallback pin: [geo-browser#73](https://github.com/croicu/geo-browser/issues/73).
 
 ## Protocols vs Runtime Models
 

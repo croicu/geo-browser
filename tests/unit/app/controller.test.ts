@@ -37,7 +37,7 @@ function fakeArea(load: () => Promise<void> = async () => {}) {
 }
 
 // A single-area catalog always satisfies the empty-viewport fallback pin
-// (tasks/layer_lifecycle.md) — the one area is always "nearest" — so its
+// (geo-browser#73) — the one area is always "nearest" — so its
 // GeoArea.load() legitimately fires even at a maximally zoomed-out viewport.
 // This is intentional new behavior (something is always kept warm so the map
 // is never fully inert), not eager over-fetching: it's a single manifest

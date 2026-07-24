@@ -51,7 +51,7 @@ function poiBakedToProperties(f: PoiBakedFeature): Record<string, unknown> {
     return result;
 }
 
-// The singleton "current area" virtual-layer bundle (tasks/layer_lifecycle.md):
+// The singleton "current area" virtual-layer bundle (geo-browser#73):
 // __poi__/__user__/__void__/__search__ views, the detail toolbox, the search
 // control, and the image-overlay toolbar, for whichever one area is current.
 // Renamed/slimmed from the old DetailView — map ownership, GeoLocationWidget/

@@ -8,7 +8,7 @@ export interface AreaMarkerViewOptions {
 }
 
 // Successor of BubbleWidget: renders exactly one of {circle, outline, nothing}
-// for a single catalog area, per tasks/layer_lifecycle.md's Rendering States.
+// for a single catalog area, per geo-browser#73's Rendering States.
 // "loaded" renders nothing here — AreaBaseLayerRenderer takes over the visual
 // space once real data is shown. Both circle and outline are tappable
 // (confirmed tap-to-jump behavior): tapping pans/zooms the shared map to fit
@@ -72,7 +72,7 @@ export class AreaMarkerView {
         // Fixed screen-pixel diameter (AreaRenderClassifier.LOAD_THRESHOLD_PX),
         // never rescaled on zoom -- an area that's collapsed to a circle stays
         // exactly N px wide no matter how far you zoom out from here (see
-        // tasks/layer_lifecycle.md). Circumference only, no fill, same color
+        // geo-browser#73). Circumference only, no fill, same color
         // as the bbox outline it stands in for.
         const circle = this._layerFactory.createCircleMarker(this._area.center, {
             radius: AreaRenderClassifier.LOAD_THRESHOLD_PX / 2,

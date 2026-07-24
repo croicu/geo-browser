@@ -161,7 +161,7 @@ export class PoiLayerView extends LayerView {
         this._sourceVisible.clear();
     }
 
-    // Viewport-residency hide/show (tasks/layer_lifecycle.md) — detaches/reattaches
+    // Viewport-residency hide/show (geo-browser#73) — detaches/reattaches
     // every currently-source-visible marker, preserving per-source visibility
     // (setSourceVisible) across the cycle. Distinct from destroy(): no data is
     // dropped, nothing needs re-fetching or re-scanning on show().

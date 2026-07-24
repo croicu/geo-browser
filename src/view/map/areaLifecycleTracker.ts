@@ -33,7 +33,7 @@ export interface AreaTransitions {
     bundle: BundleAction;
 }
 
-// The state machine behind tasks/layer_lifecycle.md: per-area render kind
+// The state machine behind geo-browser#73: per-area render kind
 // (circle/outline/loaded), base-layer residency (none/hidden/visible) with
 // its two-phase Hide/Destroy discard, the empty-viewport fallback pin, and
 // the singleton "current area" virtual-layer bundle. Pure — no Leaflet, no

@@ -262,7 +262,7 @@ describe("AreaLifecycleTracker", () => {
         const t = tracker.recompute(viewportAround(AREA_LARGE.center, 1, ZOOM_LARGE_BIG_BELOW_FLOOR));
 
         // Circle vs. outline is purely a bbox-size question; the zoom floor
-        // only gates loaded vs. outline, per tasks/layer_lifecycle.md.
+        // only gates loaded vs. outline, per geo-browser#73.
         expect(t.renderKinds.get("large")).toBe("outline");
         expect(t.toLoad).toEqual([]);
         expect(tracker.getResidency("large")).toBe("none");

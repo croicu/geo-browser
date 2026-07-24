@@ -27,7 +27,7 @@ src/
     browserHeadingService.ts   (DeviceOrientationEvent wrapper — see GeoLocationWidget below)
     userPointsStore.ts     (LocalStorageUserPointsStore, GatewayUserPointsStore)
     gatewayTelemetrySink.ts (GatewayTelemetrySink — forwards Logger records to geo-builder, design mode only)
-    destinationStore.ts    (LocalStorageDestinationStore — see tasks/destination_marker.md)
+    destinationStore.ts    (LocalStorageDestinationStore — see geo-browser#74)
     localStorageService.ts
     storageGuard.ts
     webViewHostService.ts
@@ -43,12 +43,12 @@ src/
     bearing.ts               (great-circle initial bearing — see destinationWidget)
 
   vision/
-    blueDotDetector.ts     (canvas pixel scan for GPS-dot auto-alignment; see tasks/blue_dot_detection.md)
+    blueDotDetector.ts     (canvas pixel scan for GPS-dot auto-alignment; see geo-browser#91)
 
   view/
     statusWidget.ts
 
-    map/                    (unified map — see tasks/layer_lifecycle.md)
+    map/                    (unified map — see geo-browser#73)
       mapView.ts
       areaLifecycleTracker.ts     (pure state machine — no Leaflet/DOM)
       areaRenderClassifier.ts     (bbox-area-vs-fixed-circle + MIN_LOADED_ZOOM checks)
@@ -136,7 +136,7 @@ Context.reset();
 `Logger`'s output fans out to one or more `TelemetrySink`s (`src/logging.ts`, `src/runtime/gatewayTelemetrySink.ts`):
 
 - `ConsoleTelemetrySink` — always present, writes to the browser devtools console. `diagnostic`/`info` → `console.info`, `warning` → `console.warn`, `error`/`fatal` → `console.error`.
-- `GatewayTelemetrySink` (`runtime/gatewayTelemetrySink.ts`) — design mode only, forwards every record to geo-builder via `WriteTelemetryRecord` (`api.ts`) so a geo-builder end user can inspect the browser's logs without opening devtools. See `docs/MESSAGING.md` and `tasks/logging_api.md`.
+- `GatewayTelemetrySink` (`runtime/gatewayTelemetrySink.ts`) — design mode only, forwards every record to geo-builder via `WriteTelemetryRecord` (`api.ts`) so a geo-builder end user can inspect the browser's logs without opening devtools. See `docs/MESSAGING.md` and [geo-browser#72](https://github.com/croicu/geo-browser/issues/72).
 - `CompositeTelemetrySink` — fans a record out to a list of sinks. `Context`'s constructor builds `[ConsoleTelemetrySink, GatewayTelemetrySink?]` depending on mode and passes the composite into `DefaultLogger`.
 
 **Recursion-safety rule**: `GatewayTelemetrySink.write()` must never call `getLogger()` on its own failure path — a log call whose own delivery failure gets logged again would recurse back into `write()`. It falls back to a raw `console.error(...)` instead.
@@ -230,7 +230,7 @@ No more "last view"/mode to restore — see CLAUDE.md's "Viewport & Per-Area Sta
 
 ```text
 Leaflet map handle (created once, never destroyed until MapView.destroy())
-AreaLifecycleTracker              (pure state machine — see tasks/layer_lifecycle.md)
+AreaLifecycleTracker              (pure state machine — see geo-browser#73)
 Map<string, AreaMarkerView>       (one per catalog area — circle/outline)
 Map<string, AreaBaseLayerRenderer> (one per resident area — base points/heatmap)
 0-or-1 CurrentAreaBundle          (singleton — virtual layers + toolbox for the current area)
@@ -254,7 +254,7 @@ There is no more per-area `maxBounds`/hard pan-zoom restriction, no auto-navigat
 zoom threshold, and no `switchView()` — every area's own on-screen size and the shared
 zoom decide its render kind independently on every `handleViewportChange()`
 (`AreaLifecycleTracker.recompute()`; see CLAUDE.md's Unified Map / Render Kinds &
-Current Area sections and [tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md)).
+Current Area sections and [geo-browser#73](https://github.com/croicu/geo-browser/issues/73)).
 
 Base-layer reconciliation for one resident area (`AreaBaseLayerRenderer.sync()`):
 
@@ -330,7 +330,7 @@ Renders the single ephemeral marker for the active Nominatim search result (`src
 
 ## UserLayerView
 
-Owns `__user__` trip-point markers. Points are always created through `EmptyCalloutWidget`'s action row (star rating and/or bookmark toggle) — there is no gesture that drops an unrated, unbookmarked point. Long-press/right-click creation and instant right-click delete were removed; see [Explicit Point Delete](../tasks/explicit_point_delete.md).
+Owns `__user__` trip-point markers. Points are always created through `EmptyCalloutWidget`'s action row (star rating and/or bookmark toggle) — there is no gesture that drops an unrated, unbookmarked point. Long-press/right-click creation and instant right-click delete were removed; see [Explicit Point Delete](https://github.com/croicu/geo-browser/issues/78).
 
 - **Rings**: a bookmark ring (`bookmarkColor`, default `#5AB5DA`) and a star-rating ring (`highlightColor` run through an atan color curve, see `starRatingControl.ts`) are mutually exclusive on the same marker — bookmark takes visual priority; `addMarkerBookmark`/`addMarkerRing` in `userLayerView.ts` enforce this.
 - **Deletion**: tapping an existing marker reopens `EmptyCalloutWidget` with a delete button (`onDeleteRequested`) in place of the bookmark toggle.
@@ -349,7 +349,7 @@ Both are tappable (`onSelected` callback → `MapView.jumpToArea()`, tap-to-jump
 
 ## AreaLifecycleTracker & CurrentAreaSelector
 
-`AreaLifecycleTracker` (`view/map/areaLifecycleTracker.ts`) is the pure state machine behind every rendering/residency/current-area decision — no Leaflet, no `GeoArea`/`GeoLayer` references, only plain `{id, bbox, center}` tuples in and a diff out via `recompute(viewport)`. `CurrentAreaSelector.selectNearest()` (`currentAreaSelector.ts`) picks the nearest-to-viewport-center candidate among intersecting, resident areas — reused both for "which loaded area is current" and for the empty-viewport fallback pin. Full design, state table, and the two-phase Hide/Destroy discard lifecycle: [tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md).
+`AreaLifecycleTracker` (`view/map/areaLifecycleTracker.ts`) is the pure state machine behind every rendering/residency/current-area decision — no Leaflet, no `GeoArea`/`GeoLayer` references, only plain `{id, bbox, center}` tuples in and a diff out via `recompute(viewport)`. `CurrentAreaSelector.selectNearest()` (`currentAreaSelector.ts`) picks the nearest-to-viewport-center candidate among intersecting, resident areas — reused both for "which loaded area is current" and for the empty-viewport fallback pin. Full design, state table, and the two-phase Hide/Destroy discard lifecycle: [geo-browser#73](https://github.com/croicu/geo-browser/issues/73).
 
 ## GeoLocationWidget
 
@@ -366,7 +366,7 @@ accuracy ring (circle, drawn before marker so marker renders on top)
 Lifecycle:
 
 - Created in `MapView.render()` only when a `GeoLocationService` is injected.
-- No bounds gate is passed (`undefined`) — the old per-area padded-bbox gate that disabled the widget outside the current area's bounds was dropped when the map stopped being scoped to one area at a time. Confirmed, intentional behavior change: see [tasks/layer_lifecycle.md](../tasks/layer_lifecycle.md)'s Confirmed Behavior Changes.
+- No bounds gate is passed (`undefined`) — the old per-area padded-bbox gate that disabled the widget outside the current area's bounds was dropped when the map stopped being scoped to one area at a time. Confirmed, intentional behavior change: see [geo-browser#73](https://github.com/croicu/geo-browser/issues/73)'s Confirmed Behavior Changes.
 
 Position handling:
 

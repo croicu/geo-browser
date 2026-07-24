@@ -71,7 +71,7 @@ export class DefaultLogger implements Logger {
     // excludedCategories (?logCategoryExclude=) is a separate, subtractive axis --
     // it wins outright over both showAllCategories and enabledCategories, since
     // "excluded" is meant as an unconditional suppression, not just a narrower
-    // allow-list. See tasks/logging_api.md.
+    // allow-list. See geo-browser#72.
     constructor(
         sink: TelemetrySink,
         enabledCategories?: readonly string[] | null,

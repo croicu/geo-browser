@@ -4,7 +4,7 @@
 
 - Static catalog discovery with HEAD pointer.
 - Catalog/area/layer runtime wrappers.
-- Unified map (`MapView`) — one shared, session-lifetime Leaflet map; every area independently renders `circle`/`outline`/`loaded` based on on-screen bbox size and a global zoom floor (`AreaLifecycleTracker`), any number concurrently `loaded`, one "current" area at a time owning the virtual-layer bundle/toolbox (`CurrentAreaBundle`). Replaced the earlier Summary/Detail two-map mode split (back-to-summary widget, per-area hard `maxBounds`/`minZoom` restriction, zoom-threshold auto-navigation between modes, and `lastView` mode/area restoration all retired along with it — see [Layer Lifecycle](../tasks/layer_lifecycle.md)).
+- Unified map (`MapView`) — one shared, session-lifetime Leaflet map; every area independently renders `circle`/`outline`/`loaded` based on on-screen bbox size and a global zoom floor (`AreaLifecycleTracker`), any number concurrently `loaded`, one "current" area at a time owning the virtual-layer bundle/toolbox (`CurrentAreaBundle`). Replaced the earlier Summary/Detail two-map mode split (back-to-summary widget, per-area hard `maxBounds`/`minZoom` restriction, zoom-threshold auto-navigation between modes, and `lastView` mode/area restoration all retired along with it — see [Layer Lifecycle](https://github.com/croicu/geo-browser/issues/73)).
 - LayerView rendering pipeline.
 - Point rendering from GeoJSON.
 - Heatmap rendering through `leaflet.heat`.
@@ -18,7 +18,7 @@
 - Bbox highlight rectangle — an area's `outline` render kind, tappable (tap-to-jump).
 - POI layer (`__poi__`) — tappable markers from `hasDetails` features; popup with name, amenity, cuisine, address, hours, website, review links (Google Maps, Street View, Yelp, Foursquare, TripAdvisor).
 - Enriched POI markers — `wikipedia`, `wikidata`, `stars`, `outdoor_seating` fields; enhanced ring border (two-element SVG pattern); Wikidata thumbnail image; English Wikipedia via GoToLinkedPage redirect.
-- User trip layer (`__user__`) — points created via tap-callout star rating or bookmark toggle (long-press/right-click creation and instant right-click delete removed, see [Explicit Point Delete](../tasks/explicit_point_delete.md)); localStorage + gateway storage; pressure-based HSL color.
+- User trip layer (`__user__`) — points created via tap-callout star rating or bookmark toggle (long-press/right-click creation and instant right-click delete removed, see [Explicit Point Delete](https://github.com/croicu/geo-browser/issues/78)); localStorage + gateway storage; pressure-based HSL color.
 - Image overlay — paste/Google/Apple image sources; 3-DOF editor (translate, scale, opacity); geo-lock pin; 1-DOF anchor pin variant.
 - Blue dot detection — canvas pixel scan auto-aligns a pasted map image to the GPS position; "I feel lucky" manual trigger.
 - Tile provider abstraction — CARTO Voyager default, OSM available; one persistent `MapLayerFlyoutControl` owns the tile layer for the whole session.
@@ -66,7 +66,7 @@ Keep Python out of geo-browser.
 
 ### 4. Richer Area Markers
 
-`AreaMarkerView`'s `circle`/`outline` render kinds (see [Layer Lifecycle](../tasks/layer_lifecycle.md)) are still plain shapes — fixed-diameter unfilled circle, bbox rectangle outline.
+`AreaMarkerView`'s `circle`/`outline` render kinds (see [Layer Lifecycle](https://github.com/croicu/geo-browser/issues/73)) are still plain shapes — fixed-diameter unfilled circle, bbox rectangle outline.
 
 Future:
 

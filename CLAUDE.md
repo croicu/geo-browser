@@ -28,7 +28,7 @@ npx vitest run tests/unit/catalog.test.ts
 
 ## Current Product Shape
 
-`geo-browser` renders every area on one shared, session-lifetime Leaflet map (`MapView`) — there is no separate discovery/detail mode split. Each catalog area independently renders as a `circle`, `outline`, or `loaded` layer based on its on-screen bbox size and the current zoom (`AreaLifecycleTracker`, `tasks/layer_lifecycle.md`); any number of areas can be `loaded` (base points/heatmap data) concurrently, but only one — whichever the viewport currently centers on — is "current" and owns the virtual layers (`__poi__`/`__user__`/`__void__`/`__search__`) and toolbox at a time (`CurrentAreaBundle`, singleton).
+`geo-browser` renders every area on one shared, session-lifetime Leaflet map (`MapView`) — there is no separate discovery/detail mode split. Each catalog area independently renders as a `circle`, `outline`, or `loaded` layer based on its on-screen bbox size and the current zoom (`AreaLifecycleTracker`, `geo-browser#73`); any number of areas can be `loaded` (base points/heatmap data) concurrently, but only one — whichever the viewport currently centers on — is "current" and owns the virtual layers (`__poi__`/`__user__`/`__void__`/`__search__`) and toolbox at a time (`CurrentAreaBundle`, singleton).
 
 Core pipeline:
 
@@ -151,7 +151,7 @@ __poi__       = reserved builtin virtual layer type: tappable POI markers derive
 hasDetails    = GeoJSON feature flag: point carries baked POI metadata and is tappable
 ```
 
-`Summary`/`Detail` as UI *modes* are retired vocabulary — see [Layer Lifecycle](tasks/layer_lifecycle.md) in Completed Tasks below. `AreaSummary`/`AreaDetail` still exist as unrelated protocol/data type names (`protocols.ts`, the manifest wire format from `geo-builder`) and are unaffected. `Bubble`/`BubbleWidget` is retired too — the circle-marker render kind is owned by `AreaMarkerView` now.
+`Summary`/`Detail` as UI *modes* are retired vocabulary — see [Layer Lifecycle](https://github.com/croicu/geo-browser/issues/73) in Completed Tasks below. `AreaSummary`/`AreaDetail` still exist as unrelated protocol/data type names (`protocols.ts`, the manifest wire format from `geo-builder`) and are unaffected. `Bubble`/`BubbleWidget` is retired too — the circle-marker render kind is owned by `AreaMarkerView` now.
 
 Do not reintroduce `intro` or mode-based `summary/detail` vocabulary unless explicitly requested — the project settled on the unified render-kind/current-area model above.
 
@@ -222,7 +222,7 @@ log.info("image_overlay.paste.end");
 log.error("image_overlay.paste.error", err);
 ```
 
-Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-frame events) are exempt to avoid log spam — but only for the no-op case. If the handler produces a state change (a layer loads/hides/destroys, a mode/current-area switch, anything a bug report would need to reconstruct), log that transition, gated on "did anything actually change" rather than firing every tick. A pan/zoom handler that never logs is exactly as undiagnosable as one with no logging at all — this bit us once already (`tasks/layer_lifecycle.md`'s viewport-driven state machine shipped with zero visibility into its own transitions, and a real bug took a live repro + guesswork to chase down before diagnostic logging was retrofitted after the fact).
+Exception: high-frequency handlers (map pan/zoom callbacks, render loops, per-frame events) are exempt to avoid log spam — but only for the no-op case. If the handler produces a state change (a layer loads/hides/destroys, a mode/current-area switch, anything a bug report would need to reconstruct), log that transition, gated on "did anything actually change" rather than firing every tick. A pan/zoom handler that never logs is exactly as undiagnosable as one with no logging at all — this bit us once already (`geo-browser#73`'s viewport-driven state machine shipped with zero visibility into its own transitions, and a real bug took a live repro + guesswork to chase down before diagnostic logging was retrofitted after the fact).
 
 New code is not exempt from this just because it doesn't look like a user-facing "feature" — internal orchestration/state-machine classes (trackers, controllers, view coordinators) need this exactly as much as UI-facing ones, arguably more, since they're the hardest to inspect by just looking at the screen.
 
@@ -234,14 +234,14 @@ The canonical set of category names lives in one place, `src/logging.ts`'s `LogC
 
 Use a category for a class of high-volume diagnostic logging that's only useful when actively chasing a specific bug — noisy enough that always showing it would bury the "general" signal, but valuable enough to be worth a name so `?debug` (or `?logCategory=<name>`) can pull it back up on demand. `LogCategory.AreaLifecycle` is the existing example — `MapView`'s viewport-transition trace (`map_view.viewport_change`, `map_view.jump_to_area.*`) and `AreaBaseLayerRenderer`'s hide/show/destroy logs. Genuine anomalies (a defensive guard firing, something a bug report would need regardless of what's being actively debugged) stay on the default `"general"` category rather than being tagged — category is for expected-but-verbose diagnostic *volume*, not for hiding real problems.
 
-Every new component — and existing components picking up meaningfully new code — is **entitled and encouraged** to add its own `LogCategory` entry and log verbosely under it: per-step state, intermediate values, anything useful while actively debugging that class but too noisy for a normal run. This is a standing invitation, not something to ask permission for each time. Verbose category logging is cheap to add while writing the code and expensive to retrofit later once a live bug forces the question — see `tasks/layer_lifecycle.md`'s viewport-driven state machine, which shipped with no visibility into its own transitions and took a live repro plus guesswork before `LogCategory.AreaLifecycle` was retrofitted after the fact. Default to adding the category up front instead of waiting for that to happen again.
+Every new component — and existing components picking up meaningfully new code — is **entitled and encouraged** to add its own `LogCategory` entry and log verbosely under it: per-step state, intermediate values, anything useful while actively debugging that class but too noisy for a normal run. This is a standing invitation, not something to ask permission for each time. Verbose category logging is cheap to add while writing the code and expensive to retrofit later once a live bug forces the question — see `geo-browser#73`'s viewport-driven state machine, which shipped with no visibility into its own transitions and took a live repro plus guesswork before `LogCategory.AreaLifecycle` was retrofitted after the fact. Default to adding the category up front instead of waiting for that to happen again.
 
 ## Feature Completeness Rule
 
 Every new feature must have:
 - **Logging**: action start, action end, and action error at key decision points (follow the Logging Rules above).
 - **Unit tests**: cover the core state/logic. Extract pure state classes from Leaflet/DOM code so they can be tested without importing Leaflet.
-- **Public docs**: before commit, update every doc a future implementer or user would expect to reflect this feature — `README.md` if it's user-facing, and any affected file under `docs/` (`IMPLEMENTATION.md`, `MANIFEST.md`, `MESSAGING.md`, `PROTOCOL.md`, `LAYERS.md`, `ROADMAP.md`, etc.). A feature isn't done while it leaves docs describing the old behavior, or silent on the new one. See [Documentation Audit](tasks/docs_audit.md) for the kind of drift this prevents.
+- **Public docs**: before commit, update every doc a future implementer or user would expect to reflect this feature — `README.md` if it's user-facing, and any affected file under `docs/` (`IMPLEMENTATION.md`, `MANIFEST.md`, `MESSAGING.md`, `PROTOCOL.md`, `LAYERS.md`, `ROADMAP.md`, etc.). A feature isn't done while it leaves docs describing the old behavior, or silent on the new one. See [Documentation Audit](https://github.com/croicu/geo-browser/issues/75) for the kind of drift this prevents.
 
 ## Testing Rules
 
@@ -327,7 +327,7 @@ Repos stay separate:
 
 ### Unified Map (MapView)
 
-One shared, session-lifetime Leaflet map replaces the old Summary/Detail two-map split (full design: [tasks/layer_lifecycle.md](tasks/layer_lifecycle.md)).
+One shared, session-lifetime Leaflet map replaces the old Summary/Detail two-map split (full design: [geo-browser#73](https://github.com/croicu/geo-browser/issues/73)).
 
 ```text
 MapView (session-lifetime, one shared L.Map)
@@ -410,7 +410,7 @@ Three reserved `type` values besides `__poi__`, each owned by one `LayerView` su
 |------|-----------|------|----------------|
 | `__user__` | `UserLayerView` | `view/detail/userLayerView.ts` | `UserPointsStore` (DI — `LocalStorageUserPointsStore` in browse mode, `GatewayUserPointsStore` in design mode; see `runtime/userPointsStore.ts`) |
 | `__search__` | `SearchLayerView` | `view/detail/searchLayerView.ts` | none — ephemeral, single in-memory marker, no persistence |
-| `__void__` | `VoidLayerView` | `view/detail/voidLayerView.ts` | precomputed GeoJSON from `geo-builder`; variant picked by `VoidVariantResolver` (see [Mundane (Void) Layer](tasks/void_layer.md), `docs/LAYERS.md`) |
+| `__void__` | `VoidLayerView` | `view/detail/voidLayerView.ts` | precomputed GeoJSON from `geo-builder`; variant picked by `VoidVariantResolver` (see [Mundane (Void) Layer](https://github.com/croicu/geo-browser/issues/77), `docs/LAYERS.md`) |
 
 `CurrentAreaBundle` injects the store/service dependencies into each view's constructor (DI, not module imports) and filters these three `type`s out of the regular manifest-driven layer list (`_area.layers.filter(l => l.type !== ...)`) so they don't get double-rendered through the generic layer pipeline.
 
@@ -419,7 +419,7 @@ Three reserved `type` values besides `__poi__`, each owned by one `LayerView` su
 `__user__` points are end-user trip markers, distinct from the live GPS position (see **Live Location & Heading** below).
 
 - **Creation**: single tap on empty map space opens `EmptyCalloutWidget` (coords + map links + star row + bookmark toggle). Selecting a star, or toggling the bookmark and then dismissing the callout, persists a new point via `UserPointsStore.addPoint`. There is no bare "drop a point" gesture — a point always carries either a rating or a bookmark from creation.
-- **Deletion**: tapping an *existing* point's marker reopens the callout, this time with a delete button (`onDeleteRequested`) in place of the bookmark toggle. Long-press/right-click creation and instant right-click delete were removed — see [Explicit Point Delete](tasks/explicit_point_delete.md).
+- **Deletion**: tapping an *existing* point's marker reopens the callout, this time with a delete button (`onDeleteRequested`) in place of the bookmark toggle. Long-press/right-click creation and instant right-click delete were removed — see [Explicit Point Delete](https://github.com/croicu/geo-browser/issues/78).
 - **Bookmark storage**: `bookmarked: true` on the GeoJSON feature's `properties`, alongside `stars` when both are present. Rendered as a ring overlay (`bookmarkColor`, default `#5AB5DA`) that takes visual priority over the star rating ring — a bookmarked point's ring never reflects its stars.
 - **Storage backend**: `LocalStorageUserPointsStore` (key `geo-browser.userPoints.<areaId>`) in browse mode; `GatewayUserPointsStore` (via `AddUserPoint`/`RemoveUserPoint`/`GetUserPoints`) in design mode. Selected by `Context.mode` at composition time, not by the view.
 
@@ -461,7 +461,7 @@ The blue GPS dot with its heading cone is **not** a manifest layer — it's `Geo
 
 ### Destination Marker + Bearing Cone
 
-A single "which way is it, roughly" indicator — not routing. Pure client runtime, no `geo-builder`/gateway involvement at all (unlike `__user__`); global, not scoped per area. Full design: [tasks/destination_marker.md](tasks/destination_marker.md).
+A single "which way is it, roughly" indicator — not routing. Pure client runtime, no `geo-builder`/gateway involvement at all (unlike `__user__`); global, not scoped per area. Full design: [geo-browser#74](https://github.com/croicu/geo-browser/issues/74).
 
 - **Store**: `DestinationStore` (`contracts.ts`) has exactly one implementation, `LocalStorageDestinationStore` (`runtime/destinationStore.ts`, key `geo-browser.destination`). No `Context.mode` branching, no design-mode variant — constructed in `Controller.start()` alongside `userPointsStore`, threaded down through `MapView`'s constructor options into `CurrentAreaBundle`.
 - **Rendering**: `DestinationWidget` (`view/detail/destinationWidget.ts`), a sibling to `GeoLocationWidget`, not a merge into it. Owns two Leaflet elements, both rendered into a dedicated `destination-pane` (via `MapHandle.createPane`, same technique as `VoidLayerView`'s `void-pane`) with `zIndex` explicitly set below the default `markerPane` (600) — this guarantees the blue GPS dot/heading cone always draws on top, regardless of widget creation order:
@@ -485,56 +485,105 @@ Since `MapView` itself is a single session-lifetime object, "restoring the last 
 
 ## Task Workflow
 
-Every task moves through these statuses in order. Update the `Status:` field in both the CLAUDE.md entry and the task file as work progresses.
+Tasks are tracked as GitHub issues in this repo (`croicu/geo-browser`), status via labels: `status:brainstorm`, `status:implementation`, `status:testing`, `status:ready-to-submit`. There is no `status:done` label — reaching Done means closing the issue. Two additional labels, `status:postponed` and `status:ongoing`, sit outside that linear flow — either can be applied at any stage and the issue stays open indefinitely until the task is resumed (relabel back into the flow) or genuinely finished (close it).
 
-1. **Brainstorm** — Create the `## New Tasks` entry with `Status: Brainstorm`. Create `tasks/<task-name>.md` with the problem statement. Update the task file as the design discussion evolves.
-2. **Implementation** — Advance to `Status: Implementation`. Add an implementation plan to the task file. Write the code.
-3. **Testing** — Advance to `Status: Testing`. Verify correctness; update the task file with test results and any open issues.
-4. **Ready to Submit** — Advance to `Status: Ready to Submit`. Run lint + tests; confirm docs are up to date.
-5. **Done** — Advance to `Status: Done` after merge/close; move the entry to `## Completed Tasks`.
+For any non-trivial feature or change, follow these stages:
+
+1. **Brainstorm** — copy `tasks/new_task.md` to `tasks/<task-name>.md` with the problem statement; update it with conclusions as the design discussion progresses. This is scratch space for live back-and-forth — an issue isn't required at this stage, but a lightweight tracking issue labeled `status:brainstorm` can be opened for backlog visibility if wanted; either way, `tasks/<task-name>.md` (not the issue) stays the working document until the design converges.
+2. **Implementation** — open a GitHub issue (`gh issue create`) with the converged problem statement + conclusions as the body, labeled `status:implementation`. Write the code. `tasks/<task-name>.md` is no longer the source of truth once the issue exists — trim it to a one-line pointer at the issue (or delete it) rather than maintaining both.
+3. **Testing** — relabel the issue `status:testing`. Verify correctness; post test results and any open issues as an issue comment.
+4. **Ready to Submit** — relabel `status:ready-to-submit`. Run lint + tests; confirm docs are up to date; post a closing summary comment.
+5. **Done** — close the issue after merge. Delete `tasks/<task-name>.md` once the issue is closed — the issue (body + comments) is the sole source of truth from that point on, so there's no reason to keep a stale duplicate on disk. (Only applies when a real issue holds the full history; a Done task with no issue keeps its local file.)
+
+**Postponed / Ongoing** — a task set aside deliberately (design understood, not worth doing now) gets `status:postponed`; standing/continuous work with no single close-out (e.g. field stabilization) gets `status:ongoing`. Both keep their issue open and are listed below by category, same as before — only the tracking mechanism (issue vs. local file) changed.
 
 ### Check-in chores (include in every feature commit)
-- Set `Status: Done` in the task file.
-- Move the CLAUDE.md entry from `## New Task` to `## Completed Tasks` with a one-line summary.
+- Close the issue (or relabel `status:postponed`/`status:ongoing` if it isn't actually finished).
+- Move the CLAUDE.md entry from `## New Tasks` to `## Completed Tasks`, linking the closed issue instead of a local file.
 - Update `README.md` and any affected `docs/*.md` file so they describe this feature's actual shipped behavior (see the Feature Completeness Rule above) — do this in the same commit, not as a follow-up.
 - Include these file changes in the same commit as the feature code.
-
 
 ## New Tasks
 
 ## Postponed Tasks
-- **[User Points Service Worker](tasks/user_points_sw.md)**: Status: Postponed. Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
-- **[Share Target](tasks/share_target.md)**: Status: Postponed. PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL). Tracked in [#35](https://github.com/croicu/geo-browser/issues/35).
+- **Task**: User Points Service Worker — [geo-browser#95](https://github.com/croicu/geo-browser/issues/95) (open, `status:postponed`)
+- **Key Context**: Replace localStorage / gateway storage with a Cloudflare Worker for durable cross-device sync. Waiting for stabilization to complete.
+
+- **Task**: Share Target — [geo-browser#35](https://github.com/croicu/geo-browser/issues/35) (open, `status:postponed`)
+- **Key Context**: PWA share target for Google Maps route URLs. Blocked on CORS wall / resolver approach (CF Worker vs iframe+xhr.responseURL).
 
 ## Ongoing Tasks
-- **File**: [Stabilization](tasks/stabilization.md)
-- **Status**: Ongoing.
-- **GitHub Issue**: N/A
+- **Task**: Stabilization — [geo-browser#94](https://github.com/croicu/geo-browser/issues/94) (open, `status:ongoing`)
 - **Key Context**: On-device testing of the user layer and related features before starting new work. Collect and fix bugs found in the field.
 
 ## Completed Tasks
-- **[Logging API](tasks/logging_api.md)**: Status: Done. Forwards geo-browser's `Logger` output to geo-builder in design mode via a new `WriteTelemetryRecord` gateway method (`GatewayTelemetrySink`, fire-and-forget, fanned out alongside the existing `ConsoleTelemetrySink` via a new `CompositeTelemetrySink`); same `?debug`/`?logCategory` gating as devtools console output applies to what's forwarded, no separate filter. Also adds global `window.onerror`/`unhandledrejection` handlers (`Context`, installed unconditionally in both modes) so exceptions that previously escaped every `try/catch` — invisible to `Logger` entirely — now reach it as `fatal`/`general` too, and thus reach geo-builder in design mode. Recursion-safety rule: `GatewayTelemetrySink` must never call `getLogger()` on its own delivery failure (a raw `console.error` fallback instead), since a log call whose own failure gets logged would recurse — doubly so since the new global `error` handler could otherwise re-trigger the same loop from a second angle. `Context.reset()` now tears down the outgoing instance's global listeners first, since `tests/setup.ts` constructs a fresh `Context` per test while happy-dom's `window` persists per file. Proposal for the wire contract was sent to the geo-builder team via `docs/MESSAGING.md` before implementation started; no pushback. Follow-up from their review surfaced a real precedence bug predating this task: `Context` was passing `this._debug` straight through as `DefaultLogger.showAllCategories` with no regard for an explicit `?logCategory=`, so `?debug=1&logCategory=overpass` silently showed every category instead of just `["overpass"]` — fixed by computing `showAllCategories` as `debug && logCategories === null`, matching `groupFilter`'s existing `?group=`/`?debug` precedent (see Log Categories above). Added a further `?logCategoryExclude=a,b` axis (`DefaultLogger.excludedCategories`, `Context.parseLogCategoryExclude()`) sourced from geo-builder's new `excludedCategories` setting — unconditional suppression, checked before `showAllCategories`/`enabledCategories`, so an excluded category never shows regardless of `?debug=1` or an explicit `?logCategory=` naming it too; the combination semantics were geo-browser's own design call, not prescribed by geo-builder. Typecheck and full test suite clean (319/319); not verified live against a real geo-builder WebView host.
-- **[Layer Lifecycle](tasks/layer_lifecycle.md)**: Status: Done. Eliminated the Summary/Detail two-map mode split in favor of one unified, session-lifetime Leaflet map (`MapView`). Each area independently renders `circle`/`outline`/`loaded` based on on-screen bbox pixel *area* vs. a fixed 48px-diameter reference circle (`AreaRenderClassifier`) and a global `MIN_LOADED_ZOOM=10` floor, both driven by `AreaLifecycleTracker`'s pure `recompute()` state machine; any number of areas can be concurrently `loaded`, with a two-phase Hide(instant)/Destroy(deferred) discard lifecycle, while a singleton `CurrentAreaBundle` (renamed/slimmed from the old `DetailView`) owns the virtual layers (`__poi__`/`__user__`/`__void__`/`__search__`) and toolbox for whichever one area is current. `AreaMarkerView` (successor of `BubbleWidget`) renders the circle/outline markers as a fixed-diameter, unfilled circumference matching the bbox outline's style; tap-to-jump preserved. Five real bugs found and fixed post-cutover during live device testing (CSS class rename gap, `leaflet.heat`'s uncancelled `requestAnimFrame`, non-atomic `setZoom`+`panTo`, a hidden area's own zoom listener bypassing `hide()`, `MapLayerFlyoutControl` tile-layer ownership) plus three more found via this session's new `?logCategory`/`?debug` categorized logging (a missing global zoom floor causing a peripheral area to silently steal "current" status while zooming out — the "ghost heatmap" bug; `createRectangle()` hardcoding `interactive:false` and silently breaking the outline's tap-to-jump; a pinch-zoom-specific `leaflet.heat` freeze, ultimately deferred to [geo-builder#40](https://github.com/croicu/geo-builder/issues/40) as a design-time-precompute follow-up rather than further live-plugin patching). Shipped alongside a new logging-category system (`LogCategory` const object in `src/logging.ts`, `?debug` shows every category, default run shows only `"general"`) built specifically to diagnose this feature's bugs, now a standing project convention (see Log Categories above). Full doc rewrite (this commit): CLAUDE.md, README.md, `docs/ARCHITECTURE.md`, `docs/IMPLEMENTATION.md`, `docs/CODING.md`, `docs/PROTOCOL.md`, `docs/ROADMAP.md`.
-- **[Destination Marker + Bearing Cone](tasks/destination_marker.md)**: Status: Done. Fixed `#ED4231` red destination pin (`public/icons/destination.svg`, tappable) + red bearing cone (`geo/bearing.ts` great-circle math, not compass) anchored on the live GPS position, both rendered into a `destination-pane` kept below the default `markerPane` so the blue GPS indicator always draws on top. `DestinationWidget` (`view/detail/destinationWidget.ts`) is passive w.r.t. GPS — reacts to `GeoLocationWidget.onPositionUpdate`, never starts its own watch. Set/remove via a 4th, independent action on the POI/empty-space callout (`EmptyCalloutWidget`/`PoiLayerView`), plus a direct tap on the pin itself — which delegates to the point's normal callout (keeping star/bookmark/delete alongside the destination toggle) rather than a stripped-down view; rating or bookmarking a point clears its destination status. Icon swaps between `destination.svg`/`remove_destination.svg` (solid vs. transparent-fill stroke outline, same shape and color). Pure client runtime — `LocalStorageDestinationStore` only, no `geo-builder`/gateway involvement, no `Context.mode` branching, global (not per-area) persistence. Typecheck/full test suite/production build all clean; **not** visually verified in a live browser (no display/GPS spoofing in this environment) — flagged in the task file for a manual pass.
-- **[Documentation Audit](tasks/docs_audit.md)**: Status: Done. Doc-only pass, no code changes. README: fixed the `__user__` row and "Trip Recording"/"POI Actions" sections to describe the actual tap-callout creation flow (the long-press/right-click gesture they still described was removed by Explicit Point Delete); clarified the GPS blue dot/heading cone is not a manifest layer. CLAUDE.md: added "Virtual Layers — Ownership Summary", "User Points / Bookmarks", and "Live Location & Heading" architecture sections, including the iOS `DeviceOrientationEvent.requestPermission()` user-gesture gotcha. Second pass cross-referenced the full `docs/` directory against this Completed Tasks list and fixed stale "not yet shipped" status headers on the void layer (LAYERS.md, MANIFEST.md — it shipped), a wrong `enhancedColor` default in MESSAGING.md, a missing `stars`/`bookmarked` schema in MANIFEST.md, an incomplete layer-type list in PROTOCOL.md, a stale/incomplete directory tree and missing Void/Search/UserLayerView subsections in IMPLEMENTATION.md, a stale foundation list in ROADMAP.md, and stale "future work" framing for the (shipped) image-overlay feature in OVERVIEW.md and PITCH.md.
-- **[Area Grouping](tasks/area_grouping.md)**: Status: Done. Replaced `catalog.head.debug.json`/`catalog.debug.json` with a single `catalog.json`; `AreaSummary.group?: string[]` drives client-side Summary filtering via `Context.groupFilter` (`?group=a,b`, AND semantics, `?debug=1` back-compat shorthand). `"debug"` is opt-in-only — hidden unless explicitly requested, even under an unrelated `?group=` filter the area also matches. `Context.debug` kept as an independent diagnostics flag (synthetic heading, debug-only toolbar buttons), not replaced by `groupFilter`.
-- **[Mundane (Void) Layer — precompute](tasks/void_layer.md)**: Status: Done. Computation moved to `geo-builder`: precomputed smooth void polygons per area, selected at runtime via an `__void__`/`__void__2__`/`__void__2_3__` naming convention resolved by minimal-superset search (`VoidVariantResolver`). All prior client-side computation deleted (`voidLayerComputer.ts`, `voidSpatialIndex.ts`, canvas-pane/renderer plumbing) — `VoidLayerView` is now a thin fetch-and-render of a `GeoLayer`'s precomputed GeoJSON via new `LayerFactory.createGeoJsonPolygon`. Single synthesized "Mundane" toggle in the flyout regardless of variant count; label follows whichever variant is active. Contract: [docs/LAYERS.md](docs/LAYERS.md); schema in `docs/MANIFEST.md`. Verified in browser against `geo-builder`'s real output for the local `redmond` debug area.
-- **[Explicit Point Delete](tasks/explicit_point_delete.md)**: Status: Done. Removed long-press/right-click silent point creation and instant right-click marker delete; points are created only via single tap + star/bookmark; existing points are deleted via a `delete.svg` button in the tap callout (same slot the bookmark toggle uses on the creation callout).
-- **[Nominatim Search](tasks/nominatim_search.md)**: Status: Done. Bounded Nominatim search in Detail view; `__search__` virtual layer with ephemeral marker; topright `SearchControl` with expandable input, result list, and × close button; marker tap promotes to user point; results panel appended to body (`position: fixed`) to clear Leaflet stacking context.
-- **[User Bookmarks Addendum](tasks/user_points_addendum.md)**: Status: Done (superseded in part by [Explicit Point Delete](tasks/explicit_point_delete.md)). Bookmark on POI callout; interactive stars on unrated/bookmarked points; rating auto-removes bookmark.
-- **[User Bookmarks](tasks/user_bookmarks.md)**: Status: Done. Bookmark toggle on user points; blue ring overlay (`bookmarkColor`); `solid_bookmark.svg`; `setBookmarked` in store; bookmark ring takes visual priority over star ring; long-press callout exposes toggle.
-- **[User Star Ratings](tasks/starred_user_points.md)**: Status: Done. Star rating (1–5) on user trip points; ring overlay with atan color curve; interactive and readonly `StarRatingControl`; `EmptyCalloutWidget` star UI; ring weight reduced to 3.
-- **[Empty Space Tap](tasks/empty_space_tap.md)**: Status: Done. Tapping empty map space opens a callout with lat/lng and links to Google Maps, Apple Maps, and Street View. Second tap outside dismisses it.
-- **[User Data Share](tasks/user_data_share.md)**: Status: Done. GeoJSON export of `__user__` points via "Download My Trip" / "Share My Trip" button in the layer flyout. `navigator.share()` on mobile (text fallback if file share fails), `<a download>` on desktop. `getPointsSync` reads fresh data from localStorage synchronously to preserve the user gesture. Button hidden when no points.
-- **[Layer Selection Flyout](tasks/layer_selection_popup.md)**: Status: Done. Replaced `TileProviderControl` + `LayerControl` with `MapLayerFlyoutControl`; layers icon opens flyout with Map type (both views) and Map Details layer list (detail only); blue border on visible layers; outside-click dismiss.
-- **[Enriched POI Features](tasks/enriched_features.md)**: Status: Done. wikipedia, wikidata, stars, outdoor_seating added to `PoiBakedFeature`; enhanced markers get `enhancedColor` border; popup shows star icons, outdoor seating text, Wikipedia/Wikidata links.
-- **[Tile Provider](tasks/tile_provider.md)**: Status: Done. `TileProvider` interface in `src/maps/`; `osmTileProvider` and `cartoTileProvider` constants; Carto Voyager set as default in `DefaultLeafletMapFactory`.
-- **[Two-Tap Select](tasks/two_tap_selection.md)**: Status: Done. First tap expands a sliding name label; second tap toggles visibility. Tap elsewhere dismisses. Single-active rule. `TwoTapState` extracted for unit tests; Leaflet `_fakeStop` gotcha documented.
-- **[User Layer](tasks/user_layer.md)**: Status: Done. End-user trip points stored in `__user__` layer. Creation/deletion gestures since replaced by [Explicit Point Delete](tasks/explicit_point_delete.md); localStorage + gateway storage, pressure→HSL-lightness colour, incremental rendering, toolbar visibility, synthesis fallback, AreaChanged wiring.
-- **[Zoom out exception](tasks/zoom_out_bug.md)**: Status: Done. Fixed crash in Leaflet's animated zoom (setMinZoom pre-snaps without animation) and bounce-back loop (summary viewport zoom clamped to ≤ 10).
-- **[Blue Dot Detection](tasks/blue_dot_detection.md)**: Canvas pixel scan in `src/vision/blueDotDetector.ts`. Multi-scale sliding window, 3-stage funnel, sector-aware ring scoring with MIN_RING_SECTORS filter. Auto-pins on paste when confidence ≥ threshold; "I feel lucky" button for manual trigger. Image visually snaps detected dot to GPS position immediately.
-- **[3-DOF Editor](tasks/image_overlay.md)**: CSS fixed overlay in detail view (browse mode). Paste/Google/Apple image sources. Translate X/Y via drag, scale via pinch/wheel, opacity slider, geo-lock to map coordinates. Session-level snapshot across view recreations.
-- **[1-DOF Editor](tasks/one_dof.md)**: Status: Completed. Long-press / double-click on image pins an anchor lat/lng (derived from containerPointToLatLng at the gesture point). Translation follows the anchor on map pan/zoom; scale stays free. Red donut marker tracks anchor. Pin button in toolbar (shown when pinned) unpins. Double-click / long-press donut also unpins. Pin and lock are mutually exclusive.
+
+All entries below are closed GitHub issues — the full history (problem statement, design decisions, test results) lives there, not in this file. `tasks/*.md` files are deleted once their issue is created, per the task workflow above.
+- **Task**: Logging API — [geo-browser#72](https://github.com/croicu/geo-browser/issues/72) (closed)
+- **Key Context**: Forwards geo-browser's `Logger` output to geo-builder in design mode via a new `WriteTelemetryRecord` gateway method (`GatewayTelemetrySink`, fire-and-forget, fanned out alongside the existing `ConsoleTelemetrySink` via a new `CompositeTelemetrySink`); same `?debug`/`?logCategory` gating as devtools console output applies to what's forwarded, no separate filter. Also adds global `window.onerror`/`unhandledrejection` handlers (`Context`) so exceptions that previously escaped every `try/catch` now reach `Logger` as `fatal`/`general` too. Fixed a real precedence bug predating this task: `showAllCategories` now computed as `debug && logCategories === null`, matching `groupFilter`'s `?group=`/`?debug` precedent. Added `?logCategoryExclude=a,b` (`DefaultLogger.excludedCategories`).
+
+- **Task**: Layer Lifecycle — [geo-browser#73](https://github.com/croicu/geo-browser/issues/73) (closed)
+- **Key Context**: Eliminated the Summary/Detail two-map mode split in favor of one unified, session-lifetime Leaflet map (`MapView`). Each area independently renders `circle`/`outline`/`loaded` based on on-screen bbox pixel *area* vs. a fixed 48px-diameter reference circle (`AreaRenderClassifier`) and a global `MIN_LOADED_ZOOM=10` floor, both driven by `AreaLifecycleTracker`'s pure `recompute()` state machine; any number of areas can be concurrently `loaded`, with a two-phase Hide(instant)/Destroy(deferred) discard lifecycle, while a singleton `CurrentAreaBundle` owns the virtual layers (`__poi__`/`__user__`/`__void__`/`__search__`) and toolbox for whichever one area is current. Shipped alongside the `LogCategory` logging system used to diagnose this feature's own bugs, now a standing project convention (see Log Categories above).
+
+- **Task**: Destination Marker + Bearing Cone — [geo-browser#74](https://github.com/croicu/geo-browser/issues/74) (closed)
+- **Key Context**: Fixed `#ED4231` red destination pin + red bearing cone (`geo/bearing.ts` great-circle math, not compass) anchored on the live GPS position, rendered into a `destination-pane` kept below `markerPane`. `DestinationWidget` is passive w.r.t. GPS — reacts to `GeoLocationWidget.onPositionUpdate`. Set/remove via a 4th action on the POI/empty-space callout, plus a direct tap on the pin. Pure client runtime — `LocalStorageDestinationStore` only, no `geo-builder`/gateway involvement.
+
+- **Task**: Documentation Audit — [geo-browser#75](https://github.com/croicu/geo-browser/issues/75) (closed)
+- **Key Context**: Doc-only pass, no code changes. Fixed README's `__user__` row and "Trip Recording"/"POI Actions" sections to describe the actual tap-callout creation flow; clarified the GPS blue dot/heading cone is not a manifest layer. Cross-referenced the full `docs/` directory against the Completed Tasks list and fixed several stale status headers (void layer shipped, `enhancedColor` default, `stars`/`bookmarked` schema, layer-type list, directory tree, foundation list, image-overlay "future work" framing).
+
+- **Task**: Area Grouping — [geo-browser#76](https://github.com/croicu/geo-browser/issues/76) (closed)
+- **Key Context**: Replaced `catalog.head.debug.json`/`catalog.debug.json` with a single `catalog.json`; `AreaSummary.group?: string[]` drives client-side Summary filtering via `Context.groupFilter` (`?group=a,b`, AND semantics, `?debug=1` back-compat shorthand). `"debug"` is opt-in-only — hidden unless explicitly requested. `Context.debug` kept as an independent diagnostics flag, not replaced by `groupFilter`.
+
+- **Task**: Mundane (Void) Layer — precompute — [geo-browser#77](https://github.com/croicu/geo-browser/issues/77) (closed)
+- **Key Context**: Computation moved to `geo-builder`: precomputed smooth void polygons per area, selected at runtime via an `__void__`/`__void__2__`/`__void__2_3__` naming convention resolved by minimal-superset search (`VoidVariantResolver`). All prior client-side computation deleted; `VoidLayerView` is now a thin fetch-and-render via `LayerFactory.createGeoJsonPolygon`. Contract: [docs/LAYERS.md](docs/LAYERS.md); schema in `docs/MANIFEST.md`.
+
+- **Task**: Explicit Point Delete — [geo-browser#78](https://github.com/croicu/geo-browser/issues/78) (closed)
+- **Key Context**: Removed long-press/right-click silent point creation and instant right-click marker delete; points are created only via single tap + star/bookmark; existing points are deleted via a `delete.svg` button in the tap callout.
+
+- **Task**: Nominatim Search — [geo-browser#79](https://github.com/croicu/geo-browser/issues/79) (closed)
+- **Key Context**: Bounded Nominatim search in Detail view; `__search__` virtual layer with ephemeral marker; topright `SearchControl` with expandable input, result list, and × close button; marker tap promotes to user point.
+
+- **Task**: User Bookmarks Addendum — [geo-browser#80](https://github.com/croicu/geo-browser/issues/80) (closed; superseded in part by Explicit Point Delete)
+- **Key Context**: Bookmark on POI callout; interactive stars on unrated/bookmarked points; rating auto-removes bookmark.
+
+- **Task**: User Bookmarks — [geo-browser#81](https://github.com/croicu/geo-browser/issues/81) (closed)
+- **Key Context**: Bookmark toggle on user points; blue ring overlay (`bookmarkColor`); `solid_bookmark.svg`; `setBookmarked` in store; bookmark ring takes visual priority over star ring.
+
+- **Task**: User Star Ratings — [geo-browser#82](https://github.com/croicu/geo-browser/issues/82) (closed)
+- **Key Context**: Star rating (1–5) on user trip points; ring overlay with atan color curve; interactive and readonly `StarRatingControl`; `EmptyCalloutWidget` star UI.
+
+- **Task**: Empty Space Tap — [geo-browser#83](https://github.com/croicu/geo-browser/issues/83) (closed)
+- **Key Context**: Tapping empty map space opens a callout with lat/lng and links to Google Maps, Apple Maps, and Street View. Second tap outside dismisses it.
+
+- **Task**: User Data Share — [geo-browser#84](https://github.com/croicu/geo-browser/issues/84) (closed)
+- **Key Context**: GeoJSON export of `__user__` points via "Download My Trip" / "Share My Trip" button in the layer flyout. `navigator.share()` on mobile, `<a download>` on desktop. `getPointsSync` reads localStorage synchronously to preserve the user gesture.
+
+- **Task**: Layer Selection Flyout — [geo-browser#85](https://github.com/croicu/geo-browser/issues/85) (closed)
+- **Key Context**: Replaced `TileProviderControl` + `LayerControl` with `MapLayerFlyoutControl`; layers icon opens flyout with Map type (both views) and Map Details layer list (detail only); blue border on visible layers; outside-click dismiss.
+
+- **Task**: Enriched POI Features — [geo-browser#86](https://github.com/croicu/geo-browser/issues/86) (closed)
+- **Key Context**: wikipedia, wikidata, stars, outdoor_seating added to `PoiBakedFeature`; enhanced markers get `enhancedColor` border; popup shows star icons, outdoor seating text, Wikipedia/Wikidata links.
+
+- **Task**: Tile Provider — [geo-browser#87](https://github.com/croicu/geo-browser/issues/87) (closed)
+- **Key Context**: `TileProvider` interface in `src/maps/`; `osmTileProvider` and `cartoTileProvider` constants; Carto Voyager set as default in `DefaultLeafletMapFactory`.
+
+- **Task**: Two-Tap Select — [geo-browser#88](https://github.com/croicu/geo-browser/issues/88) (closed)
+- **Key Context**: First tap expands a sliding name label; second tap toggles visibility. Tap elsewhere dismisses. Single-active rule. `TwoTapState` extracted for unit tests.
+
+- **Task**: User Layer — [geo-browser#89](https://github.com/croicu/geo-browser/issues/89) (closed)
+- **Key Context**: End-user trip points stored in `__user__` layer. Creation/deletion gestures since replaced by Explicit Point Delete; localStorage + gateway storage, pressure→HSL-lightness colour, incremental rendering, toolbar visibility, synthesis fallback.
+
+- **Task**: Zoom out exception — [geo-browser#90](https://github.com/croicu/geo-browser/issues/90) (closed)
+- **Key Context**: Fixed crash in Leaflet's animated zoom (`setMinZoom` pre-snaps without animation) and bounce-back loop (summary viewport zoom clamped to ≤ 10). Zoom-clamp mechanism later superseded by `MIN_LOADED_ZOOM` in Layer Lifecycle.
+
+- **Task**: Blue Dot Detection — [geo-browser#91](https://github.com/croicu/geo-browser/issues/91) (closed)
+- **Key Context**: Canvas pixel scan in `src/vision/blueDotDetector.ts`. Multi-scale sliding window, 3-stage funnel, sector-aware ring scoring with `MIN_RING_SECTORS` filter. Auto-pins on paste when confidence ≥ threshold; "I feel lucky" button for manual trigger. Apple Maps follow-up tracked separately in [#38](https://github.com/croicu/geo-browser/issues/38).
+
+- **Task**: 3-DOF Editor — [geo-browser#92](https://github.com/croicu/geo-browser/issues/92) (closed)
+- **Key Context**: CSS fixed overlay in detail view (browse mode). Paste/Google/Apple image sources. Translate X/Y via drag, scale via pinch/wheel, opacity slider, geo-lock to map coordinates. Session-level snapshot across view recreations.
+
+- **Task**: 1-DOF Editor — [geo-browser#93](https://github.com/croicu/geo-browser/issues/93) (closed)
+- **Key Context**: Long-press / double-click on image pins an anchor lat/lng (derived from `containerPointToLatLng` at the gesture point). Translation follows the anchor on map pan/zoom; scale stays free. Red donut marker tracks anchor. Pin and lock are mutually exclusive.
 
 ## Next Likely Work
 

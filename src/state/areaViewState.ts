@@ -2,7 +2,7 @@
 
 import type { AreaViewStateData } from "../protocols";
 
-// Per-area layer-visibility preferences (tasks/layer_lifecycle.md) — no
+// Per-area layer-visibility preferences (geo-browser#73) — no
 // center/zoom anymore, since there's one shared map viewport (MapViewState)
 // rather than one per area. Successor of DetailViewState.
 export class AreaViewState {
