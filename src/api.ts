@@ -190,3 +190,24 @@ export const RemoveUserPoint: MethodDef<RemoveUserPointInput, RemoveUserPointOut
     id: "__geo_remove_user_point__",
     _kind: "method",
 };
+
+// ── WriteTelemetryRecord (browser → builder / design mode only) ─────────────
+
+export interface WriteTelemetryRecordInput {
+    timestamp: string;   // ISO 8601
+    level: "diagnostic" | "info" | "warning" | "error" | "fatal";
+    category: string;
+    message: string;
+    props?: Record<string, unknown>;
+    errorDetail: string | null;  // serialized Error (message + stack); NOT the response error-code field below
+}
+
+export interface WriteTelemetryRecordOutput {
+    error: number;
+    errorDescription: string | null;
+}
+
+export const WriteTelemetryRecord: MethodDef<WriteTelemetryRecordInput, WriteTelemetryRecordOutput> = {
+    id: "__geo_write_telemetry_record__",
+    _kind: "method",
+};

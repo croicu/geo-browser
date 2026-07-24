@@ -21,6 +21,22 @@ export type LogCategory = typeof LogCategory[keyof typeof LogCategory];
 
 export const DEFAULT_LOG_CATEGORY: LogCategory = LogCategory.General;
 
+// Fans a record out to every sink in the list. Used to run ConsoleTelemetrySink and
+// GatewayTelemetrySink side by side in design mode -- neither sink knows about the other.
+export class CompositeTelemetrySink implements TelemetrySink {
+    private readonly sinks: readonly TelemetrySink[];
+
+    constructor(sinks: readonly TelemetrySink[]) {
+        this.sinks = sinks;
+    }
+
+    write(record: TelemetryRecord): void {
+        for (const sink of this.sinks) {
+            sink.write(record);
+        }
+    }
+}
+
 export class ConsoleTelemetrySink implements TelemetrySink {
     write(record: TelemetryRecord): void {
         switch (record.level) {
@@ -45,21 +61,29 @@ export class DefaultLogger implements Logger {
     private readonly sink: TelemetrySink;
     private readonly enabledCategories: Set<string>;
     private readonly showAllCategories: boolean;
+    private readonly excludedCategories: Set<string>;
 
     // showAllCategories bypasses enabledCategories entirely -- wired to
     // Context.debug (?debug in the query string) so a normal run only ever
     // shows DEFAULT_LOG_CATEGORY, while a debug run sees every category
     // without needing to know their names via ?logCategory=.
+    //
+    // excludedCategories (?logCategoryExclude=) is a separate, subtractive axis --
+    // it wins outright over both showAllCategories and enabledCategories, since
+    // "excluded" is meant as an unconditional suppression, not just a narrower
+    // allow-list. See tasks/logging_api.md.
     constructor(
         sink: TelemetrySink,
         enabledCategories?: readonly string[] | null,
-        showAllCategories = false
+        showAllCategories = false,
+        excludedCategories?: readonly string[] | null
     ) {
         this.sink = sink;
         this.showAllCategories = showAllCategories;
         this.enabledCategories = new Set(
             enabledCategories && enabledCategories.length > 0 ? enabledCategories : [DEFAULT_LOG_CATEGORY]
         );
+        this.excludedCategories = new Set(excludedCategories ?? []);
     }
 
     diagnostic(message: string, props?: Record<string, unknown>, category?: string): void {
@@ -89,6 +113,10 @@ export class DefaultLogger implements Logger {
         props?: Record<string, unknown>,
         category: string = DEFAULT_LOG_CATEGORY
     ): void {
+        if (this.excludedCategories.has(category)) {
+            return;
+        }
+
         if (!this.showAllCategories && !this.enabledCategories.has(category)) {
             return;
         }
