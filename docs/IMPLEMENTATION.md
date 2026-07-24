@@ -26,6 +26,7 @@ src/
     browserGeoLocationService.ts
     browserHeadingService.ts   (DeviceOrientationEvent wrapper — see GeoLocationWidget below)
     userPointsStore.ts     (LocalStorageUserPointsStore, GatewayUserPointsStore)
+    gatewayTelemetrySink.ts (GatewayTelemetrySink — forwards Logger records to geo-builder, design mode only)
     destinationStore.ts    (LocalStorageDestinationStore — see tasks/destination_marker.md)
     localStorageService.ts
     storageGuard.ts
@@ -84,7 +85,7 @@ src/
   contracts.ts
   protocols.ts
   api.ts                 (Gateway wire protocol — mirrors geo-builder's api.py, see docs/MESSAGING.md)
-  logging.ts              (Logger, DefaultLogger, LogCategory)
+  logging.ts              (Logger, DefaultLogger, LogCategory, ConsoleTelemetrySink, CompositeTelemetrySink)
   services.ts
   errors.ts
   validate.ts
@@ -123,25 +124,24 @@ empty values are ignored
 Tests reset it:
 
 ```ts
-Context.resetForTest();
+Context.reset();
 ```
 
-Recommended setup:
+`tests/setup.ts` calls this in a global `afterEach`, so individual test files don't need their own.
 
-```ts
-import { afterEach } from "vitest";
-import { Context } from "../src/runtime/context";
+`Context` also installs `window.onerror`/`onunhandledrejection` handlers in its constructor (see Telemetry Sinks below) and tears them down in `reset()` — `reset()` isn't just clearing `s_instance`, it also removes the outgoing instance's global listeners first, since happy-dom's `window` is shared across every test in a file.
 
-transportAfterEach(() => {
-    Context.resetForTest();
-});
-```
+## Telemetry Sinks
 
-Use the correct Vitest import in the actual file:
+`Logger`'s output fans out to one or more `TelemetrySink`s (`src/logging.ts`, `src/runtime/gatewayTelemetrySink.ts`):
 
-```ts
-import { afterEach } from "vitest";
-```
+- `ConsoleTelemetrySink` — always present, writes to the browser devtools console. `diagnostic`/`info` → `console.info`, `warning` → `console.warn`, `error`/`fatal` → `console.error`.
+- `GatewayTelemetrySink` (`runtime/gatewayTelemetrySink.ts`) — design mode only, forwards every record to geo-builder via `WriteTelemetryRecord` (`api.ts`) so a geo-builder end user can inspect the browser's logs without opening devtools. See `docs/MESSAGING.md` and `tasks/logging_api.md`.
+- `CompositeTelemetrySink` — fans a record out to a list of sinks. `Context`'s constructor builds `[ConsoleTelemetrySink, GatewayTelemetrySink?]` depending on mode and passes the composite into `DefaultLogger`.
+
+**Recursion-safety rule**: `GatewayTelemetrySink.write()` must never call `getLogger()` on its own failure path — a log call whose own delivery failure gets logged again would recurse back into `write()`. It falls back to a raw `console.error(...)` instead.
+
+`Context` also wires two global handlers (`window.addEventListener("error"/"unhandledrejection", ...)`) that route otherwise-invisible uncaught exceptions/unhandled promise rejections into `Logger.fatal(...)`, category `general`. These are installed in both browse and design mode — only whether `GatewayTelemetrySink` is in the sink list depends on mode.
 
 ## Error Handling
 

@@ -1,11 +1,12 @@
 import { resolveCatalogUrl } from "../catalog/loader";
-import { ConsoleTelemetrySink, DefaultLogger } from "../logging";
+import { CompositeTelemetrySink, ConsoleTelemetrySink, DefaultLogger } from "../logging";
 import { setLogger, resetLogger } from "../services";
 import { StorageGuard } from "./storageGuard";
 import { WebViewHostService } from "./webViewHostService";
+import { GatewayTelemetrySink } from "./gatewayTelemetrySink";
 import { BrowserGeoLocationService } from "./browserGeoLocationService";
 import { BrowserHeadingService } from "./browserHeadingService";
-import type { GeoDataService, GeoLocationService, HeadingService, HostService, StorageService, Logger } from "../contracts";
+import type { GeoDataService, GeoLocationService, HeadingService, HostService, StorageService, Logger, TelemetrySink } from "../contracts";
 import type { ResolveCatalogUrlOptions } from "../catalog/loader";
 import type { LatLng } from "../protocols";
 
@@ -29,6 +30,16 @@ export class Context {
     private readonly _geoLocation: GeoLocationService;
     private readonly _headingService: HeadingService;
 
+    // Bound instance methods (not inline lambdas) so removeEventListener can find the
+    // exact same reference addEventListener registered -- see removeGlobalErrorHandlers.
+    private readonly _onWindowError = (event: ErrorEvent): void => {
+        this._logger.fatal("window.uncaught_error", event.error ?? event.message);
+    };
+
+    private readonly _onUnhandledRejection = (event: PromiseRejectionEvent): void => {
+        this._logger.fatal("window.unhandled_rejection", event.reason);
+    };
+
     public static get Instance(): Context {
         if (!Context.s_instance) {
             Context.s_instance = new Context();
@@ -37,7 +48,14 @@ export class Context {
         return Context.s_instance;
     }
 
+    // Tears down the outgoing instance's global listeners before discarding it -- tests
+    // construct a fresh Context per test (tests/setup.ts) while happy-dom's `window` is
+    // shared for the whole test file, so skipping this would leak a listener pair per test.
     public static reset(): void {
+        if (Context.s_instance) {
+            Context.s_instance.removeGlobalErrorHandlers();
+        }
+
         Context.s_instance = undefined;
         resetLogger();
     }
@@ -57,14 +75,39 @@ export class Context {
             this._initialZoom = this.parseZoom(params);
         }
 
-        this._logger = new DefaultLogger(new ConsoleTelemetrySink(), this.parseLogCategories(params), this._debug);
         this._dataSource = {} as GeoDataService;
         this._storageGuard = new StorageGuard();
         this._host = new WebViewHostService(this._mode);
         this._geoLocation = new BrowserGeoLocationService();
         this._headingService = new BrowserHeadingService();
 
+        const sinks: TelemetrySink[] = [new ConsoleTelemetrySink()];
+        if (this._design && this._host.gateway) {
+            sinks.push(new GatewayTelemetrySink(this._host.gateway));
+        }
+        const logCategories = this.parseLogCategories(params);
+        // An explicit ?logCategory= wins outright over ?debug=1's "show everything" shorthand,
+        // same precedent as parseGroupFilter's ?group=/?debug relationship -- it is never merged
+        // in, so ?debug=1&logCategory=overpass shows only ["overpass"], not every category.
+        const showAllCategories = this._debug && logCategories === null;
+        const logCategoryExclude = this.parseLogCategoryExclude(params);
+        this._logger = new DefaultLogger(new CompositeTelemetrySink(sinks), logCategories, showAllCategories, logCategoryExclude);
+
         setLogger(this._logger);
+        this.installGlobalErrorHandlers();
+    }
+
+    // Catches exceptions/rejections that escape every try/catch in the app -- previously
+    // invisible to Logger entirely (see tasks/logging_api.md). Always installed, in both
+    // modes; only whether GatewayTelemetrySink is in the sink list (above) depends on mode.
+    private installGlobalErrorHandlers(): void {
+        window.addEventListener("error", this._onWindowError);
+        window.addEventListener("unhandledrejection", this._onUnhandledRejection);
+    }
+
+    private removeGlobalErrorHandlers(): void {
+        window.removeEventListener("error", this._onWindowError);
+        window.removeEventListener("unhandledrejection", this._onUnhandledRejection);
     }
 
     public setStorage(impl: StorageService): void {
@@ -208,12 +251,26 @@ export class Context {
     // not from this method) bypasses this allow-list entirely and shows every
     // category regardless. No shorthand/merge with ?group -- a separate axis.
     private parseLogCategories(params: URLSearchParams): string[] | null {
-        const raw = params.get("logCategory");
+        return this.parseCommaList(params, "logCategory");
+    }
+
+    // ?logCategoryExclude=a,b unconditionally suppresses those categories -- wins outright
+    // over both showAllCategories (?debug) and the ?logCategory= allow-list, since exclusion
+    // is meant as "never show this," not a narrower version of the allow-list. Independent
+    // of ?logCategory=/?debug the same way ?logCategory= is independent of ?group -- a
+    // separate axis, geo-browser's own interpretation of geo-builder's excludedCategories/
+    // ?logCategoryExclude= emission (docs/MESSAGING.md's WriteTelemetryRecord section).
+    private parseLogCategoryExclude(params: URLSearchParams): string[] | null {
+        return this.parseCommaList(params, "logCategoryExclude");
+    }
+
+    private parseCommaList(params: URLSearchParams, name: string): string[] | null {
+        const raw = params.get(name);
         if (!raw) {
             return null;
         }
 
-        const categories = raw.split(",").map((c) => c.trim()).filter((c) => c.length > 0);
-        return categories.length > 0 ? categories : null;
+        const values = raw.split(",").map((v) => v.trim()).filter((v) => v.length > 0);
+        return values.length > 0 ? values : null;
     }
 }
