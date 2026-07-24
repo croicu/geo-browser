@@ -6,7 +6,7 @@ import { isLatLng, isNumber } from "../validate";
 export const DEFAULT_CENTER: LatLng = [20, 20];
 export const DEFAULT_ZOOM = 3;
 
-// The single shared map's viewport (tasks/layer_lifecycle.md) — one camera
+// The single shared map's viewport (geo-browser#73) — one camera
 // position for the whole app, not one per area. Successor of
 // SummaryViewState; selectedAreaId/hoveredAreaId dropped (grep-confirmed
 // dead — written but never read anywhere in the old SummaryView).

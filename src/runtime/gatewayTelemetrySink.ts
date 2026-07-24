@@ -2,7 +2,7 @@ import type { GatewayService, TelemetryRecord, TelemetrySink } from "../contract
 import { OK, WriteTelemetryRecord } from "../api";
 
 // Forwards every telemetry record to geo-builder over the gateway (design mode only --
-// see tasks/logging_api.md). Must never call getLogger() on its own failure path: a log
+// see geo-browser#72). Must never call getLogger() on its own failure path: a log
 // call whose own delivery failure gets logged again would recurse through DefaultLogger
 // back into this sink's own write(). Failures fall back to a raw console.error instead.
 export class GatewayTelemetrySink implements TelemetrySink {

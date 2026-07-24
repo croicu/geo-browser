@@ -1,21 +1,21 @@
 # Void Layer — Move to Precompute (geo-builder ↔ geo-browser contract)
 
 Status: **shipped on both sides.** `geo-builder` precomputes the polygons (`VoidWorker`, see
-`tasks/void_layer_precompute.md` for the algorithm); `geo-browser` renders them via the runtime
+[geo-builder#54](https://github.com/croicu/geo-builder/issues/54) for the algorithm); `geo-browser` renders them via the runtime
 changes in the "`geo-browser` runtime changes" section below (minimal-superset resolution via
 `VoidVariantResolver`, live grid computation deleted). See CLAUDE.md's "Mundane (Void) Layer"
-completed-task entry. Kept in sync the same way `MESSAGING.md` is.
+completed-task entry ([geo-browser#77](https://github.com/croicu/geo-browser/issues/77)). Kept in sync the same way `MESSAGING.md` is.
 
 geo-builder's v1 coverage (see "What geo-builder produces" below): the bare `__void__` plus one
 `__void__<id>__` per non-virtual point-bearing layer — no curated multi-layer combinations yet
 (open question 1 below, still open). Algorithm used: a signed distance-field grid + hand-rolled
 marching squares (no external geometry library) — full design detail in
-`tasks/void_layer_precompute.md`.
+[geo-builder#54](https://github.com/croicu/geo-builder/issues/54).
 
 ## Why
 
 `__void__` used to be computed live in `geo-browser` as a progressive rectangle grid
-(`voidLayerView.ts` / `voidSpatialIndex.ts`, see `tasks/void_layer.md`). Two problems surfaced
+(`voidLayerView.ts` / `voidSpatialIndex.ts`, see [geo-browser#77](https://github.com/croicu/geo-browser/issues/77)). Two problems surfaced
 testing against real data (Berlin, 35,642 points):
 
 - **Jagged contours.** Axis-aligned grid rectangles can't produce a smooth boundary; finer
@@ -107,7 +107,7 @@ the expected approach) — the contract here is only the output shape, not the m
   instead. Applied directly to the SVG element created by the polygon render, not to the pane
   div itself — Leaflet pane divs are zero-size positioning wrappers, and a filter on a zero-size
   element clips its overflowing (real-sized) SVG child entirely, which silently produced no
-  visible fog at all the first time this exact mistake was made (see `tasks/void_layer.md`'s
+  visible fog at all the first time this exact mistake was made (see [geo-browser#77](https://github.com/croicu/geo-browser/issues/77)'s
   history for the earlier canvas-renderer version of this bug). No `geo-builder` contract
   change — the precomputed polygon geometry and `style.opacity` are unchanged; the blur is
   purely presentational on the `geo-browser` side.

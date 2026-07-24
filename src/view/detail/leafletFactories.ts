@@ -544,7 +544,7 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
 
     // Fixed pin at the destination's lat/lng. Rendered into `pane` (destination-pane, kept
     // below the default markerPane so it never draws over the blue GPS indicator — see
-    // tasks/destination_marker.md).
+    // geo-browser#74).
     createDestinationMarker(latLng: [number, number], pane: string): DestinationMarkerHandle {
         const icon = L.divIcon({
             className: "",

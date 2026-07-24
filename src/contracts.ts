@@ -302,7 +302,7 @@ export interface DestinationPoint {
 }
 
 // Pure client runtime concept — no geo-builder/gateway variant. Global (not scoped per area),
-// unlike UserPointsStore. See tasks/destination_marker.md.
+// unlike UserPointsStore. See geo-browser#74.
 export interface DestinationStore {
     get(): DestinationPoint | null;
     set(point: DestinationPoint): void;

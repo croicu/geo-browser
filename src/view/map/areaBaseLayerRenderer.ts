@@ -14,7 +14,7 @@ export interface AreaBaseLayerRendererOptions {
 // half of the old DetailView.renderLayerViews() loop: manifest-declared
 // heatmap/circle layers only (GeoLayer.isSourceData()). Virtual layers
 // (__poi__/__user__/__void__/__search__) are CurrentAreaBundle's concern, not
-// this class's — per tasks/layer_lifecycle.md, any number of
+// this class's — per geo-browser#73, any number of
 // AreaBaseLayerRenderer instances can be concurrently resident (one per
 // loaded area), but only one CurrentAreaBundle ever exists at a time.
 export class AreaBaseLayerRenderer {

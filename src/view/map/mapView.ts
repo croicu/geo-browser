@@ -41,7 +41,7 @@ export interface MapViewOptions {
     destinationStore: DestinationStore;
 }
 
-// The unified view (tasks/layer_lifecycle.md) replacing SummaryView + DetailView.
+// The unified view (geo-browser#73) replacing SummaryView + DetailView.
 // One shared Leaflet map, session-lifetime. Owns:
 //  - AreaLifecycleTracker: the pure state machine driving everything below.
 //  - One AreaMarkerView per catalog area (circle/outline), eagerly created.
@@ -156,7 +156,7 @@ export class MapView implements View {
                 this._geoLocation,
                 this._widgetFactory,
                 this._layerFactory,
-                undefined, // no per-area bounds gate — see Confirmed Behavior Changes in tasks/layer_lifecycle.md
+                undefined, // no per-area bounds gate — see Confirmed Behavior Changes in geo-browser#73
                 Context.Instance.debug,
                 Context.Instance.headingService
             );

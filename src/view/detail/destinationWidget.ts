@@ -11,7 +11,7 @@ import { getLogger } from "../../services";
 
 const PANE_NAME = "destination-pane";
 // Below Leaflet's default markerPane (600) so the blue GPS indicator always renders on top —
-// see tasks/destination_marker.md.
+// see geo-browser#74.
 const PANE_Z_INDEX = "550";
 
 export interface DestinationWidgetOptions {

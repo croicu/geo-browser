@@ -2,7 +2,7 @@ import { bboxPixelSize } from "../../geo/mercator";
 
 export type AreaSizeClass = "small" | "big";
 
-// Pure pixel-size check per tasks/layer_lifecycle.md's Rendering States table.
+// Pure pixel-size check per geo-browser#73's Rendering States table.
 // Says nothing about load/residency — see AreaLifecycleTracker for that.
 export class AreaRenderClassifier {
     // Diameter, in px, of the fixed-size circle marker an area collapses to
@@ -15,7 +15,7 @@ export class AreaRenderClassifier {
     // size — below this, no area's layers are ever shown (matches the old
     // Summary/Detail split's zoom<minZoom exit boundary, which the
     // viewport-driven tracker otherwise has no equivalent for; see
-    // tasks/layer_lifecycle.md). Independent of classifySize: an area can be
+    // geo-browser#73). Independent of classifySize: an area can be
     // "big" (outline-worthy) below this floor, it just won't load — it stays
     // an outline instead of collapsing to a circle. Tunable like
     // LOAD_THRESHOLD_PX — needs an on-device check.
@@ -25,7 +25,7 @@ export class AreaRenderClassifier {
     // area of a circle whose diameter is LOAD_THRESHOLD_PX -- not a simple
     // width/height vs. N comparison. Below that area, the rectangle outline
     // would be smaller than the fixed-size circle marker it'd collapse to,
-    // so the circle is what's actually shown (see tasks/layer_lifecycle.md).
+    // so the circle is what's actually shown (see geo-browser#73).
     static classifySize(
         bbox: [number, number, number, number],
         zoom: number

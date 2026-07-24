@@ -120,7 +120,7 @@ immediate visual assessment.
 **Stretch goals** (post-launch):
 
 - ~~Screenshot overlay (paste Google Maps route, auto-detect landmarks, overlay on heatmap)~~ — **shipped**: paste a Google/Apple Maps screenshot, 3-DOF editor (translate/scale/opacity), geo-lock to GPS coordinates, and automatic blue-dot detection for instant alignment.
-- Integration with Google Maps URLs for pre-computed route comparison (postponed — see [Share Target](../tasks/share_target.md), blocked on a CORS wall for resolving short URLs)
+- Integration with Google Maps URLs for pre-computed route comparison (postponed — see [Share Target](https://github.com/croicu/geo-browser/issues/35), blocked on a CORS wall for resolving short URLs)
 
 -----
 

@@ -946,7 +946,7 @@ class RemoveUserPointOutput:
 
 ## WriteTelemetryRecord (`__geo_write_telemetry_record__`)
 
-Proposed to the geo-builder team ahead of implementation (see git history of this section); no pushback received. Implemented on the geo-browser side — `src/api.ts`, `src/runtime/gatewayTelemetrySink.ts`, wired in `src/runtime/context.ts`. Full design background: geo-browser's `tasks/logging_api.md`.
+Proposed to the geo-builder team ahead of implementation (see git history of this section); no pushback received. Implemented on the geo-browser side — `src/api.ts`, `src/runtime/gatewayTelemetrySink.ts`, wired in `src/runtime/context.ts`. Full design background: geo-browser's [geo-browser#72](https://github.com/croicu/geo-browser/issues/72).
 
 ### Motivation
 
