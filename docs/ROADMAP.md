@@ -34,10 +34,11 @@
 - Area grouping — `group`-based catalog filtering via `?group=`/`?debug=`; `"debug"` group is opt-in-only.
 - Destination marker + bearing cone — fixed pin and live-position bearing cone toward a single global destination, pure client runtime.
 - Categorized logging — `LogCategory` (`src/logging.ts`); `?debug` shows every category, a normal run shows only `"general"`; `?logCategory=a,b` as a manual override.
+- Design mode host bridge — `WebViewHostService` wires a real `Gateway` (`window.geo`, see `docs/MESSAGING.md`) whenever `?design=<value>` selects design mode; `GatewayUserPointsStore` and `GatewayTelemetrySink` ([geo-browser#72](https://github.com/croicu/geo-browser/issues/72)) already use it in production.
 
 ## Recommended Next Branches
 
-### 3. Data Source Abstraction
+### 1. Data Source Abstraction
 
 Move direct fetch behind `GeoDataService`:
 
@@ -52,19 +53,11 @@ interface GeoDataService {
 Implement:
 
 - StaticDataService using fetch/static URLs.
-- WebViewDataService using `window.geoHost` for design mode.
+- WebViewDataService using `window.geo` for design mode.
 
-### 2. Design Mode Host Bridge
+`Context.dataSource` (`src/runtime/context.ts`) is currently a stub (`{} as GeoDataService`) — this is the only remaining piece of the design-mode data path; the host bridge itself (mode selection, `Gateway`, trip-point storage, telemetry forwarding) already ships, see Current Completed Foundation above.
 
-Add:
-
-```text
-src/host/ or src/runtime host service implementation
-```
-
-Keep Python out of geo-browser.
-
-### 4. Richer Area Markers
+### 2. Richer Area Markers
 
 `AreaMarkerView`'s `circle`/`outline` render kinds (see [Layer Lifecycle](https://github.com/croicu/geo-browser/issues/73)) are still plain shapes — fixed-diameter unfilled circle, bbox rectangle outline.
 
@@ -75,7 +68,7 @@ Future:
 - LOD image choice
 - area radius visualization
 
-### 5. Preferred Tap-to-Jump Framing
+### 3. Preferred Tap-to-Jump Framing
 
 `MapView.jumpToArea()` currently always fits the area's bbox exactly (`getBoundsZoom`). Consider extending `AreaDetail` with a manifest-provided preferred center/zoom instead:
 
@@ -90,7 +83,7 @@ interface AreaDetail {
 }
 ```
 
-### 6. Production Cache Headers
+### 4. Production Cache Headers
 
 Static hosting should use:
 
