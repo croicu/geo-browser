@@ -138,6 +138,16 @@ npm test         # unit tests (Vitest)
 
 Deploy `dist/` to any static host.
 
+### Fresh Windows machine / VM
+
+`scripts/setup-windows.ps1` bootstraps a clean checkout end-to-end:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/setup-windows.ps1
+```
+
+It installs Node.js LTS at **machine scope** (shared by every Windows user profile on the box, rather than duplicated per user — useful on shared/multi-user VMs), runs `npm install`, and — if Google Chrome isn't installed — points the VS Code Chrome-type debug configs in `.vscode/launch.json` at Microsoft Edge instead. Safe to re-run; it only changes what's actually missing.
+
 ---
 
 ## License

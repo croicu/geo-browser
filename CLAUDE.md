@@ -8,7 +8,7 @@ For implementation-level rules and patterns, see [docs/IMPLEMENTATION.md](docs/I
 
 `geo-browser` is a static, browser-based geographic renderer and UI shell.
 
-It renders catalog-driven geographic experiences from static JSON/GeoJSON assets and can also run in a future design mode hosted by `geo-builder` through a WebView bridge.
+It renders catalog-driven geographic experiences from static JSON/GeoJSON assets and can also run in a design mode hosted by `geo-builder` through a WebView bridge — the host bridge itself already ships (see Data Source / Design Mode below); only the catalog/layer data-source split still falls back to static fetch in design mode.
 
 ## Commands
 
@@ -311,14 +311,18 @@ Context is external-world boundary, not application state. Do not put selected a
 
 ### Data Source / Design Mode
 
-Future design mode integrates with `geo-builder`:
+The design-mode host bridge already ships:
 
 ```text
 geo-browser TypeScript UI
-  ↕ HostApi / window.geoHost
+  ↕ window.geo (Gateway)
 geo-builder Python host
   ↕ provider APIs, storage, artifact generation
 ```
+
+`WebViewHostService` (`src/runtime/webViewHostService.ts`) wires a real `Gateway` (`src/designer/gateway.ts`, backed by `window.geo` — see `docs/MESSAGING.md`) whenever `Context.mode === "design"`; browse mode gets `gateway: null`. `?design=<value>` (see Runtime Context above) selects this at startup. Production consumers already exist on this path: `GatewayUserPointsStore` (`src/runtime/userPointsStore.ts`) and `GatewayTelemetrySink` (`src/runtime/gatewayTelemetrySink.ts`, [geo-browser#72](https://github.com/croicu/geo-browser/issues/72)) both talk to `geo-builder` through it.
+
+Still outstanding: catalog/area/layer data loading has no `GeoDataService` split yet. `Context.dataSource` (`src/runtime/context.ts`) is a stub (`{} as GeoDataService`) — fetching always goes through static URLs regardless of mode. See [Data Source Abstraction](docs/ROADMAP.md#recommended-next-branches) for the planned `StaticDataService`/`WebViewDataService` split.
 
 Repos stay separate:
 
