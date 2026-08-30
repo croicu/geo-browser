@@ -152,5 +152,31 @@ describe("Controller", () => {
 
             expect(gateway.unsubscribed).toContain(cookie);
         });
+
+        // geo-browser#101: showBuildOverlay() had no matching removal — the
+        // "Building…" overlay stayed on screen forever once AddArea resolved.
+        it("hides the build overlay once AddArea succeeds", async () => {
+            const gateway = new StubGateway();
+            const controller = await startController(gateway);
+            const mapView = (controller as any)._mapView;
+            mapView.showBuildOverlay("Napoli");
+
+            controller.commitArea([14.0, 40.7, 14.5, 41.0], "Napoli");
+            gateway.respond(0, { error: 0, errorDescription: null, area: null });
+
+            expect(document.querySelector(".area-build-overlay")).toBeNull();
+        });
+
+        it("hides the build overlay even when AddArea fails", async () => {
+            const gateway = new StubGateway();
+            const controller = await startController(gateway);
+            const mapView = (controller as any)._mapView;
+            mapView.showBuildOverlay("Napoli");
+
+            controller.commitArea([14.0, 40.7, 14.5, 41.0], "Napoli");
+            gateway.respond(0, { error: 1, errorDescription: "boom", area: null });
+
+            expect(document.querySelector(".area-build-overlay")).toBeNull();
+        });
     });
 });

@@ -121,6 +121,7 @@ export class Controller implements ControllerActions {
 
         gateway.invoke(AddArea, { areaName: name, bbox }, (response) => {
             gateway.unsubscribe(progressCookie);
+            this.mapView.hideBuildOverlay();
 
             if (response.error !== OK) {
                 logger.error("commitArea failed", undefined, {
