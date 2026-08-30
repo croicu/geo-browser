@@ -81,6 +81,14 @@ that ends up calling it. Everything downstream depends on the interface and neve
 mode it's running in. This is the actual mechanism behind "rendering must never assume browse vs.
 design mode" — it's enforced by construction, not by scattered `if (gateway)` checks.
 
+**This does not apply to design-mode-only flows with no browse-mode equivalent at all** — e.g.
+`AddArea`/`SetAreaBbox`-driven UI (drawing a new area, dragging its bbox). There is nothing to
+build a second implementation *of*; browse mode simply can't do this. For these, a direct
+`if (!this._gateway) return;`/early-return guard at the one call site that owns the flow (see
+`Controller.commitArea`, `BboxWidget`) is correct and is the existing convention — it is not the
+"wrong instinct" this section warns about. The interface+DI split is specifically for capabilities
+that behave differently, not ones that are entirely absent, in browse mode.
+
 ## 3. A gateway-backed implementation never throws to its caller
 
 Wrap `gateway.invoke(Def, input, callback)` in a `Promise`; in the callback, check
@@ -122,7 +130,33 @@ gateway.unsubscribe(cookie);
 
 `gateway` here is still the same `GatewayService | null` from `HostService` — an event-driven
 feature that only makes sense in design mode should live behind the same interface-and-composition
-pattern as section 2, not a direct null-check at the subscribe call.
+pattern as section 2, not a direct null-check at the subscribe call (except the design-mode-only
+carve-out above — `Controller`/`BboxWidget`-style flows may null-check directly).
+
+**Pick a subscription lifecycle deliberately — there are two shapes in this codebase:**
+
+- **Component-scoped**: subscribe in `render()`, unsubscribe in `destroy()`. Use when the event
+  can arrive at any time the component is mounted, unrelated to any one call this component makes
+  (`ManifestEditorWidget` subscribing to `AreaChanged` — the manifest can change from outside the
+  widget's own edits).
+- **Request-scoped**: subscribe immediately before the triggering `invoke()`, unsubscribe inside
+  that `invoke`'s response callback — *and* defensively in `destroy()`, in case the component is
+  torn down mid-request. Use when the event only makes sense while one specific call is in flight
+  (`TaskProgress` alongside `AddArea`/`SetAreaBbox` — see `Controller.commitArea`, `BboxWidget`).
+  Never leave a request-scoped subscription live past its response; the next call to the same flow
+  would otherwise stack a duplicate handler.
+
+**Filter by payload id when the event is a broadcast, not inherently scoped to your request.**
+`TaskProgressData`/`AreaChanged` carry `areaId` because the same event fires for whatever the
+builder is doing, not just for your caller. If you already know the id (editing an existing area:
+`BboxWidget` filters `data.areaId === this._areaId`), check it before acting. If you don't yet —
+creating a brand-new area, before its id exists — there's nothing to filter on; only subscribe for
+the duration of that one request and accept any message that arrives while it's pending.
+
+**Testing**: `tests/stubs/stubGateway.ts`'s `StubGateway` records every `subscribe()` call
+(`gateway.subscriptions`) and every `unsubscribe()` call (`gateway.unsubscribed`), and exposes
+`gateway.fire(id, data)` to simulate the builder emitting an event. Use it to assert forwarding,
+id-filtering, and unsubscribe-on-response/destroy — don't reach for a module mock for this.
 
 ## 5. Update `docs/MESSAGING.md`
 
