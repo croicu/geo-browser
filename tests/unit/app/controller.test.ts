@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Controller } from "../../../src/app/controller";
 import { setLogger } from "../../../src/services";
 import { StubStorage } from "../../stubs/stubStorage";
+import { StubGateway } from "../../stubs/stubGateway";
 
 import type { AreaSummary } from "../../../src/protocols";
 
@@ -59,6 +60,8 @@ describe("Controller", () => {
     const logger = {
         info: vi.fn(),
         warn: vi.fn(),
+        warning: vi.fn(),
+        diagnostic: vi.fn(),
         error: vi.fn(),
     };
 
@@ -115,5 +118,39 @@ describe("Controller", () => {
         // bundle build path (both want the same area loaded in the same
         // tick) down to a single GeoArea.load() call.
         expect(areaLoad).toHaveBeenCalledTimes(1);
+    });
+
+    describe("commitArea", () => {
+        async function startController(gateway: StubGateway): Promise<Controller> {
+            const catalog = fakeCatalog([]);
+            const controller = new Controller({
+                catalog: catalog as any,
+                storage: new StubStorage(),
+                gateway,
+            });
+            await controller.start();
+            return controller;
+        }
+
+        it("forwards TaskProgress messages to the status bar while AddArea is pending", async () => {
+            const gateway = new StubGateway();
+            const controller = await startController(gateway);
+
+            controller.commitArea([14.0, 40.7, 14.5, 41.0], "Napoli");
+            gateway.fire("__geo_task_progress__", { areaId: "napoli", message: "Fetching restaurants…" });
+
+            expect(document.body.querySelector(".status-widget")?.textContent).toBe("Fetching restaurants…");
+        });
+
+        it("unsubscribes from TaskProgress once AddArea responds", async () => {
+            const gateway = new StubGateway();
+            const controller = await startController(gateway);
+
+            controller.commitArea([14.0, 40.7, 14.5, 41.0], "Napoli");
+            const cookie = gateway.subscriptions[0].cookie;
+            gateway.respond(0, { error: 1, errorDescription: "boom", area: null });
+
+            expect(gateway.unsubscribed).toContain(cookie);
+        });
     });
 });

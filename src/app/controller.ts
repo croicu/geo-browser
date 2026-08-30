@@ -3,7 +3,8 @@ import { GeoCatalog } from "../catalog/catalog";
 import { Context } from "../runtime/context";
 import type { ControllerActions, GatewayService, StorageService } from "../contracts";
 import type { LatLng } from "../protocols";
-import { AddArea, OK } from "../api";
+import { AddArea, OK, TaskProgress } from "../api";
+import { LogCategory } from "../logging";
 
 import { GeoStateStore } from "../state/geoStateStore";
 import { MapViewState } from "../state/mapViewState";
@@ -11,7 +12,7 @@ import { MapView } from "../view/map/mapView";
 import { LocalStorageUserPointsStore, GatewayUserPointsStore } from "../runtime/userPointsStore";
 import { LocalStorageDestinationStore } from "../runtime/destinationStore";
 import { fail } from "../errors";
-import { initStatusWidget } from "../view/statusWidget";
+import { initStatusWidget, getStatusWidget } from "../view/statusWidget";
 
 export interface ControllerOptions {
     catalog: GeoCatalog;
@@ -112,7 +113,15 @@ export class Controller implements ControllerActions {
             return;
         }
 
-        this._gateway.invoke(AddArea, { areaName: name, bbox }, (response) => {
+        const gateway = this._gateway;
+        const progressCookie = gateway.subscribe(TaskProgress, ({ message }) => {
+            getStatusWidget()?.show(message, "info");
+            logger.diagnostic("commit_area.progress", { message }, LogCategory.TaskProgress);
+        });
+
+        gateway.invoke(AddArea, { areaName: name, bbox }, (response) => {
+            gateway.unsubscribe(progressCookie);
+
             if (response.error !== OK) {
                 logger.error("commitArea failed", undefined, {
                     error: response.error,

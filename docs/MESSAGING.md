@@ -253,6 +253,12 @@ interface AreaChangedData {
   area: AreaSummary;
 }
 
+// __geo_task_progress__ (event: Python → JS)
+interface TaskProgressData {
+  areaId: string;
+  message: string;
+}
+
 // __geo_write_telemetry_record__ (method: JS → Python, design mode only)
 interface WriteTelemetryRecordInput {
   timestamp: string;            // ISO 8601
@@ -799,6 +805,36 @@ gateway.subscribe(AreaChanged, ({ area }) => {
 
 ---
 
+## TaskProgress (`__geo_task_progress__`)
+
+Fired by the builder while `AddArea`, `SetAreaBbox`, or an acquisition/geometry-affecting `PutAreaJson` edit is still running, to give the browser something to show instead of a bare spinner. Zero or more of these fire per triggering call, strictly before its response (or before the resulting `AreaChanged`, for the two event-driven rebuild paths).
+
+**TypeScript:**
+```typescript
+const TaskProgress: EventDef<TaskProgressData, void> = { id: "__geo_task_progress__" };
+
+gateway.subscribe(TaskProgress, ({ areaId, message }) => {
+  // show `message` next to the spinner for areaId
+});
+```
+
+**Python:**
+```python
+@dataclass
+class TaskProgressData:
+    areaId: str
+    message: str
+```
+
+**Notes:**
+- `message` is a plain, human-readable, English string — e.g. `"Fetching restaurants from overpass for 'Napoli'…"`, `"Removing duplicate points…"`, `"Computing coverage map…"`. Not localized, not machine-parsed; treat it as opaque display text, not a status code.
+- One fires per internal pipeline stage (acquisition, aggregation, deduping, poi, void, search); a large-area acquisition that Overpass forces the builder to split into sub-queries fires one `TaskProgress` per sub-query, so the count per build is not fixed or predictable.
+- Delivered via a direct-send path that bypasses the builder's normal outbound queue (see geo-builder#67), specifically so it arrives incrementally while the pipeline is still running rather than batched at the end — the browser does not need to know this, but should not assume events arrive in strict interleave with other queued events (e.g. `AreaChanged`) fired around the same time.
+- No response expected; the browser does not need to (and cannot) reply to this event.
+- Best-effort UI hint only — a build that produces no `TaskProgress` events (or stops partway through) is not an error signal; always rely on the triggering method's response / the `AreaChanged` event for actual completion and error state.
+
+---
+
 ## GetUserPoints (`__geo_get_user_points__`)
 
 Returns all user-placed points for an area as a GeoJSON `FeatureCollection`. This is the **only** way the browser receives user points — there is no URL to fetch. The `__user__` layer always has `url: null` in the manifest.
@@ -946,7 +982,7 @@ class RemoveUserPointOutput:
 
 ## WriteTelemetryRecord (`__geo_write_telemetry_record__`)
 
-Proposed to the geo-builder team ahead of implementation (see git history of this section); no pushback received. Implemented on the geo-browser side — `src/api.ts`, `src/runtime/gatewayTelemetrySink.ts`, wired in `src/runtime/context.ts`. Full design background: geo-browser's [geo-browser#72](https://github.com/croicu/geo-browser/issues/72).
+Proposed to the geo-builder team ahead of implementation (see git history of this section); no pushback received. Implemented on the geo-browser side — `src/api.ts`, `src/runtime/gatewayTelemetrySink.ts`, wired in `src/runtime/context.ts`. Full design background: geo-browser's `tasks/logging_api.md`.
 
 ### Motivation
 

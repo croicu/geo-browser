@@ -15,6 +15,7 @@ import type {
 export const LogCategory = {
     General: "general",
     AreaLifecycle: "area_lifecycle",
+    TaskProgress: "task_progress",
 } as const;
 
 export type LogCategory = typeof LogCategory[keyof typeof LogCategory];

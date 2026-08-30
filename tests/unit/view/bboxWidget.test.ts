@@ -1,7 +1,8 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { BboxWidget } from "../../../src/view/summary/bboxWidget";
 import { StubLayerFactory, StubMap } from "../../stubs/stubLeafletFactories";
 import { StubGateway } from "../../stubs/stubGateway";
+import { initStatusWidget, resetStatusWidget } from "../../../src/view/statusWidget";
 
 describe("BboxWidget", () => {
     let map: StubMap;
@@ -12,6 +13,11 @@ describe("BboxWidget", () => {
         map = new StubMap();
         layerFactory = new StubLayerFactory();
         gateway = new StubGateway();
+        initStatusWidget();
+    });
+
+    afterEach(() => {
+        resetStatusWidget();
     });
 
     function makeWidget(bbox: [number, number, number, number] = [14.0, 40.7, 14.5, 41.0]): BboxWidget {
@@ -135,6 +141,48 @@ describe("BboxWidget", () => {
         gateway.respond(0, { error: 0, errorDescription: null });
 
         expect(map.getContainer().querySelector(".area-build-overlay")).toBeNull();
+    });
+
+    it("shows TaskProgress messages for this area in the status bar", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+        gateway.fire("__geo_task_progress__", { areaId: "napoli", message: "Fetching restaurants…" });
+
+        expect(document.body.querySelector(".status-widget")?.textContent).toBe("Fetching restaurants…");
+    });
+
+    it("ignores TaskProgress messages for a different area", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+        gateway.fire("__geo_task_progress__", { areaId: "roma", message: "Fetching restaurants…" });
+
+        expect(document.body.querySelector(".status-widget")?.textContent).toBe("");
+    });
+
+    it("unsubscribes from TaskProgress once the save response arrives", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+        const cookie = gateway.subscriptions[0].cookie;
+        gateway.respond(0, { error: 0, errorDescription: null });
+
+        expect(gateway.unsubscribed).toContain(cookie);
+    });
+
+    it("unsubscribes from TaskProgress on destroy", () => {
+        const widget = makeWidget([14.0, 40.7, 14.5, 41.0]);
+        widget.render();
+
+        dragEndAndConfirm(3, [40.5, 14.6]);
+        const cookie = gateway.subscriptions[0].cookie;
+        widget.destroy();
+
+        expect(gateway.unsubscribed).toContain(cookie);
     });
 
     it("reverts bbox and hides confirm bar on cancel", () => {
