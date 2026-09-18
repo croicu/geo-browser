@@ -53,7 +53,7 @@ Startup resolves the catalog URL via a two-step fetch:
 
 There is a single `catalog.json`, not a separate debug variant — `?debug`/`?group=` filtering (see Area Grouping in Completed Tasks below) happens client-side against the same catalog data via `Context.groupFilter`, not by fetching a different file.
 
-Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches its own GeoJSON URL — all on demand, cache bypassed.
+Each `GeoArea` then fetches its own manifest URL, and each `GeoLayer` fetches its own GeoJSON URL — all on demand, `cache: "no-store"` (so the *browser's* HTTP cache is always bypassed for freshness). This is independent of the *service worker's* own runtime caching (`vite.config.ts`): `catalog.json` and everything under `/areas/` (manifests + GeoJSON, matched by path regardless of origin) are `NetworkFirst`, so a `no-store` fetch still gets served from the SW's cache when there's no network — `cache: "no-store"` only defeats the browser's cache, not a service worker sitting in front of it. Getting this wrong once caused a real bug: `catalog.head.json`'s `catalogUrl` points cross-origin in production (`geo-places.croicu.com/catalog.json`), which matched no caching rule at all until fixed, so `Controller.start()`'s uncaught `await this._catalog.load()` produced a full blank screen on any offline cold-start — confirmed live, not hypothetical.
 
 ## Cross-Repo Contract Rule
 
