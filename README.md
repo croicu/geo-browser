@@ -34,7 +34,8 @@ A lightweight, static, browser-based geographic renderer and trip companion.
 - **One continuous map** — no separate "world" and "area" screens; zoom and pan freely and areas smoothly grow from a circle to a bbox outline to fully loaded layers as you get closer
 - **Tap to jump** — tap any area's circle or outline to pan/zoom straight to it
 - **Multiple areas at once** — any number of nearby areas can be loaded simultaneously; only the one you're centered on gets its POI/trip/search layers and toolbox
-- **Tile providers** — CARTO Voyager (default) or OpenStreetMap, switchable from the layer flyout
+- **Tile providers** — OpenStreetMap (default, offline-capable — see Offline map tiles below) or CARTO Voyager (online-only), switchable from the layer flyout
+- **Offline map tiles** — tap the record button to cache map tiles as you browse (a VCR-style record/stop toggle); off by default, a separate button clears the cache, and CARTO is unavailable while offline since it's never cached
 - **Geolocation** — live GPS blue dot with heading cone; heading comes from the device compass (`DeviceOrientationEvent`), requested on first use — iOS shows a one-time permission prompt
 - **Viewport persistence** — the map reopens at the same position and zoom on startup, and each area remembers its own layer visibility
 

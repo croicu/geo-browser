@@ -138,3 +138,46 @@ describe("DefaultLogger excludedCategories", () => {
         expect(sink.records).toHaveLength(1);
     });
 });
+
+describe("DefaultLogger.perf", () => {
+    it("logs at info under the fixed LogCategory.Perf, not a caller-chosen category", () => {
+        const sink = new RecordingSink();
+        const logger = new DefaultLogger(sink, null, true); // showAllCategories so we can see it regardless
+
+        logger.perf("some span", 1.5);
+
+        expect(sink.records).toHaveLength(1);
+        expect(sink.records[0].level).toBe("info");
+        expect(sink.records[0].category).toBe(LogCategory.Perf);
+        expect(LogCategory.Perf).toBe("perf");
+    });
+
+    it("formats the message as 'duration: <seconds>s - <description>'", () => {
+        const sink = new RecordingSink();
+        const logger = new DefaultLogger(sink, null, true);
+
+        logger.perf("tile_fetcher.cache_hit: https://a.tile.test/1/2/3.png", 0.0234);
+
+        expect(sink.records[0].message).toBe("duration: 0.023s - tile_fetcher.cache_hit: https://a.tile.test/1/2/3.png");
+    });
+
+    it("is hidden by default (perf is not the default category) but shown once enabled", () => {
+        const sink = new RecordingSink();
+        const defaultLogger = new DefaultLogger(sink);
+        defaultLogger.perf("hidden span", 0.1);
+        expect(sink.records).toHaveLength(0);
+
+        const perfLogger = new DefaultLogger(sink, [LogCategory.Perf]);
+        perfLogger.perf("shown span", 0.1);
+        expect(sink.records).toHaveLength(1);
+    });
+
+    it("respects excludedCategories even under showAllCategories, same as any other category", () => {
+        const sink = new RecordingSink();
+        const logger = new DefaultLogger(sink, null, true, [LogCategory.Perf]);
+
+        logger.perf("suppressed", 0.1);
+
+        expect(sink.records).toHaveLength(0);
+    });
+});

@@ -21,7 +21,8 @@
 - User trip layer (`__user__`) — points created via tap-callout star rating or bookmark toggle (long-press/right-click creation and instant right-click delete removed, see [Explicit Point Delete](https://github.com/croicu/geo-browser/issues/78)); localStorage + gateway storage; pressure-based HSL color.
 - Image overlay — paste/Google/Apple image sources; 3-DOF editor (translate, scale, opacity); geo-lock pin; 1-DOF anchor pin variant.
 - Blue dot detection — canvas pixel scan auto-aligns a pasted map image to the GPS position; "I feel lucky" manual trigger.
-- Tile provider abstraction — CARTO Voyager default, OSM available; one persistent `MapLayerFlyoutControl` owns the tile layer for the whole session.
+- Tile provider abstraction — OSM default (cached, offline-capable), Carto available (online-only); one persistent `MapLayerFlyoutControl` owns the tile layer for the whole session.
+- Offline tile caching ([geo-browser#103](https://github.com/croicu/geo-browser/issues/103)) — record-while-browsing (VCR-style record/stop toggle, no bulk pre-fetch — OSM's tile policy prohibits that outright), separate clear-cache button, Carto disabled while offline.
 - Map layer flyout — `MapLayerFlyoutControl` replaced the old `TileProviderControl` + `LayerControl`; single topright control with Map type always, plus Map Details layer list while a current area exists.
 - Viewport & per-area state persistence — shared map center/zoom (`MapViewState`) and per-area layer visibility (`AreaViewState`) persist independently; no "last view" mode/area to restore.
 - Single-tap layer visibility toggle — removed two-tap expand behavior.

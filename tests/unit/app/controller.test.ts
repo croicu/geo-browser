@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Controller } from "../../../src/app/controller";
 import { setLogger } from "../../../src/services";
 import { StubStorage } from "../../stubs/stubStorage";
+import { StubLogger } from "../../stubs/stubLogger";
 
 import type { AreaSummary } from "../../../src/protocols";
 
@@ -56,16 +57,14 @@ function fakeCatalog(areas: ReturnType<typeof fakeArea>[]) {
 }
 
 describe("Controller", () => {
-    const logger = {
-        info: vi.fn(),
-        warn: vi.fn(),
-        error: vi.fn(),
-    };
-
     beforeEach(() => {
         vi.clearAllMocks();
 
-        setLogger(logger as any);
+        // Named stub, not an ad-hoc `as any`-cast object literal (TypeScript Style) -- a partial
+        // mock missing a real Logger method (e.g. warning/diagnostic/fatal) silently breaks the
+        // moment any exercised code path calls it, as happened when CachingTileLayer's
+        // createTile() error path (geo-browser#103) started calling .warning().
+        setLogger(new StubLogger());
         document.body.innerHTML = `<div id="app"></div>`;
     });
 

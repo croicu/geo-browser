@@ -27,6 +27,11 @@ export interface Logger {
     warning(message: string, props?: Record<string, unknown>, category?: string): void;
     error(message: string, error?: unknown, props?: Record<string, unknown>, category?: string): void;
     fatal(message: string, error?: unknown, props?: Record<string, unknown>, category?: string): void;
+    // Duration marker for a timing-sensitive span (a network call, a slow computation, anything
+    // worth measuring). Always logged at info under the fixed LogCategory.Perf -- not the
+    // caller's choice, unlike every other Logger method -- so every perf marker in the app is
+    // filterable together via ?logCategory=perf regardless of which component logged it.
+    perf(description: string, elapsedSeconds: number): void;
 }
 
 export interface View {
@@ -309,6 +314,36 @@ export interface DestinationStore {
     clear(): void;
 }
 
+// Byte-level tile cache, keyed by the tile's canonical URL (see tiles/tileUrl.ts). One instance
+// per area -- backing implementation is a Cache API cache named per area
+// (runtime/cacheApiTileCacheStore.ts) — kept behind this interface so tiles/tileFetcher.ts stays
+// Leaflet-free and unit-testable with a stub. See geo-browser#103.
+//
+// No bulk-prefetch job -- record-while-browsing only (see TileCacheStatus below): OSM's tile
+// usage policy explicitly prohibits "download for offline use"/bulk pre-fetching ("Bulk
+// downloading... [t]his includes... [c]ommon examples include... downloading for offline usage"
+// -- confirmed against the actual policy source repo's history, not just current wording; this
+// was never compliant, at any rate limit). Caching only the tiles a live viewport-driven fetch
+// already requests (Leaflet's own "modest, short-range look-ahead") is the policy's own
+// explicitly *permitted* pattern, so recording just flips write-through on for ordinary tile
+// loads instead of pre-fetching anything. Which area's tiles get written is determined by
+// whichever area is current when the fetch happens, not by the tile's own geography -- a tile
+// near an area boundary is attributed to whichever area you were browsing it under, not
+// necessarily the "closest" one.
+export interface TileCacheStore {
+    match(url: string): Promise<Response | undefined>;
+    put(url: string, response: Response): Promise<void>;
+    delete(url: string): Promise<boolean>;
+    // Wipes every tile cached for this area (this store's own named cache only).
+    clear(): Promise<void>;
+}
+
+export type TileCacheStatus = "idle" | "recording";
+
+export interface TileCacheWidgetHandle extends WidgetHandle {
+    setStatus(status: TileCacheStatus): void;
+}
+
 // The flyout owns the tile layer's lifecycle (see MapLayerFlyoutControl), which
 // must survive across current-area transitions — swapping the layer list via
 // setLayers() must never tear down/rebuild the control itself (that would
@@ -320,6 +355,19 @@ export interface MapLayerFlyoutHandle extends WidgetHandle {
         onToggle: (layerId: string, visible: boolean) => void,
         onExportUserPoints?: () => void
     ): void;
+
+    // The tile layer itself is session-level (owned by this flyout, never recreated -- see this
+    // interface's doc comment above), but whether it should write fetched tiles into the cache,
+    // and which area's own named cache it writes into, is per-current-area/per-recording-session.
+    // CurrentAreaBundle calls this when recording starts/stops and on attach/hide/destroy rather
+    // than the tile layer being reconstructed. enabled is false when no area is current or
+    // recording is off; areaId is still passed even when disabling (harmless -- only matters once
+    // enabled again) so the flyout always knows which area to resume writing into.
+    setTileCacheEnabled(enabled: boolean, areaId: string): void;
+
+    // Wipes every tile cached for one specific area (its own named Cache API cache -- see
+    // TileCacheStore's doc comment) -- not every area's tiles.
+    clearTileCache(areaId: string): Promise<void>;
 }
 
 export interface WidgetFactory {
@@ -346,4 +394,10 @@ export interface WidgetFactory {
         bbox: [number, number, number, number],
         onResult: (latLng: [number, number], displayName: string) => void
     ): WidgetHandle;
+
+    createTileCacheWidget(
+        initialStatus: TileCacheStatus,
+        onToggleRecording: () => void,
+        onClearCache: () => void
+    ): TileCacheWidgetHandle;
 }

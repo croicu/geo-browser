@@ -1,5 +1,5 @@
 import type { GeoArea } from "../../catalog/area";
-import type { ControllerActions, DestinationPoint, DestinationStore, GatewayService, LayerFactory, MapLayerFlyoutHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle } from "../../contracts";
+import type { ControllerActions, DestinationPoint, DestinationStore, GatewayService, LayerFactory, MapLayerFlyoutHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, TileCacheWidgetHandle } from "../../contracts";
 import type { AreaViewState } from "../../state/areaViewState";
 import { getLogger } from "../../services";
 import { DestinationWidget } from "./destinationWidget";
@@ -21,6 +21,7 @@ import { EmptyCalloutWidget } from "./emptyCalloutWidget";
 import type { EmptyCalloutWidgetOptions } from "./emptyCalloutWidget";
 import type { StarCount } from "./starRatingControl";
 import { GeoLayer } from "../../catalog/layer";
+import { requestPersistentStorage } from "../../runtime/storagePersistence";
 
 const POI_MIN_ZOOM_DEFAULT = 16;
 
@@ -96,6 +97,8 @@ export class CurrentAreaBundle {
     private _emptySpacePopup?: MapPopupHandle;
     private _emptyCalloutLatLng?: [number, number];
     private _pendingBookmark = false;
+    private _tileCacheWidget?: TileCacheWidgetHandle;
+    private _tileCacheRecording = false;
 
     private _clickCleanup?: () => void;
     private _zoomCleanup?: () => void;
@@ -158,6 +161,8 @@ export class CurrentAreaBundle {
         );
         searchWidget.addTo(this._map);
         this._searchWidget = searchWidget;
+
+        this.setupTileCache();
 
         const imageOverlay = new ImageOverlayWidget(this._map, {
             areaBbox: this._area.bbox,
@@ -230,6 +235,10 @@ export class CurrentAreaBundle {
         this._searchWidget?.remove();
         this._searchWidget = undefined;
 
+        this.stopTileCacheRecording("hide");
+        this._tileCacheWidget?.remove();
+        this._tileCacheWidget = undefined;
+
         // Saves its snapshot on destroy() (position/scale/opacity/lock/pin
         // state) and restores it automatically the next time it's rendered —
         // this hide/show cycle is exactly the same recreation the snapshot
@@ -257,6 +266,8 @@ export class CurrentAreaBundle {
         );
         searchWidget.addTo(this._map);
         this._searchWidget = searchWidget;
+
+        this.setupTileCache();
 
         const imageOverlay = new ImageOverlayWidget(this._map, {
             areaBbox: this._area.bbox,
@@ -287,6 +298,10 @@ export class CurrentAreaBundle {
 
         this._searchWidget?.remove();
         this._searchWidget = undefined;
+
+        this.stopTileCacheRecording("destroy");
+        this._tileCacheWidget?.remove();
+        this._tileCacheWidget = undefined;
 
         this._imageOverlayWidget?.destroy();
         this._imageOverlayWidget = undefined;
@@ -657,6 +672,73 @@ export class CurrentAreaBundle {
             visible: false,
             style: { opacity: 0.3, color: "#00007f" },
         });
+    }
+
+    // Offline tile caching (geo-browser#103) -- record-while-browsing, not bulk pre-fetch. OSM's
+    // tile usage policy explicitly prohibits any "download for offline use" pattern regardless of
+    // rate-limiting (confirmed against the actual policy source repo's history, not just current
+    // wording -- this was never compliant at any rate limit). Recording only flips write-through
+    // on for whatever tiles Leaflet's own ordinary viewport-driven loading already requests --
+    // nothing is pre-fetched, so there's no total/percentage, just idle/recording. Called from
+    // both attach() and show() -- always starts idle; recording never persists across a
+    // reattach/reload, it's a deliberate, in-the-moment toggle, not a resumable job.
+    private setupTileCache(): void {
+        this._tileCacheRecording = false;
+
+        const widget = this._widgetFactory.createTileCacheWidget(
+            "idle",
+            () => this.onTileCacheToggleRecording(),
+            () => this.onTileCacheClear()
+        );
+        widget.addTo(this._map);
+        this._tileCacheWidget = widget;
+
+        // Registers this area as the one to attribute cached tiles to, even though recording
+        // itself starts off -- so the flyout already knows which area's cache to write into the
+        // moment the user taps record, without a second round-trip.
+        this._flyout.setTileCacheEnabled(false, this._area.id);
+    }
+
+    private onTileCacheToggleRecording(): void {
+        this._tileCacheRecording = !this._tileCacheRecording;
+        const areaId = this._area.id;
+        getLogger().info("current_area_bundle.tile_cache.recording", { areaId, recording: this._tileCacheRecording });
+
+        // Ask for persistent storage the moment recording actually starts -- exactly the point at
+        // which we're about to write data worth surviving the browser's own storage-pressure/
+        // inactivity eviction (e.g. recording a trip's cities weeks before departure, then not
+        // reopening the app until landing). See runtime/storagePersistence.ts.
+        if (this._tileCacheRecording) {
+            requestPersistentStorage();
+        }
+
+        this._flyout.setTileCacheEnabled(this._tileCacheRecording, areaId);
+        this._tileCacheWidget?.setStatus(this._tileCacheRecording ? "recording" : "idle");
+    }
+
+    // Shared by hide()/destroy() -- recording has no meaning once this bundle isn't showing the
+    // live viewport anymore (unlike the old bulk-job design, there's no background work to keep
+    // running independent of the widget). Only logs when it actually stopped something -- see
+    // CLAUDE.md's Logging Rules on gating high-frequency-handler transitions on "did anything
+    // actually change": hide()/show() can fire often near the MIN_LOADED_ZOOM boundary, and a
+    // silent reset here was exactly the kind of undiagnosable transition that caused real
+    // confusion while testing this feature (recording appeared to just stop working).
+    private stopTileCacheRecording(reason: "hide" | "destroy"): void {
+        if (this._tileCacheRecording) {
+            getLogger().info("current_area_bundle.tile_cache.recording_stopped", { areaId: this._area.id, reason });
+        }
+        this._tileCacheRecording = false;
+        this._flyout.setTileCacheEnabled(false, this._area.id);
+    }
+
+    private onTileCacheClear(): void {
+        const log = getLogger();
+        const areaId = this._area.id;
+        log.info("current_area_bundle.tile_cache.clear.start", { areaId });
+        this._flyout
+            .clearTileCache(areaId)
+            .then(() => log.info("current_area_bundle.tile_cache.clear.end", { areaId }))
+            .catch((err) => log.error("current_area_bundle.tile_cache.clear.error", err, { areaId }));
     }
 
     private async synthesizeUserLayerView(): Promise<void> {

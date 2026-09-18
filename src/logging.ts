@@ -15,6 +15,11 @@ import type {
 export const LogCategory = {
     General: "general",
     AreaLifecycle: "area_lifecycle",
+    TileCache: "tile_cache",
+    // Fixed category for Logger.perf() -- see that method's doc comment in contracts.ts. Never
+    // pass this as a category to any other Logger method; it's reserved so ?logCategory=perf
+    // reliably isolates every duration marker regardless of which component logged it.
+    Perf: "perf",
 } as const;
 
 export type LogCategory = typeof LogCategory[keyof typeof LogCategory];
@@ -104,6 +109,10 @@ export class DefaultLogger implements Logger {
 
     fatal(message: string, error?: unknown, props?: Record<string, unknown>, category?: string): void {
         this.write("fatal", message, error, props, category);
+    }
+
+    perf(description: string, elapsedSeconds: number): void {
+        this.write("info", `duration: ${elapsedSeconds.toFixed(3)}s - ${description}`, undefined, undefined, LogCategory.Perf);
     }
 
     private write(
