@@ -834,8 +834,12 @@ class CachingTileLayer extends L.TileLayer {
                 // debug rectangle: that only marks a tile actually served from the cache, not one
                 // that merely got a placeholder while it loaded live.
                 if (shown) {
+                    // Overwrite BOTH handlers, not just onload -- the placeholder's stale onerror
+                    // would otherwise still be attached too, and could fire done() a second time
+                    // with an error if this final assignment somehow fails to decode.
                     const objectUrl = URL.createObjectURL(blob);
                     img.onload = () => URL.revokeObjectURL(objectUrl);
+                    img.onerror = () => URL.revokeObjectURL(objectUrl);
                     img.src = objectUrl;
                     return;
                 }
@@ -980,9 +984,21 @@ class OfflineFallbackTileLayer extends L.TileLayer {
     // the placeholder already satisfied Leaflet's done() callback, so this is a silent in-place
     // upgrade, not a new tile load as far as Leaflet is concerned. A failure here just leaves the
     // placeholder showing, which is strictly better than reverting to nothing.
+    //
+    // MUST clear img.onload/onerror before reassigning img.src -- otherwise the placeholder's own
+    // onload handler (still attached from showPlaceholderThenUpgrade, since nothing had cleared it)
+    // fires again on this new load, calling done() a second time for the same tile (a Leaflet
+    // contract violation) AND recursively calling upgradeToLiveTile() again, creating a runaway
+    // loop of repeated live fetches that never settles. Confirmed live: this caused both a blank
+    // tile appearing over the placeholder after a zoom transition, and the placeholder persisting
+    // indefinitely instead of upgrading even once the network came back.
     private upgradeToLiveTile(img: HTMLImageElement, coords: L.Coords): void {
         const liveImg = new Image();
-        liveImg.onload = () => { img.src = liveImg.src; };
+        liveImg.onload = () => {
+            img.onload = null;
+            img.onerror = null;
+            img.src = liveImg.src;
+        };
         liveImg.src = this.getTileUrl(coords);
     }
 }
