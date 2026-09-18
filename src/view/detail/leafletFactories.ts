@@ -64,6 +64,8 @@ import { CacheApiTileCacheStore } from "../../runtime/cacheApiTileCacheStore";
 import { buildTileUrl, type TileCoord } from "../../tiles/tileUrl";
 import { shouldUseCachingLayer, shouldRebuildTileLayer } from "../../tiles/tileCacheDecision";
 import { tileToBounds } from "../../tiles/tileBounds";
+import { computeParentTileCrop, type ParentTileCrop } from "../../tiles/tileParent";
+import { AreaRenderClassifier } from "../map/areaRenderClassifier";
 import { isOnline, onNetworkStatusChange } from "../../runtime/networkStatus";
 import { Context } from "../../runtime/context";
 
@@ -642,6 +644,59 @@ function getTileFetcherForArea(areaId: string): TileFetcher {
     return fetcher;
 }
 
+// Shared by both CachingTileLayer and OfflineFallbackTileLayer below -- a genuine cache miss in
+// either class should show a coarser-zoom placeholder while the real tile is still resolving,
+// rather than a blank rectangle, regardless of whether that resolution path is a manual
+// fetch-with-write-through (CachingTileLayer) or a native best-effort <img> load
+// (OfflineFallbackTileLayer). Free functions, not methods, so both classes can share them without
+// a common base class -- their "how to finally display the real tile" logic differs enough
+// (write-through + debug marking vs. plain native load) that forcing them into one class hierarchy
+// would be more confusing than two similar-but-distinct createTile() implementations.
+//
+// Walks parent zoom levels closest-first, looking for one already cached, returning a
+// cropped-and-scaled placeholder blob from the first hit. undefined if nothing's cached at any
+// level up to AreaRenderClassifier.MIN_LOADED_ZOOM (reused rather than inventing a second "how far
+// is too far" threshold -- below that floor no area's tiles are meaningfully "nearby" either).
+async function findParentPlaceholder(
+    fetcher: TileFetcher,
+    provider: TileProvider,
+    tileCoord: TileCoord,
+    tileSizePx: number
+): Promise<Blob | undefined> {
+    for (let levelsUp = 1; ; levelsUp++) {
+        const crop = computeParentTileCrop(tileCoord, levelsUp, AreaRenderClassifier.MIN_LOADED_ZOOM);
+        if (!crop) {
+            return undefined;
+        }
+        const parentBlob = await fetcher.tryCache(buildTileUrl(provider, crop.parent));
+        if (parentBlob) {
+            return cropAndScale(parentBlob, crop, tileSizePx);
+        }
+    }
+}
+
+async function cropAndScale(parentBlob: Blob, crop: ParentTileCrop, tileSizePx: number): Promise<Blob> {
+    const bitmap = await createImageBitmap(parentBlob);
+    const canvas = document.createElement("canvas");
+    canvas.width = tileSizePx;
+    canvas.height = tileSizePx;
+
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+        ctx.drawImage(
+            bitmap,
+            crop.cropX * bitmap.width, crop.cropY * bitmap.height,
+            crop.cropSize * bitmap.width, crop.cropSize * bitmap.height,
+            0, 0, tileSizePx, tileSizePx
+        );
+    }
+    bitmap.close();
+
+    return new Promise((resolve, reject) => {
+        canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("canvas.toBlob failed")));
+    });
+}
+
 // Cache-first tile layer -- ONLY constructed while the current area either has tile caching
 // (recording) enabled, or `?debug` is set (see buildTileLayer/shouldUseCachingLayer below); a
 // disabled/no-current-area/non-debug map always uses a plain L.tileLayer instead. This matters for
@@ -713,28 +768,28 @@ class CachingTileLayer extends L.TileLayer {
     // than Leaflet's own getTileUrl()/{s} subdomain rotation -- the same tile must always resolve
     // to the same URL, or a tile cached under one {s} host could miss the cache when a later
     // request round-robins to a different one.
+    //
+    // Checks the cache directly (rather than going straight to fetchTile()) so a genuine miss can
+    // race a coarser-zoom placeholder against the real (write-through) fetch -- see
+    // findParentPlaceholder's doc comment. Without this, a slow live fetch under `?debug`/recording
+    // showed a blank rectangle exactly like the pre-cache-first days, since this class's own
+    // fetchTile() call has no placeholder awareness on its own.
     protected createTile(coords: L.Coords, done: L.DoneCallback): HTMLElement {
         const img = document.createElement("img");
         const tileCoord = { x: coords.x, y: coords.y, z: coords.z };
         const url = buildTileUrl(this._provider, tileCoord);
 
         this._fetcher
-            .fetchTile(url, this._writeThrough)
-            .then(({ blob, cacheHit }) => {
-                if (cacheHit && this._debugOverlay) {
-                    this.addDebugRectangle(coords, tileCoord);
+            .tryCache(url)
+            .then((cachedBlob) => {
+                if (cachedBlob) {
+                    if (this._debugOverlay) {
+                        this.addDebugRectangle(coords, tileCoord);
+                    }
+                    this.showBlob(img, cachedBlob, done, `cached tile image decode failed: ${url}`);
+                    return;
                 }
-
-                const objectUrl = URL.createObjectURL(blob);
-                img.onload = () => {
-                    URL.revokeObjectURL(objectUrl);
-                    done(undefined, img);
-                };
-                img.onerror = () => {
-                    URL.revokeObjectURL(objectUrl);
-                    done(new Error(`tile image decode failed: ${url}`), img);
-                };
-                img.src = objectUrl;
+                this.resolveLiveWithPlaceholder(img, tileCoord, url, done);
             })
             .catch((err) => {
                 getLogger().warning("caching_tile_layer.tile_error", { url, err }, LogCategory.TileCache);
@@ -742,6 +797,58 @@ class CachingTileLayer extends L.TileLayer {
             });
 
         return img;
+    }
+
+    private showBlob(img: HTMLImageElement, blob: Blob, done: L.DoneCallback, decodeErrorMessage: string): void {
+        const objectUrl = URL.createObjectURL(blob);
+        img.onload = () => { URL.revokeObjectURL(objectUrl); done(undefined, img); };
+        img.onerror = () => { URL.revokeObjectURL(objectUrl); done(new Error(decodeErrorMessage), img); };
+        img.src = objectUrl;
+    }
+
+    // Races a coarser-zoom placeholder against the real fetchTile() call (which handles
+    // write-through internally, regardless of which one wins the race). Whichever resolves first
+    // satisfies Leaflet's done(); if the placeholder wins, the real tile silently replaces it in
+    // place once it arrives -- no second done() call, matching OfflineFallbackTileLayer's own
+    // upgrade pattern.
+    private resolveLiveWithPlaceholder(
+        img: HTMLImageElement,
+        tileCoord: TileCoord,
+        url: string,
+        done: L.DoneCallback
+    ): void {
+        let shown = false;
+
+        findParentPlaceholder(this._fetcher, this._provider, tileCoord, this.getTileSize().x)
+            .then((placeholderBlob) => {
+                if (placeholderBlob && !shown) {
+                    shown = true;
+                    this.showBlob(img, placeholderBlob, done, `placeholder tile decode failed: ${url}`);
+                }
+            });
+
+        this._fetcher
+            .fetchTile(url, this._writeThrough)
+            .then(({ blob }) => {
+                // A genuine miss just confirmed above -- cacheHit is always false here, so no
+                // debug rectangle: that only marks a tile actually served from the cache, not one
+                // that merely got a placeholder while it loaded live.
+                if (shown) {
+                    const objectUrl = URL.createObjectURL(blob);
+                    img.onload = () => URL.revokeObjectURL(objectUrl);
+                    img.src = objectUrl;
+                    return;
+                }
+                shown = true;
+                this.showBlob(img, blob, done, `tile image decode failed: ${url}`);
+            })
+            .catch((err) => {
+                getLogger().warning("caching_tile_layer.tile_error", { url, err }, LogCategory.TileCache);
+                if (!shown) {
+                    shown = true;
+                    done(err instanceof Error ? err : new Error(String(err)), img);
+                }
+            });
     }
 
     private addDebugRectangle(coords: L.Coords, tileCoord: TileCoord): void {
@@ -752,7 +859,7 @@ class CachingTileLayer extends L.TileLayer {
         const bounds = tileToBounds(tileCoord);
         const rectangle = L.rectangle(
             [[bounds.south, bounds.west], [bounds.north, bounds.east]],
-            { pane: TILE_CACHE_DEBUG_PANE, color: "#00e676", weight: 3, fillColor: "#00e676", fillOpacity: 0.28, interactive: false }
+            { pane: TILE_CACHE_DEBUG_PANE, color: "#00e676", weight: 2, opacity: 0.5, fillColor: "#00e676", fillOpacity: 0.1, interactive: false }
         );
         rectangle.addTo(this._debugOverlay);
         this._debugRectanglesByKey.set(key, rectangle);
@@ -766,12 +873,10 @@ function tileCoordsKey(coords: L.Coords): string {
 // The default OSM tile layer whenever a current area exists but recording/debug isn't active --
 // i.e. ordinary browsing, the common case. Cache-first: a cached tile is always shown immediately,
 // with no network involved at all -- fetching from OSM is best-effort and only ever attempted on
-// a genuine cache miss, via a plain native `<img src>` (fast, parallel via Leaflet's own {s}
-// subdomain rotation, no manual fetch/blob/object-URL overhead for the miss case). This also
-// covers a slow/flaky connection, not just fully offline: a cached tile now never waits on the
-// network at all, regardless of how slow or unreliable it is -- the cache lookup itself is a fast
-// local Cache API read, not a network round-trip. Never writes to the cache -- write-through stays
-// exclusively tied to explicit recording (CachingTileLayer above).
+// a genuine cache miss. This also covers a slow/flaky connection, not just fully offline: a cached
+// tile now never waits on the network at all, regardless of how slow or unreliable it is -- the
+// cache lookup itself is a fast local Cache API read, not a network round-trip. Never writes to
+// the cache -- write-through stays exclusively tied to explicit recording (CachingTileLayer above).
 //
 // This fixes a real gap, not a hypothetical: recording writes tiles into the cache, but before
 // this class existed, buildTileLayer() only ever used a cache-aware layer while actively recording
@@ -780,6 +885,14 @@ function tileCoordsKey(coords: L.Coords): string {
 // actually used day to day) never read the cache at all. Confirmed live: reopening the app fully
 // offline showed a completely blank map background despite tiles genuinely being cached from an
 // earlier recording session, because nothing was ever asking for them.
+//
+// On a genuine miss, also tries a blurry placeholder from a coarser-zoom parent tile that's
+// already cached (crop the matching quadrant, scale it up) rather than a blank rectangle while the
+// real tile is still loading -- the same pattern Google Maps and others use. Walks up parent zoom
+// levels only as far as AreaRenderClassifier.MIN_LOADED_ZOOM (below that floor no area's tiles are
+// meaningfully "nearby" either, so a placeholder from further out isn't worth showing), stopping at
+// the first (least blurry) hit. Falls through to a plain best-effort native load if no placeholder
+// is available at any level.
 class OfflineFallbackTileLayer extends L.TileLayer {
     private readonly _provider: TileProvider;
     private readonly _fetcher: TileFetcher;
@@ -792,41 +905,85 @@ class OfflineFallbackTileLayer extends L.TileLayer {
 
     protected createTile(coords: L.Coords, done: L.DoneCallback): HTMLElement {
         const img = document.createElement("img");
+        const tileCoord = { x: coords.x, y: coords.y, z: coords.z };
         // Fixed single subdomain (not Leaflet's own getTileUrl()/{s} rotation) -- must match
         // exactly what CachingTileLayer/buildTileUrl() used as the cache key while recording, or a
-        // tile genuinely cached under this key would still miss here. Only used for the cache
-        // lookup itself; the actual network fetch on a miss (below) uses Leaflet's normal
-        // {s}-rotating getTileUrl() for full connection-parallelism.
-        const cacheKey = buildTileUrl(this._provider, { x: coords.x, y: coords.y, z: coords.z });
+        // tile genuinely cached under this key would still miss here. Only used for cache
+        // lookups; the actual network fetch on a miss uses Leaflet's normal {s}-rotating
+        // getTileUrl() for full connection-parallelism.
+        const cacheKey = buildTileUrl(this._provider, tileCoord);
 
         this._fetcher
             .tryCache(cacheKey)
             .then((blob) => {
                 if (blob) {
-                    const objectUrl = URL.createObjectURL(blob);
-                    img.onload = () => { URL.revokeObjectURL(objectUrl); done(undefined, img); };
-                    img.onerror = () => { URL.revokeObjectURL(objectUrl); done(new Error(`cached tile image decode failed: ${cacheKey}`), img); };
-                    img.src = objectUrl;
+                    this.showBlob(img, blob, done, `cached tile image decode failed: ${cacheKey}`);
                     return;
                 }
-
-                // Cache miss -- best-effort native load, no special handling. If this fails
-                // (offline, slow network that eventually times out, whatever), the tile just
-                // doesn't show, exactly like any ordinary Leaflet tile layer with no cache at all.
-                img.onload = () => done(undefined, img);
-                img.onerror = () => done(new Error(`tile fetch failed and not cached: ${cacheKey}`), img);
-                img.src = this.getTileUrl(coords);
+                this.showPlaceholderThenUpgrade(img, tileCoord, coords, cacheKey, done);
             })
             .catch((err) => {
                 getLogger().warning("offline_fallback_tile_layer.cache_error", { url: cacheKey, err }, LogCategory.TileCache);
                 // The cache lookup itself failed (unexpected) -- still attempt the network as a
                 // last resort rather than failing the tile outright.
-                img.onload = () => done(undefined, img);
-                img.onerror = () => done(err instanceof Error ? err : new Error(String(err)), img);
-                img.src = this.getTileUrl(coords);
+                this.loadLiveTile(img, coords, cacheKey, done, err instanceof Error ? err : new Error(String(err)));
             });
 
         return img;
+    }
+
+    private showBlob(img: HTMLImageElement, blob: Blob, done: L.DoneCallback, decodeErrorMessage: string): void {
+        const objectUrl = URL.createObjectURL(blob);
+        img.onload = () => { URL.revokeObjectURL(objectUrl); done(undefined, img); };
+        img.onerror = () => { URL.revokeObjectURL(objectUrl); done(new Error(decodeErrorMessage), img); };
+        img.src = objectUrl;
+    }
+
+    // Best-effort native load, no special handling. If this fails (offline, slow network that
+    // eventually times out, whatever), the tile just doesn't show, exactly like any ordinary
+    // Leaflet tile layer with no cache at all.
+    private loadLiveTile(img: HTMLImageElement, coords: L.Coords, cacheKey: string, done: L.DoneCallback, priorErr?: Error): void {
+        img.onload = () => done(undefined, img);
+        img.onerror = () => done(priorErr ?? new Error(`tile fetch failed and not cached: ${cacheKey}`), img);
+        img.src = this.getTileUrl(coords);
+    }
+
+    private showPlaceholderThenUpgrade(
+        img: HTMLImageElement,
+        tileCoord: TileCoord,
+        coords: L.Coords,
+        cacheKey: string,
+        done: L.DoneCallback
+    ): void {
+        findParentPlaceholder(this._fetcher, this._provider, tileCoord, this.getTileSize().x)
+            .then((placeholderBlob) => {
+                if (!placeholderBlob) {
+                    this.loadLiveTile(img, coords, cacheKey, done);
+                    return;
+                }
+                const objectUrl = URL.createObjectURL(placeholderBlob);
+                img.onload = () => {
+                    URL.revokeObjectURL(objectUrl);
+                    done(undefined, img);
+                    this.upgradeToLiveTile(img, coords);
+                };
+                img.onerror = () => { URL.revokeObjectURL(objectUrl); done(new Error(`placeholder tile decode failed: ${cacheKey}`), img); };
+                img.src = objectUrl;
+            })
+            .catch((err) => {
+                getLogger().warning("offline_fallback_tile_layer.placeholder_error", { url: cacheKey, err }, LogCategory.TileCache);
+                this.loadLiveTile(img, coords, cacheKey, done);
+            });
+    }
+
+    // Fetches the real tile live (best-effort, no writeThrough) and swaps it in once loaded --
+    // the placeholder already satisfied Leaflet's done() callback, so this is a silent in-place
+    // upgrade, not a new tile load as far as Leaflet is concerned. A failure here just leaves the
+    // placeholder showing, which is strictly better than reverting to nothing.
+    private upgradeToLiveTile(img: HTMLImageElement, coords: L.Coords): void {
+        const liveImg = new Image();
+        liveImg.onload = () => { img.src = liveImg.src; };
+        liveImg.src = this.getTileUrl(coords);
     }
 }
 
