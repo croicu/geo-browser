@@ -127,6 +127,32 @@ describe("TileFetcher", () => {
         expect(stats.liveFetches).toBe(2);
     });
 
+    // tryCache() is used by leafletFactories.ts's OfflineFallbackTileLayer as an onerror fallback
+    // after a native <img> load already failed -- it must never attempt a live fetch on a miss,
+    // since that would just be a second, redundant failed network attempt.
+    it("tryCache() returns the cached blob on a hit, without calling fetch", async () => {
+        const store = new StubTileCacheStore();
+        await store.put(TILE_URL, new Response(new Blob(["cached-bytes"]), { status: 200 }));
+        const fetchFn = vi.fn();
+        const fetcher = new TileFetcher(store, fetchFn);
+
+        const blob = await fetcher.tryCache(TILE_URL);
+
+        expect(fetchFn).not.toHaveBeenCalled();
+        expect(blob).toBeInstanceOf(Blob);
+    });
+
+    it("tryCache() returns undefined on a miss, without attempting a live fetch", async () => {
+        const store = new StubTileCacheStore();
+        const fetchFn = vi.fn();
+        const fetcher = new TileFetcher(store, fetchFn);
+
+        const blob = await fetcher.tryCache(TILE_URL);
+
+        expect(fetchFn).not.toHaveBeenCalled();
+        expect(blob).toBeUndefined();
+    });
+
     it("resetStats() clears accumulated stats back to empty", async () => {
         setLogger(new StubLogger());
         const store = new StubTileCacheStore();

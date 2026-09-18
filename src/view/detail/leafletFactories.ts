@@ -763,10 +763,77 @@ function tileCoordsKey(coords: L.Coords): string {
     return `${coords.z}/${coords.x}/${coords.y}`;
 }
 
+// The default OSM tile layer whenever a current area exists but recording/debug isn't active --
+// i.e. ordinary browsing, the common case. Cache-first: a cached tile is always shown immediately,
+// with no network involved at all -- fetching from OSM is best-effort and only ever attempted on
+// a genuine cache miss, via a plain native `<img src>` (fast, parallel via Leaflet's own {s}
+// subdomain rotation, no manual fetch/blob/object-URL overhead for the miss case). This also
+// covers a slow/flaky connection, not just fully offline: a cached tile now never waits on the
+// network at all, regardless of how slow or unreliable it is -- the cache lookup itself is a fast
+// local Cache API read, not a network round-trip. Never writes to the cache -- write-through stays
+// exclusively tied to explicit recording (CachingTileLayer above).
+//
+// This fixes a real gap, not a hypothetical: recording writes tiles into the cache, but before
+// this class existed, buildTileLayer() only ever used a cache-aware layer while actively recording
+// or under `?debug` -- a plain L.tileLayer never touches the Cache API in either direction. Every
+// ordinary "just open the app and browse" session (recording off, no debug flag -- how the app is
+// actually used day to day) never read the cache at all. Confirmed live: reopening the app fully
+// offline showed a completely blank map background despite tiles genuinely being cached from an
+// earlier recording session, because nothing was ever asking for them.
+class OfflineFallbackTileLayer extends L.TileLayer {
+    private readonly _provider: TileProvider;
+    private readonly _fetcher: TileFetcher;
+
+    constructor(provider: TileProvider, options: L.TileLayerOptions, fetcher: TileFetcher) {
+        super(provider.urlTemplate, options);
+        this._provider = provider;
+        this._fetcher = fetcher;
+    }
+
+    protected createTile(coords: L.Coords, done: L.DoneCallback): HTMLElement {
+        const img = document.createElement("img");
+        // Fixed single subdomain (not Leaflet's own getTileUrl()/{s} rotation) -- must match
+        // exactly what CachingTileLayer/buildTileUrl() used as the cache key while recording, or a
+        // tile genuinely cached under this key would still miss here. Only used for the cache
+        // lookup itself; the actual network fetch on a miss (below) uses Leaflet's normal
+        // {s}-rotating getTileUrl() for full connection-parallelism.
+        const cacheKey = buildTileUrl(this._provider, { x: coords.x, y: coords.y, z: coords.z });
+
+        this._fetcher
+            .tryCache(cacheKey)
+            .then((blob) => {
+                if (blob) {
+                    const objectUrl = URL.createObjectURL(blob);
+                    img.onload = () => { URL.revokeObjectURL(objectUrl); done(undefined, img); };
+                    img.onerror = () => { URL.revokeObjectURL(objectUrl); done(new Error(`cached tile image decode failed: ${cacheKey}`), img); };
+                    img.src = objectUrl;
+                    return;
+                }
+
+                // Cache miss -- best-effort native load, no special handling. If this fails
+                // (offline, slow network that eventually times out, whatever), the tile just
+                // doesn't show, exactly like any ordinary Leaflet tile layer with no cache at all.
+                img.onload = () => done(undefined, img);
+                img.onerror = () => done(new Error(`tile fetch failed and not cached: ${cacheKey}`), img);
+                img.src = this.getTileUrl(coords);
+            })
+            .catch((err) => {
+                getLogger().warning("offline_fallback_tile_layer.cache_error", { url: cacheKey, err }, LogCategory.TileCache);
+                // The cache lookup itself failed (unexpected) -- still attempt the network as a
+                // last resort rather than failing the tile outright.
+                img.onload = () => done(undefined, img);
+                img.onerror = () => done(err instanceof Error ? err : new Error(String(err)), img);
+                img.src = this.getTileUrl(coords);
+            });
+
+        return img;
+    }
+}
+
 // tileCacheAreaId is the area to attribute cached tiles to -- null only when there's no current
 // area at all (CurrentAreaBundle passes the real area id on every setTileCacheEnabled() call, even
-// while recording is off, precisely so a debug-mode read-only CachingTileLayer has an area to read
-// against). See shouldUseCachingLayer for when recording-off still needs the caching layer.
+// while recording is off, precisely so a read-only layer -- debug's CachingTileLayer, or the
+// always-on OfflineFallbackTileLayer -- has an area to read against).
 function buildTileLayer(provider: TileProvider, tileCacheEnabled: boolean, tileCacheAreaId: string | null): L.TileLayer {
     const options: L.TileLayerOptions = {
         maxZoom: provider.maxZoom,
@@ -777,8 +844,12 @@ function buildTileLayer(provider: TileProvider, tileCacheEnabled: boolean, tileC
         options.subdomains = provider.subdomains;
     }
 
-    if (provider === osmTileProvider && tileCacheAreaId && shouldUseCachingLayer(tileCacheEnabled, Context.Instance.debug)) {
-        return new CachingTileLayer(provider, options, getTileFetcherForArea(tileCacheAreaId), tileCacheEnabled);
+    if (provider === osmTileProvider && tileCacheAreaId) {
+        const fetcher = getTileFetcherForArea(tileCacheAreaId);
+        if (shouldUseCachingLayer(tileCacheEnabled, Context.Instance.debug)) {
+            return new CachingTileLayer(provider, options, fetcher, tileCacheEnabled);
+        }
+        return new OfflineFallbackTileLayer(provider, options, fetcher);
     }
 
     return L.tileLayer(provider.urlTemplate, options);
@@ -850,13 +921,12 @@ class MapLayerFlyoutControl extends L.Control {
     }
 
     // The flyout control itself is session-level (see this class's doc comment) and stays put;
-    // only the tile layer it owns gets swapped -- CachingTileLayer only while the current area
-    // actually has caching enabled, a plain (fast) L.tileLayer otherwise. CurrentAreaBundle calls
-    // this on attach/hide/destroy and on recording toggle, not on every pan/zoom, so the one-time
-    // tile flash a swap causes is an acceptable cost for keeping ordinary browsing at full native
-    // tile-loading speed -- see CachingTileLayer's doc comment for why this distinction matters
-    // for perf, not just cache-write correctness. Persisted across a provider switch (see
-    // onTileProviderClick) so re-selecting OSM after briefly viewing Carto doesn't lose it.
+    // only the tile layer it owns gets swapped -- CachingTileLayer while recording/debug,
+    // OfflineFallbackTileLayer otherwise (both area-scoped), a plain L.tileLayer only when there's
+    // no current area at all. CurrentAreaBundle calls this on attach/hide/destroy and on recording
+    // toggle, not on every pan/zoom, so the one-time tile flash a swap causes is an acceptable
+    // cost. Persisted across a provider switch (see onTileProviderClick) so re-selecting OSM after
+    // briefly viewing Carto doesn't lose it.
     setTileCacheEnabled(enabled: boolean, areaId: string): void {
         const wasCaching = this._tileCacheEnabled;
         const areaChanged = this._tileCacheAreaId !== areaId;
@@ -864,11 +934,10 @@ class MapLayerFlyoutControl extends L.Control {
         this._tileCacheEnabled = enabled;
         this._tileCacheAreaId = areaId;
 
-        // See tiles/tileCacheDecision.ts -- a recording toggle always rebuilds (the new layer's
-        // writeThrough is fixed at construction); an area change only rebuilds when the caching
-        // layer is actually in use (recording, or `?debug`), so ordinary non-debug browsing with
-        // recording off never flashes the tiles just because the current area changed.
-        if (shouldRebuildTileLayer(wasCaching, enabled, areaChanged, Context.Instance.debug)) {
+        // See tiles/tileCacheDecision.ts -- both tile-layer classes now used for an area
+        // (CachingTileLayer, OfflineFallbackTileLayer) are area-scoped, so any area change always
+        // rebuilds; a recording toggle always rebuilds too (switches between the two classes).
+        if (shouldRebuildTileLayer(wasCaching, enabled, areaChanged)) {
             this.rebuildTileLayer();
         }
     }
