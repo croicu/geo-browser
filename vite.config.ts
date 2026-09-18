@@ -1,7 +1,23 @@
+import { execSync } from "node:child_process";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
+// Embedded as __APP_VERSION__ (see src/vite-env.d.ts) and shown via a small on-screen badge
+// (main.ts, runtime/appDiagnostics.ts) -- so "which build is actually running on this device"
+// is answerable by looking at the screen, not by guessing. Falls back to "unknown" rather than
+// failing the build if .git isn't available at build time (e.g. a stripped deployment artifact).
+function getAppVersion(): string {
+    try {
+        return execSync("git describe --tags --always --dirty").toString().trim();
+    } catch {
+        return "unknown";
+    }
+}
+
 export default defineConfig({
+    define: {
+        __APP_VERSION__: JSON.stringify(getAppVersion()),
+    },
     plugins: [
         VitePWA({
             registerType: "autoUpdate",
