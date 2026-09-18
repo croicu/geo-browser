@@ -3,18 +3,21 @@
 ## Status: Testing
 
 Tracked as [geo-browser#103](https://github.com/croicu/geo-browser/issues/103), `status:testing`
-— implemented and unit-tested (356/356 tests pass, `tsc`/build clean). Live-tested under `?debug`:
-per-area cache naming confirmed in DevTools (Chrome groups all of an origin's named caches under
-one Cache Storage tree node regardless — a platform constraint, not a bug); also caught and fixed a
-real gap where the cache-hit debug marking required active recording to show at all, since a plain
-tile layer never touches the Cache API (see "`?debug` reads the cache even with recording off"
-below); then, once that was fixed, caught a *second* real bug where the marking still didn't
-visibly render at all despite the Cache API check working correctly (see "Debug marking is a real
-Leaflet layer, not CSS" below) — three live-testing round trips in total before this actually
-worked end to end. This file is the design history — the original spec below (bulk area pre-fetch)
-was scrapped mid-implementation after confirming it violated OSM's tile usage policy outright, not
-just at scale. See **Design history** at the bottom for the full arc; the **current design**
-section below is what's actually implemented.
+— implemented and unit-tested (372/372 tests pass, `tsc`/build clean). This went through many
+live-testing round trips before actually working end to end on a real device: per-area cache
+naming confirmed in DevTools; the cache-hit debug marking needed active recording to show at all
+(fixed, see "`?debug` reads the cache" below); the marking then still didn't visibly render despite
+the Cache API check working (fixed, see "Debug marking is a real Leaflet layer" below); a full
+blank screen on offline cold-start turned out to be three separate service-worker/error-handling
+bugs unrelated to tile caching itself (see geo-browser#107); and finally, once the app could at
+least *start* offline, the map background was still blank because ordinary (non-recording,
+non-debug) browsing never read the tile cache at all (fixed, see "Ordinary browsing... reads the
+cache too" below) — this last one is the actual point of the whole feature, so it shipping broken
+until a real offline field test caught it is the headline lesson of this task. This file is the
+design history — the original spec below (bulk area pre-fetch) was scrapped mid-implementation
+after confirming it violated OSM's tile usage policy outright, not just at scale. See **Design
+history** at the bottom for the full arc; the **current design** section below is what's actually
+implemented.
 
 ## Goal
 
@@ -58,7 +61,25 @@ background even though POI data still renders.
   safe to call unconditionally (guarded on the API's existence). On iOS this mainly pays off if the
   app is added to the Home Screen rather than kept as a plain Safari tab — that's the condition
   WebKit primarily grants persistent mode under.
-- **`?debug` reads the cache even with recording off.** The cache-hit debug marking (below) needs
+- **Ordinary browsing (recording off, no `?debug`) reads the cache too, via `OfflineFallbackTileLayer`.**
+  This is the actual point of the whole feature, and it shipped broken: `buildTileLayer()` originally
+  only ever used a cache-aware layer while recording or under `?debug` — a plain `L.tileLayer`
+  otherwise, which never touches the Cache API in either direction. Confirmed live, on the real trip
+  this feature was built for: reopening the installed app fully offline (recording off, no debug
+  flag — how the app actually gets used) showed a completely blank map background despite tiles
+  genuinely being cached from an earlier recording session.
+- **Cache-first, not fetch-first-with-fallback.** The first version of `OfflineFallbackTileLayer`
+  used a native `<img src>` as the primary load path and only consulted `TileFetcher.tryCache()` on
+  an `onerror` — which fixed the fully-offline case but did nothing for a slow/flaky connection,
+  since a merely-slow load that eventually succeeds never fires `onerror` at all. Explicit
+  correction: "if a tile is in the cache we should always display it, fetching from OSM is always
+  best effort — this will also take care of slow networks." Rewritten so `createTile()` always
+  checks the cache *first*: a hit displays immediately with zero network involvement regardless of
+  connection speed; only a genuine miss falls through to a plain native `<img src>` (Leaflet's own
+  `{s}`-rotating `getTileUrl()`, full connection-parallelism, best-effort — no special handling, a
+  failed load here just doesn't show, exactly like an ordinary tile layer with no cache at all).
+  Never writes to the cache — write-through stays exclusively tied to explicit recording.
+- **`?debug` reads the cache even with recording off, via `CachingTileLayer` specifically.** The cache-hit debug marking (below) needs
   `CachingTileLayer` to actually run so it has something to show — but requiring the user to be
   actively recording just to *see* whether a tile is cached defeats the point of a diagnostic
   ("is my strategy working") that should work while just browsing normally. `src/tiles/tileCacheDecision.ts`'s

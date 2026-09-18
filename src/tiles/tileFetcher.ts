@@ -64,6 +64,16 @@ export class TileFetcher {
         this.resetStats();
     }
 
+    // Read-only: never attempts a live fetch on a miss, unlike fetchTile(). Used by
+    // leafletFactories.ts's OfflineFallbackTileLayer -- its native <img> load already just failed
+    // (that's why this is being called at all), so retrying the same request over the network
+    // would just fail again; this only checks whether an earlier recording session already has
+    // the tile.
+    async tryCache(url: string): Promise<Blob | undefined> {
+        const cached = await this._store.match(url);
+        return cached ? await cached.blob() : undefined;
+    }
+
     // writeThrough controls whether a live (cache-miss) fetch gets written back into the cache --
     // false when the current area doesn't have caching enabled, per the "off by default" rule.
     async fetchTile(url: string, writeThrough: boolean): Promise<TileFetchResult> {
