@@ -33,10 +33,18 @@ export default defineConfig({
                 ],
             },
             workbox: {
-                // Precache the built app shell plus the release catalog (needed for summary map offline).
-                // catalog.head*.json is intentionally excluded — it's the freshness pointer and is
-                // handled by NetworkFirst below so the SW always attempts a fresh fetch.
-                globPatterns: ["**/*.{js,css,html,ico,png,svg}", "release/catalog.json"],
+                // Precache the built app shell. catalog.head*.json/catalog.json/area data are
+                // intentionally excluded from precache -- they're runtime-cached below instead
+                // (NetworkFirst, populated by the first successful online load), so the SW always
+                // attempts a fresh fetch before falling back to whatever was last cached.
+                //
+                // A prior "release/catalog.json" entry here was dead: no such file was ever
+                // produced by the build (silently logged as a glob-pattern-matched-nothing warning
+                // on every build), so it never actually precached anything. Removed rather than
+                // fixed -- the real fix for "first ever offline open with empty caches" would be a
+                // build step that snapshots a known-good catalog into the bundle, which is a
+                // separate, bigger piece of work than this fix covers.
+                globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
 
                 runtimeCaching: [
                     {
@@ -49,9 +57,32 @@ export default defineConfig({
                         },
                     },
                     {
-                        // Area manifests and GeoJSON: network only until the user opts to cache an area.
+                        // The real catalog payload -- catalog.head.json's own catalogUrl points cross-origin
+                        // (geo-places.croicu.com/catalog.json in production), which matched neither this
+                        // rule's sibling above (different filename) nor the /areas/ rule below (not under
+                        // that path), so it had ZERO offline coverage. Confirmed live as the actual cause of
+                        // a full blank screen on a cold-start reopen while offline: Controller.start() awaits
+                        // GeoCatalog.load() with no try/catch, so an unhandled fetch rejection here means
+                        // MapView is never even constructed, regardless of viewport/area or any tile caching.
+                        urlPattern: /\/catalog\.json$/,
+                        handler: "NetworkFirst",
+                        options: {
+                            cacheName: "catalog-data",
+                            networkTimeoutSeconds: 5,
+                        },
+                    },
+                    {
+                        // Area manifests and GeoJSON layer data -- was NetworkOnly ("network only until the
+                        // user opts to cache an area", a flagged-but-never-finished gap), so POI/layer content
+                        // had no offline fallback regardless of tile caching. Unlike map tiles (OSM's usage
+                        // policy), this is the app's own hosted data with no compliance concern, so passive
+                        // caching on every successful fetch is fine -- no separate opt-in needed.
                         urlPattern: /\/areas\//,
-                        handler: "NetworkOnly",
+                        handler: "NetworkFirst",
+                        options: {
+                            cacheName: "area-data",
+                            networkTimeoutSeconds: 5,
+                        },
                     },
                 ],
             },
