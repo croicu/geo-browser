@@ -212,9 +212,20 @@ Interpretation belongs in `LayerView` subclasses.
 `src/maps/tileProvider.ts` is the single file for tile configuration. It contains:
 
 - `TileProvider` interface (`urlTemplate`, `maxZoom`, `attribution`, optional `subdomains`)
-- `osmTileProvider` constant — standard OpenStreetMap tiles, uses `dark-osm` CSS filter
-- `cartoTileProvider` constant — CARTO Voyager (default), subdomains `abcd`
+- `osmTileProvider` constant — standard OpenStreetMap tiles (default, offline-capable — see Offline Tile Caching below), uses `dark-osm` CSS filter
+- `cartoTileProvider` constant — CARTO Voyager, online-only (never cached), subdomains `abcd`
 - `getActiveTileProvider()` / `setActiveTileProvider()` — module-level store for the selected provider; there's only ever one map now, so this mainly matters across a full page reload (it is not itself localStorage-backed, so it does not survive a reload — only in-memory recreation)
+
+## Offline Tile Caching
+
+Record-while-browsing tile caching (geo-browser#103) — see CLAUDE.md's Offline Tile Caching section for the full design and `tasks/tile_caching.md` for why this replaced an earlier bulk-download design (OSM's tile policy prohibits it outright, not just at scale). Implementation:
+
+- `src/tiles/` — Leaflet-free core: `tileUrl.ts` (canonical URL builder, fixed subdomain for cache-key consistency; also holds the `TileCoord` type), `tileFetcher.ts` (cache-first fetch, plus `getStats()`/`resetStats()`/`clearCache()`), `tileCacheDecision.ts` (`shouldUseCachingLayer(recording, debug)`/`shouldRebuildTileLayer(...)` — pure logic for when the tile layer should be cache-aware; `?debug` alone uses it read-only, `writeThrough: false`, so the cache-hit debug marking works while just browsing, not only while actively recording), and `tileBounds.ts` (`tileToBounds(coord)` — pure tile-to-lat/lng Web Mercator math, used to draw the debug overlay's rectangles).
+- `src/runtime/cacheApiTileCacheStore.ts` — tile bytes, one Cache API cache per area (`geo-browser.tiles.<areaId>`, area id passed into the constructor); `clear()` deletes that one named cache.
+- `src/runtime/networkStatus.ts` — thin `navigator.onLine`/`online`/`offline` wrapper, same module-singleton style as `tileProvider.ts`.
+- `src/runtime/storagePersistence.ts` — `requestPersistentStorage()`, a guarded `navigator.storage.persist()` call, fired once from `CurrentAreaBundle.onTileCacheToggleRecording()` when recording actually starts.
+- `leafletFactories.ts` — `CachingTileLayer` (cache-first `createTile()` override, only constructed while recording or `?debug` is on) and `TileCacheControl` (the VCR-style record/stop button plus a separate clear-cache button), both confined to this one Leaflet-importing file per the project's usual rule. `getTileFetcherForArea(areaId)` keeps a `Map<string, TileFetcher>` so each area lazily gets its own `TileFetcher`/`CacheApiTileCacheStore` pair; `buildTileLayer()`/`MapLayerFlyoutControl` thread the current area id through so caching writes/reads/clears all target that area's own cache. Under `?debug`, `CachingTileLayer` also draws an `L.rectangle` per cache-hit tile into a dedicated `tileCacheDebugPane` (own pane, above `tilePane`, `pointer-events: none`) — a CSS `box-shadow`-on-`<img>` version of this was tried first and confirmed live to just not render, so the marking moved to an actual vector layer instead.
+- `CurrentAreaBundle` — tracks recording as a single in-memory `_tileCacheRecording` boolean (no injected store/fetcher, no metadata persistence); toggling calls `MapLayerFlyoutHandle.setTileCacheEnabled(enabled, areaId)`/`clearTileCache(areaId)`, both area-scoped to `this._area.id`.
 
 `MapLayerFlyoutControl` in `leafletFactories.ts` is a Leaflet control at `topright`, created once by `MapView.render()` and kept for the whole session (recreating it would tear down and rebuild the tile layer it owns). It manages the tile layer lifecycle and renders a flyout panel. The flyout shows a Map type section (CARTO / OSM) always; a Map Details layer list is added only while a current area exists, via `MapLayerFlyoutHandle.setLayers()` (content swap, not control recreation) — see `LayerSelectionWidget`.
 

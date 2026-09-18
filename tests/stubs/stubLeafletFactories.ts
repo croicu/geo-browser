@@ -17,6 +17,8 @@ import type {
     PositionMarkerHandle,
     RectangleHandle,
     RectangleOptions,
+    TileCacheStatus,
+    TileCacheWidgetHandle,
     WidgetFactory,
     WidgetHandle,
 } from "../../src/contracts";
@@ -435,6 +437,10 @@ export class StubMapLayerFlyoutHandle extends StubWidget implements MapLayerFlyo
     public layers: LayerSelectionWidgetItem[] = [];
     public onToggle: (layerId: string, visible: boolean) => void = () => {};
     public onExportUserPoints?: () => void;
+    public tileCacheEnabled = false;
+    public tileCacheAreaId: string | null = null;
+    public clearTileCacheCallCount = 0;
+    public lastClearedAreaId: string | null = null;
 
     setLayers(
         layers: LayerSelectionWidgetItem[],
@@ -444,6 +450,29 @@ export class StubMapLayerFlyoutHandle extends StubWidget implements MapLayerFlyo
         this.layers = layers;
         this.onToggle = onToggle;
         this.onExportUserPoints = onExportUserPoints;
+    }
+
+    setTileCacheEnabled(enabled: boolean, areaId: string): void {
+        this.tileCacheEnabled = enabled;
+        this.tileCacheAreaId = areaId;
+    }
+
+    async clearTileCache(areaId: string): Promise<void> {
+        this.clearTileCacheCallCount++;
+        this.lastClearedAreaId = areaId;
+    }
+}
+
+export class StubTileCacheWidgetHandle extends StubWidget implements TileCacheWidgetHandle {
+    public status: TileCacheStatus;
+
+    constructor(initialStatus: TileCacheStatus) {
+        super();
+        this.status = initialStatus;
+    }
+
+    setStatus(status: TileCacheStatus): void {
+        this.status = status;
     }
 }
 
@@ -493,6 +522,22 @@ export class StubWidgetFactory implements WidgetFactory {
     ): WidgetHandle {
         const widget = new StubWidget();
         this.lastSearchControl = widget;
+        return widget;
+    }
+
+    public lastTileCacheWidget?: StubTileCacheWidgetHandle;
+    public lastTileCacheToggleRecording?: () => void;
+    public lastTileCacheClear?: () => void;
+
+    createTileCacheWidget(
+        initialStatus: TileCacheStatus,
+        onToggleRecording: () => void,
+        onClearCache: () => void
+    ): TileCacheWidgetHandle {
+        const widget = new StubTileCacheWidgetHandle(initialStatus);
+        this.lastTileCacheWidget = widget;
+        this.lastTileCacheToggleRecording = onToggleRecording;
+        this.lastTileCacheClear = onClearCache;
         return widget;
     }
 }

@@ -51,11 +51,21 @@ import type {
     HeatLayerOptions,
     ClickableMapLayerHandle,
     MapLayerFlyoutHandle,
+    TileCacheStatus,
+    TileCacheWidgetHandle,
 } from "../../contracts";
 
 import type { HeatPoint } from "../../protocols";
 import { getLogger } from "../../services";
+import { LogCategory } from "../../logging";
 import { queryNominatim, type NominatimResult } from "../../maps/nominatim";
+import { TileFetcher } from "../../tiles/tileFetcher";
+import { CacheApiTileCacheStore } from "../../runtime/cacheApiTileCacheStore";
+import { buildTileUrl, type TileCoord } from "../../tiles/tileUrl";
+import { shouldUseCachingLayer, shouldRebuildTileLayer } from "../../tiles/tileCacheDecision";
+import { tileToBounds } from "../../tiles/tileBounds";
+import { isOnline, onNetworkStatusChange } from "../../runtime/networkStatus";
+import { Context } from "../../runtime/context";
 
 class LeafletMapHandle implements MapHandle {
     private readonly _map: L.Map;
@@ -617,7 +627,147 @@ export class DefaultLeafletLayerFactory implements LayerFactory {
 }
 
 
-function buildTileLayer(provider: TileProvider): L.TileLayer {
+// One TileFetcher per area, lazily created and kept for the whole session -- each backs its own
+// named Cache API cache (CacheApiTileCacheStore, keyed by area id) so "clear cache" and cache-hit
+// stats are per-area, not global. Cheap to keep around indefinitely: a TileFetcher is just a thin
+// wrapper, the actual storage lives in the browser's Cache Storage, not in this map.
+const tileFetchersByArea = new Map<string, TileFetcher>();
+
+function getTileFetcherForArea(areaId: string): TileFetcher {
+    let fetcher = tileFetchersByArea.get(areaId);
+    if (!fetcher) {
+        fetcher = new TileFetcher(new CacheApiTileCacheStore(areaId));
+        tileFetchersByArea.set(areaId, fetcher);
+    }
+    return fetcher;
+}
+
+// Cache-first tile layer -- ONLY constructed while the current area either has tile caching
+// (recording) enabled, or `?debug` is set (see buildTileLayer/shouldUseCachingLayer below); a
+// disabled/no-current-area/non-debug map always uses a plain L.tileLayer instead. This matters for
+// perf, not just correctness: manually fetching each tile (rather than letting the browser load a
+// plain <img src>) so it can check the Cache API first and, while recording, write a live fetch
+// back into the cache is real per-tile overhead, and buildTileUrl's fixed single subdomain (see
+// below) gives up the a/b/c connection-parallelism {s} rotation normally provides -- acceptable
+// only while actively recording or under `?debug`'s explicit opt-in, never for ordinary browsing.
+// See geo-browser#103.
+//
+// `writeThrough` (constructor param, fixed for this instance's lifetime) is what actually gates
+// persisting a live fetch back into the cache -- `?debug` alone (recording off) still reads the
+// cache first (so the cache-hit debug marking below has something to show while just browsing an
+// area recorded in an earlier session) but never writes new tiles into it.
+const TILE_CACHE_DEBUG_PANE = "tileCacheDebugPane";
+
+class CachingTileLayer extends L.TileLayer {
+    private readonly _provider: TileProvider;
+    private readonly _fetcher: TileFetcher;
+    private readonly _writeThrough: boolean;
+    private _debugOverlay?: L.LayerGroup;
+    private readonly _debugRectanglesByKey = new Map<string, L.Rectangle>();
+
+    constructor(provider: TileProvider, options: L.TileLayerOptions, fetcher: TileFetcher, writeThrough: boolean) {
+        super(provider.urlTemplate, options);
+        this._provider = provider;
+        this._fetcher = fetcher;
+        this._writeThrough = writeThrough;
+    }
+
+    // Debug-only cache-hit marking used to be a CSS box-shadow directly on the tile <img> --
+    // dropped after confirming live it just doesn't paint visibly (DevTools computed style showed
+    // the shadow resolved correctly, but nothing rendered on screen; likely obscured by something
+    // else in the tile's own paint layer, never root-caused since a separate approach sidesteps it
+    // entirely). Drawing a real Leaflet vector layer (L.rectangle per cache-hit tile) in its own
+    // pane above the tile pane guarantees correct stacking regardless of whatever was wrong with
+    // the img-level approach. See geo-browser#103, tasks/tile_caching.md.
+    onAdd(map: L.Map): this {
+        super.onAdd(map);
+        if (Context.Instance.debug) {
+            const pane = map.getPane(TILE_CACHE_DEBUG_PANE) ?? map.createPane(TILE_CACHE_DEBUG_PANE);
+            pane.style.zIndex = "250"; // above tilePane (200), below overlayPane (400) / markers
+            pane.style.pointerEvents = "none"; // never intercept clicks meant for tiles/POIs below
+            this._debugOverlay = L.layerGroup([], { pane: TILE_CACHE_DEBUG_PANE }).addTo(map);
+            this.on("tileunload", this.onTileUnload, this);
+        }
+        return this;
+    }
+
+    onRemove(map: L.Map): this {
+        this.off("tileunload", this.onTileUnload, this);
+        this._debugOverlay?.remove();
+        this._debugOverlay = undefined;
+        this._debugRectanglesByKey.clear();
+        super.onRemove(map);
+        return this;
+    }
+
+    private onTileUnload(event: L.TileEvent): void {
+        const key = tileCoordsKey(event.coords);
+        const rectangle = this._debugRectanglesByKey.get(key);
+        if (rectangle) {
+            this._debugOverlay?.removeLayer(rectangle);
+            this._debugRectanglesByKey.delete(key);
+        }
+    }
+
+    // Always computes the tile URL via the shared buildTileUrl() helper (tiles/tileUrl.ts) rather
+    // than Leaflet's own getTileUrl()/{s} subdomain rotation -- the same tile must always resolve
+    // to the same URL, or a tile cached under one {s} host could miss the cache when a later
+    // request round-robins to a different one.
+    protected createTile(coords: L.Coords, done: L.DoneCallback): HTMLElement {
+        const img = document.createElement("img");
+        const tileCoord = { x: coords.x, y: coords.y, z: coords.z };
+        const url = buildTileUrl(this._provider, tileCoord);
+
+        this._fetcher
+            .fetchTile(url, this._writeThrough)
+            .then(({ blob, cacheHit }) => {
+                if (cacheHit && this._debugOverlay) {
+                    this.addDebugRectangle(coords, tileCoord);
+                }
+
+                const objectUrl = URL.createObjectURL(blob);
+                img.onload = () => {
+                    URL.revokeObjectURL(objectUrl);
+                    done(undefined, img);
+                };
+                img.onerror = () => {
+                    URL.revokeObjectURL(objectUrl);
+                    done(new Error(`tile image decode failed: ${url}`), img);
+                };
+                img.src = objectUrl;
+            })
+            .catch((err) => {
+                getLogger().warning("caching_tile_layer.tile_error", { url, err }, LogCategory.TileCache);
+                done(err instanceof Error ? err : new Error(String(err)), img);
+            });
+
+        return img;
+    }
+
+    private addDebugRectangle(coords: L.Coords, tileCoord: TileCoord): void {
+        const key = tileCoordsKey(coords);
+        if (this._debugRectanglesByKey.has(key) || !this._debugOverlay) {
+            return;
+        }
+        const bounds = tileToBounds(tileCoord);
+        const rectangle = L.rectangle(
+            [[bounds.south, bounds.west], [bounds.north, bounds.east]],
+            { pane: TILE_CACHE_DEBUG_PANE, color: "#00e676", weight: 3, fillColor: "#00e676", fillOpacity: 0.28, interactive: false }
+        );
+        rectangle.addTo(this._debugOverlay);
+        this._debugRectanglesByKey.set(key, rectangle);
+    }
+}
+
+function tileCoordsKey(coords: L.Coords): string {
+    return `${coords.z}/${coords.x}/${coords.y}`;
+}
+
+// tileCacheAreaId is the area to attribute cached tiles to -- null only when there's no current
+// area at all (CurrentAreaBundle passes the real area id on every setTileCacheEnabled() call, even
+// while recording is off, precisely so a debug-mode read-only CachingTileLayer has an area to read
+// against). See shouldUseCachingLayer for when recording-off still needs the caching layer.
+function buildTileLayer(provider: TileProvider, tileCacheEnabled: boolean, tileCacheAreaId: string | null): L.TileLayer {
     const options: L.TileLayerOptions = {
         maxZoom: provider.maxZoom,
         attribution: provider.attribution,
@@ -626,6 +776,11 @@ function buildTileLayer(provider: TileProvider): L.TileLayer {
     if (provider.subdomains !== undefined) {
         options.subdomains = provider.subdomains;
     }
+
+    if (provider === osmTileProvider && tileCacheAreaId && shouldUseCachingLayer(tileCacheEnabled, Context.Instance.debug)) {
+        return new CachingTileLayer(provider, options, getTileFetcherForArea(tileCacheAreaId), tileCacheEnabled);
+    }
+
     return L.tileLayer(provider.urlTemplate, options);
 }
 
@@ -642,6 +797,9 @@ class MapLayerFlyoutControl extends L.Control {
     private _outsideClickHandler?: (e: MouseEvent) => void;
     private _cartoBtnEl?: HTMLButtonElement;
     private _osmBtnEl?: HTMLButtonElement;
+    private _tileCacheEnabled = false;
+    private _tileCacheAreaId: string | null = null;
+    private _networkCleanup?: () => void;
 
     constructor(
         layers: LayerSelectionWidgetItem[],
@@ -656,7 +814,14 @@ class MapLayerFlyoutControl extends L.Control {
 
     onAdd(map: L.Map): HTMLElement {
         this._leafletMap = map;
-        this._tileLayer = buildTileLayer(getActiveTileProvider()).addTo(map);
+
+        // Offline: OSM (cached) is the only usable provider -- see geo-browser#103's Provider
+        // decision. Force it now rather than leaving a stale Carto choice the user can't reach.
+        if (!isOnline() && getActiveTileProvider() !== osmTileProvider) {
+            setActiveTileProvider(osmTileProvider);
+        }
+        this._tileLayer = buildTileLayer(getActiveTileProvider(), this._tileCacheEnabled, this._tileCacheAreaId).addTo(map);
+        this.logTileLayerBuild("initial_add");
 
         this._container = L.DomUtil.create("div", "map-layer-flyout");
         L.DomEvent.disableClickPropagation(this._container);
@@ -670,14 +835,93 @@ class MapLayerFlyoutControl extends L.Control {
         this._panel = L.DomUtil.create("div", "map-layer-panel hidden", this._container);
         this.buildPanel();
 
+        this._networkCleanup = onNetworkStatusChange((online) => this.onNetworkStatusChange(online));
+
         return this._container;
     }
 
     onRemove(): void {
         this.closePanel();
+        this._networkCleanup?.();
+        this._networkCleanup = undefined;
         this._tileLayer?.remove();
         this._tileLayer = undefined;
         this._leafletMap = undefined;
+    }
+
+    // The flyout control itself is session-level (see this class's doc comment) and stays put;
+    // only the tile layer it owns gets swapped -- CachingTileLayer only while the current area
+    // actually has caching enabled, a plain (fast) L.tileLayer otherwise. CurrentAreaBundle calls
+    // this on attach/hide/destroy and on recording toggle, not on every pan/zoom, so the one-time
+    // tile flash a swap causes is an acceptable cost for keeping ordinary browsing at full native
+    // tile-loading speed -- see CachingTileLayer's doc comment for why this distinction matters
+    // for perf, not just cache-write correctness. Persisted across a provider switch (see
+    // onTileProviderClick) so re-selecting OSM after briefly viewing Carto doesn't lose it.
+    setTileCacheEnabled(enabled: boolean, areaId: string): void {
+        const wasCaching = this._tileCacheEnabled;
+        const areaChanged = this._tileCacheAreaId !== areaId;
+
+        this._tileCacheEnabled = enabled;
+        this._tileCacheAreaId = areaId;
+
+        // See tiles/tileCacheDecision.ts -- a recording toggle always rebuilds (the new layer's
+        // writeThrough is fixed at construction); an area change only rebuilds when the caching
+        // layer is actually in use (recording, or `?debug`), so ordinary non-debug browsing with
+        // recording off never flashes the tiles just because the current area changed.
+        if (shouldRebuildTileLayer(wasCaching, enabled, areaChanged, Context.Instance.debug)) {
+            this.rebuildTileLayer();
+        }
+    }
+
+    private rebuildTileLayer(): void {
+        if (!this._leafletMap) {
+            return;
+        }
+        this._tileLayer?.remove();
+        this._tileLayer = buildTileLayer(getActiveTileProvider(), this._tileCacheEnabled, this._tileCacheAreaId).addTo(this._leafletMap);
+        this.logTileLayerBuild("rebuild");
+    }
+
+    // Logs which kind of tile layer just got (re)built and why -- otherwise the
+    // recording/debug/area-id decision that picks CachingTileLayer vs. a plain L.tileLayer (see
+    // shouldUseCachingLayer, tiles/tileCacheDecision.ts) is invisible from the console, which made
+    // a real live bug (cache-hit debug border silently not showing) much harder to diagnose than
+    // it needed to be. See CLAUDE.md's Logging Rules on state transitions.
+    private logTileLayerBuild(reason: "initial_add" | "rebuild"): void {
+        const provider = getActiveTileProvider();
+        const usesCachingLayer = provider === osmTileProvider
+            && !!this._tileCacheAreaId
+            && shouldUseCachingLayer(this._tileCacheEnabled, Context.Instance.debug);
+        getLogger().info(
+            "map_layer_flyout.tile_layer_build",
+            {
+                reason,
+                provider: provider === osmTileProvider ? "osm" : "carto",
+                areaId: this._tileCacheAreaId,
+                recording: this._tileCacheEnabled,
+                debug: Context.Instance.debug,
+                usesCachingLayer,
+            },
+            LogCategory.TileCache
+        );
+    }
+
+    // Per-area -- see TileCacheStore's doc comment. Uses the same per-area TileFetcher
+    // CachingTileLayer itself writes through to (getTileFetcherForArea), regardless of whether
+    // this flyout's own tile layer happens to be a CachingTileLayer for that area right now.
+    async clearTileCache(areaId: string): Promise<void> {
+        const log = getLogger();
+        log.info("map_layer_flyout.clear_tile_cache.start", { areaId });
+        await getTileFetcherForArea(areaId).clearCache();
+        log.info("map_layer_flyout.clear_tile_cache.end", { areaId });
+    }
+
+    private onNetworkStatusChange(online: boolean): void {
+        getLogger().info("map_layer_flyout.network_status", { online });
+        if (!online && getActiveTileProvider() !== osmTileProvider) {
+            this.onTileProviderClick(osmTileProvider);
+        }
+        this.updateTileButtons(getActiveTileProvider());
     }
 
     // Rebuilds only the panel's DOM content (tile-type buttons, Map Details
@@ -787,6 +1031,10 @@ class MapLayerFlyoutControl extends L.Control {
     private onTileProviderClick(provider: TileProvider): void {
         const log = getLogger();
         const name = provider === cartoTileProvider ? "carto" : "osm";
+        if (provider === cartoTileProvider && !isOnline()) {
+            log.info("map_layer_flyout.tile_provider.blocked_offline", { provider: name });
+            return;
+        }
         log.info("map_layer_flyout.tile_provider.start", { provider: name });
         if (getActiveTileProvider() === provider) {
             log.info("map_layer_flyout.tile_provider.end", { provider: name, changed: false });
@@ -795,7 +1043,7 @@ class MapLayerFlyoutControl extends L.Control {
         setActiveTileProvider(provider);
         this._tileLayer?.remove();
         if (this._leafletMap) {
-            this._tileLayer = buildTileLayer(provider).addTo(this._leafletMap);
+            this._tileLayer = buildTileLayer(provider, this._tileCacheEnabled, this._tileCacheAreaId).addTo(this._leafletMap);
         }
         this.updateTileButtons(provider);
         log.info("map_layer_flyout.tile_provider.end", { provider: name, changed: true });
@@ -804,6 +1052,11 @@ class MapLayerFlyoutControl extends L.Control {
     private updateTileButtons(active: TileProvider): void {
         this._cartoBtnEl?.classList.toggle("active", active === cartoTileProvider);
         this._osmBtnEl?.classList.toggle("active", active === osmTileProvider);
+        // Carto is online-only -- see geo-browser#103's Provider decision.
+        if (this._cartoBtnEl) {
+            this._cartoBtnEl.disabled = !isOnline();
+            this._cartoBtnEl.title = isOnline() ? "CARTO" : "CARTO (unavailable offline)";
+        }
     }
 
     private createLayerBtn(parent: HTMLElement, layer: LayerSelectionWidgetItem): void {
@@ -935,6 +1188,75 @@ function isPwa(): boolean {
         || (navigator as unknown as { standalone?: boolean }).standalone === true;
 }
 
+// Area-scoped record-while-browsing widget (geo-browser#103, redesigned after confirming OSM's
+// tile usage policy explicitly prohibits any "download for offline use" bulk/pre-fetch pattern --
+// see contracts.ts's TileCacheStore doc comment). VCR-style: a hollow red circle means idle/tap
+// to start recording; a filled red square means recording/tap to stop. Recording only flips
+// write-through on for whatever tiles Leaflet's own ordinary viewport-driven loading already
+// requests -- nothing is pre-fetched, so there's no known total/percentage to show, just on/off.
+// A second, separate button clears the current area's cached tiles outright (its own named Cache
+// API cache -- see TileCacheStore's doc comment; other areas' caches are untouched).
+class TileCacheControl extends L.Control {
+    private readonly _onToggleRecording: () => void;
+    private readonly _onClearCache: () => void;
+    private _status: TileCacheStatus;
+    private _recordButton?: HTMLButtonElement;
+
+    constructor(initialStatus: TileCacheStatus, onToggleRecording: () => void, onClearCache: () => void) {
+        super({ position: "topright" });
+        this._status = initialStatus;
+        this._onToggleRecording = onToggleRecording;
+        this._onClearCache = onClearCache;
+    }
+
+    onAdd(): HTMLElement {
+        const container = L.DomUtil.create("div", "tile-cache-controls");
+        L.DomEvent.disableClickPropagation(container);
+
+        const recordButton = L.DomUtil.create("button", "tile-cache-button", container) as HTMLButtonElement;
+        recordButton.type = "button";
+        recordButton.innerHTML =
+            `<svg viewBox="0 0 24 24" width="24" height="24">` +
+            `<circle class="tile-cache-record-icon" cx="12" cy="12" r="7" />` +
+            `<rect class="tile-cache-stop-icon" x="7" y="7" width="10" height="10" rx="1.5" />` +
+            `</svg>`;
+        recordButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            this._onToggleRecording();
+        });
+        this._recordButton = recordButton;
+
+        const clearButton = L.DomUtil.create("button", "tile-cache-clear-button", container) as HTMLButtonElement;
+        clearButton.type = "button";
+        clearButton.title = "Clear all cached map tiles";
+        clearButton.innerHTML = `<img src="/icons/delete.svg" alt="Clear cached tiles" />`;
+        clearButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            this._onClearCache();
+        });
+
+        this.applyState();
+
+        return container;
+    }
+
+    setStatus(status: TileCacheStatus): void {
+        this._status = status;
+        this.applyState();
+    }
+
+    private applyState(): void {
+        if (!this._recordButton) {
+            return;
+        }
+
+        this._recordButton.classList.toggle("tile-cache-button--recording", this._status === "recording");
+        this._recordButton.title =
+            this._status === "recording"
+                ? "Recording map tiles for offline use — tap to stop"
+                : "Tap to start recording map tiles you view, for offline use";
+    }
+}
 
 class GeoLocationControl extends L.Control {
     private readonly _onToggle: () => void;
@@ -1023,6 +1345,26 @@ class LeafletGeoLocationWidgetHandle implements GeoLocationWidgetHandle {
 
     setFollowing(following: boolean): void {
         this._control.setFollowing(following);
+    }
+}
+
+class LeafletTileCacheWidgetHandle implements TileCacheWidgetHandle {
+    private readonly _control: TileCacheControl;
+
+    constructor(control: TileCacheControl) {
+        this._control = control;
+    }
+
+    addTo(map: MapHandle): void {
+        this._control.addTo(unwrapMap(map));
+    }
+
+    remove(): void {
+        this._control.remove();
+    }
+
+    setStatus(status: TileCacheStatus): void {
+        this._control.setStatus(status);
     }
 }
 
@@ -1230,6 +1572,14 @@ class LeafletMapLayerFlyoutHandle extends LeafletWidgetHandle implements MapLaye
     ): void {
         this._flyout.setLayers(layers, onToggle, onExportUserPoints);
     }
+
+    setTileCacheEnabled(enabled: boolean, areaId: string): void {
+        this._flyout.setTileCacheEnabled(enabled, areaId);
+    }
+
+    clearTileCache(areaId: string): Promise<void> {
+        return this._flyout.clearTileCache(areaId);
+    }
 }
 
 export class DefaultLeafletWidgetFactory implements WidgetFactory {
@@ -1258,6 +1608,14 @@ export class DefaultLeafletWidgetFactory implements WidgetFactory {
         onResult: (latLng: [number, number], displayName: string) => void
     ): WidgetHandle {
         return new LeafletWidgetHandle(new SearchControl(bbox, onResult));
+    }
+
+    createTileCacheWidget(
+        initialStatus: TileCacheStatus,
+        onToggleRecording: () => void,
+        onClearCache: () => void
+    ): TileCacheWidgetHandle {
+        return new LeafletTileCacheWidgetHandle(new TileCacheControl(initialStatus, onToggleRecording, onClearCache));
     }
 
     createNamePromptPopup(

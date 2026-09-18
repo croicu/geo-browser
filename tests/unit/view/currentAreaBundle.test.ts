@@ -467,4 +467,86 @@ describe("CurrentAreaBundle", () => {
             expect(popup.removed).toBe(true);
         });
     });
+
+    // Redesigned (geo-browser#103) after confirming OSM's tile usage policy explicitly prohibits
+    // any "download for offline use" bulk/pre-fetch pattern, regardless of rate-limiting -- see
+    // contracts.ts's TileCacheStore doc comment. Record-while-browsing only: recording just flips
+    // write-through on/off for whatever tiles Leaflet's own ordinary viewport-driven loading
+    // already requests. No job, no metadata store, no per-area bbox/zoom enumeration, no resume.
+    describe("Tile caching (geo-browser#103)", () => {
+        it("shows an idle widget and disabled write-through on attach", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+
+            view.attach();
+
+            expect(widgetFactory.lastTileCacheWidget?.status).toBe("idle");
+            expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
+        });
+
+        it("tapping the record button while idle starts recording, scoped to the current area", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+            view.attach();
+
+            widgetFactory.lastTileCacheToggleRecording?.();
+
+            expect(widgetFactory.lastTileCacheWidget?.status).toBe("recording");
+            expect(widgetFactory.flyout.tileCacheEnabled).toBe(true);
+            expect(widgetFactory.flyout.tileCacheAreaId).toBe("napoli");
+        });
+
+        it("tapping the record button again while recording stops it", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+            view.attach();
+
+            widgetFactory.lastTileCacheToggleRecording?.(); // start
+            widgetFactory.lastTileCacheToggleRecording?.(); // stop
+
+            expect(widgetFactory.lastTileCacheWidget?.status).toBe("idle");
+            expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
+        });
+
+        it("never auto-starts recording -- always idle on attach regardless of any prior session", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+            view.attach();
+            widgetFactory.lastTileCacheToggleRecording?.(); // leave it "recording"
+
+            view.hide();
+            view.show();
+
+            expect(widgetFactory.lastTileCacheWidget?.status).toBe("idle");
+            expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
+        });
+
+        it("tapping the clear button delegates to the flyout's clearTileCache() for the current area", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+            view.attach();
+
+            widgetFactory.lastTileCacheClear?.();
+
+            expect(widgetFactory.flyout.clearTileCacheCallCount).toBe(1);
+            expect(widgetFactory.flyout.lastClearedAreaId).toBe("napoli");
+        });
+
+        it("stops recording and disables write-through on hide()", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+            view.attach();
+            widgetFactory.lastTileCacheToggleRecording?.();
+            expect(widgetFactory.flyout.tileCacheEnabled).toBe(true);
+
+            view.hide();
+
+            expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
+        });
+
+        it("stops recording and disables write-through on destroy()", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+            view.attach();
+            widgetFactory.lastTileCacheToggleRecording?.();
+            expect(widgetFactory.flyout.tileCacheEnabled).toBe(true);
+
+            view.destroy();
+
+            expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
+        });
+    });
 });

@@ -66,6 +66,70 @@ body,
     display: block;
 }
 
+/* Record-while-browsing tile cache widget (geo-browser#103) -- VCR-style: a hollow red circle
+   means idle/tap to start recording, a filled red square means recording/tap to stop. A second,
+   separate button clears every cached tile outright. */
+.tile-cache-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tile-cache-button,
+.tile-cache-clear-button {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tile-cache-button:hover,
+.tile-cache-clear-button:hover {
+    background: #f4f4f4;
+}
+
+.tile-cache-clear-button img {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.tile-cache-record-icon {
+    fill: none;
+    stroke: #ED4231;
+    stroke-width: 2;
+}
+
+.tile-cache-stop-icon {
+    fill: #ED4231;
+    display: none;
+}
+
+.tile-cache-button--recording .tile-cache-record-icon {
+    display: none;
+}
+
+.tile-cache-button--recording .tile-cache-stop-icon {
+    display: block;
+}
+
+.tile-cache-button--recording {
+    border-color: #ED4231;
+}
+
+/* The debug-only cache-hit marking (geo-browser#103) used to be a CSS box-shadow here on the tile
+   <img> itself -- removed after confirming live it just doesn't paint visibly (DevTools computed
+   style showed the shadow resolved correctly, but nothing rendered on screen). Replaced with a
+   real Leaflet vector layer (L.rectangle per cache-hit tile, leafletFactories.ts's
+   CachingTileLayer) in its own pane above the tile pane, which sidesteps whatever was wrong with
+   the img-level approach instead of fighting it further. */
+
 .map-layer-panel {
     position: absolute;
     top: 0;
