@@ -7,9 +7,11 @@ import type {
     MapHandle,
     RectangleHandle,
 } from "../../contracts";
-import { SetAreaBbox, OK } from "../../api";
-import type { SetAreaBboxOutput } from "../../api";
+import { SetAreaBbox, OK, TaskProgress } from "../../api";
+import type { Cookie, SetAreaBboxOutput } from "../../api";
 import { getLogger } from "../../services";
+import { getStatusWidget } from "../statusWidget";
+import { LogCategory } from "../../logging";
 
 // Corner order: NW=0, NE=1, SW=2, SE=3
 // NW=[north,west]  NE=[north,east]  SW=[south,west]  SE=[south,east]
@@ -41,6 +43,7 @@ export class BboxWidget {
     private _zoomCleanup?: () => void;
     private _confirmBar?: HTMLElement;
     private _savingOverlay?: HTMLElement;
+    private _progressCookie?: Cookie;
 
     constructor(
         map: MapHandle,
@@ -112,6 +115,7 @@ export class BboxWidget {
 
         this.hideConfirmBar();
         this.hideSavingOverlay();
+        this.unsubscribeProgress();
     }
 
     private applyZoom(zoom: number): void {
@@ -161,11 +165,31 @@ export class BboxWidget {
     private onConfirm(): void {
         this.exitEditMode();
         this.showSavingOverlay();
+
+        this._progressCookie = this._gateway.subscribe(TaskProgress, ({ areaId, message }) => {
+            this.onTaskProgress(areaId, message);
+        });
+
         this._gateway.invoke(
             SetAreaBbox,
             { areaId: this._areaId, bbox: this._bbox },
             response => this.onSaveResponse(response)
         );
+    }
+
+    private onTaskProgress(areaId: string, message: string): void {
+        if (areaId !== this._areaId) {
+            return;
+        }
+        getStatusWidget()?.show(message, "info");
+        getLogger().diagnostic("bbox.progress", { areaId, message }, LogCategory.TaskProgress);
+    }
+
+    private unsubscribeProgress(): void {
+        if (this._progressCookie !== undefined) {
+            this._gateway.unsubscribe(this._progressCookie);
+            this._progressCookie = undefined;
+        }
     }
 
     private onRevert(): void {
@@ -186,6 +210,7 @@ export class BboxWidget {
 
     private onSaveResponse(response: SetAreaBboxOutput): void {
         this.hideSavingOverlay();
+        this.unsubscribeProgress();
 
         if (response.error !== OK) {
             getLogger().warning("bbox.save_failed", {

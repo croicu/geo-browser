@@ -308,15 +308,15 @@ Context must not contain application state.
 
 ## Design Mode
 
-`geo-browser` will be reused by `geo-builder` through a WebView host bridge.
+`geo-browser` is reused by `geo-builder` through a WebView host bridge.
 
 ```text
 geo-browser
-  ↕ GeoDataService / HostService / window.geoHost
+  ↕ HostService / window.geo (shipped)
+  ↕ GeoDataService (still a stub — always static fetch, regardless of mode)
 geo-builder
 ```
 
-Browse mode uses static JSON/GeoJSON assets.
-Design mode uses Python-hosted APIs.
+`HostService` (`WebViewHostService`) already wires a real `Gateway` over `window.geo` in design mode — `GatewayUserPointsStore` and `GatewayTelemetrySink` use it in production. `GeoDataService` has no browse/design split yet: catalog/area/layer loading always uses static JSON/GeoJSON assets, even in design mode. See [Data Source Abstraction](ROADMAP.md#1-data-source-abstraction) for the planned split.
 
 Controllers and views should not care which data source is active.

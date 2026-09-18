@@ -130,6 +130,18 @@ export const AreaChanged: EventDef<AreaChangedData, void> = {
     _kind: "event",
 };
 
+// ── TaskProgress (builder → browser) ─────────────────────────────────────────
+
+export interface TaskProgressData {
+    areaId: string;
+    message: string;
+}
+
+export const TaskProgress: EventDef<TaskProgressData, void> = {
+    id: "__geo_task_progress__",
+    _kind: "event",
+};
+
 // ── GetUserPoints (browser → builder / standalone) ───────────────────────────
 
 export interface GetUserPointsInput {

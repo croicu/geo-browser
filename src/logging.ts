@@ -20,6 +20,7 @@ export const LogCategory = {
     // pass this as a category to any other Logger method; it's reserved so ?logCategory=perf
     // reliably isolates every duration marker regardless of which component logged it.
     Perf: "perf",
+    TaskProgress: "task_progress",
 } as const;
 
 export type LogCategory = typeof LogCategory[keyof typeof LogCategory];

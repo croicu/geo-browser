@@ -7,7 +7,8 @@
       "request": "launch",
       "url": "http://localhost:5173",
       "webRoot": "${workspaceFolder}",
-      "sourceMaps": true
+      "sourceMaps": true,
+      "runtimeExecutable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
     },
     {
       "name": "geo-browser (local, debug)",
@@ -15,7 +16,8 @@
       "request": "launch",
       "url": "http://localhost:5173?debug=1",
       "webRoot": "${workspaceFolder}",
-      "sourceMaps": true
+      "sourceMaps": true,
+      "runtimeExecutable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
     },
     {
       "name": "geo-browser (design)",
@@ -31,7 +33,8 @@
       "request": "launch",
       "url": "http://geo-browser.croicu.com",
       "webRoot": "${workspaceFolder}",
-      "sourceMaps": true
+      "sourceMaps": true,
+      "runtimeExecutable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
     },
     {
       "name": "geo-browser (production, debug)",
@@ -39,7 +42,17 @@
       "request": "launch",
       "url": "http://geo-browser.croicu.com?debug=1",
       "webRoot": "${workspaceFolder}",
-      "sourceMaps": true
+      "sourceMaps": true,
+      "runtimeExecutable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+    },
+    {
+      "name": "geo-browser (production, design)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://geo-browser.croicu.com?design=1&assetsBase=https://geo-places.croicu.com/",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "runtimeExecutable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
     },
     {
       "name": "Vitest (run)",

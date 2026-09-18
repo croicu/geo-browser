@@ -189,8 +189,7 @@ export class MapView implements View {
         this._namePopup = undefined;
         this._pendingRect?.remove();
         this._pendingRect = undefined;
-        this._buildOverlay?.remove();
-        this._buildOverlay = undefined;
+        this.hideBuildOverlay();
 
         this._designToolbar?.remove();
         this._designToolbar = undefined;
@@ -238,6 +237,14 @@ export class MapView implements View {
         const area = this._catalog.getArea(areaId);
         this.createMarker(area); // registers with the tracker too
         this.jumpToArea(area);
+    }
+
+    // Called by Controller from the AddArea response callback — success or
+    // failure alike — to dismiss the "Building…" overlay shown by onCommit().
+    // geo-browser#101: showBuildOverlay() previously had no matching removal.
+    hideBuildOverlay(): void {
+        this._buildOverlay?.remove();
+        this._buildOverlay = undefined;
     }
 
     // Called by Controller (via the LayerSelectionWidget flyout round-trip) —

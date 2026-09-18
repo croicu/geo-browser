@@ -273,4 +273,20 @@ describe("MapView", () => {
         expect((view as any)._baseLayers.has("b")).toBe(true);
         expect((view as any)._baseLayers.has("a")).toBe(false);
     });
+
+    it("hideBuildOverlay removes the build overlay shown while a new area is committing (geo-browser#101)", async () => {
+        const catalog = await buildCatalog([]);
+        const mapFactory = new StubMapFactory();
+        const layerFactory = new StubLayerFactory();
+        const widgetFactory = new StubWidgetFactory();
+        const { view, root } = buildView(catalog, mapFactory, layerFactory, widgetFactory);
+
+        view.render();
+        (view as any).showBuildOverlay("Napoli");
+        expect(root.querySelector(".area-build-overlay")).not.toBeNull();
+
+        view.hideBuildOverlay();
+
+        expect(root.querySelector(".area-build-overlay")).toBeNull();
+    });
 });
