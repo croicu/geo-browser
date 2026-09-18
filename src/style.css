@@ -1016,3 +1016,37 @@ body,
     border-radius: 2px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
+
+/* Always-visible build stamp (main.ts, runtime/appDiagnostics.ts) -- bottom-left is free real
+   estate: GeoLocationControl/attribution/other controls all sit bottom-right or top-right. High
+   z-index and pointer-events: none so it never blocks a tap and always renders above the map,
+   even during a startup failure where the map itself never gets created. */
+.app-version-badge {
+    position: fixed;
+    bottom: 4px;
+    left: 6px;
+    font: 10px/1.4 monospace;
+    color: rgba(0, 0, 0, 0.45);
+    z-index: 10000;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Rendered into #app in place of the map on a startup failure (main.ts's controller.start()
+   .catch()) -- see appDiagnostics.ts's renderStartupError(). Replaces a silent blank screen with
+   an actual on-screen message the user can read and relay, since a device with no attached
+   console (an installed phone PWA) previously gave zero signal when startup failed. */
+.app-startup-error {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px;
+    text-align: center;
+    font-family: sans-serif;
+    background: #fff;
+    color: #333;
+}

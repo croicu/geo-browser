@@ -521,6 +521,15 @@ There is no more "last view" concept to restore (one shared map, no mode to reop
 
 Since `MapView` itself is a single session-lifetime object, "restoring the last view" is really just "the map opens wherever `MapViewState` says" — no explicit reopen-last-area step exists or is needed.
 
+### Startup Diagnostics
+
+Two always-on, always-visible pieces of diagnostic UI in `main.ts`/`src/runtime/appDiagnostics.ts`, added after geo-browser#107's blank-screen bug proved genuinely hard to debug on an installed phone PWA with no attached console:
+
+- **Version badge**: a small `bottom: 4px; left: 6px` text stamp (`.app-version-badge`, `renderVersionBadge()`), rendered onto `document.body` as literally the first statement in `main.ts` — unconditionally, before anything that could fail. Shows `git describe --tags --always --dirty` (e.g. `v1.9-21-gfe7b978`), computed at build time in `vite.config.ts` and injected as the `__APP_VERSION__` global (declared in `src/vite-env.d.ts`). Answers "which build is actually running on this device" by looking at the screen, instead of guessing whether a service-worker update actually took effect.
+- **Startup error screen**: `main.ts`'s `controller.start().catch(...)` used to only log the error — invisible on a device with no console. It now also calls `renderStartupError()` (`.app-startup-error`, replaces `#app`'s content with the error message + a "check your connection and reload" hint) so a startup failure is something the user can actually read and relay, not a silent blank screen.
+
+Both functions are plain DOM manipulation on elements handed to them — no Leaflet, no network, no app state — so they're unit-tested directly with happy-dom (`tests/unit/runtime/appDiagnostics.test.ts`), independent of whether `Controller`/`MapView` ever construct successfully.
+
 ## Task Workflow
 
 Tasks are tracked as GitHub issues in this repo (`croicu/geo-browser`), status via labels: `status:brainstorm`, `status:implementation`, `status:testing`, `status:ready-to-submit`. There is no `status:done` label — reaching Done means closing the issue. Two additional labels, `status:postponed` and `status:ongoing`, sit outside that linear flow — either can be applied at any stage and the issue stays open indefinitely until the task is resumed (relabel back into the flow) or genuinely finished (close it).
