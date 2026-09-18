@@ -79,6 +79,27 @@ background even though POI data still renders.
   `{s}`-rotating `getTileUrl()`, full connection-parallelism, best-effort — no special handling, a
   failed load here just doesn't show, exactly like an ordinary tile layer with no cache at all).
   Never writes to the cache — write-through stays exclusively tied to explicit recording.
+- **Parent-tile placeholder instead of a blank rectangle on a genuine cache miss.** Confirmed live
+  as a real UX gap once cache-first shipped and worked: "if a tile is not available in the cache,
+  but we have an overlapping cache at a smaller zoom level, how hard is to stretch and crop the
+  overlapping tile and display it until the real tile comes from OSM? Right now, if there is no
+  tile cached and OSM is slow I see a blank rectangle." `OfflineFallbackTileLayer` now walks parent
+  zoom levels closest-first (`computeParentTileCrop()`, `src/tiles/tileParent.ts` — pure quadrant
+  math, unit-tested) looking for one already cached, crops the matching quadrant and scales it up
+  via `<canvas>` (`createImageBitmap()` + `drawImage()`), shows that immediately, then silently
+  swaps in the real tile once it loads in the background. How far up is worth walking was also an
+  explicit call, not a guess: reuse `AreaRenderClassifier.MIN_LOADED_ZOOM` as the floor rather than
+  inventing a second "how far is too far" threshold — below that zoom no area's tiles are
+  meaningfully "nearby" either. Falls through to the plain best-effort native load (above) if
+  nothing's cached at any level up to that floor.
+- **The placeholder was originally `OfflineFallbackTileLayer`-only, and confirmed live to have zero
+  effect under `?debug`** — `?debug` (with recording off) constructs `CachingTileLayer` instead
+  (per `shouldUseCachingLayer`), a completely separate class the placeholder logic hadn't been
+  wired into. `findParentPlaceholder()`/`cropAndScale()` became module-level free functions so both
+  classes could share them without a common base class (each one's "how to finally display the real
+  tile" differs enough — write-through + debug-rectangle marking vs. a plain native load — that a
+  shared class hierarchy would have been more confusing than two similar `createTile()`s calling the
+  same two helpers). `CachingTileLayer` races the placeholder against its real `fetchTile()` call.
 - **`?debug` reads the cache even with recording off, via `CachingTileLayer` specifically.** The cache-hit debug marking (below) needs
   `CachingTileLayer` to actually run so it has something to show — but requiring the user to be
   actively recording just to *see* whether a tile is cached defeats the point of a diagnostic
