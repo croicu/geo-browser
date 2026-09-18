@@ -1249,7 +1249,11 @@ class MapLayerFlyoutControl extends L.Control {
             btn.type = "button";
             btn.title = label;
             btn.innerHTML = `<img src="/icons/${icon}.svg" alt="${label}" /><span>${label}</span>`;
-            btn.addEventListener("click", () => {
+            // Explicit stopPropagation -- see createLayerBtn's comment for why the ambient
+            // disableClickPropagation(this._container) alone wasn't reliably enough for buttons in
+            // this panel.
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
                 getLogger().info("map_layer_flyout.export.click", { canShare });
                 this._onExportUserPoints!();
             });
@@ -1266,7 +1270,14 @@ class MapLayerFlyoutControl extends L.Control {
         btn.type = "button";
         btn.title = label;
         btn.innerHTML = `<img src="/icons/${iconName}.svg" alt="${label}" /><span>${label}</span>`;
-        btn.addEventListener("click", () => this.onTileProviderClick(provider));
+        // Explicit stopPropagation, matching the flyout's own trigger button (onAdd() above) --
+        // disableClickPropagation(this._container) alone wasn't reliably enough to stop a tap here
+        // from also reaching the map underneath, confirmed live for the sibling layer-toggle button
+        // below (map_layer_flyout.layer.tap): toggling a layer correctly happened, but the same tap
+        // also opened an empty-space callout at that screen position -- only noticed once the panel
+        // was later dismissed, since the callout was created behind it. Applied here too for the
+        // same reason, on the same suspicion, even without a specific live report for this button.
+        btn.addEventListener("click", (e) => { e.stopPropagation(); this.onTileProviderClick(provider); });
         return btn;
     }
 
@@ -1315,7 +1326,15 @@ class MapLayerFlyoutControl extends L.Control {
         const name = L.DomUtil.create("span", "flyout-layer-name", btn);
         name.textContent = layer.name;
 
-        btn.addEventListener("click", () => this.onLayerClick(layer, btn));
+        // Explicit stopPropagation -- confirmed live: relying solely on
+        // disableClickPropagation(this._container) let a tap here also reach the map underneath.
+        // The layer toggled correctly, but the same tap also opened an empty-space callout at that
+        // screen position, only noticed once the panel was later dismissed (the callout was created
+        // behind it, invisible until then). Root cause in Leaflet's own click-suppression timing
+        // never fully pinned down; explicit stopPropagation here is the same defensive pattern this
+        // file's own trigger button already uses (onAdd() above), so applying it directly rather
+        // than continuing to rely on the ambient mechanism for this specific button.
+        btn.addEventListener("click", (e) => { e.stopPropagation(); this.onLayerClick(layer, btn); });
     }
 
     private onLayerClick(layer: LayerSelectionWidgetItem, btn: HTMLButtonElement): void {
