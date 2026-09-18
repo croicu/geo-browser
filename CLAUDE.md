@@ -541,6 +541,20 @@ For any non-trivial feature or change, follow these stages:
 - Update `README.md` and any affected `docs/*.md` file so they describe this feature's actual shipped behavior (see the Feature Completeness Rule above) — do this in the same commit, not as a follow-up.
 - Include these file changes in the same commit as the feature code.
 
+### Git Branching
+
+One branch per feature/task: create it off `main`, PR it back into `main`, then delete it (both
+local and remote) once merged. No long-lived shared branch. Name branches `feat/<kebab-case>` for
+new functionality or `chore/<kebab-case>` for maintenance/docs/tooling — matching examples already
+in the repo's history: `feat/task-progress-status-bar`, `chore/install-gateway-method-skill`,
+`chore/dev-setup-and-doc-fixes`.
+
+This replaces an earlier single shared `working` branch, retired after it silently drifted 7
+commits behind `main` (three unrelated PRs landed on `main` while it sat open) and produced merge
+conflicts that took real investigation to untangle rather than being obviously self-inflicted. A
+branch that outlives one feature accumulates exactly this kind of drift; keep them narrow and
+short-lived instead.
+
 ## New Tasks
 - **File**: [Offline Tile Caching](tasks/tile_caching.md)
 - **Status**: Testing
@@ -629,9 +643,7 @@ All entries below are closed GitHub issues — the full history (problem stateme
 
 ## Next Likely Work
 
-Current branch: **ManifestEditor** (in progress).
-
 - Error UX for `PutAreaJson` failures — currently logs and ignores; needs UI feedback.
 - Actual manifest editing UI — today the edit button round-trips the manifest unchanged; next step is surfacing an editor.
 
-Keep branches narrow.
+Start a fresh `feat/`/`chore/` branch per item here rather than a shared long-lived one — see Git Branching above.
