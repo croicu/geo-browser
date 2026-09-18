@@ -17,12 +17,20 @@ export class GeoArea {
             return;
         }
 
-        const response = await fetch(this.summary.manifestUrl, {
-            cache: "no-store",
-        });
+        // See catalog.ts's fetch wrapping for why -- a raw network rejection needs the URL
+        // attached before it propagates, or the on-screen startup error is just "Load failed"
+        // with no way to tell which fetch actually failed.
+        let response: Response;
+        try {
+            response = await fetch(this.summary.manifestUrl, {
+                cache: "no-store",
+            });
+        } catch (err) {
+            fail("area.fetch_failed", `Failed to fetch area: ${this.summary.manifestUrl}`, err);
+        }
 
         if (!response.ok) {
-            fail("area.load_failed", `Failed to load area: ${this.summary.manifestUrl}`);
+            fail("area.load_failed", `Failed to load area: ${this.summary.manifestUrl} (status ${response.status})`);
         }
 
         const detail = (await response.json()) as AreaDetail;

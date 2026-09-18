@@ -69,12 +69,20 @@ export class GeoLayer {
             return;
         }
 
-        const response = await fetch(this._data.url, {
-            cache: "no-store",
-        });
+        // See catalog.ts's fetch wrapping for why -- a raw network rejection needs the URL
+        // attached before it propagates, or the on-screen startup error is just "Load failed"
+        // with no way to tell which fetch actually failed.
+        let response: Response;
+        try {
+            response = await fetch(this._data.url, {
+                cache: "no-store",
+            });
+        } catch (err) {
+            fail("layer.fetch_failed", `Failed to fetch layer: ${this._data.url}`, err, { layerId: this.id });
+        }
 
         if (!response.ok) {
-            fail("layer.load_failed", `Failed to load layer: ${this._data.url}`, undefined, { layerId: this.id });
+            fail("layer.load_failed", `Failed to load layer: ${this._data.url} (status ${response.status})`, undefined, { layerId: this.id });
         }
 
         this._payload = await response.json();

@@ -96,6 +96,18 @@ describe("GeoCatalog", () => {
         await expect(catalog.load()).rejects.toThrow();
     });
 
+    // A raw network rejection (offline, no cache to fall back to) is a different failure mode
+    // than a resolved-but-unsuccessful response -- confirmed live that this case lost the URL
+    // entirely, surfacing as WebKit's bare "Load failed" with no way to tell which of several
+    // startup fetches actually failed. See geo-browser#107.
+    it("includes the catalog URL when the fetch itself rejects (offline, no cache fallback)", async () => {
+        vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new TypeError("Load failed")));
+
+        const catalog = new GeoCatalog("https://geo-places.croicu.com/catalog.json");
+
+        await expect(catalog.load()).rejects.toThrow("https://geo-places.croicu.com/catalog.json");
+    });
+
     it("throws if accessing areas before load", () => {
         const catalog = new GeoCatalog("/catalog.json");
 

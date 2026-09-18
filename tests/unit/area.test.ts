@@ -108,4 +108,14 @@ describe("GeoArea", () => {
 
         await expect(area.load()).rejects.toThrow();
     });
+
+    // See catalog.test.ts's equivalent -- a raw network rejection needs the URL attached before
+    // it propagates, or an offline startup failure is undiagnosable (geo-browser#107).
+    it("includes the manifest URL when the fetch itself rejects", async () => {
+        vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new TypeError("Load failed")));
+
+        const area = new GeoArea(summary);
+
+        await expect(area.load()).rejects.toThrow(summary.manifestUrl);
+    });
 });

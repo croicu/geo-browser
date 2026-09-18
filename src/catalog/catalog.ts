@@ -26,10 +26,20 @@ export class GeoCatalog {
             return;
         }
 
-        const response = await fetch(this.catalogUrl, { cache: "no-store" });
+        // Wrapped so a raw network rejection (e.g. WebKit's bare "Load failed" TypeError, offline
+        // with nothing cached to fall back to) carries the URL through -- without this, the error
+        // that eventually reaches main.ts's on-screen startup message is just "Load failed" with
+        // no way to tell which of several startup fetches (catalog head, catalog, area manifest,
+        // layer GeoJSON) actually failed. Confirmed live as a real diagnosability gap.
+        let response: Response;
+        try {
+            response = await fetch(this.catalogUrl, { cache: "no-store" });
+        } catch (err) {
+            fail("catalog.fetch_failed", `Failed to fetch catalog: ${this.catalogUrl}`, err);
+        }
 
         if (!response.ok) {
-            fail("catalog.load_failed", `Failed to load catalog: ${this.catalogUrl}`);
+            fail("catalog.load_failed", `Failed to load catalog: ${this.catalogUrl} (status ${response.status})`);
         }
 
         let catalog: Catalog;
