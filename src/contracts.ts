@@ -340,8 +340,24 @@ export interface TileCacheStore {
 
 export type TileCacheStatus = "idle" | "recording";
 
-export interface TileCacheWidgetHandle extends WidgetHandle {
-    setStatus(status: TileCacheStatus): void;
+// Consolidates what used to be three separate always-visible controls (record/stop, clear cache,
+// and ImageOverlayWidget's own paste-image button) into one topright flyout, matching
+// MapLayerFlyoutControl's trigger-button-opens-panel pattern -- confirmed live that stacking every
+// individual action as its own floating square button got crowded. onLoadGoogleMapsDebug/
+// onLoadAppleMapsDebug are undefined outside `?debug`, in which case the flyout doesn't render
+// those rows at all (mirrors ImageOverlayWidget's own prior debug-only gating for the same two
+// actions).
+export interface ToolsFlyoutOptions {
+    initialTileCacheStatus: TileCacheStatus;
+    onToggleRecording: () => void;
+    onClearCache: () => void;
+    onPasteImage: () => void;
+    onLoadGoogleMapsDebug?: () => void;
+    onLoadAppleMapsDebug?: () => void;
+}
+
+export interface ToolsFlyoutHandle extends WidgetHandle {
+    setTileCacheStatus(status: TileCacheStatus): void;
 }
 
 // The flyout owns the tile layer's lifecycle (see MapLayerFlyoutControl), which
@@ -395,9 +411,5 @@ export interface WidgetFactory {
         onResult: (latLng: [number, number], displayName: string) => void
     ): WidgetHandle;
 
-    createTileCacheWidget(
-        initialStatus: TileCacheStatus,
-        onToggleRecording: () => void,
-        onClearCache: () => void
-    ): TileCacheWidgetHandle;
+    createToolsFlyout(options: ToolsFlyoutOptions): ToolsFlyoutHandle;
 }

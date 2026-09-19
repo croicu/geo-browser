@@ -52,7 +52,8 @@ import type {
     ClickableMapLayerHandle,
     MapLayerFlyoutHandle,
     TileCacheStatus,
-    TileCacheWidgetHandle,
+    ToolsFlyoutHandle,
+    ToolsFlyoutOptions,
 } from "../../contracts";
 
 import type { HeatPoint } from "../../protocols";
@@ -1449,71 +1450,147 @@ function isPwa(): boolean {
         || (navigator as unknown as { standalone?: boolean }).standalone === true;
 }
 
-// Area-scoped record-while-browsing widget (geo-browser#103, redesigned after confirming OSM's
-// tile usage policy explicitly prohibits any "download for offline use" bulk/pre-fetch pattern --
-// see contracts.ts's TileCacheStore doc comment). VCR-style: a hollow red circle means idle/tap
-// to start recording; a filled red square means recording/tap to stop. Recording only flips
-// write-through on for whatever tiles Leaflet's own ordinary viewport-driven loading already
-// requests -- nothing is pre-fetched, so there's no known total/percentage to show, just on/off.
-// A second, separate button clears the current area's cached tiles outright (its own named Cache
-// API cache -- see TileCacheStore's doc comment; other areas' caches are untouched).
-class TileCacheControl extends L.Control {
-    private readonly _onToggleRecording: () => void;
-    private readonly _onClearCache: () => void;
-    private _status: TileCacheStatus;
+// Consolidates what used to be three separate always-visible topright controls -- record/stop,
+// clear cache (geo-browser#103), and ImageOverlayWidget's own paste-image button -- into one
+// trigger-button-opens-panel flyout, mirroring MapLayerFlyoutControl's own pattern. Confirmed live
+// that stacking every individual action as its own floating square button got crowded. Only the
+// paste-image *trigger* moves here -- ImageOverlayWidget's own adjustment toolbar (opacity/lucky/
+// pin/lock/remove, which only appears once an image is actually loaded) stays exactly where it is,
+// entirely untouched; this flyout just calls ImageOverlayWidget.triggerPaste() to start that flow.
+//
+// Record/stop is still VCR-style: a hollow red circle means idle/tap to start recording, a filled
+// red square means recording/tap to stop. Recording only flips write-through on for whatever tiles
+// Leaflet's own ordinary viewport-driven loading already requests -- nothing is pre-fetched, so
+// there's no known total/percentage to show, just on/off. Clear wipes the current area's cached
+// tiles outright (its own named Cache API cache -- see TileCacheStore's doc comment; other areas'
+// caches are untouched).
+class ToolsFlyoutControl extends L.Control {
+    private readonly _options: ToolsFlyoutOptions;
+    private _tileCacheStatus: TileCacheStatus;
+    private _container?: HTMLElement;
+    private _panel?: HTMLElement;
+    private _isOpen = false;
+    private _outsideClickHandler?: (e: MouseEvent) => void;
     private _recordButton?: HTMLButtonElement;
+    private _recordLabel?: HTMLElement;
 
-    constructor(initialStatus: TileCacheStatus, onToggleRecording: () => void, onClearCache: () => void) {
+    constructor(options: ToolsFlyoutOptions) {
         super({ position: "topright" });
-        this._status = initialStatus;
-        this._onToggleRecording = onToggleRecording;
-        this._onClearCache = onClearCache;
+        this._options = options;
+        this._tileCacheStatus = options.initialTileCacheStatus;
     }
 
     onAdd(): HTMLElement {
-        const container = L.DomUtil.create("div", "tile-cache-controls");
+        const container = L.DomUtil.create("div", "tools-flyout");
         L.DomEvent.disableClickPropagation(container);
+        this._container = container;
 
-        const recordButton = L.DomUtil.create("button", "tile-cache-button", container) as HTMLButtonElement;
-        recordButton.type = "button";
-        recordButton.innerHTML =
-            `<svg viewBox="0 0 24 24" width="24" height="24">` +
-            `<circle class="tile-cache-record-icon" cx="12" cy="12" r="7" />` +
-            `<rect class="tile-cache-stop-icon" x="7" y="7" width="10" height="10" rx="1.5" />` +
-            `</svg>`;
-        recordButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            this._onToggleRecording();
-        });
-        this._recordButton = recordButton;
+        const btn = L.DomUtil.create("button", "tools-flyout-btn", container) as HTMLButtonElement;
+        btn.type = "button";
+        btn.title = "Tools";
+        btn.innerHTML = `<img src="/icons/tools.svg" alt="Tools" />`;
+        btn.addEventListener("click", (e) => { e.stopPropagation(); this.onTriggerClick(); });
 
-        const clearButton = L.DomUtil.create("button", "tile-cache-clear-button", container) as HTMLButtonElement;
-        clearButton.type = "button";
-        clearButton.title = "Clear all cached map tiles";
-        clearButton.innerHTML = `<img src="/icons/delete.svg" alt="Clear cached tiles" />`;
-        clearButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            this._onClearCache();
-        });
-
-        this.applyState();
+        this._panel = L.DomUtil.create("div", "tools-panel hidden", container);
+        this.buildPanel();
 
         return container;
     }
 
-    setStatus(status: TileCacheStatus): void {
-        this._status = status;
-        this.applyState();
+    onRemove(): void {
+        this.closePanel();
     }
 
-    private applyState(): void {
+    setTileCacheStatus(status: TileCacheStatus): void {
+        this._tileCacheStatus = status;
+        this.applyRecordState();
+    }
+
+    private onTriggerClick(): void {
+        getLogger().info("tools_flyout.trigger.click");
+        if (this._isOpen) {
+            this.closePanel();
+        } else {
+            this.openPanel();
+        }
+    }
+
+    private openPanel(): void {
+        this._panel?.classList.remove("hidden");
+        this._isOpen = true;
+        getLogger().info("tools_flyout.open");
+        this._outsideClickHandler = (e: MouseEvent) => {
+            if (this._container && !this._container.contains(e.target as Node)) {
+                this.closePanel();
+            }
+        };
+        document.addEventListener("click", this._outsideClickHandler);
+    }
+
+    private closePanel(): void {
+        this._panel?.classList.add("hidden");
+        this._isOpen = false;
+        if (this._outsideClickHandler) {
+            document.removeEventListener("click", this._outsideClickHandler);
+            this._outsideClickHandler = undefined;
+        }
+    }
+
+    private buildPanel(): void {
+        if (!this._panel) {
+            return;
+        }
+
+        const recordBtn = L.DomUtil.create("button", "flyout-export-btn", this._panel) as HTMLButtonElement;
+        recordBtn.type = "button";
+        recordBtn.innerHTML =
+            `<svg viewBox="0 0 24 24" width="18" height="18">` +
+            `<circle class="tile-cache-record-icon" cx="12" cy="12" r="7" />` +
+            `<rect class="tile-cache-stop-icon" x="7" y="7" width="10" height="10" rx="1.5" />` +
+            `</svg><span></span>`;
+        recordBtn.addEventListener("click", (e) => { e.stopPropagation(); this._options.onToggleRecording(); });
+        this._recordButton = recordBtn;
+        this._recordLabel = recordBtn.querySelector("span") ?? undefined;
+        this.applyRecordState();
+
+        const clearBtn = L.DomUtil.create("button", "flyout-export-btn", this._panel) as HTMLButtonElement;
+        clearBtn.type = "button";
+        clearBtn.innerHTML = `<img src="/icons/delete.svg" alt="" /><span>Clear Cached Tiles</span>`;
+        clearBtn.addEventListener("click", (e) => { e.stopPropagation(); this._options.onClearCache(); });
+
+        L.DomUtil.create("div", "flyout-divider", this._panel);
+
+        const pasteBtn = L.DomUtil.create("button", "flyout-export-btn", this._panel) as HTMLButtonElement;
+        pasteBtn.type = "button";
+        pasteBtn.innerHTML = `<img src="/icons/img-paste.svg" alt="" /><span>Paste Image from Clipboard</span>`;
+        pasteBtn.addEventListener("click", (e) => { e.stopPropagation(); this._options.onPasteImage(); });
+
+        if (this._options.onLoadGoogleMapsDebug) {
+            const gmBtn = L.DomUtil.create("button", "flyout-export-btn", this._panel) as HTMLButtonElement;
+            gmBtn.type = "button";
+            gmBtn.innerHTML = `<img src="/icons/img-google.svg" alt="" /><span>Load Google Maps (debug)</span>`;
+            gmBtn.addEventListener("click", (e) => { e.stopPropagation(); this._options.onLoadGoogleMapsDebug!(); });
+        }
+
+        if (this._options.onLoadAppleMapsDebug) {
+            const amBtn = L.DomUtil.create("button", "flyout-export-btn", this._panel) as HTMLButtonElement;
+            amBtn.type = "button";
+            amBtn.innerHTML = `<img src="/icons/img-apple.svg" alt="" /><span>Load Apple Maps (debug)</span>`;
+            amBtn.addEventListener("click", (e) => { e.stopPropagation(); this._options.onLoadAppleMapsDebug!(); });
+        }
+    }
+
+    private applyRecordState(): void {
         if (!this._recordButton) {
             return;
         }
 
-        this._recordButton.classList.toggle("tile-cache-button--recording", this._status === "recording");
+        this._recordButton.classList.toggle("tile-cache-button--recording", this._tileCacheStatus === "recording");
+        if (this._recordLabel) {
+            this._recordLabel.textContent = this._tileCacheStatus === "recording" ? "Stop Recording" : "Start Recording";
+        }
         this._recordButton.title =
-            this._status === "recording"
+            this._tileCacheStatus === "recording"
                 ? "Recording map tiles for offline use — tap to stop"
                 : "Tap to start recording map tiles you view, for offline use";
     }
@@ -1609,10 +1686,10 @@ class LeafletGeoLocationWidgetHandle implements GeoLocationWidgetHandle {
     }
 }
 
-class LeafletTileCacheWidgetHandle implements TileCacheWidgetHandle {
-    private readonly _control: TileCacheControl;
+class LeafletToolsFlyoutHandle implements ToolsFlyoutHandle {
+    private readonly _control: ToolsFlyoutControl;
 
-    constructor(control: TileCacheControl) {
+    constructor(control: ToolsFlyoutControl) {
         this._control = control;
     }
 
@@ -1624,8 +1701,8 @@ class LeafletTileCacheWidgetHandle implements TileCacheWidgetHandle {
         this._control.remove();
     }
 
-    setStatus(status: TileCacheStatus): void {
-        this._control.setStatus(status);
+    setTileCacheStatus(status: TileCacheStatus): void {
+        this._control.setTileCacheStatus(status);
     }
 }
 
@@ -1871,12 +1948,8 @@ export class DefaultLeafletWidgetFactory implements WidgetFactory {
         return new LeafletWidgetHandle(new SearchControl(bbox, onResult));
     }
 
-    createTileCacheWidget(
-        initialStatus: TileCacheStatus,
-        onToggleRecording: () => void,
-        onClearCache: () => void
-    ): TileCacheWidgetHandle {
-        return new LeafletTileCacheWidgetHandle(new TileCacheControl(initialStatus, onToggleRecording, onClearCache));
+    createToolsFlyout(options: ToolsFlyoutOptions): ToolsFlyoutHandle {
+        return new LeafletToolsFlyoutHandle(new ToolsFlyoutControl(options));
     }
 
     createNamePromptPopup(

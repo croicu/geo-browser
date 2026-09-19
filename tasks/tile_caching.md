@@ -39,9 +39,14 @@ background even though POI data still renders.
   every normal map view does. Nothing is pre-fetched ahead of what's actually being looked at.
   This is deliberately the **permitted** pattern in OSM's own policy, not a rate-limited version
   of the prohibited one.
-- **UI**: a VCR-style widget — hollow red circle (idle, tap to start recording) / filled red
-  square (recording, tap to stop) — plus a separate "clear cache" button (trash icon) that wipes
-  every cached tile outright via the Cache API's `caches.delete()`.
+- **UI**: originally three separate always-visible topright buttons (record/stop, a "clear cache"
+  trash icon, and `ImageOverlayWidget`'s own paste-image button) — consolidated into one
+  `ToolsFlyoutControl` trigger-button-opens-panel flyout after confirming live that stacking every
+  individual action as its own floating square button got crowded. VCR-style row: hollow circle
+  icon (idle, tap to start recording) / filled square icon (recording, tap to stop); a separate row
+  clears the current area's cached tiles via the Cache API's `caches.delete()`; a separate row
+  triggers `ImageOverlayWidget.triggerPaste()` (only the trigger moved -- the actual image
+  adjustment toolbar stays entirely in `ImageOverlayWidget`, untouched).
 - **Recording itself isn't bbox-scoped, but storage is per-area.** Recording follows wherever the
   viewport goes while it's on, not a pre-defined bbox. But which area's cache a fetched tile lands
   in *is* determined — by whichever area is current at fetch time — so each area gets its own

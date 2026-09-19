@@ -18,7 +18,8 @@ import type {
     RectangleHandle,
     RectangleOptions,
     TileCacheStatus,
-    TileCacheWidgetHandle,
+    ToolsFlyoutHandle,
+    ToolsFlyoutOptions,
     WidgetFactory,
     WidgetHandle,
 } from "../../src/contracts";
@@ -463,16 +464,16 @@ export class StubMapLayerFlyoutHandle extends StubWidget implements MapLayerFlyo
     }
 }
 
-export class StubTileCacheWidgetHandle extends StubWidget implements TileCacheWidgetHandle {
-    public status: TileCacheStatus;
+export class StubToolsFlyoutHandle extends StubWidget implements ToolsFlyoutHandle {
+    public tileCacheStatus: TileCacheStatus;
 
     constructor(initialStatus: TileCacheStatus) {
         super();
-        this.status = initialStatus;
+        this.tileCacheStatus = initialStatus;
     }
 
-    setStatus(status: TileCacheStatus): void {
-        this.status = status;
+    setTileCacheStatus(status: TileCacheStatus): void {
+        this.tileCacheStatus = status;
     }
 }
 
@@ -525,19 +526,13 @@ export class StubWidgetFactory implements WidgetFactory {
         return widget;
     }
 
-    public lastTileCacheWidget?: StubTileCacheWidgetHandle;
-    public lastTileCacheToggleRecording?: () => void;
-    public lastTileCacheClear?: () => void;
+    public lastToolsFlyout?: StubToolsFlyoutHandle;
+    public lastToolsFlyoutOptions?: ToolsFlyoutOptions;
 
-    createTileCacheWidget(
-        initialStatus: TileCacheStatus,
-        onToggleRecording: () => void,
-        onClearCache: () => void
-    ): TileCacheWidgetHandle {
-        const widget = new StubTileCacheWidgetHandle(initialStatus);
-        this.lastTileCacheWidget = widget;
-        this.lastTileCacheToggleRecording = onToggleRecording;
-        this.lastTileCacheClear = onClearCache;
+    createToolsFlyout(options: ToolsFlyoutOptions): ToolsFlyoutHandle {
+        const widget = new StubToolsFlyoutHandle(options.initialTileCacheStatus);
+        this.lastToolsFlyout = widget;
+        this.lastToolsFlyoutOptions = options;
         return widget;
     }
 }

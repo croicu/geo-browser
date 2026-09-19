@@ -4,7 +4,6 @@ import type { MapHandle, WidgetHandle } from "../../contracts";
 import { getLogger } from "../../services";
 import { getStatusWidget } from "../statusWidget";
 import type { StatusLevel } from "../statusWidget";
-import { Context } from "../../runtime/context";
 import { detectBlueDots, AUTO_PIN_THRESHOLD } from "../../vision/blueDotDetector";
 import type { DetectionResult } from "../../vision/blueDotDetector";
 
@@ -173,6 +172,22 @@ export class ImageOverlayWidget {
 
     }
 
+    // Entry points for ToolsFlyoutControl (leafletFactories.ts) -- the consolidated flyout's
+    // paste/debug rows call these instead of owning any image-loading logic themselves. Debug-only
+    // callers (Context.Instance.debug) gate whether the flyout even builds those two rows at all;
+    // this widget doesn't need to re-check debug itself.
+    triggerPaste(): void {
+        void this.handlePaste();
+    }
+
+    loadGoogleMapsDebugImage(): void {
+        this.loadImage(googleMapsUrl, "google_maps");
+    }
+
+    loadAppleMapsDebugImage(): void {
+        this.loadImage(appleMapsUrl, "apple_maps");
+    }
+
     private buildToolbar(): HTMLDivElement {
         const container = document.createElement("div");
         container.className = "image-overlay-toolbar";
@@ -185,16 +200,13 @@ export class ImageOverlayWidget {
         container.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
         container.addEventListener("touchmove", e => e.stopPropagation(), { passive: true });
 
-        if (Context.Instance.debug) {
-            const gmBtn = this.buildIconButton("/icons/img-google.svg", "Google Maps", () => this.loadImage(googleMapsUrl, "google_maps"));
-            container.appendChild(gmBtn);
-
-            const amBtn = this.buildIconButton("/icons/img-apple.svg", "Apple Maps", () => this.loadImage(appleMapsUrl, "apple_maps"));
-            container.appendChild(amBtn);
-        }
-
-        const pasteBtn = this.buildIconButton("/icons/img-paste.svg", "Paste image from clipboard", () => { void this.handlePaste(); });
-        container.appendChild(pasteBtn);
+        // The paste/Google/Apple entry-point buttons used to live here, always visible -- moved
+        // into ToolsFlyoutControl (leafletFactories.ts, geo-browser#103's consolidation) alongside
+        // record/clear, since stacking every action as its own floating square button got crowded.
+        // Only the *trigger* moved -- everything below (the actual adjustment toolbar, which only
+        // appears once an image is loaded) stays exactly where it was, untouched. See
+        // triggerPaste()/loadGoogleMapsDebugImage()/loadAppleMapsDebugImage() below, called from
+        // CurrentAreaBundle's ToolsFlyoutControl wiring instead of a button built here.
 
         // Unlocked section: opacity slider + pin (hidden until pinned) + lock + delete
         const unlockedSection = document.createElement("div");
