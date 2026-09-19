@@ -473,13 +473,13 @@ describe("CurrentAreaBundle", () => {
     // contracts.ts's TileCacheStore doc comment. Record-while-browsing only: recording just flips
     // write-through on/off for whatever tiles Leaflet's own ordinary viewport-driven loading
     // already requests. No job, no metadata store, no per-area bbox/zoom enumeration, no resume.
-    describe("Tile caching (geo-browser#103)", () => {
+    describe("Tools flyout / tile caching (geo-browser#103)", () => {
         it("shows an idle widget and disabled write-through on attach", () => {
             const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
 
             view.attach();
 
-            expect(widgetFactory.lastTileCacheWidget?.status).toBe("idle");
+            expect(widgetFactory.lastToolsFlyout?.tileCacheStatus).toBe("idle");
             expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
         });
 
@@ -487,9 +487,9 @@ describe("CurrentAreaBundle", () => {
             const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
             view.attach();
 
-            widgetFactory.lastTileCacheToggleRecording?.();
+            widgetFactory.lastToolsFlyoutOptions?.onToggleRecording();
 
-            expect(widgetFactory.lastTileCacheWidget?.status).toBe("recording");
+            expect(widgetFactory.lastToolsFlyout?.tileCacheStatus).toBe("recording");
             expect(widgetFactory.flyout.tileCacheEnabled).toBe(true);
             expect(widgetFactory.flyout.tileCacheAreaId).toBe("napoli");
         });
@@ -498,22 +498,22 @@ describe("CurrentAreaBundle", () => {
             const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
             view.attach();
 
-            widgetFactory.lastTileCacheToggleRecording?.(); // start
-            widgetFactory.lastTileCacheToggleRecording?.(); // stop
+            widgetFactory.lastToolsFlyoutOptions?.onToggleRecording(); // start
+            widgetFactory.lastToolsFlyoutOptions?.onToggleRecording(); // stop
 
-            expect(widgetFactory.lastTileCacheWidget?.status).toBe("idle");
+            expect(widgetFactory.lastToolsFlyout?.tileCacheStatus).toBe("idle");
             expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
         });
 
         it("never auto-starts recording -- always idle on attach regardless of any prior session", () => {
             const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
             view.attach();
-            widgetFactory.lastTileCacheToggleRecording?.(); // leave it "recording"
+            widgetFactory.lastToolsFlyoutOptions?.onToggleRecording(); // leave it "recording"
 
             view.hide();
             view.show();
 
-            expect(widgetFactory.lastTileCacheWidget?.status).toBe("idle");
+            expect(widgetFactory.lastToolsFlyout?.tileCacheStatus).toBe("idle");
             expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
         });
 
@@ -521,7 +521,7 @@ describe("CurrentAreaBundle", () => {
             const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
             view.attach();
 
-            widgetFactory.lastTileCacheClear?.();
+            widgetFactory.lastToolsFlyoutOptions?.onClearCache();
 
             expect(widgetFactory.flyout.clearTileCacheCallCount).toBe(1);
             expect(widgetFactory.flyout.lastClearedAreaId).toBe("napoli");
@@ -530,7 +530,7 @@ describe("CurrentAreaBundle", () => {
         it("stops recording and disables write-through on hide()", () => {
             const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
             view.attach();
-            widgetFactory.lastTileCacheToggleRecording?.();
+            widgetFactory.lastToolsFlyoutOptions?.onToggleRecording();
             expect(widgetFactory.flyout.tileCacheEnabled).toBe(true);
 
             view.hide();
@@ -541,12 +541,32 @@ describe("CurrentAreaBundle", () => {
         it("stops recording and disables write-through on destroy()", () => {
             const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
             view.attach();
-            widgetFactory.lastTileCacheToggleRecording?.();
+            widgetFactory.lastToolsFlyoutOptions?.onToggleRecording();
             expect(widgetFactory.flyout.tileCacheEnabled).toBe(true);
 
             view.destroy();
 
             expect(widgetFactory.flyout.tileCacheEnabled).toBe(false);
         });
+
+        // The flyout is wired up AFTER ImageOverlayWidget exists specifically so onPasteImage can
+        // delegate straight into it -- confirms that ordering actually works, not just that it
+        // compiles. ImageOverlayWidget.handlePaste() safely no-ops under happy-dom (no
+        // navigator.clipboard.read), so calling the real trigger here is safe.
+        it("wires onPasteImage to the current area's ImageOverlayWidget without throwing", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+            view.attach();
+
+            expect(() => widgetFactory.lastToolsFlyoutOptions?.onPasteImage()).not.toThrow();
+        });
+
+        it("does not wire debug-only Google/Apple Maps rows outside ?debug", () => {
+            const { view, widgetFactory } = buildBundle(fakeArea, fakeState);
+            view.attach();
+
+            expect(widgetFactory.lastToolsFlyoutOptions?.onLoadGoogleMapsDebug).toBeUndefined();
+            expect(widgetFactory.lastToolsFlyoutOptions?.onLoadAppleMapsDebug).toBeUndefined();
+        });
+
     });
 });

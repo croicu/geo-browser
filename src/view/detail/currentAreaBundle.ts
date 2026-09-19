@@ -1,7 +1,8 @@
 import type { GeoArea } from "../../catalog/area";
-import type { ControllerActions, DestinationPoint, DestinationStore, GatewayService, LayerFactory, MapLayerFlyoutHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, TileCacheWidgetHandle } from "../../contracts";
+import type { ControllerActions, DestinationPoint, DestinationStore, GatewayService, LayerFactory, MapLayerFlyoutHandle, MapPopupHandle, UserPointsStore, WidgetFactory, WidgetHandle, MapHandle, ToolsFlyoutHandle } from "../../contracts";
 import type { AreaViewState } from "../../state/areaViewState";
 import { getLogger } from "../../services";
+import { Context } from "../../runtime/context";
 import { DestinationWidget } from "./destinationWidget";
 import { ImageOverlayWidget } from "./imageOverlayWidget";
 import { LayerSelectionWidget } from "./layerSelectionWidget";
@@ -97,7 +98,7 @@ export class CurrentAreaBundle {
     private _emptySpacePopup?: MapPopupHandle;
     private _emptyCalloutLatLng?: [number, number];
     private _pendingBookmark = false;
-    private _tileCacheWidget?: TileCacheWidgetHandle;
+    private _toolsFlyout?: ToolsFlyoutHandle;
     private _tileCacheRecording = false;
 
     private _clickCleanup?: () => void;
@@ -162,8 +163,8 @@ export class CurrentAreaBundle {
         searchWidget.addTo(this._map);
         this._searchWidget = searchWidget;
 
-        this.setupTileCache();
-
+        // ImageOverlayWidget must exist before setupToolsFlyout() -- the flyout's paste/debug rows
+        // delegate straight into it.
         const imageOverlay = new ImageOverlayWidget(this._map, {
             areaBbox: this._area.bbox,
             onImageLoaded: () => { this._hasImageOverlay = true; },
@@ -172,6 +173,8 @@ export class CurrentAreaBundle {
         });
         imageOverlay.render();
         this._imageOverlayWidget = imageOverlay;
+
+        this.setupToolsFlyout();
 
         if (this._gateway) {
             const bboxWidget = new BboxWidget(
@@ -236,8 +239,8 @@ export class CurrentAreaBundle {
         this._searchWidget = undefined;
 
         this.stopTileCacheRecording("hide");
-        this._tileCacheWidget?.remove();
-        this._tileCacheWidget = undefined;
+        this._toolsFlyout?.remove();
+        this._toolsFlyout = undefined;
 
         // Saves its snapshot on destroy() (position/scale/opacity/lock/pin
         // state) and restores it automatically the next time it's rendered —
@@ -267,8 +270,8 @@ export class CurrentAreaBundle {
         searchWidget.addTo(this._map);
         this._searchWidget = searchWidget;
 
-        this.setupTileCache();
-
+        // ImageOverlayWidget must exist before setupToolsFlyout() -- the flyout's paste/debug rows
+        // delegate straight into it.
         const imageOverlay = new ImageOverlayWidget(this._map, {
             areaBbox: this._area.bbox,
             onImageLoaded: () => { this._hasImageOverlay = true; },
@@ -277,6 +280,8 @@ export class CurrentAreaBundle {
         });
         imageOverlay.render();
         this._imageOverlayWidget = imageOverlay;
+
+        this.setupToolsFlyout();
 
         this.rebuildLayersWidget();
         this.renderLayerViews(); // pick up any visibility changes made while hidden
@@ -300,8 +305,8 @@ export class CurrentAreaBundle {
         this._searchWidget = undefined;
 
         this.stopTileCacheRecording("destroy");
-        this._tileCacheWidget?.remove();
-        this._tileCacheWidget = undefined;
+        this._toolsFlyout?.remove();
+        this._toolsFlyout = undefined;
 
         this._imageOverlayWidget?.destroy();
         this._imageOverlayWidget = undefined;
@@ -674,24 +679,37 @@ export class CurrentAreaBundle {
         });
     }
 
-    // Offline tile caching (geo-browser#103) -- record-while-browsing, not bulk pre-fetch. OSM's
-    // tile usage policy explicitly prohibits any "download for offline use" pattern regardless of
-    // rate-limiting (confirmed against the actual policy source repo's history, not just current
-    // wording -- this was never compliant at any rate limit). Recording only flips write-through
-    // on for whatever tiles Leaflet's own ordinary viewport-driven loading already requests --
-    // nothing is pre-fetched, so there's no total/percentage, just idle/recording. Called from
-    // both attach() and show() -- always starts idle; recording never persists across a
-    // reattach/reload, it's a deliberate, in-the-moment toggle, not a resumable job.
-    private setupTileCache(): void {
+    // Tools flyout (geo-browser#103) -- consolidates record/stop, clear cache, and the
+    // paste-image *trigger* (ImageOverlayWidget's own adjustment toolbar stays untouched, see
+    // imageOverlayWidget.ts) into one topright flyout. Must be called AFTER _imageOverlayWidget is
+    // constructed (attach()/show() below) since onPasteImage/onLoadGoogleMapsDebug/
+    // onLoadAppleMapsDebug delegate straight into it.
+    //
+    // Recording: record-while-browsing, not bulk pre-fetch. OSM's tile usage policy explicitly
+    // prohibits any "download for offline use" pattern regardless of rate-limiting (confirmed
+    // against the actual policy source repo's history, not just current wording -- this was never
+    // compliant at any rate limit). Recording only flips write-through on for whatever tiles
+    // Leaflet's own ordinary viewport-driven loading already requests -- nothing is pre-fetched, so
+    // there's no total/percentage, just idle/recording. Always starts idle; recording never
+    // persists across a reattach/reload, it's a deliberate, in-the-moment toggle, not a resumable
+    // job.
+    private setupToolsFlyout(): void {
         this._tileCacheRecording = false;
 
-        const widget = this._widgetFactory.createTileCacheWidget(
-            "idle",
-            () => this.onTileCacheToggleRecording(),
-            () => this.onTileCacheClear()
-        );
+        const widget = this._widgetFactory.createToolsFlyout({
+            initialTileCacheStatus: "idle",
+            onToggleRecording: () => this.onTileCacheToggleRecording(),
+            onClearCache: () => this.onTileCacheClear(),
+            onPasteImage: () => this._imageOverlayWidget?.triggerPaste(),
+            onLoadGoogleMapsDebug: Context.Instance.debug
+                ? () => this._imageOverlayWidget?.loadGoogleMapsDebugImage()
+                : undefined,
+            onLoadAppleMapsDebug: Context.Instance.debug
+                ? () => this._imageOverlayWidget?.loadAppleMapsDebugImage()
+                : undefined,
+        });
         widget.addTo(this._map);
-        this._tileCacheWidget = widget;
+        this._toolsFlyout = widget;
 
         // Registers this area as the one to attribute cached tiles to, even though recording
         // itself starts off -- so the flyout already knows which area's cache to write into the
@@ -713,7 +731,7 @@ export class CurrentAreaBundle {
         }
 
         this._flyout.setTileCacheEnabled(this._tileCacheRecording, areaId);
-        this._tileCacheWidget?.setStatus(this._tileCacheRecording ? "recording" : "idle");
+        this._toolsFlyout?.setTileCacheStatus(this._tileCacheRecording ? "recording" : "idle");
     }
 
     // Shared by hide()/destroy() -- recording has no meaning once this bundle isn't showing the
